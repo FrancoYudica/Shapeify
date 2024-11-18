@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqfrlbgdnk3bq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_fsinh"]
+[ext_resource type="Script" path="res://image_loader.gd" id="2_8evja"]
+[ext_resource type="Script" path="res://toggle_button.gd" id="3_o18gu"]
+[ext_resource type="Script" path="res://image.gd" id="4_pjb8s"]
+[ext_resource type="Script" path="res://target_image.gd" id="5_7dm6g"]
+[ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="6_5rbbo"]
+
+[node name="Main" type="CanvasLayer" node_paths=PackedStringArray("textures_ui_container")]
+script = ExtResource("1_fsinh")
+textures_ui_container = NodePath("MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer/ScrollContainer/VBoxContainer/TextureItemVBoxContainer")
+
+[node name="ImageLoader" type="Node" parent="."]
+script = ExtResource("2_8evja")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "Toggle panel"
+script = ExtResource("3_o18gu")
+toggle_control = NodePath("../PanelContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+current_tab = 2
+
+[node name="Image" type="Control" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer" node_paths=PackedStringArray("textures_ui_container")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_pjb8s")
+textures_ui_container = NodePath("MarginContainer/ScrollContainer/VBoxContainer/TextureItemVBoxContainer")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Images"
+
+[node name="TextureItemVBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DragNDropHint" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Drag and drop to add more"
+
+[node name="Settings" type="Control" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Target Image" type="Control" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer"]
+layout_mode = 2
+script = ExtResource("5_7dm6g")
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Target Image"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Target Image/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Target Image/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Drag and drop target image"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Target Image/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_5rbbo")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="SplitControl" type="Control" parent="MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[connection signal="image_file_dropped" from="ImageLoader" to="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Image" method="_on_image_loader_image_file_dropped"]
+[connection signal="image_file_dropped" from="ImageLoader" to="MarginContainer/HSplitContainer/VBoxContainer/PanelContainer/TabContainer/Target Image" method="_on_image_loader_image_file_dropped"]
+[connection signal="toggled" from="MarginContainer/HSplitContainer/VBoxContainer/ToggleButton" to="MarginContainer/HSplitContainer/VBoxContainer/ToggleButton" method="_on_toggled"]
