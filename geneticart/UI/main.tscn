@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqfrlbgdnk3bq"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_fsinh"]
-[ext_resource type="Script" path="res://image_loader.gd" id="2_8evja"]
-[ext_resource type="Script" path="res://toggle_button.gd" id="3_o18gu"]
-[ext_resource type="Script" path="res://image.gd" id="4_pjb8s"]
-[ext_resource type="Script" path="res://target_image.gd" id="5_7dm6g"]
+[ext_resource type="Script" path="res://UI/main.gd" id="1_fsinh"]
+[ext_resource type="Script" path="res://UI/image_loader.gd" id="2_8evja"]
+[ext_resource type="Script" path="res://UI/toggle_button.gd" id="3_o18gu"]
+[ext_resource type="Script" path="res://UI/image.gd" id="4_pjb8s"]
+[ext_resource type="Script" path="res://UI/target_image.gd" id="5_7dm6g"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="6_5rbbo"]
 
 [node name="Main" type="CanvasLayer" node_paths=PackedStringArray("textures_ui_container")]

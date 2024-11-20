@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3p2ih0gqslrw"]
+
+[ext_resource type="Script" path="res://tests/image_mse/image_mse_test.gd" id="1_61u0o"]
+[ext_resource type="PackedScene" uid="uid://mqygthdoy76k" path="res://generation/image_mse/image_mse_gpu/image_mse_compute.tscn" id="2_8py8q"]
+[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="2_jhqvq"]
+[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="3_g6o78"]
+
+[node name="ImageMseTest" type="Node"]
+script = ExtResource("1_61u0o")
+target_texture = ExtResource("2_jhqvq")
+source_texture = ExtResource("3_g6o78")
+
+[node name="ImageMSECompute" parent="." instance=ExtResource("2_8py8q")]

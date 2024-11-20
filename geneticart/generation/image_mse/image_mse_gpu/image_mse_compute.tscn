@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mqygthdoy76k"]
+
+[ext_resource type="Script" path="res://generation/image_mse/image_mse_gpu/image_mse_compute.gd" id="1_sb4b4"]
+
+[node name="ImageMSECompute" type="Node"]
+script = ExtResource("1_sb4b4")
