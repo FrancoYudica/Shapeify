@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpw0nqmqg15um"]
+
+[ext_resource type="Script" path="res://tests/average_color/average_color_cpu/average_color_cpu_test.gd" id="1_s37xp"]
+[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_cpu.gd" id="2_e7j0a"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="3_bcmm5"]
+[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_mxndk"]
+
+[node name="AverageColorTest" type="Control" node_paths=PackedStringArray("average_color_sampler", "cpu_sampler", "compute_sampler")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s37xp")
+average_color_sampler = NodePath("AverageColorSamplerCompute")
+cpu_sampler = NodePath("AverageColorSamplerCPU")
+compute_sampler = NodePath("AverageColorSamplerCompute")
+compare_results = true
+
+[node name="AverageColorSamplerCPU" type="Node" parent="."]
+script = ExtResource("2_e7j0a")
+
+[node name="AverageColorSamplerCompute" type="Node" parent="."]
+script = ExtResource("4_mxndk")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bcmm5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="OutlineColorRect" type="ColorRect" parent="."]
+offset_right = 136.0
+offset_bottom = 136.0
+
+[node name="SampleColorRect" type="ColorRect" parent="OutlineColorRect"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 132.0
+offset_bottom = 132.0
+color = Color(1, 0.498039, 1, 1)
