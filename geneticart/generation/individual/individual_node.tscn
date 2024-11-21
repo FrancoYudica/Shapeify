@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://vt3a42a3ukji"]
+
+[ext_resource type="Texture2D" uid="uid://bokp2kmtchibw" path="res://icon.svg" id="1_k7yfm"]
+[ext_resource type="Script" path="res://generation/individual/individual_node.gd" id="2_m0eux"]
+
+[node name="Individual" type="TextureRect"]
+texture_filter = 1
+offset_left = 119.0
+offset_top = 161.0
+offset_right = 120.0
+offset_bottom = 162.0
+scale = Vector2(129.59, 129.59)
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("1_k7yfm")
+expand_mode = 3
+script = ExtResource("2_m0eux")

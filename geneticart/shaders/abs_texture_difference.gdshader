@@ -9,5 +9,3 @@ void fragment() {
 	vec3 difference = abs(texture(target_texture, UV).rgb - texture(current_texture, UV).rgb);
 	COLOR = vec4(difference, 1.0f);
 }
-
-
