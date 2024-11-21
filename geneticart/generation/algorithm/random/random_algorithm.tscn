@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqj4e010roenh"]
-
-[ext_resource type="Script" path="res://generation/algorithm/random/random_algorithm.gd" id="1_v187i"]
-
-[node name="RandomAlgorithm" type="Node"]
-script = ExtResource("1_v187i")

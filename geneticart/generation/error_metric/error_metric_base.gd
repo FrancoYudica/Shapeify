@@ -25,7 +25,14 @@ func compute(source_texture: Texture2D) -> float:
 		return -1.0
 
 	if target_texture.get_size() != source_texture.get_size():
-		printerr("ErrorMetric at compute(): \"The target texture and source texture sizes mush match\"")
+		printerr(
+			"ErrorMetric at compute(): \"The target texture and source texture sizes mush match\". 
+			target size: (%sx%spx). source size: (%sx%spx)" % 
+			[
+				target_texture.get_width(), 
+				target_texture.get_height(), 
+				source_texture.get_width(), 
+				source_texture.get_height()])
 		return -1.0
 	
 	return _compute(source_texture)

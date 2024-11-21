@@ -4,17 +4,28 @@ class_name Individual extends Resource
 @export var id: int = 0
 
 ## Central position of the Individual when rendered
-@export var position: Vector2i
+@export var position: Vector2i = Vector2.ZERO
 
 ## Size of the rendered texture
-@export var size: Vector2
+@export var size: Vector2 = Vector2(128, 128)
 
 ## Clockwise rotation that starts from +X axis
-@export_range(0.0, PI * 2.0) var rotation: float
+@export_range(0.0, PI * 2.0) var rotation: float = 0.0
 
-@export var texture: Texture2D
+@export var texture: Texture2D = null
 
 ## Used to modulate the texture color
 @export var tint: Color = Color.WHITE
 
-@export_range(0.0, 1.0) var fitness: float
+@export_range(0.0, 1.0) var fitness: float = 0.0
+
+
+func get_bounding_rect() -> Rect2i:
+	## TODO Change this to calculate with rotation
+	var rect = Rect2i(
+		position.x - size.x * 0.5,
+		position.y - size.y * 0.5,
+		size.x,
+		size.y)
+		
+	return rect

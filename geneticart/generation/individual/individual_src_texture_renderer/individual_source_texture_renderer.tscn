@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx5p6rmpjxb40"]
+[gd_scene load_steps=5 format=3 uid="uid://bx5p6rmpjxb40"]
 
 [ext_resource type="Script" path="res://generation/individual/individual_src_texture_renderer/individual_source_texture_renderer.gd" id="1_wra7n"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_j7xh0"]
 [ext_resource type="PackedScene" uid="uid://vt3a42a3ukji" path="res://generation/individual/individual_node.tscn" id="3_qto7s"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="4_3x628"]
 
@@ -10,7 +9,6 @@ viewport_path = NodePath("CanvasLayer/SubViewport")
 
 [node name="IndividualSourceTextureRenderer" type="Node" node_paths=PackedStringArray("_sub_viewport", "_source_texture_rect", "_individual_node")]
 script = ExtResource("1_wra7n")
-source_texture = ExtResource("2_j7xh0")
 _sub_viewport = NodePath("CanvasLayer/SubViewport")
 _source_texture_rect = NodePath("CanvasLayer/SubViewport/TextureRect")
 _individual_node = NodePath("CanvasLayer/SubViewport/Individual")
@@ -28,7 +26,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_j7xh0")
 expand_mode = 3
 stretch_mode = 5
 

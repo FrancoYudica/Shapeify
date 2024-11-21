@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://46ticf12bump"]
+[gd_scene load_steps=10 format=3 uid="uid://46ticf12bump"]
 
 [ext_resource type="Script" path="res://tests/individual_src_texture_renderer/individual_src_texture_renderer_test.gd" id="1_iar7c"]
 [ext_resource type="PackedScene" uid="uid://bx5p6rmpjxb40" path="res://generation/individual/individual_src_texture_renderer/individual_source_texture_renderer.tscn" id="2_flmfb"]
 [ext_resource type="Script" path="res://generation/individual/individual.gd" id="2_jj4b8"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="3_0tahv"]
 [ext_resource type="Texture2D" uid="uid://bokp2kmtchibw" path="res://icon.svg" id="4_o7dmr"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="5_7yq6j"]
 
 [sub_resource type="Resource" id="Resource_6ldnc"]
 script = ExtResource("2_jj4b8")
@@ -39,6 +40,7 @@ fitness = 0.0
 [node name="IndividualSrcTextureRendererTest" type="Node"]
 script = ExtResource("1_iar7c")
 individuals = Array[ExtResource("2_jj4b8")]([SubResource("Resource_6ldnc"), SubResource("Resource_61oiv"), SubResource("Resource_2qj87")])
+source_texture = ExtResource("5_7yq6j")
 
 [node name="IndividualSourceTextureRenderer" parent="." instance=ExtResource("2_flmfb")]
 

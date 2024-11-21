@@ -1,6 +1,7 @@
 extends Node
 
 @export var individuals: Array[Individual]
+@export var source_texture: Texture2D
 
 @onready var individual_renderer := $IndividualSourceTextureRenderer
 @onready var output_texture := $CanvasLayer/TextureRect
@@ -10,6 +11,9 @@ func _on_timer_timeout() -> void:
 	# Circular list
 	var individual = individuals.pop_front()
 	individuals.push_back(individual)
+	
+	individual_renderer.source_texture = source_texture
+	individual_renderer.begin_rendering()
 	individual_renderer.push_individual(individual)
 
 
