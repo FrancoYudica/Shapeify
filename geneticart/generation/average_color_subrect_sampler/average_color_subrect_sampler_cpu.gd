@@ -6,9 +6,9 @@ func sample_rect(rect: Rect2i) -> Color:
 	var image: Image = sample_texture.get_image()
 	
 	# Normalization factor
-	var n = 1.0 / (rect.size.x * rect.size.y)
-	var avg_color = Color(0, 0, 0, 0)
-	
+	#var n = 1.0 / (rect.size.x * rect.size.y)
+	var accumulated_color = Color(0, 0, 0, 0)
+	var sampled_count = 0
 	for x in range(rect.position.x, rect.position.x + rect.size.x):
 		
 		
@@ -23,7 +23,10 @@ func sample_rect(rect: Rect2i) -> Color:
 				continue
 			
 			var sample = image.get_pixel(x, y)
-			avg_color += n * sample
+			accumulated_color += sample
+			sampled_count += 1
+			
+	var avg_color = accumulated_color / sampled_count
 			
 	return avg_color
 	

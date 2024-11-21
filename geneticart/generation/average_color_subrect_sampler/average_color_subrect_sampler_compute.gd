@@ -117,7 +117,15 @@ func sample_rect(rect: Rect2i) -> Color:
 	
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
-	result_float_array.append_array([0, 0, 0, 0])
+	result_float_array.append_array(
+		[
+			0, # COLOR.r
+			0, # COLOR.g
+			0, # COLOR.b
+			0, # COLOR.a
+			0  # Samples count
+		]
+	)
 	_result_bytes = result_float_array.to_byte_array()
 	
 	# Ensures synchronization, since the execute_compute function also uses
@@ -136,13 +144,7 @@ func sample_rect(rect: Rect2i) -> Color:
 		
 		# Vec2 offset
 		rect.position.x,
-		rect.position.y,
-		
-		# Float normalization factor
-		1.0 / (sample_width * sample_height),
-		0.0,
-		0.0,
-		0.0
+		rect.position.y
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()
@@ -162,15 +164,17 @@ func sample_rect(rect: Rect2i) -> Color:
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
 	var output = output_bytes.to_float32_array()
-	var average_color = Color(
+	var accumulated_color = Color(
 		output[0],
 		output[1],
 		output[2],
 		output[3])
+		
+	var sample_count = output[4]
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
 
 	_output_uniform.clear_ids()
-	
-	return average_color
+	var avg_color = accumulated_color / sample_count
+	return avg_color

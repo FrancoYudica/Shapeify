@@ -16,7 +16,6 @@ script = ExtResource("1_s37xp")
 average_color_sampler = NodePath("AverageColorSamplerCompute")
 cpu_sampler = NodePath("AverageColorSamplerCPU")
 compute_sampler = NodePath("AverageColorSamplerCompute")
-compare_results = true
 
 [node name="AverageColorSamplerCPU" type="Node" parent="."]
 script = ExtResource("2_e7j0a")
@@ -60,10 +59,12 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="OutlineColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 136.0
 offset_bottom = 136.0
 
 [node name="SampleColorRect" type="ColorRect" parent="OutlineColorRect"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 132.0

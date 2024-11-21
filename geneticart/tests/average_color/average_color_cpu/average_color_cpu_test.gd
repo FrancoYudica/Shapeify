@@ -17,6 +17,7 @@ func _ready() -> void:
 func _frame_post_draw() -> void:
 	
 	if average_color_sampler.sample_texture == null:
+		print("Updai")
 		var texture = sub_viewport.get_texture()
 		average_color_sampler.sample_texture = texture
 		cpu_sampler.sample_texture = texture
