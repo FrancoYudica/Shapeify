@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3p2ih0gqslrw"]
+
+[ext_resource type="Script" path="res://tests/error_metric/error_metric_test.gd" id="1_8bpsh"]
+[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="2_oh1vq"]
+[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="3_s0nub"]
+[ext_resource type="Script" path="res://generation/error_metric/mse/mse_cpu.gd" id="4_5i2wu"]
+[ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="5_v26xn"]
+
+[node name="ErrorMetricTest" type="Node" node_paths=PackedStringArray("error_metric")]
+script = ExtResource("1_8bpsh")
+target_texture = ExtResource("2_oh1vq")
+source_texture = ExtResource("3_s0nub")
+error_metric = NodePath("MSECompute")
+
+[node name="MSECPU" type="Node" parent="."]
+script = ExtResource("4_5i2wu")
+
+[node name="MSECompute" type="Node" parent="."]
+script = ExtResource("5_v26xn")

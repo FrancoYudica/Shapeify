@@ -1,4 +1,4 @@
-extends Node
+extends ErrorMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -17,31 +17,12 @@ var _source_texture_rid: RID
 # Array where the calculations results are stored
 var _result_bytes := PackedByteArray()
 
-var target_texture: Texture2D = null:
-	set(texture):
-		
-		if _target_texture_rid.is_valid():
-			_rd.free_rid(_target_texture_rid)
-		
-		# Creates the uniform that contains the target texture
-		_target_texture_rid = _create_rd_texture_copy(texture)
-		_target_texture_set_rid = _create_texture_uniform_set(_target_texture_rid, 1)
-		target_texture = texture
-		
-func compute(source_texture: Texture2D) -> float:
 	
-	if target_texture == null:
-		printerr("target_texture can't be null. Set target texture by calling: \"set_target_texture()\"")
-		return -1.0
-	
-	if target_texture.get_size() != source_texture.get_size():
-		printerr("ImageMSECalculator at execute_compute(): \"The target texture and source texture sizes mush match\"")
-		return -1.0
-	
+func _compute(source_texture: Texture2D) -> float:
+
 	
 	# Creates the uniform that contains the source texture
 	_source_texture_rid = _create_rd_texture_copy(source_texture)
-	#_source_texture_rid = _target_texture_rid
 	_source_texture_set_rid = _create_texture_uniform_set(_source_texture_rid, 2)
 	
 	var texture_width = target_texture.get_width()
@@ -108,6 +89,14 @@ func compute(source_texture: Texture2D) -> float:
 
 func _ready() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
+
+func _set_target_texture(texture):
+	if _target_texture_rid.is_valid():
+		_rd.free_rid(_target_texture_rid)
+	
+	# Creates the uniform that contains the target texture
+	_target_texture_rid = _create_rd_texture_copy(texture)
+	_target_texture_set_rid = _create_texture_uniform_set(_target_texture_rid, 1)
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
