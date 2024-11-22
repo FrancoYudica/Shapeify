@@ -1,16 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://c3dblx01a364n"]
 
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/error_fitness_calculator.gd" id="2_43rvo"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="2_se18b"]
-[ext_resource type="PackedScene" uid="uid://bx5p6rmpjxb40" path="res://generation/individual/individual_src_texture_renderer/individual_source_texture_renderer.tscn" id="3_o2qeu"]
+[ext_resource type="PackedScene" uid="uid://bx5p6rmpjxb40" path="res://generation/individual/individual_renderer/individual_source_texture_renderer.tscn" id="3_o2qeu"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="7_gitva"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="7_j4c82"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="9_h7nui"]
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="10_n0loh"]
-[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="11_y72yd"]
-[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="12_ieiut"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
 
@@ -26,13 +26,15 @@ size_bound_max = Vector2i(512, 512)
 [sub_resource type="Resource" id="Resource_rwde6"]
 script = ExtResource("10_n0loh")
 populator_params = SubResource("Resource_yeoiw")
-target_texture = ExtResource("12_ieiut")
-source_texture = ExtResource("11_y72yd")
 
 [node name="IndividualGeneratorTest" type="Node"]
 
 [node name="ErrorMetricMSE" type="Node" parent="."]
 script = ExtResource("2_se18b")
+
+[node name="ErrorFitnessCalculator" type="Node" parent="." node_paths=PackedStringArray("error_metric")]
+script = ExtResource("2_43rvo")
+error_metric = NodePath("../ErrorMetricMSE")
 
 [node name="IndividualSourceTextureRenderer" parent="." instance=ExtResource("3_o2qeu")]
 
@@ -44,10 +46,11 @@ script = ExtResource("6_sulhk")
 
 [node name="IndividualGenerators" type="Node" parent="."]
 
-[node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "error_metric", "individual_renderer", "populator")]
+[node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "fitness_calculator", "individual_renderer", "populator")]
 script = ExtResource("5_llgun")
+target_texture = ExtResource("7_gitva")
 average_color_sampler = NodePath("../../AverageColorSamplerCompute")
-error_metric = NodePath("../../ErrorMetricMSE")
+fitness_calculator = NodePath("../../ErrorFitnessCalculator")
 individual_renderer = NodePath("../../IndividualSourceTextureRenderer")
 populator = NodePath("../../RandomPopulator")
 
@@ -107,7 +110,7 @@ virtual_keyboard_type = 2
 [node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-expand_mode = 5
+expand_mode = 2
 stretch_mode = 5
 
 [connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]

@@ -9,12 +9,17 @@ extends CanvasLayer
 
 @export var population_size_input: Control
 
+func _ready() -> void:
+	individual_generator.initialize()
+
 func setup_params():
 	params.populator_params.population_size = population_size_input.get_number()
 	params.populator_params.position_bound_min = Vector2.ZERO
-	params.populator_params.position_bound_max = params.target_texture.get_size()
+	params.populator_params.position_bound_max = individual_generator.target_texture.get_size()
 	
-	var max_width_height = maxf(params.target_texture.get_width(), params.target_texture.get_width())
+	var max_width_height = maxf(
+		individual_generator.target_texture.get_width(), 
+		individual_generator.target_texture.get_width())
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
 	
 
@@ -27,7 +32,6 @@ func generate() -> void:
 	var individual = await individual_generator.generate_individual(params)
 	clock.print_elapsed("Generated individual with fitness: %s" % individual.fitness)
 	individual_renderer.push_individual(individual)
-	individual_renderer.source_texture = params.source_texture
 	individual_renderer.rendered.connect(
 		func (individual, texture):
 			output_texture.texture = texture

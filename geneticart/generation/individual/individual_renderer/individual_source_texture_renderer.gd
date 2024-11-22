@@ -1,5 +1,4 @@
-@tool
-extends Node
+class_name IndividualRenderer extends Node
 
 signal rendered(
 	individual: Individual, 
