@@ -7,7 +7,7 @@ var sample_texture: Texture2D = null:
 		sample_texture = texture
 
 func sample_rect(rect: Rect2i) -> Color:
-		return Color.BLACK
-		
+	return Color.BLACK
+
 func _set_sample_texture(texture):
 	pass

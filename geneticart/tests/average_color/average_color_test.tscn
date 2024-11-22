@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpw0nqmqg15um"]
 
-[ext_resource type="Script" path="res://tests/average_color/average_color_cpu/average_color_cpu_test.gd" id="1_s37xp"]
-[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_cpu.gd" id="2_e7j0a"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="3_bcmm5"]
-[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_mxndk"]
+[ext_resource type="Script" path="res://tests/average_color/average_color_test.gd" id="1_ofwxx"]
+[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_cpu.gd" id="2_k2b86"]
+[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="3_ix0hi"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="4_uudmu"]
 
 [node name="AverageColorTest" type="Control" node_paths=PackedStringArray("average_color_sampler", "cpu_sampler", "compute_sampler")]
 layout_mode = 3
@@ -12,16 +12,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s37xp")
+script = ExtResource("1_ofwxx")
 average_color_sampler = NodePath("AverageColorSamplerCompute")
 cpu_sampler = NodePath("AverageColorSamplerCPU")
 compute_sampler = NodePath("AverageColorSamplerCompute")
+compare_results = true
 
 [node name="AverageColorSamplerCPU" type="Node" parent="."]
-script = ExtResource("2_e7j0a")
+script = ExtResource("2_k2b86")
 
 [node name="AverageColorSamplerCompute" type="Node" parent="."]
-script = ExtResource("4_mxndk")
+script = ExtResource("3_ix0hi")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -54,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_bcmm5")
+texture = ExtResource("4_uudmu")
 expand_mode = 3
 stretch_mode = 5
 

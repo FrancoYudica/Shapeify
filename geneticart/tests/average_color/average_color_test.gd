@@ -17,7 +17,6 @@ func _ready() -> void:
 func _frame_post_draw() -> void:
 	
 	if average_color_sampler.sample_texture == null:
-		print("Updai")
 		var texture = sub_viewport.get_texture()
 		average_color_sampler.sample_texture = texture
 		cpu_sampler.sample_texture = texture
@@ -31,25 +30,25 @@ func _frame_post_draw() -> void:
 		sample_color_rect.get_global_rect().size.y)
 	
 	if not compare_results:
-		var t = Time.get_ticks_usec()
+		
+		var clock = Clock.new()
 		var color = average_color_sampler.sample_rect(rect)
-		var dt_ms = (Time.get_ticks_usec() - t) / 1000.0
-		print("Sampled average color: %s. Elapsed %sms" % [color, dt_ms])
+		clock.print_elapsed("Sampled average color: %s" % color)
 		
 		parent_color_rect.position = mouse
 		sample_color_rect.color = color
 	
 	else:
-		var t = Time.get_ticks_usec()
+		var clock = Clock.new()
 		var cpu_color = cpu_sampler.sample_rect(rect)
-		var cpu_dt_ms = (Time.get_ticks_usec() - t) / 1000.0
+		var dt0 = clock.elapsed_ms()
+		clock.print_elapsed("CPU sampled color: %s" % cpu_color)
 		
-		t = Time.get_ticks_usec()
+		clock.restart()
 		var compute_color = compute_sampler.sample_rect(rect)
-		var compute_dt_ms = (Time.get_ticks_usec() - t) / 1000.0
+		var dt1 = clock.elapsed_ms()
+		clock.print_elapsed("GPU sampled color: %s" % compute_color)
 		
-		print("CPU sampled color: %s. Elapsed %sms" % [cpu_color, cpu_dt_ms])
-		print("GPU sampled color: %s. Elapsed %sms" % [compute_color, compute_dt_ms])
-		print("Compute speedup: %s" % [cpu_dt_ms / compute_dt_ms])
+		print("Compute speedup: %s" % [dt0 / dt1])
 		parent_color_rect.position = mouse
 		sample_color_rect.color = compute_color

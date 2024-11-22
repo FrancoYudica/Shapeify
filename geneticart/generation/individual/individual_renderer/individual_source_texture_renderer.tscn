@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx5p6rmpjxb40"]
+[gd_scene load_steps=8 format=3 uid="uid://bx5p6rmpjxb40"]
 
 [ext_resource type="Script" path="res://generation/individual/individual_renderer/individual_source_texture_renderer.gd" id="1_wra7n"]
 [ext_resource type="PackedScene" uid="uid://vt3a42a3ukji" path="res://generation/individual/individual_node.tscn" id="3_qto7s"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="4_3x628"]
+[ext_resource type="Shader" path="res://shaders/sprite_mask.gdshader" id="4_5lp7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aba4n"]
+shader = ExtResource("4_5lp7t")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v0nuc"]
 viewport_path = NodePath("CanvasLayer/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t5y3i"]
+viewport_path = NodePath("CanvasLayer/IndividualMaskSubViewport")
 
 [node name="IndividualRenderer" type="Node" node_paths=PackedStringArray("_sub_viewport", "_source_texture_rect", "_individual_node")]
 script = ExtResource("1_wra7n")
@@ -37,9 +44,35 @@ offset_bottom = 201.0
 scale = Vector2(200, 200)
 texture = ExtResource("4_3x628")
 
+[node name="IndividualMaskSubViewport" type="SubViewport" parent="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/IndividualMaskSubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Individual" parent="CanvasLayer/IndividualMaskSubViewport" instance=ExtResource("3_qto7s")]
+material = SubResource("ShaderMaterial_aba4n")
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 201.0
+offset_bottom = 201.0
+scale = Vector2(200, 200)
+
 [node name="DebugTextureRect" type="TextureRect" parent="."]
 visible = false
 texture_filter = 1
 offset_right = 640.0
 offset_bottom = 968.0
 texture = SubResource("ViewportTexture_v0nuc")
+
+[node name="DebugTextureRect2" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+offset_right = 640.0
+offset_bottom = 968.0
+texture = SubResource("ViewportTexture_t5y3i")
+stretch_mode = 4
