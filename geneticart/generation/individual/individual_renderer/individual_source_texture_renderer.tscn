@@ -7,7 +7,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_v0nuc"]
 viewport_path = NodePath("CanvasLayer/SubViewport")
 
-[node name="IndividualSourceTextureRenderer" type="Node" node_paths=PackedStringArray("_sub_viewport", "_source_texture_rect", "_individual_node")]
+[node name="IndividualRenderer" type="Node" node_paths=PackedStringArray("_sub_viewport", "_source_texture_rect", "_individual_node")]
 script = ExtResource("1_wra7n")
 _sub_viewport = NodePath("CanvasLayer/SubViewport")
 _source_texture_rect = NodePath("CanvasLayer/SubViewport/TextureRect")

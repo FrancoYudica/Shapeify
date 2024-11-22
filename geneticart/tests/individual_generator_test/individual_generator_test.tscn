@@ -29,14 +29,16 @@ populator_params = SubResource("Resource_yeoiw")
 
 [node name="IndividualGeneratorTest" type="Node"]
 
-[node name="ErrorMetricMSE" type="Node" parent="."]
+[node name="Fitness" type="Node" parent="."]
+
+[node name="ErrorMetricMSE" type="Node" parent="Fitness"]
 script = ExtResource("2_se18b")
 
-[node name="ErrorFitnessCalculator" type="Node" parent="." node_paths=PackedStringArray("error_metric")]
+[node name="ErrorFitnessCalculator" type="Node" parent="Fitness" node_paths=PackedStringArray("error_metric")]
 script = ExtResource("2_43rvo")
 error_metric = NodePath("../ErrorMetricMSE")
 
-[node name="IndividualSourceTextureRenderer" parent="." instance=ExtResource("3_o2qeu")]
+[node name="IndividualRenderer" parent="." instance=ExtResource("3_o2qeu")]
 
 [node name="AverageColorSamplerCompute" type="Node" parent="."]
 script = ExtResource("4_o6nao")
@@ -50,15 +52,15 @@ script = ExtResource("6_sulhk")
 script = ExtResource("5_llgun")
 target_texture = ExtResource("7_gitva")
 average_color_sampler = NodePath("../../AverageColorSamplerCompute")
-fitness_calculator = NodePath("../../ErrorFitnessCalculator")
-individual_renderer = NodePath("../../IndividualSourceTextureRenderer")
+fitness_calculator = NodePath("../../Fitness/ErrorFitnessCalculator")
+individual_renderer = NodePath("../../IndividualRenderer")
 populator = NodePath("../../RandomPopulator")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("individual_generator", "individual_renderer", "output_texture", "population_size_input")]
 script = ExtResource("13_jgyce")
 params = SubResource("Resource_rwde6")
 individual_generator = NodePath("../IndividualGenerators/RandomIndividualGenerator")
-individual_renderer = NodePath("../IndividualSourceTextureRenderer")
+individual_renderer = NodePath("../IndividualRenderer")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
 population_size_input = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput")
 

@@ -3,7 +3,7 @@ extends CanvasLayer
 @export var params: IndividualGeneratorParams
 
 @export var individual_generator: IndividualGenerator
-@export var individual_renderer: Node
+@export var individual_renderer: IndividualRenderer
 
 @export var output_texture: TextureRect
 
@@ -27,10 +27,14 @@ func setup_params():
 func generate() -> void:
 	var clock = Clock.new()
 	setup_params()
+	
+	# This way we can see how the indivuduals are generated
 	output_texture.texture = individual_renderer.get_subviewport_texture()
 	
 	var individual = await individual_generator.generate_individual(params)
 	clock.print_elapsed("Generated individual with fitness: %s" % individual.fitness)
+	
+	# Renders the best individual and displays
 	individual_renderer.push_individual(individual)
 	individual_renderer.rendered.connect(
 		func (individual, texture):
@@ -38,6 +42,8 @@ func generate() -> void:
 	)
 	individual_renderer.begin_rendering()
 	await individual_renderer.finished_rendering
+	
+	# Stores the output texture
 	var img: Image = output_texture.texture.get_image()
 	img.save_png("res://art/output/out.png")
 	
