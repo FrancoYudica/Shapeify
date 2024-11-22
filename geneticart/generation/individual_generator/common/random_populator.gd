@@ -6,6 +6,7 @@ func generate_population(params: PopulatorParams) -> Array[Individual]:
 	
 	for i in range(params.population_size):
 		var individual = Individual.new()
+		individual.fitness = -1
 		
 		# Random position
 		individual.position.x = randi_range(

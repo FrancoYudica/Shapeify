@@ -6,8 +6,15 @@ class_name IndividualGenerator extends Node
 
 @export var average_color_sampler: AverageColorSampler
 @export var error_metric: ErrorMetric
-@export var individual_src_texture_renderer: Node
+@export var individual_renderer: Node
 @export var populator: Populator
 
 func generate_individual(params: IndividualGeneratorParams) -> Individual:
+	_setup()
+	return await _generate(params)
+
+func _setup():
+	individual_renderer.clear_signals()
+
+func _generate(params: IndividualGeneratorParams) -> Individual:
 	return

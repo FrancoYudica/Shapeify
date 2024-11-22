@@ -1,7 +1,7 @@
 ## Holds a set of genetic attributes
 class_name Individual extends Resource
 
-@export var id: int = 0
+@export var id: int = -1
 
 ## Central position of the Individual when rendered
 @export var position: Vector2i = Vector2.ZERO

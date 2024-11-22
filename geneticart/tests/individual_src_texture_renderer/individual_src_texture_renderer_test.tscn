@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://generation/individual/individual.gd" id="2_jj4b8"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="3_0tahv"]
 [ext_resource type="Texture2D" uid="uid://bokp2kmtchibw" path="res://icon.svg" id="4_o7dmr"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="5_7yq6j"]
+[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="5_46x68"]
 
 [sub_resource type="Resource" id="Resource_6ldnc"]
 script = ExtResource("2_jj4b8")
-id = 0
+id = -1
 position = Vector2i(100, 100)
 size = Vector2(128, 128)
 rotation = 0.0
@@ -19,7 +19,7 @@ fitness = 0.0
 
 [sub_resource type="Resource" id="Resource_61oiv"]
 script = ExtResource("2_jj4b8")
-id = 0
+id = -1
 position = Vector2i(200, 200)
 size = Vector2(128, 128)
 rotation = 1.182
@@ -29,7 +29,7 @@ fitness = 0.0
 
 [sub_resource type="Resource" id="Resource_2qj87"]
 script = ExtResource("2_jj4b8")
-id = 0
+id = -1
 position = Vector2i(300, 300)
 size = Vector2(128, 128)
 rotation = 0.0
@@ -40,7 +40,7 @@ fitness = 0.0
 [node name="IndividualSrcTextureRendererTest" type="Node"]
 script = ExtResource("1_iar7c")
 individuals = Array[ExtResource("2_jj4b8")]([SubResource("Resource_6ldnc"), SubResource("Resource_61oiv"), SubResource("Resource_2qj87")])
-source_texture = ExtResource("5_7yq6j")
+source_texture = ExtResource("5_46x68")
 
 [node name="IndividualSourceTextureRenderer" parent="." instance=ExtResource("2_flmfb")]
 
@@ -54,5 +54,4 @@ autostart = true
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="individual_src_texture_rendered" from="IndividualSourceTextureRenderer" to="." method="_on_individual_source_texture_renderer_individual_src_texture_rendered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

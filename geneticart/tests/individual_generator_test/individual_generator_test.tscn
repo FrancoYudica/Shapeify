@@ -1,38 +1,35 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=16 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Script" path="res://tests/individual_generator_test/individual_generator_test.gd" id="1_ftyu7"]
-[ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="2_gsvmp"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="2_se18b"]
 [ext_resource type="PackedScene" uid="uid://bx5p6rmpjxb40" path="res://generation/individual/individual_src_texture_renderer/individual_source_texture_renderer.tscn" id="3_o2qeu"]
-[ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="3_o7amr"]
-[ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="3_y0xl3"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
-[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="4_umosy"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
-[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="5_nvnlm"]
-[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="6_gfidt"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
+[ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="7_j4c82"]
+[ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
+[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="9_h7nui"]
+[ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="10_n0loh"]
+[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="11_y72yd"]
+[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="12_ieiut"]
+[ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
+[ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
 
-[sub_resource type="Resource" id="Resource_tbogi"]
-script = ExtResource("2_gsvmp")
-textures = Array[Texture2D]([ExtResource("3_o7amr"), ExtResource("4_umosy")])
-population_size = 100
+[sub_resource type="Resource" id="Resource_yeoiw"]
+script = ExtResource("7_j4c82")
+textures = Array[Texture2D]([ExtResource("8_idbn2"), ExtResource("9_h7nui")])
+population_size = 10
 position_bound_min = Vector2i(0, 0)
-position_bound_max = Vector2i(512, 512)
+position_bound_max = Vector2i(0, 0)
 size_bound_min = Vector2i(16, 16)
 size_bound_max = Vector2i(512, 512)
 
-[sub_resource type="Resource" id="Resource_5e5k2"]
-script = ExtResource("3_y0xl3")
-populator_params = SubResource("Resource_tbogi")
-target_texture = ExtResource("5_nvnlm")
-source_texture = ExtResource("6_gfidt")
+[sub_resource type="Resource" id="Resource_rwde6"]
+script = ExtResource("10_n0loh")
+populator_params = SubResource("Resource_yeoiw")
+target_texture = ExtResource("12_ieiut")
+source_texture = ExtResource("11_y72yd")
 
-[node name="IndividualGeneratorTest" type="Node" node_paths=PackedStringArray("individual_generator", "individual_source_texture_renderer")]
-script = ExtResource("1_ftyu7")
-individual_generator_params = SubResource("Resource_5e5k2")
-individual_generator = NodePath("IndividualGenerators/RandomIndividualGenerator")
-individual_source_texture_renderer = NodePath("IndividualSourceTextureRenderer")
+[node name="IndividualGeneratorTest" type="Node"]
 
 [node name="ErrorMetricMSE" type="Node" parent="."]
 script = ExtResource("2_se18b")
@@ -47,15 +44,70 @@ script = ExtResource("6_sulhk")
 
 [node name="IndividualGenerators" type="Node" parent="."]
 
-[node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "error_metric", "individual_src_texture_renderer", "populator")]
+[node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "error_metric", "individual_renderer", "populator")]
 script = ExtResource("5_llgun")
 average_color_sampler = NodePath("../../AverageColorSamplerCompute")
 error_metric = NodePath("../../ErrorMetricMSE")
-individual_src_texture_renderer = NodePath("../../IndividualSourceTextureRenderer")
+individual_renderer = NodePath("../../IndividualSourceTextureRenderer")
 populator = NodePath("../../RandomPopulator")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("individual_generator", "individual_renderer", "output_texture", "population_size_input")]
+script = ExtResource("13_jgyce")
+params = SubResource("Resource_rwde6")
+individual_generator = NodePath("../IndividualGenerators/RandomIndividualGenerator")
+individual_renderer = NodePath("../IndividualSourceTextureRenderer")
+output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
+population_size_input = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput")
 
-[node name="IndividualSourceTextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Generate"
+
+[node name="NumberInput" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("13_wrrml")
+
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput"]
+layout_mode = 2
+text = "Population size"
+
+[node name="LineEdit" type="LineEdit" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput"]
+layout_mode = 2
+text = "10"
+placeholder_text = "10"
+virtual_keyboard_type = 2
+
+[node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 5
+stretch_mode = 5
+
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]
