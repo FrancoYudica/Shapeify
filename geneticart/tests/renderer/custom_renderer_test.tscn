@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=3 uid="uid://3wtrrjihfabg"]
+
+[ext_resource type="Script" path="res://tests/renderer/scene_renderer_test.gd" id="1_ny0fo"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_d1o56"]
+[ext_resource type="Texture2D" uid="uid://c60ug5ta127oc" path="res://art/cube.png" id="3_eq75x"]
+[ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="3_ii1ew"]
+[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="4_rs5so"]
+[ext_resource type="Script" path="res://tests/renderer/renderer_settings.gd" id="6_bmpbw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7a7u1"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ds7q6"]
+noise = SubResource("FastNoiseLite_7a7u1")
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_nqtt3"]
+
+[node name="CustomRendererTest" type="Node"]
+
+[node name="SceneRenderer" type="CanvasLayer" parent="."]
+script = ExtResource("1_ny0fo")
+
+[node name="ViewportControl" type="Control" parent="SceneRenderer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="SceneRenderer/ViewportControl"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+texture = ExtResource("2_d1o56")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="SceneRenderer/ViewportControl"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 221.0
+offset_right = 548.0
+offset_bottom = 701.0
+texture = ExtResource("3_eq75x")
+
+[node name="TextureRect3" type="TextureRect" parent="SceneRenderer/ViewportControl"]
+modulate = Color(1, 1, 1, 0.576471)
+layout_mode = 0
+offset_left = 512.0
+offset_top = 233.0
+offset_right = 640.0
+offset_bottom = 361.0
+texture = SubResource("NoiseTexture2D_ds7q6")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="SceneRenderer/ViewportControl"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 540.0
+offset_top = 405.0
+offset_right = 668.0
+offset_bottom = 533.0
+texture = ExtResource("3_ii1ew")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RendererOutputTextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("Texture2DRD_nqtt3")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("4_rs5so")
+
+[node name="RendererSettings" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_bmpbw")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/RendererSettings"]
+layout_mode = 0
+offset_right = 474.0
+offset_bottom = 149.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/RendererSettings/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Clear color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "asdsads"
+
+[node name="RenderScaleLabel" type="Label" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Render scale"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.25
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label3" type="Label" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Framebuffer attachment"
+
+[node name="FBAttachmentOptionButton" type="OptionButton" parent="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[connection signal="color_changed" from="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer/ColorPickerButton" to="CanvasLayer/RendererSettings" method="_on_color_picker_button_color_changed"]
+[connection signal="value_changed" from="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer/HSlider" to="CanvasLayer/RendererSettings" method="_on_h_slider_value_changed"]
+[connection signal="item_selected" from="CanvasLayer/RendererSettings/PanelContainer/MarginContainer/GridContainer/FBAttachmentOptionButton" to="CanvasLayer/RendererSettings" method="_on_fb_attachment_option_button_item_selected"]
