@@ -1,7 +1,7 @@
 ## Set of parameters used by Populator
 class_name PopulatorParams extends Resource
 
-@export var textures: Array[Texture2D] = []
+@export var textures_rd_rids: Array[RID] = []
 
 @export var population_size: int = 100
 

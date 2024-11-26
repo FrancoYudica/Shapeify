@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var params: IndividualGeneratorParams
+@export var individual_textures: Array[Texture] = []
 
 @export var individual_generator: IndividualGenerator
 @export var individual_renderer: IndividualRenderer
@@ -11,6 +12,13 @@ extends CanvasLayer
 
 func _ready() -> void:
 	individual_generator.target_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(individual_generator.target_texture)
+	
+	# Adds the IDs of all the individual textures
+	for texture in individual_textures:
+		params.populator_params.textures_rd_rids.append(
+			RenderingCommon.create_local_rd_texture_copy(texture)
+		)
+	
 	individual_generator.initialize()
 	
 

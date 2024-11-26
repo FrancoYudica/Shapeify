@@ -12,7 +12,7 @@ class_name Individual extends Resource
 ## Clockwise rotation that starts from +X axis
 @export_range(0.0, PI * 2.0) var rotation: float = 0.0
 
-@export var texture: Texture2D = null
+var texture_rd_rid: RID
 
 ## Used to modulate the texture color
 @export var tint: Color = Color.WHITE

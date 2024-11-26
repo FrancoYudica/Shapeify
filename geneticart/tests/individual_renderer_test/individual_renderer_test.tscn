@@ -1,21 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwl3ru8nypy42"]
+[gd_scene load_steps=7 format=3 uid="uid://dwl3ru8nypy42"]
 
 [ext_resource type="Script" path="res://tests/individual_renderer_test/individual_renderer_test.gd" id="1_rvydi"]
-[ext_resource type="Script" path="res://generation/individual/individual.gd" id="2_vgll5"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="3_qn16m"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_l58vo"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="5_5phrv"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="6_hm8m1"]
-
-[sub_resource type="Resource" id="Resource_n6fl6"]
-script = ExtResource("2_vgll5")
-id = -1
-position = Vector2i(64, 64)
-size = Vector2(128, 128)
-rotation = 0.0
-texture = ExtResource("3_qn16m")
-tint = Color(1, 1, 1, 1)
-fitness = 0.0
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_itb2w"]
 
@@ -23,7 +12,7 @@ fitness = 0.0
 script = ExtResource("1_rvydi")
 source_texture = ExtResource("5_5phrv")
 individual_renderer = NodePath("IndividualRenderer")
-individual = SubResource("Resource_n6fl6")
+individual_texture = ExtResource("3_qn16m")
 
 [node name="IndividualRenderer" type="Node" parent="."]
 script = ExtResource("4_l58vo")

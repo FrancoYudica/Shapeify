@@ -28,7 +28,7 @@ func generate_population(params: PopulatorParams) -> Array[Individual]:
 		individual.rotation = randf_range(0.0, 2.0 * PI)
 		
 		# Random texture
-		individual.texture = params.textures.pick_random()
+		individual.texture_rd_rid = params.textures_rd_rids.pick_random()
 		
 		population.append(individual)
 		

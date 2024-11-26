@@ -43,12 +43,12 @@ func render_individual(individual: Individual) -> void:
 		0.0)
 		
 	# 2. Render individual
-	Renderer.render_sprite(
+	Renderer.render_sprite_texture_rd_rid(
 		individual.position,
 		individual.size,
 		individual.rotation,
 		individual.tint,
-		individual.texture,
+		individual.texture_rd_rid,
 		1.0)
 	
 	Renderer.end_frame()
