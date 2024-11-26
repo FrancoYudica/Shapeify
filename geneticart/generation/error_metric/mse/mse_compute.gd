@@ -84,7 +84,7 @@ func _compute_rd(source_texture_rd_id) -> float:
 func _compute(source_texture: Texture2D) -> float:
 	
 	# Updates texture contents
-	RenderingCommon.update_texture_diff_rd(
+	RenderingCommon.texture_copy(
 		RenderingServer.texture_get_rd_texture(source_texture.get_rid()),
 		_source_texture_rid,
 		RenderingServer.get_rendering_device(),
@@ -103,12 +103,12 @@ func _set_target_texture(texture):
 		_rd.free_rid(_target_texture_rid)
 	
 	# Creates the uniform that contains the target texture
-	var target_texture_format = RenderingCommon.copy_texture_format(
+	var target_texture_format = RenderingCommon.texture_format_copy(
 		RenderingServer.get_rendering_device(),
 		RenderingServer.texture_get_rd_texture(texture.get_rid())
 	)
 	_target_texture_rid = _create_texture_from_format(target_texture_format)
-	RenderingCommon.update_texture_diff_rd(
+	RenderingCommon.texture_copy(
 		RenderingServer.texture_get_rd_texture(texture.get_rid()),
 		_target_texture_rid,
 		RenderingServer.get_rendering_device(),

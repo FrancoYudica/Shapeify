@@ -39,21 +39,6 @@ enum FramebufferAttachment{
 	COLOR,
 	UID
 }
-
-func get_attachment_data(attachment: FramebufferAttachment) -> PackedByteArray:
-	# Gets texture data from renderer local rendering device and updates texture
-	_mutex.lock()
-	var attachment_texture_rd_id = _framebuffer_attachment_textures[attachment]
-	var data = rd.texture_get_data(attachment_texture_rd_id, 0)
-	_mutex.unlock()
-	return data
-
-func get_attachment_format(attachment: FramebufferAttachment) -> RDTextureFormat:
-	_mutex.lock()
-	var attachment_texture_rd_id = _framebuffer_attachment_textures[attachment]
-	var format = rd.texture_get_format(attachment_texture_rd_id)
-	_mutex.unlock()
-	return format
 	
 func get_attachment_texture_rd_id(attachment: FramebufferAttachment) -> RID:
 	return _framebuffer_attachment_textures[attachment]
@@ -154,7 +139,7 @@ func _initialize() -> void:
 	
 	var default_image = Image.load_from_file(_DEFAULT_TEXTURE_PATH)
 	var texture_img = ImageTexture.create_from_image(default_image)
-	_default_texture_rd_id = RenderingCommon.copy_texture_to_local_rd(texture_img, rd)
+	_default_texture_rd_id = RenderingCommon.create_local_rd_texture_copy(texture_img)
 	
 	var projection_matrix_floats = 12
 	_matrix_storage_buffer = rd.storage_buffer_create(

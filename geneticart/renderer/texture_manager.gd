@@ -115,8 +115,11 @@ func _create_texture(texture: Texture) -> RID:
 	
 	# Texture is stored in global rendering device
 	if texture_rd_id.is_valid():
-		return RenderingCommon.copy_texture_to_local_rd(texture, rd)
-	
+		return RenderingCommon.create_local_rd_texture_copy(
+			texture, 
+			RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT | 
+			RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
+	#
 	# Texture stored in local rendering device
 	elif texture is Texture2DRD:
 		return texture.texture_rd_rid

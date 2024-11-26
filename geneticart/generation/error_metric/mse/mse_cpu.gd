@@ -32,3 +32,7 @@ func _compute(source_texture: Texture2D) -> float:
 	var mse = accumulated * n
 	
 	return mse
+
+func _compute_rd(source_texture_rd_id) -> float:
+	
+	return -1.0
