@@ -21,12 +21,12 @@ func initialize():
 		printerr("Trying to initialize IndividualGenerator but target_texture_rd_rid is invalid")
 		return
 		
-	if not source_texture_rd_rid.is_valid():
-		_initialize_src_image()
-	
 	fitness_calculator.target_texture_rd_rid = target_texture_rd_rid
 	average_color_sampler.sample_texture_rd_rid = target_texture_rd_rid
-	
+
+	if not source_texture_rd_rid.is_valid():
+		_initialize_src_image()
+
 	_initialized = true
 
 
@@ -54,6 +54,16 @@ func _initialize_src_image():
 		target_format.height,
 		false, 
 		Image.FORMAT_RGBA8)
-	img.fill(Color.BLACK)
+	
+	# The initial color of the source texture is the average color of target texture
+	var average_color = average_color_sampler.sample_rect(
+		Rect2i(
+			Vector2i.ZERO, 
+			Vector2i(target_format.width, target_format.height)
+		)
+	)
+	img.fill(average_color)
+	
+	# Creates to image texture and then to RD local texture
 	var source_texture = ImageTexture.create_from_image(img)
 	source_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(source_texture)
