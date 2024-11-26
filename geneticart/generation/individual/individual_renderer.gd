@@ -1,4 +1,15 @@
-extends IndividualRenderer
+class_name IndividualRenderer extends Node
+
+
+@export var source_texture: Texture2D = null:
+	set(texture):
+		source_texture = texture
+
+## Clears all the connected callables
+func clear_signals():
+	for s in get_signal_list():
+		for conn in get_signal_connection_list(s.name):
+			self.disconnect(s.name, conn.callable)
 
 func render_individual(individual: Individual) -> void:
 
