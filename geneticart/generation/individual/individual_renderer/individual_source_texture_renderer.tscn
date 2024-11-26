@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx5p6rmpjxb40"]
+[gd_scene load_steps=9 format=3 uid="uid://bx5p6rmpjxb40"]
 
 [ext_resource type="Script" path="res://generation/individual/individual_renderer/individual_source_texture_renderer.gd" id="1_wra7n"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_xk04j"]
 [ext_resource type="PackedScene" uid="uid://vt3a42a3ukji" path="res://generation/individual/individual_node.tscn" id="3_qto7s"]
-[ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="4_3x628"]
 [ext_resource type="Shader" path="res://shaders/sprite_mask.gdshader" id="4_5lp7t"]
+[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="4_hyaip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aba4n"]
 shader = ExtResource("4_5lp7t")
@@ -33,16 +34,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_xk04j")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Individual" parent="CanvasLayer/SubViewport" instance=ExtResource("3_qto7s")]
-offset_left = 200.0
-offset_top = 200.0
-offset_right = 201.0
-offset_bottom = 201.0
-scale = Vector2(200, 200)
-texture = ExtResource("4_3x628")
+offset_left = 65.0
+offset_top = 64.0
+offset_right = 66.0
+offset_bottom = 65.0
+scale = Vector2(128, 128)
+texture = ExtResource("4_hyaip")
 
 [node name="IndividualMaskSubViewport" type="SubViewport" parent="CanvasLayer"]
 
@@ -56,9 +58,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="Individual" parent="CanvasLayer/IndividualMaskSubViewport" instance=ExtResource("3_qto7s")]
 material = SubResource("ShaderMaterial_aba4n")
-offset_left = 200.0
+offset_left = 198.6
 offset_top = 200.0
-offset_right = 201.0
+offset_right = 199.6
 offset_bottom = 201.0
 scale = Vector2(200, 200)
 

@@ -23,8 +23,10 @@ static func update_texture_diff_rd(
 	dest_rd: RenderingDevice) -> void:
 		
 	var texture_data = src_rd.texture_get_data(src_texture, 0)
-	dest_rd.texture_update(dest_texture, 0, texture_data)
-
+	var err = dest_rd.texture_update(dest_texture, 0, texture_data)
+	
+	if err != OK:
+		printerr("Error while updating texture in update_texture_diff_rd()")
 
 static func copy_texture_to_local_rd(
 	texture: Texture, 

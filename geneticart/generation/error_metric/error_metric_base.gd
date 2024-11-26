@@ -36,6 +36,37 @@ func compute(source_texture: Texture2D) -> float:
 		return -1.0
 	
 	return _compute(source_texture)
+
+func compute_rd(source_texture_rd_id: RID) -> float:
 	
-func _compute(source_texture):
-	pass
+	var src_format: RDTextureFormat = Renderer.rd.texture_get_format(source_texture_rd_id)
+	
+	# Does validations
+	if target_texture == null:
+		printerr("target_texture can't be null in ErrorMetric.compute_rd()")
+		return -1.0
+
+	if not source_texture_rd_id.is_valid() or not Renderer.rd.texture_is_valid(source_texture_rd_id):
+		printerr("target_texture can't be null in ErrorMetric.compute_rd()")
+		return -1.0
+	
+	
+	if target_texture.get_width() != src_format.width or \
+		target_texture.get_height() != src_format.height:
+		printerr(
+			"ErrorMetric at compute(): \"The target texture and source texture sizes mush match\". 
+			target size: (%sx%spx). source size: (%sx%spx)" % 
+			[
+				target_texture.get_width(), 
+				target_texture.get_height(), 
+				src_format.width, 
+				src_format.height])
+		return -1.0
+	
+	return _compute_rd(source_texture_rd_id)
+
+func _compute(source_texture) -> float:
+	return -1.0
+
+func _compute_rd(source_texture_rd_id) -> float:
+	return -1.0

@@ -11,5 +11,11 @@ func calculate_fitness(
 	
 	individual.fitness = -1.0
 
+func calculate_fitness_rd_id(
+	individual: Individual,
+	source_texture_rd_id: RID) -> void:
+	
+	individual.fitness = -1.0
+
 func _target_texture_set():
 	pass

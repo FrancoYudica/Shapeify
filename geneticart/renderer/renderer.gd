@@ -54,6 +54,9 @@ func get_attachment_format(attachment: FramebufferAttachment) -> RDTextureFormat
 	var format = rd.texture_get_format(attachment_texture_rd_id)
 	_mutex.unlock()
 	return format
+	
+func get_attachment_texture_rd_id(attachment: FramebufferAttachment) -> RID:
+	return _framebuffer_attachment_textures[attachment]
 
 func begin_frame(viewport_size: Vector2i):
 	
@@ -191,7 +194,8 @@ func _resize(viewport_size: Vector2i):
 	texture_format.format = RenderingDevice.DATA_FORMAT_R32G32B32A32_SFLOAT
 	texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
-		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT)
+		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
+		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
 	
 	_framebuffer_attachment_textures[FramebufferAttachment.COLOR] = rd.texture_create(
 		texture_format, 
@@ -206,7 +210,8 @@ func _resize(viewport_size: Vector2i):
 	texture_format_id.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
 		RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT | 
-		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT)
+		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
+		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
 	
 	_framebuffer_attachment_textures[FramebufferAttachment.UID] = rd.texture_create(
 		texture_format_id,  

@@ -4,12 +4,12 @@ extends Node
 @export var source_texture: Texture
 
 @export var error_metric: ErrorMetric
+@export var iterations = 10
 
 func _ready() -> void:
 	
 	var average_error = 0.0
 	var average_time = 0.0
-	var iterations = 1000
 	var f = 1.0 / iterations
 	
 	var t0 = Time.get_ticks_msec()

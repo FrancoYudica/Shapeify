@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=19 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/error_fitness_calculator.gd" id="2_43rvo"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="2_se18b"]
 [ext_resource type="PackedScene" uid="uid://bx5p6rmpjxb40" path="res://generation/individual/individual_renderer/individual_source_texture_renderer.tscn" id="3_o2qeu"]
+[ext_resource type="Script" path="res://generation/individual/individual_renderer/custom_individual_renderer.gd" id="4_2w52m"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="10_n0loh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
+[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
 [sub_resource type="Resource" id="Resource_yeoiw"]
 script = ExtResource("7_j4c82")
@@ -27,6 +29,8 @@ size_bound_max = Vector2i(512, 512)
 script = ExtResource("10_n0loh")
 populator_params = SubResource("Resource_yeoiw")
 
+[sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
+
 [node name="IndividualGeneratorTest" type="Node"]
 
 [node name="Fitness" type="Node" parent="."]
@@ -39,6 +43,9 @@ script = ExtResource("2_43rvo")
 error_metric = NodePath("../ErrorMetricMSE")
 
 [node name="IndividualRenderer" parent="." instance=ExtResource("3_o2qeu")]
+
+[node name="CustomIndividualRenderer" type="Node" parent="."]
+script = ExtResource("4_2w52m")
 
 [node name="AverageColorSamplerCompute" type="Node" parent="."]
 script = ExtResource("4_o6nao")
@@ -53,14 +60,14 @@ script = ExtResource("5_llgun")
 target_texture = ExtResource("7_gitva")
 average_color_sampler = NodePath("../../AverageColorSamplerCompute")
 fitness_calculator = NodePath("../../Fitness/ErrorFitnessCalculator")
-individual_renderer = NodePath("../../IndividualRenderer")
+individual_renderer = NodePath("../../CustomIndividualRenderer")
 populator = NodePath("../../RandomPopulator")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("individual_generator", "individual_renderer", "output_texture", "population_size_input")]
 script = ExtResource("13_jgyce")
 params = SubResource("Resource_rwde6")
 individual_generator = NodePath("../IndividualGenerators/RandomIndividualGenerator")
-individual_renderer = NodePath("../IndividualRenderer")
+individual_renderer = NodePath("../CustomIndividualRenderer")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
 population_size_input = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput")
 
@@ -110,9 +117,12 @@ placeholder_text = "10"
 virtual_keyboard_type = 2
 
 [node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
+texture = SubResource("Texture2DRD_vyacx")
 expand_mode = 2
 stretch_mode = 5
+script = ExtResource("15_yx5fx")
 
 [connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]
