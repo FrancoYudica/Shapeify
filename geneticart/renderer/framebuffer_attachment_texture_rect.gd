@@ -19,17 +19,17 @@ func _update_texture() -> void:
 	if not visible:
 		return
 	
-	var attachment_rd_id = Renderer.get_attachment_texture_rd_id(renderer_fb_attachment_type)
+	var attachment_rd_rid = Renderer.get_attachment_texture_rd_rid(renderer_fb_attachment_type)
 	RenderingCommon.texture_copy(
-		attachment_rd_id,
+		attachment_rd_rid,
 		texture.texture_rd_rid,
 		Renderer.rd,
 		RenderingServer.get_rendering_device()
 	)
 
 func _create_texture() -> void:
-	var attachment_rd_id = Renderer.get_attachment_texture_rd_id(renderer_fb_attachment_type)
-	var texture_rd: Texture2DRD = RenderingCommon.create_texture_from_rd_id(attachment_rd_id)
+	var attachment_rd_rid = Renderer.get_attachment_texture_rd_rid(renderer_fb_attachment_type)
+	var texture_rd: Texture2DRD = RenderingCommon.create_texture_from_rd_rid(attachment_rd_rid)
 	
 	texture = texture_rd
 	

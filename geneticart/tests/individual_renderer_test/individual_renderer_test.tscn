@@ -21,12 +21,12 @@ fitness = 0.0
 
 [node name="IndividualRendererTest" type="Node" node_paths=PackedStringArray("individual_renderer")]
 script = ExtResource("1_rvydi")
+source_texture = ExtResource("5_5phrv")
 individual_renderer = NodePath("IndividualRenderer")
 individual = SubResource("Resource_n6fl6")
 
 [node name="IndividualRenderer" type="Node" parent="."]
 script = ExtResource("4_l58vo")
-source_texture = ExtResource("5_5phrv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

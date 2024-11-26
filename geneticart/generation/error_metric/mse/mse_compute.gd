@@ -11,22 +11,34 @@ var _output_uniform: RDUniform
 ## Textures and texture sets
 var _target_texture_set_rid: RID
 var _source_texture_set_rid: RID
-var _target_texture_rid: RID
-var _source_texture_rid: RID
 
 # Array where the calculations results are stored
 var _result_bytes := PackedByteArray()
 
+var _target_size: Vector2i = Vector2i.ZERO
 
-func _compute_rd(source_texture_rd_id) -> float:
+func _target_texture_set():
+	var target_format = Renderer.rd.texture_get_format(target_texture_rd_rid)
+	_target_size = Vector2i(
+		target_format.width,
+		target_format.height)
+		
+	_target_texture_set_rid = _create_texture_uniform_set(target_texture_rd_rid, 1)
+
+var _previous_source_texture_rd_rid: RID
+
+func _compute(source_texture_rd_rid: RID) -> float:
 	
-	if _source_texture_rid != source_texture_rd_id:
-		_rd.free_rid(_source_texture_set_rid)
-		_source_texture_rid = source_texture_rd_id
-		_source_texture_set_rid = _create_texture_uniform_set(_source_texture_rid, 2)
+	# This avoids creating new uniform sets when source texture is the same
+	if _previous_source_texture_rd_rid != source_texture_rd_rid:
+		
+		if _source_texture_set_rid.is_valid():
+			_rd.free_rid(_source_texture_set_rid)
+		_previous_source_texture_rd_rid = source_texture_rd_rid
+		_source_texture_set_rid = _create_texture_uniform_set(source_texture_rd_rid, 2)
 	
-	var texture_width = target_texture.get_width()
-	var texture_height = target_texture.get_height()
+	var texture_width =  _target_size.x
+	var texture_height = _target_size.y
 	
 	var group_size_x = texture_width
 	var group_size_y = texture_height
@@ -80,70 +92,14 @@ func _compute_rd(source_texture_rd_id) -> float:
 	_output_uniform.clear_ids()
 	
 	return mse
-	
-func _compute(source_texture: Texture2D) -> float:
-	
-	# Updates texture contents
-	RenderingCommon.texture_copy(
-		RenderingServer.texture_get_rd_texture(source_texture.get_rid()),
-		_source_texture_rid,
-		RenderingServer.get_rendering_device(),
-		_rd
-	)
-	return _compute_rd(_source_texture_rid)
 
 func _ready() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
 
-func _set_target_texture(texture):
-	if _target_texture_set_rid.is_valid():
-		_rd.free_rid(_target_texture_set_rid)
-	
-	if _target_texture_rid.is_valid():
-		_rd.free_rid(_target_texture_rid)
-	
-	# Creates the uniform that contains the target texture
-	var target_texture_format = RenderingCommon.texture_format_copy(
-		RenderingServer.get_rendering_device(),
-		RenderingServer.texture_get_rd_texture(texture.get_rid())
-	)
-	_target_texture_rid = _create_texture_from_format(target_texture_format)
-	RenderingCommon.texture_copy(
-		RenderingServer.texture_get_rd_texture(texture.get_rid()),
-		_target_texture_rid,
-		RenderingServer.get_rendering_device(),
-		_rd
-	)
-	
-	_target_texture_set_rid = _create_texture_uniform_set(_target_texture_rid, 1)
-	
-	
-	# Does the same but for source texture
-	if _source_texture_set_rid.is_valid():
-		_rd.free_rid(_source_texture_set_rid)
-	
-	if _source_texture_rid.is_valid():
-		_rd.free_rid(_source_texture_rid)
-	
-	# Creates the uniform that contains the target texture
-	_source_texture_rid = _create_texture_from_format(target_texture_format)
-	_source_texture_set_rid = _create_texture_uniform_set(_source_texture_rid, 2)
-
-
-
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
-	
-	if _target_texture_rid.is_valid():
-		_rd.free_rid(_target_texture_rid)
-		
-	if _source_texture_rid.is_valid():
-		_rd.free_rid(_source_texture_rid)
 
 func _load_shader():
-	# As this becomes part of our normal frame rendering,
-	# we use our main rendering device here.
-	#_rd = RenderingServer.get_rendering_device()
 	_rd = Renderer.rd
 
 	# Create our _shader.
@@ -161,17 +117,6 @@ func _initialize_compute_code() -> void:
 	_output_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	_output_uniform.binding = 0
 	
-
-## Creates a rendering device texture with the same format as `src_texture`
-func _create_texture_from_format(texture_format: RDTextureFormat) -> RID:
-	texture_format.usage_bits |= (
-			RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT |
-			RenderingDevice.TEXTURE_USAGE_STORAGE_BIT  |
-			RenderingDevice.TEXTURE_USAGE_CAN_COPY_TO_BIT )
-	
-	# Creates target texture and copies
-	var copy_texture_rid = _rd.texture_create(texture_format, RDTextureView.new(), [])
-	return copy_texture_rid
 
 ## Creates an uniform set containing the texture
 func _create_texture_uniform_set(

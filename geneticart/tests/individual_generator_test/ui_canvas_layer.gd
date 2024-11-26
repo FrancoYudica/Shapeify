@@ -10,7 +10,9 @@ extends CanvasLayer
 @export var population_size_input: Control
 
 func _ready() -> void:
+	individual_generator.target_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(individual_generator.target_texture)
 	individual_generator.initialize()
+	
 
 func setup_params():
 	params.populator_params.population_size = population_size_input.get_number()
@@ -21,6 +23,7 @@ func setup_params():
 		individual_generator.target_texture.get_width(), 
 		individual_generator.target_texture.get_width())
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
+	
 	
 
 # Called when the node enters the scene tree for the first time.

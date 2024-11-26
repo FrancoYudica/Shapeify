@@ -1,16 +1,22 @@
+# CPU impelentation of MSE metric to compare results with compute shader version.
+# This is just for testing
 extends ErrorMetric
 
 var target_image: Image = null
+var _target_texture_2d_rd: Texture2DRD
 
-func _set_target_texture(texture):
-	target_image = texture.get_image()
+func _target_texture_set():
+	# TODO: This might be leaking texture
+	_target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture_rd_rid)
+	target_image = _target_texture_2d_rd.get_image()
 
-## CPU calculation of Median Squared Error. 
-func _compute(source_texture: Texture2D) -> float:
-	
+
+func _compute(source_texture_rd_rid) -> float:
 	var t = Time.get_ticks_msec()
-
-	var source_image: Image = source_texture.get_image()
+	
+	# TODO: This might be leaking texture
+	var source_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(source_texture_rd_rid)
+	var source_image: Image = source_texture_2d_rd.get_image()
 	
 	# Term used to normalize the MSE
 	var width = target_image.get_width()
@@ -32,7 +38,3 @@ func _compute(source_texture: Texture2D) -> float:
 	var mse = accumulated * n
 	
 	return mse
-
-func _compute_rd(source_texture_rd_id) -> float:
-	
-	return -1.0

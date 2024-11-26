@@ -1,9 +1,19 @@
 class_name IndividualRenderer extends Node
 
+var _source_texture_size: Vector2i = Vector2i.ZERO
 
-@export var source_texture: Texture2D = null:
+var source_texture_rd_rid: RID:
 	set(texture):
-		source_texture = texture
+		
+		if not texture.is_valid() or not Renderer.rd.texture_is_valid(texture):
+			printerr("Trying to assign invalid source_texture_rd_rid to IndividualRenderer")
+			return
+		
+		source_texture_rd_rid = texture
+		var format = Renderer.rd.texture_get_format(texture)
+		_source_texture_size.x = format.width
+		_source_texture_size.y = format.height
+		
 
 ## Clears all the connected callables
 func clear_signals():
@@ -12,26 +22,24 @@ func clear_signals():
 			self.disconnect(s.name, conn.callable)
 
 func render_individual(individual: Individual) -> void:
-
-	if source_texture == null:
-		printerr("begin_rendering(): Source texture is null")
-		return RID()
+	
+	if not source_texture_rd_rid.is_valid() or \
+	   not Renderer.rd.texture_is_valid(source_texture_rd_rid):
+		printerr("Trying to render individual with inavlid source_texture_rd_rid")
+		return
+	
 	
 	var clock = Clock.new()
 	
-	var viewport_size = Vector2i(
-		source_texture.get_width(), 
-		source_texture.get_height())
-		
-	Renderer.begin_frame(viewport_size)
+	Renderer.begin_frame(_source_texture_size)
 	
 	# 1. Render source sprite
-	Renderer.render_sprite(
-		viewport_size * 0.5, 
-		viewport_size, 
+	Renderer.render_sprite_texture_rd_rid(
+		_source_texture_size * 0.5, 
+		_source_texture_size, 
 		0, 
 		Color.WHITE, 
-		source_texture,
+		source_texture_rd_rid,
 		0.0)
 		
 	# 2. Render individual
@@ -46,8 +54,8 @@ func render_individual(individual: Individual) -> void:
 	Renderer.end_frame()
 	#clock.print_elapsed("Finished rendering")
 
-func get_color_attachment_texture_rd_id() -> RID:
-	return Renderer.get_attachment_texture_rd_id(Renderer.FramebufferAttachment.COLOR)
+func get_color_attachment_texture_rd_rid() -> RID:
+	return Renderer.get_attachment_texture_rd_rid(Renderer.FramebufferAttachment.COLOR)
 
-func get_id_attachment_texture_rd_id() -> RID:
-	return Renderer.get_attachment_texture_rd_id(Renderer.FramebufferAttachment.UID)
+func get_id_attachment_texture_rd_rid() -> RID:
+	return Renderer.get_attachment_texture_rd_rid(Renderer.FramebufferAttachment.UID)

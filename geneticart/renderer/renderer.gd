@@ -25,7 +25,7 @@ var _framebuffer: RID
 var _framebuffer_attachment_textures: Dictionary
 var _mutex: Mutex = Mutex.new()
 
-var _default_texture_rd_id: RID
+var _default_texture_rd_rid: RID
 var _sprite_batch: Batch
 
 var _matrix_storage_buffer: RID
@@ -40,7 +40,7 @@ enum FramebufferAttachment{
 	UID
 }
 	
-func get_attachment_texture_rd_id(attachment: FramebufferAttachment) -> RID:
+func get_attachment_texture_rd_rid(attachment: FramebufferAttachment) -> RID:
 	return _framebuffer_attachment_textures[attachment]
 
 func begin_frame(viewport_size: Vector2i):
@@ -92,23 +92,23 @@ func render_sprite(
 		id)
 	
 
-func render_sprite_texture_rd_id(
+func render_sprite_texture_rd_rid(
 	position: Vector2,
 	size: Vector2,
 	rotation: float,
 	color: Color,
-	texture_rd_id: RID,
+	texture_rd_rid: RID,
 	id: float = 0):
 	
-	if not rd.texture_is_valid(texture_rd_id):
-		printerr("Trying to render sprite with invalid texture_rd_id(%s)" % texture_rd_id)
+	if not rd.texture_is_valid(texture_rd_rid):
+		printerr("Trying to render sprite with invalid texture_rd_rid(%s)" % texture_rd_rid)
 		return
 	
-	var texture_slot = _texture_manager.get_texture_slot_by_id(texture_rd_id)
+	var texture_slot = _texture_manager.get_texture_slot_by_id(texture_rd_rid)
 	if texture_slot == TextureManager.Status.FULL:
 		_sprite_batch.flush()
 		_texture_manager.clear()
-		texture_slot = _texture_manager.get_texture_slot_by_id(texture_rd_id)
+		texture_slot = _texture_manager.get_texture_slot_by_id(texture_rd_rid)
 	
 	if texture_slot == TextureManager.Status.INVALID:
 		printerr("Invalid texture")
@@ -139,7 +139,7 @@ func _initialize() -> void:
 	
 	var default_image = Image.load_from_file(_DEFAULT_TEXTURE_PATH)
 	var texture_img = ImageTexture.create_from_image(default_image)
-	_default_texture_rd_id = RenderingCommon.create_local_rd_texture_copy(texture_img)
+	_default_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(texture_img)
 	
 	var projection_matrix_floats = 12
 	_matrix_storage_buffer = rd.storage_buffer_create(
@@ -159,9 +159,9 @@ func _resize(viewport_size: Vector2i):
 	
 	_viewport_size = viewport_size
 	
-	for attachment_texture_rd_id in _framebuffer_attachment_textures.values():
-		if rd.texture_is_valid(attachment_texture_rd_id):
-			rd.free_rid(attachment_texture_rd_id)
+	for attachment_texture_rd_rid in _framebuffer_attachment_textures.values():
+		if rd.texture_is_valid(attachment_texture_rd_rid):
+			rd.free_rid(attachment_texture_rd_rid)
 	
 	if rd.framebuffer_is_valid(_framebuffer):
 		rd.free_rid(_framebuffer)
@@ -204,8 +204,8 @@ func _resize(viewport_size: Vector2i):
 	
 	# Validates all the framebuffer texture attachments
 	for attachment_type in _framebuffer_attachment_textures:
-		var attachment_texture_rd_id = _framebuffer_attachment_textures[attachment_type]
-		if not rd.texture_is_valid(attachment_texture_rd_id):
+		var attachment_texture_rd_rid = _framebuffer_attachment_textures[attachment_type]
+		if not rd.texture_is_valid(attachment_texture_rd_rid):
 			printerr("Framebuffer attachment texture: \"%s\" is invalid" % attachment_type)
 			return
 	
@@ -275,17 +275,17 @@ func flush() -> void:
 	uniform_texture.binding = 0 
 	uniform_texture.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
 	var sampler = RDSamplerState.new()
-	var sampler_rd_id = rd.sampler_create(sampler)
+	var sampler_rd_rid = rd.sampler_create(sampler)
 	
 	# Adds textures
-	for texture_rd_id in _texture_manager.get_textures_rd_id():
-		uniform_texture.add_id(sampler_rd_id)
-		uniform_texture.add_id(texture_rd_id)
+	for texture_rd_rid in _texture_manager.get_textures_rd_rid():
+		uniform_texture.add_id(sampler_rd_rid)
+		uniform_texture.add_id(texture_rd_rid)
 	
 	# Fills reamaining texture slots
 	for i in range(32 - _texture_manager.texture_count):
-		uniform_texture.add_id(sampler_rd_id)
-		uniform_texture.add_id(_default_texture_rd_id)
+		uniform_texture.add_id(sampler_rd_rid)
+		uniform_texture.add_id(_default_texture_rd_rid)
 		
 	uniforms.append(uniform_texture)
 

@@ -17,7 +17,7 @@ var texture_count:
 
 
 class _TextureData:
-	var texture_rd_id: RID
+	var texture_rd_rid: RID
 	var use_count: int
 
 
@@ -36,40 +36,40 @@ func get_texture_slot_by_texture(texture: Texture) -> int:
 		if _textures.size() == _MAX_TEXTURES_SLOTS:
 			return Status.FULL
 		
-		var rd_id = _create_texture(texture)
-		if not rd_id.is_valid():
+		var rd_rid = _create_texture(texture)
+		if not rd_rid.is_valid():
 			return Status.INVALID
 			
-		_store_texture_rd_id(texture_rid, rd_id)
+		_store_texture_rd_rid(texture_rid, rd_rid)
 	
 	# When texture isn't added to the slot
 	_load_texture_to_slot(texture_rid)
 	
 	return _get_texture_slot_index(texture_rid)
 
-func get_texture_slot_by_id(texture_rd_id: RID) -> int:
+func get_texture_slot_by_id(texture_rd_rid: RID) -> int:
 	
 	# When texture isn't created
-	if not _textures.has(texture_rd_id):
+	if not _textures.has(texture_rd_rid):
 		
 		# Unable to add a new texture
 		if _textures.size() == _MAX_TEXTURES_SLOTS:
 			return Status.FULL
 		
-		if not texture_rd_id.is_valid():
+		if not texture_rd_rid.is_valid():
 			return Status.INVALID
 			
-		_store_texture_rd_id(texture_rd_id, texture_rd_id)
+		_store_texture_rd_rid(texture_rd_rid, texture_rd_rid)
 	
 	# When texture isn't added to the slot
-	_load_texture_to_slot(texture_rd_id)
+	_load_texture_to_slot(texture_rd_rid)
 	
-	return _get_texture_slot_index(texture_rd_id)
+	return _get_texture_slot_index(texture_rd_rid)
 
-func get_texture_rd_id(id: RID):
-	return _textures[id].texture_rd_id
+func get_texture_rd_rid(id: RID):
+	return _textures[id].texture_rd_rid
 
-func get_textures_rd_id() -> Array:
+func get_textures_rd_rid() -> Array:
 	return _loaded_textures
 
 func clear_slots():
@@ -79,30 +79,30 @@ func clear_slots():
 func clear():
 	clear_slots()
 	for texture_data in _textures:
-		rd.free_rid(texture_data.texture_rd_id)
+		rd.free_rid(texture_data.texture_rd_rid)
 		
 	_textures.clear()
 
 func _load_texture_to_slot(id: RID):
 	
 	var texture_data = _textures[id]
-	var texture_rd_id = texture_data.texture_rd_id
+	var texture_rd_rid = texture_data.texture_rd_rid
 	
 	# Already loaded
-	if _loaded_textures.count(texture_rd_id) > 0:
+	if _loaded_textures.count(texture_rd_rid) > 0:
 		return
 		
-	_loaded_textures.append(texture_rd_id)
+	_loaded_textures.append(texture_rd_rid)
 
 func _get_texture_slot_index(id: RID) -> int:
-	return _loaded_textures.find(get_texture_rd_id(id))
+	return _loaded_textures.find(get_texture_rd_rid(id))
 
-func _store_texture_rd_id(
+func _store_texture_rd_rid(
 	id: RID, 
-	texture_rd_id: RID):
+	texture_rd_rid: RID):
 	
 	var texture_data = _TextureData.new()
-	texture_data.texture_rd_id = texture_rd_id
+	texture_data.texture_rd_rid = texture_rd_rid
 	texture_data.use_count = 1
 	_textures[id] = texture_data
 	
@@ -111,10 +111,10 @@ func _store_texture_rd_id(
 	
 	
 func _create_texture(texture: Texture) -> RID:
-	var texture_rd_id = RenderingServer.texture_get_rd_texture(texture.get_rid())
+	var texture_rd_rid = RenderingServer.texture_get_rd_texture(texture.get_rid())
 	
 	# Texture is stored in global rendering device
-	if texture_rd_id.is_valid():
+	if texture_rd_rid.is_valid():
 		return RenderingCommon.create_local_rd_texture_copy(
 			texture, 
 			RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT | 
