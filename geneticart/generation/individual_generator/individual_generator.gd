@@ -4,12 +4,8 @@
 class_name IndividualGenerator extends Node
 
 @export_category("Data")
-@export var target_texture: Texture2D = null
 var target_texture_rd_rid: RID
 var source_texture_rd_rid: RID
-
-## If source texture is null, a black texture will be generated
-@export var source_texture: Texture2D = null
 
 @export_category("Algorithm components")
 @export var average_color_sampler: AverageColorSampler
@@ -21,15 +17,15 @@ var _initialized = false
 
 func initialize():
 	
-	if target_texture == null:
-		printerr("Trying to initialize IndividualGenerator but target_texture is null")
+	if not target_texture_rd_rid.is_valid():
+		printerr("Trying to initialize IndividualGenerator but target_texture_rd_rid is invalid")
 		return
 		
-	if source_texture == null:
+	if not source_texture_rd_rid.is_valid():
 		_initialize_src_image()
 	
 	fitness_calculator.target_texture_rd_rid = target_texture_rd_rid
-	average_color_sampler.sample_texture = target_texture
+	average_color_sampler.sample_texture_rd_rid = target_texture_rd_rid
 	
 	_initialized = true
 
@@ -51,11 +47,13 @@ func _generate(params: IndividualGeneratorParams) -> Individual:
 	return
 
 func _initialize_src_image():
+	
+	var target_format = Renderer.rd.texture_get_format(target_texture_rd_rid)
 	var img = Image.create(
-		target_texture.get_width(), 
-		target_texture.get_height(), 
+		target_format.width,
+		target_format.height,
 		false, 
 		Image.FORMAT_RGBA8)
 	img.fill(Color.BLACK)
-	source_texture = ImageTexture.create_from_image(img)
+	var source_texture = ImageTexture.create_from_image(img)
 	source_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(source_texture)

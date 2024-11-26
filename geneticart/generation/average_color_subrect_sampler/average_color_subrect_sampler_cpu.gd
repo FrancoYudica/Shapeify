@@ -1,28 +1,25 @@
 extends AverageColorSampler
 
+var _sample_image: Image
 
 func sample_rect(rect: Rect2i) -> Color:
 	
-	var image: Image = sample_texture.get_image()
-	
-	# Normalization factor
-	#var n = 1.0 / (rect.size.x * rect.size.y)
 	var accumulated_color = Color(0, 0, 0, 0)
 	var sampled_count = 0
 	for x in range(rect.position.x, rect.position.x + rect.size.x):
 		
 		
 		# It's out of bounds and will always be
-		if x < 0 or x >= image.get_width():
+		if x < 0 or x >= _sample_image.get_width():
 			continue
 		
 		for y in range(rect.position.y, rect.position.y + rect.size.y):
 			
 			# It's out of bounds and will always be
-			if y < 0 or y >= image.get_height():
+			if y < 0 or y >= _sample_image.get_height():
 				continue
 			
-			var sample = image.get_pixel(x, y)
+			var sample = _sample_image.get_pixel(x, y)
 			accumulated_color += sample
 			sampled_count += 1
 			
@@ -30,3 +27,10 @@ func sample_rect(rect: Rect2i) -> Color:
 			
 	return avg_color
 	
+
+func _sample_texture_set():
+	var texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(sample_texture_rd_rid)
+	_sample_image = texture_2d_rd.get_image()
+	RenderingServer.get_rendering_device().free_rid(
+		texture_2d_rd.texture_rd_rid
+	)
