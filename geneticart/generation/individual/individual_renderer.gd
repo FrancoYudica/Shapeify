@@ -9,11 +9,6 @@ var source_texture: RendererTexture:
 			
 		source_texture = texture
 		
-## Clears all the connected callables
-func clear_signals():
-	for s in get_signal_list():
-		for conn in get_signal_connection_list(s.name):
-			self.disconnect(s.name, conn.callable)
 
 func render_individual(individual: Individual) -> void:
 	

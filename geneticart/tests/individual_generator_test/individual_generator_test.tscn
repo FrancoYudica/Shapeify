@@ -1,35 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=23 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/error_fitness_calculator.gd" id="2_43rvo"]
+[ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute_ceilab.gd" id="2_pjmid"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="2_se18b"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_2w52m"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/inv_error_fitness_calculator.gd" id="4_soxav"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="7_gitva"]
-[ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="7_j4c82"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="9_h7nui"]
-[ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="10_n0loh"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="14_yjids"]
 [ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="14_yqiyu"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
-
-[sub_resource type="Resource" id="Resource_yeoiw"]
-script = ExtResource("7_j4c82")
-textures = Array[ExtResource("14_yjids")]([])
-population_size = 10
-position_bound_min = Vector2i(0, 0)
-position_bound_max = Vector2i(0, 0)
-size_bound_min = Vector2i(16, 16)
-size_bound_max = Vector2i(512, 512)
-
-[sub_resource type="Resource" id="Resource_rwde6"]
-script = ExtResource("10_n0loh")
-populator_params = SubResource("Resource_yeoiw")
+[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="16_6efuj"]
 
 [sub_resource type="Texture2D" id="Texture2D_weah6"]
 resource_local_to_scene = false
@@ -53,7 +40,7 @@ _src_texture = ExtResource("14_yqiyu")
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("12_6munh")
-_src_texture = ExtResource("7_gitva")
+_src_texture = ExtResource("16_6efuj")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
@@ -64,9 +51,16 @@ _src_texture = ExtResource("7_gitva")
 [node name="ErrorMetricMSE" type="Node" parent="Fitness"]
 script = ExtResource("2_se18b")
 
+[node name="ErrorMetricCEILab" type="Node" parent="Fitness"]
+script = ExtResource("2_pjmid")
+
 [node name="ErrorFitnessCalculator" type="Node" parent="Fitness" node_paths=PackedStringArray("error_metric")]
 script = ExtResource("2_43rvo")
 error_metric = NodePath("../ErrorMetricMSE")
+
+[node name="InvErrorFitnessCalculator" type="Node" parent="Fitness" node_paths=PackedStringArray("error_metric")]
+script = ExtResource("4_soxav")
+error_metric = NodePath("../ErrorMetricCEILab")
 
 [node name="IndividualRenderer" type="Node" parent="."]
 script = ExtResource("4_2w52m")
@@ -82,13 +76,12 @@ script = ExtResource("6_sulhk")
 [node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "fitness_calculator", "individual_renderer", "populator")]
 script = ExtResource("5_llgun")
 average_color_sampler = NodePath("../../AverageColorSamplerCompute")
-fitness_calculator = NodePath("../../Fitness/ErrorFitnessCalculator")
+fitness_calculator = NodePath("../../Fitness/InvErrorFitnessCalculator")
 individual_renderer = NodePath("../../IndividualRenderer")
 populator = NodePath("../../RandomPopulator")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("individual_generator", "individual_renderer", "output_texture", "population_size_input")]
 script = ExtResource("13_jgyce")
-params = SubResource("Resource_rwde6")
 individual_textures = Array[ExtResource("14_yjids")]([SubResource("Texture2D_weah6"), SubResource("Texture2D_88gyn"), SubResource("Texture2D_3c1pm")])
 target_texture = SubResource("Texture2D_whorf")
 individual_generator = NodePath("../IndividualGenerators/RandomIndividualGenerator")

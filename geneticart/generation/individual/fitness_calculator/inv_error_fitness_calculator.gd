@@ -5,7 +5,7 @@ extends FitnessCalculator
 func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
-	individual.fitness = 1.0 - error_metric.compute(source_texture)
+	individual.fitness = error_metric.compute(source_texture)
 
 func _target_texture_set():
 	error_metric.target_texture = target_texture

@@ -29,7 +29,25 @@ static func load_from_path(path: String) -> RendererTexture:
 	var texture = RendererTexture.new()
 	texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(texture_img)
 	return texture
+
+
+func copy() -> RendererTexture:
+	var format = RenderingCommon.texture_format_copy(
+		Renderer.rd,
+		rd_rid)
 	
+	format.usage_bits |= RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT
+	
+	var texture_data = Renderer.rd.texture_get_data(rd_rid, 0)
+	var new_rd_rid = Renderer.rd.texture_create(
+		format,
+		RDTextureView.new(),
+		[texture_data]
+	)
+	
+	var new_texture := RendererTexture.new()
+	new_texture.rd_rid = new_rd_rid
+	return new_texture
 
 func is_valid() -> bool:
 	return rd_rid.is_valid() and Renderer.rd.texture_is_valid(rd_rid)

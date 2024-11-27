@@ -1,29 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3p2ih0gqslrw"]
+[gd_scene load_steps=10 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/error_metric/error_metric_test.gd" id="1_8bpsh"]
-[ext_resource type="Texture2D" uid="uid://hxfxyni16ep1" path="res://art/test/target_test_960x540.png" id="2_oh1vq"]
-[ext_resource type="Texture2D" uid="uid://chr5aofgwaads" path="res://art/test/source_test_960x540.png" id="3_2ym17"]
+[ext_resource type="Texture2D" uid="uid://bpy2p1lthfsj8" path="res://art/test/test_white_128x128.png" id="2_mgbhe"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_8aqy3"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_cpu.gd" id="4_5i2wu"]
+[ext_resource type="Texture2D" uid="uid://r82lsg0w2pq5" path="res://art/test/test_black_128x128.png" id="4_r136g"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="5_v26xn"]
+[ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute_ceilab.gd" id="7_lxvlq"]
 
 [sub_resource type="Texture2D" id="Texture2D_dfntu"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_8aqy3")
-_src_texture = ExtResource("2_oh1vq")
+_src_texture = ExtResource("2_mgbhe")
 
 [sub_resource type="Texture2D" id="Texture2D_22c7c"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_8aqy3")
-_src_texture = ExtResource("3_2ym17")
+_src_texture = ExtResource("4_r136g")
 
 [node name="ErrorMetricTest" type="Node" node_paths=PackedStringArray("error_metric")]
 script = ExtResource("1_8bpsh")
 target_texture = SubResource("Texture2D_dfntu")
 source_texture = SubResource("Texture2D_22c7c")
-error_metric = NodePath("MSECPU")
+error_metric = NodePath("MSECeilab")
 iterations = 1
 
 [node name="MSECompute" type="Node" parent="."]
@@ -31,3 +32,6 @@ script = ExtResource("5_v26xn")
 
 [node name="MSECPU" type="Node" parent="."]
 script = ExtResource("4_5i2wu")
+
+[node name="MSECeilab" type="Node" parent="."]
+script = ExtResource("7_lxvlq")

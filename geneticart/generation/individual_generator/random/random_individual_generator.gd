@@ -1,7 +1,7 @@
 extends IndividualGenerator
 
 
-func _generate(params: IndividualGeneratorParams) -> Individual:
+func _generate() -> Individual:
 	
 	var total_fitness_time: float = 0
 	var total_render_time: float = 0

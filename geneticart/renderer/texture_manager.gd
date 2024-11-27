@@ -51,9 +51,6 @@ func clear_slots():
 ## Clear texture slots and frees textures from memory
 func clear():
 	clear_slots()
-	for texture_data in _textures:
-		rd.free_rid(texture_data.texture_rd_rid)
-		
 	_textures.clear()
 
 func _load_texture_to_slot(texture: RendererTexture):

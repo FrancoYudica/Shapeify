@@ -100,7 +100,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/image_mse.glsl")
+	var shader_file := load("res://shaders/compute/CEILab_fitness.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

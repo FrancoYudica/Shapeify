@@ -4,8 +4,8 @@
 class_name IndividualGenerator extends Node
 
 @export_category("Data")
-var target_texture: RendererTexture
-var source_texture: RendererTexture
+
+var params: IndividualGeneratorParams
 
 @export_category("Algorithm components")
 @export var average_color_sampler: AverageColorSampler
@@ -13,16 +13,20 @@ var source_texture: RendererTexture
 @export var individual_renderer: IndividualRenderer
 @export var populator: Populator
 
+var source_texture: RendererTexture
+
 var _initialized = false
 
-func initialize():
+func initialize(generator_params: IndividualGeneratorParams):
 	
-	if not target_texture.is_valid():
+	params = generator_params
+	
+	if not params.target_texture.is_valid():
 		printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
 		return
 		
-	fitness_calculator.target_texture = target_texture
-	average_color_sampler.sample_texture = target_texture
+	fitness_calculator.target_texture = params.target_texture
+	average_color_sampler.sample_texture = params.target_texture
 
 	if source_texture == null or not source_texture.is_valid():
 		_initialize_src_image()
@@ -30,27 +34,26 @@ func initialize():
 	_initialized = true
 
 
-func generate_individual(params: IndividualGeneratorParams) -> Individual:
+func generate_individual() -> Individual:
 	
 	if not _initialized:
 		printerr("IndividialGenerator not initialized")
 		return
 	
-	_setup(params)
-	return await _generate(params)
+	_setup()
+	return _generate()
 
-func _setup(params: IndividualGeneratorParams):
-	individual_renderer.clear_signals()
+func _setup():
 	individual_renderer.source_texture = source_texture
 
-func _generate(params: IndividualGeneratorParams) -> Individual:
+func _generate() -> Individual:
 	return
 
 func _initialize_src_image():
 	
 	var img = Image.create(
-		target_texture.get_width(),
-		target_texture.get_height(),
+		params.target_texture.get_width(),
+		params.target_texture.get_height(),
 		false, 
 		Image.FORMAT_RGBA8)
 	
@@ -59,8 +62,8 @@ func _initialize_src_image():
 		Rect2i(
 			Vector2i.ZERO, 
 			Vector2i(
-				target_texture.get_width(),
-				target_texture.get_height()
+				params.target_texture.get_width(),
+				params.target_texture.get_height()
 			)
 		)
 	)
