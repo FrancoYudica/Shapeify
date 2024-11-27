@@ -179,14 +179,15 @@ func _resize(viewport_size: Vector2i):
 			return
 	
 	# Setup blending for the attachments
-	# Color blending OneMinusSrcAlpha
 	var blend := RDPipelineColorBlendState.new()
+	
+	# Color blending MIX
 	var blend_color_attachment = RDPipelineColorBlendStateAttachment.new()
 	blend_color_attachment.enable_blend = true
-	blend_color_attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
 	blend_color_attachment.color_blend_op = RenderingDevice.BLEND_OP_ADD
-	blend_color_attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
+	blend_color_attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
 	blend_color_attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+	blend_color_attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
 	blend_color_attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
 	blend_color_attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
 	blend.attachments.push_back(blend_color_attachment)
