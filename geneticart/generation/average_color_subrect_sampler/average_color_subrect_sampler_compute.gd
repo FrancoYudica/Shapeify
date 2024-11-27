@@ -27,7 +27,7 @@ func sample_rect(rect: Rect2i) -> Color:
 	
 	var group_size_x = sample_width
 	var group_size_y = sample_height
-	var local_size = 4
+	var local_size = 8
 	
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
@@ -70,8 +70,8 @@ func sample_rect(rect: Rect2i) -> Color:
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 
-		group_size_x / local_size, 
-		group_size_y / local_size, 
+		ceili(float(group_size_x) / local_size), 
+		ceili(float(group_size_y) / local_size), 
 		1)
 	_rd.compute_list_end()
 	
@@ -103,7 +103,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/average_color_subrect_sampler.glsl")
+	var shader_file := load("res://shaders/compute/average_color_subrect_sampler.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

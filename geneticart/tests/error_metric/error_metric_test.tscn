@@ -10,7 +10,7 @@
 script = ExtResource("1_8bpsh")
 target_texture = ExtResource("2_oh1vq")
 source_texture = ExtResource("3_2ym17")
-error_metric = NodePath("MSECPU")
+error_metric = NodePath("MSECompute")
 iterations = 1
 
 [node name="MSECompute" type="Node" parent="."]
