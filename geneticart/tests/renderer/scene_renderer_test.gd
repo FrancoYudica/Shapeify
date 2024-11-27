@@ -19,11 +19,10 @@ func _process(delta: float) -> void:
 			texture_rect.size,
 			texture_rect.rotation + Time.get_ticks_msec() / 1000.0,
 			texture_rect.modulate,
-			texture_rect.texture,
+			texture_rect.texture as RendererTexture,
 			(i + 1.0) / viewport_control.get_child_count()
 		)
 		i += 1
 	Renderer.end_frame()
 	
 	var dt_ms = (Time.get_ticks_usec() - t0) / 1000.0
-	print("Renderer took: %sms" % dt_ms)

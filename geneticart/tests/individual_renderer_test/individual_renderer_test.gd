@@ -1,14 +1,12 @@
 extends Node
 
-@export var source_texture: Texture
+@export var source_texture: RendererTextureLoad
+@export var individual_texture: RendererTextureLoad
 
 @export var individual_renderer: IndividualRenderer
-@export var individual_texture: Texture
-var _individual_texture_rd_rid: RID
 
 func _ready() -> void:
-	individual_renderer.source_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(source_texture)
-	_individual_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(individual_texture)
+	individual_renderer.source_texture = source_texture
 	
 func _process(delta: float) -> void:
 	var individual = Individual.new()
@@ -16,5 +14,5 @@ func _process(delta: float) -> void:
 	individual.size = Vector2(128, 128)
 	individual.rotation = 0.0
 	individual.tint = Color.WHITE
-	individual.texture_rd_rid = _individual_texture_rd_rid
+	individual.texture = individual_texture
 	individual_renderer.render_individual(individual)

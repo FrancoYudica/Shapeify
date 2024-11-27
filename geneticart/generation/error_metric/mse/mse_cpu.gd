@@ -7,15 +7,15 @@ var _target_texture_2d_rd: Texture2DRD
 
 func _target_texture_set():
 	# TODO: This might be leaking texture
-	_target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture_rd_rid)
+	_target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
 	target_image = _target_texture_2d_rd.get_image()
 
 
-func _compute(source_texture_rd_rid) -> float:
+func _compute(source_texture: RendererTexture) -> float:
 	var t = Time.get_ticks_msec()
 	
 	# TODO: This might be leaking texture
-	var source_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(source_texture_rd_rid)
+	var source_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(source_texture.rd_rid)
 	var source_image: Image = source_texture_2d_rd.get_image()
 	
 	# Term used to normalize the MSE

@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 @export var params: IndividualGeneratorParams
-@export var individual_textures: Array[Texture] = []
-@export var target_texture: Texture2D
+@export var individual_textures: Array[RendererTexture] = []
+@export var target_texture: RendererTexture
 
 @export var individual_generator: IndividualGenerator
 @export var individual_renderer: IndividualRenderer
@@ -12,17 +12,13 @@ extends CanvasLayer
 @export var population_size_input: Control
 
 func _ready() -> void:
-	individual_generator.target_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(target_texture)
+	individual_generator.target_texture = target_texture
 	
 	# Adds the IDs of all the individual textures
-	for texture in individual_textures:
-		params.populator_params.textures_rd_rids.append(
-			RenderingCommon.create_local_rd_texture_copy(texture)
-		)
+	params.populator_params.textures = individual_textures
 	
 	individual_generator.initialize()
 	
-
 func setup_params():
 	params.populator_params.population_size = population_size_input.get_number()
 	params.populator_params.position_bound_min = Vector2.ZERO

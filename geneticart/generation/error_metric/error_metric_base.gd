@@ -4,42 +4,39 @@
 ## error is being calculated.
 class_name ErrorMetric extends Node
 
-var target_texture_rd_rid: RID:
+var target_texture: RendererTexture:
 	set(texture):
-		target_texture_rd_rid = texture
+		target_texture = texture
 		_target_texture_set()
 
 func _target_texture_set():
 	pass
 
-func compute(source_texture_rd_rid: RID) -> float:
-	
-	var target_format: RDTextureFormat = Renderer.rd.texture_get_format(target_texture_rd_rid)
-	var src_format: RDTextureFormat = Renderer.rd.texture_get_format(source_texture_rd_rid)
+func compute(source_texture: RendererTexture) -> float:
 	
 	# Does validations
-	if not target_texture_rd_rid.is_valid() or not Renderer.rd.texture_is_valid(target_texture_rd_rid):
-		printerr("target_texture_rd_rid can't be null in ErrorMetric.compute_rd()")
+	if not target_texture.is_valid():
+		printerr("target_texture must be valid in ErrorMetric.compute()")
 		return -1.0
 
-	if not source_texture_rd_rid.is_valid() or not Renderer.rd.texture_is_valid(source_texture_rd_rid):
-		printerr("source_texture_rd_rid can't be null in ErrorMetric.compute_rd()")
+	if not source_texture.is_valid():
+		printerr("target_texture must be valid in ErrorMetric.compute()")
 		return -1.0
 	
 	
-	if target_format.width != src_format.width or target_format.height != src_format.height:
+	if target_texture.get_size() != source_texture.get_size():
 		printerr(
 			"ErrorMetric at compute(): \"The target texture and source texture sizes mush match\". 
 			target size: (%sx%spx). source size: (%sx%spx)" % 
 			[
-				target_format.width, 
-				target_format.height, 
-				src_format.width, 
-				src_format.height
+				target_texture.get_width(), 
+				target_texture.get_height(), 
+				source_texture.get_width(), 
+				source_texture.get_height()
 			])
 		return -1.0
 	
-	return _compute(source_texture_rd_rid)
+	return _compute(source_texture)
 	
-func _compute(source_texture_rd_rid: RID) -> float:
+func _compute(source_texture: RendererTexture) -> float:
 	return -1.0

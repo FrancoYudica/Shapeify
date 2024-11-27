@@ -30,8 +30,8 @@ func _generate(params: IndividualGeneratorParams) -> Individual:
 		
 		# Calculates fitness
 		local_clock.restart()
-		var ind_texture_rd_rid = individual_renderer.get_color_attachment_texture_rd_rid()
-		fitness_calculator.calculate_fitness(individual, ind_texture_rd_rid)
+		var individual_src_texture = individual_renderer.get_color_attachment_texture()
+		fitness_calculator.calculate_fitness(individual, individual_src_texture)
 		total_fitness_time += local_clock.elapsed_ms()
 	
 	print("Total render time: %s" % total_render_time)

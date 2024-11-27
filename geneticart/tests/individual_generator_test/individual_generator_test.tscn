@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=25 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/error_fitness_calculator.gd" id="2_43rvo"]
 [ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute.gd" id="2_se18b"]
@@ -11,14 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="9_h7nui"]
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="10_n0loh"]
-[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="11_umrjp"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="14_yjids"]
+[ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="14_yqiyu"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
 [sub_resource type="Resource" id="Resource_yeoiw"]
 script = ExtResource("7_j4c82")
-textures_rd_rids = Array[RID]([])
+textures = Array[ExtResource("14_yjids")]([])
 population_size = 10
 position_bound_min = Vector2i(0, 0)
 position_bound_max = Vector2i(0, 0)
@@ -28,6 +30,30 @@ size_bound_max = Vector2i(512, 512)
 [sub_resource type="Resource" id="Resource_rwde6"]
 script = ExtResource("10_n0loh")
 populator_params = SubResource("Resource_yeoiw")
+
+[sub_resource type="Texture2D" id="Texture2D_weah6"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("9_h7nui")
+
+[sub_resource type="Texture2D" id="Texture2D_88gyn"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("8_idbn2")
+
+[sub_resource type="Texture2D" id="Texture2D_3c1pm"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("14_yqiyu")
+
+[sub_resource type="Texture2D" id="Texture2D_whorf"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("7_gitva")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
@@ -63,8 +89,8 @@ populator = NodePath("../../RandomPopulator")
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("individual_generator", "individual_renderer", "output_texture", "population_size_input")]
 script = ExtResource("13_jgyce")
 params = SubResource("Resource_rwde6")
-individual_textures = Array[Texture]([ExtResource("11_umrjp"), ExtResource("8_idbn2"), ExtResource("9_h7nui")])
-target_texture = ExtResource("7_gitva")
+individual_textures = Array[ExtResource("14_yjids")]([SubResource("Texture2D_weah6"), SubResource("Texture2D_88gyn"), SubResource("Texture2D_3c1pm")])
+target_texture = SubResource("Texture2D_whorf")
 individual_generator = NodePath("../IndividualGenerators/RandomIndividualGenerator")
 individual_renderer = NodePath("../IndividualRenderer")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")

@@ -29,7 +29,7 @@ func sample_rect(rect: Rect2i) -> Color:
 	
 
 func _sample_texture_set():
-	var texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(sample_texture_rd_rid)
+	var texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(sample_texture.rd_rid)
 	_sample_image = texture_2d_rd.get_image()
 	RenderingServer.get_rendering_device().free_rid(
 		texture_2d_rd.texture_rd_rid

@@ -4,8 +4,8 @@
 class_name IndividualGenerator extends Node
 
 @export_category("Data")
-var target_texture_rd_rid: RID
-var source_texture_rd_rid: RID
+var target_texture: RendererTexture
+var source_texture: RendererTexture
 
 @export_category("Algorithm components")
 @export var average_color_sampler: AverageColorSampler
@@ -17,14 +17,14 @@ var _initialized = false
 
 func initialize():
 	
-	if not target_texture_rd_rid.is_valid():
-		printerr("Trying to initialize IndividualGenerator but target_texture_rd_rid is invalid")
+	if not target_texture.is_valid():
+		printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
 		return
 		
-	fitness_calculator.target_texture_rd_rid = target_texture_rd_rid
-	average_color_sampler.sample_texture_rd_rid = target_texture_rd_rid
+	fitness_calculator.target_texture = target_texture
+	average_color_sampler.sample_texture = target_texture
 
-	if not source_texture_rd_rid.is_valid():
+	if source_texture == null or not source_texture.is_valid():
 		_initialize_src_image()
 
 	_initialized = true
@@ -41,17 +41,16 @@ func generate_individual(params: IndividualGeneratorParams) -> Individual:
 
 func _setup(params: IndividualGeneratorParams):
 	individual_renderer.clear_signals()
-	individual_renderer.source_texture_rd_rid = source_texture_rd_rid
+	individual_renderer.source_texture = source_texture
 
 func _generate(params: IndividualGeneratorParams) -> Individual:
 	return
 
 func _initialize_src_image():
 	
-	var target_format = Renderer.rd.texture_get_format(target_texture_rd_rid)
 	var img = Image.create(
-		target_format.width,
-		target_format.height,
+		target_texture.get_width(),
+		target_texture.get_height(),
 		false, 
 		Image.FORMAT_RGBA8)
 	
@@ -59,11 +58,14 @@ func _initialize_src_image():
 	var average_color = average_color_sampler.sample_rect(
 		Rect2i(
 			Vector2i.ZERO, 
-			Vector2i(target_format.width, target_format.height)
+			Vector2i(
+				target_texture.get_width(),
+				target_texture.get_height()
+			)
 		)
 	)
 	img.fill(average_color)
 	
 	# Creates to image texture and then to RD local texture
-	var source_texture = ImageTexture.create_from_image(img)
-	source_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(source_texture)
+	var source_texture_global_rd = ImageTexture.create_from_image(img)
+	source_texture = RendererTexture.load_from_texture(source_texture_global_rd)

@@ -17,12 +17,14 @@ func _ready() -> void:
 func _frame_post_draw() -> void:
 	
 	# Get the subviewport texture for the first time
-	if not average_color_sampler.sample_texture_rd_rid.is_valid():
+	if average_color_sampler.sample_texture == null or not average_color_sampler.sample_texture.is_valid():
 		var texture = sub_viewport.get_texture()
 		var sample_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(texture)
-		average_color_sampler.sample_texture_rd_rid = sample_texture_rd_rid
-		cpu_sampler.sample_texture_rd_rid = sample_texture_rd_rid
-		compute_sampler.sample_texture_rd_rid = sample_texture_rd_rid
+		var sample_texture = RendererTexture.new()
+		sample_texture.rd_rid = sample_texture_rd_rid
+		average_color_sampler.sample_texture = sample_texture
+		cpu_sampler.sample_texture = sample_texture
+		compute_sampler.sample_texture = sample_texture
 	
 	var rect: Rect2i
 	var mouse = get_local_mouse_position()

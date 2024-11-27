@@ -1,14 +1,14 @@
 class_name AverageColorSampler extends Node
 
 
-var sample_texture_rd_rid: RID:
+var sample_texture: RendererTexture:
 	set(texture):
 		
-		if not texture.is_valid() or not Renderer.rd.texture_is_valid(texture):
+		if not texture.is_valid():
 			printerr("Trying to assign invalid sample_texture_rd_rid to AverageColorSampler")
 			return
 
-		sample_texture_rd_rid = texture
+		sample_texture = texture
 		_sample_texture_set()
 
 func sample_rect(rect: Rect2i) -> Color:

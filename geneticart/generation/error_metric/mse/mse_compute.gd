@@ -15,30 +15,27 @@ var _source_texture_set_rid: RID
 # Array where the calculations results are stored
 var _result_bytes := PackedByteArray()
 
-var _target_size: Vector2i = Vector2i.ZERO
-
 func _target_texture_set():
-	var target_format = Renderer.rd.texture_get_format(target_texture_rd_rid)
-	_target_size = Vector2i(
-		target_format.width,
-		target_format.height)
-		
-	_target_texture_set_rid = _create_texture_uniform_set(target_texture_rd_rid, 1)
+	
+	if _target_texture_set_rid.is_valid():
+		_rd.free_rid(_target_texture_set_rid)
+	
+	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
 
 var _previous_source_texture_rd_rid: RID
 
-func _compute(source_texture_rd_rid: RID) -> float:
+func _compute(source_texture: RendererTexture) -> float:
 	
 	# This avoids creating new uniform sets when source texture is the same
-	if _previous_source_texture_rd_rid != source_texture_rd_rid:
+	if _previous_source_texture_rd_rid != source_texture.rd_rid:
 		
 		if _source_texture_set_rid.is_valid():
 			_rd.free_rid(_source_texture_set_rid)
-		_previous_source_texture_rd_rid = source_texture_rd_rid
-		_source_texture_set_rid = _create_texture_uniform_set(source_texture_rd_rid, 2)
+		_previous_source_texture_rd_rid = source_texture.rd_rid
+		_source_texture_set_rid = _create_texture_uniform_set(source_texture.rd_rid, 2)
 	
-	var texture_width =  _target_size.x
-	var texture_height = _target_size.y
+	var texture_width =  target_texture.get_width()
+	var texture_height = target_texture.get_height()
 	
 	var group_size_x = texture_width
 	var group_size_y = texture_height
