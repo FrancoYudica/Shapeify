@@ -3,7 +3,7 @@ extends Node
 @export var target_texture: RendererTextureLoad
 @export var source_texture: RendererTextureLoad
 
-@export var error_metric: ErrorMetric
+@export var error_metric_script: GDScript
 @export var iterations = 10
 
 func _ready() -> void:
@@ -12,6 +12,7 @@ func _ready() -> void:
 	var average_time = 0.0
 	var f = 1.0 / iterations
 	
+	var error_metric: ErrorMetric = error_metric_script.new()
 	var t0 = Time.get_ticks_msec()
 	error_metric.target_texture = target_texture
 	

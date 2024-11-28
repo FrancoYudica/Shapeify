@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=18 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://tests/image_generation/image_generation.gd" id="1_ptt68"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_3tqcs"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_y3h82"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="4_5jg1n"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_31qll"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="4_gd2we"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="5_1jy87"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="5_01pxw"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_tcjv6"]
+[ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="7_0lgbx"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="7_8akj1"]
 [ext_resource type="Texture2D" uid="uid://brxttfn71ik76" path="res://art/white_1x1.png" id="12_n06sv"]
 
@@ -31,42 +33,19 @@ resource_name = ""
 script = ExtResource("3_y3h82")
 _src_texture = ExtResource("5_1jy87")
 
-[node name="ImageGeneration" type="Node" node_paths=PackedStringArray("_individual_generator", "_individual_renderer", "_output_texture_rect", "_reference_texture_rect")]
+[node name="ImageGeneration" type="Node" node_paths=PackedStringArray("_output_texture_rect", "_reference_texture_rect")]
 script = ExtResource("1_ptt68")
 target_texture = SubResource("Texture2D_fo7sl")
-individual_textures = Array[ExtResource("3_y3h82")]([SubResource("Texture2D_k8wus"), SubResource("Texture2D_eh4mv")])
-individual_count = 2000
-_individual_generator = NodePath("IndividualGenerators/RandomIndividualGenerator")
-_individual_renderer = NodePath("IndividualRenderer")
+individual_textures = Array[ExtResource("4_gd2we")]([SubResource("Texture2D_k8wus"), SubResource("Texture2D_eh4mv")])
+image_generator_script = ExtResource("7_0lgbx")
+individual_generator_script = ExtResource("7_8akj1")
+individual_renderer_script = ExtResource("4_31qll")
+average_color_sampler_script = ExtResource("5_01pxw")
+fitness_calculator_script = ExtResource("3_vx68y")
+metric_calculator_script = ExtResource("2_p0424")
+populator_script = ExtResource("6_tcjv6")
 _output_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer/OutputTextureRect")
 _reference_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReferenceTextureRect")
-
-[node name="Fitness" type="Node" parent="."]
-
-[node name="ErrorMetricCEILab" type="Node" parent="Fitness"]
-script = ExtResource("2_p0424")
-
-[node name="InvErrorFitnessCalculator" type="Node" parent="Fitness" node_paths=PackedStringArray("error_metric")]
-script = ExtResource("3_vx68y")
-error_metric = NodePath("../ErrorMetricCEILab")
-
-[node name="IndividualRenderer" type="Node" parent="."]
-script = ExtResource("4_31qll")
-
-[node name="AverageColorSamplerCompute" type="Node" parent="."]
-script = ExtResource("5_01pxw")
-
-[node name="RandomPopulator" type="Node" parent="."]
-script = ExtResource("6_tcjv6")
-
-[node name="IndividualGenerators" type="Node" parent="."]
-
-[node name="RandomIndividualGenerator" type="Node" parent="IndividualGenerators" node_paths=PackedStringArray("average_color_sampler", "fitness_calculator", "individual_renderer", "populator")]
-script = ExtResource("7_8akj1")
-average_color_sampler = NodePath("../../AverageColorSamplerCompute")
-fitness_calculator = NodePath("../../Fitness/InvErrorFitnessCalculator")
-individual_renderer = NodePath("../../IndividualRenderer")
-populator = NodePath("../../RandomPopulator")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

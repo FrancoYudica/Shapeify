@@ -1,4 +1,4 @@
-class_name FitnessCalculator extends Node
+class_name FitnessCalculator extends RefCounted
 
 var target_texture: RendererTexture:
 	set(texture):

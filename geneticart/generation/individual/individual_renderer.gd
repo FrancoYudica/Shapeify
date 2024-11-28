@@ -1,4 +1,4 @@
-class_name IndividualRenderer extends Node
+class_name IndividualRenderer extends RefCounted
 
 var source_texture: RendererTexture:
 	set(texture):

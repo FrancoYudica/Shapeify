@@ -1,4 +1,4 @@
-class_name AverageColorSampler extends Node
+class_name AverageColorSampler extends RefCounted
 
 
 var sample_texture: RendererTexture:

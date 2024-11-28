@@ -1,6 +1,6 @@
 extends FitnessCalculator
 
-@export var error_metric: ErrorMetric
+var error_metric: ErrorMetric
 
 func calculate_fitness(
 	individual: Individual,

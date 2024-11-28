@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="3_ix0hi"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="4_uudmu"]
 
-[node name="AverageColorTest" type="Control" node_paths=PackedStringArray("average_color_sampler", "cpu_sampler", "compute_sampler")]
+[node name="AverageColorTest" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,16 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ofwxx")
-average_color_sampler = NodePath("AverageColorSamplerCompute")
-cpu_sampler = NodePath("AverageColorSamplerCPU")
-compute_sampler = NodePath("AverageColorSamplerCompute")
+cpu_sampler_script = ExtResource("2_k2b86")
+compute_sampler_script = ExtResource("3_ix0hi")
 compare_results = true
-
-[node name="AverageColorSamplerCPU" type="Node" parent="."]
-script = ExtResource("2_k2b86")
-
-[node name="AverageColorSamplerCompute" type="Node" parent="."]
-script = ExtResource("3_ix0hi")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1

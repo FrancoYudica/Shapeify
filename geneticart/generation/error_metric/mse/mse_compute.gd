@@ -90,7 +90,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	
 	return mse
 
-func _ready() -> void:
+func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
 
 func _exit_tree() -> void:

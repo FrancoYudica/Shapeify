@@ -1,10 +1,11 @@
 extends Control
 
-@export var average_color_sampler: AverageColorSampler
+@export var cpu_sampler_script: GDScript
+@export var compute_sampler_script: GDScript
 
-@export var cpu_sampler: AverageColorSampler
-@export var compute_sampler: AverageColorSampler
-
+var average_color_sampler: AverageColorSampler
+var cpu_sampler: AverageColorSampler
+var compute_sampler: AverageColorSampler
 @export var compare_results: bool
 
 @onready var sub_viewport := $SubViewportContainer/SubViewport
@@ -12,6 +13,10 @@ extends Control
 @onready var parent_color_rect := $OutlineColorRect
 
 func _ready() -> void:
+	
+	cpu_sampler = cpu_sampler_script.new()
+	compute_sampler = compute_sampler_script.new()
+	average_color_sampler = compute_sampler
 	RenderingServer.frame_post_draw.connect(_frame_post_draw)
 	
 func _frame_post_draw() -> void:

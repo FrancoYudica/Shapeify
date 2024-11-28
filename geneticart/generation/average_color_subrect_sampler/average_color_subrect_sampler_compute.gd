@@ -92,7 +92,7 @@ func sample_rect(rect: Rect2i) -> Color:
 	var avg_color = accumulated_color / sample_count
 	return avg_color
 
-func _ready() -> void:
+func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
 
 func _exit_tree() -> void:

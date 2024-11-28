@@ -1,17 +1,14 @@
 # An algorithm that, given a set of parameters, a target texture, and a source texture, 
 # generates the best possible individual. This individual, when added to the source texture, 
 # minimizes the error metric relative to the target texture.
-class_name IndividualGenerator extends Node
-
-@export_category("Data")
+class_name IndividualGenerator extends RefCounted
 
 var params: IndividualGeneratorParams
 
-@export_category("Algorithm components")
-@export var average_color_sampler: AverageColorSampler
-@export var fitness_calculator: FitnessCalculator
-@export var individual_renderer: IndividualRenderer
-@export var populator: Populator
+var average_color_sampler: AverageColorSampler
+var fitness_calculator: FitnessCalculator
+var individual_renderer: IndividualRenderer
+var populator: Populator
 
 var source_texture: RendererTexture
 

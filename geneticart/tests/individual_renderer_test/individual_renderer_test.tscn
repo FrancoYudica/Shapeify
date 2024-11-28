@@ -21,14 +21,11 @@ _src_texture = ExtResource("3_qn16m")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_itb2w"]
 
-[node name="IndividualRendererTest" type="Node" node_paths=PackedStringArray("individual_renderer")]
+[node name="IndividualRendererTest" type="Node"]
 script = ExtResource("1_rvydi")
 source_texture = SubResource("Texture2D_03tba")
 individual_texture = SubResource("Texture2D_dv5wa")
-individual_renderer = NodePath("IndividualRenderer")
-
-[node name="IndividualRenderer" type="Node" parent="."]
-script = ExtResource("4_l58vo")
+individual_renderer_script = ExtResource("4_l58vo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -2,7 +2,7 @@
 ## a method to calculate the error between two textures. Here, target_texture 
 ## refers to the reference texture, while source_texture is the texture whose 
 ## error is being calculated.
-class_name ErrorMetric extends Node
+class_name ErrorMetric extends RefCounted
 
 var target_texture: RendererTexture:
 	set(texture):
