@@ -42,6 +42,7 @@ grow_vertical = 2
 script = ExtResource("5_5snt7")
 
 [node name="OutlineColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 136.0
 offset_bottom = 136.0
 color = Color(1, 1, 1, 0.164706)

@@ -20,6 +20,7 @@ func generate_population(params: PopulatorParams) -> Array[Individual]:
 		individual.size.x = randf_range(
 			params.size_bound_min.x,
 			params.size_bound_max.x)
+			
 		individual.size.y = randf_range(
 			params.size_bound_min.y,
 			params.size_bound_max.y)

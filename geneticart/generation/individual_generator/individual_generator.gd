@@ -48,7 +48,20 @@ func _generate() -> Individual:
 
 func _initialize_src_image():
 	
+	# Renders to get an ID texture full with ID = 1.0
+	Renderer.begin_frame(params.target_texture.get_size())
+	Renderer.render_sprite(
+		params.target_texture.get_size() * 0.5,
+		params.target_texture.get_size(),
+		0.0,
+		Color.WHITE,
+		params.target_texture,
+		1.0
+	)
+	Renderer.end_frame()
+	
 	# The initial color of the source texture is the average color of target texture
+	average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
 	var average_color = average_color_sampler.sample_rect(
 		Rect2i(
 			Vector2i.ZERO, 

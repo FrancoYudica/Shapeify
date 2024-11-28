@@ -5,7 +5,7 @@ extends Control
 
 @export var sampler_script: GDScript
 
-var average_color_sampler: MaskedAverageColorSampler
+var average_color_sampler: AverageColorSampler
 @export var compare_results: bool
 
 @onready var sample_color_rect := $OutlineColorRect/MarginContainer/SampleTextureRect

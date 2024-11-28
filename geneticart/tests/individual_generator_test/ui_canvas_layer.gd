@@ -53,7 +53,7 @@ func generate() -> void:
 	var clock = Clock.new()
 	setup_params()
 	output_texture.visible = false
-	var individual = await _individual_generator.generate_individual()
+	var individual = _individual_generator.generate_individual()
 	clock.print_elapsed("Generated individual with fitness: %s" % individual.fitness)
 	
 	output_texture.visible = true

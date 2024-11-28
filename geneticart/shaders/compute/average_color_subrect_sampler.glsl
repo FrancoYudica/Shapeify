@@ -39,10 +39,6 @@ void main()
     int x = int(gl_GlobalInvocationID.x) + int(params.sample_offset.x);
     int y = int(gl_GlobalInvocationID.y) + int(params.sample_offset.y);
 
-    // Ensure we are within the bounds of the image
-    if (x >= params.texture_size.x || x < 0 || y >= params.texture_size.y || y < 0)
-        return;
-
     // Local invocation of index 0 initializes shared variables
     uint local_index = gl_LocalInvocationIndex;
     if (local_index == 0) {
@@ -53,16 +49,22 @@ void main()
     // Ensures that the variables are initialized before continuing
     barrier();
 
-    vec4 color = imageLoad(sample_image, ivec2(uint(x), uint(y)));
+    // Ensure we are within the bounds of the image
+    if (x < params.texture_size.x
+        && x > 0
+        && y < params.texture_size.y
+        && y > 0) {
+        vec4 color = imageLoad(sample_image, ivec2(uint(x), uint(y)));
 
-    // Use atomicAdd to safely accumulate the colors
-    atomicAdd(shared_accumulated_colors.r, color.r);
-    atomicAdd(shared_accumulated_colors.g, color.g);
-    atomicAdd(shared_accumulated_colors.b, color.b);
-    atomicAdd(shared_accumulated_colors.a, color.a);
+        // Use atomicAdd to safely accumulate the colors
+        atomicAdd(shared_accumulated_colors.r, color.r);
+        atomicAdd(shared_accumulated_colors.g, color.g);
+        atomicAdd(shared_accumulated_colors.b, color.b);
+        atomicAdd(shared_accumulated_colors.a, color.a);
 
-    // Increases the samples counter, later used for normalization
-    atomicAdd(shared_total_samples, 1);
+        // Increases the samples counter, later used for normalization
+        atomicAdd(shared_total_samples, 1);
+    }
 
     barrier();
 

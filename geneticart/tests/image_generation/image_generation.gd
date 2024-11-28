@@ -51,7 +51,7 @@ func _initialize_params():
 	var ind_p := IndividualGeneratorParams.new()
 	# Populator ind_p -----------------------------------------------------------------------------
 	ind_p.populator_params = PopulatorParams.new()
-	ind_p.populator_params.population_size = 10
+	ind_p.populator_params.population_size = 100
 	ind_p.populator_params.position_bound_min = Vector2.ZERO
 	ind_p.populator_params.position_bound_max = target_texture.get_size()
 	var max_width_height = maxf(
@@ -69,7 +69,7 @@ func _initialize_params():
 	_image_generator_params.individual_count = individual_count
 	_image_generator.initialize(_image_generator_params)
 	
-	_image_generator.source_texture_updated.connect(_source_texture_updated)
+	#_image_generator.source_texture_updated.connect(_source_texture_updated)
 	_image_generator.rendered.connect(_source_texture_updated)
 
 func _source_texture_updated(renderer_texture):

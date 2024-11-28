@@ -1,16 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=15 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://tests/image_generation/image_generation.gd" id="1_ptt68"]
-[ext_resource type="Texture2D" uid="uid://be4ljnjq5seok" path="res://art/test/target_circles_64x64.png" id="2_dghm1"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_f3xy8"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_y3h82"]
-[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="4_5jg1n"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_31qll"]
-[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="4_gd2we"]
-[ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="5_1jy87"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="4_xj104"]
+[ext_resource type="Texture2D" uid="uid://4v3cb5dqbxmm" path="res://art/simple_shapes/circle_1_512x512.png" id="5_7b1q6"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_tcjv6"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="7_0lgbx"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="7_8akj1"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd" id="10_dlmh1"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="9_76va0"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="11_n5aad"]
 [ext_resource type="Texture2D" uid="uid://brxttfn71ik76" path="res://art/white_1x1.png" id="12_n06sv"]
 
@@ -18,29 +17,23 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_y3h82")
-_src_texture = ExtResource("2_dghm1")
-
-[sub_resource type="Texture2D" id="Texture2D_k8wus"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("3_y3h82")
-_src_texture = ExtResource("4_5jg1n")
+_src_texture = ExtResource("2_f3xy8")
 
 [sub_resource type="Texture2D" id="Texture2D_eh4mv"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_y3h82")
-_src_texture = ExtResource("5_1jy87")
+_src_texture = ExtResource("5_7b1q6")
 
 [node name="ImageGeneration" type="Node" node_paths=PackedStringArray("_output_texture_rect", "_reference_texture_rect")]
 script = ExtResource("1_ptt68")
 target_texture = SubResource("Texture2D_fo7sl")
-individual_textures = Array[ExtResource("4_gd2we")]([SubResource("Texture2D_k8wus"), SubResource("Texture2D_eh4mv")])
-individual_count = 3000
+individual_textures = Array[ExtResource("4_xj104")]([SubResource("Texture2D_eh4mv")])
+individual_count = 100
 image_generator_script = ExtResource("7_0lgbx")
 individual_generator_script = ExtResource("7_8akj1")
 individual_renderer_script = ExtResource("4_31qll")
-average_color_sampler_script = ExtResource("10_dlmh1")
+average_color_sampler_script = ExtResource("9_76va0")
 fitness_calculator_script = ExtResource("11_n5aad")
 populator_script = ExtResource("6_tcjv6")
 _output_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer/OutputTextureRect")
@@ -49,6 +42,7 @@ _reference_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContai
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+top_level = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

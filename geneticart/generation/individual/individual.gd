@@ -23,9 +23,9 @@ var texture: RendererTexture
 func get_bounding_rect() -> Rect2i:
 	## TODO Change this to calculate with rotation
 	var rect = Rect2i(
-		position.x - size.x * 0.5,
-		position.y - size.y * 0.5,
-		size.x,
-		size.y)
+		int(position.x - size.x * 0.5),
+		int(position.y - size.y * 0.5),
+		int(size.x),
+		int(size.y))
 		
 	return rect

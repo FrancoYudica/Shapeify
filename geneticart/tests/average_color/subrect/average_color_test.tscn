@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tests/average_color/subrect/average_color_test.gd" id="1_ofwxx"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_cpu.gd" id="2_as0en"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd" id="3_xprrp"]
-[ext_resource type="Texture2D" uid="uid://c8xwvcyo651w8" path="res://art/test/test_sampling_512x512.png" id="4_qy8go"]
+[ext_resource type="Texture2D" uid="uid://be4ljnjq5seok" path="res://art/test/target_circles_64x64.png" id="4_q3s12"]
 
 [node name="AverageColorTest" type="Control"]
 layout_mode = 3
@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_qy8go")
+texture = ExtResource("4_q3s12")
 expand_mode = 3
 stretch_mode = 5
 
