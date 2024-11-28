@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bkxgj7ux2c2v0"
+path="res://.godot/imported/CEILab_median_fitness.glsl-1a9938b09ea6974b3cc79425d4ea47e6.res"
+
+[deps]
+
+source_file="res://shaders/compute/metric/median_fitness/CEILab_median_fitness.glsl"
+dest_files=["res://.godot/imported/CEILab_median_fitness.glsl-1a9938b09ea6974b3cc79425d4ea47e6.res"]
+
+[params]
+

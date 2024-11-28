@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=17 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://tests/image_generation/image_generation.gd" id="1_ptt68"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_3tqcs"]
-[ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute_ceilab.gd" id="2_p0424"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/inv_error_fitness_calculator.gd" id="3_vx68y"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_median_fitness_calculator.gd" id="3_vx68y"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_y3h82"]
 [ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="4_5jg1n"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_31qll"]
@@ -42,7 +41,6 @@ individual_generator_script = ExtResource("7_8akj1")
 individual_renderer_script = ExtResource("4_31qll")
 average_color_sampler_script = ExtResource("5_01pxw")
 fitness_calculator_script = ExtResource("3_vx68y")
-metric_calculator_script = ExtResource("2_p0424")
 populator_script = ExtResource("6_tcjv6")
 _output_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer/OutputTextureRect")
 _reference_texture_rect = NodePath("CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReferenceTextureRect")

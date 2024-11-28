@@ -1,4 +1,4 @@
-extends ErrorMetric
+extends MedianFitnessMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -59,7 +59,7 @@ func _compute(source_texture: RendererTexture) -> float:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		0.0, 0.0
+		power, 0.0
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()
@@ -100,7 +100,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/image_mse.glsl")
+	var shader_file := load("res://shaders/compute/metric/median_fitness/CEILab_median_fitness.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

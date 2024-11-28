@@ -9,7 +9,6 @@ extends CanvasLayer
 @export var individual_renderer_script: GDScript
 @export var average_color_sampler_script: GDScript
 @export var fitness_calculator_script: GDScript
-@export var metric_calculator_script: GDScript
 @export var populator_script: GDScript
 
 @export var output_texture: TextureRect
@@ -43,7 +42,6 @@ func _ready() -> void:
 	_individual_generator.populator = populator_script.new()
 	_individual_generator.average_color_sampler = average_color_sampler_script.new()
 	_individual_generator.fitness_calculator = fitness_calculator_script.new()
-	_individual_generator.fitness_calculator.error_metric = metric_calculator_script.new()
 	_individual_generator.initialize(params)
 
 

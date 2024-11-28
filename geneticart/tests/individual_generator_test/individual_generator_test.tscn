@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=20 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Script" path="res://generation/error_metric/mse/mse_compute_ceilab.gd" id="2_pjmid"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_2w52m"]
 [ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/inv_error_fitness_calculator.gd" id="4_soxav"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_median_fitness_calculator.gd" id="4_soxav"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
@@ -52,7 +51,6 @@ individual_generator_script = ExtResource("5_llgun")
 individual_renderer_script = ExtResource("4_2w52m")
 average_color_sampler_script = ExtResource("4_o6nao")
 fitness_calculator_script = ExtResource("4_soxav")
-metric_calculator_script = ExtResource("2_pjmid")
 populator_script = ExtResource("6_sulhk")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
 population_size_input = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput")

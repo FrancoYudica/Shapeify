@@ -1,6 +1,6 @@
 # CPU impelentation of MSE metric to compare results with compute shader version.
 # This is just for testing
-extends ErrorMetric
+extends MSEMetric
 
 var target_image: Image = null
 var _target_texture_2d_rd: Texture2DRD

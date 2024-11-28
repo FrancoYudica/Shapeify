@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dgttkpqn4rh0c"
+path="res://.godot/imported/RGB_median_fitness.glsl-9eedc1b5e0652aa8a99479b46f33d427.res"
+
+[deps]
+
+source_file="res://shaders/compute/metric/median_fitness/RGB_median_fitness.glsl"
+dest_files=["res://.godot/imported/RGB_median_fitness.glsl-9eedc1b5e0652aa8a99479b46f33d427.res"]
+
+[params]
+

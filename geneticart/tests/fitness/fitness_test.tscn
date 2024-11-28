@@ -1,0 +1,29 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3p2ih0gqslrw"]
+
+[ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
+[ext_resource type="Texture2D" uid="uid://bpy2p1lthfsj8" path="res://art/test/test_white_128x128.png" id="2_d1qaq"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_m76jf"]
+[ext_resource type="Texture2D" uid="uid://r82lsg0w2pq5" path="res://art/test/test_black_128x128.png" id="4_63u2w"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_median_fitness_calculator.gd" id="5_0mwod"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="6_2g4hy"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd" id="7_qjf2d"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_cpu.gd" id="8_ir4hj"]
+
+[sub_resource type="Texture2D" id="Texture2D_dfntu"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_m76jf")
+_src_texture = ExtResource("2_d1qaq")
+
+[sub_resource type="Texture2D" id="Texture2D_22c7c"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_m76jf")
+_src_texture = ExtResource("4_63u2w")
+
+[node name="FitnessTest" type="Node"]
+script = ExtResource("1_pm2mh")
+target_texture = SubResource("Texture2D_dfntu")
+source_texture = SubResource("Texture2D_22c7c")
+metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj")])
+iterations = 1
