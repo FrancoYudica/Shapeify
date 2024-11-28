@@ -12,12 +12,14 @@ var compute_sampler: AverageColorSampler
 @onready var sample_color_rect := $OutlineColorRect/SampleColorRect
 @onready var parent_color_rect := $OutlineColorRect
 
+
 func _ready() -> void:
 	
 	cpu_sampler = cpu_sampler_script.new()
 	compute_sampler = compute_sampler_script.new()
 	average_color_sampler = compute_sampler
 	RenderingServer.frame_post_draw.connect(_frame_post_draw)
+	
 	
 func _frame_post_draw() -> void:
 	

@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs7n0577hqa67"]
+
+[ext_resource type="Script" path="res://tests/average_color/masked/masked_avg_color_test.gd" id="1_bvvgr"]
+[ext_resource type="Texture2D" uid="uid://c8xwvcyo651w8" path="res://art/test/test_sampling_512x512.png" id="2_6hrer"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_x6ook"]
+[ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/simple_shapes/pipe_0.png" id="4_216s7"]
+[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="5_5snt7"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="5_vdbmy"]
+
+[sub_resource type="Texture2D" id="Texture2D_86p73"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_x6ook")
+_src_texture = ExtResource("2_6hrer")
+
+[sub_resource type="Texture2D" id="Texture2D_7ch5r"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_x6ook")
+_src_texture = ExtResource("4_216s7")
+
+[node name="MaskedAvgColorTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvvgr")
+background_texture = SubResource("Texture2D_86p73")
+sprite_mask = SubResource("Texture2D_7ch5r")
+sampler_script = ExtResource("5_vdbmy")
+compare_results = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_5snt7")
+
+[node name="OutlineColorRect" type="ColorRect" parent="."]
+offset_right = 136.0
+offset_bottom = 136.0
+color = Color(1, 1, 1, 0.164706)
+
+[node name="MarginContainer" type="MarginContainer" parent="OutlineColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="SampleTextureRect" type="TextureRect" parent="OutlineColorRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_216s7")

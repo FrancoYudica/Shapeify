@@ -1,9 +1,8 @@
 extends Node
 
-
+signal rendered
 signal initialized
 signal resized
-signal rendered
 
 @export var clear_color: Color
 
@@ -58,7 +57,7 @@ func begin_frame(viewport_size: Vector2i):
 	
 func end_frame():
 	_sprite_batch.end_frame()
-	rendered.emit()
+	call_deferred("emit_signal", "rendered")
 
 
 func render_sprite(
@@ -222,7 +221,8 @@ func _resize(viewport_size: Vector2i):
 		printerr("Invalid render pipeline")
 		return
 
-	resized.emit()
+	#resized.emit()
+	call_deferred("emit_signal", "resized")
 	
 func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
 	var scale_x = 2.0 / viewport_size.x

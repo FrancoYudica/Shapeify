@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_2w52m"]
-[ext_resource type="Script" path="res://generation/average_color_subrect_sampler/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd" id="4_o6nao"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_median_fitness_calculator.gd" id="4_soxav"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]

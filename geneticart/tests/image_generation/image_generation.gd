@@ -16,6 +16,8 @@ extends Node
 @export var _output_texture_rect: TextureRect
 @export var _reference_texture_rect: TextureRect
 
+@onready var _generate_button := $CanvasLayer/Panel/MarginContainer/VBoxContainer/GenerateButton
+
 var _individual_generator: IndividualGenerator
 var _individual_renderer: IndividualRenderer
 var _image_generator: ImageGenerator
@@ -25,6 +27,8 @@ var _image_generator_params: ImageGeneratorParams
 func _ready() -> void:
 	_setup_references()
 	_initialize_params()
+	
+	_reference_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
 
 func _setup_references():
 	# Individual generator
@@ -40,13 +44,14 @@ func _setup_references():
 	_image_generator.individual_generator = _individual_generator
 	_image_generator.individual_renderer = _individual_renderer
 
+
 func _initialize_params():
 	
 	# Individual params ****************************************************************************
 	var ind_p := IndividualGeneratorParams.new()
 	# Populator ind_p -----------------------------------------------------------------------------
 	ind_p.populator_params = PopulatorParams.new()
-	ind_p.populator_params.population_size = 100
+	ind_p.populator_params.population_size = 10
 	ind_p.populator_params.position_bound_min = Vector2.ZERO
 	ind_p.populator_params.position_bound_max = target_texture.get_size()
 	var max_width_height = maxf(
@@ -65,23 +70,37 @@ func _initialize_params():
 	_image_generator.initialize(_image_generator_params)
 	
 	_image_generator.source_texture_updated.connect(_source_texture_updated)
-
-
+	_image_generator.rendered.connect(_source_texture_updated)
 
 func _source_texture_updated(renderer_texture):
-	#_output_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
-	pass
+	
+	call_deferred("_update_output_texture", renderer_texture)
 
+func _update_output_texture(renderer_texture):
+	
+	
+	if _output_texture_rect.texture == null:
+		_output_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
+	#else:
+		#var texture_rd_rid = _output_texture_rect.texture.texture_rd_rid
+		#RenderingServer.get_rendering_device().free_rid(texture_rd_rid)
+		#_output_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
+		
+		
+	RenderingCommon.texture_copy(
+		renderer_texture.rd_rid,
+		_output_texture_rect.texture.texture_rd_rid,
+		Renderer.rd,
+		RenderingServer.get_rendering_device()
+	)
+
+func _begin_image_generation():
+	var clock = Clock.new()
+	_image_generator.generate_image()
+	clock.print_elapsed("Image generation completed")
+	_generate_button.call_deferred("set_disabled", false)
 
 func _on_generate_button_pressed() -> void:
-	var clock = Clock.new()
-	var renderer_texture = _image_generator.generate_image()
-	_output_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
-	clock.print_elapsed("Image generation completed")
-	
-	## Stores the output texture
-	#var img: Image = _output_texture_rect.texture.get_image()
-	
-	#if img != null:
-		#img.save_png("res://art/output/out.png")
-	
+	# Executes the generation in another thread to avoild locking the UI
+	_generate_button.disabled = true
+	WorkerThreadPool.add_task(_begin_image_generation)

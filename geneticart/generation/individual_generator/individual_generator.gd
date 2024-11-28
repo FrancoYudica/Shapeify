@@ -48,12 +48,6 @@ func _generate() -> Individual:
 
 func _initialize_src_image():
 	
-	var img = Image.create(
-		params.target_texture.get_width(),
-		params.target_texture.get_height(),
-		false, 
-		Image.FORMAT_RGBA8)
-	
 	# The initial color of the source texture is the average color of target texture
 	var average_color = average_color_sampler.sample_rect(
 		Rect2i(
@@ -64,7 +58,11 @@ func _initialize_src_image():
 			)
 		)
 	)
-	img.fill(average_color)
+	
+	var img = ImageUtils.create_monochromatic_image(
+		params.target_texture.get_width(),
+		params.target_texture.get_height(),
+		average_color)
 	
 	# Creates to image texture and then to RD local texture
 	var source_texture_global_rd = ImageTexture.create_from_image(img)
