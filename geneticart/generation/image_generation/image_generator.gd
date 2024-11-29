@@ -1,7 +1,6 @@
 class_name ImageGenerator extends RefCounted
 
-signal source_texture_updated(source_texture: RendererTexture)
-signal rendered(renderer_texture: RendererTexture)
+signal individual_generated(individual: Individual)
 
 var params: ImageGeneratorParams
 
@@ -22,9 +21,6 @@ func generate_image() -> RendererTexture:
 		individual_renderer.render_individual(individual)
 		var individual_texture = individual_renderer.get_color_attachment_texture().copy()
 		individual_generator.source_texture = individual_texture
-		source_texture_updated.emit(individual_texture)
-		print(individual.fitness)
-	
-	rendered.emit(individual_generator.source_texture)
+		individual_generated.emit(individual)
 	
 	return individual_generator.source_texture

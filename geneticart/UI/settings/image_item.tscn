@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xdi5ffyh1i4v"]
 
-[ext_resource type="Script" path="res://UI/image_item.gd" id="1_rfjw7"]
+[ext_resource type="Script" path="res://UI/settings/image_item.gd" id="1_rfjw7"]
 
 [node name="ImageItem" type="PanelContainer"]
 script = ExtResource("1_rfjw7")

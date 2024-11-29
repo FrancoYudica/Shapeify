@@ -10,3 +10,6 @@ class_name PopulatorParams extends Resource
 
 @export var size_bound_min: Vector2i = Vector2i(8, 8)
 @export var size_bound_max: Vector2i = Vector2i(512, 512)
+
+@export var box_size: bool = false
+@export var random_rotation: bool = true

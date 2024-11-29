@@ -26,7 +26,7 @@ func initialize(generator_params: IndividualGeneratorParams):
 	average_color_sampler.sample_texture = params.target_texture
 
 	if source_texture == null or not source_texture.is_valid():
-		_initialize_src_image()
+		clear_source_texture()
 
 	_initialized = true
 
@@ -43,39 +43,49 @@ func generate_individual() -> Individual:
 func _setup():
 	individual_renderer.source_texture = source_texture
 
+	# Setup populator params
+	params.populator_params.position_bound_min = Vector2.ZERO
+	params.populator_params.position_bound_max = source_texture.get_size()
+	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
+	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
+
 func _generate() -> Individual:
 	return
 
-func _initialize_src_image():
+func clear_source_texture():
 	
-	# Renders to get an ID texture full with ID = 1.0
-	Renderer.begin_frame(params.target_texture.get_size())
-	Renderer.render_sprite(
-		params.target_texture.get_size() * 0.5,
-		params.target_texture.get_size(),
-		0.0,
-		Color.WHITE,
-		params.target_texture,
-		1.0
-	)
-	Renderer.end_frame()
+	var image_color: Color = Color.BLACK
 	
-	# The initial color of the source texture is the average color of target texture
-	average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
-	var average_color = average_color_sampler.sample_rect(
-		Rect2i(
-			Vector2i.ZERO, 
-			Vector2i(
-				params.target_texture.get_width(),
-				params.target_texture.get_height()
+	if params.clear_color_average:
+	
+		# Renders to get an ID texture full with ID = 1.0
+		Renderer.begin_frame(params.target_texture.get_size())
+		Renderer.render_sprite(
+			params.target_texture.get_size() * 0.5,
+			params.target_texture.get_size(),
+			0.0,
+			Color.WHITE,
+			params.target_texture,
+			1.0
+		)
+		Renderer.end_frame()
+		
+		# The initial color of the source texture is the average color of target texture
+		average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
+		image_color = average_color_sampler.sample_rect(
+			Rect2i(
+				Vector2i.ZERO, 
+				Vector2i(
+					params.target_texture.get_width(),
+					params.target_texture.get_height()
+				)
 			)
 		)
-	)
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
 		params.target_texture.get_height(),
-		average_color)
+		image_color)
 	
 	# Creates to image texture and then to RD local texture
 	var source_texture_global_rd = ImageTexture.create_from_image(img)

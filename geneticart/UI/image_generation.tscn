@@ -1,0 +1,377 @@
+[gd_scene load_steps=23 format=3 uid="uid://ba1sfkw5c37x6"]
+
+[ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
+[ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
+[ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_rhdud"]
+[ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="8_h52c8"]
+[ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
+[ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
+[ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
+[ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
+[ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
+[ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
+[ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
+[ext_resource type="Texture2D" uid="uid://brxttfn71ik76" path="res://art/white_1x1.png" id="13_vp33r"]
+[ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
+[ext_resource type="Script" path="res://UI/settings/textures_handler_ui.gd" id="14_gfkqp"]
+[ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
+[ext_resource type="Script" path="res://UI/rendering_time_label.gd" id="15_ddae6"]
+[ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
+[ext_resource type="Script" path="res://UI/settings/populator_params_ui_handler.gd" id="17_k1uov"]
+[ext_resource type="Script" path="res://UI/settings/image_generator_params_handler_ui.gd" id="18_lja4i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkvao"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="ImageGeneration" type="Node"]
+script = ExtResource("1_h14uf")
+image_generator_script = ExtResource("4_xk4f6")
+individual_generator_script = ExtResource("5_rhdud")
+individual_renderer_script = ExtResource("6_wgytt")
+average_color_sampler_script = ExtResource("7_jndj8")
+fitness_calculator_script = ExtResource("8_h52c8")
+populator_script = ExtResource("9_vigal")
+
+[node name="ImageLoader" type="Node" parent="."]
+script = ExtResource("10_a6yyn")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UICanvasLayer"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="UICanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation"]
+layout_mode = 2
+
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveOutputButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "popup_panel", "output_texture_rect", "file_dialog")]
+layout_mode = 2
+text = "Save"
+script = ExtResource("11_wj4rh")
+image_generation = NodePath("../../../../../../../..")
+popup_panel = NodePath("../../../../../PopupPanel")
+output_texture_rect = NodePath("../../TexturesHBoxContainer/OutputTextureRect")
+file_dialog = NodePath("../../../../../FileDialog")
+
+[node name="ClearButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+layout_mode = 2
+text = "Clear"
+script = ExtResource("12_ft68k")
+image_generation = NodePath("../../../../../../../..")
+
+[node name="GenerateButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+text = "Generate"
+script = ExtResource("10_mpcut")
+image_generation = NodePath("../../../../../../../..")
+
+[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer" node_paths=PackedStringArray("image_generation")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+script = ExtResource("12_hhf1r")
+image_generation = NodePath("../../../../../../..")
+
+[node name="TexturesHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer" node_paths=PackedStringArray("image_generation")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("13_u81ho")
+image_generation = NodePath("../../../../../../../..")
+
+[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("13_vp33r")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("14_dr8w1")
+
+[node name="RenderingTimeLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer" node_paths=PackedStringArray("image_generation")]
+layout_mode = 2
+text = "Rendering: "
+script = ExtResource("15_ddae6")
+image_generation = NodePath("../../../../../../..")
+
+[node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings"]
+layout_mode = 2
+
+[node name="TexturesPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer" node_paths=PackedStringArray("textures_ui_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("14_gfkqp")
+textures_ui_container = NodePath("MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TextureItemVBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Images"
+
+[node name="ImagePanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureItemVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DragNDropHint" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Drag and drop to add more"
+
+[node name="FlowContainer" type="FlowContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer"]
+layout_mode = 2
+
+[node name="ImageGeneratorParamsPanelContainer2" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("_individual_count")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("18_lja4i")
+_individual_count = NodePath("MarginContainer/VBoxContainer/IndividualCountSpinBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Image generator"
+
+[node name="IndividualCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Amount of individuals added to the final rendered image"
+min_value = 1.0
+max_value = 10000.0
+value = 50.0
+prefix = "Individual count"
+
+[node name="IndividualGeneratorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("clear_color_average")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("16_s4vac")
+clear_color_average = NodePath("MarginContainer/VBoxContainer/ClearColorAverageCheckBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Individual generator"
+
+[node name="ClearColorAverageCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "True if clear color of the generated image is the average color of the target texture"
+text = "Clear clolor average"
+
+[node name="RendererParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("render_while_generating")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("15_5jwjh")
+render_while_generating = NodePath("MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Renderer"
+
+[node name="RenderWhileGeneratingCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
+text = "Render while generating"
+
+[node name="PopulatorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("population_size_spin_box", "box_size", "random_rotation")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("17_k1uov")
+population_size_spin_box = NodePath("MarginContainer/VBoxContainer/PopulationSizeSpinBox")
+box_size = NodePath("MarginContainer/VBoxContainer/BoxSizeCheckBox")
+random_rotation = NodePath("MarginContainer/VBoxContainer/RandomRotationCheckBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Populator settings"
+
+[node name="BoxSizeCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "True if individuals have same width and height, therefore looking like boxes and not stretching"
+text = "Box size"
+
+[node name="RandomRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Allow random rotation"
+
+[node name="PopulationSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Count of individuals of the individual generator, where only the fittest is selected and added to the final image."
+min_value = 1.0
+max_value = 10000.0
+value = 100.0
+prefix = "Population size"
+
+[node name="FileDialog" type="FileDialog" parent="UICanvasLayer/Panel/VBoxContainer"]
+access = 1
+use_native_dialog = true
+
+[node name="PopupPanel" type="PopupPanel" parent="UICanvasLayer/Panel/VBoxContainer"]
+initial_position = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkvao")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/PopupPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/PopupPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "File saved"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/SaveOutputButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/GenerateButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/GenerateButton" method="_on_pressed"]
+[connection signal="value_changed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2/MarginContainer/VBoxContainer/IndividualCountSpinBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/ImageGeneratorParamsPanelContainer2" method="_on_individual_count_spin_box_value_changed"]
+[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorAverageCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer" method="_on_clear_color_average_check_box_toggled"]
+[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer" method="_on_render_while_generating_check_box_toggled"]
+[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/BoxSizeCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_box_size_check_box_toggled"]
+[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/RandomRotationCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_random_rotation_check_box_toggled"]
+[connection signal="value_changed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/PopulationSizeSpinBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_population_size_spin_box_value_changed"]
+[connection signal="file_selected" from="UICanvasLayer/Panel/VBoxContainer/FileDialog" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_file_dialog_file_selected"]

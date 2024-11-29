@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="GeneticArt"
-run/main_scene="res://UI/main.tscn"
+run/main_scene="res://UI/image_generation.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Renderer="*res://renderer/renderer.gd"
+Globals="*res://generation/globals.gd"

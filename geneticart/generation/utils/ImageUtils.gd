@@ -9,7 +9,7 @@ static func create_monochromatic_image(
 		width,
 		height,
 		false, 
-		Image.FORMAT_RGBA8)
+		Image.FORMAT_RGBAF)
 	
 	img.fill(color)
 	return img
