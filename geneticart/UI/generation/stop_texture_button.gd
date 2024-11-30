@@ -1,17 +1,23 @@
-extends Button
+extends TextureButton
+
 
 @export var image_generation: Node
 
 func _ready() -> void:
 	
+	visible = false
+	
 	image_generation.generation_started.connect(
 		func():
-			disabled = true
+			visible = true
 	)
 	image_generation.generation_finished.connect(
 		func():
-			disabled = false
+			visible = false
 	)
+	
+	pressed.connect(_on_pressed)
+
 
 func _on_pressed() -> void:
-	image_generation.clear_source_texture()
+	image_generation.stop()

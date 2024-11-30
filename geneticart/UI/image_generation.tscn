@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=26 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
@@ -9,18 +9,21 @@
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
+[ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="11_pg2rs"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
+[ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="13_fjqiy"]
 [ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
-[ext_resource type="Texture2D" uid="uid://brxttfn71ik76" path="res://art/white_1x1.png" id="13_vp33r"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/textures_handler_ui.gd" id="14_gfkqp"]
+[ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
 [ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
-[ext_resource type="Script" path="res://UI/rendering_time_label.gd" id="15_ddae6"]
+[ext_resource type="Script" path="res://UI/generation/rendering_time_label.gd" id="15_ddae6"]
 [ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
 [ext_resource type="Script" path="res://UI/settings/populator_params_ui_handler.gd" id="17_k1uov"]
 [ext_resource type="Script" path="res://UI/settings/image_generator_params_handler_ui.gd" id="18_lja4i"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab.gd" id="19_efp5f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkvao"]
 bg_color = Color(0, 0, 0, 1)
@@ -95,21 +98,31 @@ text = "Clear"
 script = ExtResource("12_ft68k")
 image_generation = NodePath("../../../../../../../..")
 
-[node name="GenerateButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="GenerateButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+modulate = Color(0, 1, 0, 1)
 layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 4
-text = "Generate"
+tooltip_text = "Start generating image"
+texture_normal = ExtResource("11_pg2rs")
 script = ExtResource("10_mpcut")
 image_generation = NodePath("../../../../../../../..")
 
-[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Stop image generation"
+texture_normal = ExtResource("13_fjqiy")
+script = ExtResource("14_pn2yp")
+image_generation = NodePath("../../../../../../../..")
+
+[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 script = ExtResource("12_hhf1r")
-image_generation = NodePath("../../../../../../..")
+image_generation = NodePath("../../../../../../../..")
 
 [node name="TexturesHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
@@ -124,14 +137,15 @@ stretch_mode = 5
 script = ExtResource("13_u81ho")
 image_generation = NodePath("../../../../../../../..")
 
-[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer"]
+[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("13_vp33r")
+tooltip_text = "Target texture. Drag and drop anywhere to update it"
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("14_dr8w1")
+image_generation = NodePath("../../../../../../../..")
 
 [node name="RenderingTimeLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -147,6 +161,7 @@ theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
+script = ExtResource("19_efp5f")
 metadata/_tab_index = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings"]
@@ -342,8 +357,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gkvao")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_right = -412.0
+offset_bottom = -412.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -364,6 +379,7 @@ text = "File saved"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]
 [connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/SaveOutputButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_pressed"]
 [connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]

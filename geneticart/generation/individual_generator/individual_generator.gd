@@ -17,19 +17,27 @@ var _initialized = false
 func initialize(generator_params: IndividualGeneratorParams):
 	
 	params = generator_params
-	
-	if not params.target_texture.is_valid():
-		printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
-		return
-		
-	fitness_calculator.target_texture = params.target_texture
-	average_color_sampler.sample_texture = params.target_texture
-
-	if source_texture == null or not source_texture.is_valid():
-		clear_source_texture()
+	update_target_texture(params.target_texture)
+	#if not params.target_texture.is_valid():
+		#printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
+		#return
+		#
+	#fitness_calculator.target_texture = params.target_texture
+	#average_color_sampler.sample_texture = params.target_texture
+#
+	#if source_texture == null or not source_texture.is_valid():
+		#clear_source_texture()
 
 	_initialized = true
 
+func update_target_texture(target_texture: RendererTexture):
+	if not target_texture.is_valid():
+		printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
+		return
+		
+	fitness_calculator.target_texture = target_texture
+	average_color_sampler.sample_texture = target_texture
+	clear_source_texture()
 
 func generate_individual() -> Individual:
 	

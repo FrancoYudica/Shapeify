@@ -7,15 +7,35 @@ var params: ImageGeneratorParams
 var individual_generator: IndividualGenerator
 var individual_renderer: IndividualRenderer
 
+var _mutex: Mutex = Mutex.new()
+var _stop: bool = false
+
 func initialize(generator_params: ImageGeneratorParams) -> void:
 	params = generator_params
 	individual_generator.initialize(params.individual_generator_params)
-	
+
+func update_target_texture(target_texture: RendererTexture):
+	individual_generator.update_target_texture(target_texture)
+
+func stop():
+	_mutex.lock()
+	_stop = true
+	_mutex.unlock()
+
 func generate_image() -> RendererTexture:
-	
+	_stop = false
 	var source_texture = individual_generator.source_texture
 	
 	for i in range(params.individual_count):
+		
+		# Checks if the algorithm should stop executing
+		_mutex.lock()
+		if _stop:
+			_mutex.unlock()
+			break
+		_mutex.unlock()
+		
+		
 		var individual: Individual = individual_generator.generate_individual()
 		
 		individual_renderer.render_individual(individual)

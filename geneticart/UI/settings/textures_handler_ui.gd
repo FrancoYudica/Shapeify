@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _on_image_loader_image_file_dropped(filepath: String) -> void:
 	
-	if not visible:
+	if not is_visible_in_tree():
 		return
 	
 	var image_item = image_item_packed.instantiate()

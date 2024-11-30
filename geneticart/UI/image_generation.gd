@@ -4,6 +4,7 @@ signal generation_started
 signal generation_finished
 signal individual_generated
 signal source_texture_updated
+signal target_texture_updated
 
 @export_category("Scripts")
 @export var image_generator_script: GDScript
@@ -27,8 +28,23 @@ func generate() -> void:
 	# Executes the generation in another thread to avoild locking the UI
 	WorkerThreadPool.add_task(_begin_image_generation)
 
+func stop():
+	image_generator.stop()
+
+func refresh_target_texture():
+	image_generator.update_target_texture(
+		Globals \
+		.settings \
+		.image_generator_params \
+		.individual_generator_params \
+		.target_texture)
+	
+	target_texture_updated.emit()
+	clear_source_texture()
+
 func _ready() -> void:
 	_setup_references()
+	target_texture_updated.emit()
 	
 func _setup_references():
 	# Individual generator

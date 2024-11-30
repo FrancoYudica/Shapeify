@@ -3,24 +3,38 @@ extends TextureRect
 @export var image_generation: Node
 
 func _ready() -> void:
-	image_generation.generation_started.connect(_cleanup_texture)
 	image_generation.source_texture_updated.connect(_update_texture)
+	image_generation.target_texture_updated.connect(_create_texture)
 	
-func _cleanup_texture():
-	pass
-	
-func _update_texture():
-	var individual_generator: IndividualGenerator = image_generation.individual_generator
-	if texture == null:
-		texture = RenderingCommon.create_texture_from_rd_rid(individual_generator.source_texture.rd_rid)
-	else:
-		RenderingCommon.texture_copy(
-			individual_generator.source_texture.rd_rid,
-			texture.texture_rd_rid,
-			Renderer.rd,
-			RenderingServer.get_rendering_device()
-		)
+func _exit_tree() -> void:
+	_free_texture()
 
-		#var texture_rd_rid = _output_texture_rect.texture.texture_rd_rid
-		#RenderingServer.get_rendering_device().free_rid(texture_rd_rid)
-		#_output_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
+func _create_texture():
+	_free_texture()
+	texture = RenderingCommon.create_texture_from_rd_rid(
+		image_generation.individual_generator.source_texture.rd_rid)
+
+
+func _update_texture():
+	
+	if texture == null:
+		_create_texture()
+	
+	var individual_generator: IndividualGenerator = image_generation.individual_generator
+	RenderingCommon.texture_copy(
+		individual_generator.source_texture.rd_rid,
+		texture.texture_rd_rid,
+		Renderer.rd,
+		RenderingServer.get_rendering_device()
+	)
+
+func _free_texture():
+	
+	if texture == null:
+		return
+	
+	var rd = RenderingServer.get_rendering_device()
+	var texture_rd_rid = texture.texture_rd_rid
+	texture.texture_rd_rid = RID()
+	texture = null
+	rd.free_rid(texture_rd_rid)

@@ -11,11 +11,10 @@ func _ready() -> void:
 	
 	image_generation.generation_started.connect(
 		func():
-			get_parent().visible = false
+			disabled = true
 	)
 	image_generation.generation_finished.connect(
 		func():
-			get_parent().visible = true
 			disabled = false
 	)
 
