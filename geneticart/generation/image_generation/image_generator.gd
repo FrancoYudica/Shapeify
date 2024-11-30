@@ -10,10 +10,6 @@ var individual_renderer: IndividualRenderer
 var _mutex: Mutex = Mutex.new()
 var _stop: bool = false
 
-func initialize(generator_params: ImageGeneratorParams) -> void:
-	params = generator_params
-	individual_generator.initialize(params.individual_generator_params)
-
 func update_target_texture(target_texture: RendererTexture):
 	individual_generator.update_target_texture(target_texture)
 
@@ -34,7 +30,6 @@ func generate_image() -> RendererTexture:
 			_mutex.unlock()
 			break
 		_mutex.unlock()
-		
 		
 		var individual: Individual = individual_generator.generate_individual()
 		

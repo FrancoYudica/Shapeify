@@ -3,8 +3,6 @@
 # minimizes the error metric relative to the target texture.
 class_name IndividualGenerator extends RefCounted
 
-var params: IndividualGeneratorParams
-
 var average_color_sampler: AverageColorSampler
 var fitness_calculator: FitnessCalculator
 var individual_renderer: IndividualRenderer
@@ -12,23 +10,10 @@ var populator: Populator
 
 var source_texture: RendererTexture
 
-var _initialized = false
-
-func initialize(generator_params: IndividualGeneratorParams):
-	
-	params = generator_params
-	update_target_texture(params.target_texture)
-	#if not params.target_texture.is_valid():
-		#printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
-		#return
-		#
-	#fitness_calculator.target_texture = params.target_texture
-	#average_color_sampler.sample_texture = params.target_texture
-#
-	#if source_texture == null or not source_texture.is_valid():
-		#clear_source_texture()
-
-	_initialized = true
+var params: IndividualGeneratorParams:
+	set(value):
+		params = value
+		update_target_texture(params.target_texture)
 
 func update_target_texture(target_texture: RendererTexture):
 	if not target_texture.is_valid():
@@ -41,7 +26,7 @@ func update_target_texture(target_texture: RendererTexture):
 
 func generate_individual() -> Individual:
 	
-	if not _initialized:
+	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
 	

@@ -20,10 +20,10 @@ func _ready() -> void:
 	image_generation.generation_finished.connect(
 		func():
 			_is_rendering = false
-			text = "Image geneartion took: %sms" % _clock.elapsed_ms()
+			text = "- Image geneartion took: %sms" % _clock.elapsed_ms()
 	)
 
 func _process(delta: float) -> void:
 	if _is_rendering:
-		text = "Generating image: %sms" % _clock.elapsed_ms()
+		text = "- Generating image: %sms" % _clock.elapsed_ms()
 		

@@ -32,6 +32,7 @@ func _mutate(individual: Individual):
 	)
 	individual.position.x = clampi(individual.position.x, 0, _texture_size.x)
 	individual.position.y = clampi(individual.position.y, 0, _texture_size.y)
+	individual.rotation += randf_range(-PI * 0.5, PI * 0.5)
 
 func _generate() -> Individual:
 	_texture_size = params.target_texture.get_size()
@@ -45,13 +46,12 @@ func _generate() -> Individual:
 	for individual in population:
 		_calculate_individual_fitness(individual)
 		
-	for generation in range(genetic_params.generation_count):
+	for generation in range(genetic_params.generation_count - 1):
 	
 		# Sorts population descending
 		population.sort_custom(func(a, b): return a.fitness > b.fitness)
 		
 		var children: Array[Individual] = []
-		
 		for parent in population:
 			var child = parent.copy()
 			_mutate(child)

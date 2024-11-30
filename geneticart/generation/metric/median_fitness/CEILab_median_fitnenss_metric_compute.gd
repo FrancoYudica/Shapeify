@@ -17,7 +17,7 @@ var _result_bytes := PackedByteArray()
 
 func _target_texture_set():
 	
-	if _target_texture_set_rid.is_valid():
+	if _target_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_target_texture_set_rid):
 		_rd.free_rid(_target_texture_set_rid)
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
@@ -29,7 +29,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	# This avoids creating new uniform sets when source texture is the same
 	if _previous_source_texture_rd_rid != source_texture.rd_rid:
 		
-		if _source_texture_set_rid.is_valid():
+		if _source_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_source_texture_set_rid):
 			_rd.free_rid(_source_texture_set_rid)
 		_previous_source_texture_rd_rid = source_texture.rd_rid
 		_source_texture_set_rid = _create_texture_uniform_set(source_texture.rd_rid, 2)
@@ -92,6 +92,7 @@ func _compute(source_texture: RendererTexture) -> float:
 
 func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
+	metric_name = "CEILab median fitness"
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)

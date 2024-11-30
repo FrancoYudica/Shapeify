@@ -23,7 +23,7 @@ func _ready() -> void:
 	)
 	
 	image_generation.individual_generated.connect(
-		func():
+		func(i):
 			_generated_count += 1.0
 			value = _generated_count / _image_generation_params.individual_count
 	)

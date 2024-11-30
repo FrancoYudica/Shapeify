@@ -7,10 +7,9 @@ func _generate() -> Individual:
 	var total_fitness_time: float = 0
 	var total_render_time: float = 0
 	var clock = Clock.new()
-	
 	# Creates population
 	var population: Array[Individual] = populator.generate_population(params.populator_params)
-	clock.print_elapsed("Population created. ")
+	#clock.print_elapsed("Population created. ")
 	clock.restart()
 	
 	# Queues all individuals for source texture rendering
@@ -39,9 +38,9 @@ func _generate() -> Individual:
 			individual_renderer.get_color_attachment_texture())
 		total_fitness_time += clock.elapsed_ms()
 	
-	print("Total render time: %s" % total_render_time)
-	print("Total sample color time: %s" % total_color_time)
-	print("Total fitness time: %s" % total_fitness_time)
+	#print("Total render time: %s" % total_render_time)
+	#print("Total sample color time: %s" % total_color_time)
+	#print("Total fitness time: %s" % total_fitness_time)
 
 	# Sorts population descending
 	population.sort_custom(func(a, b): return a.fitness > b.fitness)

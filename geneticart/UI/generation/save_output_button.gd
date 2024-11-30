@@ -1,21 +1,24 @@
-extends Button
+extends TextureButton
 
 @export var image_generation: Node
-@export var popup_panel: PopupPanel
 @export var output_texture_rect: TextureRect
 @export var file_dialog: FileDialog
+@export var notification_popup: PopupPanel
 
 func _ready() -> void:
 	
 	disabled = true
+	modulate = Color.DARK_GRAY
 	
 	image_generation.generation_started.connect(
 		func():
 			disabled = true
+			modulate = Color.DARK_GRAY
 	)
 	image_generation.generation_finished.connect(
 		func():
 			disabled = false
+			modulate = Color.WHITE
 	)
 
 
@@ -36,6 +39,8 @@ func _on_file_dialog_file_selected(path: String) -> void:
 			Image.Format.FORMAT_RGBAF,
 			color_attachment_data)
 		
-		img.save_png(path)
-		popup_panel.visible = true
-		#$"../../PopupPanel/MarginContainer/VBoxContainer/Label".text = "Saved image at: " + path
+		notification_popup.visible = true
+		if img.save_png(path) == OK:
+			notification_popup.text = "Successfully saved image at: %s" % path
+		else:
+			notification_popup.text = "Error (%s) while saving image at: %s" % path

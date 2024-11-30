@@ -35,7 +35,7 @@ func _ready() -> void:
 	_individual_generator.populator = populator_script.new()
 	_individual_generator.average_color_sampler = average_color_sampler_script.new()
 	_individual_generator.fitness_calculator = fitness_calculator_script.new()
-	_individual_generator.initialize(params)
+	_individual_generator.params = params
 
 
 func setup_params():

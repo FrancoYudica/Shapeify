@@ -4,6 +4,8 @@
 ## error is being calculated.
 class_name Metric extends RefCounted
 
+var metric_name: String = "Metric base"
+
 var target_texture: RendererTexture:
 	set(texture):
 		target_texture = texture

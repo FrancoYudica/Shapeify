@@ -5,6 +5,9 @@ extends MSEMetric
 var target_image: Image = null
 var _target_texture_2d_rd: Texture2DRD
 
+func _init() -> void:
+	metric_name = "Median squared error"
+
 func _target_texture_set():
 	# TODO: This might be leaking texture
 	_target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
