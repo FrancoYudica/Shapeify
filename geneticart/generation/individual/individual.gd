@@ -1,8 +1,6 @@
 ## Holds a set of genetic attributes
 class_name Individual extends Resource
 
-@export var id: int = -1
-
 ## Central position of the Individual when rendered
 @export var position: Vector2i = Vector2.ZERO
 
@@ -29,3 +27,13 @@ func get_bounding_rect() -> Rect2i:
 		int(size.y))
 		
 	return rect
+
+func copy() -> Individual:
+	var ind = Individual.new()
+	ind.position = position
+	ind.size = size
+	ind.rotation = rotation
+	ind.texture = texture
+	ind.tint = tint
+	ind.fitness = fitness
+	return ind

@@ -1,11 +1,17 @@
 extends MarginContainer
 
+@export var image_generation: Node
+@export var block_input_panel: Panel
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+	block_input_panel.visible = false
+	
+	image_generation.generation_started.connect(
+		func():
+			block_input_panel.visible = true
+	)
+	image_generation.generation_finished.connect(
+		func():
+			block_input_panel.visible = false
+	)

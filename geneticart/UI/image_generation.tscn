@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
+[ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator.gd" id="3_pcmmn"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
-[ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_rhdud"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="8_h52c8"]
@@ -35,7 +35,7 @@ corner_radius_bottom_left = 16
 [node name="ImageGeneration" type="Node"]
 script = ExtResource("1_h14uf")
 image_generator_script = ExtResource("4_xk4f6")
-individual_generator_script = ExtResource("5_rhdud")
+individual_generator_script = ExtResource("3_pcmmn")
 individual_renderer_script = ExtResource("6_wgytt")
 average_color_sampler_script = ExtResource("7_jndj8")
 fitness_calculator_script = ExtResource("8_h52c8")
@@ -66,9 +66,10 @@ grow_vertical = 2
 [node name="TabContainer" type="TabContainer" parent="UICanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -153,8 +154,7 @@ text = "Rendering: "
 script = ExtResource("15_ddae6")
 image_generation = NodePath("../../../../../../..")
 
-[node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
-visible = false
+[node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -162,6 +162,8 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("19_efp5f")
+image_generation = NodePath("../../../../..")
+block_input_panel = NodePath("BlockInputPanel")
 metadata/_tab_index = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings"]
@@ -344,6 +346,9 @@ min_value = 1.0
 max_value = 10000.0
 value = 100.0
 prefix = "Population size"
+
+[node name="BlockInputPanel" type="Panel" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings"]
+layout_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="UICanvasLayer/Panel/VBoxContainer"]
 access = 1
