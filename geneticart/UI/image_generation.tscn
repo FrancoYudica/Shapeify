@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="3_8s4ij"]
@@ -8,22 +8,26 @@
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="8_h52c8"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
-[ext_resource type="Script" path="res://generation/metric/median_fitness/CEILab_median_fitnenss_metric_compute.gd" id="9_gu2po"]
+[ext_resource type="Script" path="res://generation/metric/mean_fitness/CEILab_mean_fitnenss_metric_compute.gd" id="9_gu2po"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
-[ext_resource type="Script" path="res://generation/metric/median_fitness/RGB_median_fitnenss_metric_compute.gd" id="10_s37im"]
+[ext_resource type="Script" path="res://generation/metric/mean_fitness/RGB_mean_fitnenss_metric_compute.gd" id="10_s37im"]
 [ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="11_pg2rs"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
+[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1976_mean.gd" id="12_r7utl"]
 [ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="13_fjqiy"]
 [ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
+[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1976_max.gd" id="13_yphm4"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/textures_handler_ui.gd" id="14_gfkqp"]
 [ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
 [ext_resource type="Texture2D" uid="uid://cgxtsqc0xrobj" path="res://art/icons/info-24-dark.png" id="14_r343e"]
+[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_mean.gd" id="14_y6244"]
 [ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
+[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_max.gd" id="15_40eb2"]
 [ext_resource type="Script" path="res://UI/generation/rendering_time_label.gd" id="15_ddae6"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="15_umn17"]
 [ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
@@ -69,7 +73,7 @@ individual_renderer_script = ExtResource("6_wgytt")
 average_color_sampler_script = ExtResource("7_jndj8")
 fitness_calculator_script = ExtResource("8_h52c8")
 populator_script = ExtResource("9_vigal")
-metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("9_gu2po")])
+metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("9_gu2po"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
 
 [node name="ImageLoader" type="Node" parent="."]
 script = ExtResource("10_a6yyn")
@@ -408,7 +412,6 @@ text = "Generator"
 [node name="GeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GeneratorTypeHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
-selected = 0
 script = ExtResource("23_qrtn1")
 image_generation = NodePath("../../../../../../../../../../../..")
 

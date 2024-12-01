@@ -1,6 +1,6 @@
 extends FitnessCalculator
 
-var median_fitness_metric: MedianFitnessMetric
+var median_fitness_metric: MeanFitnessMetric
 
 func _init() -> void:
 	median_fitness_metric = load("res://generation/metric/median_fitness/CEILab_median_fitnenss_metric_compute.gd").new()

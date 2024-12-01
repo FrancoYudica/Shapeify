@@ -1,4 +1,4 @@
-extends MedianFitnessMetric
+extends DeltaEMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -41,9 +41,16 @@ func _compute(source_texture: RendererTexture) -> float:
 	var group_size_y = texture_height
 	var local_size = 8
 	
+	var workgroup_count_x = ceili(float(group_size_x) / local_size)
+	var workgroup_count_y = ceili(float(group_size_y) / local_size)
+	var workgroup_count = workgroup_count_x * workgroup_count_y
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
-	result_float_array.append(0.0)
+	
+	# Array that stores the max delta e for each work group
+	result_float_array.resize(workgroup_count)
+	result_float_array.fill(0.0)
+		
 	_result_bytes = result_float_array.to_byte_array()
 	
 	# Ensures synchronization, since the execute_compute function also uses
@@ -59,7 +66,7 @@ func _compute(source_texture: RendererTexture) -> float:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		power, 0.0
+		0.0, 0.0
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()
@@ -72,27 +79,28 @@ func _compute(source_texture: RendererTexture) -> float:
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 
-		ceili(float(group_size_x) / local_size), 
-		ceili(float(group_size_y) / local_size), 
+		workgroup_count_x,
+		workgroup_count_y,
 		1)
 	_rd.compute_list_end()
 	
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
 	var output = output_bytes.to_float32_array()
-	var mse_sum = output[0]
-	var mse = mse_sum / (texture_width * texture_height * 3.0)
+	var max_delta_e = 0.0
+	for i in range(workgroup_count):
+		max_delta_e = maxf(output[i], max_delta_e)
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
 
 	_output_uniform.clear_ids()
 	
-	return mse
+	return max_delta_e
 
 func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
-	metric_name = "CEILab median fitness"
+	metric_name = "Max Delta E 1976"
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
@@ -101,7 +109,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/median_fitness/CEILab_median_fitness.glsl")
+	var shader_file := load("res://shaders/compute/metric/deltaE/deltaE_1976_max.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

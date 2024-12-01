@@ -25,7 +25,7 @@ size_bound_max = Vector2i(968, 968)
 box_size = true
 random_rotation = false
 
-[sub_resource type="Texture2D" id="Texture2D_oofvs"]
+[sub_resource type="Texture2D" id="Texture2D_yykqh"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_eruqv")
@@ -33,7 +33,7 @@ script = ExtResource("2_eruqv")
 [sub_resource type="Resource" id="Resource_nsq0k"]
 script = ExtResource("4_whhuk")
 populator_params = SubResource("Resource_u827h")
-target_texture = SubResource("Texture2D_oofvs")
+target_texture = SubResource("Texture2D_yykqh")
 clear_color_average = false
 genetic_params = SubResource("Resource_qdkgb")
 

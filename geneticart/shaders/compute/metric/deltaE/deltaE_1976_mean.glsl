@@ -1,7 +1,9 @@
 #[compute]
 #version 450
 #extension GL_EXT_shader_atomic_float : enable
-#include "CEILab_common.glslinc"
+#include "../common/CEILab_common.glslinc"
+#include "../common/deltaE.glslinc"
+
 // Local invocation settings with 64 local invocations
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
@@ -9,14 +11,13 @@ layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 layout(push_constant, std430) uniform Params
 {
     vec2 texture_size;
-    float power;
 }
 params;
 
 // Buffer to store the MSE result
 layout(set = 0, binding = 0, std430) restrict buffer ResultBuffer
 {
-    float mse_sum;
+    float delta_e_sum;
 
     float debug_data[];
 }
@@ -29,7 +30,7 @@ layout(rgba32f, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
 
 // Variable shared by invocations of the same work group
-shared float shared_mse_sum;
+shared float local_delta_e_sum;
 
 void main()
 {
@@ -41,14 +42,14 @@ void main()
     if (x >= params.texture_size.x || y >= params.texture_size.y)
         return;
 
-    // The local invocation of index 0 initializes the `shared_mse_sum` variable
+    // The local invocation of index 0 initializes the `local_delta_e_sum` variable
     // to 0
     uint local_index = gl_LocalInvocationIndex;
     if (local_index == 0) {
-        shared_mse_sum = 0.0f;
+        local_delta_e_sum = 0.0f;
     }
 
-    // Ensures that `shared_mse_sum` is set to 0
+    // Ensures that `local_delta_e_sum` is set to 0
     barrier();
 
     // Sample the target and source textures at the current pixel location
@@ -59,22 +60,15 @@ void main()
     vec3 target_lab = rgb2lab(target_pixel.rgb);
     vec3 source_lab = rgb2lab(source_pixel.rgb);
 
-    vec3 diff = abs(target_lab - source_lab);
+    float pixel_delta_e = delta_e_1976(target_lab, source_lab);
 
-    // Clamps all channels to [0.0, 1.0] and inverts, getting the fitness
-    vec3 fitness_color = vec3(1.0f) - clamp(diff, vec3(0.0f), vec3(1.0f));
+    atomicAdd(local_delta_e_sum, pixel_delta_e);
 
-    // Applies power to all channels, punishing those with lower fitness
-    fitness_color = pow(fitness_color, vec3(params.power));
-    float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
-
-    atomicAdd(shared_mse_sum, fitness);
-
-    // Ensures that all invocations added it's values to `shared_mse_sum`
+    // Ensures that all invocations added it's values to `local_delta_e_sum`
     barrier();
 
     // Only invocation of index 0 adds to the global buffer
     if (local_index == 0) {
-        atomicAdd(result_buffer.mse_sum, shared_mse_sum);
+        atomicAdd(result_buffer.delta_e_sum, local_delta_e_sum);
     }
 }

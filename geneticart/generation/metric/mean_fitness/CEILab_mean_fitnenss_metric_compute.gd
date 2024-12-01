@@ -1,4 +1,4 @@
-extends MSEMetric
+extends MeanFitnessMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -17,7 +17,7 @@ var _result_bytes := PackedByteArray()
 
 func _target_texture_set():
 	
-	if _target_texture_set_rid.is_valid():
+	if _target_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_target_texture_set_rid):
 		_rd.free_rid(_target_texture_set_rid)
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
@@ -59,7 +59,7 @@ func _compute(source_texture: RendererTexture) -> float:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		0.0, 0.0
+		power, 0.0
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()
@@ -92,7 +92,7 @@ func _compute(source_texture: RendererTexture) -> float:
 
 func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
-	metric_name = "Mean squared error"
+	metric_name = "Mean CEILab fitness"
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
@@ -101,7 +101,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/mse/mse_metric_compute.glsl")
+	var shader_file := load("res://shaders/compute/metric/mean_fitness/CEILab_mean_fitness.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

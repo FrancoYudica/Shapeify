@@ -1,4 +1,4 @@
-extends MSEMetric
+extends DeltaEMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -17,7 +17,7 @@ var _result_bytes := PackedByteArray()
 
 func _target_texture_set():
 	
-	if _target_texture_set_rid.is_valid():
+	if _target_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_target_texture_set_rid):
 		_rd.free_rid(_target_texture_set_rid)
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
@@ -80,19 +80,17 @@ func _compute(source_texture: RendererTexture) -> float:
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
 	var output = output_bytes.to_float32_array()
-	var mse_sum = output[0]
-	var mse = mse_sum / (texture_width * texture_height * 3.0)
+	var delta_e_sum = output[0]
+	var delta_e = delta_e_sum / (texture_width * texture_height)
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
-
 	_output_uniform.clear_ids()
-	
-	return mse
+	return delta_e
 
 func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
-	metric_name = "Mean squared error"
+	metric_name = "Mean Delta E 1994"
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
@@ -101,7 +99,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/mse/mse_metric_compute.glsl")
+	var shader_file := load("res://shaders/compute/metric/deltaE/deltaE_1994_mean.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3p2ih0gqslrw"]
+[gd_scene load_steps=12 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
 [ext_resource type="Texture2D" uid="uid://bpy2p1lthfsj8" path="res://art/test/test_white_128x128.png" id="2_d1qaq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="6_2g4hy"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd" id="7_qjf2d"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_cpu.gd" id="8_ir4hj"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd" id="9_yti3h"]
 
 [sub_resource type="Texture2D" id="Texture2D_dfntu"]
 resource_local_to_scene = false
@@ -25,5 +26,5 @@ _src_texture = ExtResource("4_63u2w")
 script = ExtResource("1_pm2mh")
 target_texture = SubResource("Texture2D_dfntu")
 source_texture = SubResource("Texture2D_22c7c")
-metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj")])
+metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj"), ExtResource("9_yti3h")])
 iterations = 1

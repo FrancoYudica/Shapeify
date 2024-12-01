@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cbdvgsqf2djlc"
+path="res://.godot/imported/deltaE_1994_mean.glsl-633b66b9988afe8640b7010aa268fd59.res"
+
+[deps]
+
+source_file="res://shaders/compute/metric/deltaE/deltaE_1994_mean.glsl"
+dest_files=["res://.godot/imported/deltaE_1994_mean.glsl-633b66b9988afe8640b7010aa268fd59.res"]
+
+[params]
+
