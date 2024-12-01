@@ -8,13 +8,16 @@ func _generate() -> Individual:
 	var total_render_time: float = 0
 	var clock = Clock.new()
 	# Creates population
-	var population: Array[Individual] = populator.generate_population(params.populator_params)
+	var population: Array[Individual] = populator.generate_population(
+		params.random_params.individual_count, 
+		params.populator_params)
 	#clock.print_elapsed("Population created. ")
 	clock.restart()
 	
 	# Queues all individuals for source texture rendering
 	for individual in population:
 		
+		_fix_individual_properties(individual)
 		# Renders to get the ID texture
 		clock.restart()
 		individual_renderer.render_individual(individual)

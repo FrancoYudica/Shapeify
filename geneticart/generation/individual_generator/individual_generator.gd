@@ -33,18 +33,6 @@ func generate_individual() -> Individual:
 	_setup()
 	return _generate()
 
-func _setup():
-	individual_renderer.source_texture = source_texture
-
-	# Setup populator params
-	params.populator_params.position_bound_min = Vector2.ZERO
-	params.populator_params.position_bound_max = source_texture.get_size()
-	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
-	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
-
-func _generate() -> Individual:
-	return
-
 func clear_source_texture():
 	
 	var image_color: Color = Color.BLACK
@@ -83,3 +71,32 @@ func clear_source_texture():
 	# Creates to image texture and then to RD local texture
 	var source_texture_global_rd = ImageTexture.create_from_image(img)
 	source_texture = RendererTexture.load_from_texture(source_texture_global_rd)
+
+func _setup():
+	individual_renderer.source_texture = source_texture
+
+	# Setup populator params
+	params.populator_params.position_bound_min = Vector2.ZERO
+	params.populator_params.position_bound_max = source_texture.get_size()
+	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
+	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
+
+func _generate() -> Individual:
+	return
+
+## Applies settings and ensures that all the properties have valid values
+func _fix_individual_properties(individual: Individual):
+	
+	# If the aspect ratio
+	if params.keep_aspect_ratio:
+		var aspect = float(individual.texture.get_height()) / individual.texture.get_width()
+		individual.size.y = individual.size.x * aspect
+	
+	# Can't rotate
+	if not params.random_rotation:
+		individual.rotation = 0.0
+		
+	# Clamps position
+	if params.clamp_position_in_canvas:
+		individual.position.x = clampi(individual.position.x, 0, params.target_texture.get_width())
+		individual.position.y = clampi(individual.position.y, 0, params.target_texture.get_height())

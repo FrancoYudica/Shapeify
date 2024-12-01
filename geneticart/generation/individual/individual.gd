@@ -19,13 +19,41 @@ var texture: RendererTexture
 
 
 func get_bounding_rect() -> Rect2i:
-	## TODO Change this to calculate with rotation
-	var rect = Rect2i(
-		int(position.x - size.x * 0.5),
-		int(position.y - size.y * 0.5),
-		int(size.x),
-		int(size.y))
+	
+	var rotation_matrix = Transform2D(rotation, Vector2.ZERO)
+
+	var local_positions = [
+		0.5 * Vector2(-size.x, -size.y),
+ 		0.5 * Vector2(-size.x, size.y),
+ 		0.5 * Vector2(size.x, size.y),
+ 		0.5 * Vector2(size.x, -size.y)
+	]
+	
+	# Finds top, bottom, left and right after rotating the local positions 
+	# around individual's center
+	var top: float = INF
+	var bottom: float = -INF
+	var left: float = INF
+	var right: float = -INF
+	
+	for local_position in local_positions:
 		
+		# Rotates around the center and translates
+		var pos = Vector2(position.x, position.y) + rotation_matrix * local_position
+		top = min(pos.y, top)
+		bottom = max(pos.y, bottom)
+		left = min(pos.x, left)
+		right = max(pos.x, right)
+	
+	# Builds Axis aligned bounding box
+	var top_left = Vector2i(int(left), int(top))
+	var size = Vector2i(
+		int(right - left),
+		int(bottom - top)
+	)
+	
+	var rect = Rect2i(top_left, size)
+	
 	return rect
 
 func copy() -> Individual:

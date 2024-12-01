@@ -13,9 +13,11 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	var individual = Individual.new()
-	individual.position = Vector2(64, 64)
-	individual.size = Vector2(128, 128)
-	individual.rotation = 0.0
-	individual.tint = Color.WHITE
 	individual.texture = individual_texture
+	individual.position = Vector2(512, 512)
+	individual.size.x = 256
+	individual.size.y = individual.size.x * float(individual.texture.get_height()) / individual.texture.get_width()
+	
+	individual.rotation = Time.get_ticks_msec() * 0.001
+	individual.tint = Color.WHITE
 	_individual_renderer.render_individual(individual)

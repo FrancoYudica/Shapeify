@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://tests/individual_renderer_test/individual_renderer_test.gd" id="1_rvydi"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_bilb8"]
-[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="3_qn16m"]
+[ext_resource type="Texture2D" uid="uid://c88odkyu8my01" path="res://art/test/pipe_full.png" id="4_ah5iq"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_l58vo"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="5_5phrv"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="6_hm8m1"]
@@ -17,7 +17,7 @@ _src_texture = ExtResource("5_5phrv")
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_bilb8")
-_src_texture = ExtResource("3_qn16m")
+_src_texture = ExtResource("4_ah5iq")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_itb2w"]
 

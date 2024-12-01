@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=49 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="3_8s4ij"]
@@ -45,6 +45,7 @@
 [ext_resource type="Script" path="res://UI/settings/genetic_settings_v_box_container.gd" id="25_jv4l3"]
 [ext_resource type="Script" path="res://UI/individual_generating_time_label.gd" id="31_jo20f"]
 [ext_resource type="Script" path="res://UI/notification_popup_panel.gd" id="40_q86up"]
+[ext_resource type="Script" path="res://UI/settings/random_settings_v_box_container.gd" id="43_dmfwt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xc2o"]
 bg_color = Color(0.314316, 0.314316, 0.314316, 1)
@@ -100,9 +101,10 @@ grow_vertical = 2
 [node name="TabContainer" type="TabContainer" parent="UICanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -276,7 +278,6 @@ script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../..")
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -425,10 +426,14 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="GeneticSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("generations")]
+[node name="GeneticSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "crossover_option", "mutation_option")]
 layout_mode = 2
 script = ExtResource("25_jv4l3")
 generations = NodePath("GeneticGenerationsSpinBox")
+population_size = NodePath("PopulationSizeSpinBox")
+mutation_rate = NodePath("MutationRateSpinBox")
+crossover_option = NodePath("CrossoverHBoxContainer/CrossoverOptionButton")
+mutation_option = NodePath("MutationHBoxContainer/MutationOptionButton")
 
 [node name="GeneticGenerationsSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
 layout_mode = 2
@@ -436,6 +441,91 @@ min_value = 1.0
 max_value = 1000.0
 value = 1.0
 prefix = "Generations"
+
+[node name="PopulationSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+tooltip_text = "Count of individuals of the individual generator, where only the fittest is selected and added to the final image."
+min_value = 1.0
+max_value = 10000.0
+value = 100.0
+prefix = "Population size"
+
+[node name="MutationRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.05
+prefix = "Mutation rate"
+
+[node name="CrossoverHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/CrossoverHBoxContainer"]
+layout_mode = 2
+text = "Crossover"
+
+[node name="CrossoverOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/CrossoverHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MutationHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/MutationHBoxContainer"]
+layout_mode = 2
+text = "Mutation"
+
+[node name="MutationOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/MutationHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RandomSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("individual_count")]
+layout_mode = 2
+script = ExtResource("43_dmfwt")
+individual_count = NodePath("IndividualCountSpinBox")
+
+[node name="IndividualCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 10000.0
+value = 100.0
+prefix = "Individual count"
+
+[node name="IndividualPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("keep_aspect_ratio", "random_rotation", "clamp_position")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("17_k1uov")
+keep_aspect_ratio = NodePath("MarginContainer/VBoxContainer/KeepAspectRatioCheckBox")
+random_rotation = NodePath("MarginContainer/VBoxContainer/RandomRotationCheckBox")
+clamp_position = NodePath("MarginContainer/VBoxContainer/ClampPositionInCanvasCheckBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Individual"
+
+[node name="KeepAspectRatioCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Avoids distorting the texture by keeping it's aspect ratio"
+text = "Keep aspect ratio"
+
+[node name="RandomRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Allow random rotation"
+
+[node name="ClampPositionInCanvasCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Clamp position in canvas"
 
 [node name="RendererParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("render_while_generating")]
 layout_mode = 2
@@ -464,47 +554,8 @@ layout_mode = 2
 tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
 text = "Render while generating"
 
-[node name="PopulatorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("population_size_spin_box", "box_size", "random_rotation")]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("17_k1uov")
-population_size_spin_box = NodePath("MarginContainer/VBoxContainer/PopulationSizeSpinBox")
-box_size = NodePath("MarginContainer/VBoxContainer/BoxSizeCheckBox")
-random_rotation = NodePath("MarginContainer/VBoxContainer/RandomRotationCheckBox")
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Populator settings"
-
-[node name="BoxSizeCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "True if individuals have same width and height, therefore looking like boxes and not stretching"
-text = "Box size"
-
-[node name="RandomRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Allow random rotation"
-
-[node name="PopulationSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "Count of individuals of the individual generator, where only the fittest is selected and added to the final image."
-min_value = 1.0
-max_value = 10000.0
-value = 100.0
-prefix = "Population size"
-
 [node name="BlockInputPanel" type="Panel" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/BlockInputPanel"]
@@ -526,7 +577,6 @@ use_native_dialog = true
 [node name="NotificationPopupPanel" type="PopupPanel" parent="UICanvasLayer/Panel/VBoxContainer"]
 initial_position = 2
 size = Vector2i(260, 100)
-visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_gkvao")
 script = ExtResource("40_q86up")
 
@@ -572,7 +622,4 @@ vertical_alignment = 1
 [connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorAverageCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer" method="_on_clear_color_average_check_box_toggled"]
 [connection signal="item_selected" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GeneratorTypeHBoxContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GeneratorTypeHBoxContainer/GeneratorOptionButton" method="_on_item_selected"]
 [connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/RendererParamsPanelContainer" method="_on_render_while_generating_check_box_toggled"]
-[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/BoxSizeCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_box_size_check_box_toggled"]
-[connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/RandomRotationCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_random_rotation_check_box_toggled"]
-[connection signal="value_changed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer/MarginContainer/VBoxContainer/PopulationSizeSpinBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/PopulatorParamsPanelContainer" method="_on_population_size_spin_box_value_changed"]
 [connection signal="file_selected" from="UICanvasLayer/Panel/VBoxContainer/FileDialog" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_file_dialog_file_selected"]
