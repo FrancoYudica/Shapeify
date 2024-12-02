@@ -10,7 +10,6 @@ func crossover(
 	# Calculates interpolation t factor by its fitness
 	var total_fitness = parent_a.fitness + parent_b.fitness
 	var t: float = parent_a.fitness / total_fitness if total_fitness > 0.0 else 0.5
-
 	child.texture = parent_a.texture if randf() < t else parent_b.texture
 	
 	# Lerps

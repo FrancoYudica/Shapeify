@@ -102,7 +102,7 @@ func _initialize_components():
 		CrossoverStrategy.Type.BLEND_RANDOM:
 			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_random_crossover_strategy.gd").new()
 		CrossoverStrategy.Type.BLEND_BY_FITNESS:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_random_crossover_strategy.gd").new()
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_by_fitness_crossover_strategy.gd").new()
 		_:
 			push_error("Crossover strategy not implemented")
 	
