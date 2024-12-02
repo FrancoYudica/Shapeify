@@ -6,14 +6,14 @@
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_mean_fitness_calculator.gd" id="8_h52c8"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="8_h52c8"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
-[ext_resource type="Script" path="res://generation/metric/mean_fitness/CEILab_mean_fitnenss_metric_compute.gd" id="9_gu2po"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
-[ext_resource type="Script" path="res://generation/metric/mean_fitness/RGB_mean_fitnenss_metric_compute.gd" id="10_s37im"]
+[ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_fitnenss_metric.gd" id="10_s37im"]
 [ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="11_pg2rs"]
+[ext_resource type="Script" path="res://generation/metric/mpa/mpa_CEILab_fitnenss_metric.gd" id="11_r0x3m"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
@@ -74,7 +74,7 @@ individual_renderer_script = ExtResource("6_wgytt")
 average_color_sampler_script = ExtResource("7_jndj8")
 fitness_calculator_script = ExtResource("8_h52c8")
 populator_script = ExtResource("9_vigal")
-metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("9_gu2po"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
+metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("11_r0x3m"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
 
 [node name="ImageLoader" type="Node" parent="."]
 script = ExtResource("10_a6yyn")
@@ -616,8 +616,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 256.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

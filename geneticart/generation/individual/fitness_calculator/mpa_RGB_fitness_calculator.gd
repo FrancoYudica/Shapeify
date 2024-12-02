@@ -1,9 +1,9 @@
 extends FitnessCalculator
 
-var metric: MeanFitnessMetric
+var metric: MPAFitnessMetric
 
 func _init() -> void:
-	metric = load("res://generation/metric/mean_fitness/RGB_mean_fitnenss_metric_compute.gd").new()
+	metric = load("res://generation/metric/mpa/mpa_RGB_fitnenss_metric.gd").new()
 
 func calculate_fitness(
 	individual: Individual,

@@ -2,8 +2,8 @@ class_name FitnessCalculator extends RefCounted
 
 enum Type
 {
-	CEILabMeanInvError,
-	RGBMeanInvError,
+	MPA_CEILab,
+	MPA_RGB,
 	MSE
 }
 

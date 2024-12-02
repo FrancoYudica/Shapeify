@@ -3,7 +3,7 @@ extends FitnessCalculator
 var metric: DeltaEMetric
 
 func _init() -> void:
-	metric = load("res://generation/metric/delta_e/delta_e_1976.gd").new()
+	metric = load("res://generation/metric/delta_e/delta_e_1976_mean.gd").new()
 
 func calculate_fitness(
 	individual: Individual,

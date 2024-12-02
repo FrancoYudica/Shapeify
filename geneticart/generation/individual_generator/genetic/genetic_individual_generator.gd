@@ -85,10 +85,10 @@ func _initialize_components():
 
 	# Creates fitness calculator -----------------------------------------------
 	match genetic_params.fitness_calculator:
-		FitnessCalculator.Type.CEILabMeanInvError:
-			fitness_calculator = load("res://generation/individual/fitness_calculator/CEILab_mean_fitness_calculator.gd").new()
-		FitnessCalculator.Type.RGBMeanInvError:
-			fitness_calculator = load("res://generation/individual/fitness_calculator/RGB_mean_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MPA_CEILab:
+			fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MPA_RGB:
+			fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MSE:
 			fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
 		_:
