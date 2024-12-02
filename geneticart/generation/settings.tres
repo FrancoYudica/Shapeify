@@ -13,11 +13,12 @@
 
 [sub_resource type="Resource" id="Resource_qdkgb"]
 script = ExtResource("3_oh37d")
-generation_count = 10
-population_size = 50
+generation_count = 5
+population_size = 100
 fitness_calculator = 1
-mutation_rate = 0.05
-crossover_strategy = 0
+mutation_rate = 0.3
+selection_strategy = 0
+crossover_strategy = 1
 mutation_strategy = 1
 
 [sub_resource type="Resource" id="Resource_u827h"]
@@ -32,7 +33,7 @@ size_bound_max = Vector2i(968, 968)
 script = ExtResource("6_ekjmx")
 individual_count = 300
 
-[sub_resource type="Texture2D" id="Texture2D_cvhf2"]
+[sub_resource type="Texture2D" id="Texture2D_xuqdk"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_eruqv")
@@ -40,7 +41,7 @@ script = ExtResource("2_eruqv")
 [sub_resource type="Resource" id="Resource_nsq0k"]
 script = ExtResource("4_whhuk")
 populator_params = SubResource("Resource_u827h")
-target_texture = SubResource("Texture2D_cvhf2")
+target_texture = SubResource("Texture2D_xuqdk")
 clear_color_average = true
 keep_aspect_ratio = true
 clamp_position_in_canvas = true
@@ -53,7 +54,7 @@ genetic_params = SubResource("Resource_qdkgb")
 script = ExtResource("5_6ruam")
 individual_generator_params = SubResource("Resource_nsq0k")
 individual_generator_type = 1
-individual_count = 3000
+individual_count = 10
 
 [resource]
 script = ExtResource("1_xypp1")
