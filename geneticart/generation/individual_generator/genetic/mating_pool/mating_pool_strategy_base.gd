@@ -5,5 +5,5 @@ enum MatingPoolType {
 	SELECTION_RANKING
 }
 
-func create(population: Array[Individual]) -> Array[Individual]:
-	return population
+func create(sorted_population: Array[Individual]) -> Array[Individual]:
+	return sorted_population

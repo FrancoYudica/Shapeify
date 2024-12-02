@@ -3,6 +3,7 @@ extends VBoxContainer
 @export var generations: SpinBox
 @export var population_size: SpinBox
 @export var mutation_rate: SpinBox
+@export var fitness_option: OptionButton
 @export var crossover_option: OptionButton
 @export var mutation_option: OptionButton
 
@@ -34,7 +35,17 @@ func _ready() -> void:
 		func(v):
 			_params.mutation_rate = v
 	)
-	
+
+	# Fitness option -----------------------------------------------------------
+	for option in FitnessCalculator.Type.keys():
+		fitness_option.add_item(option)
+		
+	fitness_option.select(_params.fitness_calculator)
+	fitness_option.item_selected.connect(
+		func(index):
+			_params.fitness_calculator = index as FitnessCalculator.Type
+	)
+
 	# Crossover option ---------------------------------------------------------
 	for option in CrossoverStrategy.Type.keys():
 		crossover_option.add_item(option)

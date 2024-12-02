@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="2_b17pl"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_2w52m"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_median_fitness_calculator.gd" id="4_soxav"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/CEILab_mean_fitness_calculator.gd" id="4_soxav"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
 [ext_resource type="Texture2D" uid="uid://be4ljnjq5seok" path="res://art/test/target_circles_64x64.png" id="7_cmfgk"]

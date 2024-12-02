@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_median_fitness_calculator.gd" id="8_h52c8"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/RGB_mean_fitness_calculator.gd" id="8_h52c8"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
 [ext_resource type="Script" path="res://generation/metric/mean_fitness/CEILab_mean_fitnenss_metric_compute.gd" id="9_gu2po"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
@@ -426,12 +426,13 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="GeneticSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "crossover_option", "mutation_option")]
+[node name="GeneticSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "fitness_option", "crossover_option", "mutation_option")]
 layout_mode = 2
 script = ExtResource("25_jv4l3")
 generations = NodePath("GeneticGenerationsSpinBox")
 population_size = NodePath("PopulationSizeSpinBox")
 mutation_rate = NodePath("MutationRateSpinBox")
+fitness_option = NodePath("FitnessHBoxContainer/FitnessOptionButton")
 crossover_option = NodePath("CrossoverHBoxContainer/CrossoverOptionButton")
 mutation_option = NodePath("MutationHBoxContainer/MutationOptionButton")
 
@@ -456,6 +457,18 @@ max_value = 1.0
 step = 0.01
 value = 0.05
 prefix = "Mutation rate"
+
+[node name="FitnessHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+text = "Fitness
+"
+
+[node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CrossoverHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
 layout_mode = 2

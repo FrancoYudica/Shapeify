@@ -82,3 +82,16 @@ func _initialize_components():
 			_mutation_strategy = load("res://generation/individual_generator/genetic/mutation/random_mutation_strategy.gd").new()
 		_:
 			push_error("Mutation strategy not implemented")
+
+	# Creates fitness calculator -----------------------------------------------
+	match genetic_params.fitness_calculator:
+		FitnessCalculator.Type.CEILabMeanInvError:
+			fitness_calculator = load("res://generation/individual/fitness_calculator/CEILab_mean_fitness_calculator.gd").new()
+		FitnessCalculator.Type.RGBMeanInvError:
+			fitness_calculator = load("res://generation/individual/fitness_calculator/RGB_mean_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MSE:
+			fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
+		_:
+			push_error("Unimplemented fitness calculator: %s" % genetic_params.fitness_calculator)
+	
+	fitness_calculator.target_texture = params.target_texture
