@@ -97,8 +97,12 @@ func _initialize_components():
 	match genetic_params.crossover_strategy:
 		CrossoverStrategy.Type.CLONE_PARENT_A:
 			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/clone_a_crossover_strategy.gd").new()
-		CrossoverStrategy.Type.BLEND:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_crossover_strategy.gd").new()
+		CrossoverStrategy.Type.BLEND_MIDPOINT:
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_midpoint_crossover_strategy.gd").new()
+		CrossoverStrategy.Type.BLEND_RANDOM:
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_random_crossover_strategy.gd").new()
+		CrossoverStrategy.Type.BLEND_BY_FITNESS:
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_random_crossover_strategy.gd").new()
 		_:
 			push_error("Crossover strategy not implemented")
 	
