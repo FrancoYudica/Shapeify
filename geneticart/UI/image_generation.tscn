@@ -504,13 +504,14 @@ max_value = 10000.0
 value = 100.0
 prefix = "Individual count"
 
-[node name="IndividualPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("keep_aspect_ratio", "random_rotation", "clamp_position")]
+[node name="IndividualPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("keep_aspect_ratio", "clamp_position", "fixed_rotation", "fixed_rotation_value")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("17_k1uov")
 keep_aspect_ratio = NodePath("MarginContainer/VBoxContainer/KeepAspectRatioCheckBox")
-random_rotation = NodePath("MarginContainer/VBoxContainer/RandomRotationCheckBox")
 clamp_position = NodePath("MarginContainer/VBoxContainer/ClampPositionInCanvasCheckBox")
+fixed_rotation = NodePath("MarginContainer/VBoxContainer/FixedRotationCheckBox")
+fixed_rotation_value = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/FixedRotationSpinBox")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer"]
 layout_mode = 2
@@ -532,13 +533,29 @@ layout_mode = 2
 tooltip_text = "Avoids distorting the texture by keeping it's aspect ratio"
 text = "Keep aspect ratio"
 
-[node name="RandomRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Allow random rotation"
-
 [node name="ClampPositionInCanvasCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Clamp position in canvas"
+
+[node name="FixedRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fixed rotation angle"
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FixedRotationSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+max_value = 360.0
+step = 45.0
 
 [node name="RendererParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("render_while_generating")]
 layout_mode = 2

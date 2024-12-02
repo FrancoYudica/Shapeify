@@ -93,8 +93,8 @@ func _fix_individual_properties(individual: Individual):
 		individual.size.y = individual.size.x * aspect
 	
 	# Can't rotate
-	if not params.random_rotation:
-		individual.rotation = 0.0
+	if params.fixed_rotation:
+		individual.rotation = params.fixed_rotation_angle
 		
 	# Clamps position
 	if params.clamp_position_in_canvas:

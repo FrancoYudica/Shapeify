@@ -32,7 +32,7 @@ size_bound_max = Vector2i(968, 968)
 script = ExtResource("6_ekjmx")
 individual_count = 300
 
-[sub_resource type="Texture2D" id="Texture2D_e6128"]
+[sub_resource type="Texture2D" id="Texture2D_r1oaf"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_eruqv")
@@ -40,11 +40,12 @@ script = ExtResource("2_eruqv")
 [sub_resource type="Resource" id="Resource_nsq0k"]
 script = ExtResource("4_whhuk")
 populator_params = SubResource("Resource_u827h")
-target_texture = SubResource("Texture2D_e6128")
+target_texture = SubResource("Texture2D_r1oaf")
 clear_color_average = false
 keep_aspect_ratio = true
-random_rotation = false
 clamp_position_in_canvas = true
+fixed_rotation = false
+fixed_rotation_angle = 0.0
 random_params = SubResource("Resource_ihrlt")
 genetic_params = SubResource("Resource_qdkgb")
 
