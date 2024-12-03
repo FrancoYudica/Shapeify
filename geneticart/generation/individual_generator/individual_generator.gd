@@ -100,3 +100,8 @@ func _fix_individual_properties(individual: Individual):
 	if params.clamp_position_in_canvas:
 		individual.position.x = clampi(individual.position.x, 0, params.target_texture.get_width())
 		individual.position.y = clampi(individual.position.y, 0, params.target_texture.get_height())
+	
+	if params.fixed_size:
+		individual.size.x = source_texture.get_width() * params.fixed_size_width_ratio
+		var aspect = float(individual.texture.get_height()) / individual.texture.get_width()
+		individual.size.y = individual.size.x * aspect
