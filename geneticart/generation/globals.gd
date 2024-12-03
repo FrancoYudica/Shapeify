@@ -12,13 +12,6 @@ func _init() -> void:
 	if settings.image_generator_params == null:
 		settings.image_generator_params = ImageGeneratorParams.new()
 	
-		if settings.image_generator_params.individual_generator_params == null:
-			settings.image_generator_params.individual_generator_params = IndividualGeneratorParams.new()
-			
-			if settings.image_generator_params.individual_generator_params.populator_params == null:
-				settings.image_generator_params.individual_generator_params.populator_params = PopulatorParams.new()
-	
-	
 	
 func _enter_tree() -> void:
 	

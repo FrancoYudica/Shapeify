@@ -6,7 +6,7 @@ extends VBoxContainer
 						.settings \
 						.image_generator_params \
 						.individual_generator_params \
-						.random_params
+						.best_of_random_params
 	
 func _ready() -> void:
 	
@@ -20,4 +20,4 @@ func _process(dt) -> void:
 	visible = Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_type == ImageGeneratorParams.IndividualGeneratorType.Random
+				.individual_generator_type == ImageGeneratorParams.IndividualGeneratorType.BestOfRandom

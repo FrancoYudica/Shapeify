@@ -1,7 +1,7 @@
 [gd_scene load_steps=54 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
-[ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="3_8s4ij"]
+[ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd" id="3_8s4ij"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator.gd" id="3_pcmmn"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]

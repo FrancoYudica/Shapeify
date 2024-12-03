@@ -53,6 +53,8 @@ func refresh_target_texture():
 func set_individual_generator_type(type: ImageGeneratorParams.IndividualGeneratorType):
 	match type:
 		ImageGeneratorParams.IndividualGeneratorType.Random:
+			_set_individual_generator_script(load("res://generation/individual_generator/random/random_individual_generator.gd"))
+		ImageGeneratorParams.IndividualGeneratorType.BestOfRandom:
 			_set_individual_generator_script(random_individual_generator_script)
 		ImageGeneratorParams.IndividualGeneratorType.Genetic:
 			_set_individual_generator_script(genetic_individual_generator_script)
