@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=51 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator.gd" id="3_8s4ij"]
@@ -47,6 +47,7 @@
 [ext_resource type="Script" path="res://UI/notification_popup_panel.gd" id="40_q86up"]
 [ext_resource type="Script" path="res://UI/settings/random_settings_v_box_container.gd" id="43_dmfwt"]
 [ext_resource type="Script" path="res://UI/settings/elitism_panel_container.gd" id="43_t0xaq"]
+[ext_resource type="Script" path="res://UI/settings/tournament_panel_container.gd" id="44_ificu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xc2o"]
 bg_color = Color(0.314316, 0.314316, 0.314316, 1)
@@ -456,10 +457,8 @@ prefix = "Population size"
 
 [node name="MutationRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.05
 prefix = "Mutation rate"
+suffix = "%"
 
 [node name="FitnessHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
 layout_mode = 2
@@ -533,6 +532,22 @@ layout_mode = 2
 prefix = "Elitism rate"
 suffix = "%"
 
+[node name="TournamentPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer"]
+layout_mode = 2
+script = ExtResource("44_ificu")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/TournamentPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TournamentSizeBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GeneticSettingsVBoxContainer/TournamentPanelContainer/MarginContainer"]
+layout_mode = 2
+max_value = 30.0
+prefix = "Tournament size"
+
 [node name="RandomSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("individual_count")]
 layout_mode = 2
 script = ExtResource("43_dmfwt")
@@ -551,8 +566,8 @@ size_flags_horizontal = 3
 script = ExtResource("17_k1uov")
 keep_aspect_ratio = NodePath("MarginContainer/VBoxContainer/KeepAspectRatioCheckBox")
 clamp_position = NodePath("MarginContainer/VBoxContainer/ClampPositionInCanvasCheckBox")
-fixed_rotation = NodePath("MarginContainer/VBoxContainer/FixedRotationCheckBox")
-fixed_rotation_value = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/FixedRotationSpinBox")
+fixed_rotation = NodePath("MarginContainer/VBoxContainer/HBoxContainer/FixedRotationCheckBox")
+fixed_rotation_value = NodePath("MarginContainer/VBoxContainer/HBoxContainer/FixedRotationSpinBox")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer"]
 layout_mode = 2
@@ -579,24 +594,19 @@ layout_mode = 2
 disabled = true
 text = "Clamp position in canvas"
 
-[node name="FixedRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FixedRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Fixed rotation angle"
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer"]
+[node name="FixedRotationSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="FixedRotationSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer/IndividualPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
+size_flags_horizontal = 3
 max_value = 360.0
 step = 45.0
+suffix = "°"
 
 [node name="RendererParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/FlowContainer" node_paths=PackedStringArray("render_while_generating")]
 layout_mode = 2

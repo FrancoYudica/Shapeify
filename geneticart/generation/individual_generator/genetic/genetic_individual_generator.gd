@@ -123,6 +123,8 @@ func _initialize_components():
 			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/keep_children_survivor_selection_strategy.gd").new()
 		SurvivorSelectionStrategy.Type.ELITISM:
 			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/elitism_survivor_selection_strategy.gd").new()
+		SurvivorSelectionStrategy.Type.TOURNAMENT:
+			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/tournament_survivor_selection_strategy.gd").new()
 		_:
 			push_error("Survivor selection strategy not implemented")
 

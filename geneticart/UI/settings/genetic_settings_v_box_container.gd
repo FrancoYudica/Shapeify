@@ -32,10 +32,10 @@ func _ready() -> void:
 	)
 	
 	# Mutation rate spin -------------------------------------------------------
-	mutation_rate.value = _params.mutation_rate
+	mutation_rate.value = _params.mutation_rate * 100.0
 	mutation_rate.value_changed.connect(
 		func(v):
-			_params.mutation_rate = v
+			_params.mutation_rate = v * 0.01
 	)
 
 	# Fitness option -----------------------------------------------------------
