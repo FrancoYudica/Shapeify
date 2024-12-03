@@ -4,6 +4,7 @@ var _texture_size: Vector2
 var _crossover_strategy: CrossoverStrategy
 var _mutation_strategy: MutationStrategy
 var _selection_strategy: SelectionStrategy
+var _survivor_selection_strategy: SurvivorSelectionStrategy
 
 func _calculate_individual_fitness(individual: Individual):
 
@@ -64,11 +65,10 @@ func _generate() -> Individual:
 			_calculate_individual_fitness(child)
 			children.append(child)
 		
-		population.append_array(children)
-		population.sort_custom(func(a, b): return a.fitness > b.fitness)
-		
-		# Keeps the best individuals
-		population = population.slice(0, genetic_params.population_size)
+		population = _survivor_selection_strategy.select_survivors(
+			population,
+			children
+		)
 	
 	# Returns the individual with highest fitness
 	return population[0]
@@ -116,6 +116,17 @@ func _initialize_components():
 			_mutation_strategy = load("res://generation/individual_generator/genetic/mutation/random_mutation_strategy.gd").new()
 		_:
 			push_error("Mutation strategy not implemented")
+
+	# Creates survivor selection strategy --------------------------------------
+	match genetic_params.survivor_selection_strategy:
+		SurvivorSelectionStrategy.Type.KEEP_CHILDREN:
+			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/keep_children_survivor_selection_strategy.gd").new()
+		SurvivorSelectionStrategy.Type.ELITISM:
+			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/elitism_survivor_selection_strategy.gd").new()
+		_:
+			push_error("Survivor selection strategy not implemented")
+
+	_survivor_selection_strategy.set_params(genetic_params.survivor_selection_params)
 
 	# Creates fitness calculator -----------------------------------------------
 	match genetic_params.fitness_calculator:

@@ -8,3 +8,6 @@ class_name GeneticIndividualGeneratorParams extends Resource
 @export var selection_strategy: SelectionStrategy.Type = SelectionStrategy.Type.FitnessProportionate
 @export var crossover_strategy: CrossoverStrategy.Type = CrossoverStrategy.Type.CLONE_PARENT_A
 @export var mutation_strategy: MutationStrategy.Type = MutationStrategy.Type.DONT_MUTATE
+@export var survivor_selection_strategy: SurvivorSelectionStrategy.Type = SurvivorSelectionStrategy.Type.KEEP_CHILDREN
+
+@export var survivor_selection_params: SurvivorSelectionParams = SurvivorSelectionParams.new()

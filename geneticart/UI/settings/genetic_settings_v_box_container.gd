@@ -7,6 +7,7 @@ extends VBoxContainer
 @export var selection_option: OptionButton
 @export var crossover_option: OptionButton
 @export var mutation_option: OptionButton
+@export var survivor_selection_option: OptionButton
 
 @onready var _params = Globals \
 						.settings \
@@ -75,6 +76,19 @@ func _ready() -> void:
 		func(index):
 			_params.mutation_strategy = index as MutationStrategy.Type
 	)
+
+	# Survivor selection option ------------------------------------------------
+	for option in SurvivorSelectionStrategy.Type.keys():
+		survivor_selection_option.add_item(option)
+		
+	survivor_selection_option.select(_params.survivor_selection_strategy)
+	survivor_selection_option.item_selected.connect(
+		func(index):
+			_params.survivor_selection_strategy = index as SurvivorSelectionStrategy.Type
+	)
+	
+	
+	
 
 func _process(dt) -> void:
 	visible = Globals \
