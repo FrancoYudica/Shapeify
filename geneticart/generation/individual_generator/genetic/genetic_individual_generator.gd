@@ -99,8 +99,10 @@ func _initialize_components():
 			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/clone_a_crossover_strategy.gd").new()
 		CrossoverStrategy.Type.BLEND_MIDPOINT:
 			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_midpoint_crossover_strategy.gd").new()
-		CrossoverStrategy.Type.BLEND_RANDOM:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_random_crossover_strategy.gd").new()
+		CrossoverStrategy.Type.PARENT_BLEND_RANDOM:
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/parent_blend_random.gd").new()
+		CrossoverStrategy.Type.ATTRIBUTE_SPECIFIC_BLEND_RANDOM:
+			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/attribute_specific_blend_crossover.gd").new()
 		CrossoverStrategy.Type.BLEND_BY_FITNESS:
 			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_by_fitness_crossover_strategy.gd").new()
 		_:
