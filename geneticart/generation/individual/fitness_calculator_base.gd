@@ -1,5 +1,12 @@
 class_name FitnessCalculator extends RefCounted
 
+enum Type
+{
+	MPA_CEILab,
+	MPA_RGB,
+	MSE
+}
+
 var target_texture: RendererTexture:
 	set(texture):
 		

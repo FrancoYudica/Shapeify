@@ -1,0 +1,45 @@
+// http://zschuessler.github.io/DeltaE/learn/
+
+float delta_e_1976(
+    vec3 lab1,
+    vec3 lab2)
+{
+    // Delta E 1976, aka Euclidean distance over CEILab color space
+    vec3 diff = abs(lab1 - lab2);
+    float delta_e = sqrt(dot(diff, diff));
+    return delta_e;
+}
+
+float delta_e_1994(
+    vec3 lab1, 
+    vec3 lab2)
+{
+    // Calculate differences in lightness, a*, b*
+    float delta_L = lab2.r - lab1.r;
+    float delta_a = lab2.g - lab1.g;
+    float delta_b = lab2.b - lab1.b;
+    
+    // Calculate the chroma for both colors
+    float C1 = sqrt(lab1.g * lab1.g + lab1.b * lab1.b);
+    float C2 = sqrt(lab2.g * lab2.g + lab2.b * lab2.b);
+    
+    // Calculate the difference in chroma
+    float delta_C = C2 - C1;
+    
+    // Calculate the hue difference (using atan2 for proper angle difference)
+    float delta_H = sqrt(max(0.0f, (delta_a * delta_a) + (delta_b * delta_b) - (delta_C * delta_C)));
+    
+    // Constants
+    float K_L = 1.0;
+    float K_C = 1.0;
+    float K_H = 1.0;
+    
+    // Calculate the Delta E 1994 value
+    float delta_e = sqrt(
+        pow(delta_L / K_L, 2.0) +
+        pow(delta_C / K_C, 2.0) +
+        pow(delta_H / K_H, 2.0)
+    );
+    
+    return delta_e;
+}

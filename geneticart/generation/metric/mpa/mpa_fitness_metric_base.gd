@@ -1,4 +1,4 @@
-class_name MedianFitnessMetric extends Metric
+class_name MPAFitnessMetric extends Metric
 
 ## Power used to modulate the fitness curve.
 ## The fitness

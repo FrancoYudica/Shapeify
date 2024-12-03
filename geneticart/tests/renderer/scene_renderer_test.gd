@@ -26,3 +26,4 @@ func _process(delta: float) -> void:
 	Renderer.end_frame()
 	
 	var dt_ms = (Time.get_ticks_usec() - t0) / 1000.0
+	print(dt_ms)

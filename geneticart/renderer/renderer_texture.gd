@@ -16,7 +16,12 @@ var rd_rid: RID:
 			return
 		
 		rd_rid = id
+		
+		# Stores size to avoid loading format
+		var format = Renderer.rd.texture_get_format(rd_rid)
+		_size = Vector2i(format.width, format.height)
 
+var _size: Vector2i
 
 static func load_from_texture(src: Texture2D) -> RendererTexture:
 	var texture = RendererTexture.new()
@@ -54,19 +59,10 @@ func is_valid() -> bool:
 
 
 func _get_width() -> int:
-	if not is_valid():
-		return 0
-
-	var format = Renderer.rd.texture_get_format(rd_rid)
-	return format.width
+	return _size.x
 
 func _get_height() -> int:
-	
-	if not is_valid():
-		return 0
-	
-	var format = Renderer.rd.texture_get_format(rd_rid)
-	return format.height
+	return _size.y
 
 
 func _notification(what: int) -> void:

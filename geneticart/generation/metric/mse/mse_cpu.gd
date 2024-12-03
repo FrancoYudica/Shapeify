@@ -6,7 +6,7 @@ var target_image: Image = null
 var _target_texture_2d_rd: Texture2DRD
 
 func _init() -> void:
-	metric_name = "Median squared error"
+	metric_name = "Mean squared error"
 
 func _target_texture_set():
 	# TODO: This might be leaking texture

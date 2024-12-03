@@ -91,8 +91,8 @@ func _compute(source_texture: RendererTexture) -> float:
 	return mse
 
 func _init() -> void:
-	RenderingServer.call_on_render_thread(_initialize_compute_code)
-	metric_name = "Median squared error"
+	_initialize_compute_code()
+	metric_name = "Mean squared error"
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)
