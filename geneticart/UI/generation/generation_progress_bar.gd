@@ -5,7 +5,6 @@ extends ProgressBar
 
 @onready var _image_generation_params := Globals.settings.image_generator_params
 
-var _generated_count: float = 0.0
 
 func _ready() -> void:
 	
@@ -15,15 +14,13 @@ func _ready() -> void:
 		func():
 			visible = true
 			value = 0.0
-			_generated_count = 0.0
 	)
 	image_generation.generation_finished.connect(
 		func():
 			visible = false
 	)
 	
-	image_generation.individual_generated.connect(
-		func(i):
-			_generated_count += 1.0
-			value = _generated_count / _image_generation_params.individual_count
-	)
+func _process(delta: float) -> void:
+	
+	if visible:
+		value = image_generation.image_generator.get_progress()

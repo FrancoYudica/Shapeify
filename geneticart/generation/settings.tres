@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=19 format=3]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="1_33cbe"]
 [ext_resource type="Texture2D" path="res://art/Mona_Lisa.jpg" id="1_cfm67"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="5_6ruam"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="5_fudax"]
 [ext_resource type="Script" path="res://generation/individual_generator/random/random_individual_generator_params.gd" id="6_ekjmx"]
+[ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="11_vdobw"]
 
 [sub_resource type="Resource" id="Resource_qcyea"]
 script = ExtResource("5_fudax")
@@ -41,7 +42,7 @@ size_bound_max = Vector2i(968, 968)
 script = ExtResource("6_ekjmx")
 individual_count = 100
 
-[sub_resource type="Texture2D" id="Texture2D_um2qb"]
+[sub_resource type="Texture2D" id="Texture2D_djlf7"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_eruqv")
@@ -49,7 +50,7 @@ script = ExtResource("2_eruqv")
 [sub_resource type="Resource" id="Resource_nsq0k"]
 script = ExtResource("4_whhuk")
 populator_params = SubResource("Resource_u827h")
-target_texture = SubResource("Texture2D_um2qb")
+target_texture = SubResource("Texture2D_djlf7")
 clear_color_average = true
 keep_aspect_ratio = true
 clamp_position_in_canvas = true
@@ -58,11 +59,18 @@ fixed_rotation_angle = 0.785398
 random_params = SubResource("Resource_ihrlt")
 genetic_params = SubResource("Resource_qdkgb")
 
+[sub_resource type="Resource" id="Resource_lxf15"]
+script = ExtResource("11_vdobw")
+individual_count = 10
+execution_time = 10.0
+target_fitness = 0.9
+
 [sub_resource type="Resource" id="Resource_mu726"]
 script = ExtResource("5_6ruam")
 individual_generator_params = SubResource("Resource_nsq0k")
 individual_generator_type = 1
-individual_count = 32
+stop_condition = 1
+stop_condition_params = SubResource("Resource_lxf15")
 
 [resource]
 script = ExtResource("1_xypp1")

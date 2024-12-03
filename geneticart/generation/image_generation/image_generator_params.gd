@@ -7,4 +7,5 @@ enum IndividualGeneratorType{
 
 @export var individual_generator_params: IndividualGeneratorParams
 @export var individual_generator_type: IndividualGeneratorType
-@export var individual_count: int = 10
+@export var stop_condition: StopCondition.Type = StopCondition.Type.INDIVIDUAL_COUNT
+@export var stop_condition_params := StopConditionParams.new()
