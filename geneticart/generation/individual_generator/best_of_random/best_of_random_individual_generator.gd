@@ -18,15 +18,8 @@ func _generate() -> Individual:
 	for individual in population:
 		
 		_fix_individual_properties(individual)
-		# Renders to get the ID texture
 		clock.restart()
-		individual_renderer.render_individual(individual)
-		total_render_time += clock.elapsed_ms()
-		
-		# Gets masked avg color
-		clock.restart()
-		average_color_sampler.id_texture = individual_renderer.get_id_attachment_texture()
-		individual.tint = average_color_sampler.sample_rect(individual.get_bounding_rect())
+		color_sampler_strategy.set_sample_color(individual)
 		total_color_time += clock.elapsed_ms()
 
 		# Renders to get the individual source texture

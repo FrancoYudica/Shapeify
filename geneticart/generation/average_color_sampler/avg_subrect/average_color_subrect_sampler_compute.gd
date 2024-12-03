@@ -93,7 +93,7 @@ func sample_rect(rect: Rect2i) -> Color:
 	return avg_color
 
 func _init() -> void:
-	RenderingServer.call_on_render_thread(_initialize_compute_code)
+	_initialize_compute_code()
 
 func _exit_tree() -> void:
 	_rd.free_rid(_shader)

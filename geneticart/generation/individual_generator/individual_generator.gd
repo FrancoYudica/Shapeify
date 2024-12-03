@@ -3,7 +3,7 @@
 # minimizes the error metric relative to the target texture.
 class_name IndividualGenerator extends RefCounted
 
-var average_color_sampler: AverageColorSampler
+var color_sampler_strategy: ColorSamplerStrategy
 var fitness_calculator: FitnessCalculator
 var individual_renderer: IndividualRenderer
 var populator: Populator
@@ -21,7 +21,6 @@ func update_target_texture(target_texture: RendererTexture):
 		return
 		
 	fitness_calculator.target_texture = target_texture
-	average_color_sampler.sample_texture = target_texture
 	clear_source_texture()
 
 func generate_individual() -> Individual:
@@ -52,16 +51,16 @@ func clear_source_texture():
 		Renderer.end_frame()
 		
 		# The initial color of the source texture is the average color of target texture
-		average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
-		image_color = average_color_sampler.sample_rect(
-			Rect2i(
-				Vector2i.ZERO, 
-				Vector2i(
-					params.target_texture.get_width(),
-					params.target_texture.get_height()
-				)
-			)
-		)
+		#average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
+		#image_color = average_color_sampler.sample_rect(
+			#Rect2i(
+				#Vector2i.ZERO, 
+				#Vector2i(
+					#params.target_texture.get_width(),
+					#params.target_texture.get_height()
+				#)
+			#)
+		#)
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
@@ -72,15 +71,33 @@ func clear_source_texture():
 	var source_texture_global_rd = ImageTexture.create_from_image(img)
 	source_texture = RendererTexture.load_from_texture(source_texture_global_rd)
 
+
+var _current_sampler_strategy : ColorSamplerStrategy.Type
+
 func _setup():
 	individual_renderer.source_texture = source_texture
 
-	# Setup populator params
+	# Setup populator params ---------------------------------------------------
 	params.populator_params.position_bound_min = Vector2.ZERO
 	params.populator_params.position_bound_max = source_texture.get_size()
 	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
-
+	
+	# Setup color sampler strategy ---------------------------------------------
+	
+	if _current_sampler_strategy != params.color_sampler or color_sampler_strategy == null:
+	
+		match params.color_sampler:
+			ColorSamplerStrategy.Type.SUB_RECT:
+				color_sampler_strategy = load("res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd").new()
+			ColorSamplerStrategy.Type.MASKED:
+				color_sampler_strategy = load("res://generation/individual_generator/color_sampler/masked_color_sampler_strategy.gd").new()
+			_:
+				push_error("Unimplemented color sampler of type: %s" % params.color_sampler)
+				
+		color_sampler_strategy.sample_texture = params.target_texture
+		_current_sampler_strategy = params.color_sampler
+	
 func _generate() -> Individual:
 	return
 

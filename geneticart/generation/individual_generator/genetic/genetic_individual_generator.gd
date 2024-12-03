@@ -7,13 +7,7 @@ var _selection_strategy: SelectionStrategy
 var _survivor_selection_strategy: SurvivorSelectionStrategy
 
 func _calculate_individual_fitness(individual: Individual):
-
-	# Renders to get the ID texture
-	individual_renderer.render_individual(individual)
-	
-	# Gets masked avg color
-	average_color_sampler.id_texture = individual_renderer.get_id_attachment_texture()
-	individual.tint = average_color_sampler.sample_rect(individual.get_bounding_rect())
+	color_sampler_strategy.set_sample_color(individual)
 	
 	# Renders to get the individual source texture
 	individual_renderer.render_individual(individual)

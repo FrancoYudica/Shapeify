@@ -69,7 +69,6 @@ func _set_individual_generator_script(script: GDScript):
 
 	individual_generator.individual_renderer = _individual_renderer
 	individual_generator.populator = populator_script.new()
-	individual_generator.average_color_sampler = average_color_sampler_script.new()
 	individual_generator.fitness_calculator = fitness_calculator_script.new()
 	image_generator.individual_generator = individual_generator
 	individual_generator.params = Globals.settings.image_generator_params.individual_generator_params
