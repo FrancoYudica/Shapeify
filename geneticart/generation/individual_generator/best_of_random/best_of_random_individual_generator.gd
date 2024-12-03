@@ -19,7 +19,7 @@ func _generate() -> Individual:
 		
 		_fix_individual_properties(individual)
 		clock.restart()
-		color_sampler_strategy.set_sample_color(individual)
+		_color_sampler_strategy.set_sample_color(individual)
 		total_color_time += clock.elapsed_ms()
 
 		# Renders to get the individual source texture

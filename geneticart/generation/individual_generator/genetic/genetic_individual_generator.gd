@@ -7,7 +7,7 @@ var _selection_strategy: SelectionStrategy
 var _survivor_selection_strategy: SurvivorSelectionStrategy
 
 func _calculate_individual_fitness(individual: Individual):
-	color_sampler_strategy.set_sample_color(individual)
+	_color_sampler_strategy.set_sample_color(individual)
 	
 	# Renders to get the individual source texture
 	individual_renderer.render_individual(individual)

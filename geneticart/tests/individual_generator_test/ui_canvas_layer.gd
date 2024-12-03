@@ -22,7 +22,6 @@ func _ready() -> void:
 	var params := IndividualGeneratorParams.new()
 	# Populator params
 	params.populator_params = PopulatorParams.new()
-	params.populator_params.population_size = 10
 	params.populator_params.textures = individual_textures
 	
 	# Texture
@@ -33,13 +32,12 @@ func _ready() -> void:
 	_individual_renderer = individual_renderer_script.new()
 	_individual_generator.individual_renderer = _individual_renderer
 	_individual_generator.populator = populator_script.new()
-	_individual_generator.average_color_sampler = average_color_sampler_script.new()
 	_individual_generator.fitness_calculator = fitness_calculator_script.new()
 	_individual_generator.params = params
 
 
 func setup_params():
-	_individual_generator.params.populator_params.population_size = population_size_input.get_number()
+	_individual_generator.params.best_of_random_params.individual_count = population_size_input.get_number()
 	
 # Called when the node enters the scene tree for the first time.
 func generate() -> void:

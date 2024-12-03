@@ -3,12 +3,15 @@
 # minimizes the error metric relative to the target texture.
 class_name IndividualGenerator extends RefCounted
 
-var color_sampler_strategy: ColorSamplerStrategy
+var _color_sampler_strategy: ColorSamplerStrategy
 var fitness_calculator: FitnessCalculator
 var individual_renderer: IndividualRenderer
 var populator: Populator
 
 var source_texture: RendererTexture
+
+# Used only to sample average color
+var _subrect_color_sampler: AverageColorSampler
 
 var params: IndividualGeneratorParams:
 	set(value):
@@ -32,35 +35,23 @@ func generate_individual() -> Individual:
 	_setup()
 	return _generate()
 
+var white_texture = preload("res://art/white_1x1.png")
+
 func clear_source_texture():
 	
 	var image_color: Color = Color.BLACK
 	
 	if params.clear_color_average:
-	
-		# Renders to get an ID texture full with ID = 1.0
-		Renderer.begin_frame(params.target_texture.get_size())
-		Renderer.render_sprite(
-			params.target_texture.get_size() * 0.5,
-			params.target_texture.get_size(),
-			0.0,
-			Color.WHITE,
-			params.target_texture,
-			1.0
+		_subrect_color_sampler.sample_texture = params.target_texture
+		image_color = _subrect_color_sampler.sample_rect(
+			Rect2i(
+				Vector2i.ZERO, 
+				Vector2i(
+					params.target_texture.get_width(),
+					params.target_texture.get_height()
+				)
+			)
 		)
-		Renderer.end_frame()
-		
-		# The initial color of the source texture is the average color of target texture
-		#average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
-		#image_color = average_color_sampler.sample_rect(
-			#Rect2i(
-				#Vector2i.ZERO, 
-				#Vector2i(
-					#params.target_texture.get_width(),
-					#params.target_texture.get_height()
-				#)
-			#)
-		#)
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
@@ -85,17 +76,17 @@ func _setup():
 	
 	# Setup color sampler strategy ---------------------------------------------
 	
-	if _current_sampler_strategy != params.color_sampler or color_sampler_strategy == null:
+	if _current_sampler_strategy != params.color_sampler or _color_sampler_strategy == null:
 	
 		match params.color_sampler:
 			ColorSamplerStrategy.Type.SUB_RECT:
-				color_sampler_strategy = load("res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd").new()
+				_color_sampler_strategy = load("res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd").new()
 			ColorSamplerStrategy.Type.MASKED:
-				color_sampler_strategy = load("res://generation/individual_generator/color_sampler/masked_color_sampler_strategy.gd").new()
+				_color_sampler_strategy = load("res://generation/individual_generator/color_sampler/masked_color_sampler_strategy.gd").new()
 			_:
 				push_error("Unimplemented color sampler of type: %s" % params.color_sampler)
 				
-		color_sampler_strategy.sample_texture = params.target_texture
+		_color_sampler_strategy.sample_texture = params.target_texture
 		_current_sampler_strategy = params.color_sampler
 	
 func _generate() -> Individual:
@@ -122,3 +113,6 @@ func _fix_individual_properties(individual: Individual):
 		individual.size.x = source_texture.get_width() * params.fixed_size_width_ratio
 		var aspect = float(individual.texture.get_height()) / individual.texture.get_width()
 		individual.size.y = individual.size.x * aspect
+
+func _init() -> void:
+	_subrect_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd").new()
