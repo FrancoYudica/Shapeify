@@ -11,3 +11,16 @@ class_name GeneticIndividualGeneratorParams extends Resource
 @export var survivor_selection_strategy := SurvivorSelectionStrategy.Type.ELITISM
 
 @export var survivor_selection_params := SurvivorSelectionParams.new()
+
+func to_dict() -> Dictionary:
+	return {
+		"generation_count" : generation_count,
+		"population_size" : population_size,
+		"mutation_rate" : mutation_rate,
+		"fitness_calculator": FitnessCalculator.Type.keys()[fitness_calculator],
+		"selection_strategy": SelectionStrategy.Type.keys()[selection_strategy],
+		"crossover_strategy": CrossoverStrategy.Type.keys()[crossover_strategy],
+		"mutation_strategy": MutationStrategy.Type.keys()[mutation_strategy],
+		"survivor_selection_strategy": SurvivorSelectionStrategy.Type.keys()[survivor_selection_strategy],
+		"survivor_selection_strategy_params" : survivor_selection_params.to_dict()
+	}

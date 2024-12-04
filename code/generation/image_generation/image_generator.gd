@@ -25,11 +25,13 @@ func get_progress() -> float:
 	return _stop_condition.get_progress()
 
 func generate_image() -> RendererTexture:
+	
+	Profiler.image_generation_began(params)
+	
 	_setup()
 	var source_texture = individual_generator.source_texture
 	
 	_stop_condition.began_generating()
-	
 	while not _stop_condition.should_stop():
 		
 		# Checks if the algorithm should stop executing
@@ -46,6 +48,8 @@ func generate_image() -> RendererTexture:
 		individual_generator.source_texture = individual_texture
 		individual_generated.emit(individual)
 		_stop_condition.individual_generated(individual)
+	
+	Profiler.image_generation_finished(individual_generator.source_texture)
 	
 	return individual_generator.source_texture
 	

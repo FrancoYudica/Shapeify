@@ -32,8 +32,13 @@ func generate_individual() -> Individual:
 		printerr("IndividialGenerator not initialized")
 		return
 	
+	Profiler.individual_generation_began(params)
 	_setup()
-	return _generate()
+	var individual = _generate()
+	Profiler.individual_generation_finished(
+		individual,
+		source_texture)
+	return individual
 
 var white_texture = preload("res://art/white_1x1.png")
 

@@ -15,3 +15,13 @@ class_name IndividualGeneratorParams extends Resource
 
 @export var best_of_random_params := BestOfRandomIndividualGeneratorParams.new()
 @export var genetic_params := GeneticIndividualGeneratorParams.new()
+
+
+func to_dict() -> Dictionary:
+	return {
+		"target_texture_width" : target_texture.get_width(),
+		"target_texture_height" : target_texture.get_height(),
+		"color_sampler": ColorSamplerStrategy.Type.keys()[color_sampler],
+		"best_of_random_params" : best_of_random_params.to_dict(),
+		"genetic_params" : genetic_params.to_dict()
+	}
