@@ -19,7 +19,6 @@ _Franco Yudica (13922)_
       - [Algoritmo de generación de individuo](#algoritmo-de-generación-de-individuo)
         - [Construcción de la imagen](#construcción-de-la-imagen)
         - [Condiciones de parada](#condiciones-de-parada)
-    - [Algoritmo aleatorio](#algoritmo-aleatorio)
     - [Algoritmo genético](#algoritmo-genético)
       - [Individuo](#individuo)
         - [Tinte](#tinte)
@@ -33,6 +32,7 @@ _Franco Yudica (13922)_
         - [Mutación](#mutación)
         - [Selección de sobrevivientes](#selección-de-sobrevivientes)
         - [Criterio de finalización](#criterio-de-finalización)
+    - [Algoritmo aleatorio](#algoritmo-aleatorio)
   - [Métricas](#métricas)
   - [Herramientas](#herramientas)
 
@@ -212,6 +212,8 @@ Reiterando, el tinte es obtenido mediante un muestreo de la sub-imagen objetivo 
 
 #### Operadores
 
+Los operadores de un algoritmo genético son las funciones principales que manipulan una población de posibles soluciones para buscar la solución óptima a un problema. [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8).
+
 ##### Selección
 
 Este operador determina cuáles son los individuos que serán seleccionados para la reproducción.
@@ -277,9 +279,46 @@ Se utiliza **elitismo**. Elitismo asegura que cierto porcentaje de los mejores i
 
 ### Algoritmo aleatorio
 
-Con el fin de evaluar el rendimiento del [algoritmo de generación de individuos genético](#algoritmo-genético), se implementó un algoritmo completamente aleatorio, el cuál sirve como punto de partida.
+Al igual que el algoritmo genético, este también es un [algoritmo de generación de individuo](#algoritmo-de-generación-de-individuo).
+
+Con el fin de evaluar el rendimiento del [algoritmo de generación de individuo genético](#algoritmo-genético), se implementó un algoritmo completamente aleatorio, el cuál sirve como punto de partida.
 
 Este algoritmo generará un único individuo de forma aleatoria, bajo los mismos principios de [iniciación del algoritmo genético](#inicialización-del-algoritmo).
+
+## Métricas
+
+La métrica utilizada para evaluar la similitud entre las imágenes será el [_Delta E (ΔE)_](https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/) medio, aplicado en el espacio de color [CIE L*a*b\*](https://en.wikipedia.org/wiki/CIELAB_color_space). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
+
+El delta E es una medida estándar utilizada para cuantificar la diferencia entre dos colores en este espacio, y en este proyecto será clave para comparar la imagen generada con la _imagen objetivo_.
+
+De esta forma, se podrá obtener una evaluación más precisa de la calidad de las imágenes generadas, ya que la métrica estará alineada con la percepción visual humana.
+
+Con el objetivo de comparar los resultados de ambos algoritmos utilizando esta métrica, se evaluarán los siguientes escenarios:
+
+- La métrica final obtenida al fijar una cantidad máxima de objetos.
+- La cantidad de objetos necesarios para alcanzar una métrica objetivo específica.
+
+### Delta E medio
+
+El cálculo de _Delta E (ΔE)_ se realiza sobre el espacio de colores uniforme _CEILab_, es por este motivo que la _imagen generada_ y la _imagen objetivo_ deben ser transformadas a este espacio.
+Una vez realizada tal transformación, obteniendo las componentes de cada pixel _(L, a, b)_, se evalua la función de _Delta E (ΔE)_, y se calcula la media de la siguiente manera:
+
+![](imgs/formulas/average_delta_e.png)
+
+- **N** es la cantidad de pixeles de las imágenes, cantidad que debe coincidir.
+- **(L, a, b)** son los canales del espacio de color _CEILab_.
+- **ΔE(img1, img2)** es la función utilizada para calcular ΔE entre dos pixeles de la _imagen generada_ y la _imagen objetivo_.
+
+A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en este [recurso](http://zschuessler.github.io/DeltaE/learn/).
+
+## Herramientas
+
+Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
+
+- [**Godot 4.3**](https://godotengine.org/): Motor de desarrollo de videojuegos utilizado como plataforma principal.
+- [**GDScript**](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html): Lenguaje de programación empleado para la lógica del proyecto.
+- [**GLSL**](<https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)>): Lenguaje utilizado para la programación de shaders y paralelización de múltiples tareas.
+- [**Python**](https://www.python.org/) y la biblioteca [**matplotlib**](https://matplotlib.org/): Herramientas utilizadas para la generación de gráficos y visualización de datos.
 
 # Bibliografía
 
