@@ -1,4 +1,4 @@
-# GeneticArt
+# Genart
 
 Image generation with genetic algorithms
 

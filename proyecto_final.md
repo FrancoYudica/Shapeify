@@ -22,16 +22,19 @@ _Franco Yudica (13922)_
     - [Algoritmo aleatorio](#algoritmo-aleatorio)
     - [Algoritmo genético](#algoritmo-genético)
       - [Individuo](#individuo)
+        - [Tinte](#tinte)
       - [Función de fitness](#función-de-fitness)
         - [MSE](#mse-mean-squared-error)
         - [MPA](#mpa-mean-power-accuracy)
       - [Inicialización del algoritmo](#inicialización-del-algoritmo)
       - [Operadores](#operadores)
         - [Selección](#selección)
-        - [Crossover](#crossover)
+        - [Cruce](#cruce)
         - [Mutación](#mutación)
         - [Selección de sobrevivientes](#selección-de-sobrevivientes)
         - [Criterio de finalización](#criterio-de-finalización)
+  - [Métricas](#métricas)
+  - [Herramientas](#herramientas)
 
 - [Bibliografía](#bibliografía)
 
@@ -108,8 +111,6 @@ Es importante tener en mente la diferencia entre _imagen fuente_ e _imagen objet
 - **Tiempo de ejecución**: La generación de imagen finaliza tras pasar una cantidad de tiempo específica.
 - **Valor de métrica**: El proceso de generación de imagen continúa indefinidamente hasta lograr un valor específico de la métrica seleccionada.
 
-### Algoritmo aleatorio
-
 ### Algoritmo genético
 
 El algoritmo genético es un algoritmo de generación de individuo.
@@ -126,6 +127,21 @@ Los individuos cuentan con una serie de atributos genéticos que brinan suficien
 
 En definitiva, un individuo puede interpretarse como una sub-imagen que se renderizará sobre la _imagen fuente_ con el objetivo de lograr la mayor semejanza posible con _imagen objetivo_.
 
+##### Tinte
+
+El tinte de un individuo será el color promedio de la sub-imagen de la _imagen objetivo_ que ocupe el individuo.
+
+###### Muestreo de color promedio de subrectángulo
+
+Una vez determinada la posición, tamaño y rotación del individuo, se calcula su AABB (Axis Aligned Bounding Box) o subrectángulo, el cuál describe cuál es la porción de la pantalla que ocupa el individuo.
+Posteriormente, se ejecuta un algoritmo que calcula el color promedio ocupado por AABB, el cuál es asignado al individuo.
+
+###### Muestreo de color promedio de subrectángulo enmascarado
+
+El método anterior encuentra un problema importante cuando se trabaja con texturas que incluyen transparencia. Al muestrear todo el subrectángulo se incorporan píxeles en el cálculo del color promedio que pueden no ser visibles debido a la transparencia de la textura del individuo.
+
+Para solucionar este problema, se utiliza el muestreo de color enmascarado. Esta técnica calcula el color promedio dentro de AABB pero solo a partir de aquellos píxeles donde la transparencia de la máscara no es cero.
+
 #### Función de fitness
 
 La función de fitness, recibe como parámetro un indiduo y retorna un valor del intervalo [0.0, 1.0]. Donde el peor fitness posible es 0, y el mejor 1.
@@ -139,7 +155,15 @@ Esta función realiza las siguientes tareas:
 1. Renderiza al individuo sobre la _imagen fuente_, obteniendo la _imagen fuente del individuo_.
 2. Envía la _imagen fuente del individuo_ a una función que se encargará de determinar la diferencia entre esta y la _imagen objetivo_, retornando un valor normalizado que representa el fitness del individuo.
 
-En este proyecto se implementaron dos funciones de cálculo de fitness:
+A continuación se detallarán los dos métodos que se han utilizado para determinar el fitness de los individuos. Teniendo en cuenta que los individuos obtienen los colores diréctamente de la _imagen objetivo_, los métodos de cálculo de fitness pueden trabajar con los colores en el espacio RGB. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
+
+Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR:
+
+- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa).
+
+- [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703).
+
+- [EllipScape](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57).
 
 ##### MSE (Mean Squared Error)
 
@@ -184,19 +208,7 @@ Se mantiene una población de tamaño fijo a lo largo de toda la ejecución del 
 - Tamaño
 - Rotación
 
-##### Tinte del individuo
-
-Nótese que el **tinte** de los individuos nunca será aleatorizado, esto será fundamental para reducir los tiempos de convergencia del algoritmo. En lugar de aleatorizar el tinte, se calculará el color promedio de la sub-imagen que ocupe el individuo, y se utilizará este color como tinte del individuo. Esto es sumamente importante y necesario, teniendo en cuenta que la función de fitness puede dar valores iguales para texturas con colores distintos.
-
-Cabe aclarar que la implementación de la función de fitness toma en cuenta esta propiedad. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
-
-Existen estudios que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR:
-
-- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa).
-
-- [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703).
-
-- [EllipScape](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57).
+Reiterando, el tinte es obtenido mediante un muestreo de la sub-imagen objetivo que ocupa el individuo.
 
 #### Operadores
 
@@ -208,7 +220,7 @@ No se opta por la selección basada en fitness porque el fitness de los individu
 
 Por este motivo se utiliza el operador de **selección basado en ranking**, donde la probabilidad de cada individuo de ser seleccionado depende de su ranking y no de su fitness. Este método asegura una distribución probabilística constante, evitando caer en una distribución aleatoria uniforme.
 
-##### Crossover
+##### Cruce
 
 Este operador recibe a dos padres y crea un hijo.
 Los atributos genéticos son utilizados por este método son los siguientes:
@@ -262,6 +274,12 @@ Se utiliza **elitismo**. Elitismo asegura que cierto porcentaje de los mejores i
 ##### Criterio de finalización
 
 **Límite de generaciones**: El algoritmo se detendrá tras un número predefinido de generaciones, lo que permite limitar el tiempo de ejecución.
+
+### Algoritmo aleatorio
+
+Con el fin de evaluar el rendimiento del [algoritmo de generación de individuos genético](#algoritmo-genético), se implementó un algoritmo completamente aleatorio, el cuál sirve como punto de partida.
+
+Este algoritmo generará un único individuo de forma aleatoria, bajo los mismos principios de [iniciación del algoritmo genético](#inicialización-del-algoritmo).
 
 # Bibliografía
 
