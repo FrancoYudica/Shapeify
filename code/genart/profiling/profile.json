@@ -1,0 +1,4560 @@
+{
+	"image_generations": [
+		{
+			"individual_generations": [
+				{
+					"fitness": 0.638183190211777,
+					"genetic_generations": [
+						[
+							{
+								"fitness": 0.563776727681646,
+								"metric_score": 29.9293549845041,
+								"position_x": 125,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 786.676818847656,
+								"size_y": 786.676818847656
+							},
+							{
+								"fitness": 0.546812552459969,
+								"metric_score": 30.983412964876,
+								"position_x": 532,
+								"position_y": 240,
+								"rotation": 0,
+								"size_x": 129.165328979492,
+								"size_y": 129.165328979492
+							},
+							{
+								"fitness": 0.544380024050878,
+								"metric_score": 30.9168904958678,
+								"position_x": 605,
+								"position_y": 283,
+								"rotation": 0,
+								"size_x": 673.034240722656,
+								"size_y": 673.034240722656
+							},
+							{
+								"fitness": 0.542814766539687,
+								"metric_score": 30.9879584194215,
+								"position_x": 77,
+								"position_y": 259,
+								"rotation": 0,
+								"size_x": 702.452880859375,
+								"size_y": 702.452880859375
+							},
+							{
+								"fitness": 0.578479911867252,
+								"metric_score": 29.0028893336777,
+								"position_x": 548,
+								"position_y": 579,
+								"rotation": 0,
+								"size_x": 871.008239746094,
+								"size_y": 871.008239746094
+							},
+							{
+								"fitness": 0.54902088175792,
+								"metric_score": 30.7887267561983,
+								"position_x": 494,
+								"position_y": 184,
+								"rotation": 0,
+								"size_x": 211.919403076172,
+								"size_y": 211.919403076172
+							},
+							{
+								"fitness": 0.546357899395231,
+								"metric_score": 31.0467264979339,
+								"position_x": 73,
+								"position_y": 464,
+								"rotation": 0,
+								"size_x": 89.0976257324219,
+								"size_y": 89.0976257324219
+							},
+							{
+								"fitness": 0.547162117445764,
+								"metric_score": 30.9499483471074,
+								"position_x": 162,
+								"position_y": 300,
+								"rotation": 0,
+								"size_x": 284.035614013672,
+								"size_y": 284.035614013672
+							},
+							{
+								"fitness": 0.558932789363809,
+								"metric_score": 30.0132747933884,
+								"position_x": 1,
+								"position_y": 122,
+								"rotation": 0,
+								"size_x": 535.587951660156,
+								"size_y": 535.587951660156
+							},
+							{
+								"fitness": 0.56023467092803,
+								"metric_score": 29.624444731405,
+								"position_x": 227,
+								"position_y": 158,
+								"rotation": 0,
+								"size_x": 647.848449707031,
+								"size_y": 647.848449707031
+							},
+							{
+								"fitness": 0.546431141582731,
+								"metric_score": 31.0421584452479,
+								"position_x": 437,
+								"position_y": 530,
+								"rotation": 0,
+								"size_x": 36.1595993041992,
+								"size_y": 36.1595993041992
+							},
+							{
+								"fitness": 0.551309313393165,
+								"metric_score": 30.7143304493802,
+								"position_x": 93,
+								"position_y": 530,
+								"rotation": 0,
+								"size_x": 628.331970214844,
+								"size_y": 628.331970214844
+							},
+							{
+								"fitness": 0.562509281379132,
+								"metric_score": 29.865008393595,
+								"position_x": 117,
+								"position_y": 931,
+								"rotation": 0,
+								"size_x": 600.72412109375,
+								"size_y": 600.72412109375
+							},
+							{
+								"fitness": 0.560483149588929,
+								"metric_score": 30.0724367252066,
+								"position_x": 3,
+								"position_y": 666,
+								"rotation": 0,
+								"size_x": 920.96484375,
+								"size_y": 920.96484375
+							},
+							{
+								"fitness": 0.548405183313963,
+								"metric_score": 30.7832676911157,
+								"position_x": 361,
+								"position_y": 436,
+								"rotation": 0,
+								"size_x": 144.559112548828,
+								"size_y": 144.559112548828
+							},
+							{
+								"fitness": 0.547786727358815,
+								"metric_score": 30.9569473140496,
+								"position_x": 465,
+								"position_y": 441,
+								"rotation": 0,
+								"size_x": 222.034027099609,
+								"size_y": 222.034027099609
+							},
+							{
+								"fitness": 0.553286516173812,
+								"metric_score": 30.6825736053719,
+								"position_x": 507,
+								"position_y": 489,
+								"rotation": 0,
+								"size_x": 549.245239257812,
+								"size_y": 549.245239257812
+							},
+							{
+								"fitness": 0.545192010212207,
+								"metric_score": 30.6151084710744,
+								"position_x": 248,
+								"position_y": 227,
+								"rotation": 0,
+								"size_x": 961.008056640625,
+								"size_y": 961.008056640625
+							},
+							{
+								"fitness": 0.583240923080234,
+								"metric_score": 28.4403731921488,
+								"position_x": 492,
+								"position_y": 706,
+								"rotation": 0,
+								"size_x": 594.074462890625,
+								"size_y": 594.074462890625
+							},
+							{
+								"fitness": 0.57137898426739,
+								"metric_score": 29.0401698088843,
+								"position_x": 523,
+								"position_y": 100,
+								"rotation": 0,
+								"size_x": 536.712463378906,
+								"size_y": 536.712463378906
+							},
+							{
+								"fitness": 0.546779832235709,
+								"metric_score": 30.9838132747934,
+								"position_x": 78,
+								"position_y": 398,
+								"rotation": 0,
+								"size_x": 306.162628173828,
+								"size_y": 306.162628173828
+							},
+							{
+								"fitness": 0.56537319214876,
+								"metric_score": 29.5630068440083,
+								"position_x": 360,
+								"position_y": 57,
+								"rotation": 0,
+								"size_x": 755.0732421875,
+								"size_y": 755.0732421875
+							},
+							{
+								"fitness": 0.54626656524406,
+								"metric_score": 31.0485117510331,
+								"position_x": 213,
+								"position_y": 260,
+								"rotation": 0,
+								"size_x": 178.728622436523,
+								"size_y": 178.728622436523
+							},
+							{
+								"fitness": 0.551354576930527,
+								"metric_score": 30.5092523243802,
+								"position_x": 624,
+								"position_y": 212,
+								"rotation": 0,
+								"size_x": 342.450714111328,
+								"size_y": 342.450714111328
+							},
+							{
+								"fitness": 0.561569407229253,
+								"metric_score": 29.937845428719,
+								"position_x": 99,
+								"position_y": 874,
+								"rotation": 0,
+								"size_x": 596.308166503906,
+								"size_y": 596.308166503906
+							},
+							{
+								"fitness": 0.583783278452135,
+								"metric_score": 28.608984375,
+								"position_x": 213,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 910.124328613281,
+								"size_y": 910.124328613281
+							},
+							{
+								"fitness": 0.55740072287147,
+								"metric_score": 29.8779764979339,
+								"position_x": 11,
+								"position_y": 139,
+								"rotation": 0,
+								"size_x": 890.923095703125,
+								"size_y": 890.923095703125
+							},
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.896319731405,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.559617728241219,
+								"metric_score": 30.1200477789256,
+								"position_x": 478,
+								"position_y": 816,
+								"rotation": 0,
+								"size_x": 377.481475830078,
+								"size_y": 377.481475830078
+							},
+							{
+								"fitness": 0.547488277214618,
+								"metric_score": 30.9311886621901,
+								"position_x": 330,
+								"position_y": 508,
+								"rotation": 0,
+								"size_x": 80.0544815063477,
+								"size_y": 80.0544815063477
+							},
+							{
+								"fitness": 0.556859342716942,
+								"metric_score": 30.332467071281,
+								"position_x": 594,
+								"position_y": 607,
+								"rotation": 0,
+								"size_x": 351.112243652344,
+								"size_y": 351.112243652344
+							},
+							{
+								"fitness": 0.548605506413568,
+								"metric_score": 30.8334646177686,
+								"position_x": 595,
+								"position_y": 190,
+								"rotation": 0,
+								"size_x": 129.309097290039,
+								"size_y": 129.309097290039
+							},
+							{
+								"fitness": 0.556385286189308,
+								"metric_score": 30.2797359245868,
+								"position_x": 39,
+								"position_y": 896,
+								"rotation": 0,
+								"size_x": 315.897613525391,
+								"size_y": 315.897613525391
+							},
+							{
+								"fitness": 0.547294915149363,
+								"metric_score": 30.9787222365702,
+								"position_x": 188,
+								"position_y": 289,
+								"rotation": 0,
+								"size_x": 176.302978515625,
+								"size_y": 176.302978515625
+							},
+							{
+								"fitness": 0.540958288944129,
+								"metric_score": 30.8774631973141,
+								"position_x": 325,
+								"position_y": 253,
+								"rotation": 0,
+								"size_x": 936.280212402344,
+								"size_y": 936.280212402344
+							},
+							{
+								"fitness": 0.548054105059831,
+								"metric_score": 30.9165386105372,
+								"position_x": 26,
+								"position_y": 716,
+								"rotation": 0,
+								"size_x": 121.011352539062,
+								"size_y": 121.011352539062
+							},
+							{
+								"fitness": 0.561039864195937,
+								"metric_score": 29.8734504132231,
+								"position_x": 148,
+								"position_y": 127,
+								"rotation": 0,
+								"size_x": 313.307708740234,
+								"size_y": 313.307708740234
+							},
+							{
+								"fitness": 0.56402715677729,
+								"metric_score": 30.1680430010331,
+								"position_x": 478,
+								"position_y": 531,
+								"rotation": 0,
+								"size_x": 913.657104492188,
+								"size_y": 913.657104492188
+							},
+							{
+								"fitness": 0.547152365272039,
+								"metric_score": 30.9425297004132,
+								"position_x": 542,
+								"position_y": 320,
+								"rotation": 0,
+								"size_x": 269.174713134766,
+								"size_y": 269.174713134766
+							},
+							{
+								"fitness": 0.561776926760503,
+								"metric_score": 30.2804074121901,
+								"position_x": 335,
+								"position_y": 655,
+								"rotation": 0,
+								"size_x": 912.742370605469,
+								"size_y": 912.742370605469
+							},
+							{
+								"fitness": 0.577531529786501,
+								"metric_score": 28.899728822314,
+								"position_x": 444,
+								"position_y": 717,
+								"rotation": 0,
+								"size_x": 575.493774414062,
+								"size_y": 575.493774414062
+							},
+							{
+								"fitness": 0.54335362458032,
+								"metric_score": 31.1394337551653,
+								"position_x": 365,
+								"position_y": 515,
+								"rotation": 0,
+								"size_x": 456.608367919922,
+								"size_y": 456.608367919922
+							},
+							{
+								"fitness": 0.54675030668905,
+								"metric_score": 30.9711357179752,
+								"position_x": 146,
+								"position_y": 322,
+								"rotation": 0,
+								"size_x": 226.233581542969,
+								"size_y": 226.233581542969
+							},
+							{
+								"fitness": 0.549263979909177,
+								"metric_score": 30.7896048553719,
+								"position_x": 573,
+								"position_y": 198,
+								"rotation": 0,
+								"size_x": 130.894683837891,
+								"size_y": 130.894683837891
+							},
+							{
+								"fitness": 0.566860970321109,
+								"metric_score": 29.290234375,
+								"position_x": 536,
+								"position_y": 71,
+								"rotation": 0,
+								"size_x": 865.720275878906,
+								"size_y": 865.720275878906
+							},
+							{
+								"fitness": 0.546099332278753,
+								"metric_score": 30.9796455320248,
+								"position_x": 216,
+								"position_y": 227,
+								"rotation": 0,
+								"size_x": 255.433181762695,
+								"size_y": 255.433181762695
+							},
+							{
+								"fitness": 0.559836479586346,
+								"metric_score": 30.151817536157,
+								"position_x": 94,
+								"position_y": 846,
+								"rotation": 0,
+								"size_x": 777.029541015625,
+								"size_y": 777.029541015625
+							},
+							{
+								"fitness": 0.546466787459108,
+								"metric_score": 31.0378938533058,
+								"position_x": 235,
+								"position_y": 339,
+								"rotation": 0,
+								"size_x": 368.859954833984,
+								"size_y": 368.859954833984
+							},
+							{
+								"fitness": 0.548314689867424,
+								"metric_score": 30.534103822314,
+								"position_x": 532,
+								"position_y": 189,
+								"rotation": 0,
+								"size_x": 857.330505371094,
+								"size_y": 857.330505371094
+							},
+							{
+								"fitness": 0.54685384787147,
+								"metric_score": 31.0113700929752,
+								"position_x": 64,
+								"position_y": 491,
+								"rotation": 0,
+								"size_x": 418.777282714844,
+								"size_y": 418.777282714844
+							}
+						],
+						[
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.8963229597107,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.583783278452135,
+								"metric_score": 28.6089714617769,
+								"position_x": 213,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 910.124328613281,
+								"size_y": 910.124328613281
+							},
+							{
+								"fitness": 0.583240923080234,
+								"metric_score": 28.4403667355372,
+								"position_x": 492,
+								"position_y": 706,
+								"rotation": 0,
+								"size_x": 594.074462890625,
+								"size_y": 594.074462890625
+							},
+							{
+								"fitness": 0.578479911867252,
+								"metric_score": 29.0028925619835,
+								"position_x": 548,
+								"position_y": 579,
+								"rotation": 0,
+								"size_x": 871.008239746094,
+								"size_y": 871.008239746094
+							},
+							{
+								"fitness": 0.577531529786501,
+								"metric_score": 28.899728822314,
+								"position_x": 444,
+								"position_y": 717,
+								"rotation": 0,
+								"size_x": 575.493774414062,
+								"size_y": 575.493774414062
+							},
+							{
+								"fitness": 0.57137898426739,
+								"metric_score": 29.040189178719,
+								"position_x": 523,
+								"position_y": 100,
+								"rotation": 0,
+								"size_x": 536.712463378906,
+								"size_y": 536.712463378906
+							},
+							{
+								"fitness": 0.566860970321109,
+								"metric_score": 29.2902472882231,
+								"position_x": 536,
+								"position_y": 71,
+								"rotation": 0,
+								"size_x": 865.720275878906,
+								"size_y": 865.720275878906
+							},
+							{
+								"fitness": 0.56537319214876,
+								"metric_score": 29.5630068440083,
+								"position_x": 360,
+								"position_y": 57,
+								"rotation": 0,
+								"size_x": 755.0732421875,
+								"size_y": 755.0732421875
+							},
+							{
+								"fitness": 0.56402715677729,
+								"metric_score": 30.1680430010331,
+								"position_x": 478,
+								"position_y": 531,
+								"rotation": 0,
+								"size_x": 913.657104492188,
+								"size_y": 913.657104492188
+							},
+							{
+								"fitness": 0.563776727681646,
+								"metric_score": 29.9293549845041,
+								"position_x": 125,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 786.676818847656,
+								"size_y": 786.676818847656
+							},
+							{
+								"fitness": 0.562509281379132,
+								"metric_score": 29.8650019369835,
+								"position_x": 117,
+								"position_y": 931,
+								"rotation": 0,
+								"size_x": 600.72412109375,
+								"size_y": 600.72412109375
+							},
+							{
+								"fitness": 0.561776926760503,
+								"metric_score": 30.2804074121901,
+								"position_x": 335,
+								"position_y": 655,
+								"rotation": 0,
+								"size_x": 912.742370605469,
+								"size_y": 912.742370605469
+							},
+							{
+								"fitness": 0.561569407229253,
+								"metric_score": 29.9378551136364,
+								"position_x": 99,
+								"position_y": 874,
+								"rotation": 0,
+								"size_x": 596.308166503906,
+								"size_y": 596.308166503906
+							},
+							{
+								"fitness": 0.561039864195937,
+								"metric_score": 29.8734568698347,
+								"position_x": 148,
+								"position_y": 127,
+								"rotation": 0,
+								"size_x": 313.307708740234,
+								"size_y": 313.307708740234
+							},
+							{
+								"fitness": 0.560483149588929,
+								"metric_score": 30.0724399535124,
+								"position_x": 3,
+								"position_y": 666,
+								"rotation": 0,
+								"size_x": 920.96484375,
+								"size_y": 920.96484375
+							},
+							{
+								"fitness": 0.56023467092803,
+								"metric_score": 29.624444731405,
+								"position_x": 227,
+								"position_y": 158,
+								"rotation": 0,
+								"size_x": 647.848449707031,
+								"size_y": 647.848449707031
+							},
+							{
+								"fitness": 0.559836479586346,
+								"metric_score": 30.1518143078512,
+								"position_x": 94,
+								"position_y": 846,
+								"rotation": 0,
+								"size_x": 777.029541015625,
+								"size_y": 777.029541015625
+							},
+							{
+								"fitness": 0.559617728241219,
+								"metric_score": 30.1200542355372,
+								"position_x": 478,
+								"position_y": 816,
+								"rotation": 0,
+								"size_x": 377.481475830078,
+								"size_y": 377.481475830078
+							},
+							{
+								"fitness": 0.558932789363809,
+								"metric_score": 30.0132877066116,
+								"position_x": 1,
+								"position_y": 122,
+								"rotation": 0,
+								"size_x": 535.587951660156,
+								"size_y": 535.587951660156
+							},
+							{
+								"fitness": 0.55740072287147,
+								"metric_score": 29.8779861828512,
+								"position_x": 11,
+								"position_y": 139,
+								"rotation": 0,
+								"size_x": 890.923095703125,
+								"size_y": 890.923095703125
+							},
+							{
+								"fitness": 0.556859342716942,
+								"metric_score": 30.332467071281,
+								"position_x": 594,
+								"position_y": 607,
+								"rotation": 0,
+								"size_x": 351.112243652344,
+								"size_y": 351.112243652344
+							},
+							{
+								"fitness": 0.556385286189308,
+								"metric_score": 30.2797262396694,
+								"position_x": 39,
+								"position_y": 896,
+								"rotation": 0,
+								"size_x": 315.897613525391,
+								"size_y": 315.897613525391
+							},
+							{
+								"fitness": 0.553286516173812,
+								"metric_score": 30.6825671487603,
+								"position_x": 507,
+								"position_y": 489,
+								"rotation": 0,
+								"size_x": 549.245239257812,
+								"size_y": 549.245239257812
+							},
+							{
+								"fitness": 0.551354576930527,
+								"metric_score": 30.5092490960744,
+								"position_x": 624,
+								"position_y": 212,
+								"rotation": 0,
+								"size_x": 342.450714111328,
+								"size_y": 342.450714111328
+							},
+							{
+								"fitness": 0.551309313393165,
+								"metric_score": 30.7143304493802,
+								"position_x": 93,
+								"position_y": 530,
+								"rotation": 0,
+								"size_x": 628.331970214844,
+								"size_y": 628.331970214844
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342636234504,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090392561983,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.571806734783919,
+								"metric_score": 29.0853047520661,
+								"position_x": 345,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 940.910461425781,
+								"size_y": 940.910461425781
+							},
+							{
+								"fitness": 0.571244337013602,
+								"metric_score": 28.9953350981405,
+								"position_x": 640,
+								"position_y": 49,
+								"rotation": 0,
+								"size_x": 851.064758300781,
+								"size_y": 851.064758300781
+							},
+							{
+								"fitness": 0.567242179429235,
+								"metric_score": 29.5873514979339,
+								"position_x": 599,
+								"position_y": 657,
+								"rotation": 0,
+								"size_x": 493.346374511719,
+								"size_y": 493.346374511719
+							},
+							{
+								"fitness": 0.565310307442321,
+								"metric_score": 29.3558044938017,
+								"position_x": 0,
+								"position_y": 86,
+								"rotation": 0,
+								"size_x": 932.803771972656,
+								"size_y": 932.803771972656
+							},
+							{
+								"fitness": 0.565190994641012,
+								"metric_score": 29.385982696281,
+								"position_x": 68,
+								"position_y": 137,
+								"rotation": 0,
+								"size_x": 593.877258300781,
+								"size_y": 593.877258300781
+							},
+							{
+								"fitness": 0.563917797918819,
+								"metric_score": 29.8095138171488,
+								"position_x": 420,
+								"position_y": 937,
+								"rotation": 0,
+								"size_x": 431.654327392578,
+								"size_y": 431.654327392578
+							},
+							{
+								"fitness": 0.561456147501291,
+								"metric_score": 29.6541709710744,
+								"position_x": 137,
+								"position_y": 159,
+								"rotation": 0,
+								"size_x": 493.880218505859,
+								"size_y": 493.880218505859
+							},
+							{
+								"fitness": 0.561403519391357,
+								"metric_score": 30.047130036157,
+								"position_x": 0,
+								"position_y": 665,
+								"rotation": 0,
+								"size_x": 1051.21154785156,
+								"size_y": 1051.21154785156
+							},
+							{
+								"fitness": 0.561181775137741,
+								"metric_score": 29.8831030475207,
+								"position_x": 0,
+								"position_y": 70,
+								"rotation": 0,
+								"size_x": 595.341674804688,
+								"size_y": 595.341674804688
+							},
+							{
+								"fitness": 0.558761991810864,
+								"metric_score": 30.1736763946281,
+								"position_x": 435,
+								"position_y": 17,
+								"rotation": 0,
+								"size_x": 447.591461181641,
+								"size_y": 447.591461181641
+							},
+							{
+								"fitness": 0.557262141120007,
+								"metric_score": 30.2702447055785,
+								"position_x": 311,
+								"position_y": 642,
+								"rotation": 0,
+								"size_x": 310.062347412109,
+								"size_y": 310.062347412109
+							},
+							{
+								"fitness": 0.556068273286846,
+								"metric_score": 30.5890140754132,
+								"position_x": 419,
+								"position_y": 544,
+								"rotation": 0,
+								"size_x": 750.339416503906,
+								"size_y": 750.339416503906
+							},
+							{
+								"fitness": 0.555564758468922,
+								"metric_score": 30.3862312758264,
+								"position_x": 511,
+								"position_y": 548,
+								"rotation": 0,
+								"size_x": 350.403137207031,
+								"size_y": 350.403137207031
+							},
+							{
+								"fitness": 0.555195790020231,
+								"metric_score": 30.5143724173554,
+								"position_x": 173,
+								"position_y": 677,
+								"rotation": 0,
+								"size_x": 513.749328613281,
+								"size_y": 513.749328613281
+							},
+							{
+								"fitness": 0.55453647581999,
+								"metric_score": 30.2531734245868,
+								"position_x": 0,
+								"position_y": 163,
+								"rotation": 0,
+								"size_x": 592.936462402344,
+								"size_y": 592.936462402344
+							},
+							{
+								"fitness": 0.552853788685864,
+								"metric_score": 30.5525213068182,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 450.635192871094,
+								"size_y": 450.635192871094
+							},
+							{
+								"fitness": 0.551928845450241,
+								"metric_score": 30.777869963843,
+								"position_x": 586,
+								"position_y": 491,
+								"rotation": 0,
+								"size_x": 519.248046875,
+								"size_y": 519.248046875
+							},
+							{
+								"fitness": 0.551861589079718,
+								"metric_score": 30.6298198605372,
+								"position_x": 0,
+								"position_y": 504,
+								"rotation": 0,
+								"size_x": 846.110534667969,
+								"size_y": 846.110534667969
+							},
+							{
+								"fitness": 0.550358980877669,
+								"metric_score": 30.4296584452479,
+								"position_x": 378,
+								"position_y": 183,
+								"rotation": 0,
+								"size_x": 732.527221679688,
+								"size_y": 732.527221679688
+							},
+							{
+								"fitness": 0.549618353725465,
+								"metric_score": 30.7352982954545,
+								"position_x": 549,
+								"position_y": 210,
+								"rotation": 0,
+								"size_x": 176.235092163086,
+								"size_y": 176.235092163086
+							},
+							{
+								"fitness": 0.549582102541753,
+								"metric_score": 30.8806075671488,
+								"position_x": 174,
+								"position_y": 551,
+								"rotation": 0,
+								"size_x": 786.27783203125,
+								"size_y": 786.27783203125
+							},
+							{
+								"fitness": 0.54915253610322,
+								"metric_score": 30.9863862345041,
+								"position_x": 515,
+								"position_y": 376,
+								"rotation": 0,
+								"size_x": 791.596435546875,
+								"size_y": 791.596435546875
+							},
+							{
+								"fitness": 0.549071962971333,
+								"metric_score": 30.9166290030992,
+								"position_x": 251,
+								"position_y": 697,
+								"rotation": 0,
+								"size_x": 284.193756103516,
+								"size_y": 284.193756103516
+							}
+						],
+						[
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342523243802,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090360278926,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.8963229597107,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.583783278452135,
+								"metric_score": 28.6089811466942,
+								"position_x": 213,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 910.124328613281,
+								"size_y": 910.124328613281
+							},
+							{
+								"fitness": 0.583240923080234,
+								"metric_score": 28.4403764204545,
+								"position_x": 492,
+								"position_y": 706,
+								"rotation": 0,
+								"size_x": 594.074462890625,
+								"size_y": 594.074462890625
+							},
+							{
+								"fitness": 0.578479911867252,
+								"metric_score": 29.0028828770661,
+								"position_x": 548,
+								"position_y": 579,
+								"rotation": 0,
+								"size_x": 871.008239746094,
+								"size_y": 871.008239746094
+							},
+							{
+								"fitness": 0.577531529786501,
+								"metric_score": 28.8997255940083,
+								"position_x": 444,
+								"position_y": 717,
+								"rotation": 0,
+								"size_x": 575.493774414062,
+								"size_y": 575.493774414062
+							},
+							{
+								"fitness": 0.571806734783919,
+								"metric_score": 29.0852853822314,
+								"position_x": 345,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 940.910461425781,
+								"size_y": 940.910461425781
+							},
+							{
+								"fitness": 0.57137898426739,
+								"metric_score": 29.0401794938017,
+								"position_x": 523,
+								"position_y": 100,
+								"rotation": 0,
+								"size_x": 536.712463378906,
+								"size_y": 536.712463378906
+							},
+							{
+								"fitness": 0.571244337013602,
+								"metric_score": 28.9953350981405,
+								"position_x": 640,
+								"position_y": 49,
+								"rotation": 0,
+								"size_x": 851.064758300781,
+								"size_y": 851.064758300781
+							},
+							{
+								"fitness": 0.567242179429235,
+								"metric_score": 29.5873514979339,
+								"position_x": 599,
+								"position_y": 657,
+								"rotation": 0,
+								"size_x": 493.346374511719,
+								"size_y": 493.346374511719
+							},
+							{
+								"fitness": 0.566860970321109,
+								"metric_score": 29.2902311466942,
+								"position_x": 536,
+								"position_y": 71,
+								"rotation": 0,
+								"size_x": 865.720275878906,
+								"size_y": 865.720275878906
+							},
+							{
+								"fitness": 0.56537319214876,
+								"metric_score": 29.5630133006198,
+								"position_x": 360,
+								"position_y": 57,
+								"rotation": 0,
+								"size_x": 755.0732421875,
+								"size_y": 755.0732421875
+							},
+							{
+								"fitness": 0.565310307442321,
+								"metric_score": 29.3558077221074,
+								"position_x": 0,
+								"position_y": 86,
+								"rotation": 0,
+								"size_x": 932.803771972656,
+								"size_y": 932.803771972656
+							},
+							{
+								"fitness": 0.565190994641012,
+								"metric_score": 29.3859762396694,
+								"position_x": 68,
+								"position_y": 137,
+								"rotation": 0,
+								"size_x": 593.877258300781,
+								"size_y": 593.877258300781
+							},
+							{
+								"fitness": 0.56402715677729,
+								"metric_score": 30.1680430010331,
+								"position_x": 478,
+								"position_y": 531,
+								"rotation": 0,
+								"size_x": 913.657104492188,
+								"size_y": 913.657104492188
+							},
+							{
+								"fitness": 0.563917797918819,
+								"metric_score": 29.8095235020661,
+								"position_x": 420,
+								"position_y": 937,
+								"rotation": 0,
+								"size_x": 431.654327392578,
+								"size_y": 431.654327392578
+							},
+							{
+								"fitness": 0.563776727681646,
+								"metric_score": 29.9293646694215,
+								"position_x": 125,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 786.676818847656,
+								"size_y": 786.676818847656
+							},
+							{
+								"fitness": 0.562509281379132,
+								"metric_score": 29.8650051652893,
+								"position_x": 117,
+								"position_y": 931,
+								"rotation": 0,
+								"size_x": 600.72412109375,
+								"size_y": 600.72412109375
+							},
+							{
+								"fitness": 0.561776926760503,
+								"metric_score": 30.2804138688017,
+								"position_x": 335,
+								"position_y": 655,
+								"rotation": 0,
+								"size_x": 912.742370605469,
+								"size_y": 912.742370605469
+							},
+							{
+								"fitness": 0.561569407229253,
+								"metric_score": 29.937845428719,
+								"position_x": 99,
+								"position_y": 874,
+								"rotation": 0,
+								"size_x": 596.308166503906,
+								"size_y": 596.308166503906
+							},
+							{
+								"fitness": 0.561456147501291,
+								"metric_score": 29.6541580578512,
+								"position_x": 137,
+								"position_y": 159,
+								"rotation": 0,
+								"size_x": 493.880218505859,
+								"size_y": 493.880218505859
+							},
+							{
+								"fitness": 0.561403519391357,
+								"metric_score": 30.0471397210744,
+								"position_x": 0,
+								"position_y": 665,
+								"rotation": 0,
+								"size_x": 1051.21154785156,
+								"size_y": 1051.21154785156
+							},
+							{
+								"fitness": 0.561181775137741,
+								"metric_score": 29.8831030475207,
+								"position_x": 0,
+								"position_y": 70,
+								"rotation": 0,
+								"size_x": 595.341674804688,
+								"size_y": 595.341674804688
+							},
+							{
+								"fitness": 0.561039864195937,
+								"metric_score": 29.8734536415289,
+								"position_x": 148,
+								"position_y": 127,
+								"rotation": 0,
+								"size_x": 313.307708740234,
+								"size_y": 313.307708740234
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6425958806818,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.599103943375517,
+								"metric_score": 27.3460711518595,
+								"position_x": 626,
+								"position_y": 812,
+								"rotation": 0,
+								"size_x": 962.113708496094,
+								"size_y": 962.113708496094
+							},
+							{
+								"fitness": 0.594223148566632,
+								"metric_score": 27.6869092200413,
+								"position_x": 562,
+								"position_y": 680,
+								"rotation": 0,
+								"size_x": 780.260986328125,
+								"size_y": 780.260986328125
+							},
+							{
+								"fitness": 0.587336297994146,
+								"metric_score": 28.1873256714876,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.1181640625,
+								"size_y": 1113.1181640625
+							},
+							{
+								"fitness": 0.585420769305269,
+								"metric_score": 28.8755875516529,
+								"position_x": 518,
+								"position_y": 606,
+								"rotation": 0,
+								"size_x": 1248.93041992188,
+								"size_y": 1248.93041992188
+							},
+							{
+								"fitness": 0.581995469610882,
+								"metric_score": 28.6447023502066,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 956.369750976562,
+								"size_y": 956.369750976562
+							},
+							{
+								"fitness": 0.580979158595902,
+								"metric_score": 29.2339520919422,
+								"position_x": 498,
+								"position_y": 555,
+								"rotation": 0,
+								"size_x": 1357.91748046875,
+								"size_y": 1357.91748046875
+							},
+							{
+								"fitness": 0.575476376872417,
+								"metric_score": 28.7100690857438,
+								"position_x": 213,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 869.891296386719,
+								"size_y": 869.891296386719
+							},
+							{
+								"fitness": 0.574563842437156,
+								"metric_score": 28.6317439307851,
+								"position_x": 125,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1099.68225097656,
+								"size_y": 1099.68225097656
+							},
+							{
+								"fitness": 0.57294921875,
+								"metric_score": 28.9215424845041,
+								"position_x": 426,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1012.60003662109,
+								"size_y": 1012.60003662109
+							},
+							{
+								"fitness": 0.570670505660296,
+								"metric_score": 29.1676846590909,
+								"position_x": 279,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 863.946472167969,
+								"size_y": 863.946472167969
+							},
+							{
+								"fitness": 0.569338022447486,
+								"metric_score": 29.5409220041322,
+								"position_x": 374,
+								"position_y": 934,
+								"rotation": 0,
+								"size_x": 789.951782226562,
+								"size_y": 789.951782226562
+							},
+							{
+								"fitness": 0.56749714832989,
+								"metric_score": 29.3653409090909,
+								"position_x": 0,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 918.425170898438,
+								"size_y": 918.425170898438
+							},
+							{
+								"fitness": 0.567368083354855,
+								"metric_score": 29.7031475981405,
+								"position_x": 586,
+								"position_y": 570,
+								"rotation": 0,
+								"size_x": 740.83984375,
+								"size_y": 740.83984375
+							},
+							{
+								"fitness": 0.566416943762913,
+								"metric_score": 29.5122514204545,
+								"position_x": 0,
+								"position_y": 916,
+								"rotation": 0,
+								"size_x": 779.397216796875,
+								"size_y": 779.397216796875
+							},
+							{
+								"fitness": 0.565659569774449,
+								"metric_score": 29.5895080061983,
+								"position_x": 34,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 821.580505371094,
+								"size_y": 821.580505371094
+							},
+							{
+								"fitness": 0.565173373471935,
+								"metric_score": 29.4280991735537,
+								"position_x": 0,
+								"position_y": 87,
+								"rotation": 0,
+								"size_x": 846.271301269531,
+								"size_y": 846.271301269531
+							},
+							{
+								"fitness": 0.565128311703685,
+								"metric_score": 29.4649761105372,
+								"position_x": 41,
+								"position_y": 115,
+								"rotation": 0,
+								"size_x": 616.939025878906,
+								"size_y": 616.939025878906
+							},
+							{
+								"fitness": 0.563724099571711,
+								"metric_score": 29.6905378357438,
+								"position_x": 0,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 807.969421386719,
+								"size_y": 807.969421386719
+							},
+							{
+								"fitness": 0.563708933260158,
+								"metric_score": 29.4877840909091,
+								"position_x": 491,
+								"position_y": 96,
+								"rotation": 0,
+								"size_x": 852.72607421875,
+								"size_y": 852.72607421875
+							},
+							{
+								"fitness": 0.5634521484375,
+								"metric_score": 29.7806850464876,
+								"position_x": 195,
+								"position_y": 24,
+								"rotation": 0,
+								"size_x": 537.666687011719,
+								"size_y": 537.666687011719
+							},
+							{
+								"fitness": 0.560499156605114,
+								"metric_score": 30.2111570247934,
+								"position_x": 632,
+								"position_y": 503,
+								"rotation": 0,
+								"size_x": 850.090454101562,
+								"size_y": 850.090454101562
+							},
+							{
+								"fitness": 0.560205885201446,
+								"metric_score": 30.1326058884298,
+								"position_x": 93,
+								"position_y": 842,
+								"rotation": 0,
+								"size_x": 791.939453125,
+								"size_y": 791.939453125
+							},
+							{
+								"fitness": 0.559187623751722,
+								"metric_score": 30.3840037448347,
+								"position_x": 295,
+								"position_y": 673,
+								"rotation": 0,
+								"size_x": 818.53466796875,
+								"size_y": 818.53466796875
+							},
+							{
+								"fitness": 0.558981146694215,
+								"metric_score": 30.2214876033058,
+								"position_x": 112,
+								"position_y": 666,
+								"rotation": 0,
+								"size_x": 677.70947265625,
+								"size_y": 677.70947265625
+							}
+						],
+						[
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6425974948347,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342555526859,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090424845041,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.599103943375517,
+								"metric_score": 27.3460614669421,
+								"position_x": 626,
+								"position_y": 812,
+								"rotation": 0,
+								"size_x": 962.113708496094,
+								"size_y": 962.113708496094
+							},
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.8963165030992,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.594223148566632,
+								"metric_score": 27.6869059917355,
+								"position_x": 562,
+								"position_y": 680,
+								"rotation": 0,
+								"size_x": 780.260986328125,
+								"size_y": 780.260986328125
+							},
+							{
+								"fitness": 0.587336297994146,
+								"metric_score": 28.1873288997934,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.1181640625,
+								"size_y": 1113.1181640625
+							},
+							{
+								"fitness": 0.585420769305269,
+								"metric_score": 28.8755875516529,
+								"position_x": 518,
+								"position_y": 606,
+								"rotation": 0,
+								"size_x": 1248.93041992188,
+								"size_y": 1248.93041992188
+							},
+							{
+								"fitness": 0.583783278452135,
+								"metric_score": 28.6089714617769,
+								"position_x": 213,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 910.124328613281,
+								"size_y": 910.124328613281
+							},
+							{
+								"fitness": 0.583240923080234,
+								"metric_score": 28.4403731921488,
+								"position_x": 492,
+								"position_y": 706,
+								"rotation": 0,
+								"size_x": 594.074462890625,
+								"size_y": 594.074462890625
+							},
+							{
+								"fitness": 0.581995469610882,
+								"metric_score": 28.6447088068182,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 956.369750976562,
+								"size_y": 956.369750976562
+							},
+							{
+								"fitness": 0.580979158595902,
+								"metric_score": 29.2339585485537,
+								"position_x": 498,
+								"position_y": 555,
+								"rotation": 0,
+								"size_x": 1357.91748046875,
+								"size_y": 1357.91748046875
+							},
+							{
+								"fitness": 0.578479911867252,
+								"metric_score": 29.002899018595,
+								"position_x": 548,
+								"position_y": 579,
+								"rotation": 0,
+								"size_x": 871.008239746094,
+								"size_y": 871.008239746094
+							},
+							{
+								"fitness": 0.577531529786501,
+								"metric_score": 28.8997320506198,
+								"position_x": 444,
+								"position_y": 717,
+								"rotation": 0,
+								"size_x": 575.493774414062,
+								"size_y": 575.493774414062
+							},
+							{
+								"fitness": 0.575476376872417,
+								"metric_score": 28.7100690857438,
+								"position_x": 213,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 869.891296386719,
+								"size_y": 869.891296386719
+							},
+							{
+								"fitness": 0.574563842437156,
+								"metric_score": 28.6317503873967,
+								"position_x": 125,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1099.68225097656,
+								"size_y": 1099.68225097656
+							},
+							{
+								"fitness": 0.57294921875,
+								"metric_score": 28.9215457128099,
+								"position_x": 426,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1012.60003662109,
+								"size_y": 1012.60003662109
+							},
+							{
+								"fitness": 0.571806734783919,
+								"metric_score": 29.0852982954545,
+								"position_x": 345,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 940.910461425781,
+								"size_y": 940.910461425781
+							},
+							{
+								"fitness": 0.57137898426739,
+								"metric_score": 29.0401827221074,
+								"position_x": 523,
+								"position_y": 100,
+								"rotation": 0,
+								"size_x": 536.712463378906,
+								"size_y": 536.712463378906
+							},
+							{
+								"fitness": 0.571244337013602,
+								"metric_score": 28.9953383264463,
+								"position_x": 640,
+								"position_y": 49,
+								"rotation": 0,
+								"size_x": 851.064758300781,
+								"size_y": 851.064758300781
+							},
+							{
+								"fitness": 0.570670505660296,
+								"metric_score": 29.1676878873967,
+								"position_x": 279,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 863.946472167969,
+								"size_y": 863.946472167969
+							},
+							{
+								"fitness": 0.569338022447486,
+								"metric_score": 29.5409349173554,
+								"position_x": 374,
+								"position_y": 934,
+								"rotation": 0,
+								"size_x": 789.951782226562,
+								"size_y": 789.951782226562
+							},
+							{
+								"fitness": 0.56749714832989,
+								"metric_score": 29.3653279958678,
+								"position_x": 0,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 918.425170898438,
+								"size_y": 918.425170898438
+							},
+							{
+								"fitness": 0.567368083354855,
+								"metric_score": 29.7031411415289,
+								"position_x": 586,
+								"position_y": 570,
+								"rotation": 0,
+								"size_x": 740.83984375,
+								"size_y": 740.83984375
+							},
+							{
+								"fitness": 0.567242179429235,
+								"metric_score": 29.5873611828512,
+								"position_x": 599,
+								"position_y": 657,
+								"rotation": 0,
+								"size_x": 493.346374511719,
+								"size_y": 493.346374511719
+							},
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007699509298,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.605283794981061,
+								"metric_score": 27.3134943181818,
+								"position_x": 597,
+								"position_y": 667,
+								"rotation": 0,
+								"size_x": 1367.64538574219,
+								"size_y": 1367.64538574219
+							},
+							{
+								"fitness": 0.599866765129993,
+								"metric_score": 27.2881359762397,
+								"position_x": 640,
+								"position_y": 882,
+								"rotation": 0,
+								"size_x": 1133.80725097656,
+								"size_y": 1133.80725097656
+							},
+							{
+								"fitness": 0.598957660769628,
+								"metric_score": 27.6659090909091,
+								"position_x": 399,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 904.795227050781,
+								"size_y": 904.795227050781
+							},
+							{
+								"fitness": 0.597713081633092,
+								"metric_score": 27.6526213842975,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 1261.54577636719,
+								"size_y": 1261.54577636719
+							},
+							{
+								"fitness": 0.595252171035641,
+								"metric_score": 27.6135782541322,
+								"position_x": 604,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1189.9853515625,
+								"size_y": 1189.9853515625
+							},
+							{
+								"fitness": 0.590861204373278,
+								"metric_score": 28.0959549328512,
+								"position_x": 640,
+								"position_y": 611,
+								"rotation": 0,
+								"size_x": 1171.72216796875,
+								"size_y": 1171.72216796875
+							},
+							{
+								"fitness": 0.58576014495093,
+								"metric_score": 28.6157444473141,
+								"position_x": 345,
+								"position_y": 722,
+								"rotation": 0,
+								"size_x": 976.092529296875,
+								"size_y": 976.092529296875
+							},
+							{
+								"fitness": 0.585294192815944,
+								"metric_score": 28.8144918646694,
+								"position_x": 313,
+								"position_y": 641,
+								"rotation": 0,
+								"size_x": 1235.43090820312,
+								"size_y": 1235.43090820312
+							},
+							{
+								"fitness": 0.574562026515152,
+								"metric_score": 28.6385750258264,
+								"position_x": 115,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1089.75915527344,
+								"size_y": 1089.75915527344
+							},
+							{
+								"fitness": 0.573513499698691,
+								"metric_score": 28.8351982179752,
+								"position_x": 436,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1053.13000488281,
+								"size_y": 1053.13000488281
+							},
+							{
+								"fitness": 0.572321246018423,
+								"metric_score": 28.9268304493802,
+								"position_x": 157,
+								"position_y": 93,
+								"rotation": 0,
+								"size_x": 542.72119140625,
+								"size_y": 542.72119140625
+							},
+							{
+								"fitness": 0.570856805806646,
+								"metric_score": 29.1386912448347,
+								"position_x": 220,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 782.821533203125,
+								"size_y": 782.821533203125
+							},
+							{
+								"fitness": 0.570131244081439,
+								"metric_score": 29.2179074121901,
+								"position_x": 306,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 884.1650390625,
+								"size_y": 884.1650390625
+							},
+							{
+								"fitness": 0.568827479338843,
+								"metric_score": 29.9254971590909,
+								"position_x": 405,
+								"position_y": 480,
+								"rotation": 0,
+								"size_x": 1184.322265625,
+								"size_y": 1184.322265625
+							},
+							{
+								"fitness": 0.568497183303202,
+								"metric_score": 29.6961454028926,
+								"position_x": 281,
+								"position_y": 870,
+								"rotation": 0,
+								"size_x": 865.614501953125,
+								"size_y": 865.614501953125
+							},
+							{
+								"fitness": 0.567843854919938,
+								"metric_score": 29.4699702995868,
+								"position_x": 462,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 756.367919921875,
+								"size_y": 756.367919921875
+							},
+							{
+								"fitness": 0.566837699616908,
+								"metric_score": 29.5135976239669,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 991.742980957031,
+								"size_y": 991.742980957031
+							},
+							{
+								"fitness": 0.566811536888774,
+								"metric_score": 29.5104467975207,
+								"position_x": 502,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 621.723327636719,
+								"size_y": 621.723327636719
+							},
+							{
+								"fitness": 0.56541549640582,
+								"metric_score": 29.5789934142562,
+								"position_x": 0,
+								"position_y": 951,
+								"rotation": 0,
+								"size_x": 784.460205078125,
+								"size_y": 784.460205078125
+							},
+							{
+								"fitness": 0.565196913201618,
+								"metric_score": 29.5596106663223,
+								"position_x": 0,
+								"position_y": 4,
+								"rotation": 0,
+								"size_x": 842.903869628906,
+								"size_y": 842.903869628906
+							},
+							{
+								"fitness": 0.565184672542183,
+								"metric_score": 29.6382102272727,
+								"position_x": 0,
+								"position_y": 883,
+								"rotation": 0,
+								"size_x": 832.918823242188,
+								"size_y": 832.918823242188
+							},
+							{
+								"fitness": 0.565145798360021,
+								"metric_score": 29.3700703770661,
+								"position_x": 640,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1319.20751953125,
+								"size_y": 1319.20751953125
+							},
+							{
+								"fitness": 0.565144049694387,
+								"metric_score": 29.360637267562,
+								"position_x": 41,
+								"position_y": 114,
+								"rotation": 0,
+								"size_x": 759.866455078125,
+								"size_y": 759.866455078125
+							},
+							{
+								"fitness": 0.565084931344697,
+								"metric_score": 29.648918517562,
+								"position_x": 229,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 677.53369140625,
+								"size_y": 677.53369140625
+							}
+						],
+						[
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007796358471,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6426023372934,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342523243802,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090457128099,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.605283794981061,
+								"metric_score": 27.3134975464876,
+								"position_x": 597,
+								"position_y": 667,
+								"rotation": 0,
+								"size_x": 1367.64538574219,
+								"size_y": 1367.64538574219
+							},
+							{
+								"fitness": 0.599866765129993,
+								"metric_score": 27.2881650309917,
+								"position_x": 640,
+								"position_y": 882,
+								"rotation": 0,
+								"size_x": 1133.80725097656,
+								"size_y": 1133.80725097656
+							},
+							{
+								"fitness": 0.599103943375517,
+								"metric_score": 27.3460743801653,
+								"position_x": 626,
+								"position_y": 812,
+								"rotation": 0,
+								"size_x": 962.113708496094,
+								"size_y": 962.113708496094
+							},
+							{
+								"fitness": 0.598957660769628,
+								"metric_score": 27.6658994059917,
+								"position_x": 399,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 904.795227050781,
+								"size_y": 904.795227050781
+							},
+							{
+								"fitness": 0.597713081633092,
+								"metric_score": 27.6526278409091,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 1261.54577636719,
+								"size_y": 1261.54577636719
+							},
+							{
+								"fitness": 0.595252171035641,
+								"metric_score": 27.6135750258264,
+								"position_x": 604,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1189.9853515625,
+								"size_y": 1189.9853515625
+							},
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.8963100464876,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.594223148566632,
+								"metric_score": 27.6869124483471,
+								"position_x": 562,
+								"position_y": 680,
+								"rotation": 0,
+								"size_x": 780.260986328125,
+								"size_y": 780.260986328125
+							},
+							{
+								"fitness": 0.590861204373278,
+								"metric_score": 28.0959613894628,
+								"position_x": 640,
+								"position_y": 611,
+								"rotation": 0,
+								"size_x": 1171.72216796875,
+								"size_y": 1171.72216796875
+							},
+							{
+								"fitness": 0.587336297994146,
+								"metric_score": 28.187319214876,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.1181640625,
+								"size_y": 1113.1181640625
+							},
+							{
+								"fitness": 0.58576014495093,
+								"metric_score": 28.615760588843,
+								"position_x": 345,
+								"position_y": 722,
+								"rotation": 0,
+								"size_x": 976.092529296875,
+								"size_y": 976.092529296875
+							},
+							{
+								"fitness": 0.585420769305269,
+								"metric_score": 28.8755875516529,
+								"position_x": 518,
+								"position_y": 606,
+								"rotation": 0,
+								"size_x": 1248.93041992188,
+								"size_y": 1248.93041992188
+							},
+							{
+								"fitness": 0.585294192815944,
+								"metric_score": 28.814498321281,
+								"position_x": 313,
+								"position_y": 641,
+								"rotation": 0,
+								"size_x": 1235.43090820312,
+								"size_y": 1235.43090820312
+							},
+							{
+								"fitness": 0.583783278452135,
+								"metric_score": 28.6089714617769,
+								"position_x": 213,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 910.124328613281,
+								"size_y": 910.124328613281
+							},
+							{
+								"fitness": 0.583240923080234,
+								"metric_score": 28.4403828770661,
+								"position_x": 492,
+								"position_y": 706,
+								"rotation": 0,
+								"size_x": 594.074462890625,
+								"size_y": 594.074462890625
+							},
+							{
+								"fitness": 0.581995469610882,
+								"metric_score": 28.6447055785124,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 956.369750976562,
+								"size_y": 956.369750976562
+							},
+							{
+								"fitness": 0.580979158595902,
+								"metric_score": 29.2339456353306,
+								"position_x": 498,
+								"position_y": 555,
+								"rotation": 0,
+								"size_x": 1357.91748046875,
+								"size_y": 1357.91748046875
+							},
+							{
+								"fitness": 0.578479911867252,
+								"metric_score": 29.0028925619835,
+								"position_x": 548,
+								"position_y": 579,
+								"rotation": 0,
+								"size_x": 871.008239746094,
+								"size_y": 871.008239746094
+							},
+							{
+								"fitness": 0.577531529786501,
+								"metric_score": 28.8997320506198,
+								"position_x": 444,
+								"position_y": 717,
+								"rotation": 0,
+								"size_x": 575.493774414062,
+								"size_y": 575.493774414062
+							},
+							{
+								"fitness": 0.575476376872417,
+								"metric_score": 28.710065857438,
+								"position_x": 213,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 869.891296386719,
+								"size_y": 869.891296386719
+							},
+							{
+								"fitness": 0.574563842437156,
+								"metric_score": 28.6317503873967,
+								"position_x": 125,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1099.68225097656,
+								"size_y": 1099.68225097656
+							},
+							{
+								"fitness": 0.615775116219008,
+								"metric_score": 26.231535705062,
+								"position_x": 640,
+								"position_y": 779,
+								"rotation": 0,
+								"size_x": 1270.64379882812,
+								"size_y": 1270.64379882812
+							},
+							{
+								"fitness": 0.611623111441116,
+								"metric_score": 27.1337261105372,
+								"position_x": 360,
+								"position_y": 683,
+								"rotation": 0,
+								"size_x": 1539.755859375,
+								"size_y": 1539.755859375
+							},
+							{
+								"fitness": 0.610458701898244,
+								"metric_score": 26.591916322314,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1565.37585449219,
+								"size_y": 1565.37585449219
+							},
+							{
+								"fitness": 0.608410140108471,
+								"metric_score": 26.7068020402893,
+								"position_x": 504,
+								"position_y": 697,
+								"rotation": 0,
+								"size_x": 829.937927246094,
+								"size_y": 829.937927246094
+							},
+							{
+								"fitness": 0.607372038029442,
+								"metric_score": 27.2912835743802,
+								"position_x": 640,
+								"position_y": 792,
+								"rotation": 0,
+								"size_x": 1798.98693847656,
+								"size_y": 1798.98693847656
+							},
+							{
+								"fitness": 0.606760274083161,
+								"metric_score": 26.8234988378099,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1487.72302246094,
+								"size_y": 1487.72302246094
+							},
+							{
+								"fitness": 0.604335345643939,
+								"metric_score": 27.5515334452479,
+								"position_x": 640,
+								"position_y": 733,
+								"rotation": 0,
+								"size_x": 1734.59338378906,
+								"size_y": 1734.59338378906
+							},
+							{
+								"fitness": 0.594727571345558,
+								"metric_score": 27.6496933109504,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1256.87292480469,
+								"size_y": 1256.87292480469
+							},
+							{
+								"fitness": 0.594685737883092,
+								"metric_score": 27.6637816373967,
+								"position_x": 545,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.43029785156,
+								"size_y": 1113.43029785156
+							},
+							{
+								"fitness": 0.593430599496384,
+								"metric_score": 28.0823282541322,
+								"position_x": 640,
+								"position_y": 600,
+								"rotation": 0,
+								"size_x": 1383.24353027344,
+								"size_y": 1383.24353027344
+							},
+							{
+								"fitness": 0.591903274578168,
+								"metric_score": 28.0811370092975,
+								"position_x": 640,
+								"position_y": 602,
+								"rotation": 0,
+								"size_x": 1251.52893066406,
+								"size_y": 1251.52893066406
+							},
+							{
+								"fitness": 0.578117870824725,
+								"metric_score": 28.9835259555785,
+								"position_x": 0,
+								"position_y": 850,
+								"rotation": 0,
+								"size_x": 1608.03137207031,
+								"size_y": 1608.03137207031
+							},
+							{
+								"fitness": 0.575604231232782,
+								"metric_score": 28.6940728305785,
+								"position_x": 587,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1014.80603027344,
+								"size_y": 1014.80603027344
+							},
+							{
+								"fitness": 0.575256852079029,
+								"metric_score": 29.1677233987603,
+								"position_x": 111,
+								"position_y": 925,
+								"rotation": 0,
+								"size_x": 1277.45764160156,
+								"size_y": 1277.45764160156
+							},
+							{
+								"fitness": 0.575164845364153,
+								"metric_score": 28.6118123708678,
+								"position_x": 118,
+								"position_y": 9,
+								"rotation": 0,
+								"size_x": 1024.64233398438,
+								"size_y": 1024.64233398438
+							},
+							{
+								"fitness": 0.572860978391873,
+								"metric_score": 28.8596849173554,
+								"position_x": 460,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1089.55249023438,
+								"size_y": 1089.55249023438
+							},
+							{
+								"fitness": 0.572565319387052,
+								"metric_score": 28.8612215909091,
+								"position_x": 474,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1135.43640136719,
+								"size_y": 1135.43640136719
+							},
+							{
+								"fitness": 0.57222701984332,
+								"metric_score": 28.8144563533058,
+								"position_x": 78,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1131.16381835938,
+								"size_y": 1131.16381835938
+							},
+							{
+								"fitness": 0.570739308927342,
+								"metric_score": 28.9958968233471,
+								"position_x": 0,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1172.318359375,
+								"size_y": 1172.318359375
+							},
+							{
+								"fitness": 0.568970600895317,
+								"metric_score": 29.3413061725207,
+								"position_x": 498,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 669.977966308594,
+								"size_y": 669.977966308594
+							},
+							{
+								"fitness": 0.568389640366736,
+								"metric_score": 29.6413061725207,
+								"position_x": 0,
+								"position_y": 738,
+								"rotation": 0,
+								"size_x": 1353.44848632812,
+								"size_y": 1353.44848632812
+							},
+							{
+								"fitness": 0.56795590403323,
+								"metric_score": 29.7534639721074,
+								"position_x": 139,
+								"position_y": 684,
+								"rotation": 0,
+								"size_x": 1113.56982421875,
+								"size_y": 1113.56982421875
+							},
+							{
+								"fitness": 0.566838304924242,
+								"metric_score": 29.5178686725207,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1015.40026855469,
+								"size_y": 1015.40026855469
+							},
+							{
+								"fitness": 0.566790216619318,
+								"metric_score": 29.2169001807851,
+								"position_x": 640,
+								"position_y": 70,
+								"rotation": 0,
+								"size_x": 1055.92797851562,
+								"size_y": 1055.92797851562
+							},
+							{
+								"fitness": 0.566097745028409,
+								"metric_score": 29.1586809142562,
+								"position_x": 499,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1397.59521484375,
+								"size_y": 1397.59521484375
+							}
+						],
+						[
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007731792355,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.615775116219008,
+								"metric_score": 26.2315373192149,
+								"position_x": 640,
+								"position_y": 779,
+								"rotation": 0,
+								"size_x": 1270.64379882812,
+								"size_y": 1270.64379882812
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6425958806818,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.611623111441116,
+								"metric_score": 27.1337196539256,
+								"position_x": 360,
+								"position_y": 683,
+								"rotation": 0,
+								"size_x": 1539.755859375,
+								"size_y": 1539.755859375
+							},
+							{
+								"fitness": 0.610458701898244,
+								"metric_score": 26.5919276213843,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1565.37585449219,
+								"size_y": 1565.37585449219
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342555526859,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.608410140108471,
+								"metric_score": 26.7068004261364,
+								"position_x": 504,
+								"position_y": 697,
+								"rotation": 0,
+								"size_x": 829.937927246094,
+								"size_y": 829.937927246094
+							},
+							{
+								"fitness": 0.607372038029442,
+								"metric_score": 27.2912964876033,
+								"position_x": 640,
+								"position_y": 792,
+								"rotation": 0,
+								"size_x": 1798.98693847656,
+								"size_y": 1798.98693847656
+							},
+							{
+								"fitness": 0.606760274083161,
+								"metric_score": 26.8235020661157,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1487.72302246094,
+								"size_y": 1487.72302246094
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090327995868,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.605283794981061,
+								"metric_score": 27.3134975464876,
+								"position_x": 597,
+								"position_y": 667,
+								"rotation": 0,
+								"size_x": 1367.64538574219,
+								"size_y": 1367.64538574219
+							},
+							{
+								"fitness": 0.604335345643939,
+								"metric_score": 27.5515108471074,
+								"position_x": 640,
+								"position_y": 733,
+								"rotation": 0,
+								"size_x": 1734.59338378906,
+								"size_y": 1734.59338378906
+							},
+							{
+								"fitness": 0.599866765129993,
+								"metric_score": 27.2881553460744,
+								"position_x": 640,
+								"position_y": 882,
+								"rotation": 0,
+								"size_x": 1133.80725097656,
+								"size_y": 1133.80725097656
+							},
+							{
+								"fitness": 0.599103943375517,
+								"metric_score": 27.3460743801653,
+								"position_x": 626,
+								"position_y": 812,
+								"rotation": 0,
+								"size_x": 962.113708496094,
+								"size_y": 962.113708496094
+							},
+							{
+								"fitness": 0.598957660769628,
+								"metric_score": 27.6659090909091,
+								"position_x": 399,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 904.795227050781,
+								"size_y": 904.795227050781
+							},
+							{
+								"fitness": 0.597713081633092,
+								"metric_score": 27.6526149276859,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 1261.54577636719,
+								"size_y": 1261.54577636719
+							},
+							{
+								"fitness": 0.595252171035641,
+								"metric_score": 27.6135750258264,
+								"position_x": 604,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1189.9853515625,
+								"size_y": 1189.9853515625
+							},
+							{
+								"fitness": 0.595082752238292,
+								"metric_score": 27.8963100464876,
+								"position_x": 400,
+								"position_y": 737,
+								"rotation": 0,
+								"size_x": 872.549133300781,
+								"size_y": 872.549133300781
+							},
+							{
+								"fitness": 0.594727571345558,
+								"metric_score": 27.6497062241736,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1256.87292480469,
+								"size_y": 1256.87292480469
+							},
+							{
+								"fitness": 0.594685737883092,
+								"metric_score": 27.6637687241736,
+								"position_x": 545,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.43029785156,
+								"size_y": 1113.43029785156
+							},
+							{
+								"fitness": 0.594223148566632,
+								"metric_score": 27.6869156766529,
+								"position_x": 562,
+								"position_y": 680,
+								"rotation": 0,
+								"size_x": 780.260986328125,
+								"size_y": 780.260986328125
+							},
+							{
+								"fitness": 0.593430599496384,
+								"metric_score": 28.082331482438,
+								"position_x": 640,
+								"position_y": 600,
+								"rotation": 0,
+								"size_x": 1383.24353027344,
+								"size_y": 1383.24353027344
+							},
+							{
+								"fitness": 0.591903274578168,
+								"metric_score": 28.0811402376033,
+								"position_x": 640,
+								"position_y": 602,
+								"rotation": 0,
+								"size_x": 1251.52893066406,
+								"size_y": 1251.52893066406
+							},
+							{
+								"fitness": 0.590861204373278,
+								"metric_score": 28.0959678460744,
+								"position_x": 640,
+								"position_y": 611,
+								"rotation": 0,
+								"size_x": 1171.72216796875,
+								"size_y": 1171.72216796875
+							},
+							{
+								"fitness": 0.587336297994146,
+								"metric_score": 28.1873224431818,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1113.1181640625,
+								"size_y": 1113.1181640625
+							},
+							{
+								"fitness": 0.621866592953685,
+								"metric_score": 25.9726175103306,
+								"position_x": 591,
+								"position_y": 788,
+								"rotation": 0,
+								"size_x": 1347.60888671875,
+								"size_y": 1347.60888671875
+							},
+							{
+								"fitness": 0.616525831826791,
+								"metric_score": 26.4204109633264,
+								"position_x": 505,
+								"position_y": 912,
+								"rotation": 0,
+								"size_x": 1541.83325195312,
+								"size_y": 1541.83325195312
+							},
+							{
+								"fitness": 0.615109210894456,
+								"metric_score": 26.4605904571281,
+								"position_x": 640,
+								"position_y": 730,
+								"rotation": 0,
+								"size_x": 1433.41027832031,
+								"size_y": 1433.41027832031
+							},
+							{
+								"fitness": 0.61453921315427,
+								"metric_score": 26.7574444731405,
+								"position_x": 256,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 1898.94653320312,
+								"size_y": 1898.94653320312
+							},
+							{
+								"fitness": 0.604038206998967,
+								"metric_score": 27.0065744447314,
+								"position_x": 604,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1365.42895507812,
+								"size_y": 1365.42895507812
+							},
+							{
+								"fitness": 0.601332954007404,
+								"metric_score": 27.1878099173554,
+								"position_x": 640,
+								"position_y": 872,
+								"rotation": 0,
+								"size_x": 1135.56982421875,
+								"size_y": 1135.56982421875
+							},
+							{
+								"fitness": 0.600987121750172,
+								"metric_score": 27.2094944473141,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1379.02282714844,
+								"size_y": 1379.02282714844
+							},
+							{
+								"fitness": 0.597930117940771,
+								"metric_score": 27.4223366477273,
+								"position_x": 639,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1318.94592285156,
+								"size_y": 1318.94592285156
+							},
+							{
+								"fitness": 0.59779372202135,
+								"metric_score": 27.4319699121901,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1318.01000976562,
+								"size_y": 1318.01000976562
+							},
+							{
+								"fitness": 0.594950727982955,
+								"metric_score": 27.6380326704545,
+								"position_x": 594,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1166.98876953125,
+								"size_y": 1166.98876953125
+							},
+							{
+								"fitness": 0.58656715414084,
+								"metric_score": 28.7268562758264,
+								"position_x": 640,
+								"position_y": 584,
+								"rotation": 0,
+								"size_x": 1556.72741699219,
+								"size_y": 1556.72741699219
+							},
+							{
+								"fitness": 0.58649512256801,
+								"metric_score": 28.2835711518595,
+								"position_x": 511,
+								"position_y": 616,
+								"rotation": 0,
+								"size_x": 727.301025390625,
+								"size_y": 727.301025390625
+							},
+							{
+								"fitness": 0.582967122395833,
+								"metric_score": 28.6597397985537,
+								"position_x": 0,
+								"position_y": 874,
+								"rotation": 0,
+								"size_x": 1751.75109863281,
+								"size_y": 1751.75109863281
+							},
+							{
+								"fitness": 0.58152884491219,
+								"metric_score": 28.7590973657025,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1839.62219238281,
+								"size_y": 1839.62219238281
+							},
+							{
+								"fitness": 0.580517847150482,
+								"metric_score": 28.7849044421488,
+								"position_x": 640,
+								"position_y": 609,
+								"rotation": 0,
+								"size_x": 1000.72760009766,
+								"size_y": 1000.72760009766
+							},
+							{
+								"fitness": 0.578970614346591,
+								"metric_score": 28.9220816115702,
+								"position_x": 38,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1668.0361328125,
+								"size_y": 1668.0361328125
+							},
+							{
+								"fitness": 0.578788551351584,
+								"metric_score": 29.0648598915289,
+								"position_x": 327,
+								"position_y": 769,
+								"rotation": 0,
+								"size_x": 830.055236816406,
+								"size_y": 830.055236816406
+							},
+							{
+								"fitness": 0.575576790633609,
+								"metric_score": 29.0074412448347,
+								"position_x": 640,
+								"position_y": 712,
+								"rotation": 0,
+								"size_x": 675.352355957031,
+								"size_y": 675.352355957031
+							},
+							{
+								"fitness": 0.575186770940944,
+								"metric_score": 29.1689792097107,
+								"position_x": 77,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1485.10192871094,
+								"size_y": 1485.10192871094
+							},
+							{
+								"fitness": 0.574730772748795,
+								"metric_score": 29.0890399018595,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 880.589050292969,
+								"size_y": 880.589050292969
+							},
+							{
+								"fitness": 0.572802801631371,
+								"metric_score": 29.3434110278926,
+								"position_x": 117,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1340.24365234375,
+								"size_y": 1340.24365234375
+							},
+							{
+								"fitness": 0.572083427492252,
+								"metric_score": 28.9352401859504,
+								"position_x": 7,
+								"position_y": 0,
+								"rotation": 0,
+								"size_x": 1070.86706542969,
+								"size_y": 1070.86706542969
+							},
+							{
+								"fitness": 0.572009781766529,
+								"metric_score": 29.2843201188017,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 830.777038574219,
+								"size_y": 830.777038574219
+							},
+							{
+								"fitness": 0.571039608621729,
+								"metric_score": 29.4584065082645,
+								"position_x": 0,
+								"position_y": 847,
+								"rotation": 0,
+								"size_x": 1432.83630371094,
+								"size_y": 1432.83630371094
+							},
+							{
+								"fitness": 0.570301402698864,
+								"metric_score": 28.9308819731405,
+								"position_x": 99,
+								"position_y": 47,
+								"rotation": 0,
+								"size_x": 982.724975585938,
+								"size_y": 982.724975585938
+							}
+						],
+						[
+							{
+								"fitness": 0.621866592953685,
+								"metric_score": 25.9726094395661,
+								"position_x": 591,
+								"position_y": 788,
+								"rotation": 0,
+								"size_x": 1347.60888671875,
+								"size_y": 1347.60888671875
+							},
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007699509298,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.616525831826791,
+								"metric_score": 26.4204141916322,
+								"position_x": 505,
+								"position_y": 912,
+								"rotation": 0,
+								"size_x": 1541.83325195312,
+								"size_y": 1541.83325195312
+							},
+							{
+								"fitness": 0.615775116219008,
+								"metric_score": 26.2315405475207,
+								"position_x": 640,
+								"position_y": 779,
+								"rotation": 0,
+								"size_x": 1270.64379882812,
+								"size_y": 1270.64379882812
+							},
+							{
+								"fitness": 0.615109210894456,
+								"metric_score": 26.460592071281,
+								"position_x": 640,
+								"position_y": 730,
+								"rotation": 0,
+								"size_x": 1433.41027832031,
+								"size_y": 1433.41027832031
+							},
+							{
+								"fitness": 0.61453921315427,
+								"metric_score": 26.7574412448347,
+								"position_x": 256,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 1898.94653320312,
+								"size_y": 1898.94653320312
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6426007231405,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.611623111441116,
+								"metric_score": 27.133713197314,
+								"position_x": 360,
+								"position_y": 683,
+								"rotation": 0,
+								"size_x": 1539.755859375,
+								"size_y": 1539.755859375
+							},
+							{
+								"fitness": 0.610458701898244,
+								"metric_score": 26.5919179364669,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1565.37585449219,
+								"size_y": 1565.37585449219
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342555526859,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.608410140108471,
+								"metric_score": 26.7067988119835,
+								"position_x": 504,
+								"position_y": 697,
+								"rotation": 0,
+								"size_x": 829.937927246094,
+								"size_y": 829.937927246094
+							},
+							{
+								"fitness": 0.607372038029442,
+								"metric_score": 27.2913029442149,
+								"position_x": 640,
+								"position_y": 792,
+								"rotation": 0,
+								"size_x": 1798.98693847656,
+								"size_y": 1798.98693847656
+							},
+							{
+								"fitness": 0.606760274083161,
+								"metric_score": 26.8234988378099,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1487.72302246094,
+								"size_y": 1487.72302246094
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090360278926,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.605283794981061,
+								"metric_score": 27.3134814049587,
+								"position_x": 597,
+								"position_y": 667,
+								"rotation": 0,
+								"size_x": 1367.64538574219,
+								"size_y": 1367.64538574219
+							},
+							{
+								"fitness": 0.604335345643939,
+								"metric_score": 27.5515140754132,
+								"position_x": 640,
+								"position_y": 733,
+								"rotation": 0,
+								"size_x": 1734.59338378906,
+								"size_y": 1734.59338378906
+							},
+							{
+								"fitness": 0.604038206998967,
+								"metric_score": 27.0065744447314,
+								"position_x": 604,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1365.42895507812,
+								"size_y": 1365.42895507812
+							},
+							{
+								"fitness": 0.601332954007404,
+								"metric_score": 27.1878034607438,
+								"position_x": 640,
+								"position_y": 872,
+								"rotation": 0,
+								"size_x": 1135.56982421875,
+								"size_y": 1135.56982421875
+							},
+							{
+								"fitness": 0.600987121750172,
+								"metric_score": 27.2095041322314,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1379.02282714844,
+								"size_y": 1379.02282714844
+							},
+							{
+								"fitness": 0.599866765129993,
+								"metric_score": 27.2881392045455,
+								"position_x": 640,
+								"position_y": 882,
+								"rotation": 0,
+								"size_x": 1133.80725097656,
+								"size_y": 1133.80725097656
+							},
+							{
+								"fitness": 0.599103943375517,
+								"metric_score": 27.3460808367769,
+								"position_x": 626,
+								"position_y": 812,
+								"rotation": 0,
+								"size_x": 962.113708496094,
+								"size_y": 962.113708496094
+							},
+							{
+								"fitness": 0.598957660769628,
+								"metric_score": 27.665896177686,
+								"position_x": 399,
+								"position_y": 780,
+								"rotation": 0,
+								"size_x": 904.795227050781,
+								"size_y": 904.795227050781
+							},
+							{
+								"fitness": 0.597930117940771,
+								"metric_score": 27.4223398760331,
+								"position_x": 639,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1318.94592285156,
+								"size_y": 1318.94592285156
+							},
+							{
+								"fitness": 0.59779372202135,
+								"metric_score": 27.4319666838843,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1318.01000976562,
+								"size_y": 1318.01000976562
+							},
+							{
+								"fitness": 0.597713081633092,
+								"metric_score": 27.6526246126033,
+								"position_x": 640,
+								"position_y": 628,
+								"rotation": 0,
+								"size_x": 1261.54577636719,
+								"size_y": 1261.54577636719
+							},
+							{
+								"fitness": 0.636623985773933,
+								"metric_score": 24.8579319473141,
+								"position_x": 311,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1738.79211425781,
+								"size_y": 1738.79211425781
+							},
+							{
+								"fitness": 0.635177233987603,
+								"metric_score": 25.0048779700413,
+								"position_x": 329,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1893.04724121094,
+								"size_y": 1893.04724121094
+							},
+							{
+								"fitness": 0.622766415934917,
+								"metric_score": 25.8718959839876,
+								"position_x": 189,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1846.00817871094,
+								"size_y": 1846.00817871094
+							},
+							{
+								"fitness": 0.620234886148416,
+								"metric_score": 26.1939420841942,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2045.45007324219,
+								"size_y": 2045.45007324219
+							},
+							{
+								"fitness": 0.619373466554752,
+								"metric_score": 26.2540192407025,
+								"position_x": 450,
+								"position_y": 807,
+								"rotation": 0,
+								"size_x": 1309.15563964844,
+								"size_y": 1309.15563964844
+							},
+							{
+								"fitness": 0.618453601175103,
+								"metric_score": 26.2423957257231,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1903.482421875,
+								"size_y": 1903.482421875
+							},
+							{
+								"fitness": 0.616373832429408,
+								"metric_score": 26.748452027376,
+								"position_x": 436,
+								"position_y": 815,
+								"rotation": 0,
+								"size_x": 1766.30126953125,
+								"size_y": 1766.30126953125
+							},
+							{
+								"fitness": 0.612931180591426,
+								"metric_score": 26.7810659865702,
+								"position_x": 551,
+								"position_y": 761,
+								"rotation": 0,
+								"size_x": 1376.18884277344,
+								"size_y": 1376.18884277344
+							},
+							{
+								"fitness": 0.61288416838843,
+								"metric_score": 26.5640043904959,
+								"position_x": 640,
+								"position_y": 699,
+								"rotation": 0,
+								"size_x": 1356.66369628906,
+								"size_y": 1356.66369628906
+							},
+							{
+								"fitness": 0.608904945226412,
+								"metric_score": 26.9298279313017,
+								"position_x": 497,
+								"position_y": 916,
+								"rotation": 0,
+								"size_x": 1360.29357910156,
+								"size_y": 1360.29357910156
+							},
+							{
+								"fitness": 0.608156180053375,
+								"metric_score": 26.9882005423554,
+								"position_x": 168,
+								"position_y": 886,
+								"rotation": 0,
+								"size_x": 1707.36755371094,
+								"size_y": 1707.36755371094
+							},
+							{
+								"fitness": 0.604657234633264,
+								"metric_score": 27.098211518595,
+								"position_x": 640,
+								"position_y": 671,
+								"rotation": 0,
+								"size_x": 1227.95874023438,
+								"size_y": 1227.95874023438
+							},
+							{
+								"fitness": 0.600290951058884,
+								"metric_score": 27.4552847365702,
+								"position_x": 81,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1889.14892578125,
+								"size_y": 1889.14892578125
+							},
+							{
+								"fitness": 0.596341589725379,
+								"metric_score": 27.8179267820248,
+								"position_x": 418,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1327.80627441406,
+								"size_y": 1327.80627441406
+							},
+							{
+								"fitness": 0.596054943074208,
+								"metric_score": 27.5550555268595,
+								"position_x": 629,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1257.77722167969,
+								"size_y": 1257.77722167969
+							},
+							{
+								"fitness": 0.595663578254132,
+								"metric_score": 27.8972462551653,
+								"position_x": 377,
+								"position_y": 752,
+								"rotation": 0,
+								"size_x": 926.237731933594,
+								"size_y": 926.237731933594
+							},
+							{
+								"fitness": 0.594811776321453,
+								"metric_score": 27.8517658832645,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2120.72412109375,
+								"size_y": 2120.72412109375
+							},
+							{
+								"fitness": 0.594734700520833,
+								"metric_score": 28.2207224948347,
+								"position_x": 640,
+								"position_y": 635,
+								"rotation": 0,
+								"size_x": 1644.46875,
+								"size_y": 1644.46875
+							},
+							{
+								"fitness": 0.589823842114325,
+								"metric_score": 27.9986086002066,
+								"position_x": 640,
+								"position_y": 930,
+								"rotation": 0,
+								"size_x": 1066.7939453125,
+								"size_y": 1066.7939453125
+							},
+							{
+								"fitness": 0.587051130983127,
+								"metric_score": 28.4454642303719,
+								"position_x": 224,
+								"position_y": 739,
+								"rotation": 0,
+								"size_x": 1071.22265625,
+								"size_y": 1071.22265625
+							},
+							{
+								"fitness": 0.584866913094008,
+								"metric_score": 28.7895370609504,
+								"position_x": 633,
+								"position_y": 575,
+								"rotation": 0,
+								"size_x": 1456.39367675781,
+								"size_y": 1456.39367675781
+							},
+							{
+								"fitness": 0.583256661070937,
+								"metric_score": 29.1782186208678,
+								"position_x": 640,
+								"position_y": 665,
+								"rotation": 0,
+								"size_x": 2246.68701171875,
+								"size_y": 2246.68701171875
+							},
+							{
+								"fitness": 0.581939445054236,
+								"metric_score": 28.803125,
+								"position_x": 0,
+								"position_y": 754,
+								"rotation": 0,
+								"size_x": 2071.71997070312,
+								"size_y": 2071.71997070312
+							},
+							{
+								"fitness": 0.580861258178375,
+								"metric_score": 28.6788029442149,
+								"position_x": 640,
+								"position_y": 650,
+								"rotation": 0,
+								"size_x": 848.944030761719,
+								"size_y": 848.944030761719
+							},
+							{
+								"fitness": 0.580028557054924,
+								"metric_score": 28.7126388171488,
+								"position_x": 629,
+								"position_y": 904,
+								"rotation": 0,
+								"size_x": 792.820129394531,
+								"size_y": 792.820129394531
+							}
+						],
+						[
+							{
+								"fitness": 0.636623985773933,
+								"metric_score": 24.8579238765496,
+								"position_x": 311,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1738.79211425781,
+								"size_y": 1738.79211425781
+							},
+							{
+								"fitness": 0.635177233987603,
+								"metric_score": 25.0048779700413,
+								"position_x": 329,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1893.04724121094,
+								"size_y": 1893.04724121094
+							},
+							{
+								"fitness": 0.622766415934917,
+								"metric_score": 25.8718927556818,
+								"position_x": 189,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1846.00817871094,
+								"size_y": 1846.00817871094
+							},
+							{
+								"fitness": 0.621866592953685,
+								"metric_score": 25.972611053719,
+								"position_x": 591,
+								"position_y": 788,
+								"rotation": 0,
+								"size_x": 1347.60888671875,
+								"size_y": 1347.60888671875
+							},
+							{
+								"fitness": 0.620234886148416,
+								"metric_score": 26.1939356275826,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2045.45007324219,
+								"size_y": 2045.45007324219
+							},
+							{
+								"fitness": 0.619373466554752,
+								"metric_score": 26.2540208548554,
+								"position_x": 450,
+								"position_y": 807,
+								"rotation": 0,
+								"size_x": 1309.15563964844,
+								"size_y": 1309.15563964844
+							},
+							{
+								"fitness": 0.618453601175103,
+								"metric_score": 26.242397339876,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1903.482421875,
+								"size_y": 1903.482421875
+							},
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007715650826,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.616525831826791,
+								"metric_score": 26.4204125774793,
+								"position_x": 505,
+								"position_y": 912,
+								"rotation": 0,
+								"size_x": 1541.83325195312,
+								"size_y": 1541.83325195312
+							},
+							{
+								"fitness": 0.616373832429408,
+								"metric_score": 26.7484471849174,
+								"position_x": 436,
+								"position_y": 815,
+								"rotation": 0,
+								"size_x": 1766.30126953125,
+								"size_y": 1766.30126953125
+							},
+							{
+								"fitness": 0.615775116219008,
+								"metric_score": 26.2315421616736,
+								"position_x": 640,
+								"position_y": 779,
+								"rotation": 0,
+								"size_x": 1270.64379882812,
+								"size_y": 1270.64379882812
+							},
+							{
+								"fitness": 0.615109210894456,
+								"metric_score": 26.4605904571281,
+								"position_x": 640,
+								"position_y": 730,
+								"rotation": 0,
+								"size_x": 1433.41027832031,
+								"size_y": 1433.41027832031
+							},
+							{
+								"fitness": 0.61453921315427,
+								"metric_score": 26.7574412448347,
+								"position_x": 256,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 1898.94653320312,
+								"size_y": 1898.94653320312
+							},
+							{
+								"fitness": 0.612931180591426,
+								"metric_score": 26.7810627582645,
+								"position_x": 551,
+								"position_y": 761,
+								"rotation": 0,
+								"size_x": 1376.18884277344,
+								"size_y": 1376.18884277344
+							},
+							{
+								"fitness": 0.61288416838843,
+								"metric_score": 26.5640076188017,
+								"position_x": 640,
+								"position_y": 699,
+								"rotation": 0,
+								"size_x": 1356.66369628906,
+								"size_y": 1356.66369628906
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6426055655992,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.611623111441116,
+								"metric_score": 27.1337228822314,
+								"position_x": 360,
+								"position_y": 683,
+								"rotation": 0,
+								"size_x": 1539.755859375,
+								"size_y": 1539.755859375
+							},
+							{
+								"fitness": 0.610458701898244,
+								"metric_score": 26.5919179364669,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1565.37585449219,
+								"size_y": 1565.37585449219
+							},
+							{
+								"fitness": 0.609463173101756,
+								"metric_score": 26.6342587809917,
+								"position_x": 640,
+								"position_y": 821,
+								"rotation": 0,
+								"size_x": 1173.978515625,
+								"size_y": 1173.978515625
+							},
+							{
+								"fitness": 0.608904945226412,
+								"metric_score": 26.9298343879132,
+								"position_x": 497,
+								"position_y": 916,
+								"rotation": 0,
+								"size_x": 1360.29357910156,
+								"size_y": 1360.29357910156
+							},
+							{
+								"fitness": 0.608410140108471,
+								"metric_score": 26.7068036544421,
+								"position_x": 504,
+								"position_y": 697,
+								"rotation": 0,
+								"size_x": 829.937927246094,
+								"size_y": 829.937927246094
+							},
+							{
+								"fitness": 0.608156180053375,
+								"metric_score": 26.9881940857438,
+								"position_x": 168,
+								"position_y": 886,
+								"rotation": 0,
+								"size_x": 1707.36755371094,
+								"size_y": 1707.36755371094
+							},
+							{
+								"fitness": 0.607372038029442,
+								"metric_score": 27.2912868026859,
+								"position_x": 640,
+								"position_y": 792,
+								"rotation": 0,
+								"size_x": 1798.98693847656,
+								"size_y": 1798.98693847656
+							},
+							{
+								"fitness": 0.606760274083161,
+								"metric_score": 26.8234891528926,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1487.72302246094,
+								"size_y": 1487.72302246094
+							},
+							{
+								"fitness": 0.605696614583333,
+								"metric_score": 27.1090327995868,
+								"position_x": 474,
+								"position_y": 686,
+								"rotation": 0,
+								"size_x": 938.0458984375,
+								"size_y": 938.0458984375
+							},
+							{
+								"fitness": 0.638183190211777,
+								"metric_score": 24.8484730113636,
+								"position_x": 433,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1954.91979980469,
+								"size_y": 1954.91979980469
+							},
+							{
+								"fitness": 0.625044456460916,
+								"metric_score": 25.7866896952479,
+								"position_x": 286,
+								"position_y": 869,
+								"rotation": 0,
+								"size_x": 1578.94860839844,
+								"size_y": 1578.94860839844
+							},
+							{
+								"fitness": 0.624166626312844,
+								"metric_score": 25.8483874612603,
+								"position_x": 226,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1973.337890625,
+								"size_y": 1973.337890625
+							},
+							{
+								"fitness": 0.620145300662879,
+								"metric_score": 26.2000403538223,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2044.52697753906,
+								"size_y": 2044.52697753906
+							},
+							{
+								"fitness": 0.618908186983471,
+								"metric_score": 26.4260734116736,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2352.71215820312,
+								"size_y": 2352.71215820312
+							},
+							{
+								"fitness": 0.617092197722968,
+								"metric_score": 26.2866009168388,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1829.15197753906,
+								"size_y": 1829.15197753906
+							},
+							{
+								"fitness": 0.616991514936295,
+								"metric_score": 26.6861876936983,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2574.33984375,
+								"size_y": 2574.33984375
+							},
+							{
+								"fitness": 0.616585286458333,
+								"metric_score": 26.3001936983471,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1803.263671875,
+								"size_y": 1803.263671875
+							},
+							{
+								"fitness": 0.60892532390668,
+								"metric_score": 26.828305785124,
+								"position_x": 185,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1629.07897949219,
+								"size_y": 1629.07897949219
+							},
+							{
+								"fitness": 0.608668068289428,
+								"metric_score": 26.7031831095041,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1528.72802734375,
+								"size_y": 1528.72802734375
+							},
+							{
+								"fitness": 0.606760341339532,
+								"metric_score": 26.823497223657,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1487.20422363281,
+								"size_y": 1487.20422363281
+							},
+							{
+								"fitness": 0.604942536157025,
+								"metric_score": 27.0389317536157,
+								"position_x": 530,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1340.69812011719,
+								"size_y": 1340.69812011719
+							},
+							{
+								"fitness": 0.604651248816288,
+								"metric_score": 26.9869608729339,
+								"position_x": 640,
+								"position_y": 719,
+								"rotation": 0,
+								"size_x": 1077.64819335938,
+								"size_y": 1077.64819335938
+							},
+							{
+								"fitness": 0.600925447658402,
+								"metric_score": 27.2139043130165,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1378.28857421875,
+								"size_y": 1378.28857421875
+							},
+							{
+								"fitness": 0.598726500624139,
+								"metric_score": 27.3656217716942,
+								"position_x": 631,
+								"position_y": 907,
+								"rotation": 0,
+								"size_x": 1144.50573730469,
+								"size_y": 1144.50573730469
+							},
+							{
+								"fitness": 0.59811110483385,
+								"metric_score": 27.6656960227273,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2233.83544921875,
+								"size_y": 2233.83544921875
+							},
+							{
+								"fitness": 0.595464768422865,
+								"metric_score": 27.8128357438017,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2141.07080078125,
+								"size_y": 2141.07080078125
+							},
+							{
+								"fitness": 0.594320199509297,
+								"metric_score": 28.0764559659091,
+								"position_x": 251,
+								"position_y": 734,
+								"rotation": 0,
+								"size_x": 1298.21789550781,
+								"size_y": 1298.21789550781
+							},
+							{
+								"fitness": 0.593523951338671,
+								"metric_score": 27.7355178202479,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1234.15100097656,
+								"size_y": 1234.15100097656
+							},
+							{
+								"fitness": 0.593464563963499,
+								"metric_score": 28.0099560950413,
+								"position_x": 409,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1284.56872558594,
+								"size_y": 1284.56872558594
+							},
+							{
+								"fitness": 0.587803864282025,
+								"metric_score": 28.1821862086777,
+								"position_x": 640,
+								"position_y": 670,
+								"rotation": 0,
+								"size_x": 918.037292480469,
+								"size_y": 918.037292480469
+							},
+							{
+								"fitness": 0.586792933776687,
+								"metric_score": 28.390579803719,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1934.96252441406,
+								"size_y": 1934.96252441406
+							},
+							{
+								"fitness": 0.583346515581956,
+								"metric_score": 28.6243963068182,
+								"position_x": 0,
+								"position_y": 896,
+								"rotation": 0,
+								"size_x": 1752.91577148438,
+								"size_y": 1752.91577148438
+							},
+							{
+								"fitness": 0.583301991864669,
+								"metric_score": 28.6866767820248,
+								"position_x": 373,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1157.29052734375,
+								"size_y": 1157.29052734375
+							},
+							{
+								"fitness": 0.578515490487259,
+								"metric_score": 28.8184013429752,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 947.397216796875,
+								"size_y": 947.397216796875
+							}
+						],
+						[
+							{
+								"fitness": 0.638183190211777,
+								"metric_score": 24.8484697830579,
+								"position_x": 433,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1954.91979980469,
+								"size_y": 1954.91979980469
+							},
+							{
+								"fitness": 0.636623985773933,
+								"metric_score": 24.8579319473141,
+								"position_x": 311,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1738.79211425781,
+								"size_y": 1738.79211425781
+							},
+							{
+								"fitness": 0.635177233987603,
+								"metric_score": 25.0048747417355,
+								"position_x": 329,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1893.04724121094,
+								"size_y": 1893.04724121094
+							},
+							{
+								"fitness": 0.625044456460916,
+								"metric_score": 25.7866864669422,
+								"position_x": 286,
+								"position_y": 869,
+								"rotation": 0,
+								"size_x": 1578.94860839844,
+								"size_y": 1578.94860839844
+							},
+							{
+								"fitness": 0.624166626312844,
+								"metric_score": 25.8483906895661,
+								"position_x": 226,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1973.337890625,
+								"size_y": 1973.337890625
+							},
+							{
+								"fitness": 0.622766415934917,
+								"metric_score": 25.8718879132231,
+								"position_x": 189,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1846.00817871094,
+								"size_y": 1846.00817871094
+							},
+							{
+								"fitness": 0.621866592953685,
+								"metric_score": 25.9726142820248,
+								"position_x": 591,
+								"position_y": 788,
+								"rotation": 0,
+								"size_x": 1347.60888671875,
+								"size_y": 1347.60888671875
+							},
+							{
+								"fitness": 0.620234886148416,
+								"metric_score": 26.1939404700413,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2045.45007324219,
+								"size_y": 2045.45007324219
+							},
+							{
+								"fitness": 0.620145300662879,
+								"metric_score": 26.200030668905,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2044.52697753906,
+								"size_y": 2044.52697753906
+							},
+							{
+								"fitness": 0.619373466554752,
+								"metric_score": 26.254025697314,
+								"position_x": 450,
+								"position_y": 807,
+								"rotation": 0,
+								"size_x": 1309.15563964844,
+								"size_y": 1309.15563964844
+							},
+							{
+								"fitness": 0.618908186983471,
+								"metric_score": 26.4260766399793,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2352.71215820312,
+								"size_y": 2352.71215820312
+							},
+							{
+								"fitness": 0.618453601175103,
+								"metric_score": 26.2424021823347,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1903.482421875,
+								"size_y": 1903.482421875
+							},
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007747933884,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.617092197722968,
+								"metric_score": 26.2865993026859,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1829.15197753906,
+								"size_y": 1829.15197753906
+							},
+							{
+								"fitness": 0.616991514936295,
+								"metric_score": 26.6861957644628,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2574.33984375,
+								"size_y": 2574.33984375
+							},
+							{
+								"fitness": 0.616585286458333,
+								"metric_score": 26.3001872417355,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1803.263671875,
+								"size_y": 1803.263671875
+							},
+							{
+								"fitness": 0.616525831826791,
+								"metric_score": 26.4204141916322,
+								"position_x": 505,
+								"position_y": 912,
+								"rotation": 0,
+								"size_x": 1541.83325195312,
+								"size_y": 1541.83325195312
+							},
+							{
+								"fitness": 0.616373832429408,
+								"metric_score": 26.7484536415289,
+								"position_x": 436,
+								"position_y": 815,
+								"rotation": 0,
+								"size_x": 1766.30126953125,
+								"size_y": 1766.30126953125
+							},
+							{
+								"fitness": 0.615775116219008,
+								"metric_score": 26.2315373192149,
+								"position_x": 640,
+								"position_y": 779,
+								"rotation": 0,
+								"size_x": 1270.64379882812,
+								"size_y": 1270.64379882812
+							},
+							{
+								"fitness": 0.615109210894456,
+								"metric_score": 26.4605888429752,
+								"position_x": 640,
+								"position_y": 730,
+								"rotation": 0,
+								"size_x": 1433.41027832031,
+								"size_y": 1433.41027832031
+							},
+							{
+								"fitness": 0.61453921315427,
+								"metric_score": 26.7574460872934,
+								"position_x": 256,
+								"position_y": 800,
+								"rotation": 0,
+								"size_x": 1898.94653320312,
+								"size_y": 1898.94653320312
+							},
+							{
+								"fitness": 0.612931180591426,
+								"metric_score": 26.7810595299587,
+								"position_x": 551,
+								"position_y": 761,
+								"rotation": 0,
+								"size_x": 1376.18884277344,
+								"size_y": 1376.18884277344
+							},
+							{
+								"fitness": 0.61288416838843,
+								"metric_score": 26.5640043904959,
+								"position_x": 640,
+								"position_y": 699,
+								"rotation": 0,
+								"size_x": 1356.66369628906,
+								"size_y": 1356.66369628906
+							},
+							{
+								"fitness": 0.612116302406164,
+								"metric_score": 26.6425974948347,
+								"position_x": 461,
+								"position_y": 774,
+								"rotation": 0,
+								"size_x": 922.16650390625,
+								"size_y": 922.16650390625
+							},
+							{
+								"fitness": 0.611623111441116,
+								"metric_score": 27.1337228822314,
+								"position_x": 360,
+								"position_y": 683,
+								"rotation": 0,
+								"size_x": 1539.755859375,
+								"size_y": 1539.755859375
+							},
+							{
+								"fitness": 0.623870765538912,
+								"metric_score": 25.9620270532025,
+								"position_x": 443,
+								"position_y": 843,
+								"rotation": 0,
+								"size_x": 1551.69226074219,
+								"size_y": 1551.69226074219
+							},
+							{
+								"fitness": 0.620380966985193,
+								"metric_score": 26.1963019757231,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2090.3955078125,
+								"size_y": 2090.3955078125
+							},
+							{
+								"fitness": 0.619889188403926,
+								"metric_score": 26.2085889075413,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2020.68603515625,
+								"size_y": 2020.68603515625
+							},
+							{
+								"fitness": 0.619306075671488,
+								"metric_score": 26.3879293646694,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2333.60888671875,
+								"size_y": 2333.60888671875
+							},
+							{
+								"fitness": 0.618883234870007,
+								"metric_score": 26.1062128744835,
+								"position_x": 640,
+								"position_y": 762,
+								"rotation": 0,
+								"size_x": 1392.78100585938,
+								"size_y": 1392.78100585938
+							},
+							{
+								"fitness": 0.617246349324208,
+								"metric_score": 26.6542129390496,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2553.1044921875,
+								"size_y": 2553.1044921875
+							},
+							{
+								"fitness": 0.616661689695248,
+								"metric_score": 26.3145758006198,
+								"position_x": 154,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1882.28894042969,
+								"size_y": 1882.28894042969
+							},
+							{
+								"fitness": 0.616556971526343,
+								"metric_score": 26.5120706353306,
+								"position_x": 530,
+								"position_y": 842,
+								"rotation": 0,
+								"size_x": 1584.66345214844,
+								"size_y": 1584.66345214844
+							},
+							{
+								"fitness": 0.616300657498278,
+								"metric_score": 26.3904910253099,
+								"position_x": 417,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1534.66284179688,
+								"size_y": 1534.66284179688
+							},
+							{
+								"fitness": 0.614234945334022,
+								"metric_score": 27.0114766270661,
+								"position_x": 640,
+								"position_y": 845,
+								"rotation": 0,
+								"size_x": 2560.20434570312,
+								"size_y": 2560.20434570312
+							},
+							{
+								"fitness": 0.613339157735021,
+								"metric_score": 26.4241719395661,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1638.94055175781,
+								"size_y": 1638.94055175781
+							},
+							{
+								"fitness": 0.61244215952135,
+								"metric_score": 26.8072653021694,
+								"position_x": 640,
+								"position_y": 753,
+								"rotation": 0,
+								"size_x": 1593.09008789062,
+								"size_y": 1593.09008789062
+							},
+							{
+								"fitness": 0.61019613302772,
+								"metric_score": 26.6019127711777,
+								"position_x": 640,
+								"position_y": 952,
+								"rotation": 0,
+								"size_x": 1506.10717773438,
+								"size_y": 1506.10717773438
+							},
+							{
+								"fitness": 0.605562841662362,
+								"metric_score": 26.9006795583678,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1463.51306152344,
+								"size_y": 1463.51306152344
+							},
+							{
+								"fitness": 0.605181229016012,
+								"metric_score": 27.6646855630165,
+								"position_x": 640,
+								"position_y": 777,
+								"rotation": 0,
+								"size_x": 2392.02783203125,
+								"size_y": 2392.02783203125
+							},
+							{
+								"fitness": 0.605081622331267,
+								"metric_score": 26.9350997546488,
+								"position_x": 640,
+								"position_y": 837,
+								"rotation": 0,
+								"size_x": 1124.27185058594,
+								"size_y": 1124.27185058594
+							},
+							{
+								"fitness": 0.603631507726412,
+								"metric_score": 27.225962035124,
+								"position_x": 85,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1946.11218261719,
+								"size_y": 1946.11218261719
+							},
+							{
+								"fitness": 0.602433402741908,
+								"metric_score": 27.3937467716942,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2449.75830078125,
+								"size_y": 2449.75830078125
+							},
+							{
+								"fitness": 0.601123584925964,
+								"metric_score": 27.2994415030992,
+								"position_x": 512,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1259.30151367188,
+								"size_y": 1259.30151367188
+							},
+							{
+								"fitness": 0.601110671702824,
+								"metric_score": 27.8100594008264,
+								"position_x": 640,
+								"position_y": 702,
+								"rotation": 0,
+								"size_x": 1716.455078125,
+								"size_y": 1716.455078125
+							},
+							{
+								"fitness": 0.59881016754907,
+								"metric_score": 27.6227692407025,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2270.46337890625,
+								"size_y": 2270.46337890625
+							},
+							{
+								"fitness": 0.597249685240186,
+								"metric_score": 27.7121158316116,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2198.60571289062,
+								"size_y": 2198.60571289062
+							},
+							{
+								"fitness": 0.594727504089187,
+								"metric_score": 27.6497029958678,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1256.5859375,
+								"size_y": 1256.5859375
+							},
+							{
+								"fitness": 0.593698885158402,
+								"metric_score": 27.9188823605372,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2089.5166015625,
+								"size_y": 2089.5166015625
+							},
+							{
+								"fitness": 0.593610174005682,
+								"metric_score": 27.9139172262397,
+								"position_x": 197,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1437.81457519531,
+								"size_y": 1437.81457519531
+							}
+						],
+						[
+							{
+								"fitness": 0.638183190211777,
+								"metric_score": 24.8484730113636,
+								"position_x": 433,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1954.91979980469,
+								"size_y": 1954.91979980469
+							},
+							{
+								"fitness": 0.636623985773933,
+								"metric_score": 24.8579254907025,
+								"position_x": 311,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1738.79211425781,
+								"size_y": 1738.79211425781
+							},
+							{
+								"fitness": 0.635177233987603,
+								"metric_score": 25.0048747417355,
+								"position_x": 329,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1893.04724121094,
+								"size_y": 1893.04724121094
+							},
+							{
+								"fitness": 0.625044456460916,
+								"metric_score": 25.7866864669422,
+								"position_x": 286,
+								"position_y": 869,
+								"rotation": 0,
+								"size_x": 1578.94860839844,
+								"size_y": 1578.94860839844
+							},
+							{
+								"fitness": 0.624166626312844,
+								"metric_score": 25.8483987603306,
+								"position_x": 226,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1973.337890625,
+								"size_y": 1973.337890625
+							},
+							{
+								"fitness": 0.623870765538912,
+								"metric_score": 25.962018982438,
+								"position_x": 443,
+								"position_y": 843,
+								"rotation": 0,
+								"size_x": 1551.69226074219,
+								"size_y": 1551.69226074219
+							},
+							{
+								"fitness": 0.622766415934917,
+								"metric_score": 25.8718911415289,
+								"position_x": 189,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1846.00817871094,
+								"size_y": 1846.00817871094
+							},
+							{
+								"fitness": 0.621866592953685,
+								"metric_score": 25.9726126678719,
+								"position_x": 591,
+								"position_y": 788,
+								"rotation": 0,
+								"size_x": 1347.60888671875,
+								"size_y": 1347.60888671875
+							},
+							{
+								"fitness": 0.620380966985193,
+								"metric_score": 26.1963068181818,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2090.3955078125,
+								"size_y": 2090.3955078125
+							},
+							{
+								"fitness": 0.620234886148416,
+								"metric_score": 26.1939372417355,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2045.45007324219,
+								"size_y": 2045.45007324219
+							},
+							{
+								"fitness": 0.620145300662879,
+								"metric_score": 26.2000338972107,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2044.52697753906,
+								"size_y": 2044.52697753906
+							},
+							{
+								"fitness": 0.619889188403926,
+								"metric_score": 26.2085969783058,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2020.68603515625,
+								"size_y": 2020.68603515625
+							},
+							{
+								"fitness": 0.619373466554752,
+								"metric_score": 26.2540224690083,
+								"position_x": 450,
+								"position_y": 807,
+								"rotation": 0,
+								"size_x": 1309.15563964844,
+								"size_y": 1309.15563964844
+							},
+							{
+								"fitness": 0.619306075671488,
+								"metric_score": 26.387935821281,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2333.60888671875,
+								"size_y": 2333.60888671875
+							},
+							{
+								"fitness": 0.618908186983471,
+								"metric_score": 26.4260766399793,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2352.71215820312,
+								"size_y": 2352.71215820312
+							},
+							{
+								"fitness": 0.618883234870007,
+								"metric_score": 26.106219331095,
+								"position_x": 640,
+								"position_y": 762,
+								"rotation": 0,
+								"size_x": 1392.78100585938,
+								"size_y": 1392.78100585938
+							},
+							{
+								"fitness": 0.618453601175103,
+								"metric_score": 26.2424005681818,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1903.482421875,
+								"size_y": 1903.482421875
+							},
+							{
+								"fitness": 0.618276313382404,
+								"metric_score": 26.2007699509298,
+								"position_x": 516,
+								"position_y": 805,
+								"rotation": 0,
+								"size_x": 1130.4560546875,
+								"size_y": 1130.4560546875
+							},
+							{
+								"fitness": 0.617246349324208,
+								"metric_score": 26.6542080965909,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2553.1044921875,
+								"size_y": 2553.1044921875
+							},
+							{
+								"fitness": 0.617092197722968,
+								"metric_score": 26.2865993026859,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1829.15197753906,
+								"size_y": 1829.15197753906
+							},
+							{
+								"fitness": 0.616991514936295,
+								"metric_score": 26.686192536157,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2574.33984375,
+								"size_y": 2574.33984375
+							},
+							{
+								"fitness": 0.616661689695248,
+								"metric_score": 26.314572572314,
+								"position_x": 154,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1882.28894042969,
+								"size_y": 1882.28894042969
+							},
+							{
+								"fitness": 0.616585286458333,
+								"metric_score": 26.3001920841942,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1803.263671875,
+								"size_y": 1803.263671875
+							},
+							{
+								"fitness": 0.616556971526343,
+								"metric_score": 26.5120690211777,
+								"position_x": 530,
+								"position_y": 842,
+								"rotation": 0,
+								"size_x": 1584.66345214844,
+								"size_y": 1584.66345214844
+							},
+							{
+								"fitness": 0.616525831826791,
+								"metric_score": 26.4204125774793,
+								"position_x": 505,
+								"position_y": 912,
+								"rotation": 0,
+								"size_x": 1541.83325195312,
+								"size_y": 1541.83325195312
+							},
+							{
+								"fitness": 0.628763801007231,
+								"metric_score": 25.4131682592975,
+								"position_x": 247,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1732.06323242188,
+								"size_y": 1732.06323242188
+							},
+							{
+								"fitness": 0.624181893508953,
+								"metric_score": 25.9382118414256,
+								"position_x": 300,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2044.26806640625,
+								"size_y": 2044.26806640625
+							},
+							{
+								"fitness": 0.619949988162879,
+								"metric_score": 26.2434804364669,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2137.17822265625,
+								"size_y": 2137.17822265625
+							},
+							{
+								"fitness": 0.618767419399966,
+								"metric_score": 26.2792113248967,
+								"position_x": 567,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1851.51281738281,
+								"size_y": 1851.51281738281
+							},
+							{
+								"fitness": 0.618154512095386,
+								"metric_score": 26.1480872288223,
+								"position_x": 640,
+								"position_y": 899,
+								"rotation": 0,
+								"size_x": 1602.00830078125,
+								"size_y": 1602.00830078125
+							},
+							{
+								"fitness": 0.617715395252238,
+								"metric_score": 26.7015544292355,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2686.99169921875,
+								"size_y": 2686.99169921875
+							},
+							{
+								"fitness": 0.617668719331095,
+								"metric_score": 26.263071410124,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1853.67797851562,
+								"size_y": 1853.67797851562
+							},
+							{
+								"fitness": 0.617613636363636,
+								"metric_score": 26.2743204416322,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1863.38342285156,
+								"size_y": 1863.38342285156
+							},
+							{
+								"fitness": 0.617429219395661,
+								"metric_score": 26.2755794808884,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1846.39135742188,
+								"size_y": 1846.39135742188
+							},
+							{
+								"fitness": 0.617249846655475,
+								"metric_score": 26.2783735795455,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1834.19592285156,
+								"size_y": 1834.19592285156
+							},
+							{
+								"fitness": 0.617083992445765,
+								"metric_score": 26.7944602272727,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2918.921875,
+								"size_y": 2918.921875
+							},
+							{
+								"fitness": 0.616106488356577,
+								"metric_score": 26.5964020532025,
+								"position_x": 149,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2679.02758789062,
+								"size_y": 2679.02758789062
+							},
+							{
+								"fitness": 0.614934882382059,
+								"metric_score": 26.6388429752066,
+								"position_x": 640,
+								"position_y": 870,
+								"rotation": 0,
+								"size_x": 1880.75659179688,
+								"size_y": 1880.75659179688
+							},
+							{
+								"fitness": 0.614546140560434,
+								"metric_score": 26.897084839876,
+								"position_x": 333,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2433.6650390625,
+								"size_y": 2433.6650390625
+							},
+							{
+								"fitness": 0.611978628615703,
+								"metric_score": 27.0464101239669,
+								"position_x": 328,
+								"position_y": 703,
+								"rotation": 0,
+								"size_x": 1713.23327636719,
+								"size_y": 1713.23327636719
+							},
+							{
+								"fitness": 0.61115467082042,
+								"metric_score": 27.0096413352273,
+								"position_x": 153,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2901.7734375,
+								"size_y": 2901.7734375
+							},
+							{
+								"fitness": 0.609785331116563,
+								"metric_score": 27.0950962035124,
+								"position_x": 640,
+								"position_y": 848,
+								"rotation": 0,
+								"size_x": 1918.19812011719,
+								"size_y": 1918.19812011719
+							},
+							{
+								"fitness": 0.609345138171488,
+								"metric_score": 27.009450865186,
+								"position_x": 113,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2482.3896484375,
+								"size_y": 2482.3896484375
+							},
+							{
+								"fitness": 0.606545322722968,
+								"metric_score": 27.1693472365702,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2759.27026367188,
+								"size_y": 2759.27026367188
+							},
+							{
+								"fitness": 0.60649931936553,
+								"metric_score": 27.492306947314,
+								"position_x": 383,
+								"position_y": 649,
+								"rotation": 0,
+								"size_x": 1817.87426757812,
+								"size_y": 1817.87426757812
+							},
+							{
+								"fitness": 0.605253529614325,
+								"metric_score": 27.1832612345041,
+								"position_x": 489,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1462.10241699219,
+								"size_y": 1462.10241699219
+							},
+							{
+								"fitness": 0.601893670368457,
+								"metric_score": 27.779642303719,
+								"position_x": 640,
+								"position_y": 806,
+								"rotation": 0,
+								"size_x": 2006.42553710938,
+								"size_y": 2006.42553710938
+							},
+							{
+								"fitness": 0.599683020725723,
+								"metric_score": 27.5661899535124,
+								"position_x": 0,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 2324.796875,
+								"size_y": 2324.796875
+							},
+							{
+								"fitness": 0.599287351497934,
+								"metric_score": 27.3276116993802,
+								"position_x": 640,
+								"position_y": 968,
+								"rotation": 0,
+								"size_x": 1348.26977539062,
+								"size_y": 1348.26977539062
+							},
+							{
+								"fitness": 0.597767424780475,
+								"metric_score": 28.1266238378099,
+								"position_x": 640,
+								"position_y": 771,
+								"rotation": 0,
+								"size_x": 2020.6611328125,
+								"size_y": 2020.6611328125
+							}
+						]
+					],
+					"metric_score": 24.8484730113636,
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 300
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 10,
+							"mutation_rate": 10,
+							"mutation_strategy": "RANDOM",
+							"population_size": 50,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.5,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"size_x": 1954.91979980469,
+					"size_y": 1954.91979980469,
+					"time_taken": 0.996
+				}
+			]
+		}
+	]
+}
