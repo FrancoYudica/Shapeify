@@ -35,6 +35,7 @@ static func create_local_rd_texture_copy(
 	usage_bits: RenderingDevice.TextureUsageBits = (
 		RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT |
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT | 
+		RenderingDevice.TEXTURE_USAGE_CAN_COPY_TO_BIT | 
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT)
 	) -> RID:
 	var texture_global_rd_rid = RenderingServer.texture_get_rd_texture(

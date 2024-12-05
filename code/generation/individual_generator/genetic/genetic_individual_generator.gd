@@ -35,7 +35,9 @@ func _generate() -> Individual:
 		_calculate_individual_fitness(individual)
 		
 	for generation in range(genetic_params.generation_count - 1):
-	
+		
+		Profiler.genetic_population_generated(population, source_texture)
+		
 		# Sorts population descending
 		population.sort_custom(func(a, b): return a.fitness > b.fitness)
 		

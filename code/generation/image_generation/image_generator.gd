@@ -44,8 +44,7 @@ func generate_image() -> RendererTexture:
 		var individual: Individual = individual_generator.generate_individual()
 		
 		individual_renderer.render_individual(individual)
-		var individual_texture = individual_renderer.get_color_attachment_texture().copy()
-		individual_generator.source_texture = individual_texture
+		source_texture.copy_contents(individual_renderer.get_color_attachment_texture())
 		individual_generated.emit(individual)
 		_stop_condition.individual_generated(individual)
 	

@@ -43,3 +43,26 @@ func _generate() -> Individual:
 	
 	# Returns the individual with highest fitness
 	return population[0]
+
+
+#func _generate() -> Individual:
+	#
+	#var population: Array[Individual] = populator.generate_population(
+		#params.best_of_random_params.individual_count, 
+		#params.populator_params)
+	#
+	#var individual = population.pick_random()
+	#
+	##for individual in population:
+	#for i in range(population.size()):
+		#
+		#_fix_individual_properties(individual)
+		#_color_sampler_strategy.set_sample_color(individual)
+#
+		##individual_renderer.render_individual(individual)
+		##fitness_calculator.calculate_fitness(
+			##individual, 
+			##individual_renderer.get_color_attachment_texture())
+	#
+	#population.sort_custom(func(a, b): return a.fitness > b.fitness)
+	#return population[0]

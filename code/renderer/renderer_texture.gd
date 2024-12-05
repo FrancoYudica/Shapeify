@@ -42,6 +42,7 @@ func copy() -> RendererTexture:
 		rd_rid)
 	
 	format.usage_bits |= RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT
+	format.usage_bits |= RenderingDevice.TEXTURE_USAGE_CAN_COPY_TO_BIT
 	
 	var texture_data = Renderer.rd.texture_get_data(rd_rid, 0)
 	var new_rd_rid = Renderer.rd.texture_create(
@@ -53,6 +54,40 @@ func copy() -> RendererTexture:
 	var new_texture := RendererTexture.new()
 	new_texture.rd_rid = new_rd_rid
 	return new_texture
+
+func copy_empty() -> RendererTexture:
+	var format = RenderingCommon.texture_format_copy(
+		Renderer.rd,
+		rd_rid)
+	
+	format.usage_bits |= RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT
+	format.usage_bits |= RenderingDevice.TEXTURE_USAGE_CAN_COPY_TO_BIT
+	
+	var new_rd_rid = Renderer.rd.texture_create(
+		format,
+		RDTextureView.new(),
+		[]
+	)
+	
+	var new_texture := RendererTexture.new()
+	new_texture.rd_rid = new_rd_rid
+	return new_texture
+
+func copy_contents(other: RendererTexture) -> void:
+	var err = Renderer.rd.texture_copy(
+		other.rd_rid,
+		rd_rid,
+		Vector3(0, 0, 0),
+		Vector3(0, 0, 0),
+		Vector3(_size.x, _size.y, 0),
+		0,
+		0,
+		0, 
+		0
+	)
+	
+	if err != OK:
+		push_error("Error while copying textures")
 
 func is_valid() -> bool:
 	return rd_rid.is_valid() and Renderer.rd.texture_is_valid(rd_rid)

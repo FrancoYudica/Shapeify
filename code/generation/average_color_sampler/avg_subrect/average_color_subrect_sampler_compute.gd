@@ -89,6 +89,10 @@ func sample_rect(rect: Rect2i) -> Color:
 	_rd.free_rid(storage_buffer_result_rid)
 
 	_output_uniform.clear_ids()
+	
+	if _rd.uniform_set_is_valid(uniform_set_rid):
+		_rd.free_rid(uniform_set_rid)
+
 	var avg_color = accumulated_color / sample_count
 	return avg_color
 

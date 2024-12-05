@@ -65,3 +65,14 @@ func copy() -> Individual:
 	ind.tint = tint
 	ind.fitness = fitness
 	return ind
+
+
+func to_dict() -> Dictionary:
+	return {
+		"position_x": position.x,
+		"position_y": position.y,
+		"size_x": size.x,
+		"size_y": size.y,
+		"rotation": rotation,
+		"fitness": fitness
+	}

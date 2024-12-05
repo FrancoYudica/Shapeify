@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=16 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="2_b17pl"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_2w52m"]
@@ -6,32 +6,18 @@
 [ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="6_sulhk"]
 [ext_resource type="Texture2D" uid="uid://be4ljnjq5seok" path="res://art/test/target_circles_64x64.png" id="7_cmfgk"]
+[ext_resource type="Script" path="res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd" id="8_e401f"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
-[ext_resource type="Texture2D" uid="uid://bxcehm4q4nk5" path="res://art/simple_shapes/square_0.png" id="9_h7nui"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="10_6k7v2"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
-[ext_resource type="Texture2D" uid="uid://brgpyb4culfcr" path="res://art/icons/upload_icon.jpg" id="14_yqiyu"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
-[sub_resource type="Texture2D" id="Texture2D_weah6"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("12_6munh")
-_src_texture = ExtResource("9_h7nui")
-
-[sub_resource type="Texture2D" id="Texture2D_88gyn"]
+[sub_resource type="Texture2D" id="Texture2D_5wpd7"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("12_6munh")
 _src_texture = ExtResource("8_idbn2")
-
-[sub_resource type="Texture2D" id="Texture2D_3c1pm"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("12_6munh")
-_src_texture = ExtResource("14_yqiyu")
 
 [sub_resource type="Texture2D" id="Texture2D_whorf"]
 resource_local_to_scene = false
@@ -45,11 +31,11 @@ _src_texture = ExtResource("7_cmfgk")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "population_size_input")]
 script = ExtResource("13_jgyce")
-individual_textures = Array[ExtResource("2_b17pl")]([SubResource("Texture2D_weah6"), SubResource("Texture2D_88gyn"), SubResource("Texture2D_3c1pm")])
+individual_textures = Array[ExtResource("2_b17pl")]([SubResource("Texture2D_5wpd7")])
 target_texture = SubResource("Texture2D_whorf")
 individual_generator_script = ExtResource("5_llgun")
 individual_renderer_script = ExtResource("4_2w52m")
-average_color_sampler_script = ExtResource("10_6k7v2")
+average_color_sampler_script = ExtResource("8_e401f")
 fitness_calculator_script = ExtResource("4_soxav")
 populator_script = ExtResource("6_sulhk")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")

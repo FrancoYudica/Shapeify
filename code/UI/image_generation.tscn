@@ -715,13 +715,14 @@ layout_mode = 2
 tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
 text = "Render while generating"
 
-[node name="ProfilerParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer" node_paths=PackedStringArray("profile", "save_button")]
+[node name="ProfilerParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer" node_paths=PackedStringArray("profile", "save_button", "profile_depth")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 script = ExtResource("51_klyxb")
 profile = NodePath("MarginContainer/VBoxContainer/ProfileCheckBox")
 save_button = NodePath("MarginContainer/VBoxContainer/SaveButton")
+profile_depth = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ProfileDepthOptionButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer"]
 layout_mode = 2
@@ -742,6 +743,17 @@ text = "Profiler"
 layout_mode = 2
 tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
 text = "Profile"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Profile depth"
+
+[node name="ProfileDepthOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
