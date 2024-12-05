@@ -168,6 +168,7 @@ Existen estudios similares que debido a la aleatorización de colores se han enc
 ##### MSE (Mean Squared Error)
 
 ![](imgs/formulas/MSE.png)
+_[Figura 1] Fórmula de error cuadrático medio sobre imágenes en espacio de color RGB._
 
 Donde:
 
@@ -180,6 +181,7 @@ Nótese que MSE está dividido por la cantidad de canales, motivo por el cuál M
 Luego, el fitness se calcula como:
 
 ![](imgs/formulas/MSE-Fitness.png)
+_[Figura 2] Fitness partiendo de MSE._
 
 Esto se debe a que el fitness debe medir la similitud y no el error.
 
@@ -190,6 +192,7 @@ MSE es una posible función de fitness que logrará su tarea, pero la distribuci
 Debido a los motivos mensionados anteriormente, se decidió implementar otra función de fitness:
 
 ![](imgs/formulas/MPANPower.png)
+_[Figura 3]_ Fórmula de fitness utilizando MPA.
 
 A primera vista resulta similar a MSE, pero en realidad tiene una gran diferencia. En lugar de realizar la sumatoria del error cuadrático, se realiza la sumatoria de la exactitud potenciada a cierto valor.
 
@@ -198,6 +201,7 @@ De esta forma la penalización aumenta sobre aquellos canales cuyo error sea may
 La siguiente función de fitness es la planteada en [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703), la cuál utiliza la potencia `n = 4`:
 
 ![](imgs/formulas/MPA4Power.png)
+_[Figura 4] Fórmula MPA con potencia 4._
 
 #### Inicialización del algoritmo
 
@@ -304,6 +308,7 @@ El cálculo de _Delta E (ΔE)_ se realiza sobre el espacio de colores uniforme _
 Una vez realizada tal transformación, obteniendo las componentes de cada pixel _(L, a, b)_, se evalua la función de _Delta E (ΔE)_, y se calcula la media de la siguiente manera:
 
 ![](imgs/formulas/average_delta_e.png)
+_[Figura 5] - ΔE medio sobre imágenes en espacio de color CEILab_
 
 - **N** es la cantidad de pixeles de las imágenes, cantidad que debe coincidir.
 - **(L, a, b)** son los canales del espacio de color _CEILab_.
@@ -319,6 +324,73 @@ Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
 - [**GDScript**](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html): Lenguaje de programación empleado para la lógica del proyecto.
 - [**GLSL**](<https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)>): Lenguaje utilizado para la programación de shaders y paralelización de múltiples tareas.
 - [**Python**](https://www.python.org/) y la biblioteca [**matplotlib**](https://matplotlib.org/): Herramientas utilizadas para la generación de gráficos y visualización de datos.
+
+## Experimentos y resultados obtenidos
+
+### Caso de prueba básico
+
+Para poner a prueba el algoritmo de generación de individuos, se decidió definir la imagen objetivo más simple posible, pero que ponga a prueba las capacidades del algoritmo genético.
+
+![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png)
+_[Figura 6] - Imagen objetivo del caso de prueba básico_
+
+En la fugura 6 se puede observar una simple imagen de resolución 128x128px, la cuál tiene como objetivo poner a prueba las capacidades del algoritmo genético tanto en la determinación de posición, tamaño, color y rotación. Nótese que se ha seleccionado un rectángulo con el objetivo de que el algoritmo también deba optimizar el atributo genético de la rotación.
+
+Para simplificar las cosas aun más, los individuos solo podrán tomar una textura, ilustrada por la figura 7, la cuál coincide con el rectángulo blanco que se busca replicar de la figura 6.
+
+![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png)
+_[Figura 7] - Textura utilizada por los individuos_.
+
+Además, la _imagen fuente_, es decir, sobre la cuál se renderizarán los individuos es la siguiente:
+
+![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png)
+_[Figura 8] - Imagen fuente_.
+
+Se plantea este escenario porque es posible agregar un individuo sobre la imagen fuente y obtener una imagen igual a la objetivo.
+
+#### Resultados
+
+El algoritmo cuenta con los siguientes parámetros:
+
+| Parámetro                | Valor |
+| ------------------------ | ----- |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 0.2   |
+
+Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
+| Attribute | Value |
+|----------------|------------------|
+| Fitness | 0.95458984375 |
+| Metric Score | 4.541015625 |
+| Position X | 63 |
+| Position Y | 60 |
+| Size X | 96.3577575683594 |
+| Size Y | 108.490371704102 |
+| Rotation | 3.27535051368461 |
+
+En la figura 9 se puede observar la imagen fuente del individuo.
+
+![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png)
+_[Figura 9] - Imagen fuente del individuo generado_.
+
+La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
+![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png)
+_[Figura 10] - Métrica media por generación_.
+
+La figura 11 ilustra los gráficos de caja y se observa que la dispersión de los valores de métrica de cada individuo disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
+![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png)
+_[Figura 11] - Gráficos de caja de métrica por generación_.
+
+Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor de la mejor solución candidata en cada generación:
+![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png)
+_[Figura 12] - Valor de la métrica del mejor individuo de cada generación_.
+
+La figura 13 muesta la posición de los individuos en cada una de las generaciones:
+![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif)
+_[Figura 13] - Posiciones de individuos por generación_.
+
+### Caso real con Mona Lisa
 
 # Bibliografía
 

@@ -126,9 +126,9 @@ def plot_generations_min_score(generations, folder):
     plt.plot(range(1, len(max_metric_score) + 1), max_metric_score, marker='o', linestyle='-', color='b')
 
     # Customize the plot
-    plt.title("Max Delta E 94 Over Generations")
+    plt.title("Min Delta E 94 Over Generations")
     plt.xlabel("Generation Number")
-    plt.ylabel("Max Delta E 94")
+    plt.ylabel("Min Delta E 94")
     plt.grid()
     
     # Save the plot to an image

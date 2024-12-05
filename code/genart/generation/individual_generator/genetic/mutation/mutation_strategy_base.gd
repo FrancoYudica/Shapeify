@@ -8,3 +8,6 @@ enum Type
 
 func mutate(individual: Individual) -> void:
 	return
+
+func set_params(params: GeneticIndividualGeneratorParams) -> void:
+	pass

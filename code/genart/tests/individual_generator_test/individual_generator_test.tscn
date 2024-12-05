@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Resource" uid="uid://da7g40v5lfd28" path="res://tests/individual_generator_test/simple_convergence_individual_generator_params_test.tres" id="2_k60tq"]
+[ext_resource type="Resource" uid="uid://da7g40v5lfd28" path="res://tests/individual_generator_test/params_optimizations/precise_individual_generator_params_test.tres" id="2_yfadj"]
+[ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/convergence_tests/convergence_rectangle_target_test.png" id="10_uyasf"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
+
+[sub_resource type="Texture2D" id="Texture2D_4uqcx"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("10_uyasf")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
@@ -10,7 +18,8 @@
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "save_button", "individual_generator_option")]
 script = ExtResource("13_jgyce")
-individual_generator_parms = ExtResource("2_k60tq")
+individual_generator_parms = ExtResource("2_yfadj")
+target_texture = SubResource("Texture2D_4uqcx")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
 save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
 individual_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IndividualGeneratorOptionButton")

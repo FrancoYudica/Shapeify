@@ -45,6 +45,8 @@ func _generate() -> Individual:
 			population, 
 			population.size())
 		
+		#genetic_params.mutation_factor = 1.0 - 0.5 * float(generation) / genetic_params.generation_count
+		
 		for i in range(population.size()):
 			var parent_a = mating_pool.pick_random()
 			var parent_b = mating_pool.pick_random()
@@ -110,7 +112,9 @@ func _setup():
 			_mutation_strategy = load("res://generation/individual_generator/genetic/mutation/random_mutation_strategy.gd").new()
 		_:
 			push_error("Mutation strategy not implemented")
-
+	
+	_mutation_strategy.set_params(genetic_params)
+	
 	# Creates survivor selection strategy --------------------------------------
 	match genetic_params.survivor_selection_strategy:
 		SurvivorSelectionStrategy.Type.KEEP_CHILDREN:

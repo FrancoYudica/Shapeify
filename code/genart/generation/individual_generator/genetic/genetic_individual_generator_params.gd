@@ -4,6 +4,7 @@ class_name GeneticIndividualGeneratorParams extends Resource
 @export var population_size: int = 50
 @export var fitness_calculator := FitnessCalculator.Type.MPA_RGB
 @export var mutation_rate: float = 0.05
+@export var mutation_factor: float = 1.0
 
 @export var selection_strategy := SelectionStrategy.Type.Ranking
 @export var crossover_strategy := CrossoverStrategy.Type.ATTRIBUTE_SPECIFIC_BLEND_RANDOM

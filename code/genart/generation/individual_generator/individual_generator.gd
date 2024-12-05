@@ -74,6 +74,10 @@ func clear_source_texture():
 var _current_sampler_strategy : ColorSamplerStrategy.Type
 
 func _setup():
+	
+	if source_texture == null:
+		clear_source_texture()
+	
 	_individual_renderer.source_texture = source_texture
 
 	# Setup populator params ---------------------------------------------------
@@ -124,6 +128,9 @@ func _fix_individual_properties(individual: Individual):
 		individual.size.x = source_texture.get_width() * params.fixed_size_width_ratio
 		var aspect = float(individual.texture.get_height()) / individual.texture.get_width()
 		individual.size.y = individual.size.x * aspect
+
+	individual.size.x = max(individual.size.x, 1.0)
+	individual.size.y = max(individual.size.y, 1.0)
 
 func _init() -> void:
 	_subrect_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd").new()
