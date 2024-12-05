@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
+
+[ext_resource type="Resource" uid="uid://da7g40v5lfd28" path="res://tests/individual_generator_test/params_optimizations/precise_individual_generator_params_test.tres" id="2_yfadj"]
+[ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/convergence_tests/convergence_rectangle_target_test.png" id="10_uyasf"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
+[ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
+[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
+
+[sub_resource type="Texture2D" id="Texture2D_4uqcx"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_6munh")
+_src_texture = ExtResource("10_uyasf")
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
+
+[node name="IndividualGeneratorTest" type="Node"]
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "save_button", "individual_generator_option")]
+script = ExtResource("13_jgyce")
+individual_generator_parms = ExtResource("2_yfadj")
+target_texture = SubResource("Texture2D_4uqcx")
+output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
+save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
+individual_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IndividualGeneratorOptionButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Individual generator"
+
+[node name="IndividualGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProfilingCheckBox" type="CheckBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Profiling"
+
+[node name="SaveProfilingButton" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Generate"
+
+[node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("Texture2DRD_vyacx")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("15_yx5fx")
+
+[connection signal="toggled" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ProfilingCheckBox" to="UICanvasLayer" method="_on_profiling_check_box_toggled"]
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton" to="UICanvasLayer" method="_on_save_profiling_button_pressed"]
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]
