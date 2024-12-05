@@ -1,31 +1,29 @@
 extends IndividualGenerator
 
-var _texture_size: Vector2
 var _crossover_strategy: CrossoverStrategy
 var _mutation_strategy: MutationStrategy
 var _selection_strategy: SelectionStrategy
 var _survivor_selection_strategy: SurvivorSelectionStrategy
+var _fitness_calculator: FitnessCalculator
 
 func _calculate_individual_fitness(individual: Individual):
 	_color_sampler_strategy.set_sample_color(individual)
 	
 	# Renders to get the individual source texture
-	individual_renderer.render_individual(individual)
+	_individual_renderer.render_individual(individual)
 	
 	# Calculates fitness
-	fitness_calculator.calculate_fitness(
+	_fitness_calculator.calculate_fitness(
 		individual, 
-		individual_renderer.get_color_attachment_texture())
+		_individual_renderer.get_color_attachment_texture())
 
 
 func _generate() -> Individual:
 	
-	_initialize_components()
-	
 	var genetic_params := params.genetic_params
 	
 	# Creates initial population
-	var population: Array[Individual] = populator.generate_population(
+	var population: Array[Individual] = _populator.generate_population(
 		genetic_params.population_size,
 		params.populator_params)
 	
@@ -71,9 +69,9 @@ func _generate() -> Individual:
 	
 	
 
-func _initialize_components():
+func _setup():
+	super._setup()
 	
-	_texture_size = params.target_texture.get_size()
 	var genetic_params := params.genetic_params
 
 	# Creates selection strategy -----------------------------------------------
@@ -129,12 +127,12 @@ func _initialize_components():
 	# Creates fitness calculator -----------------------------------------------
 	match genetic_params.fitness_calculator:
 		FitnessCalculator.Type.MPA_CEILab:
-			fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MPA_RGB:
-			fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MSE:
-			fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
 		_:
 			push_error("Unimplemented fitness calculator: %s" % genetic_params.fitness_calculator)
 	
-	fitness_calculator.target_texture = params.target_texture
+	_fitness_calculator.target_texture = params.target_texture

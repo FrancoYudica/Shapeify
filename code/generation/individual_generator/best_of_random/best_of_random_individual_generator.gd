@@ -1,5 +1,6 @@
 extends IndividualGenerator
 
+var _fitness_calculator: FitnessCalculator
 
 func _generate() -> Individual:
 	
@@ -8,7 +9,7 @@ func _generate() -> Individual:
 	var total_render_time: float = 0
 	var clock = Clock.new()
 	# Creates population
-	var population: Array[Individual] = populator.generate_population(
+	var population: Array[Individual] = _populator.generate_population(
 		params.best_of_random_params.individual_count, 
 		params.populator_params)
 	#clock.print_elapsed("Population created. ")
@@ -24,14 +25,14 @@ func _generate() -> Individual:
 
 		# Renders to get the individual source texture
 		clock.restart()
-		individual_renderer.render_individual(individual)
+		_individual_renderer.render_individual(individual)
 		total_render_time += clock.elapsed_ms()
 
 		# Calculates fitness
 		clock.restart()
-		fitness_calculator.calculate_fitness(
+		_fitness_calculator.calculate_fitness(
 			individual, 
-			individual_renderer.get_color_attachment_texture())
+			_individual_renderer.get_color_attachment_texture())
 		total_fitness_time += clock.elapsed_ms()
 	
 	#print("Total render time: %s" % total_render_time)
@@ -45,24 +46,19 @@ func _generate() -> Individual:
 	return population[0]
 
 
-#func _generate() -> Individual:
-	#
-	#var population: Array[Individual] = populator.generate_population(
-		#params.best_of_random_params.individual_count, 
-		#params.populator_params)
-	#
-	#var individual = population.pick_random()
-	#
-	##for individual in population:
-	#for i in range(population.size()):
-		#
-		#_fix_individual_properties(individual)
-		#_color_sampler_strategy.set_sample_color(individual)
-#
-		##individual_renderer.render_individual(individual)
-		##fitness_calculator.calculate_fitness(
-			##individual, 
-			##individual_renderer.get_color_attachment_texture())
-	#
-	#population.sort_custom(func(a, b): return a.fitness > b.fitness)
-	#return population[0]
+func _setup():
+	super._setup()
+	
+	var best_of_random_params := params.best_of_random_params
+	# Creates fitness calculator -----------------------------------------------
+	match best_of_random_params.fitness_calculator:
+		FitnessCalculator.Type.MPA_CEILab:
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MPA_RGB:
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MSE:
+			_fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
+		_:
+			push_error("Unimplemented fitness calculator: %s" % best_of_random_params.fitness_calculator)
+	
+	_fitness_calculator.target_texture = params.target_texture

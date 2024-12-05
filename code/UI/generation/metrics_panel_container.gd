@@ -17,8 +17,7 @@ func _update_metrics():
 	if not is_visible_in_tree():
 		return
 	
-	generator_label.text = ImageGeneratorParams \
-							.IndividualGeneratorType \
+	generator_label.text = IndividualGenerator.Type \
 							.keys()[
 								Globals \
 								.settings \
@@ -28,5 +27,5 @@ func _update_metrics():
 	metrics_label.text = ""
 	for metric: Metric in image_generation.metrics:
 		metric.target_texture = Globals.settings.image_generator_params.individual_generator_params.target_texture
-		var result = metric.compute(image_generation.individual_generator.source_texture)
+		var result = metric.compute(image_generation.image_generator.individual_generator.source_texture)
 		metrics_label.text = "%s%s: %s\n" % [metrics_label.text, metric.metric_name, result]

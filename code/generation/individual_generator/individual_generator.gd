@@ -3,10 +3,15 @@
 # minimizes the error metric relative to the target texture.
 class_name IndividualGenerator extends RefCounted
 
+enum Type{
+	Random,
+	BestOfRandom,
+	Genetic
+}
+
 var _color_sampler_strategy: ColorSamplerStrategy
-var fitness_calculator: FitnessCalculator
-var individual_renderer: IndividualRenderer
-var populator: Populator
+var _individual_renderer: IndividualRenderer
+var _populator: Populator
 
 var source_texture: RendererTexture
 
@@ -23,7 +28,6 @@ func update_target_texture(target_texture: RendererTexture):
 		printerr("Trying to initialize IndividualGenerator but target_texture is invalid")
 		return
 		
-	fitness_calculator.target_texture = target_texture
 	clear_source_texture()
 
 func generate_individual() -> Individual:
@@ -71,7 +75,7 @@ func clear_source_texture():
 var _current_sampler_strategy : ColorSamplerStrategy.Type
 
 func _setup():
-	individual_renderer.source_texture = source_texture
+	_individual_renderer.source_texture = source_texture
 
 	# Setup populator params ---------------------------------------------------
 	params.populator_params.position_bound_min = Vector2.ZERO
@@ -80,7 +84,6 @@ func _setup():
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
 	
 	# Setup color sampler strategy ---------------------------------------------
-	
 	if _current_sampler_strategy != params.color_sampler or _color_sampler_strategy == null:
 	
 		match params.color_sampler:
@@ -93,6 +96,10 @@ func _setup():
 				
 		_color_sampler_strategy.sample_texture = params.target_texture
 		_current_sampler_strategy = params.color_sampler
+	
+	# Setup populator ----------------------------------------------------------
+	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()
+	
 	
 func _generate() -> Individual:
 	return
@@ -121,3 +128,4 @@ func _fix_individual_properties(individual: Individual):
 
 func _init() -> void:
 	_subrect_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd").new()
+	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()

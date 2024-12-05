@@ -1,14 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
-[ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd" id="3_8s4ij"]
-[ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator.gd" id="3_pcmmn"]
-[ext_resource type="Script" path="res://generation/image_generation/image_generator.gd" id="4_xk4f6"]
-[ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="6_wgytt"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd" id="7_jndj8"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="8_h52c8"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
-[ext_resource type="Script" path="res://generation/individual_generator/common/random_populator.gd" id="9_vigal"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
 [ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_fitnenss_metric.gd" id="10_s37im"]
@@ -73,13 +66,6 @@ corner_radius_bottom_left = 12
 
 [node name="ImageGeneration" type="Node"]
 script = ExtResource("1_h14uf")
-image_generator_script = ExtResource("4_xk4f6")
-random_individual_generator_script = ExtResource("3_8s4ij")
-genetic_individual_generator_script = ExtResource("3_pcmmn")
-individual_renderer_script = ExtResource("6_wgytt")
-average_color_sampler_script = ExtResource("7_jndj8")
-fitness_calculator_script = ExtResource("8_h52c8")
-populator_script = ExtResource("9_vigal")
 metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("11_r0x3m"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
 
 [node name="ImageLoader" type="Node" parent="."]
@@ -497,6 +483,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="GeneticSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "fitness_option", "selection_option", "crossover_option", "mutation_option", "survivor_selection_option")]
+visible = false
 layout_mode = 2
 script = ExtResource("25_jv4l3")
 generations = NodePath("GeneticGenerationsSpinBox")
@@ -616,10 +603,11 @@ layout_mode = 2
 max_value = 30.0
 prefix = "Tournament size"
 
-[node name="RandomSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("individual_count")]
+[node name="RandomSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("individual_count", "fitness_option")]
 layout_mode = 2
 script = ExtResource("43_dmfwt")
 individual_count = NodePath("IndividualCountSpinBox")
+fitness_option = NodePath("FitnessHBoxContainer/FitnessOptionButton")
 
 [node name="IndividualCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer"]
 layout_mode = 2
@@ -627,6 +615,18 @@ min_value = 1.0
 max_value = 10000.0
 value = 100.0
 prefix = "Individual count"
+
+[node name="FitnessHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+text = "Fitness
+"
+
+[node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="IndividualPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer" node_paths=PackedStringArray("keep_aspect_ratio", "clamp_position", "fixed_rotation", "fixed_rotation_value", "fixed_size", "fixed_size_width_ratio")]
 layout_mode = 2
@@ -791,8 +791,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 256.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

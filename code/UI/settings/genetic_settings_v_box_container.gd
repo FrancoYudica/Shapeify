@@ -94,4 +94,4 @@ func _process(dt) -> void:
 	visible = Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_type == ImageGeneratorParams.IndividualGeneratorType.Genetic
+				.individual_generator_type == IndividualGenerator.Type.Genetic

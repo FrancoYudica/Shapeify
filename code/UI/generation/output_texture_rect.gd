@@ -12,7 +12,7 @@ func _exit_tree() -> void:
 func _create_texture():
 	_free_texture()
 	texture = RenderingCommon.create_texture_from_rd_rid(
-		image_generation.individual_generator.source_texture.rd_rid)
+		image_generation.image_generator.individual_generator.source_texture.rd_rid)
 
 
 func _update_texture():
@@ -20,7 +20,7 @@ func _update_texture():
 	if texture == null:
 		_create_texture()
 	
-	var individual_generator: IndividualGenerator = image_generation.individual_generator
+	var individual_generator: IndividualGenerator = image_generation.image_generator.individual_generator
 	RenderingCommon.texture_copy(
 		individual_generator.source_texture.rd_rid,
 		texture.texture_rd_rid,
