@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=20 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="2_8080h"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="2_b17pl"]
@@ -6,12 +6,10 @@
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="3_smqvh"]
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="4_1g3q6"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="4_s0clr"]
-[ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd" id="5_llgun"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="5_u1b1t"]
 [ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="8_idbn2"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
-[ext_resource type="Script" path="res://tests/individual_generator_test/numerical_input.gd" id="13_wrrml"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
 [sub_resource type="Resource" id="Resource_4k61h"]
@@ -26,7 +24,7 @@ tournament_size = 10
 
 [sub_resource type="Resource" id="Resource_df2jm"]
 script = ExtResource("3_smqvh")
-generation_count = 1
+generation_count = 6
 population_size = 50
 fitness_calculator = 1
 mutation_rate = 0.05
@@ -62,7 +60,7 @@ populator_params = SubResource("Resource_a32bs")
 target_texture = SubResource("Texture2D_jfsug")
 color_sampler = 1
 clear_color_average = true
-keep_aspect_ratio = false
+keep_aspect_ratio = true
 clamp_position_in_canvas = true
 fixed_rotation = true
 fixed_rotation_angle = 0.0
@@ -75,12 +73,12 @@ genetic_params = SubResource("Resource_df2jm")
 
 [node name="IndividualGeneratorTest" type="Node"]
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "population_size_input")]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "save_button", "individual_generator_option")]
 script = ExtResource("13_jgyce")
-individual_generator_script = ExtResource("5_llgun")
 individual_generator_parms = SubResource("Resource_etc2u")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
-population_size_input = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput")
+save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
+individual_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IndividualGeneratorOptionButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
 anchors_preset = 15
@@ -109,23 +107,32 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Individual generator"
+
+[node name="IndividualGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProfilingCheckBox" type="CheckBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Profiling"
+
+[node name="SaveProfilingButton" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Generate"
-
-[node name="NumberInput" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-script = ExtResource("13_wrrml")
-
-[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput"]
-layout_mode = 2
-text = "Population size"
-
-[node name="LineEdit" type="LineEdit" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NumberInput"]
-layout_mode = 2
-text = "10"
-placeholder_text = "10"
-virtual_keyboard_type = 2
 
 [node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -135,4 +142,6 @@ expand_mode = 2
 stretch_mode = 5
 script = ExtResource("15_yx5fx")
 
-[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]
+[connection signal="toggled" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ProfilingCheckBox" to="UICanvasLayer" method="_on_profiling_check_box_toggled"]
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton" to="UICanvasLayer" method="_on_save_profiling_button_pressed"]
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]

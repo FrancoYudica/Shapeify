@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=22 format=3 uid="uid://d0vu3r6ui8gfi"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=22 format=3]
 
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="1_cfm67"]
-[ext_resource type="Texture2D" uid="uid://4v3cb5dqbxmm" path="res://art/simple_shapes/circle_1_512x512.png" id="1_hte5q"]
+[ext_resource type="Texture2D" path="res://art/Mona_Lisa.jpg" id="1_cfm67"]
+[ext_resource type="Texture2D" path="res://art/simple_shapes/circle_1_512x512.png" id="1_hte5q"]
 [ext_resource type="Script" path="res://generation/app_settings.gd" id="1_xypp1"]
-[ext_resource type="Texture2D" uid="uid://dcelb7mkuxwrd" path="res://art/test/bar.png" id="3_4r8n6"]
+[ext_resource type="Texture2D" path="res://art/test/bar.png" id="3_4r8n6"]
 [ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator_params.gd" id="4_dw5rp"]
-[ext_resource type="Texture2D" uid="uid://bqv66dgq5flpi" path="res://art/simple_shapes/circle_0.png" id="4_l6fao"]
+[ext_resource type="Texture2D" path="res://art/simple_shapes/circle_0.png" id="4_l6fao"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="5_4egqq"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="6_web0x"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="7_15qub"]
@@ -44,7 +44,7 @@ position_bound_max = Vector2i(640, 968)
 size_bound_min = Vector2i(8, 8)
 size_bound_max = Vector2i(968, 968)
 
-[sub_resource type="Texture2D" id="Texture2D_nq56k"]
+[sub_resource type="Texture2D" id="Texture2D_8w726"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("8_v6ont")
@@ -52,7 +52,7 @@ script = ExtResource("8_v6ont")
 [sub_resource type="Resource" id="Resource_w27th"]
 script = ExtResource("9_iepvh")
 populator_params = SubResource("Resource_2sdn3")
-target_texture = SubResource("Texture2D_nq56k")
+target_texture = SubResource("Texture2D_8w726")
 color_sampler = 1
 clear_color_average = true
 keep_aspect_ratio = true
@@ -66,7 +66,7 @@ genetic_params = SubResource("Resource_dnu0u")
 
 [sub_resource type="Resource" id="Resource_urrnu"]
 script = ExtResource("11_d1ait")
-individual_count = 10000
+individual_count = 100
 execution_time = 10.0
 target_fitness = 0.9
 
