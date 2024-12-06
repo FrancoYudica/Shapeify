@@ -417,7 +417,6 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         </tr>
       </table>
     </td>
-
   </tr>
 </table>
 </div>
@@ -474,25 +473,36 @@ El algoritmo cuenta con los siguientes parámetros:
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
 
 <div align="center">
-
-| Attribute    | Value             |
-| ------------ | ----------------- |
-| Fitness      | 0.644296525266873 |
-| Metric Score | 24.323813597624   |
-| Position X   | 404               |
-| Position Y   | 821               |
-| Size X       | 688.973754882812  |
-| Size Y       | 1072.1259765625   |
-| Rotation     | 4.64755909331613  |
-
-</div>
-
-<div align="center">
-  
-|                                         _[Figura 16] - Imagen fuente del individuo_                                          |
-| :--------------------------------------------------------------------------------------------------------------------------: |
-| <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="300"> |
-
+<table>
+  <tr>
+    <!-- Table on the left -->
+    <td>
+      <table>
+        <tr><th>Attribute</th><th>Value</th></tr>
+        <tr><td>Fitness</td><td>0.644296525266873</td></tr>
+        <tr><td>Metric Score</td><td>24.323813597624</td></tr>
+        <tr><td>Position X</td><td>404</td></tr>
+        <tr><td>Position Y</td><td>821</td></tr>
+        <tr><td>Size X</td><td>688.973754882812</td></tr>
+        <tr><td>Size Y</td><td>1072.1259765625</td></tr>
+        <tr><td>Rotation</td><td>4.64755909331613</td></tr>
+      </table>
+    </td>
+    <!-- Image on the right -->
+    <td align="center">
+      <table>
+        <tr><th><i>[Figura 16] - Imagen fuente del individuo</i></th></tr>
+        <tr>
+          <td>
+            <figure>
+              <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="300">
+            </figure>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </div>
 
 La figura 17 como la métrica varía a lo largo de las generaciones.
