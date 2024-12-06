@@ -441,9 +441,13 @@ Los gráficos anteriores representan el comportamiento evolutivo en conjunto de 
 
 La figura 13 muesta de manera intuitiva la posición de los individuos en cada una de las generaciones donde claramente se puede ver como es que el atributo posición de los individuos evoluciona al centro, siendo esta la posición ideal.
 
+<div align="center">
+
 |                    _[Figura 13] - Posiciones de individuos por generación_                     |
 | :--------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif) |
+
+</div>
 
 #### Caso real con Mona Lisa
 
@@ -468,7 +472,7 @@ El algoritmo cuenta con los siguientes parámetros:
 | Probabilidad de mutación | 20%   |
 | Porcentaje elitista      | 25%   |
 
-<div align="center">
+</div>
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
 
@@ -576,9 +580,13 @@ En la figura 28 se pueden observar los efectos de la rápida explotación debido
 | :----------------------------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) |
 
+<div align="center">
+
 |                      _[Figura 29] - Posiciones de los individuos por generación_                       |
 | :----------------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/positions.gif) |
+
+</div>
 
 En la figura 29, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
 
