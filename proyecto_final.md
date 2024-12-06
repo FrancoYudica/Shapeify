@@ -442,9 +442,9 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
 | Size Y | 1072.1259765625 |
 | Rotation | 4.64755909331613 |
 
-|                                _[Figura 16] - Imagen fuente del individuo_                                |
-| :-------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png) |
+|                                         _[Figura 16] - Imagen fuente del individuo_                                          |
+| :--------------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="300"> |
 
 La figura 17 como la métrica varía a lo largo de las generaciones.
 
