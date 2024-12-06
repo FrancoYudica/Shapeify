@@ -35,6 +35,10 @@ _Franco Yudica (13922)_
     - [Algoritmo aleatorio](#algoritmo-aleatorio)
   - [Métricas](#métricas)
   - [Herramientas](#herramientas)
+  - [Experimentos y resultados obtenidos](#experimentos-y-resultados-obtenidos)
+    - [Algoritmo de generación de individuos](#algoritmo-de-generación-de-individuos)
+      - [Caso de prueba básico](#caso-de-prueba-básico)
+      - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
 
 - [Bibliografía](#bibliografía)
 
@@ -333,29 +337,24 @@ Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
 
 Para poner a prueba el algoritmo de generación de individuos, se decidió definir la imagen objetivo más simple posible, pero que ponga a prueba las capacidades del algoritmo genético.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png">
-    <figcaption><i>[Figura 6] - Imagen objetivo del caso de prueba básico</i></figcaption>
-</div>
+|                  _[Figura 6] - Imagen objetivo del caso de prueba básico_                  |
+| :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png) |
 
 En la fugura 6 se puede observar una simple imagen de resolución 128x128px, la cuál tiene como objetivo poner a prueba las capacidades del algoritmo genético tanto en la determinación de posición, tamaño, color y rotación. Nótese que se ha seleccionado un rectángulo con el objetivo de que el algoritmo también deba optimizar el atributo genético de la rotación.
 
 Para simplificar las cosas aun más, los individuos solo podrán tomar una textura, ilustrada por la figura 7, la cuál coincide con el rectángulo blanco que se busca replicar de la figura 6.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png">
-    <figcaption><i>[Figura 7] - Textura utilizada por los individuos</i></figcaption>
-</div>
+|                    _[Figura 7] - Textura utilizada por los individuos_                    |
+| :---------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png) |
 
 Además, la _imagen fuente_, es decir, sobre la cuál se renderizarán los individuos es la siguiente:
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png">
-    <figcaption><i>[Figura 8] - Imagen fuente</i></figcaption>
-</div>
+|                                _[Figura 8] - Imagen fuente_                                |
+| :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png) |
+
 Se plantea este escenario porque es posible agregar un individuo sobre la imagen fuente y obtener una imagen igual a la objetivo.
 
 ##### Resultados
@@ -382,10 +381,9 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
 
 En la figura 9 se puede observar la imagen fuente del individuo.
 
-|                                                                                          |
+|                   _[Figura 9] - Imagen fuente del individuo generado_                    |
 | :--------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png) |
-|                   _[Figura 9] - Imagen fuente del individuo generado_                    |
 
 La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
 ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png)
@@ -411,10 +409,9 @@ La Mona Lisa será utilizada como la imagen estándar a partir de este punto con
 
 Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no tiene nada renderizado, únicamente el color promedio de la imagen objetivo.
 
-|                                                                            |                                                        |
+|                       _[Figura 14] - Imagen fuente_                        |  _[Figura 15] - Imagen objetivo: Mona Lisa original_   |
 | :------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-|                       _[Figura 14] - Imagen fuente_                        |  _[Figura 15] - Imagen objetivo: Mona Lisa original_   |
 
 El algoritmo cuenta con los siguientes parámetros:
 | Parámetro | Valor |
@@ -456,10 +453,9 @@ _[Figura 19] - Valor de la métrica del mejor individuo de cada generación_.
 
 En la figura 20, se ilustran las posiciones por generación de los individuos donde se puede observar que los puntos se trasladan hacia arriba, mientras que el individuo fue renderizado en la parte inferior de la imagen. Esto no es un error porque la orientación del eje Y en Godot y matplotlib están invertidos.
 
-|                                                                                                 |                                                                                                           |
+|                   _[Figura 20] - Posiciones de los individuos por generación_                   |                                _[Figura 21] - Imagen fuente del individuo_                                |
 | :---------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/positions.gif) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png) |
-|                   _[Figura 20] - Posiciones de los individuos por generación_                   |                                _[Figura 21] - Imagen fuente del individuo_                                |
 
 En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos resultados coinciden con el simple caso del rectángulo.
 
@@ -467,10 +463,9 @@ En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos result
 
 En el experimento anterior se evaluaron estadísticas del algoritmo genético tomando una imagen fuente vacía. Debido a que se utilizarán iteraciones sucesivas del algoritmo genético, el estudio del caso anterior no basta para poder asegurar el correcto funcionamiento del algoritmo en el proceso de generación de imágenes. Es por este motivo que a continuación se hará un análisis similar pero con un punto de partida más avanzado, donde la imagen fuente no está vacía, simulando una etapa de generación de imagen.
 
-|                                                                                                         |                                                        |
+|                        _[Figura 22] - Imagen fuente avanzada con 50 individuos_                         |  _[Figura 23] - Imagen objetivo: Mona Lisa original_   |
 | :-----------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-|                        _[Figura 22] - Imagen fuente avanzada con 50 individuos_                         |  _[Figura 23] - Imagen objetivo: Mona Lisa original_   |
 
 El algoritmo cuenta con los mismos parámetros que se utilizaron en la ejecución desde cero.
 
@@ -487,10 +482,9 @@ Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguien
 
 A continuación, en la figura 24 y 25 se pueden observar las imágenes fuentes de los individuos generados en la etapa 50 y 51 correspondientemente, siendo el de la etapa 51 el recientemente generado:
 
-|                                                                                                         |                                                                                                     |                                                        |
+|                              _[Figura 24] - Imagen fuente de la etapa 50_                               |                            _[Figura 25] - Imagen fuente de la etapa 51_                             |  _[Figura 26] - Imagen objetivo: Mona Lisa original_   |
 | :-----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_51.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-|                              _[Figura 24] - Imagen fuente de la etapa 50_                               |                            _[Figura 25] - Imagen fuente de la etapa 51_                             |  _[Figura 26] - Imagen objetivo: Mona Lisa original_   |
 
 Se observa que se el algoritmo generó un individuo el cuál se encuentra a la altura del hombro.
 
