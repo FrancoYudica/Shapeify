@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ilo78we81v7e"
-path="res://.godot/imported/glow_ring.png-e14b628cb217981234c4ab95f3bf9fa1.ctex"
+uid="uid://c7k1bgxpdjw0o"
+path="res://.godot/imported/icecream.png-2edbd6ce4214377e0537a6b8edea34a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/glow_ring.png"
-dest_files=["res://.godot/imported/glow_ring.png-e14b628cb217981234c4ab95f3bf9fa1.ctex"]
+source_file="res://art/icecream.png"
+dest_files=["res://.godot/imported/icecream.png-2edbd6ce4214377e0537a6b8edea34a8.ctex"]
 
 [params]
 

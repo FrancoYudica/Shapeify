@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsd28nw7lim3p"
-path="res://.godot/imported/splash.png-59a3930b69a02a0bf0abcf35a9a3ef77.ctex"
+uid="uid://cka7bbhbg3ia4"
+path="res://.godot/imported/brush_0.png-1924b0cded59deca600dd884f8bbb1c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/splash.png"
-dest_files=["res://.godot/imported/splash.png-59a3930b69a02a0bf0abcf35a9a3ef77.ctex"]
+source_file="res://art/simple_shapes/brush_strokes/brush_0.png"
+dest_files=["res://.godot/imported/brush_0.png-1924b0cded59deca600dd884f8bbb1c1.ctex"]
 
 [params]
 
