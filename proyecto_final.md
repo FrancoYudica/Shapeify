@@ -406,11 +406,18 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
     </td>
     <!-- Image on the right -->
     <td align="center">
-      <figure>
-        <img src="imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png" width="300">
-        <figcaption>Figura 9 - Imagen fuente del individuo generado</figcaption>
-      </figure>
+      <table>
+        <tr><th><i>[Figura 9] - Imagen fuente del individuo generado</i></th></tr>
+        <tr>
+          <td>
+            <figure>
+              <img src="imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png" width="300">
+            </figure>
+          </td>
+        </tr>
+      </table>
     </td>
+
   </tr>
 </table>
 </div>
