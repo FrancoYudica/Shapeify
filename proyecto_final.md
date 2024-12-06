@@ -35,6 +35,11 @@ _Franco Yudica (13922)_
     - [Algoritmo aleatorio](#algoritmo-aleatorio)
   - [Métricas](#métricas)
   - [Herramientas](#herramientas)
+  - [Experimentos y resultados obtenidos](#experimentos-y-resultados-obtenidos)
+    - [Algoritmo de generación de individuos](#algoritmo-de-generación-de-individuos)
+      - [Caso de prueba básico](#caso-de-prueba-básico)
+      - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
+      - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
 
 - [Bibliografía](#bibliografía)
 
@@ -327,40 +332,53 @@ Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
 
 ## Experimentos y resultados obtenidos
 
-### Algoritmo de generación de individuos
+### Algoritmo de generación de individuos genético
+
+Como se detalló previamente, se implementaron dos algoritmos para la generación de individuos: el genético y el aleatorio. La experimentación descrita en esta sección se enfocó exclusivamente en el algoritmo genético. Se consideró que incluir un análisis del algoritmo aleatorio en este contexto sería poco significativo, pero su estudio será de gran importancia al comparar los resultados de ambos algoritmos en el proceso de generación de imágenes.
 
 #### Caso de prueba básico
 
 Para poner a prueba el algoritmo de generación de individuos, se decidió definir la imagen objetivo más simple posible, pero que ponga a prueba las capacidades del algoritmo genético.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png">
-    <figcaption><i>[Figura 6] - Imagen objetivo del caso de prueba básico</i></figcaption>
+<div align="center">
+
+|                  _[Figura 6] - Imagen objetivo del caso de prueba básico_                  |
+| :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png) |
+
 </div>
 
 En la fugura 6 se puede observar una simple imagen de resolución 128x128px, la cuál tiene como objetivo poner a prueba las capacidades del algoritmo genético tanto en la determinación de posición, tamaño, color y rotación. Nótese que se ha seleccionado un rectángulo con el objetivo de que el algoritmo también deba optimizar el atributo genético de la rotación.
 
 Para simplificar las cosas aun más, los individuos solo podrán tomar una textura, ilustrada por la figura 7, la cuál coincide con el rectángulo blanco que se busca replicar de la figura 6.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png">
-    <figcaption><i>[Figura 7] - Textura utilizada por los individuos</i></figcaption>
+<div align="center">
+
+|                    _[Figura 7] - Textura utilizada por los individuos_                    |
+| :---------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png) |
+
 </div>
+
+(Nótese que se han añadido los cuadros típicos de imágenes con transparencia manualmente para que se pueda visualizar la imagen sobre un fondo blanco. En la práctica, los cuadros grises representan los pixeles transparentes).
 
 Además, la _imagen fuente_, es decir, sobre la cuál se renderizarán los individuos es la siguiente:
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png">
-    <figcaption><i>[Figura 8] - Imagen fuente</i></figcaption>
+<div align="center">
+
+|                                _[Figura 8] - Imagen fuente_                                |
+| :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png) |
+
 </div>
+
 Se plantea este escenario porque es posible agregar un individuo sobre la imagen fuente y obtener una imagen igual a la objetivo.
 
 ##### Resultados
 
 El algoritmo cuenta con los siguientes parámetros:
+
+<div align="center">
 
 | Parámetro                | Valor |
 | ------------------------ | ----- |
@@ -369,40 +387,70 @@ El algoritmo cuenta con los siguientes parámetros:
 | Probabilidad de mutación | 20%   |
 | Porcentaje elitista      | 25%   |
 
+</div>
+
 Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.95458984375 |
-| Metric Score | 4.541015625 |
-| Position X | 63 |
-| Position Y | 60 |
-| Size X | 96.3577575683594 |
-| Size Y | 108.490371704102 |
-| Rotation | 3.27535051368461 |
 
-En la figura 9 se puede observar la imagen fuente del individuo.
-
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png">
-    <figcaption><i>[Figura 9] - Imagen fuente del individuo generado</i></figcaption>
+<div align="center">
+<table>
+  <tr>
+    <!-- Table on the left -->
+    <td>
+      <table>
+        <tr><th>Attribute</th><th>Value</th></tr>
+        <tr><td>Fitness</td><td>0.95458984375</td></tr>
+        <tr><td>Metric Score</td><td>4.541015625</td></tr>
+        <tr><td>Position X</td><td>63</td></tr>
+        <tr><td>Position Y</td><td>60</td></tr>
+        <tr><td>Size X</td><td>96.3577575683594</td></tr>
+        <tr><td>Size Y</td><td>108.490371704102</td></tr>
+        <tr><td>Rotation</td><td>3.27535051368461</td></tr>
+      </table>
+    </td>
+    <!-- Image on the right -->
+    <td align="center">
+      <table>
+        <tr><th><i>[Figura 9] - Imagen fuente del individuo generado</i></th></tr>
+        <tr>
+          <td>
+            <figure>
+              <img src="imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png" width="300">
+            </figure>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </div>
 
 La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png)
-_[Figura 10] - Métrica media por generación_.
+
+|                                  _[Figura 10] - Métrica media por generación_                                  |
+| :------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png) |
 
 La figura 11 ilustra los gráficos de caja y se observa que la dispersión de los valores de métrica de cada individuo disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png)
-_[Figura 11] - Gráficos de caja de métrica por generación_.
+
+|                        _[Figura 11] - Gráficos de caja de métrica por generación_                         |
+| :-------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png) |
 
 Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor de la mejor solución candidata en cada generación:
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png)
-_[Figura 12] - Valor de la métrica del mejor individuo de cada generación_.
+
+|                 _[Figura 12] - Valor de la métrica del mejor individuo de cada generación_                 |
+| :--------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png) |
 
 La figura 13 muesta de manera intuitiva la posición de los individuos en cada una de las generaciones donde claramente se puede ver como es que el atributo posición de los individuos evoluciona al centro, siendo esta la posición ideal.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif)
-_[Figura 13] - Posiciones de individuos por generación_.
+
+<div align="center">
+
+|                    _[Figura 13] - Posiciones de individuos por generación_                     |
+| :--------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif) |
+
+</div>
 
 #### Caso real con Mona Lisa
 
@@ -412,67 +460,79 @@ La Mona Lisa será utilizada como la imagen estándar a partir de este punto con
 
 Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no tiene nada renderizado, únicamente el color promedio de la imagen objetivo.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png" alt="Mona Lisa Average Color Clear">
-    <figcaption><i>[Figura 14] - Imagen fuente</i></figcaption>
-  </figure>
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg" alt="Mona Lisa" >
-    <figcaption><i>[Figura 15] - Imagen objetivo: Mona Lisa original</i></figcaption>
-  </figure>
-</div>
+|                       _[Figura 14] - Imagen fuente_                        |  _[Figura 15] - Imagen objetivo: Mona Lisa original_   |
+| :------------------------------------------------------------------------: | :----------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
 El algoritmo cuenta con los siguientes parámetros:
-| Parámetro | Valor |
+
+<div align="center">
+
+| Parámetro                | Valor |
 | ------------------------ | ----- |
-| Generaciones | 20 |
-| Población | 150 |
-| Probabilidad de mutación | 20% |
-| Porcentaje elitista | 25% |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 20%   |
+| Porcentaje elitista      | 25%   |
+
+</div>
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.644296525266873 |
-| Metric Score | 24.323813597624 |
-| Position X | 404 |
-| Position Y | 821 |
-| Size X | 688.973754882812 |
-| Size Y | 1072.1259765625 |
-| Rotation | 4.64755909331613 |
 
-En la figura 16 se puede observar la imagen fuente del individuo.
+<div align="center">
+<table>
+  <tr>
+    <!-- Table on the left -->
+    <td>
+      <table>
+        <tr><th>Attribute</th><th>Value</th></tr>
+        <tr><td>Fitness</td><td>0.644296525266873</td></tr>
+        <tr><td>Metric Score</td><td>24.323813597624</td></tr>
+        <tr><td>Position X</td><td>404</td></tr>
+        <tr><td>Position Y</td><td>821</td></tr>
+        <tr><td>Size X</td><td>688.973754882812</td></tr>
+        <tr><td>Size Y</td><td>1072.1259765625</td></tr>
+        <tr><td>Rotation</td><td>4.64755909331613</td></tr>
+      </table>
+    </td>
+    <!-- Image on the right -->
+    <td align="center">
+      <table>
+        <tr><th><i>[Figura 16] - Imagen fuente del individuo</i></th></tr>
+        <tr>
+          <td>
+            <figure>
+              <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="300">
+            </figure>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
 
-<figure style="text-align: center;">
-  <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="45%">
-  <figcaption><i>[Figura 16] - Imagen fuente del individuo</i></figcaption>
-</figure>
+La figura 17 muestra como la métrica varía a lo largo de las generaciones.
 
-La figura 17 como la métrica varía a lo largo de las generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png)
-_[Figura 17] - Métrica media por generación_.
+|                                  _[Figura 17] - Métrica media por generación_                                   |
+| :-------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png) |
 
 La figura 18 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso básico, pero con una mayor definición entre la exploración y la explotación en las últimas generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/metric_score_boxplot.png)
-_[Figura 18] - Gráficos de caja de métrica por generación_.
 
-La figura 19 ilustra el valor de la métrica del mejor individuo por cada generación.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/min_metric_score_plot.png)
-_[Figura 19] - Valor de la métrica del mejor individuo de cada generación_.
+|                         _[Figura 18] - Gráficos de caja de métrica por generación_                         |
+| :--------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/metric_score_boxplot.png) |
+
+|                 _[Figura 19] - Valor de la métrica del mejor individuo de cada generación_                  |
+| :---------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/min_metric_score_plot.png) |
 
 En la figura 20, se ilustran las posiciones por generación de los individuos donde se puede observar que los puntos se trasladan hacia arriba, mientras que el individuo fue renderizado en la parte inferior de la imagen. Esto no es un error porque la orientación del eje Y en Godot y matplotlib están invertidos.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/positions.gif" alt="Mona Lisa Average Color Clear">
-    <figcaption><i>[Figura 20] - Posiciones de los individuos por generación</i></figcaption>
-  </figure>
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png">
-    <figcaption><i>[Figura 21] - Imagen fuente del individuo</i></figcaption>
-  </figure>
-</div>
+|                   _[Figura 20] - Posiciones de los individuos por generación_                   |                                _[Figura 21] - Imagen fuente del individuo_                                |
+| :---------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/positions.gif) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png) |
 
 En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos resultados coinciden con el simple caso del rectángulo.
 
@@ -480,70 +540,100 @@ En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos result
 
 En el experimento anterior se evaluaron estadísticas del algoritmo genético tomando una imagen fuente vacía. Debido a que se utilizarán iteraciones sucesivas del algoritmo genético, el estudio del caso anterior no basta para poder asegurar el correcto funcionamiento del algoritmo en el proceso de generación de imágenes. Es por este motivo que a continuación se hará un análisis similar pero con un punto de partida más avanzado, donde la imagen fuente no está vacía, simulando una etapa de generación de imagen.
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png">
-    <figcaption><i>[Figura 22] - Imagen fuente avanzada con 50 individuos</i></figcaption>
-  </figure>
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg" alt="Mona Lisa" >
-    <figcaption><i>[Figura 23] - Imagen objetivo: Mona Lisa original</i></figcaption>
-  </figure>
-</div>
+|                        _[Figura 22] - Imagen fuente avanzada con 50 individuos_                         |  _[Figura 23] - Imagen objetivo: Mona Lisa original_   |
+| :-----------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
 El algoritmo cuenta con los mismos parámetros que se utilizaron en la ejecución desde cero.
 
 Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.808261032735021 |
-| Metric Score | 10.6251412383781 |
-| Position X | 499 |
-| Position Y | 445 |
-| Size X | 49.4948654174805 |
-| Size Y | 291.158996582031 |
-| Rotation | 2.45406044618326 |
+
+<div align="center">
+
+| Attribute    | Value             |
+| ------------ | ----------------- |
+| Fitness      | 0.808261032735021 |
+| Metric Score | 10.6251412383781  |
+| Position X   | 499               |
+| Position Y   | 445               |
+| Size X       | 49.4948654174805  |
+| Size Y       | 291.158996582031  |
+| Rotation     | 2.45406044618326  |
+
+</div>
 
 A continuación, en la figura 24 y 25 se pueden observar las imágenes fuentes de los individuos generados en la etapa 50 y 51 correspondientemente, siendo el de la etapa 51 el recientemente generado:
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png">
-    <figcaption><i>[Figura 24] - Imagen fuente de la etapa 50</i></figcaption>
-  </figure>
-    <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_51.png">
-    <figcaption><i>[Figura 25] - Imagen fuente de la etapa 51</i></figcaption>
-  </figure>
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg" alt="Mona Lisa" >
-    <figcaption><i>[Figura 26] - Imagen objetivo: Mona Lisa original</i></figcaption>
-  </figure>
-</div>
+|                              _[Figura 24] - Imagen fuente de la etapa 50_                               |                            _[Figura 25] - Imagen fuente de la etapa 51_                             |  _[Figura 26] - Imagen objetivo: Mona Lisa original_   |
+| :-----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_51.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
 Se observa que se el algoritmo generó un individuo el cuál se encuentra a la altura del hombro.
 
 La figura 26 ilustra como la métrica varía a lo largo de las generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png)
-_[Figura 26] - Métrica media por generación_.
 
-La figura 27 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/metric_score_boxplot.png)
-_[Figura 27] - Gráficos de caja de métrica por generación_.
+|                                      _[Figura 26] - Métrica media por generación_                                      |
+| :--------------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png) |
 
-La figura 28 ilustra el valor de la métrica del mejor individuo por cada generación. Se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png)
-_[Figura 28] - Gráficos de caja de métrica por generación_.
+En la figura 27 se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
 
-En la figura 29, se ilustran las posiciones por generación de los individuos.
+|                            _[Figura 27] - Gráficos de caja de métrica por generación_                             |
+| :---------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/metric_score_boxplot.png) |
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/positions.gif">
-    <figcaption><i>[Figura 29] - Posiciones de los individuos por generación</i></figcaption>
-  </figure>
+En la figura 28 se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
+
+|                     _[Figura 28] - Valor de la métrica del mejor individuo de cada generación_                     |
+| :----------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) |
+
+<div align="center">
+
+|                      _[Figura 29] - Posiciones de los individuos por generación_                       |
+| :----------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/positions.gif) |
+
 </div>
-En este caso, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
+
+En la figura 29, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
+
+#### Estudio comparativo basado en ejecuciones múltiples del algoritmo
+
+Previamente, se analizó el comportamiento de una única ejecución del algoritmo genético con el objetivo de evaluar la evolución de la población a lo largo de las generaciones. Sin embargo, generalizar los resultados obtenidos en esa ejecución sería incorrecto. Por esta razón, y manteniendo los mismos parámetros, se llevaron a cabo 100 ejecuciones del algoritmo genético. A continuación, se presentan los resultados de estas pruebas, tanto para la imagen objetivo del caso básico como para la de Mona Lisa.
+Es importante aclarar que la imagen fuente utilizada para evaluar las distintas ejecuciones siempre fue la misma. Para el caso básico, se utilizó el fondo negro, y para la Mona Lisa, se utilizó la imagen de la etapa 50.
+
+|          _[Figura 30] - Distribución del tiempo de ejecución con imagen objetivo del caso básico_          |       _[Figura 31] - Distribución del tiempo de ejecución con imagen objetivo Mona Lisa_       |
+| :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/time_taken_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/time_taken_boxplot.png) |
+
+La condición de corte del algoritmo está definida por la cantidad de generaciones, fijada en 20. Por este motivo, los tiempos de ejecución no muestran una gran dispersión en ninguno de los casos analizados.
+
+- En la figura 30 se observa que el tiempo promedio de ejecución del algoritmo es aproximadamente 2,23 segundos. Dado que en cada ejecución se procesan 3000 individuos (resultado de multiplicar 20 generaciones por un tamaño de población de 150), el tiempo promedio por individuo es de 0,74 milisegundos.
+- Por otro lado, en la figura 31 se muestra que el tiempo promedio por individuo es de 1,26 milisegundos.
+
+Esta variación en los tiempos medios se debe a la diferencia en la resolución de las imágenes objetivo:
+
+- El caso básico utiliza una imagen con resolución de 128x128, lo que implica el procesamiento de 6384 píxeles.
+- En cambio, la imagen de Mona Lisa tiene una resolución de 640x968, lo que corresponde al procesamiento de 619,520 píxeles.
+
+Esto significa que la imagen de Mona Lisa tiene 37,81 veces más píxeles que la del caso básico. No obstante, cabe destacar que, a pesar de esta gran diferencia en la cantidad de datos a procesar, el tiempo medio de ejecución en el caso básico fue 1,7 veces más rápido que en el caso de Mona Lisa.
+
+|             _[Figura 32] - Distribución de la métrica con imagen objetivo del caso básico_             |          _[Figura 33] - Distribución de la métrica con imagen objetivo Mona Lisa_          |
+| :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/metric_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/metric_boxplot.png) |
+
+En la figura 32 se observa que las ejecuciones del algoritmo genético para el caso básico presentan una mayor dispersión del error en comparación con las correspondientes a la Mona Lisa, mostradas en la figura 33.
+Esta diferencia en la dispersión se explica porque, en el caso básico, la imagen fuente es completamente negra, lo que genera una mayor sensibilidad al error ante pequeñas imperfecciones en los individuos generados. Por otro lado, en el caso de la Mona Lisa, cuya imagen fuente corresponde a la etapa 50, existe un mayor nivel de similitud entre la imagen fuente y la imagen objetivo. Esto reduce el impacto de ligeras imperfecciones en los individuos generados, resultando en una menor variación en la métrica del error.
+
+|                _[Figura 34] - Posiciones de los individuos generados con imagen objetivo del caso básico_                |             _[Figura 35] - Posiciones de los individuos generados con imagen objetivo Mona Lisa_             |
+| :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/individual_positions_with_scores.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/individual_positions_with_scores.png) |
+
+De manera similar a los análisis previos, considerar el atributo genético de la posición proporciona una aproximación al comportamiento del algoritmo genético:
+
+- En el caso básico, las posiciones de los individuos generados se concentran en la región central de la imagen. Este resultado es acertado, ya que el centro representa la única posición viable para los individuos en este escenario.
+- Para la Mona Lisa, se observa una mayor dispersión en las posiciones de los individuos, a pesar de que la métrica presenta menor variación. Sin embargo, la distribución de las posiciones no es uniforme ni aleatoria. Este comportamiento se explica porque, en la etapa 50 de la generación de Mona Lisa, existen múltiples posiciones donde es posible ubicar un individuo manteniendo un valor similar en la métrica. Esto es coherente con los cúmulos de individuos observados.
 
 # Bibliografía
 

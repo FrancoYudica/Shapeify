@@ -1,0 +1,3608 @@
+{
+	"image_generations": [
+		{
+			"individual_generations": [
+				{
+					"generated_individual": {
+						"fitness": 0.808220947938189,
+						"metric_score": 10.6247982308884,
+						"position_x": 396,
+						"position_y": 715,
+						"rotation": 3.21414420011087,
+						"size_x": 371.144439697266,
+						"size_y": 124.968772888184
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.785
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808092824552342,
+						"metric_score": 10.6390980113636,
+						"position_x": 214,
+						"position_y": 279,
+						"rotation": 2.90903386182969,
+						"size_x": 56.9271507263184,
+						"size_y": 133.636505126953
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.648
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808184024190771,
+						"metric_score": 10.6309158703512,
+						"position_x": 212,
+						"position_y": 204,
+						"rotation": 1.52190948421322,
+						"size_x": 52.3467979431152,
+						"size_y": 40.9546432495117
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.699
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808291567127238,
+						"metric_score": 10.6245512654959,
+						"position_x": 51,
+						"position_y": 0,
+						"rotation": 4.47712191740957,
+						"size_x": 108.298561096191,
+						"size_y": 205.904174804688
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.628
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80816842071281,
+						"metric_score": 10.6350029054752,
+						"position_x": 530,
+						"position_y": 519,
+						"rotation": 4.57542524390022,
+						"size_x": 139.501815795898,
+						"size_y": 115.253730773926
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.695
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808229287728134,
+						"metric_score": 10.5712680785124,
+						"position_x": 414,
+						"position_y": 18,
+						"rotation": 1.51665369498403,
+						"size_x": 126.501602172852,
+						"size_y": 869.559936523438
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.659
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808067065362431,
+						"metric_score": 10.6373006521178,
+						"position_x": 128,
+						"position_y": 0,
+						"rotation": 6.23923668986834,
+						"size_x": 204.310424804688,
+						"size_y": 105.72095489502
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.819
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808228278882576,
+						"metric_score": 10.5514640366736,
+						"position_x": 252,
+						"position_y": 812,
+						"rotation": 2.64881188704598,
+						"size_x": 207.021621704102,
+						"size_y": 72.1157073974609
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.821
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808283092824552,
+						"metric_score": 10.579965941374,
+						"position_x": 51,
+						"position_y": 547,
+						"rotation": 3.45107773001796,
+						"size_x": 118.348960876465,
+						"size_y": 142.845474243164
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.962
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808148311058023,
+						"metric_score": 10.6339270725723,
+						"position_x": 537,
+						"position_y": 542,
+						"rotation": 2.77144651703873,
+						"size_x": 112.8681640625,
+						"size_y": 199.549331665039
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.921
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808850333053547,
+						"metric_score": 10.5970517497417,
+						"position_x": 187,
+						"position_y": 75,
+						"rotation": 6.20042561738867,
+						"size_x": 745.656799316406,
+						"size_y": 56.0656661987305
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.812
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808317662599001,
+						"metric_score": 10.644464262655,
+						"position_x": 496,
+						"position_y": 119,
+						"rotation": 2.52300319420171,
+						"size_x": 160.268951416016,
+						"size_y": 127.64990234375
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.802
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808273138881715,
+						"metric_score": 10.5957249160641,
+						"position_x": 81,
+						"position_y": 527,
+						"rotation": 2.05822504130239,
+						"size_x": 211.952865600586,
+						"size_y": 70.7838745117188
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.746
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808486879627238,
+						"metric_score": 10.6393708032025,
+						"position_x": 489,
+						"position_y": 139,
+						"rotation": 1.95191032576351,
+						"size_x": 102.826042175293,
+						"size_y": 157.873840332031
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.68199999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808258947787534,
+						"metric_score": 10.6289498321281,
+						"position_x": 523,
+						"position_y": 509,
+						"rotation": 2.3626935259424,
+						"size_x": 107.2626953125,
+						"size_y": 103.747459411621
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.685
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808042651299931,
+						"metric_score": 10.6456910188533,
+						"position_x": 525,
+						"position_y": 515,
+						"rotation": 3.51283247214048,
+						"size_x": 101.04744720459,
+						"size_y": 74.4468383789062
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.76599999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80811696958936,
+						"metric_score": 10.6372352789256,
+						"position_x": 534,
+						"position_y": 610,
+						"rotation": 1.50873974344049,
+						"size_x": 337.562835693359,
+						"size_y": 88.3127365112305
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.95999999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808145957085055,
+						"metric_score": 10.5991767820248,
+						"position_x": 49,
+						"position_y": 563,
+						"rotation": 1.696995096449,
+						"size_x": 175.164413452148,
+						"size_y": 73.8930892944336
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.887
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808307574143423,
+						"metric_score": 10.5696781379132,
+						"position_x": 53,
+						"position_y": 544,
+						"rotation": 3.0620865539089,
+						"size_x": 90.7173309326172,
+						"size_y": 164.070892333984
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.87100000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808086569709883,
+						"metric_score": 10.6414046358471,
+						"position_x": 446,
+						"position_y": 576,
+						"rotation": 2.72332213572483,
+						"size_x": 95.819450378418,
+						"size_y": 106.971435546875
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 4.00500000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808309995372762,
+						"metric_score": 10.6218201188017,
+						"position_x": 13,
+						"position_y": 0,
+						"rotation": 1.50533262074076,
+						"size_x": 152.395401000977,
+						"size_y": 276.107971191406
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.916
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808133245631026,
+						"metric_score": 10.6386081159607,
+						"position_x": 374,
+						"position_y": 713,
+						"rotation": 3.32087681990867,
+						"size_x": 285.595550537109,
+						"size_y": 121.966156005859
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.88200000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808062088391012,
+						"metric_score": 10.6435538804236,
+						"position_x": 387,
+						"position_y": 705,
+						"rotation": 3.48863382934281,
+						"size_x": 207.363952636719,
+						"size_y": 144.581634521484
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.80799999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808216643530475,
+						"metric_score": 10.6282718879132,
+						"position_x": 329,
+						"position_y": 715,
+						"rotation": 1.85661416615964,
+						"size_x": 91.1923828125,
+						"size_y": 288.521606445312
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.71899999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808087982093664,
+						"metric_score": 10.6514672649793,
+						"position_x": 257,
+						"position_y": 88,
+						"rotation": 4.45351006037836,
+						"size_x": 16.9407520294189,
+						"size_y": 223.620697021484
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.733
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808334342178891,
+						"metric_score": 10.6188379713326,
+						"position_x": 41,
+						"position_y": 0,
+						"rotation": 4.8281890574224,
+						"size_x": 91.1820220947266,
+						"size_y": 412.517944335938
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.682
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808352703168044,
+						"metric_score": 10.5742962293388,
+						"position_x": 72,
+						"position_y": 548,
+						"rotation": 3.56669404695869,
+						"size_x": 84.0061721801758,
+						"size_y": 160.1298828125
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.62
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808356604037534,
+						"metric_score": 10.5723229274277,
+						"position_x": 51,
+						"position_y": 558,
+						"rotation": 4.52960106682242,
+						"size_x": 130.242706298828,
+						"size_y": 94.7579345703125
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.824
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808369651773416,
+						"metric_score": 10.6176773954029,
+						"position_x": 542,
+						"position_y": 549,
+						"rotation": 1.2201368148041,
+						"size_x": 255.038299560547,
+						"size_y": 85.5113983154297
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.788
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808318200649966,
+						"metric_score": 10.5617389269112,
+						"position_x": 279,
+						"position_y": 781,
+						"rotation": 2.85688453827875,
+						"size_x": 99.1427764892578,
+						"size_y": 80.4555282592773
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.75700000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808284370695592,
+						"metric_score": 10.6474520596591,
+						"position_x": 490,
+						"position_y": 123,
+						"rotation": 4.72086190139918,
+						"size_x": 95.359489440918,
+						"size_y": 174.592788696289
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.64400000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808073454717631,
+						"metric_score": 10.5873095299587,
+						"position_x": 537,
+						"position_y": 20,
+						"rotation": 3.14510651002439,
+						"size_x": 666.808349609375,
+						"size_y": 123.432273864746
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.88500000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808069890129993,
+						"metric_score": 10.6396686144112,
+						"position_x": 527,
+						"position_y": 525,
+						"rotation": 2.79675140523559,
+						"size_x": 124.529167175293,
+						"size_y": 155.007873535156
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.73500000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808374965026687,
+						"metric_score": 10.5874386621901,
+						"position_x": 139,
+						"position_y": 0,
+						"rotation": 4.75403642453704,
+						"size_x": 154.558532714844,
+						"size_y": 697.750305175781
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.66199999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808373687155647,
+						"metric_score": 10.6332515495868,
+						"position_x": 470,
+						"position_y": 109,
+						"rotation": 3.39738929790106,
+						"size_x": 116.548324584961,
+						"size_y": 157.213973999023
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.71100000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808520373299759,
+						"metric_score": 10.6215949444731,
+						"position_x": 115,
+						"position_y": 96,
+						"rotation": 4.55473210756135,
+						"size_x": 56.5659942626953,
+						"size_y": 554.967712402344
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.76599999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80826352122073,
+						"metric_score": 10.578673004907,
+						"position_x": 56,
+						"position_y": 539,
+						"rotation": 5.12841025112195,
+						"size_x": 141.257781982422,
+						"size_y": 103.357284545898
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.82000000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808372207515496,
+						"metric_score": 10.637507263688,
+						"position_x": 628,
+						"position_y": 136,
+						"rotation": 3.3840333916052,
+						"size_x": 804.736022949219,
+						"size_y": 55.3407592773438
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.82899999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808315510395145,
+						"metric_score": 10.6221768465909,
+						"position_x": 67,
+						"position_y": 16,
+						"rotation": 3.07856188611511,
+						"size_x": 204.45166015625,
+						"size_y": 70.6147308349609
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.76900000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808317662599001,
+						"metric_score": 10.5618341619318,
+						"position_x": 277,
+						"position_y": 783,
+						"rotation": 0.413455525115621,
+						"size_x": 125.721343994141,
+						"size_y": 77.0498886108398
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.87099999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80839077027376,
+						"metric_score": 10.6463657347624,
+						"position_x": 511,
+						"position_y": 151,
+						"rotation": 4.87917631408843,
+						"size_x": 58.4358139038086,
+						"size_y": 183.181274414062
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.69800000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808640291408402,
+						"metric_score": 10.6055034542872,
+						"position_x": 427,
+						"position_y": 67,
+						"rotation": 3.09536869952936,
+						"size_x": 620.593139648438,
+						"size_y": 53.7150344848633
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.64299999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808127730608643,
+						"metric_score": 10.6125694085744,
+						"position_x": 136,
+						"position_y": 29,
+						"rotation": 4.59998944405187,
+						"size_x": 90.7408294677734,
+						"size_y": 586.5576171875
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.76599999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808452108083678,
+						"metric_score": 10.588566955062,
+						"position_x": 0,
+						"position_y": 0,
+						"rotation": 3.24577937631291,
+						"size_x": 960.589538574219,
+						"size_y": 147.283508300781
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.797
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808153422542183,
+						"metric_score": 10.6373934659091,
+						"position_x": 451,
+						"position_y": 569,
+						"rotation": 2.70994356857718,
+						"size_x": 77.4459228515625,
+						"size_y": 117.031440734863
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.78700000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808281613184401,
+						"metric_score": 10.6247296293905,
+						"position_x": 523,
+						"position_y": 511,
+						"rotation": 4.45578782473224,
+						"size_x": 141.252014160156,
+						"size_y": 85.6856231689453
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.86099999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808325128056129,
+						"metric_score": 10.5742671745868,
+						"position_x": 73,
+						"position_y": 546,
+						"rotation": 3.36438031786491,
+						"size_x": 89.4609375,
+						"size_y": 164.526443481445
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.87799999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808003844374139,
+						"metric_score": 10.6337672714359,
+						"position_x": 293,
+						"position_y": 19,
+						"rotation": 5.73171368009523,
+						"size_x": 153.597595214844,
+						"size_y": 140.440780639648
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.81700000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80836756682593,
+						"metric_score": 10.6431342006715,
+						"position_x": 506,
+						"position_y": 149,
+						"rotation": 1.39952159340312,
+						"size_x": 91.6962051391602,
+						"size_y": 189.374160766602
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.71600000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808171918044077,
+						"metric_score": 10.6032404119318,
+						"position_x": 438,
+						"position_y": 5,
+						"rotation": 1.52942917998173,
+						"size_x": 75.1213989257812,
+						"size_y": 463.835418701172
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.727
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808415386105372,
+						"metric_score": 10.5872619124483,
+						"position_x": 344,
+						"position_y": 401,
+						"rotation": 3.57903319798899,
+						"size_x": 158.777969360352,
+						"size_y": 36.1624145507812
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.708
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808784690835916,
+						"metric_score": 10.5599730436467,
+						"position_x": 225,
+						"position_y": 6,
+						"rotation": 3.12697466736417,
+						"size_x": 875.945068359375,
+						"size_y": 70.742073059082
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.80699999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80844854349604,
+						"metric_score": 10.5573661867252,
+						"position_x": 60,
+						"position_y": 549,
+						"rotation": 3.32061631485332,
+						"size_x": 99.4955444335938,
+						"size_y": 143.417465209961
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.803
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808252289406853,
+						"metric_score": 10.6161237732438,
+						"position_x": 271,
+						"position_y": 542,
+						"rotation": 1.64445594414787,
+						"size_x": 63.3180961608887,
+						"size_y": 159.080062866211
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.75399999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808107082902893,
+						"metric_score": 10.6190696022727,
+						"position_x": 604,
+						"position_y": 434,
+						"rotation": 3.93421315209099,
+						"size_x": 230.224578857422,
+						"size_y": 72.4751358032227
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.827
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808090336066632,
+						"metric_score": 10.6411810756715,
+						"position_x": 448,
+						"position_y": 575,
+						"rotation": 2.83798029517566,
+						"size_x": 111.770851135254,
+						"size_y": 102.656303405762
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.828
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808337772253788,
+						"metric_score": 10.5660882618802,
+						"position_x": 64,
+						"position_y": 544,
+						"rotation": 3.31586513036277,
+						"size_x": 111.524024963379,
+						"size_y": 151.46728515625
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.75299999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808380547305441,
+						"metric_score": 10.6423093685434,
+						"position_x": 523,
+						"position_y": 130,
+						"rotation": 4.49234479706076,
+						"size_x": 102.68904876709,
+						"size_y": 208.76936340332
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.73400000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808435832042011,
+						"metric_score": 10.587349883781,
+						"position_x": 209,
+						"position_y": 0,
+						"rotation": 1.63813092653397,
+						"size_x": 188.685531616211,
+						"size_y": 522.896911621094
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.751
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80808623342803,
+						"metric_score": 10.643614411157,
+						"position_x": 334,
+						"position_y": 711,
+						"rotation": 1.9035582518468,
+						"size_x": 93.3225555419922,
+						"size_y": 295.754486083984
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.81900000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808100828060434,
+						"metric_score": 10.5965989798554,
+						"position_x": 576,
+						"position_y": 27,
+						"rotation": 3.15448605185645,
+						"size_x": 892.363647460938,
+						"size_y": 65.9024200439453
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.79300000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808337974022899,
+						"metric_score": 10.6370520725723,
+						"position_x": 423,
+						"position_y": 84,
+						"rotation": 3.28598486071452,
+						"size_x": 776.422546386719,
+						"size_y": 33.9516105651855
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.797
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808315510395145,
+						"metric_score": 10.6507893207645,
+						"position_x": 507,
+						"position_y": 134,
+						"rotation": 3.2214992929476,
+						"size_x": 170.416748046875,
+						"size_y": 120.892944335938
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.71799999999996
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808227808087982,
+						"metric_score": 10.601029022469,
+						"position_x": 363,
+						"position_y": 415,
+						"rotation": 0.680275591674927,
+						"size_x": 84.4297943115234,
+						"size_y": 46.5811500549316
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.76999999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808274214983643,
+						"metric_score": 10.5920188210227,
+						"position_x": 359,
+						"position_y": 28,
+						"rotation": 1.68033091765388,
+						"size_x": 69.1486358642578,
+						"size_y": 816.877807617188
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.69499999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808137751807851,
+						"metric_score": 10.5971542484504,
+						"position_x": 455,
+						"position_y": 5,
+						"rotation": 3.30954601268644,
+						"size_x": 921.928466796875,
+						"size_y": 115.626976013184
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.77300000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808338915612087,
+						"metric_score": 10.5701954739153,
+						"position_x": 288,
+						"position_y": 0,
+						"rotation": 4.87131915905452,
+						"size_x": 175.118148803711,
+						"size_y": 736.422973632812
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.77100000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808603165891873,
+						"metric_score": 10.6248652182335,
+						"position_x": 483,
+						"position_y": 137,
+						"rotation": 4.09155949440418,
+						"size_x": 85.1718215942383,
+						"size_y": 134.878509521484
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.78499999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808089798015668,
+						"metric_score": 10.6326010459711,
+						"position_x": 0,
+						"position_y": 693,
+						"rotation": 4.47708321381212,
+						"size_x": 937.066101074219,
+						"size_y": 94.6652450561523
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.86899999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808454327543905,
+						"metric_score": 10.635892303719,
+						"position_x": 490,
+						"position_y": 139,
+						"rotation": 1.96371567843525,
+						"size_x": 123.006774902344,
+						"size_y": 164.252426147461
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.88400000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80825329825241,
+						"metric_score": 10.6278344524793,
+						"position_x": 519,
+						"position_y": 512,
+						"rotation": 1.65687335002032,
+						"size_x": 124.491386413574,
+						"size_y": 86.2585144042969
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.88900000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808066258285985,
+						"metric_score": 10.644050232438,
+						"position_x": 397,
+						"position_y": 721,
+						"rotation": 3.29884935370959,
+						"size_x": 345.745910644531,
+						"size_y": 116.555168151855
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.93400000000003
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808337503228306,
+						"metric_score": 10.6160922972624,
+						"position_x": 103,
+						"position_y": 8,
+						"rotation": 4.49478453495826,
+						"size_x": 92.3585510253906,
+						"size_y": 465.665344238281
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.863
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808276636212982,
+						"metric_score": 10.652846558626,
+						"position_x": 515,
+						"position_y": 138,
+						"rotation": 4.53261121099894,
+						"size_x": 119.47762298584,
+						"size_y": 171.270385742188
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.74100000000004
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808182073756026,
+						"metric_score": 10.5869697507748,
+						"position_x": 32,
+						"position_y": 548,
+						"rotation": 3.05116814388103,
+						"size_x": 175.798065185547,
+						"size_y": 158.742156982422
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.774
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808491856598657,
+						"metric_score": 10.6181632554236,
+						"position_x": 446,
+						"position_y": 64,
+						"rotation": 3.11448675247751,
+						"size_x": 346.023284912109,
+						"size_y": 42.7157974243164
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.72700000000003
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808531067062672,
+						"metric_score": 10.6083282218492,
+						"position_x": 145,
+						"position_y": 42,
+						"rotation": 4.81183641871395,
+						"size_x": 72.1437225341797,
+						"size_y": 534.67529296875
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.733
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808309928116391,
+						"metric_score": 10.6219064759814,
+						"position_x": 38,
+						"position_y": 1,
+						"rotation": 2.59974919842237,
+						"size_x": 416.446563720703,
+						"size_y": 157.592346191406
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.75200000000001
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808073521974001,
+						"metric_score": 10.6448484310434,
+						"position_x": 375,
+						"position_y": 708,
+						"rotation": 3.53000319165937,
+						"size_x": 244.224975585938,
+						"size_y": 133.705154418945
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.87599999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808333535102445,
+						"metric_score": 10.6189227143595,
+						"position_x": 64,
+						"position_y": 3,
+						"rotation": 1.67652871918402,
+						"size_x": 95.7075347900391,
+						"size_y": 440.816345214844
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.81099999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808511697227961,
+						"metric_score": 10.6288247352789,
+						"position_x": 476,
+						"position_y": 130,
+						"rotation": 3.65045952159537,
+						"size_x": 107.172561645508,
+						"size_y": 124.405090332031
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.69399999999996
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80843953114239,
+						"metric_score": 10.6128882037707,
+						"position_x": 465,
+						"position_y": 580,
+						"rotation": 2.64640335914661,
+						"size_x": 130.055084228516,
+						"size_y": 53.2071685791016
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.78499999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808225521371384,
+						"metric_score": 10.603132263688,
+						"position_x": 576,
+						"position_y": 418,
+						"rotation": 4.51170196167161,
+						"size_x": 119.268783569336,
+						"size_y": 117.133079528809
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.72999999999996
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808051125602617,
+						"metric_score": 10.6404409865702,
+						"position_x": 370,
+						"position_y": 688,
+						"rotation": 1.3147453861438,
+						"size_x": 98.194938659668,
+						"size_y": 285.142852783203
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.75400000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808153489798554,
+						"metric_score": 10.5865847753099,
+						"position_x": 57,
+						"position_y": 527,
+						"rotation": 3.12248209634574,
+						"size_x": 129.435363769531,
+						"size_y": 144.923217773438
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.72900000000004
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808517212250344,
+						"metric_score": 10.614919615186,
+						"position_x": 110,
+						"position_y": 61,
+						"rotation": 3.1508876850075,
+						"size_x": 631.051452636719,
+						"size_y": 66.4289169311523
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.738
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808186983471074,
+						"metric_score": 10.6254648760331,
+						"position_x": 208,
+						"position_y": 635,
+						"rotation": 3.9624863978444,
+						"size_x": 313.697479248047,
+						"size_y": 96.4739303588867
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.81899999999996
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808313223678547,
+						"metric_score": 10.6181124096074,
+						"position_x": 61,
+						"position_y": 5,
+						"rotation": 2.84571356275986,
+						"size_x": 804.051330566406,
+						"size_y": 132.991180419922
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.81599999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808367970364153,
+						"metric_score": 10.6430994963843,
+						"position_x": 472,
+						"position_y": 113,
+						"rotation": 3.83129271430607,
+						"size_x": 189.35905456543,
+						"size_y": 130.427001953125
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.79199999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808654482502583,
+						"metric_score": 10.6097228499483,
+						"position_x": 14,
+						"position_y": 84,
+						"rotation": 4.64718217585947,
+						"size_x": 66.8135452270508,
+						"size_y": 898.898376464844
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.85899999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808402203856749,
+						"metric_score": 10.6338681559917,
+						"position_x": 475,
+						"position_y": 147,
+						"rotation": 3.07636609973723,
+						"size_x": 115.937759399414,
+						"size_y": 106.15592956543
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.88099999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808472217738464,
+						"metric_score": 10.6414006004649,
+						"position_x": 509,
+						"position_y": 139,
+						"rotation": 1.47173227468593,
+						"size_x": 82.0379486083984,
+						"size_y": 211.507568359375
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.83800000000002
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.80847551330062,
+						"metric_score": 10.6331514721074,
+						"position_x": 487,
+						"position_y": 147,
+						"rotation": 4.25736520248582,
+						"size_x": 66.5234222412109,
+						"size_y": 141.104553222656
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.77099999999996
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808190211776859,
+						"metric_score": 10.6169566761364,
+						"position_x": 369,
+						"position_y": 46,
+						"rotation": 1.46467018859782,
+						"size_x": 92.1021347045898,
+						"size_y": 350.669555664062
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.71899999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808040364583333,
+						"metric_score": 10.6443964682335,
+						"position_x": 384,
+						"position_y": 694,
+						"rotation": 1.59864413791973,
+						"size_x": 183.383071899414,
+						"size_y": 240.873001098633
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.73199999999997
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808395545476068,
+						"metric_score": 10.6191866283574,
+						"position_x": 444,
+						"position_y": 387,
+						"rotation": 5.50665286358457,
+						"size_x": 50.6657791137695,
+						"size_y": 308.601623535156
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.82299999999998
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808225924909607,
+						"metric_score": 10.6084872159091,
+						"position_x": 280,
+						"position_y": 764,
+						"rotation": 1.93009656627769,
+						"size_x": 18.9738998413086,
+						"size_y": 97.8375854492188
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.74299999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808239376183712,
+						"metric_score": 10.6310304752066,
+						"position_x": 88,
+						"position_y": 642,
+						"rotation": 2.13065119711763,
+						"size_x": 784.117553710938,
+						"size_y": 47.4854393005371
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.80099999999999
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808339991714015,
+						"metric_score": 10.6194158380682,
+						"position_x": 541,
+						"position_y": 578,
+						"rotation": 2.89205881680814,
+						"size_x": 85.1989898681641,
+						"size_y": 309.698638916016
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.86400000000003
+				},
+				{
+					"generated_individual": {
+						"fitness": 0.808323648415978,
+						"metric_score": 10.600014527376,
+						"position_x": 207,
+						"position_y": 0,
+						"rotation": 3.17503937331829,
+						"size_x": 453.443817138672,
+						"size_y": 150.672241210938
+					},
+					"genetic_generations": [],
+					"params": {
+						"best_of_random_params": {
+							"fitness_calculator": "MPA_RGB",
+							"individual_count": 3000
+						},
+						"color_sampler": "MASKED",
+						"genetic_params": {
+							"crossover_strategy": "ATTRIBUTE_SPECIFIC_BLEND_RANDOM",
+							"fitness_calculator": "MPA_RGB",
+							"generation_count": 20,
+							"mutation_rate": 0.2,
+							"mutation_strategy": "RANDOM",
+							"population_size": 150,
+							"selection_strategy": "Ranking",
+							"survivor_selection_strategy": "ELITISM",
+							"survivor_selection_strategy_params": {
+								"elitisim_rate": 0.25,
+								"tournament_size": 10
+							}
+						},
+						"target_texture_height": 968,
+						"target_texture_width": 640
+					},
+					"time_taken": 3.78399999999999
+				}
+			]
+		}
+	]
+}

@@ -4,8 +4,12 @@ extends CanvasLayer
 @export var source_texture: RendererTextureLoad
 @export var target_texture: RendererTextureLoad
 @export var output_texture: TextureRect
+@export var generate_button: Button
 @export var save_button: Button
 @export var individual_generator_option: OptionButton
+@export var profiling_depth_option_button: OptionButton
+@export var count_spin_box: SpinBox
+@export var output_label: Label
 
 var _individual_generator: IndividualGenerator
 var _individual_renderer: IndividualRenderer
@@ -16,33 +20,50 @@ func _ready() -> void:
 	
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
 	
+	# Inividual generator option -----------------------------------------------
 	for generator in IndividualGenerator.Type.keys():
 		individual_generator_option.add_item(generator)
-	
 	individual_generator_option.select(IndividualGenerator.Type.Genetic)
-	
 	individual_generator_option.item_selected.connect(
 		func(i):
 			_set_individual_generator(i as IndividualGenerator.Type)
 	)
+	# Profiling depth option ---------------------------------------------------
+	for depth in Profiler.Depth.keys():
+		profiling_depth_option_button.add_item(depth)
+	profiling_depth_option_button.select(Profiler.depth)
+	profiling_depth_option_button.item_selected.connect(
+		func(i):
+			Profiler.depth = i as Profiler.Depth
+	)
 	
+	# Sets individual generator
 	_set_individual_generator(IndividualGenerator.Type.Genetic)
 	
 func generate() -> void:
-	output_texture.visible = false
 	
-	var clock = Clock.new()
-	var individual = _individual_generator.generate_individual()
-	clock.print_elapsed("Generated individual with fitness: %s" % individual.fitness)
-	output_texture.visible = true
-	
-	# Renders the best individual
-	_individual_renderer.source_texture = _individual_generator.source_texture
-	_individual_renderer.render_individual(individual)
+	output_label.call_deferred("set_text", "Generation started")
 
+	generate_button.call_deferred("set_disabled", true)
+	for i in range(int(count_spin_box.value)):
+		_individual_generator.source_texture = source_texture
+		
+		var clock = Clock.new()
+		var individual = _individual_generator.generate_individual()
+		output_label.call_deferred(
+			"set_text", 
+			"%s. Generated individual in %sms with fitness %s" % [i, clock.elapsed_ms(), individual.fitness]
+		)
+		# Renders the best individual
+		_individual_renderer.source_texture = _individual_generator.source_texture
+		_individual_renderer.render_individual(individual)
+		_individual_generator.source_texture = null
+	
+	output_label.call_deferred("set_text", "Generation finished")
+	generate_button.call_deferred("set_disabled", false)
 
 func _on_button_pressed() -> void:
-	generate()
+	WorkerThreadPool.add_task(generate)
 
 
 func _on_profiling_check_box_toggled(toggled_on: bool) -> void:
@@ -52,11 +73,11 @@ func _on_profiling_check_box_toggled(toggled_on: bool) -> void:
 	else:
 		Profiler.stop_profiling()
 		
-	Profiler.depth = Profiler.Depth.IndividualGenerationAlgorithm
 
 func _on_save_profiling_button_pressed() -> void:
 	Profiler.save()
 	_save_output()
+	print("Output saved")
 
 func _set_individual_generator(type: IndividualGenerator.Type):
 	# Setup individual generator -----------------------------------------------
