@@ -337,31 +337,45 @@ Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
 
 Para poner a prueba el algoritmo de generación de individuos, se decidió definir la imagen objetivo más simple posible, pero que ponga a prueba las capacidades del algoritmo genético.
 
+<div align="center">
+
 |                  _[Figura 6] - Imagen objetivo del caso de prueba básico_                  |
 | :----------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_target_test.png) |
+
+</div>
 
 En la fugura 6 se puede observar una simple imagen de resolución 128x128px, la cuál tiene como objetivo poner a prueba las capacidades del algoritmo genético tanto en la determinación de posición, tamaño, color y rotación. Nótese que se ha seleccionado un rectángulo con el objetivo de que el algoritmo también deba optimizar el atributo genético de la rotación.
 
 Para simplificar las cosas aun más, los individuos solo podrán tomar una textura, ilustrada por la figura 7, la cuál coincide con el rectángulo blanco que se busca replicar de la figura 6.
 
+<div align="center">
+
 |                    _[Figura 7] - Textura utilizada por los individuos_                    |
 | :---------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png) |
+
+</div>
 
 (Nótese que se han añadido los cuadros típicos de imágenes con transparencia manualmente para que se pueda visualizar la imagen sobre un fondo blanco. En la práctica, los cuadros grises representan los pixeles transparentes).
 
 Además, la _imagen fuente_, es decir, sobre la cuál se renderizarán los individuos es la siguiente:
 
+<div align="center">
+
 |                                _[Figura 8] - Imagen fuente_                                |
 | :----------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_source_test.png) |
+
+</div>
 
 Se plantea este escenario porque es posible agregar un individuo sobre la imagen fuente y obtener una imagen igual a la objetivo.
 
 ##### Resultados
 
 El algoritmo cuenta con los siguientes parámetros:
+
+<div align="center">
 
 | Parámetro                | Valor |
 | ------------------------ | ----- |
@@ -370,23 +384,33 @@ El algoritmo cuenta con los siguientes parámetros:
 | Probabilidad de mutación | 20%   |
 | Porcentaje elitista      | 25%   |
 
+</div>
+
 Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.95458984375 |
-| Metric Score | 4.541015625 |
-| Position X | 63 |
-| Position Y | 60 |
-| Size X | 96.3577575683594 |
-| Size Y | 108.490371704102 |
-| Rotation | 3.27535051368461 |
+
+<div align="center">
+
+| Attribute    | Value            |
+| ------------ | ---------------- |
+| Fitness      | 0.95458984375    |
+| Metric Score | 4.541015625      |
+| Position X   | 63               |
+| Position Y   | 60               |
+| Size X       | 96.3577575683594 |
+| Size Y       | 108.490371704102 |
+| Rotation     | 3.27535051368461 |
+
+</div>
 
 En la figura 9 se puede observar la imagen fuente del individuo.
+
+<div align="center">
 
 |                   _[Figura 9] - Imagen fuente del individuo generado_                    |
 | :--------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png) |
 
+</div>
 La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
 
 |                                  _[Figura 10] - Métrica media por generación_                                  |
@@ -424,27 +448,41 @@ Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no
 | ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
 El algoritmo cuenta con los siguientes parámetros:
-| Parámetro | Valor |
+
+<div align="center">
+
+| Parámetro                | Valor |
 | ------------------------ | ----- |
-| Generaciones | 20 |
-| Población | 150 |
-| Probabilidad de mutación | 20% |
-| Porcentaje elitista | 25% |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 20%   |
+| Porcentaje elitista      | 25%   |
+
+<div align="center">
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.644296525266873 |
-| Metric Score | 24.323813597624 |
-| Position X | 404 |
-| Position Y | 821 |
-| Size X | 688.973754882812 |
-| Size Y | 1072.1259765625 |
-| Rotation | 4.64755909331613 |
 
+<div align="center">
+
+| Attribute    | Value             |
+| ------------ | ----------------- |
+| Fitness      | 0.644296525266873 |
+| Metric Score | 24.323813597624   |
+| Position X   | 404               |
+| Position Y   | 821               |
+| Size X       | 688.973754882812  |
+| Size Y       | 1072.1259765625   |
+| Rotation     | 4.64755909331613  |
+
+</div>
+
+<div align="center">
+  
 |                                         _[Figura 16] - Imagen fuente del individuo_                                          |
 | :--------------------------------------------------------------------------------------------------------------------------: |
 | <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="300"> |
+
+</div>
 
 La figura 17 como la métrica varía a lo largo de las generaciones.
 
