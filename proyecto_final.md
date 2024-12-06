@@ -39,6 +39,7 @@ _Franco Yudica (13922)_
     - [Algoritmo de generación de individuos](#algoritmo-de-generación-de-individuos)
       - [Caso de prueba básico](#caso-de-prueba-básico)
       - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
+      - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
 
 - [Bibliografía](#bibliografía)
 
@@ -331,7 +332,9 @@ Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
 
 ## Experimentos y resultados obtenidos
 
-### Algoritmo de generación de individuos
+### Algoritmo de generación de individuos genético
+
+Como se detalló previamente, se implementaron dos algoritmos para la generación de individuos: el genético y el aleatorio. La experimentación descrita en esta sección se enfocó exclusivamente en el algoritmo genético. Se consideró que incluir un análisis del algoritmo aleatorio en este contexto sería poco significativo, pero su estudio será de gran importancia al comparar los resultados de ambos algoritmos en el proceso de generación de imágenes.
 
 #### Caso de prueba básico
 
@@ -509,7 +512,7 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
 </table>
 </div>
 
-La figura 17 como la métrica varía a lo largo de las generaciones.
+La figura 17 muestra como la métrica varía a lo largo de las generaciones.
 
 |                                  _[Figura 17] - Métrica media por generación_                                   |
 | :-------------------------------------------------------------------------------------------------------------: |
@@ -544,15 +547,20 @@ En el experimento anterior se evaluaron estadísticas del algoritmo genético to
 El algoritmo cuenta con los mismos parámetros que se utilizaron en la ejecución desde cero.
 
 Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguiente individuo:
-| Attribute | Value |
-|----------------|------------------|
-| Fitness | 0.808261032735021 |
-| Metric Score | 10.6251412383781 |
-| Position X | 499 |
-| Position Y | 445 |
-| Size X | 49.4948654174805 |
-| Size Y | 291.158996582031 |
-| Rotation | 2.45406044618326 |
+
+<div align="center">
+
+| Attribute    | Value             |
+| ------------ | ----------------- |
+| Fitness      | 0.808261032735021 |
+| Metric Score | 10.6251412383781  |
+| Position X   | 499               |
+| Position Y   | 445               |
+| Size X       | 49.4948654174805  |
+| Size Y       | 291.158996582031  |
+| Rotation     | 2.45406044618326  |
+
+</div>
 
 A continuación, en la figura 24 y 25 se pueden observar las imágenes fuentes de los individuos generados en la etapa 50 y 51 correspondientemente, siendo el de la etapa 51 el recientemente generado:
 
@@ -589,6 +597,43 @@ En la figura 28 se pueden observar los efectos de la rápida explotación debido
 </div>
 
 En la figura 29, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
+
+#### Estudio comparativo basado en ejecuciones múltiples del algoritmo
+
+Previamente, se analizó el comportamiento de una única ejecución del algoritmo genético con el objetivo de evaluar la evolución de la población a lo largo de las generaciones. Sin embargo, generalizar los resultados obtenidos en esa ejecución sería incorrecto. Por esta razón, y manteniendo los mismos parámetros, se llevaron a cabo 100 ejecuciones del algoritmo genético. A continuación, se presentan los resultados de estas pruebas, tanto para la imagen objetivo del caso básico como para la de Mona Lisa.
+Es importante aclarar que la imagen fuente utilizada para evaluar las distintas ejecuciones siempre fue la misma. Para el caso básico, se utilizó el fondo negro, y para la Mona Lisa, se utilizó la imagen de la etapa 50.
+
+|          _[Figura 30] - Distribución del tiempo de ejecución con imagen objetivo del caso básico_          |       _[Figura 31] - Distribución del tiempo de ejecución con imagen objetivo Mona Lisa_       |
+| :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/time_taken_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/time_taken_boxplot.png) |
+
+La condición de corte del algoritmo está definida por la cantidad de generaciones, fijada en 20. Por este motivo, los tiempos de ejecución no muestran una gran dispersión en ninguno de los casos analizados.
+
+- En la figura 30 se observa que el tiempo promedio de ejecución del algoritmo es aproximadamente 2,23 segundos. Dado que en cada ejecución se procesan 3000 individuos (resultado de multiplicar 20 generaciones por un tamaño de población de 150), el tiempo promedio por individuo es de 0,74 milisegundos.
+- Por otro lado, en la figura 31 se muestra que el tiempo promedio por individuo es de 1,26 milisegundos.
+
+Esta variación en los tiempos medios se debe a la diferencia en la resolución de las imágenes objetivo:
+
+- El caso básico utiliza una imagen con resolución de 128x128, lo que implica el procesamiento de 6384 píxeles.
+- En cambio, la imagen de Mona Lisa tiene una resolución de 640x968, lo que corresponde al procesamiento de 619,520 píxeles.
+
+Esto significa que la imagen de Mona Lisa tiene 37,81 veces más píxeles que la del caso básico. No obstante, cabe destacar que, a pesar de esta gran diferencia en la cantidad de datos a procesar, el tiempo medio de ejecución en el caso básico fue 1,7 veces más rápido que en el caso de Mona Lisa.
+
+|             _[Figura 32] - Distribución de la métrica con imagen objetivo del caso básico_             |          _[Figura 33] - Distribución de la métrica con imagen objetivo Mona Lisa_          |
+| :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/metric_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/metric_boxplot.png) |
+
+En la figura 32 se observa que las ejecuciones del algoritmo genético para el caso básico presentan una mayor dispersión del error en comparación con las correspondientes a la Mona Lisa, mostradas en la figura 33.
+Esta diferencia en la dispersión se explica porque, en el caso básico, la imagen fuente es completamente negra, lo que genera una mayor sensibilidad al error ante pequeñas imperfecciones en los individuos generados. Por otro lado, en el caso de la Mona Lisa, cuya imagen fuente corresponde a la etapa 50, existe un mayor nivel de similitud entre la imagen fuente y la imagen objetivo. Esto reduce el impacto de ligeras imperfecciones en los individuos generados, resultando en una menor variación en la métrica del error.
+
+|                _[Figura 34] - Posiciones de los individuos generados con imagen objetivo del caso básico_                |             _[Figura 35] - Posiciones de los individuos generados con imagen objetivo Mona Lisa_             |
+| :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/individual_positions_with_scores.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/individual_positions_with_scores.png) |
+
+De manera similar a los análisis previos, considerar el atributo genético de la posición proporciona una aproximación al comportamiento del algoritmo genético:
+
+- En el caso básico, las posiciones de los individuos generados se concentran en la región central de la imagen. Este resultado es acertado, ya que el centro representa la única posición viable para los individuos en este escenario.
+- Para la Mona Lisa, se observa una mayor dispersión en las posiciones de los individuos, a pesar de que la métrica presenta menor variación. Sin embargo, la distribución de las posiciones no es uniforme ni aleatoria. Este comportamiento se explica porque, en la etapa 50 de la generación de Mona Lisa, existen múltiples posiciones donde es posible ubicar un individuo manteniendo un valor similar en la métrica. Esto es coherente con los cúmulos de individuos observados.
 
 # Bibliografía
 
