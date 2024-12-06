@@ -349,6 +349,8 @@ Para simplificar las cosas aun más, los individuos solo podrán tomar una textu
 | :---------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/convergence_rectangle_shape_test.png) |
 
+(Nótese que se han añadido los cuadros típicos de imágenes con transparencia manualmente para que se pueda visualizar la imagen sobre un fondo blanco. En la práctica, los cuadros grises representan los pixeles transparentes).
+
 Además, la _imagen fuente_, es decir, sobre la cuál se renderizarán los individuos es la siguiente:
 
 |                                _[Figura 8] - Imagen fuente_                                |
@@ -386,20 +388,28 @@ En la figura 9 se puede observar la imagen fuente del individuo.
 | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png) |
 
 La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png)
-_[Figura 10] - Métrica media por generación_.
+
+|                                  _[Figura 10] - Métrica media por generación_                                  |
+| :------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png) |
 
 La figura 11 ilustra los gráficos de caja y se observa que la dispersión de los valores de métrica de cada individuo disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png)
-_[Figura 11] - Gráficos de caja de métrica por generación_.
+
+|                        _[Figura 11] - Gráficos de caja de métrica por generación_                         |
+| :-------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png) |
 
 Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor de la mejor solución candidata en cada generación:
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png)
-_[Figura 12] - Valor de la métrica del mejor individuo de cada generación_.
+
+|                 _[Figura 12] - Valor de la métrica del mejor individuo de cada generación_                 |
+| :--------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png) |
 
 La figura 13 muesta de manera intuitiva la posición de los individuos en cada una de las generaciones donde claramente se puede ver como es que el atributo posición de los individuos evoluciona al centro, siendo esta la posición ideal.
-![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif)
-_[Figura 13] - Posiciones de individuos por generación_.
+
+|                    _[Figura 13] - Posiciones de individuos por generación_                     |
+| :--------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/positions.gif) |
 
 #### Caso real con Mona Lisa
 
@@ -432,24 +442,25 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
 | Size Y | 1072.1259765625 |
 | Rotation | 4.64755909331613 |
 
-En la figura 16 se puede observar la imagen fuente del individuo.
-
-<figure style="text-align: center;">
-  <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png" width="45%">
-  <figcaption><i>[Figura 16] - Imagen fuente del individuo</i></figcaption>
-</figure>
+|                                _[Figura 16] - Imagen fuente del individuo_                                |
+| :-------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png) |
 
 La figura 17 como la métrica varía a lo largo de las generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png)
-_[Figura 17] - Métrica media por generación_.
+
+|                                  _[Figura 17] - Métrica media por generación_                                   |
+| :-------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png) |
 
 La figura 18 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso básico, pero con una mayor definición entre la exploración y la explotación en las últimas generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/metric_score_boxplot.png)
-_[Figura 18] - Gráficos de caja de métrica por generación_.
 
-La figura 19 ilustra el valor de la métrica del mejor individuo por cada generación.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/min_metric_score_plot.png)
-_[Figura 19] - Valor de la métrica del mejor individuo de cada generación_.
+|                         _[Figura 18] - Gráficos de caja de métrica por generación_                         |
+| :--------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/metric_score_boxplot.png) |
+
+|                 _[Figura 19] - Valor de la métrica del mejor individuo de cada generación_                  |
+| :---------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/min_metric_score_plot.png) |
 
 En la figura 20, se ilustran las posiciones por generación de los individuos donde se puede observar que los puntos se trasladan hacia arriba, mientras que el individuo fue renderizado en la parte inferior de la imagen. Esto no es un error porque la orientación del eje Y en Godot y matplotlib están invertidos.
 
@@ -489,26 +500,28 @@ A continuación, en la figura 24 y 25 se pueden observar las imágenes fuentes d
 Se observa que se el algoritmo generó un individuo el cuál se encuentra a la altura del hombro.
 
 La figura 26 ilustra como la métrica varía a lo largo de las generaciones.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png)
-_[Figura 26] - Métrica media por generación_.
 
-La figura 27 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/metric_score_boxplot.png)
-_[Figura 27] - Gráficos de caja de métrica por generación_.
+|                                      _[Figura 26] - Métrica media por generación_                                      |
+| :--------------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png) |
 
-La figura 28 ilustra el valor de la métrica del mejor individuo por cada generación. Se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
-![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png)
-_[Figura 28] - Gráficos de caja de métrica por generación_.
+En la figura 27 se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
 
-En la figura 29, se ilustran las posiciones por generación de los individuos.
+|                            _[Figura 27] - Gráficos de caja de métrica por generación_                             |
+| :---------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/metric_score_boxplot.png) |
 
-<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-  <figure style="text-align: center;">
-    <img src="imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/positions.gif">
-    <figcaption><i>[Figura 29] - Posiciones de los individuos por generación</i></figcaption>
-  </figure>
-</div>
-En este caso, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
+En la figura 28 se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
+
+|                     _[Figura 28] - Valor de la métrica del mejor individuo de cada generación_                     |
+| :----------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) |
+
+|                      _[Figura 29] - Posiciones de los individuos por generación_                       |
+| :----------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/positions.gif) |
+
+En la figura 29, a diferencia de los gráficos ilustrados en la figura 27 y 28, se observa que la explotación sobre el atributo posición no resulta ser tan prematuro como los gráficos anteriores ilustraban. Es probable que dada la imagen fuente sobre la cuál se ejecutó el algoritmo, el algoritmo construyera una población con atributos diversos pero con fitness similares. De hecho, si se observa el gráfico en detalle, se puede observar que hay varios puntos, es decir individuos, cuya posición se mantiene constante a lo lagro de las generaciones, lo cuál significa que estos son buenas soluciones por encima del percentil 80 de la población.
 
 # Bibliografía
 
