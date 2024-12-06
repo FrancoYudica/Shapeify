@@ -51,7 +51,9 @@ func generate_image() -> RendererTexture:
 	Profiler.image_generation_finished(individual_generator.source_texture)
 	
 	return individual_generator.source_texture
-	
+
+var _current_individual_generator_type: int = -1
+
 func setup():
 	_stop = false
 	
@@ -70,17 +72,19 @@ func setup():
 	_stop_condition.set_params(params.stop_condition_params)
 	
 	# Setup individual generator -----------------------------------------------
-	match params.individual_generator_type:
-		IndividualGenerator.Type.Random:
-			individual_generator = load("res://generation/individual_generator/random/random_individual_generator.gd").new()
-		IndividualGenerator.Type.BestOfRandom:
-			individual_generator = load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
-		IndividualGenerator.Type.Genetic:
-			individual_generator = load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
+	if _current_individual_generator_type != params.individual_generator_type:
+		match params.individual_generator_type:
+			IndividualGenerator.Type.Random:
+				individual_generator = load("res://generation/individual_generator/random/random_individual_generator.gd").new()
+			IndividualGenerator.Type.BestOfRandom:
+				individual_generator = load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
+			IndividualGenerator.Type.Genetic:
+				individual_generator = load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
 
-		_:
-			push_error("Unimplemented individual generator of type %s" % params.individual_generator_type)
+			_:
+				push_error("Unimplemented individual generator of type %s" % params.individual_generator_type)
 
+		_current_individual_generator_type = params.individual_generator_type
 	individual_generator.params = params.individual_generator_params
 	_individual_renderer.source_texture = individual_generator.source_texture
 	

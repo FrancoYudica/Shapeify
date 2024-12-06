@@ -290,6 +290,7 @@ func flush() -> void:
 	rd.submit()
 	rd.sync()
 	rd.free_rid(uniform_set_rid)
+	rd.free_rid(sampler_rd_rid)
 	_mutex.unlock()
 	
 	_flush_count += 1
