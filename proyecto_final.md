@@ -389,28 +389,32 @@ El algoritmo cuenta con los siguientes parámetros:
 Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
 
 <div align="center">
-
-| Attribute    | Value            |
-| ------------ | ---------------- |
-| Fitness      | 0.95458984375    |
-| Metric Score | 4.541015625      |
-| Position X   | 63               |
-| Position Y   | 60               |
-| Size X       | 96.3577575683594 |
-| Size Y       | 108.490371704102 |
-| Rotation     | 3.27535051368461 |
-
+<table>
+  <tr>
+    <!-- Table on the left -->
+    <td>
+      <table>
+        <tr><th>Attribute</th><th>Value</th></tr>
+        <tr><td>Fitness</td><td>0.95458984375</td></tr>
+        <tr><td>Metric Score</td><td>4.541015625</td></tr>
+        <tr><td>Position X</td><td>63</td></tr>
+        <tr><td>Position Y</td><td>60</td></tr>
+        <tr><td>Size X</td><td>96.3577575683594</td></tr>
+        <tr><td>Size Y</td><td>108.490371704102</td></tr>
+        <tr><td>Rotation</td><td>3.27535051368461</td></tr>
+      </table>
+    </td>
+    <!-- Image on the right -->
+    <td align="center">
+      <figure>
+        <img src="imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png" width="300">
+        <figcaption>Figura 9 - Imagen fuente del individuo generado</figcaption>
+      </figure>
+    </td>
+  </tr>
+</table>
 </div>
 
-En la figura 9 se puede observar la imagen fuente del individuo.
-
-<div align="center">
-
-|                   _[Figura 9] - Imagen fuente del individuo generado_                    |
-| :--------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/out.png) |
-
-</div>
 La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
 
 |                                  _[Figura 10] - Métrica media por generación_                                  |
