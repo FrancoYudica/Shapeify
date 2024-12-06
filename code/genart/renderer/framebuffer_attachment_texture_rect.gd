@@ -12,7 +12,7 @@ var _texture_rd_rid: RID
 
 func _enter_tree() -> void:
 	Renderer.resized.connect(_create_texture)
-	Renderer.rendered.connect(_update_texture)
+	#Renderer.rendered.connect(_update_texture)
 
 func _update_texture() -> void:
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
 
 [ext_resource type="Resource" uid="uid://da7g40v5lfd28" path="res://tests/individual_generator_test/params_optimizations/precise_individual_generator_params_test.tres" id="2_yfadj"]
-[ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/convergence_tests/convergence_rectangle_target_test.png" id="10_uyasf"]
+[ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/convergence_tests/convergence_rectangle_target_test.png" id="3_0t4m0"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
@@ -10,19 +10,23 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("12_6munh")
-_src_texture = ExtResource("10_uyasf")
+_src_texture = ExtResource("3_0t4m0")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
 [node name="IndividualGeneratorTest" type="Node"]
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "save_button", "individual_generator_option")]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "individual_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label")]
 script = ExtResource("13_jgyce")
 individual_generator_parms = ExtResource("2_yfadj")
 target_texture = SubResource("Texture2D_4uqcx")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
+generate_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button")
 save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
 individual_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IndividualGeneratorOptionButton")
+profiling_depth_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer/ProfilingDepthOptionButton")
+count_spin_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/CountSpinBox")
+output_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OutputLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
 anchors_preset = 15
@@ -69,11 +73,35 @@ layout_mode = 2
 layout_mode = 2
 text = "Profiling"
 
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Profiling depth"
+
+[node name="ProfilingDepthOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
 [node name="SaveProfilingButton" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Save"
 
-[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CountSpinBox" type="SpinBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+value = 1.0
+prefix = "Count"
+
+[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Generate"
@@ -86,6 +114,9 @@ expand_mode = 2
 stretch_mode = 5
 script = ExtResource("15_yx5fx")
 
+[node name="OutputLabel" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [connection signal="toggled" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ProfilingCheckBox" to="UICanvasLayer" method="_on_profiling_check_box_toggled"]
 [connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton" to="UICanvasLayer" method="_on_save_profiling_button_pressed"]
-[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="UICanvasLayer" method="_on_button_pressed"]
+[connection signal="pressed" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button" to="UICanvasLayer" method="_on_button_pressed"]

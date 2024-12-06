@@ -100,9 +100,6 @@ func _setup():
 		_color_sampler_strategy.sample_texture = params.target_texture
 		_current_sampler_strategy = params.color_sampler
 	
-	# Setup populator ----------------------------------------------------------
-	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()
-	
 	
 func _generate() -> Individual:
 	return
@@ -135,3 +132,6 @@ func _fix_individual_properties(individual: Individual):
 func _init() -> void:
 	_subrect_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd").new()
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
+	# Setup populator ----------------------------------------------------------
+	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()
+	
