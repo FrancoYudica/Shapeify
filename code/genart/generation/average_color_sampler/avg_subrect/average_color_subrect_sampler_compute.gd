@@ -123,7 +123,7 @@ func _initialize_compute_code() -> void:
 
 func _sample_texture_set():
 	
-	if _sample_texture_set_rid.is_valid():
+	if _sample_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_sample_texture_set_rid):
 		_rd.free_rid(_sample_texture_set_rid)
 	
 	# Creates the texture uniform

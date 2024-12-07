@@ -4,7 +4,7 @@ const _MAX_SUMISSIONS = 1025
 
 var _vertex_buffers: Dictionary
 var _vertex_buffers_data: Dictionary
-
+var _index_buffer: RID
 var _submissions_count: int = 0
 
 enum VertexComponentType
@@ -91,7 +91,13 @@ func flush():
 			0,
 			bytes_per_attrib * _submissions_count,
 			arr_bytes)
-			
+	
+	# Updates index array
+	if index_array.is_valid():
+		rd.free_rid(index_array)
+	index_array = rd.index_array_create(_index_buffer, 0, _submissions_count * 6)
+	
+	
 	Renderer.flush()
 	_submissions_count = 0
 
@@ -127,12 +133,10 @@ func initialize() -> bool:
 	
 	var indices_bytes = indices_data.to_byte_array()
 	
-	var index_buffer: RID = rd.index_buffer_create(
+	_index_buffer = rd.index_buffer_create(
 		indices_data.size(), 
 		RenderingDevice.INDEX_BUFFER_FORMAT_UINT32,
 		indices_bytes)
-	
-	index_array = rd.index_array_create(index_buffer, 0, indices_data.size())
 	
 	# Vertex buffers containing vertex array data --------------------------------------------------
 	for type in _vertex_buffers_data.keys():
