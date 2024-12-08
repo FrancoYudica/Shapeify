@@ -635,6 +635,69 @@ De manera similar a los análisis previos, considerar el atributo genético de l
 - En el caso básico, las posiciones de los individuos generados se concentran en la región central de la imagen. Este resultado es acertado, ya que el centro representa la única posición viable para los individuos en este escenario.
 - Para la Mona Lisa, se observa una mayor dispersión en las posiciones de los individuos, a pesar de que la métrica presenta menor variación. Sin embargo, la distribución de las posiciones no es uniforme ni aleatoria. Este comportamiento se explica porque, en la etapa 50 de la generación de Mona Lisa, existen múltiples posiciones donde es posible ubicar un individuo manteniendo un valor similar en la métrica. Esto es coherente con los cúmulos de individuos observados.
 
+#### Generación de imagen
+
+Tras probar el algortmo genético del generación de individuos se evaluó el comportamiento del algoritmo genético y aleatorio en el proceso de generación de imágenes. Se evaluarán los resultados obtenidos por ambos algortimos considerando los distintos puntos de corte:
+
+- Límite en cantidad de individuos generados
+- Límite en tiempo de ejecución
+- Valor de métrica objetivo
+
+Se seleccionaron dos texturas, las cuales forman el conjunto dominio de texturas de los individuos:
+
+<div align="center">
+
+|         _[Figura 36] - Textura 1 del dominio de texturas de individuos_         |         _[Figura 37] - Textura 2 del dominio de texturas de individuos_         |
+| :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_1.png) |
+
+</div>
+Los parámetros utilizados por el algoritmo genético son los mismos que se han utilizado en las experimentaciones previas:
+
+<div align="center">
+
+| Parámetro                | Valor |
+| ------------------------ | ----- |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 20%   |
+| Porcentaje elitista      | 25%   |
+
+</div>
+
+##### Límite en cantidad de individuos generados
+
+Como primer condición de corte a evaluar, se ha utilizado un límite de 300 individuos.
+
+|                 _[Figura 38] - Imagen generada con algoritmo genético_                  |                    _[Figura 39] - Imagen generada con algoritmo aleatorio_                    |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/generated_mona_lisa.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/generated_mona_lisa_random.png) |
+|                                Generada en 743 segundos                                 |                                   Generada en 1,2 segundos                                    |
+
+En las fuguras 38 y 39 se pueden observar las imágenes generadas con los algoritmos genético y aleatorio respectivamente. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
+
+| _[Figura 40] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 41] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ |
+| :-------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
+|          ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/metric.png)           |           ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/metric.png)            |
+
+- El gráfico ilustrado en la figura 40, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Se observa que la curva tiene una forma logarítmica, sin retrocesos, debido a que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar los mejores individuos posibles en cada etapa.
+- El gráfico de la figura 41 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
+
+Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál proboca una gran cantidad de retrocesos en el algoritmo aleatorio.
+
+| _[Figura 42] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 43] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ |
+| :----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                   ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/area.png)                   |                    ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/area.png)                    |
+
+En las figuras 42 y 43 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas.
+En cuanto al algoritmo aleatorio, el tamaño es aleatorio y esto provoca grandes retrocesos cuando el área es grande.
+
+| _[Figura 44] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_ | _[Figura 45] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ |
+| :------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+|                    ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/time_taken.png)                    |                     ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/time_taken.png)                     |
+
+Las figuras 44 y 45 muestran los tiempos de ejecucion de cada etapa para ambos algoritmos. Se añadieron estas figuras con el fin de ilustrar la relación del tamaño de los individuos generados y el tiempo de ejecución. Esta relación se puede observar con mayor claridad en el algoritmo genético, pero también sucede en el aleatorio. La relación del tamaño y los tiempos de ejecución se debe principalmente al muestreo del color promedio, ya que el muestreador debe considerar una mayor cantidad de pixeles, lo cuál implica mayor cantidad de operaciones matemáticas y mecanismos de sincronización.
+
 # Bibliografía
 
 - [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8)
