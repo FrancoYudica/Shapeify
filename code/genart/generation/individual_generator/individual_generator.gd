@@ -44,22 +44,23 @@ func generate_individual() -> Individual:
 		source_texture)
 	return individual
 
-
+func get_target_average_color() -> Color:
+	_subrect_color_sampler.sample_texture = params.target_texture
+	return _subrect_color_sampler.sample_rect(
+		Rect2i(
+			Vector2i.ZERO, 
+			Vector2i(
+				params.target_texture.get_width(),
+				params.target_texture.get_height()
+			)
+		)
+	)
 func clear_source_texture():
 	
 	var image_color: Color = Color.BLACK
 	
 	if params.clear_color_average:
-		_subrect_color_sampler.sample_texture = params.target_texture
-		image_color = _subrect_color_sampler.sample_rect(
-			Rect2i(
-				Vector2i.ZERO, 
-				Vector2i(
-					params.target_texture.get_width(),
-					params.target_texture.get_height()
-				)
-			)
-		)
+		image_color = get_target_average_color()
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
@@ -97,8 +98,9 @@ func _setup():
 			_:
 				push_error("Unimplemented color sampler of type: %s" % params.color_sampler)
 				
-		_color_sampler_strategy.sample_texture = params.target_texture
 		_current_sampler_strategy = params.color_sampler
+	
+	_color_sampler_strategy.sample_texture = params.target_texture
 	
 	
 func _generate() -> Individual:

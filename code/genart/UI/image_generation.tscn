@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=52 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
@@ -23,7 +23,10 @@
 [ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_max.gd" id="15_40eb2"]
 [ext_resource type="Script" path="res://UI/generation/rendering_time_label.gd" id="15_ddae6"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="15_umn17"]
+[ext_resource type="Texture2D" uid="uid://bdxb1ivniwnj7" path="res://art/icons/film-2-24.png" id="16_fxeqj"]
 [ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
+[ext_resource type="Script" path="res://UI/generation/animation_texture_button.gd" id="17_38fws"]
+[ext_resource type="Texture2D" uid="uid://ci0nghn4ls1d3" path="res://art/icons/film-2-24-dark.png" id="17_bu3ap"]
 [ext_resource type="Texture2D" uid="uid://ctcol4saicfjs" path="res://art/icons/save-24-dark.png" id="17_eo1oy"]
 [ext_resource type="Script" path="res://UI/settings/populator_params_ui_handler.gd" id="17_k1uov"]
 [ext_resource type="Texture2D" uid="uid://bqguirqucw3lq" path="res://art/icons/erase-24.png" id="17_q2u4h"]
@@ -44,6 +47,7 @@
 [ext_resource type="Script" path="res://UI/settings/random_settings_v_box_container.gd" id="43_dmfwt"]
 [ext_resource type="Script" path="res://UI/settings/elitism_panel_container.gd" id="43_t0xaq"]
 [ext_resource type="Script" path="res://UI/settings/tournament_panel_container.gd" id="44_ificu"]
+[ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
 [ext_resource type="Script" path="res://UI/settings/profiler_params_panel_container.gd" id="51_klyxb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xc2o"]
@@ -93,10 +97,9 @@ grow_vertical = 2
 [node name="TabContainer" type="TabContainer" parent="UICanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -147,6 +150,17 @@ image_generation = NodePath("../../../../../../../../../..")
 output_texture_rect = NodePath("../../../../TexturesHBoxContainer/OutputTextureRect")
 file_dialog = NodePath("../../../../../../../FileDialog")
 notification_popup = NodePath("../../../../../../../NotificationPopupPanel")
+
+[node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("16_fxeqj")
+texture_pressed = ExtResource("17_bu3ap")
+texture_hover = ExtResource("17_bu3ap")
+texture_disabled = ExtResource("17_bu3ap")
+script = ExtResource("17_38fws")
+image_generation = NodePath("../../../../../../../../../..")
+animator = NodePath("../../../../../../../../Animator")
 
 [node name="ClearButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -270,6 +284,7 @@ script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../..")
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -817,6 +832,10 @@ size_flags_vertical = 6
 text = "File saved"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Animator" parent="UICanvasLayer/Panel" instance=ExtResource("46_2ayc0")]
+visible = false
+layout_mode = 1
 
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]

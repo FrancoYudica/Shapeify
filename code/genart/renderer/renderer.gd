@@ -4,7 +4,7 @@ signal rendered
 signal initialized
 signal resized
 
-@export var clear_color: Color
+@export var clear_color: Color = Color.BLACK
 
 ## Scales the viewport size by this factor. Note that projection matrix isn't affected, therefore 
 ## the result is the same scene rendered but with less resolution.

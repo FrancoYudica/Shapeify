@@ -26,4 +26,8 @@ _[Fig 5] - Ice cream. 100 brush strokes_
 
 ![](imgs/samples/UmaClose300Painting.png)
 
-_[Fig 4] - My cat Uma. 300 brush strokes_
+_[Fig 6] - My cat Uma. 300 brush strokes_
+
+![](imgs/samples/BillieEilish500.png)
+
+_[Fig 7] - Billie Eilish. 500 brush strokes_
