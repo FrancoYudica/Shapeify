@@ -43,7 +43,8 @@ _Franco Yudica (13922)_
     - [Algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen)
       - [Límite en cantidad de individuos generados](#límite-en-cantidad-de-individuos-generados)
       - [Límite en tiempo de ejecución](#límite-en-tiempo-de-ejecución)
-  - [Discusión de resultados](#discusión-de-resultados)
+
+- [Conclusiones](#conclusiones)
 
 - [Bibliografía](#bibliografía)
 
@@ -729,7 +730,7 @@ La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica 
 
 En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágenes, se han obtenido mejores resultados tras reducir y establecer un valor fijo para el ancho de los individuos. Si se buscan mejores resultados con el algoritmo aleatorio, sería necesario continuar reduciendo el tamaño cada vez mas, de tal modo que se reduzca la probabilidad de superposición.
 
-## Conclusiones
+# Conclusiones
 
 En este trabajo se ha demostrado que la utilización de algoritmos genéticos para la replicación de imágenes estilizadas es elección viable. Se obtuvieron muy buenos resultados y se han logrado los objetivos. Además, se pudo comprobar que el uso de algoritmos aleatorios no brinda buenos resultados, siendo estos poco adaptables a los entornos y consumiendo mucho tiempo.
 
