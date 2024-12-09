@@ -43,6 +43,7 @@ _Franco Yudica (13922)_
     - [Algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen)
       - [Límite en cantidad de individuos generados](#límite-en-cantidad-de-individuos-generados)
       - [Límite en tiempo de ejecución](#límite-en-tiempo-de-ejecución)
+  - [Discusión de resultados](#discusión-de-resultados)
 
 - [Bibliografía](#bibliografía)
 
@@ -197,7 +198,7 @@ MSE es una posible función de fitness que logrará su tarea, pero la distribuci
 
 ##### MPA (Mean Power Accuracy)
 
-Debido a los motivos mensionados anteriormente, se decidió implementar otra función de fitness:
+Por los motivos mencionados anteriormente, se decidió implementar otra función de fitness, la cuál provee una mejor distribución y es utilizada en lugar de MSE:
 
 ![](imgs/formulas/MPANPower.png)
 _[Figura 3]_ Fórmula de fitness utilizando MPA.
@@ -684,7 +685,7 @@ En las fuguras 38 y 39 se pueden observar las imágenes generadas con los algori
 | :-----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png) |
 
-- El gráfico ilustrado en la figura 40, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Se observa que la curva tiene una forma logarítmica, sin retrocesos, debido a que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar los mejores individuos posibles en cada etapa.
+- El gráfico ilustrado en la figura 40, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Nótese que a diferencia del fitness utilizado en el algoritmo genético, la métrica delta E 94 tiende a decrecer, debido a que mide el error y no la similitud entre las imágenes. Se observa que la curva tiene una forma logarítmica, sin retrocesos, ya que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar individuos que contribuyan en cada una de las etapas.
 - El gráfico de la figura 41 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
 
 ¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál proboca una gran cantidad de retrocesos en el algoritmo aleatorio.
@@ -728,6 +729,14 @@ La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica 
 
 En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágenes, se han obtenido mejores resultados tras reducir y establecer un valor fijo para el ancho de los individuos. Si se buscan mejores resultados con el algoritmo aleatorio, sería necesario continuar reduciendo el tamaño cada vez mas, de tal modo que se reduzca la probabilidad de superposición.
 
+## Conclusiones
+
+En este trabajo se ha demostrado que la utilización de algoritmos genéticos para la replicación de imágenes estilizadas es elección viable. Se obtuvieron muy buenos resultados y se han logrado los objetivos. Además, se pudo comprobar que el uso de algoritmos aleatorios no brinda buenos resultados, siendo estos poco adaptables a los entornos y consumiendo mucho tiempo.
+
+No obstante, la principal desventaja de los algoritmos genéticos persiste: el tiempo de ejecución. La combinación del procesamiento de imágenes con algoritmos genéticos ha requerido la paralelización de componentes clave utilizando la GPU, tales como el muestreo de colores, el cálculo del fitness, la evaluación de métricas y el renderizado de imágenes. Sin esta paralelización, los tiempos de ejecución habrían dificultado considerablemente la realización de los experimentos. Es importante destacar que solo se paralelizaron los componentes esenciales, dejando margen para futuras optimizaciones del algoritmo en su conjunto.
+
+Existen múltiples oportunidades de mejora y posibilidades para añadir características que amplíen la variedad de imágenes generadas. Una tarea pendiente, que podría mejorar significativamente los resultados en imágenes con gran cantidad de detalles, es la incorporación de filtros de detección de bordes, como el [operador de Sobel](https://de.wikipedia.org/wiki/Sobel-Operator), combinados con un [filtro Gaussiano](https://en.wikipedia.org/wiki/Gaussian_filter), para ponderar el fitness de los individuos de forma más precisa, fomentando la exploración de porciones de imagen más detalladas.
+
 # Bibliografía
 
 - [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8)
@@ -738,11 +747,10 @@ En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágen
 Papers y proyectos:
 
 - [Inspiración del proyecto](https://www.youtube.com/watch?v=6aXx6RA1IK4)
+- [Procedural paintings with genetic evolution algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703). Cálculo de métrica con _delta e_ sobre el espacio [_CIELab_](https://en.wikipedia.org/wiki/CIELAB_color_space), mismos atributos genéticos propuestos en este proyecto y paralelización con [_compute shaders_](https://www.khronos.org/opengl/wiki/Compute_Shader).
 - [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa). Utilización de _delta e_.
 
 - [Grow Your Own Picture Genetic Algorithms & Generative Art](https://chriscummins.cc/s/genetics/#). Aplicación web para generar imagen con algoritmos genéticos.
-
-- [Procedural paintings with genetic evolution algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703). Cálculo de métrica con _delta e_ sobre el espacio [_CIELab_](https://en.wikipedia.org/wiki/CIELAB_color_space), mismos atributos genéticos propuestos en este proyecto y paralelización con [_compute shaders_](https://www.khronos.org/opengl/wiki/Compute_Shader).
 
 - [Genetic drawing](https://github.com/anopara/genetic-drawing). Código fuente para replicar imágenes como pinturas.
 
