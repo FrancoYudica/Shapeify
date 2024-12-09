@@ -13,3 +13,18 @@ static func create_monochromatic_image(
 	
 	img.fill(color)
 	return img
+
+static func create_image_from_rgbaf_buffer(
+	width: int,
+	height: int,
+	contents
+):
+	# Creates an image with the same size and format
+	var img = Image.new()
+	img.set_data(
+		width,
+		height,
+		false,
+		Image.Format.FORMAT_RGBAF,
+		contents)
+	return img
