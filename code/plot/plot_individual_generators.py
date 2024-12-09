@@ -45,6 +45,44 @@ def plot_generations_metric_boxplot(individual_generations, folder):
     plt.close()
 
 
+def plot_generations_fitness_boxplot(individual_generations, folder):
+    fitness_values = [
+        individual_generation["generated_individual"]["fitness"]
+        for individual_generation in individual_generations
+    ]
+
+    # Calculate statistics
+    mean_val = sum(fitness_values) / len(fitness_values)
+    median_val = sorted(fitness_values)[len(fitness_values) // 2]
+    min_val = min(fitness_values)
+    max_val = max(fitness_values)
+
+    # Plot a boxplot
+    plt.figure(figsize=(10, 6))
+    box = plt.boxplot(fitness_values, showmeans=True, notch=True, patch_artist=True)
+
+    # Add statistical annotations
+    plt.text(1.1, mean_val, f"Mean = {mean_val:.2f}", color="blue", fontsize=10)
+    plt.text(1.1, median_val, f"Median = {median_val:.2f}", color="green", fontsize=10)
+    plt.text(1.1, max_val, f"Max = {max_val:.2f}", color="red", fontsize=10)
+    plt.text(1.1, min_val, f"Min = {min_val:.2f}", color="purple", fontsize=10)
+
+    # Customize boxplot appearance
+    colors = ["#FFC107"]  # Yellow color for the box
+    for patch, color in zip(box['boxes'], colors):
+        patch.set_facecolor(color)
+
+    # Add plot title and labels
+    plt.title("Generated individual fitness distribution")
+    plt.ylabel("Fitness")
+    plt.xticks([1], ["Execution"])  # Single label for a single box
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Save the plot to an image
+    output_file = os.path.join(folder, 'fitness_boxplot.png')
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.close()
+
 
 def plot_generations_time_taken_boxplot(individual_generations, folder):
     # Extract metric values
@@ -151,7 +189,8 @@ if __name__ == "__main__":
     plot_functions = [
         plot_generations_metric_boxplot,
         plot_generations_time_taken_boxplot,
-        plot_positions
+        plot_positions,
+        plot_generations_fitness_boxplot
     ]
 
 

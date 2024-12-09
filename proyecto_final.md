@@ -428,24 +428,23 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
   </tr>
 </table>
 </div>
+La figura 10 ilustra el fitness medio de por población en cada generación, el cuál utiliza la función MPA con potencia 4, motivo por el cuál está nomrmalizado y aumenta mientras disminuye el error medio de la población.
 
-La figura 10.1 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error. Además se ilustra el fitness en la figura 10.2, el cuál utiliza la función MPA con potencia 4, motivo por el cuál está nomrmalizado y cuenta con un comportamiento distinto, aumentando mientras disminuye el error.
-
-|                                 _[Figura 10.1] - Métrica media por generación_                                 |                              _[Figura 10.2] - Fitness medio por generación_                               |
-| :------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_fitness_plot.png) |
-
-La figura 11 ilustra los gráficos de caja y se observa que la dispersión de los valores de métrica de cada individuo disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
-
-|                        _[Figura 11] - Gráficos de caja de métrica por generación_                         |
+|                               _[Figura 10] - Fitness medio por generación_                                |
 | :-------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/metric_score_boxplot.png) |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_fitness_plot.png) |
 
-Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor de la mejor solución candidata en cada generación:
+La figura 11 ilustra los gráficos de caja del fitness por generación y se observa que la dispersión de los valores disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
 
-|                _[Figura 12.1] - Valor de la métrica del mejor individuo de cada generación_                |               _[Figura 12.2] - Valor de fitness del mejor individuo de cada generación_               |
-| :--------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png) | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/max_fitness_plot.png) |
+|                   _[Figura 11] - Gráficos de caja de fitness medio por generación_                   |
+| :--------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/fitness_boxplot.png) |
+
+Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor del fitness de la mejor solución candidata en cada generación:
+
+|                _[Figura 12] - Valor de fitness del mejor individuo de cada generación_                |
+| :---------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/max_fitness_plot.png) |
 
 La figura 13 muesta de manera intuitiva la posición de los individuos en cada una de las generaciones donde claramente se puede ver como es que el atributo posición de los individuos evoluciona al centro, siendo esta la posición ideal.
 
@@ -459,7 +458,7 @@ La figura 13 muesta de manera intuitiva la posición de los individuos en cada u
 
 #### Caso real con Mona Lisa
 
-La Mona Lisa será utilizada como la imagen estándar a partir de este punto con el fin de mantener constante la mayor cantidad de parámetros.
+La Mona Lisa será utilizada como la imagen estándar a partir de este punto con el fin de mantener constante la mayor cantidad de parámetros. Además es comunmente utilizada en trabajos similares de generación de imágenes.
 
 ##### Resultados desde cero
 
@@ -517,21 +516,21 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
 </table>
 </div>
 
-La figura 17 muestra como la métrica varía a lo largo de las generaciones.
+La figura 17 muestra como varía el fitness medio de cada población a lo largo de las generaciones.
 
-|                                 _[Figura 17.1] - Métrica media por generación_                                  |                               _[Figura 17.2] - Fitness medio por generación_                               |
-| :-------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_fitness_plot.png) |
-
-La figura 18 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso básico, pero con una mayor definición entre la exploración y la explotación en las últimas generaciones.
-
-|                         _[Figura 18] - Gráficos de caja de métrica por generación_                         |
+|                                _[Figura 17] - Fitness medio por generación_                                |
 | :--------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/metric_score_boxplot.png) |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_fitness_plot.png) |
 
-|                 _[Figura 19] - Valor de la métrica del mejor individuo de cada generación_                  |
-| :---------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/min_metric_score_plot.png) |
+La figura 18 muesta los gráficos de caja del fitness por generación. Se puede observar un comportamiento similar al del caso básico, pero con una mayor definición entre la exploración y la explotación en las últimas generaciones.
+
+|                   _[Figura 18] - Gráficos de caja de fitness medio por generación_                    |
+| :---------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/fitness_boxplot.png) |
+
+|                _[Figura 19] - Valor del fitness del mejor individuo de cada generación_                |
+| :----------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/max_fitness_plot.png) |
 
 En la figura 20, se ilustran las posiciones por generación de los individuos donde se puede observar que los puntos se trasladan hacia arriba, mientras que el individuo fue renderizado en la parte inferior de la imagen. Esto no es un error porque la orientación del eje Y en Godot y matplotlib están invertidos.
 
@@ -545,7 +544,7 @@ En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos result
 
 En el experimento anterior se evaluaron estadísticas del algoritmo genético tomando una imagen fuente vacía. Debido a que se utilizarán iteraciones sucesivas del algoritmo genético, el estudio del caso anterior no basta para poder asegurar el correcto funcionamiento del algoritmo en el proceso de generación de imágenes. Es por este motivo que a continuación se hará un análisis similar pero con un punto de partida más avanzado, donde la imagen fuente no está vacía, simulando una etapa de generación de imagen.
 
-|                        _[Figura 22] - Imagen fuente avanzada con 50 individuos_                         |  _[Figura 23] - Imagen objetivo: Mona Lisa original_   |
+|                   _[Figura 22] - Imagen fuente avanzada con 50 individuos (Etapa 50)_                   |  _[Figura 23] - Imagen objetivo: Mona Lisa original_   |
 | :-----------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
@@ -575,23 +574,23 @@ A continuación, en la figura 24 y 25 se pueden observar las imágenes fuentes d
 
 Se observa que se el algoritmo generó un individuo el cuál se encuentra a la altura del hombro.
 
-La figura 26 ilustra como la métrica varía a lo largo de las generaciones.
+La figura 26 ilustra como el fitness medio varía a lo largo de las generaciones.
 
-|                                     _[Figura 26.1] - Métrica media por generación_                                     |                                  _[Figura 26.2] - Fitness medio por generación_                                   |
-| :--------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_fitness_plot.png) |
+|                                   _[Figura 26] - Fitness medio por generación_                                    |
+| :---------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_fitness_plot.png) |
 
 En la figura 27 se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
 
-|                            _[Figura 27] - Gráficos de caja de métrica por generación_                             |
-| :---------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/metric_score_boxplot.png) |
+|                          _[Figura 27] - Gráficos de caja de fitness por generación_                          |
+| :----------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/fitness_boxplot.png) |
 
 En la figura 28 se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
 
-|                    _[Figura 28.1] - Valor de la métrica del mejor individuo de cada generación_                    |                 _[Figura 28.2] - Valor de la métrica del mejor individuo de cada generación_                  |
-| :----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/max_fitness_plot.png) |
+|                  _[Figura 28] - Valor de la métrica del mejor individuo de cada generación_                   |
+| :-----------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/max_fitness_plot.png) |
 
 <div align="center">
 
@@ -624,12 +623,12 @@ Esta variación en los tiempos medios se debe a la diferencia en la resolución 
 
 Esto significa que la imagen de Mona Lisa tiene 37,81 veces más píxeles que la del caso básico. No obstante, cabe destacar que, a pesar de esta gran diferencia en la cantidad de datos a procesar, el tiempo medio de ejecución en el caso básico fue 1,7 veces más rápido que en el caso de Mona Lisa.
 
-|             _[Figura 32] - Distribución de la métrica con imagen objetivo del caso básico_             |          _[Figura 33] - Distribución de la métrica con imagen objetivo Mona Lisa_          |
-| :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/metric_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/metric_boxplot.png) |
+|              _[Figura 32] - Distribución del fitness con imagen objetivo del caso básico_               |           _[Figura 33] - Distribución del fitness con imagen objetivo Mona Lisa_            |
+| :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/fitness_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/fitness_boxplot.png) |
 
-En la figura 32 se observa que las ejecuciones del algoritmo genético para el caso básico presentan una mayor dispersión del error en comparación con las correspondientes a la Mona Lisa, mostradas en la figura 33.
-Esta diferencia en la dispersión se explica porque, en el caso básico, la imagen fuente es completamente negra, lo que genera una mayor sensibilidad al error ante pequeñas imperfecciones en los individuos generados. Por otro lado, en el caso de la Mona Lisa, cuya imagen fuente corresponde a la etapa 50, existe un mayor nivel de similitud entre la imagen fuente y la imagen objetivo. Esto reduce el impacto de ligeras imperfecciones en los individuos generados, resultando en una menor variación en la métrica del error.
+En la figura 32 se observa que las ejecuciones del algoritmo genético para el caso básico presentan una mayor dispersión del fitness en comparación con las correspondientes a la Mona Lisa, mostradas en la figura 33.
+Esta diferencia en la dispersión se explica porque, en el caso básico, la imagen fuente es completamente negra, lo que genera una mayor sensibilidad al error ante pequeñas imperfecciones en los individuos generados. Por otro lado, en el caso de la Mona Lisa, cuya imagen fuente corresponde a la etapa 50, existe un mayor nivel de similitud entre la imagen fuente y la imagen objetivo. Esto reduce el impacto de ligeras imperfecciones en los individuos generados, resultando en una menor variación en el fitness de los individuos generados.
 
 |                _[Figura 34] - Posiciones de los individuos generados con imagen objetivo del caso básico_                |             _[Figura 35] - Posiciones de los individuos generados con imagen objetivo Mona Lisa_             |
 | :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
