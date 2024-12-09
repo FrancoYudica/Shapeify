@@ -36,10 +36,13 @@ _Franco Yudica (13922)_
   - [Métricas](#métricas)
   - [Herramientas](#herramientas)
   - [Experimentos y resultados obtenidos](#experimentos-y-resultados-obtenidos)
-    - [Algoritmo de generación de individuos](#algoritmo-de-generación-de-individuos)
+    - [Algoritmo de generación de individuos genético](#algoritmo-de-generación-de-individuos-genético)
       - [Caso de prueba básico](#caso-de-prueba-básico)
       - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
       - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
+    - [Algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen)
+      - [Límite en cantidad de individuos generados](#límite-en-cantidad-de-individuos-generados)
+      - [Límite en tiempo de ejecución](#límite-en-tiempo-de-ejecución)
 
 - [Bibliografía](#bibliografía)
 
@@ -321,6 +324,8 @@ _[Figura 5] - ΔE medio sobre imágenes en espacio de color CEILab_
 
 A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en este [recurso](http://zschuessler.github.io/DeltaE/learn/).
 
+En este trabajo se ha decidido establecer como función de cálculo ΔE a la de 1994, siendo esta mas precisa que la de 1976.
+
 ## Herramientas
 
 Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
@@ -424,11 +429,11 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
 </table>
 </div>
 
-La figura 10 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error.
+La figura 10.1 como la métrica varía a lo largo de las generaciones. Se puede observar que esta disminuye, como es esperado en una métrica que representa el error. Además se ilustra el fitness en la figura 10.2, el cuál utiliza la función MPA con potencia 4, motivo por el cuál está nomrmalizado y cuenta con un comportamiento distinto, aumentando mientras disminuye el error.
 
-|                                  _[Figura 10] - Métrica media por generación_                                  |
-| :------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png) |
+|                                 _[Figura 10.1] - Métrica media por generación_                                 |                              _[Figura 10.2] - Fitness medio por generación_                               |
+| :------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/average_fitness_plot.png) |
 
 La figura 11 ilustra los gráficos de caja y se observa que la dispersión de los valores de métrica de cada individuo disminuye a medida que aumentan las generaciones. Esto representa un comportamiento adecuado, donde el algoritmo inicialmente realiza exploración, y a medida que avanzan las generaciones se hace explotación.
 
@@ -438,9 +443,9 @@ La figura 11 ilustra los gráficos de caja y se observa que la dispersión de lo
 
 Los gráficos anteriores representan el comportamiento evolutivo en conjunto de la población, pero también es de interés analizar cuál es el valor de la mejor solución candidata en cada generación:
 
-|                 _[Figura 12] - Valor de la métrica del mejor individuo de cada generación_                 |
-| :--------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png) |
+|                _[Figura 12.1] - Valor de la métrica del mejor individuo de cada generación_                |               _[Figura 12.2] - Valor de fitness del mejor individuo de cada generación_               |
+| :--------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/min_metric_score_plot.png) | ![](imgs/plots_and_statistics/simple_rectangle_test/precise_optimization_params/max_fitness_plot.png) |
 
 La figura 13 muesta de manera intuitiva la posición de los individuos en cada una de las generaciones donde claramente se puede ver como es que el atributo posición de los individuos evoluciona al centro, siendo esta la posición ideal.
 
@@ -514,9 +519,9 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
 
 La figura 17 muestra como la métrica varía a lo largo de las generaciones.
 
-|                                  _[Figura 17] - Métrica media por generación_                                   |
-| :-------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png) |
+|                                 _[Figura 17.1] - Métrica media por generación_                                  |                               _[Figura 17.2] - Fitness medio por generación_                               |
+| :-------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/average_fitness_plot.png) |
 
 La figura 18 muesta los gráficos de caja de la métrica por generación. Se puede observar un comportamiento similar al del caso básico, pero con una mayor definición entre la exploración y la explotación en las últimas generaciones.
 
@@ -572,9 +577,9 @@ Se observa que se el algoritmo generó un individuo el cuál se encuentra a la a
 
 La figura 26 ilustra como la métrica varía a lo largo de las generaciones.
 
-|                                      _[Figura 26] - Métrica media por generación_                                      |
-| :--------------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png) |
+|                                     _[Figura 26.1] - Métrica media por generación_                                     |                                  _[Figura 26.2] - Fitness medio por generación_                                   |
+| :--------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/average_fitness_plot.png) |
 
 En la figura 27 se puede observar un comportamiento similar al del caso desde cero, pero se presenta una explotación mucho más rápida y menor exploración.
 
@@ -584,9 +589,9 @@ En la figura 27 se puede observar un comportamiento similar al del caso desde ce
 
 En la figura 28 se pueden observar los efectos de la rápida explotación debido a que el algoritmo quedó atascado en un mismo valor a partir de la tercera generación.
 
-|                     _[Figura 28] - Valor de la métrica del mejor individuo de cada generación_                     |
-| :----------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) |
+|                    _[Figura 28.1] - Valor de la métrica del mejor individuo de cada generación_                    |                 _[Figura 28.2] - Valor de la métrica del mejor individuo de cada generación_                  |
+| :----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/min_metric_score_plot.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/plots/max_fitness_plot.png) |
 
 <div align="center">
 
@@ -635,13 +640,12 @@ De manera similar a los análisis previos, considerar el atributo genético de l
 - En el caso básico, las posiciones de los individuos generados se concentran en la región central de la imagen. Este resultado es acertado, ya que el centro representa la única posición viable para los individuos en este escenario.
 - Para la Mona Lisa, se observa una mayor dispersión en las posiciones de los individuos, a pesar de que la métrica presenta menor variación. Sin embargo, la distribución de las posiciones no es uniforme ni aleatoria. Este comportamiento se explica porque, en la etapa 50 de la generación de Mona Lisa, existen múltiples posiciones donde es posible ubicar un individuo manteniendo un valor similar en la métrica. Esto es coherente con los cúmulos de individuos observados.
 
-#### Generación de imagen
+#### Algoritmo de generación de imagen
 
 Tras probar el algortmo genético del generación de individuos se evaluó el comportamiento del algoritmo genético y aleatorio en el proceso de generación de imágenes. Se evaluarán los resultados obtenidos por ambos algortimos considerando los distintos puntos de corte:
 
 - Límite en cantidad de individuos generados
 - Límite en tiempo de ejecución
-- Valor de métrica objetivo
 
 Se seleccionaron dos texturas, las cuales forman el conjunto dominio de texturas de los individuos:
 
@@ -669,34 +673,61 @@ Los parámetros utilizados por el algoritmo genético son los mismos que se han 
 
 Como primer condición de corte a evaluar, se ha utilizado un límite de 300 individuos.
 
-|                 _[Figura 38] - Imagen generada con algoritmo genético_                  |                    _[Figura 39] - Imagen generada con algoritmo aleatorio_                    |
-| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/generated_mona_lisa.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/generated_mona_lisa_random.png) |
-|                                Generada en 743 segundos                                 |                                   Generada en 1,2 segundos                                    |
+|                             _[Figura 38] - Imagen generada con algoritmo genético_                             |                               _[Figura 39] - Imagen generada con algoritmo aleatorio_                                |
+| :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/generated_mona_lisa.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/generated_mona_lisa_random.png) |
+|                                            Generada en 743 segundos                                            |                                               Generada en 1,2 segundos                                               |
+|                                   Puntuación de la métrica: 7.56027569731405                                   |                                      Puntuación de la métrica: 25.0826882102273                                      |
 
 En las fuguras 38 y 39 se pueden observar las imágenes generadas con los algoritmos genético y aleatorio respectivamente. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
 
-| _[Figura 40] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 41] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ |
-| :-------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
-|          ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/metric.png)           |           ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/metric.png)            |
+|   _[Figura 40] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_   |  _[Figura 41] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_  |
+| :-----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png) |
 
 - El gráfico ilustrado en la figura 40, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Se observa que la curva tiene una forma logarítmica, sin retrocesos, debido a que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar los mejores individuos posibles en cada etapa.
 - El gráfico de la figura 41 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
 
-Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál proboca una gran cantidad de retrocesos en el algoritmo aleatorio.
+¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál proboca una gran cantidad de retrocesos en el algoritmo aleatorio.
 
 | _[Figura 42] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 43] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ |
 | :----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                   ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/area.png)                   |                    ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/area.png)                    |
+|       ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png)        |        ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png)         |
 
 En las figuras 42 y 43 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas.
 En cuanto al algoritmo aleatorio, el tamaño es aleatorio y esto provoca grandes retrocesos cuando el área es grande.
 
+La reducción del tamaño de los individuos a lo largo de las etapas explica el comportamiento logarítmico presentado en la fugura 40. Inicialmente los individuos son de gran tamaño, esto implica que cubren mayor cantidad de pixeles, provocando un disminución significativa en la métrica. A medida que avanza el algoritmo, el tamaño de los individuos disminuye de tal forma que no se provocan retrocesos, pero dado a que el tamaño es menor, la contribución de cada individuo en la imagen es menor, provocando el comportamiento logarítmico de la función de la métrica.
+
 | _[Figura 44] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_ | _[Figura 45] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ |
 | :------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-|                    ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/time_taken.png)                    |                     ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/time_taken.png)                     |
+|        ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/time_taken.png)         |         ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/time_taken.png)          |
 
 Las figuras 44 y 45 muestran los tiempos de ejecucion de cada etapa para ambos algoritmos. Se añadieron estas figuras con el fin de ilustrar la relación del tamaño de los individuos generados y el tiempo de ejecución. Esta relación se puede observar con mayor claridad en el algoritmo genético, pero también sucede en el aleatorio. La relación del tamaño y los tiempos de ejecución se debe principalmente al muestreo del color promedio, ya que el muestreador debe considerar una mayor cantidad de pixeles, lo cuál implica mayor cantidad de operaciones matemáticas y mecanismos de sincronización.
+
+Tras analizar resultados anteriores se cosidera que continuar con un análisis compartativo sobre las condiciones de corte restantes con los mismos parámetros carece de sentido debido a la amplia superioridad del algoritmo genético sobre el aleatorio. Es por este motivo que se decide establecer un tamaño fijo de los individuos, de tal modo que el algoritmo aleatorio no pueda generar individuos demasiado grandes que provoquen muchos retrocesos.
+
+Se ha establecido que el ancho de los individuos sea igual al 30% del ancho de la imagen, y el alto es un valor que se calcula luego de establecer el ancho con el fin de mantener la relación de aspecto de la textura del individuo.
+
+##### Límite en tiempo de ejecución
+
+Se estableció un límite de 400 segundos.
+| _[Figura 46] - Imagen generada con algoritmo genético_ | _[Figura 47] - Imagen generada con algoritmo aleatorio_ |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/genetated_genetic.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/generated_random_1000.png) |
+| Formada por 112 individuos| Formada por 1000 individuos |
+| Puntuación de la métrica: 9.25097091296488| Puntuación de la métrica: 17.2200897469008 |
+
+Comparando las imágenes generadas con ambos algoritmos se observa que el algoritmo genético es capaz de distribuir tan solo 112 individuos de tal forma que reduzca la superposición y se pueda lograr cierto nivel de similitud con la imagen objetivo. El algoritmo aleatorio, por lo contrario, muestra mucha superposición de individuos.
+
+La imagen del algoritmo aleatorio se generó en 5 segundos en lugar de 400. Se ha tomado esta decisión tras observar que nuevamente se llega a un punto de retrocesos, tal como se ilustra en las figuras 48.1 y 48.2.
+| _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png) |
+
+La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica durante los 400 segundos de ejecución, mientras que el algoritmo aleatorio presenta retrocesos a partir de la etapa 200.
+
+En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágenes, se han obtenido mejores resultados tras reducir y establecer un valor fijo para el ancho de los individuos. Si se buscan mejores resultados con el algoritmo aleatorio, sería necesario continuar reduciendo el tamaño cada vez mas, de tal modo que se reduzca la probabilidad de superposición.
 
 # Bibliografía
 
