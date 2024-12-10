@@ -6,7 +6,7 @@ var _vertex_buffers: Dictionary
 var _vertex_buffers_data: Dictionary
 var _index_buffer: RID
 var _submissions_count: int = 0
-
+var _index_array_index_count: int = 0
 enum VertexComponentType
 {
 	POSITION,
@@ -93,10 +93,13 @@ func flush():
 			arr_bytes)
 	
 	# Updates index array
-	if index_array.is_valid():
-		rd.free_rid(index_array)
-	index_array = rd.index_array_create(_index_buffer, 0, _submissions_count * 6)
-	
+	if _index_array_index_count != _submissions_count * 6:
+		
+		if index_array.is_valid():
+			rd.free_rid(index_array)
+
+		index_array = rd.index_array_create(_index_buffer, 0, _submissions_count * 6)
+		_index_array_index_count = _submissions_count * 6
 	
 	Renderer.flush()
 	_submissions_count = 0

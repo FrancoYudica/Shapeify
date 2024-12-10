@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var _label = $VBoxContainer/Label
-@onready var _texture_rect = $VBoxContainer/TextureRect
+@onready var _label = $MarginContainer/VBoxContainer/Label
+@onready var _texture_rect = $MarginContainer/VBoxContainer/TextureRect
 
 
 var filepath: String:
