@@ -24,8 +24,8 @@ resource_name = ""
 script = ExtResource("4_fecb7")
 _src_texture = ExtResource("3_6fhbb")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_342gj"]
-bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6wr5"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -93,7 +93,7 @@ white_texture = SubResource("Texture2D_ccnob")
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/panel = SubResource("StyleBoxFlat_342gj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6wr5")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2

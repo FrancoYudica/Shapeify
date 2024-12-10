@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ilo78we81v7e"
-path="res://.godot/imported/glow_ring.png-e4f800499033ffcecce491684ae37125.ctex"
+uid="uid://cip0lr26kh35c"
+path="res://.godot/imported/Dropped Image.png-93f900949f7b91c51420d4a47a74a997.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/transparent_shapes/glow_ring.png"
-dest_files=["res://.godot/imported/glow_ring.png-e4f800499033ffcecce491684ae37125.ctex"]
+source_file="res://art/individual_textures_group/emoji/Dropped Image.png"
+dest_files=["res://.godot/imported/Dropped Image.png-93f900949f7b91c51420d4a47a74a997.ctex"]
 
 [params]
 

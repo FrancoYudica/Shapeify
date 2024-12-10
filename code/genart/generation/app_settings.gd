@@ -5,7 +5,7 @@ class_name AppSettings extends Resource
 @export var default_target_texture: Texture
 
 ## Textures that are automatically loaded
-@export var default_textures: Array[Texture]
+@export var default_texture_group_name: String
 @export var individuals_texture_groups: Array[IndividualsTextureGroup] = []
 
 ## Boolean flag to control if the algorithm should be displaying the output while generating the

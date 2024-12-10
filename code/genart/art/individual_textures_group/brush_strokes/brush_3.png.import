@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://burtcc0b0gkya"
-path="res://.godot/imported/vecteezy_white-light-effects_32047928.png-6c6e05b64b0827fbdf722fbe0c4b6f81.ctex"
+uid="uid://bwhsec413qhqh"
+path="res://.godot/imported/brush_3.png-6b5d443f18bf36bfd6c549ecea5a4bdc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/transparent_shapes/vecteezy_white-light-effects_32047928.png"
-dest_files=["res://.godot/imported/vecteezy_white-light-effects_32047928.png-6c6e05b64b0827fbdf722fbe0c4b6f81.ctex"]
+source_file="res://art/individual_textures_group/brush_strokes/brush_3.png"
+dest_files=["res://.godot/imported/brush_3.png-6b5d443f18bf36bfd6c549ecea5a4bdc.ctex"]
 
 [params]
 

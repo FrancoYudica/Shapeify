@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6vk4tcoal0tn"
-path="res://.godot/imported/brush_2.png-0c13452805559e00c965fef7f7e94681.ctex"
+uid="uid://0w63nahxl4o0"
+path="res://.godot/imported/Dropped Image (3).png-754852af34a0a428e00e9b4556c31b72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/brush_strokes/brush_2.png"
-dest_files=["res://.godot/imported/brush_2.png-0c13452805559e00c965fef7f7e94681.ctex"]
+source_file="res://art/individual_textures_group/emoji/Dropped Image (3).png"
+dest_files=["res://.godot/imported/Dropped Image (3).png-754852af34a0a428e00e9b4556c31b72.ctex"]
 
 [params]
 

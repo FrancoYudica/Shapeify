@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ol08bumnmo6l"
-path="res://.godot/imported/horizontal_glow.png-7cd2411a9a372c8721ff38b2d1c34b32.ctex"
+uid="uid://dms0uqgwjpjob"
+path="res://.godot/imported/brush_1.png-aaae49bcaba894f05433394082ce0b39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/simple_shapes/transparent_shapes/horizontal_glow.png"
-dest_files=["res://.godot/imported/horizontal_glow.png-7cd2411a9a372c8721ff38b2d1c34b32.ctex"]
+source_file="res://art/individual_textures_group/brush_strokes/brush_1.png"
+dest_files=["res://.godot/imported/brush_1.png-aaae49bcaba894f05433394082ce0b39.ctex"]
 
 [params]
 

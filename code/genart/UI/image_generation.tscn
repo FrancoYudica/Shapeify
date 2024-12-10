@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=59 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
@@ -58,8 +58,22 @@ bg_color = Color(0.187176, 0.187176, 0.187176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg87p"]
 bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xc2o"]
-bg_color = Color(0.314316, 0.314316, 0.314316, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q43t0"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tvwg"]
+bg_color = Color(0.501407, 0.501406, 0.501406, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3clnb"]
+bg_color = Color(1, 0.785758, 0.154725, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -110,10 +124,9 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jg87p")
-current_tab = 1
+current_tab = 0
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -127,7 +140,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8xc2o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q43t0")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -209,6 +222,9 @@ image_generation = NodePath("../../../../../../../../../..")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4tvwg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3clnb")
 max_value = 1.0
 script = ExtResource("12_hhf1r")
 image_generation = NodePath("../../../../../../../../../..")
@@ -298,6 +314,7 @@ script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../..")
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24

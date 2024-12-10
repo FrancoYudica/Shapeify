@@ -19,9 +19,20 @@ func _enter_tree() -> void:
 		.image_generator_params \
 		.individual_generator_params \
 		.populator_params.textures
-
+	
+	var texture_group: IndividualsTextureGroup = null
+	
+	for group in settings.individuals_texture_groups:
+		if group.name == settings.default_texture_group_name:
+			texture_group = group
+			break
+			
+	if texture_group == null:
+		push_error("Unable to find texture group named: %s" % settings.default_texture_group_name)
+	
+	
 	# Loads default textures
-	for default_texture in settings.default_textures:
+	for default_texture in texture_group.textures:
 		var renderer_texture = RendererTexture.load_from_texture(default_texture)
 		textures.append(renderer_texture)
 	
