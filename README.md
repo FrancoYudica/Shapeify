@@ -31,3 +31,8 @@ _[Fig 6] - My cat Uma. 300 brush strokes_
 ![](imgs/samples/BillieEilish500.png)
 
 _[Fig 7] - Billie Eilish. 500 brush strokes_
+
+|        Generated ice cream         |                     Animation                      |
+| :--------------------------------: | :------------------------------------------------: |
+| ![](imgs/samples/icecream200.png)  | ![](imgs/samples/videos/icecream_200_timeline.gif) |
+| _[Fig 8] - Ice cream. 200 objects_ |  _[Fig 9] Animated timeline of image generation_   |

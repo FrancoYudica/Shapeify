@@ -5,11 +5,11 @@ extends TextureButton
 func _ready() -> void:
 	animator.animation_finished.connect(
 		func():
-			button_pressed = false
+			set_pressed_no_signal(false)
 	)
 	animator.animation_started.connect(
 		func():
-			button_pressed = true
+			set_pressed_no_signal(true)
 	)
 
 func _on_toggled(toggled_on: bool) -> void:

@@ -1,28 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://c46kw3qtcbjh0"]
+[gd_scene load_steps=19 format=3 uid="uid://c46kw3qtcbjh0"]
 
 [ext_resource type="Script" path="res://UI/animator/animator.gd" id="1_r8qxr"]
+[ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="2_arjf1"]
 [ext_resource type="Script" path="res://UI/animator/output_texture_rect.gd" id="2_bu1eh"]
+[ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_rlkso"]
 [ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="3_6fhbb"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_fecb7"]
 [ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="6_4q3br"]
 [ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="7_jt2e8"]
 [ext_resource type="Script" path="res://UI/animator/progress_slider.gd" id="8_aiw40"]
 [ext_resource type="Script" path="res://UI/animator/play_stop_texture_button.gd" id="8_y67us"]
-[ext_resource type="Texture2D" uid="uid://brmrcx16v2wmc" path="res://art/icons/record-24.png" id="9_u1oww"]
+[ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="9_e106u"]
 [ext_resource type="Script" path="res://UI/animator/duration_spin_box.gd" id="10_buwol"]
 [ext_resource type="Script" path="res://UI/animator/record_texture_button.gd" id="10_u23sa"]
 [ext_resource type="Script" path="res://UI/animator/animation_type_option_button.gd" id="11_uo1fi"]
 [ext_resource type="Script" path="res://UI/animator/close_button.gd" id="12_pmlre"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8kf3"]
-bg_color = Color(0.13, 0.13, 0.13, 0.498039)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5icp"]
-bg_color = Color(0.38, 0.38, 0.38, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panel.tscn" id="14_mshqm"]
 
 [sub_resource type="Texture2D" id="Texture2D_ccnob"]
 resource_local_to_scene = false
@@ -30,8 +23,12 @@ resource_name = ""
 script = ExtResource("4_fecb7")
 _src_texture = ExtResource("3_6fhbb")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksi75"]
-bg_color = Color(0.13, 0.13, 0.13, 0.784314)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_342gj"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Animator" type="Control"]
 layout_mode = 3
@@ -49,7 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_j8kf3")
+theme_override_styles/panel = ExtResource("2_rlkso")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -64,7 +61,7 @@ offset_right = 272.0
 offset_bottom = 325.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5icp")
+theme = ExtResource("2_arjf1")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -75,11 +72,13 @@ theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Animator"
+horizontal_alignment = 1
 
 [node name="OutputTextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("animator")]
 custom_minimum_size = Vector2(512, 512)
@@ -93,6 +92,7 @@ white_texture = SubResource("Texture2D_ccnob")
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_342gj")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -127,13 +127,18 @@ step = 0.001
 script = ExtResource("8_aiw40")
 animator = NodePath("../../../../../../../..")
 
-[node name="RecordTextureButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator", "recording_panel")]
-modulate = Color(1, 0, 0, 1)
+[node name="RecordTextureButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator", "recording_panel", "file_dialog", "progress_bar", "notification_popup")]
+modulate = Color(1, 1, 0, 1)
 layout_mode = 2
-texture_normal = ExtResource("9_u1oww")
+tooltip_text = "Save animation. 
+Keep in mind that the output isn't a video, it's a set of frames."
+texture_normal = ExtResource("9_e106u")
 script = ExtResource("10_u23sa")
 animator = NodePath("../../../../../../../..")
 recording_panel = NodePath("../../../../../../../../RecordingPanel")
+file_dialog = NodePath("../../../../../../../../FileDialog")
+progress_bar = NodePath("../../../../../../../../RecordingPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
+notification_popup = NodePath("../../../../../../../../Notification")
 
 [node name="SettingsHBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -164,7 +169,7 @@ text = "Close"
 script = ExtResource("12_pmlre")
 animator = NodePath("../../../..")
 
-[node name="RecordingPanel" type="Panel" parent="."]
+[node name="RecordingPanel" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -172,24 +177,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ksi75")
+theme_override_styles/panel = ExtResource("2_rlkso")
 
-[node name="Label" type="Label" parent="RecordingPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="RecordingPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RecordingPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="RecordingPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Please wait
 Recording animation..."
 horizontal_alignment = 1
 
+[node name="AnimationRecordProgressBar" type="ProgressBar" parent="RecordingPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+size = Vector2i(537, 180)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="Notification" parent="." instance=ExtResource("14_mshqm")]
+visible = false
+layout_mode = 1
+
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" to="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" method="_on_toggled"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" to="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" method="_on_value_changed"]
+[connection signal="dir_selected" from="FileDialog" to="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RecordTextureButton" method="_on_file_dialog_dir_selected"]
