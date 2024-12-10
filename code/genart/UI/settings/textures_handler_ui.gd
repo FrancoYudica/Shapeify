@@ -1,6 +1,6 @@
 extends PanelContainer
 
-
+@export var texture_group_selector: Control
 @export var textures_ui_container: Control
 
 var image_item_packed = preload("res://UI/settings/image_item.tscn")
@@ -10,6 +10,8 @@ var _textures_map: Dictionary
 var _populator_params: PopulatorParams
 
 func _ready() -> void:
+	texture_group_selector.selected_texture_group.connect(_load_texture_group)
+	
 	_populator_params = Globals.settings.image_generator_params.individual_generator_params.populator_params
 	
 	# Adds the default textures
@@ -47,3 +49,16 @@ func _add_image_item(image_item, renderer_texture):
 			_populator_params.textures.erase(texture)
 	)
 	
+
+func _load_texture_group(group: IndividualsTextureGroup) -> void:
+	
+	for texture in group.textures:
+		var renderer_texture := RendererTexture.load_from_texture(texture)
+		_populator_params.textures.append(renderer_texture)
+		var image_item = image_item_packed.instantiate()
+		_add_image_item(image_item, renderer_texture)
+		image_item.texture = texture
+
+
+func _on_load_preset_button_pressed() -> void:
+	texture_group_selector.visible = true

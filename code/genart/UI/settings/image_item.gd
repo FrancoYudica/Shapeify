@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var _label = $MarginContainer/VBoxContainer/Label
-@onready var _texture_rect = $MarginContainer/VBoxContainer/TextureRect
+@export var _label: Label
+@export var _texture_rect: TextureRect 
 
 
 var filepath: String:
@@ -26,5 +26,5 @@ var texture: Texture:
 		_label.text = ""
 
 
-func _on_delete_button_pressed() -> void:
+func _on_delete_texture_button_pressed() -> void:
 	queue_free()
