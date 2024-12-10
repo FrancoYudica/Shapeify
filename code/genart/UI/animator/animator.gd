@@ -18,7 +18,7 @@ func _ready() -> void:
 	visibility_changed.connect(
 		func():
 			if visible:
-				play()
+				play_animation(0.0)
 			else:
 				stop()
 	)
@@ -53,4 +53,5 @@ func play():
 	play_animation(_current_t)
 
 func stop():
-	_tween.stop()
+	if _tween != null and _tween.is_running():
+		_tween.stop()
