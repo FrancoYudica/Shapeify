@@ -407,6 +407,7 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         <tr><td>Size Y</td><td>108.490371704102</td></tr>
         <tr><td>Rotation</td><td>3.27535051368461</td></tr>
         <tr><td>Color</td><td>(1.0, 1.0, 1.0)</td></tr>
+        <tr><td>Texture index</td><td>0 (Correspondiente al rectángulo)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -422,6 +423,7 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         </tr>
       </table>
     </td>
+
   </tr>
 </table>
 </div>
@@ -492,6 +494,7 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
         <tr><td>Size Y</td><td>1072.1259765625</td></tr>
         <tr><td>Rotation</td><td>4.64755909331613</td></tr>
         <tr><td>Color</td><td>(0.1568, 0.0784, 0.0470)</td></tr>
+        <tr><td>Texture index</td><td>0 (Correspondiente al círculo)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -549,16 +552,17 @@ Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguien
 
 <div align="center">
 
-| Attribute    | Value                   |
-| ------------ | ----------------------- |
-| Fitness      | 0.808261032735021       |
-| Metric Score | 10.6251412383781        |
-| Position X   | 499                     |
-| Position Y   | 445                     |
-| Size X       | 49.4948654174805        |
-| Size Y       | 291.158996582031        |
-| Rotation     | 2.45406044618326        |
-| Color        | (0.1294, 0.0627, 0.043) |
+| Attribute     | Value                          |
+| ------------- | ------------------------------ |
+| Fitness       | 0.808261032735021              |
+| Metric Score  | 10.6251412383781               |
+| Position X    | 499                            |
+| Position Y    | 445                            |
+| Size X        | 49.4948654174805               |
+| Size Y        | 291.158996582031               |
+| Rotation      | 2.45406044618326               |
+| Color         | (0.1294, 0.0627, 0.043)        |
+| Texture index | 0 (Correspondiente al círculo) |
 
 </div>
 
