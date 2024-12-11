@@ -327,12 +327,7 @@ En este trabajo se ha decidido establecer como función de cálculo ΔE a la de 
 
 ## Herramientas
 
-Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
-
-- [**Godot 4.3**](https://godotengine.org/): Motor de desarrollo de videojuegos utilizado como plataforma principal.
-- [**GDScript**](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html): Lenguaje de programación empleado para la lógica del proyecto.
-- [**GLSL**](<https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)>): Lenguaje utilizado para la programación de shaders y paralelización de múltiples tareas.
-- [**Python**](https://www.python.org/) y la biblioteca [**matplotlib**](https://matplotlib.org/): Herramientas utilizadas para la generación de gráficos y visualización de datos.
+Para el desarrollo de este proyecto, se utilizó Godot 4.3 [^3](#godot-43), con lógica programada en GDScript [12] y paralelización implementada en GLSL [13]. La visualización de resultados se realizó con Python [14] y matplotlib [15].
 
 ## Experimentos y resultados obtenidos
 
@@ -730,21 +725,45 @@ En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágen
 
 # Bibliografía
 
-- [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8)
-- Artificial Intelligence A Modern Approach, Third Edition
-- [What is Delta E? And Why Is It Important for Color Accuracy? ](https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/)
-- [Formulación matemática de _delta e_](http://zschuessler.github.io/DeltaE/learn/)
+### Libros
 
-Papers y proyectos:
+**[1]**. A. E. Eiben and J. E. Smith, Introduction to Evolutionary Computing, 2nd Edition, Springer, 2015. Disponible en: https://link.springer.com/book/10.1007/978-3-662-44874-8.
 
-- [Inspiración del proyecto](https://www.youtube.com/watch?v=6aXx6RA1IK4)
-- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa). Utilización de _delta e_.
+**[2]**. S. Russell and P. Norvig, Artificial Intelligence: A Modern Approach, 3rd Edition, Pearson Education, 2010.
 
-- [Grow Your Own Picture Genetic Algorithms & Generative Art](https://chriscummins.cc/s/genetics/#). Aplicación web para generar imagen con algoritmos genéticos.
+### Referencias de herramientas
 
-- [Procedural paintings with genetic evolution algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703). Cálculo de métrica con _delta e_ sobre el espacio [_CIELab_](https://en.wikipedia.org/wiki/CIELAB_color_space), mismos atributos genéticos propuestos en este proyecto y paralelización con [_compute shaders_](https://www.khronos.org/opengl/wiki/Compute_Shader).
+[^3](#godot-43): Godot Engine, Godot 4.3, Disponible en: https://godotengine.org/.
 
-- [Genetic drawing](https://github.com/anopara/genetic-drawing). Código fuente para replicar imágenes como pinturas.
+**[4]** GDScript Basics, Disponible en: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html.
 
-- [EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57). Algoritmo genético completamente distito, pero utiliza como función de fitness y métrica _Peak Signal-to-Noise_
-  Ratio (PSNR). Se muestran resultados en cuanto a los tiempos de ejecución y como cambia la función de fitness a lo largo de las generaciones.
+**[5]** Khronos Group, Core Language (GLSL), Disponible en: https://www.khronos.org/opengl/wiki/Core_Language_(GLSL).
+
+**[6]** Python Software Foundation, Python 3.10 Documentation, Disponible en: https://www.python.org/.
+
+**[7]** The Matplotlib Development Team, Matplotlib: Visualization with Python, Disponible en: https://matplotlib.org/.
+
+### Artículos en línea
+
+**[8]**. ViewSonic, "What is Delta E? And Why Is It Important for Color Accuracy?", Disponible en: https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/.
+
+**[9]**. Z. Schuessler, "Formulación matemática de Delta E", Disponible en: http://zschuessler.github.io/DeltaE/learn/.
+
+### Papers y proyectos
+
+**[10]**. Inspiración del proyecto, YouTube, Disponible en: https://www.youtube.com/watch?v=6aXx6RA1IK4.
+
+**[11]**. S. Charmot, "Genetic Algorithm for Image Recreation", Medium, Disponible en: https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa.
+
+**[12]**. C. Cummins, "Grow Your Own Picture: Genetic Algorithms & Generative Art", Disponible en: https://chriscummins.cc/s/genetics/#.
+
+**[13]**. S. Shahrabi, "Procedural Paintings with Genetic Evolution Algorithm", Medium, Disponible en: https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703.
+
+- Incluye cálculo de métricas con Delta E en el espacio de color CIELab, atributos genéticos propuestos y paralelización mediante compute shaders.
+
+**[14]**. N. Opara, Genetic Drawing, Repositorio en GitHub, Disponible en: https://
+github.com/anopara/genetic-drawing.
+
+**[15]**. S. Mukherjee et al., "EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art", Proceedings of the 57th Hawaii International Conference on System Sciences (HICSS), 2024. Disponible en: https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57.
+
+- Algoritmo genético distinto, utiliza Peak Signal-to-Noise Ratio (PSNR) como métrica de fitness.
