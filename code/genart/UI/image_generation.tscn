@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=60 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" path="res://UI/settings/genetic_settings_v_box_container.gd" id="25_jv4l3"]
 [ext_resource type="Script" path="res://UI/generation/individual_generating_time_label.gd" id="31_jo20f"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="35_ad0r6"]
+[ext_resource type="Script" path="res://UI/settings/save_settings_button.gd" id="37_bnia1"]
 [ext_resource type="Script" path="res://UI/settings/individual_count_v_box_container.gd" id="40_588b5"]
 [ext_resource type="Script" path="res://UI/settings/time_count_v_box_container.gd" id="41_stjs3"]
 [ext_resource type="Script" path="res://UI/settings/target_fitness_v_box_container.gd" id="42_84n2v"]
@@ -124,9 +125,10 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jg87p")
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -314,7 +316,6 @@ script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../..")
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -430,6 +431,11 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="SaveSettingsButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save settings"
+script = ExtResource("37_bnia1")
 
 [node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/ScrollContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

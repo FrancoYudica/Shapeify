@@ -40,7 +40,6 @@ func _enter_tree() -> void:
 	var target_texture = RendererTexture.load_from_texture(settings.default_target_texture)
 	settings.image_generator_params.individual_generator_params.target_texture = target_texture
 
-
 func _exit_tree() -> void:
 
 	# Clears previous textures

@@ -17,8 +17,8 @@ _Franco Yudica (13922)_
   - [Implementación](#implementación)
     - [Generación de imagen](#generación-de-imagen)
       - [Algoritmo de generación de individuo](#algoritmo-de-generación-de-individuo)
-        - [Construcción de la imagen](#construcción-de-la-imagen)
-        - [Condiciones de parada](#condiciones-de-parada)
+      - [Construcción de la imagen](#construcción-de-la-imagen)
+      - [Condiciones de parada](#condiciones-de-parada)
     - [Algoritmo genético](#algoritmo-genético)
       - [Individuo](#individuo)
         - [Tinte](#tinte)
@@ -117,7 +117,6 @@ Es importante tener en mente la diferencia entre _imagen fuente_ e _imagen objet
 
 - **Cantidad de individuos generados**: La generación de imagen finaliza al alcanzar una cantidad de individuos previamente establecida.
 - **Tiempo de ejecución**: La generación de imagen finaliza tras pasar una cantidad de tiempo específica.
-- **Valor de métrica**: El proceso de generación de imagen continúa indefinidamente hasta lograr un valor específico de la métrica seleccionada.
 
 ### Algoritmo genético
 

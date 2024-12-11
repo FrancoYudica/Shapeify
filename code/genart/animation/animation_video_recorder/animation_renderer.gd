@@ -10,8 +10,9 @@ var _white_texture: RendererTexture = null
 func render_frame(t: float) -> Image:
 	
 	if _white_texture == null:
-		_white_texture = RendererTexture.load_from_path("res://art/white_1x1.png")
-		
+		var tex = load("res://art/white_1x1.png")
+		_white_texture = RendererTexture.new()
+		_white_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(tex)
 	
 	var frame_individuals := animation_player.animate(
 		image_generation_details.individuals,
