@@ -251,7 +251,7 @@ Tras el nacimiento de un hijo, se aplica el operador de mutación sobre los sigu
 
 - **Rotación**: La rotación es modificada por un valor aleatorio del intervalo [-PI/2, PI/2].
 
-Nótese que los atributos de tamaño y posición tienen mutaciones relativas, lo cuál es de caracter fundamental para explorar nuevas soluciones, pero al mismo tiempo no perder el progreso evolutivo logrado.
+Nótese que los atributos de tamaño y posición tienen mutaciones relativas, lo cuál significa que los factores de mutación de estos atributos se calculan proporcionalmente, en función del valor de cada atributo. Esto es de caracter fundamental para explorar nuevas soluciones, pero al mismo tiempo no perder el progreso evolutivo logrado.
 
 ##### Selección de sobrevivientes
 
@@ -296,9 +296,21 @@ _[Figura 5] - ΔE medio sobre imágenes en espacio de color CEILab_
 - **(L, a, b)** son los canales del espacio de color _CEILab_.
 - **ΔE(img1, img2)** es la función utilizada para calcular ΔE entre dos pixeles de la _imagen generada_ y la _imagen objetivo_.
 
-A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en [\[9\]](#delta-e-math).
+A lo largo del tiempo, se han desarrollado diversas funciones para calcular ΔE, considerando las versiones de 1976, 1994 y 2000. Se ha optado por implementar la fórmula de ΔE de 1994, ya que ofrece una mayor precisión que la de 1976, pero sin la exigencia computacional de la versión de 2000. Además, es importante destacar que la métrica utilizada no será ΔE en sí misma, sino el ΔE medio, lo que hace que el uso de una función de extrema precisión sea innecesario, dado que se calcula el promedio, haciendo que el exeso de detalles percibidos por la función se pierdan.
 
-En este trabajo se ha decidido establecer como función de cálculo ΔE a la de 1994, siendo esta mas precisa que la de 1976.
+#### Cálculo de delta E 1994
+
+<div align="center">
+
+| _[Figura 6] - Fórmula de delta E 1994_ |
+| :------------------------------------: |
+|  ![](imgs/formulas/formula-cie94.png)  |
+|   Referencia [\[9\]](#delta-e-math).   |
+
+</div>
+
+- **(L, a, b)** son los canales del espacio de color _CEILab_.
+- Las constantes _K1_, _K2_, _Kl_, _Kc_, _Kh_ son pesos que permiten ajustar la importancia de distintas componentes. Tras analizar implementaciones ya existentes utilizadas en proyectos similares se ha encontrado que es común tratar a todas las componentes por igual, motivo por el cuál se les asigna el valor de 1 a todas las constantes. [\[17\]](#python-colour)
 
 ## Herramientas
 
@@ -744,3 +756,5 @@ github.com/anopara/genetic-drawing.
 **[16]** <a id="ellipspace"></a> S. Mukherjee et al., "EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art", Proceedings of the 57th Hawaii International Conference on System Sciences (HICSS), 2024. Disponible en: https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57.
 
 - Algoritmo genético distinto, utiliza Peak Signal-to-Noise Ratio (PSNR) como métrica de fitness.
+
+**[17]** <a id="python-colour"></a> Librería de Python que cuenta con implementaciones de cálculo de delta E. https://github.com/colour-science/colour
