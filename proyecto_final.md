@@ -33,10 +33,15 @@ _Franco Yudica (13922)_
         - [Selección de sobrevivientes](#selección-de-sobrevivientes)
         - [Criterio de finalización](#criterio-de-finalización)
     - [Algoritmo aleatorio](#algoritmo-aleatorio)
-  - [Métricas](#métricas)
+  - [Métrica](#métrica)
+
+    - [Delta E medio](#delta-e-medio)
+      - [Cálculo de delta E 1994](#cálculo-de-delta-e-1994)
+
   - [Herramientas](#herramientas)
   - [Experimentos y resultados obtenidos](#experimentos-y-resultados-obtenidos)
     - [Algoritmo de generación de individuos genético](#algoritmo-de-generación-de-individuos-genético)
+      - [Parámetros](#parámetros)
       - [Caso de prueba básico](#caso-de-prueba-básico)
       - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
       - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
@@ -271,7 +276,7 @@ Con el fin de evaluar el rendimiento del [algoritmo de generación de individuo 
 
 Este algoritmo generará un único individuo de forma aleatoria, bajo los mismos principios de [iniciación del algoritmo genético](#inicialización-del-algoritmo).
 
-## Métricas
+## Métrica
 
 La métrica utilizada para evaluar la similitud entre las imágenes será el _Delta E (ΔE)_ [\[8\]](#what-is-delta-e). medio, aplicado en el espacio de color CIE L*a*b\* [\[10\]](#what-is-cielab). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
 
@@ -322,6 +327,29 @@ Para el desarrollo de este proyecto, se utilizó Godot 4.3 [\[3\]](#godot-43), c
 
 Como se detalló previamente, se implementaron dos algoritmos para la generación de individuos: el genético y el aleatorio. La experimentación descrita en esta sección se enfocó exclusivamente en el algoritmo genético. Se consideró que incluir un análisis del algoritmo aleatorio en este contexto sería poco significativo, pero su estudio será de gran importancia al comparar los resultados de ambos algoritmos en el proceso de generación de imágenes.
 
+#### Parámetros
+
+Los experimentos presentados en las siguientes secciones mantienen constantes los parámetros establecidos, con el objetivo de minimizar la cantidad de variables y garantizar una experimentación coherente y consistente.
+
+El algoritmo genético cuenta con los siguientes parámetros:
+
+<div align="center">
+
+| Parámetro                | Valor |
+| ------------------------ | ----- |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 20%   |
+| Porcentaje elitista      | 25%   |
+
+</div>
+
+Es importante aclarar que en los siguientes experimentos, los únicos parámetros que varían son:
+
+- Imagen fuente
+- Imagen objetivo
+- Dominio de imágenes de los individuos.
+
 #### Caso de prueba básico
 
 Para poner a prueba el algoritmo de generación de individuos, se decidió definir la imagen objetivo más simple posible, pero que ponga a prueba las capacidades del algoritmo genético.
@@ -362,19 +390,6 @@ Se plantea este escenario porque es posible agregar un individuo sobre la imagen
 
 ##### Resultados
 
-El algoritmo cuenta con los siguientes parámetros:
-
-<div align="center">
-
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
-
 Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
 
 <div align="center">
@@ -391,6 +406,7 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         <tr><td>Size X</td><td>96.3577575683594</td></tr>
         <tr><td>Size Y</td><td>108.490371704102</td></tr>
         <tr><td>Rotation</td><td>3.27535051368461</td></tr>
+        <tr><td>Color</td><td>(1.0, 1.0, 1.0)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -442,26 +458,22 @@ La figura 13 muesta de manera intuitiva la posición de los individuos en cada u
 
 La Mona Lisa será utilizada como la imagen estándar a partir de este punto con el fin de mantener constante la mayor cantidad de parámetros.
 
+<div align="center">
+
+|         _[Figura 14] - Textura 1 del dominio de texturas de individuos_         |
+| :-----------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) |
+
+</div>
+La figura 14 ilustra la única textura que será utilizada por los individuos.
+
 ##### Resultados desde cero
 
 Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no tiene nada renderizado, únicamente el color promedio de la imagen objetivo.
 
-|                       _[Figura 14] - Imagen fuente_                        |  _[Figura 15] - Imagen objetivo: Mona Lisa original_   |
+|                      _[Figura 15.1] - Imagen fuente_                       | _[Figura 15.2] - Imagen objetivo: Mona Lisa original_  |
 | :------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-
-El algoritmo cuenta con los siguientes parámetros:
-
-<div align="center">
-
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
 
@@ -479,6 +491,7 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
         <tr><td>Size X</td><td>688.973754882812</td></tr>
         <tr><td>Size Y</td><td>1072.1259765625</td></tr>
         <tr><td>Rotation</td><td>4.64755909331613</td></tr>
+        <tr><td>Color</td><td>(0.1568, 0.0784, 0.0470)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -536,15 +549,16 @@ Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguien
 
 <div align="center">
 
-| Attribute    | Value             |
-| ------------ | ----------------- |
-| Fitness      | 0.808261032735021 |
-| Metric Score | 10.6251412383781  |
-| Position X   | 499               |
-| Position Y   | 445               |
-| Size X       | 49.4948654174805  |
-| Size Y       | 291.158996582031  |
-| Rotation     | 2.45406044618326  |
+| Attribute    | Value                   |
+| ------------ | ----------------------- |
+| Fitness      | 0.808261032735021       |
+| Metric Score | 10.6251412383781        |
+| Position X   | 499                     |
+| Position Y   | 445                     |
+| Size X       | 49.4948654174805        |
+| Size Y       | 291.158996582031        |
+| Rotation     | 2.45406044618326        |
+| Color        | (0.1294, 0.0627, 0.043) |
 
 </div>
 
@@ -637,18 +651,7 @@ Se seleccionaron dos texturas, las cuales forman el conjunto dominio de texturas
 | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_1.png) |
 
 </div>
-Los parámetros utilizados por el algoritmo genético son los mismos que se han utilizado en las experimentaciones previas:
-
-<div align="center">
-
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
+Es importante aclarar que los parámetros utilizados por el algoritmo genético son los mismos que se utilizaron al experimentar con el algoritmo genético en la sección anterior.
 
 ##### Límite en cantidad de individuos generados
 
