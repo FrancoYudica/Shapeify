@@ -163,10 +163,12 @@ A continuación se detallarán los dos métodos que se han utilizado para determ
 
 Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR. [\[12\]](#genetic-algorithm-for-image-recreation), [\[14\]](#procedural-paintings), [\[15\]](#genetic-drawing), [\[16\]](#ellipspace).
 
-##### MSE (Mean Squared Error)
+##### MPA (Mean Power Accuracy)
 
-![](imgs/formulas/MSE.png)
-_[Figura 1] Fórmula de error cuadrático medio sobre imágenes en espacio de color RGB._
+La función de fitness utilizada en este trabajo es la siguiente:
+
+![](imgs/formulas/MPANPower.png)
+_[Figura 3]_ Fórmula de fitness utilizando MPA.
 
 Donde:
 
@@ -174,29 +176,11 @@ Donde:
 - **{R, G, B}**: Es el conjunto de canales sobre los cuales se calculará la diferencia. Cada canal toma un valor normalizado del intervalo: [0.0, 1.0].
 - La diferencia de realiza entre la _imagen objetivo_ y la _imagen fuente del individuo_.
 
-Nótese que MSE está dividido por la cantidad de canales, motivo por el cuál MSE tomará el valor de 0 cuando las imágenes sean idénticas, pero tomará 1.0 cuando sean completamente distintas.
+Se realiza la sumatoria de la exactitud potenciada a cierto valor. Nótese que los valores de los canales de la imagen están normalizados, y es este el motivo por el cuál se calcula el complemento a uno. Además, el resultado está normalizado, en el intervalo [0.0, 1.0] al dividir la sumatoria por la cantidad de canales totales, _3N_.
 
-Luego, el fitness se calcula como:
+De esta forma la penalización aumenta sobre aquellos canales cuyo error sea mayor. Además, se puede modificar el valor de exponente, o también llamado factor de penalización para modificar la distribución de los valores.
 
-![](imgs/formulas/MSE-Fitness.png)
-_[Figura 2] Fitness partiendo de MSE._
-
-Esto se debe a que el fitness debe medir la similitud y no el error.
-
-MSE es una posible función de fitness que logrará su tarea, pero la distribución de fitness no será la deseada debido a que se trabaja con valores normalizados. Al aplicar cualquier potencia mayor a 1.0 en un valor normalizado, el resultado es un número más chico que el de la base. Esto significa que MSE, en este caso, disminiye el error calculado.
-
-##### MPA (Mean Power Accuracy)
-
-Debido a los motivos mensionados anteriormente, se decidió implementar otra función de fitness:
-
-![](imgs/formulas/MPANPower.png)
-_[Figura 3]_ Fórmula de fitness utilizando MPA.
-
-A primera vista resulta similar a MSE, pero en realidad tiene una gran diferencia. En lugar de realizar la sumatoria del error cuadrático, se realiza la sumatoria de la exactitud potenciada a cierto valor.
-
-De esta forma la penalización aumenta sobre aquellos canales cuyo error sea mayor.
-
-La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintings), la cuál utiliza la potencia `n = 4`:
+La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintings), la cuál utiliza el factor de penalización `n = 4`:
 
 ![](imgs/formulas/MPA4Power.png)
 _[Figura 4] Fórmula MPA con potencia 4._
