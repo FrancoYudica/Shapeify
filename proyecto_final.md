@@ -47,7 +47,7 @@ _Franco Yudica (13922)_
       - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
     - [Algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen)
       - [Límite en cantidad de individuos generados](#límite-en-cantidad-de-individuos-generados)
-      - [Límite en tiempo de ejecución](#límite-en-tiempo-de-ejecución)
+      - [Límite en tiempo de ejecución y cantidad máxima de individuos generados](#límite-en-tiempo-de-ejecución-y-cantidad-máxima-de-individuos-generados)
 
 - [Bibliografía](#bibliografía)
 
@@ -643,8 +643,8 @@ De manera similar a los análisis previos, considerar el atributo genético de l
 
 Tras probar el algortmo genético del generación de individuos se evaluó el comportamiento del algoritmo genético y aleatorio en el proceso de generación de imágenes. Se evaluarán los resultados obtenidos por ambos algortimos considerando los distintos puntos de corte:
 
-- Límite en cantidad de individuos generados
-- Límite en tiempo de ejecución
+- **Límite en cantidad de individuos generados**
+- **Límite en tiempo de ejecución y cantidad máxima de individuos generados**: La condición a evaluar principalmente es el tiempo de ejecución, pero también se añade un límite alto en la cantidad de individuos.
 
 Se seleccionaron dos texturas, las cuales forman el conjunto dominio de texturas de los individuos:
 
@@ -697,9 +697,9 @@ Tras analizar resultados anteriores se cosidera que continuar con un análisis c
 
 Se ha establecido que el ancho de los individuos sea igual al 30% del ancho de la imagen, y el alto es un valor que se calcula luego de establecer el ancho con el fin de mantener la relación de aspecto de la textura del individuo.
 
-##### Límite en tiempo de ejecución
+##### Límite en tiempo de ejecución y cantidad máxima de individuos generados
 
-Se estableció un límite de 400 segundos.
+Se estableció un tiempo de ejecución límite de 400 segundos, y en cuanto a la cantidad de individuos, se estableció un límite alto de 1000 individuos.
 | _[Figura 46] - Imagen generada con algoritmo genético_ | _[Figura 47] - Imagen generada con algoritmo aleatorio_ |
 | :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/genetated_genetic.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/generated_random_1000.png) |
@@ -708,7 +708,7 @@ Se estableció un límite de 400 segundos.
 
 Comparando las imágenes generadas con ambos algoritmos se observa que el algoritmo genético es capaz de distribuir tan solo 112 individuos de tal forma que reduzca la superposición y se pueda lograr cierto nivel de similitud con la imagen objetivo. El algoritmo aleatorio, por lo contrario, muestra mucha superposición de individuos.
 
-La imagen del algoritmo aleatorio se generó en 5 segundos en lugar de 400. Se ha tomado esta decisión tras observar que nuevamente se llega a un punto de retrocesos, tal como se ilustra en las figuras 48.1 y 48.2.
+La imagen del algoritmo aleatorio se generó en 5 segundos en lugar de 400 ya que se alcanzó el límite de 1000 individuos, pero a pesar de contar con 1000 individuos, los resultados no son satisfactorios. Es claro que el algoritmo aleatorio genera retrocesos de la métrica a partir de cierta cantidad de individuos, tal como se ilustra en las figuras 48.1 y 48.2.
 | _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ |
 | :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png) |
