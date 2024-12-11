@@ -73,9 +73,7 @@ Existen dos fuerzas principales que forman la base de los sistemas evolutivos:
 
 La aplicación combinada de la variación y la selección generalmente conduce a la mejora de los valores de aptitud en poblaciones consecutivas. Es fácil visualizar este proceso como si la evolución estuviera optimizando (o al menos "aproximando") la función de aptitud, acercándose cada vez más a los valores óptimos con el tiempo.
 
-Es importante destacar que muchos componentes de los procesos evolutivos son estocásticos. Por ejemplo, la selección de los mejores individuos no es completamente determinista; incluso los individuos menos aptos suelen tener alguna probabilidad de convertirse en padres o de pasar a la siguiente generación. Durante el proceso de recombinación, la elección de qué atributos de cada padre serán combinados es aleatoria. De manera similar, en el caso de la mutación, la selección de los atributos a modificar en una solución candidata también sigue un comportamiento aleatorio.
-
-[_Introduction to evolutionary computing second edition_](#bibliografía)
+Es importante destacar que muchos componentes de los procesos evolutivos son estocásticos. Por ejemplo, la selección de los mejores individuos no es completamente determinista; incluso los individuos menos aptos suelen tener alguna probabilidad de convertirse en padres o de pasar a la siguiente generación. Durante el proceso de recombinación, la elección de qué atributos de cada padre serán combinados es aleatoria. De manera similar, en el caso de la mutación, la selección de los atributos a modificar en una solución candidata también sigue un comportamiento aleatorio. [\[1\] _Introduction to evolutionary computing second edition_](#evolutionary-computing).
 
 ## Justificación
 
@@ -164,13 +162,7 @@ Esta función realiza las siguientes tareas:
 
 A continuación se detallarán los dos métodos que se han utilizado para determinar el fitness de los individuos. Teniendo en cuenta que los individuos obtienen los colores diréctamente de la _imagen objetivo_, los métodos de cálculo de fitness pueden trabajar con los colores en el espacio RGB. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
 
-Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR:
-
-- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa).
-
-- [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703).
-
-- [EllipScape](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57).
+Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR. [\[12\]](#genetic-algorithm-for-image-recreation), [\[14\]](#procedural-paintings), [\[15\]](#genetic-drawing), [\[16\]](#ellipspace).
 
 ##### MSE (Mean Squared Error)
 
@@ -205,7 +197,7 @@ A primera vista resulta similar a MSE, pero en realidad tiene una gran diferenci
 
 De esta forma la penalización aumenta sobre aquellos canales cuyo error sea mayor.
 
-La siguiente función de fitness es la planteada en [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703), la cuál utiliza la potencia `n = 4`:
+La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintings), la cuál utiliza la potencia `n = 4`:
 
 ![](imgs/formulas/MPA4Power.png)
 _[Figura 4] Fórmula MPA con potencia 4._
@@ -223,7 +215,7 @@ Reiterando, el tinte es obtenido mediante un muestreo de la sub-imagen objetivo 
 
 #### Operadores
 
-Los operadores de un algoritmo genético son las funciones principales que manipulan una población de posibles soluciones para buscar la solución óptima a un problema. [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8).
+Los operadores de un algoritmo genético son las funciones principales que manipulan una población de posibles soluciones para buscar la solución óptima a un problema. [\[1\] _Introduction to evolutionary computing second edition_](#evolutionary-computing).
 
 ##### Selección
 
@@ -298,7 +290,7 @@ Este algoritmo generará un único individuo de forma aleatoria, bajo los mismos
 
 ## Métricas
 
-La métrica utilizada para evaluar la similitud entre las imágenes será el [_Delta E (ΔE)_](https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/) medio, aplicado en el espacio de color [CIE L*a*b\*](https://en.wikipedia.org/wiki/CIELAB_color_space). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
+La métrica utilizada para evaluar la similitud entre las imágenes será el _Delta E (ΔE)_ [\[8\]](#what-is-delta-e). medio, aplicado en el espacio de color CIE L*a*b\* [\[10\]](#what-is-cielab). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
 
 El delta E es una medida estándar utilizada para cuantificar la diferencia entre dos colores en este espacio, y en este proyecto será clave para comparar la imagen generada con la _imagen objetivo_.
 
@@ -321,13 +313,13 @@ _[Figura 5] - ΔE medio sobre imágenes en espacio de color CEILab_
 - **(L, a, b)** son los canales del espacio de color _CEILab_.
 - **ΔE(img1, img2)** es la función utilizada para calcular ΔE entre dos pixeles de la _imagen generada_ y la _imagen objetivo_.
 
-A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en este [recurso](http://zschuessler.github.io/DeltaE/learn/).
+A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en [\[9\]](#delta-e-math).
 
 En este trabajo se ha decidido establecer como función de cálculo ΔE a la de 1994, siendo esta mas precisa que la de 1976.
 
 ## Herramientas
 
-Para el desarrollo de este proyecto, se utilizó Godot 4.3 [^3](#godot-43), con lógica programada en GDScript [12] y paralelización implementada en GLSL [13]. La visualización de resultados se realizó con Python [14] y matplotlib [15].
+Para el desarrollo de este proyecto, se utilizó Godot 4.3 [\[3\]](#godot-43), con lógica programada en GDScript [\[4\]](#gdscript) y paralelización implementada en GLSL [\[5\]](#glsl). La visualización de resultados se realizó con Python [\[6\]](#python) y matplotlib [\[7\]](#matplotlib).
 
 ## Experimentos y resultados obtenidos
 
@@ -727,43 +719,45 @@ En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágen
 
 ### Libros
 
-**[1]**. A. E. Eiben and J. E. Smith, Introduction to Evolutionary Computing, 2nd Edition, Springer, 2015. Disponible en: https://link.springer.com/book/10.1007/978-3-662-44874-8.
+**[1]** <a id="evolutionary-computing"></a> A. E. Eiben and J. E. Smith, Introduction to Evolutionary Computing, 2nd Edition, Springer, 2015. Disponible en: https://link.springer.com/book/10.1007/978-3-662-44874-8.
 
 **[2]**. S. Russell and P. Norvig, Artificial Intelligence: A Modern Approach, 3rd Edition, Pearson Education, 2010.
 
 ### Referencias de herramientas
 
-[^3](#godot-43): Godot Engine, Godot 4.3, Disponible en: https://godotengine.org/.
+**[3]** <a id="godot-43"></a> Godot Engine, Godot 4.3, Disponible en: https://godotengine.org/.
 
-**[4]** GDScript Basics, Disponible en: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html.
+**[4]** <a id="gdscript"></a> GDScript Basics, Disponible en: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html.
 
-**[5]** Khronos Group, Core Language (GLSL), Disponible en: https://www.khronos.org/opengl/wiki/Core_Language_(GLSL).
+**[5]** <a id="glsl"></a> Khronos Group, Core Language (GLSL), Disponible en: https://www.khronos.org/opengl/wiki/Core_Language_(GLSL).
 
-**[6]** Python Software Foundation, Python 3.10 Documentation, Disponible en: https://www.python.org/.
+**[6]** <a id="python"></a> Python Software Foundation, Python 3.10 Documentation, Disponible en: https://www.python.org/.
 
-**[7]** The Matplotlib Development Team, Matplotlib: Visualization with Python, Disponible en: https://matplotlib.org/.
+**[7]** <a id="matplotlib"></a> The Matplotlib Development Team, Matplotlib: Visualization with Python, Disponible en: https://matplotlib.org/.
 
 ### Artículos en línea
 
-**[8]**. ViewSonic, "What is Delta E? And Why Is It Important for Color Accuracy?", Disponible en: https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/.
+**[8]** <a id="what-is-delta-e"></a> ViewSonic, "What is Delta E? And Why Is It Important for Color Accuracy?", Disponible en: https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/.
 
-**[9]**. Z. Schuessler, "Formulación matemática de Delta E", Disponible en: http://zschuessler.github.io/DeltaE/learn/.
+**[9]** <a id="delta-e-math"></a> Z. Schuessler, "Formulación matemática de Delta E", Disponible en: http://zschuessler.github.io/DeltaE/learn/.
+
+**[10]** <a id="what-is-cielab"></a> "¿Que es CELab\*?", Disponible en: https://en.wikipedia.org/wiki/CIELAB_color_space
 
 ### Papers y proyectos
 
-**[10]**. Inspiración del proyecto, YouTube, Disponible en: https://www.youtube.com/watch?v=6aXx6RA1IK4.
+**[11]** Inspiración del proyecto, YouTube, Disponible en: https://www.youtube.com/watch?v=6aXx6RA1IK4.
 
-**[11]**. S. Charmot, "Genetic Algorithm for Image Recreation", Medium, Disponible en: https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa.
+**[12]** <a id="genetic-algorithm-for-image-recreation"></a> S. Charmot, "Genetic Algorithm for Image Recreation", Medium, Disponible en: https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa.
 
-**[12]**. C. Cummins, "Grow Your Own Picture: Genetic Algorithms & Generative Art", Disponible en: https://chriscummins.cc/s/genetics/#.
+**[13]** C. Cummins, "Grow Your Own Picture: Genetic Algorithms & Generative Art", Disponible en: https://chriscummins.cc/s/genetics/#.
 
-**[13]**. S. Shahrabi, "Procedural Paintings with Genetic Evolution Algorithm", Medium, Disponible en: https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703.
+**[14]** <a id="procedural-paintings"></a> S. Shahrabi, "Procedural Paintings with Genetic Evolution Algorithm", Medium, Disponible en: https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703.
 
 - Incluye cálculo de métricas con Delta E en el espacio de color CIELab, atributos genéticos propuestos y paralelización mediante compute shaders.
 
-**[14]**. N. Opara, Genetic Drawing, Repositorio en GitHub, Disponible en: https://
+**[15]** <a id="genetic-drawing"></a> N. Opara, Genetic Drawing, Repositorio en GitHub, Disponible en: https://
 github.com/anopara/genetic-drawing.
 
-**[15]**. S. Mukherjee et al., "EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art", Proceedings of the 57th Hawaii International Conference on System Sciences (HICSS), 2024. Disponible en: https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57.
+**[16]** <a id="ellipspace"></a> S. Mukherjee et al., "EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art", Proceedings of the 57th Hawaii International Conference on System Sciences (HICSS), 2024. Disponible en: https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57.
 
 - Algoritmo genético distinto, utiliza Peak Signal-to-Noise Ratio (PSNR) como métrica de fitness.
