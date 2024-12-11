@@ -86,7 +86,6 @@ Un algoritmo genético es especialmente adecuado para este problema debido a su 
 **Aspectos adicionales:**
 
 - No es de interés analizar los pasos intermedios que realiza el algoritmo genético para alcanzar la solución.
-- El entorno es observable, determinista y estático, lo que lo hace ideal para la aplicación de algoritmos genéticos.
 - Los algoritmos genéticos son altamente configurables, lo que permite adaptarlos a diferentes entornos y necesidades. Esta flexibilidad ofrece un amplio margen para explorar diversas estrategias en la generación de imágenes.
 
 # Diseño experimental
