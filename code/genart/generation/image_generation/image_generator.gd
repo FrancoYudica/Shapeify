@@ -37,9 +37,10 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	var source_texture = individual_generator.source_texture
 	_individual_renderer.source_texture = source_texture
 	
+	var i = 0
 	_stop_condition.began_generating()
-	while not _stop_condition.should_stop():
-		
+	while not _stop_condition.should_stop() and i < 1000:
+		i += 1
 		# Checks if the algorithm should stop executing
 		_mutex.lock()
 		if _stop:
