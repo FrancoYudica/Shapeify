@@ -733,9 +733,30 @@ Tras establecer un tamaño fijo para los individuos, se obtuvieron notables mejo
 Dejando de lado el algoritmo aleatorio y comparando el genético y mejor de aleatorios, se puede observar que el algoritmo mejor de aleatorios obtuvo un mejor resultado que el genético. Esta diferencia de calidad es captada correctamente por la métrica. Sin embargo, el algoritmo genético obtuvo un resultado similar utilizando tan solo 112 individuos, a diferencia del mejor de aleatorios que llegó al límite de 1000.
 
 Es claro que el algoritmo aleatorio genera retrocesos de la métrica a partir de cierta cantidad de individuos, tal como se ilustra en las figura 48.2.
-| _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 48.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
-| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/execution_time_limit/metric.png) |
+
+<div align="center">
+
+|                   _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_                    |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png" alt="Description" width="500"> |
+
+</div>
+
+<div align="center">
+
+|                  _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_                   |
+| :---------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png" alt="Description" width="500"> |
+
+</div>
+
+<div align="center">
+
+|                 _[Figura 48.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_                  |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/execution_time_limit/metric.png" alt="Description" width="500"> |
+
+</div>
 
 La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica durante los 400 segundos de ejecución, mientras que el algoritmo aleatorio presenta retrocesos a partir de la etapa 200. En cuanto al algorimo mejor de aleatorios, se observa que la asíntota está mucho mas definida que el algoritmo genético, lo cuál quiere decir que llegada cierta cantidad de individuos, el beneficio de agregar nuevos individuos es cada vez menor. Se considera que esta propiedad no es única del algoritmo mejor de aleatorios y que también se presentaría en el algoritmo genético si se generaran 1000 individuos.
 
