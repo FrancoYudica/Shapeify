@@ -190,7 +190,6 @@ De esta forma la penalización aumenta sobre aquellos canales cuyo error sea may
 
 La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintings), la cuál utiliza el factor de penalización `n = 4`:
 
-
 ![](imgs/formulas/MPA4Power.png)
 _[Figura 4] Fórmula MPA con potencia 4._
 
@@ -698,7 +697,6 @@ Además, al comparar las figuras 38.1 y 38.3, se puede observar claramente que, 
 - El gráfico de la figura 40.2 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
 - En cuanto al algoritmo mejor de aleatorios, representado en la figura 40.3, se observa un comportamiento logarítmico similar al del algoritmo genético. Sin embargo, a diferencia del algoritmo genético, no se ha alcanzado el mismo valor de métrica, lo que provoca que la asíntota de la métrica parezca estar en un valor superior al compararla con la asíntota del algoritmo genético.
 
-
 ¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál provoca una gran cantidad de retrocesos en el algoritmo aleatorio.
 
 | _[Figura 41.1] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 41.2] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 41.3] - Area de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
@@ -745,11 +743,15 @@ En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágen
 
 # Conclusiones
 
-En este trabajo se ha demostrado que la utilización de algoritmos genéticos para la replicación de imágenes estilizadas es elección viable. Se obtuvieron muy buenos resultados y se han logrado los objetivos. Además, se pudo comprobar que el uso de algoritmos aleatorios no brinda buenos resultados, siendo estos poco adaptables a los entornos y consumiendo mucho tiempo.
+En este trabajo se ha demostrado que la utilización de algoritmos genéticos para la replicación de imágenes estilizadas es una elección viable. Se obtuvieron muy buenos resultados y se han logrado los objetivos. Además, se pudo comprobar que el uso de algoritmos aleatorios no brinda buenos resultados, siendo estos poco adaptables a los entornos y consumiendo mucho tiempo. En el proceso del desarrollo del trabajo se decidió implementar el algoritmo mejor de aleatorios, que a pesar de no contar con las características de explotación del algoritmo genético, es capaz de generar individuos decentes en poco tiempo.
+
+Si el objetivo es generar una imagen de alta calidad que capture muchos detalles utilizando la menor cantidad de individuos posible, minimizando la superposición de texturas entre ellos, la superioridad del algoritmo genético es indiscutible. Por otro lado, si la prioridad es una experimentación rápida y la creación de imágenes con menor nivel de detalle, entonces optar por el algoritmo mejor de aleatorios resulta ser la decisión más adecuada.
 
 No obstante, la principal desventaja de los algoritmos genéticos persiste: el tiempo de ejecución. La combinación del procesamiento de imágenes con algoritmos genéticos ha requerido la paralelización de componentes clave utilizando la GPU, tales como el muestreo de colores, el cálculo del fitness, la evaluación de métricas y el renderizado de imágenes. Sin esta paralelización, los tiempos de ejecución habrían dificultado considerablemente la realización de los experimentos. Es importante destacar que solo se paralelizaron los componentes esenciales, dejando margen para futuras optimizaciones del algoritmo en su conjunto.
 
 Existen múltiples oportunidades de mejora y posibilidades para añadir características que amplíen la variedad de imágenes generadas. Una tarea pendiente, que podría mejorar significativamente los resultados en imágenes con gran cantidad de detalles, es la incorporación de filtros de detección de bordes, como el [operador de Sobel](https://de.wikipedia.org/wiki/Sobel-Operator), combinados con un [filtro Gaussiano](https://en.wikipedia.org/wiki/Gaussian_filter), para ponderar el fitness de los individuos de forma más precisa, fomentando la exploración de porciones de imagen más detalladas.
+
+Otra de las tareas pendientes de este trabajo es realizar una comparativa de la cantidad de individuos requeridos para poder generar una imagen con un valor de la métrica fijo. Aunque según la experimentación realizada en este trabajo, es claro que el algoritmo genético logaría la métrica objetivo con una menor cantidad de individuos que el algoritmo mejor de individuos.
 
 # Bibliografía
 
@@ -790,7 +792,6 @@ Existen múltiples oportunidades de mejora y posibilidades para añadir caracter
 **[14]** <a id="procedural-paintings"></a> S. Shahrabi, "Procedural Paintings with Genetic Evolution Algorithm", Medium, Disponible en: https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703.
 
 - Incluye cálculo de métricas con Delta E en el espacio de color CIELab, atributos genéticos propuestos y paralelización mediante compute shaders.
-
 
 **[15]** <a id="genetic-drawing"></a> N. Opara, Genetic Drawing, Repositorio en GitHub, Disponible en: https://
 github.com/anopara/genetic-drawing.
