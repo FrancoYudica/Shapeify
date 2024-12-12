@@ -118,9 +118,21 @@ Es importante tener en mente la diferencia entre _imagen fuente_ e _imagen objet
 4. Si se cumple la **_condición de parada_**, la generación de la imagen termina.
 5. Vuelve al paso 2, pero con **Imagen<sub>(i+1)</sub>**. Representando la **etapa<sub>(i+1)</sub>**.
 
-| Etapa 0                                            | Etapa 25                                            | Etapa 50                                            | Etapa 100                                            | Etapa 200                                            | Etapa 400                                            | Etapa 800                                            |
+<div align="center">
+
+| _[Figura 1.1] Etapa 0_                             | _[Figura 1.2] Etapa 25_                             | _[Figura 1.3] Etapa 50_                             | _[Figura 1.4] Etapa 100_                             | _[Figura 1.5] Etapa 200_                             | _[Figura 1.6] Etapa 400_                             | _[Figura 1.7] Etapa 800_                             |
 | -------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
 | ![](imgs/sample_mona_generation/stages/stage0.png) | ![](imgs/sample_mona_generation/stages/stage25.png) | ![](imgs/sample_mona_generation/stages/stage50.png) | ![](imgs/sample_mona_generation/stages/stage100.png) | ![](imgs/sample_mona_generation/stages/stage200.png) | ![](imgs/sample_mona_generation/stages/stage400.png) | ![](imgs/sample_mona_generation/stages/stage800.png) |
+
+</div>
+
+<div align="center">
+
+|             _[Figura 2] Animación del proceso de generación de imagen_              |
+| :---------------------------------------------------------------------------------: |
+| <img src="imgs/sample_mona_generation/animations/mona_lisa_timeline.gif" width=300> |
+
+</div>
 
 #### Condiciones de parada
 
