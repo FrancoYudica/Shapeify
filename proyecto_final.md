@@ -112,11 +112,15 @@ Es importante tener en mente la diferencia entre _imagen fuente_ e _imagen objet
 
 #### Construcción de la imagen
 
-1. Se inicializa la _imagen fuente_ pintada con el color promedio de la _imagen objetivo_, **Imagen<sub>0</sub>**, **Imagen<sub>i</sub>** = **Imagen<sub>0</sub>**.
+1. Etapa 0: Se inicializa la _imagen fuente_ pintada con el color promedio de la _imagen objetivo_, **Imagen<sub>0</sub>**, **Imagen<sub>i</sub>** = **Imagen<sub>0</sub>**.
 2. Se ejecuta el algoritmo de generación de individuo sobre **Imagen<sub>i</sub>**.
 3. Se obtiene el mejor individuo y lo renderiza sobre **Imagen<sub>i</sub>**, obteniendo una nueva _imagen fuente_, **Imagen<sub>(i+1)</sub>**.
 4. Si se cumple la **_condición de parada_**, la generación de la imagen termina.
-5. Vuelve al paso 2, pero con **Imagen<sub>(i+1)</sub>**.
+5. Vuelve al paso 2, pero con **Imagen<sub>(i+1)</sub>**. Representando la **etapa<sub>(i+1)</sub>**.
+
+| Etapa 0                                            | Etapa 25                                            | Etapa 50                                            | Etapa 100                                            | Etapa 200                                            | Etapa 400                                            | Etapa 800                                            |
+| -------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| ![](imgs/sample_mona_generation/stages/stage0.png) | ![](imgs/sample_mona_generation/stages/stage25.png) | ![](imgs/sample_mona_generation/stages/stage50.png) | ![](imgs/sample_mona_generation/stages/stage100.png) | ![](imgs/sample_mona_generation/stages/stage200.png) | ![](imgs/sample_mona_generation/stages/stage400.png) | ![](imgs/sample_mona_generation/stages/stage800.png) |
 
 #### Condiciones de parada
 

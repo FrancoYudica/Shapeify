@@ -10,7 +10,12 @@ func render_frame(t: float) -> Image:
 		image_generation_details.viewport_size,
 		t
 	)
-	ImageGenerationRenderer.render_image_generation(image_generation_details)
+	var details := ImageGenerationDetails.new()
+	details.individuals = frame_individuals
+	details.viewport_size = image_generation_details.viewport_size
+	details.clear_color = image_generation_details.clear_color
+	
+	ImageGenerationRenderer.render_image_generation(details)
 	
 	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment.rd_rid, 0)
