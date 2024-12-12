@@ -736,17 +736,9 @@ Es claro que el algoritmo aleatorio genera retrocesos de la métrica a partir de
 
 <div align="center">
 
-|                   _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_                    |
-| :----------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png" alt="Description" width="500"> |
-
-</div>
-
-<div align="center">
-
-|                  _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_                   |
-| :---------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png" alt="Description" width="500"> |
+|                  _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_                   | _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_                                      |
+| :---------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png" alt="Description" width="500"> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png" alt="Description" width="500"> |
 
 </div>
 
