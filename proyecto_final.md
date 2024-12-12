@@ -689,9 +689,21 @@ En las fuguras 38 se puede observar las imágenes generadas con cada algoritmo. 
 
 Además, al comparar las figuras 38.1 y 38.3, se puede observar claramente que, aunque el tamaño de la población es el mismo en ambas, es decir, 150, el proceso evolutivo implementado por el algoritmo genético tiene un impacto significativo, logrando generar individuos con una mayor precisión al optimizar la cantidad de individuos para generar una imagen con mayor calidad.
 
-|  _[Figura 40.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_  | _[Figura 40.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 40.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
-| :-----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------- |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/metric.png)   |
+<div align="center">
+
+|           _[Figura 40.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_            |          _[Figura 40.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_           |
+| :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png" width="500"> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png" width="500"> |
+
+</div>
+
+<div align="center">
+
+|         _[Figura 40.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_          |
+| :-------------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/metric.png" width="500"> |
+
+</div>
 
 - El gráfico ilustrado en la figura 40.1, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Se observa que la curva tiene una forma logarítmica, sin retrocesos, debido a que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar los mejores individuos posibles en cada etapa.
 - El gráfico de la figura 40.2 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
@@ -699,18 +711,42 @@ Además, al comparar las figuras 38.1 y 38.3, se puede observar claramente que, 
 
 ¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál provoca una gran cantidad de retrocesos en el algoritmo aleatorio.
 
-| _[Figura 41.1] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 41.2] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 41.3] - Area de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
-| :------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------- |
-|        ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png)         |         ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png)          | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/area.png)                    |
+<div align="center">
+
+|   _[Figura 41.1] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_   |  _[Figura 41.2] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_  |
+| :----------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png" width="500"> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png" width="500"> |
+
+</div>
+
+<div align="center">
+
+| _[Figura 41.3] - Area de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
+| :-----------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/area.png" width="500"> |
+
+</div>
 
 En las figuras 41 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas. El algoritmo mejor de aleatorios tiene un comportamiento similar, aunque no tan definido como el del genético.
 En cuanto al algoritmo aleatorio, el tamaño es aleatorio y esto provoca grandes retrocesos cuando el área es grande.
 
 La reducción del tamaño de los individuos a lo largo de las etapas explica el comportamiento logarítmico presentado en la figura 40. Inicialmente los individuos son de gran tamaño, esto implica que cubren mayor cantidad de pixeles, provocando un disminución significativa en la métrica. A medida que avanza el proceso de generación de imagen, el tamaño de los individuos disminuye de tal forma que no se provocan retrocesos, pero dado a que el tamaño es menor, la contribución de cada individuo en la imagen es menor, provocando el comportamiento logarítmico de la función de la métrica.
 
-| _[Figura 42.1] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_ | _[Figura 42.2] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ | _[Figura 42.3] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo mejor de aleatorios_ |
-| :--------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------- |
-|         ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/time_taken.png)          |          ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/time_taken.png)           | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/time_taken.png)                      |
+<div align="center">
+
+|  _[Figura 42.1] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_  | _[Figura 42.2] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ |
+| :----------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/time_taken.png" width="500"> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/time_taken.png" width="500"> |
+
+</div>
+
+<div align="center">
+
+| _[Figura 42.3] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo mejor de aleatorios_ |
+| :-------------------------------------------------------------------------------------------------------------------------------: |
+|  <img src="imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/time_taken.png" width="500">  |
+
+</div>
 
 Las figuras 42 muestran los tiempos de ejecucion de cada etapa para cada algoritmo. Se añadieron estas figuras con el fin de ilustrar la relación del tamaño de los individuos generados y el tiempo de ejecución. Esta relación se puede observar con mayor claridad en el algoritmo genético, pero también sucede en el aleatorio y mejor de aleatorios. La relación del tamaño y los tiempos de ejecución se debe principalmente al muestreo del color promedio, ya que el muestreador debe considerar una mayor cantidad de pixeles, lo cuál implica mayor cantidad de operaciones matemáticas y mecanismos de sincronización.
 
