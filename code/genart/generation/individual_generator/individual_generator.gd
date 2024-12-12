@@ -15,8 +15,6 @@ var _populator: Populator
 
 var source_texture: RendererTexture
 
-# Used only to sample average color
-var _subrect_color_sampler: AverageColorSampler
 
 var params: IndividualGeneratorParams:
 	set(value):
@@ -44,23 +42,12 @@ func generate_individual() -> Individual:
 		source_texture)
 	return individual
 
-func get_target_average_color() -> Color:
-	_subrect_color_sampler.sample_texture = params.target_texture
-	return _subrect_color_sampler.sample_rect(
-		Rect2i(
-			Vector2i.ZERO, 
-			Vector2i(
-				params.target_texture.get_width(),
-				params.target_texture.get_height()
-			)
-		)
-	)
 func clear_source_texture():
 	
 	var image_color: Color = Color.BLACK
 	
 	if params.clear_color_average:
-		image_color = get_target_average_color()
+		image_color = ImageUtils.get_texture_average_color(params.target_texture)
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
@@ -132,7 +119,6 @@ func _fix_individual_properties(individual: Individual):
 	individual.size.y = max(individual.size.y, 1.0)
 
 func _init() -> void:
-	_subrect_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute.gd").new()
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
 	# Setup populator ----------------------------------------------------------
 	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()

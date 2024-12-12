@@ -9,3 +9,5 @@ var clear_color := Color.BLACK
 
 ## Size of the generated texture
 var viewport_size: Vector2i
+
+var generated_texture: RendererTexture

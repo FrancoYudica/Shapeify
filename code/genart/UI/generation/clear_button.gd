@@ -17,4 +17,4 @@ func _ready() -> void:
 	)
 
 func _on_pressed() -> void:
-	image_generation.clear_source_texture()
+	image_generation.clear_progress()

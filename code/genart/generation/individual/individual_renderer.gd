@@ -16,8 +16,6 @@ func render_individual(individual: Individual) -> void:
 		printerr("Trying to render individual with inavlid source_texture_rd_rid")
 		return
 	
-	var clock = Clock.new()
-	
 	var size = source_texture.get_size()
 	Renderer.begin_frame(size)
 	
@@ -40,7 +38,6 @@ func render_individual(individual: Individual) -> void:
 		1.0)
 	
 	Renderer.end_frame()
-	#clock.print_elapsed("Finished rendering")
 
 func get_color_attachment_texture() -> RendererTexture:
 	return Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)

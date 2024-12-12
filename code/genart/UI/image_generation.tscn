@@ -848,9 +848,10 @@ access = 1
 filters = PackedStringArray("*.png")
 use_native_dialog = true
 
-[node name="Animator" parent="UICanvasLayer/Panel" instance=ExtResource("46_2ayc0")]
+[node name="Animator" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("_image_generation") instance=ExtResource("46_2ayc0")]
 visible = false
 layout_mode = 1
+_image_generation = NodePath("../../..")
 
 [node name="NotificationPopup" parent="UICanvasLayer/Panel" instance=ExtResource("49_blt6o")]
 visible = false
