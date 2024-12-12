@@ -471,9 +471,9 @@ La Mona Lisa será utilizada como la imagen estándar a partir de este punto con
 
 <div align="center">
 
-|         _[Figura 14] - Textura 1 del dominio de texturas de individuos_         |
-| :-----------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) |
+|                 _[Figura 14] - Textura 1 del dominio de texturas de individuos_                  |
+| :----------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png" width=200> |
 
 </div>
 La figura 14 ilustra la única textura que será utilizada por los individuos.
@@ -665,9 +665,9 @@ El dominio de texturas de los individuos está formado por las siguientes ilustr
 
 <div align="center">
 
-|        _[Figura 36.1] - Textura 1 del dominio de texturas de individuos_        |        _[Figura 36.2] - Textura 2 del dominio de texturas de individuos_        |
-| :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_1.png) |
+|                _[Figura 36.1] - Textura 1 del dominio de texturas de individuos_                 |                _[Figura 36.2] - Textura 2 del dominio de texturas de individuos_                 |
+| :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png" width=200> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_1.png" width=200> |
 
 </div>
 
