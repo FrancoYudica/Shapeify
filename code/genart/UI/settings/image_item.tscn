@@ -1,30 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://xdi5ffyh1i4v"]
+[gd_scene load_steps=5 format=3 uid="uid://xdi5ffyh1i4v"]
 
 [ext_resource type="Script" path="res://UI/settings/image_item.gd" id="1_rfjw7"]
+[ext_resource type="Texture2D" uid="uid://btd0nbas030ov" path="res://art/icons/trash-2-24.png" id="2_edcoa"]
+[ext_resource type="Texture2D" uid="uid://bgj7hx4fu0gr" path="res://art/icons/trash-2-24-dark.png" id="3_igxm1"]
 
-[node name="ImageItem" type="PanelContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dh77"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ImageItem" type="PanelContainer" node_paths=PackedStringArray("_label", "_texture_rect")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dh77")
 script = ExtResource("1_rfjw7")
+_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
+_texture_rect = NodePath("MarginContainer/VBoxContainer/TextureRect")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 10)
 layout_mode = 2
 text = "Texture"
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="DeleteTextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 0.4, 0.4, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+texture_normal = ExtResource("2_edcoa")
+texture_hover = ExtResource("3_igxm1")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
-expand_mode = 3
+expand_mode = 2
 stretch_mode = 5
 
-[node name="DeleteButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Delete"
-
-[connection signal="pressed" from="VBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DeleteTextureButton" to="." method="_on_delete_texture_button_pressed"]

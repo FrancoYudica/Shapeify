@@ -105,7 +105,10 @@ func _initialize() -> void:
 		printerr("Error while initializing sprite batch")
 		return
 	
-	_default_texture = RendererTexture.load_from_path(_DEFAULT_TEXTURE_PATH)
+	# Loads default texture
+	var tex = load(_DEFAULT_TEXTURE_PATH)
+	_default_texture = RendererTexture.new()
+	_default_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(tex)
 	
 	var projection_matrix_floats = 12
 	_matrix_storage_buffer = rd.storage_buffer_create(

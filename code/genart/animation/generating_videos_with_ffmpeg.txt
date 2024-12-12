@@ -1,0 +1,2 @@
+Run this command to generate a 60 video using the command line ffmpeg
+ffmpeg -framerate 60 -i frame_%05d.png -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -pix_fmt yuv420p -crf 18 -preset slow output.mp4

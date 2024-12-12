@@ -5,7 +5,9 @@ signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
 
-var image_generation_details: ImageGenerationDetails
+@export var _image_generation: Node
+
+@onready var image_generation_details: ImageGenerationDetails
 
 var animation_player: IndividualAnimationPlayer
 
@@ -14,6 +16,7 @@ var _current_t: float = 0.0
 var duration: float = 5.0
 
 func _ready() -> void:
+	image_generation_details = _image_generation.image_generation_details
 	animation_player = IndividualAnimationPlayer.new()
 	visibility_changed.connect(
 		func():
@@ -37,6 +40,7 @@ func play_animation(start_t: float):
 
 
 func _interpolate(t: float):
+		
 	var animated_individuals = animation_player.animate(
 		image_generation_details.individuals, 
 		image_generation_details.viewport_size,

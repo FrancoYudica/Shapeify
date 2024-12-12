@@ -103,7 +103,7 @@ func _get_height() -> int:
 func _notification(what: int) -> void:
 	# Frees texture when all references are lost
 	if what == NOTIFICATION_PREDELETE and \
+		not Renderer == null and \
 		Renderer.rd != null and \
 		Renderer.rd.texture_is_valid(rd_rid):
-			
 		Renderer.rd.free_rid(rd_rid)

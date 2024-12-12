@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://d26mj4eo12d1o"]
+
+[ext_resource type="Script" path="res://UI/settings/texture_group_item.gd" id="1_wo586"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_053ah"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyoih"]
+bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TextureGroupItem" type="PanelContainer" node_paths=PackedStringArray("textures_container", "title_label")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_053ah")
+script = ExtResource("1_wo586")
+textures_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer/TexturesHBoxContainer")
+title_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Texture group"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Select"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyoih")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TexturesHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

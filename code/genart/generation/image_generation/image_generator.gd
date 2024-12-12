@@ -24,16 +24,23 @@ func get_progress() -> float:
 		return 0.0
 	return _stop_condition.get_progress()
 
-func generate_image() -> RendererTexture:
+func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	Profiler.image_generation_began(params)
 	
 	setup()
-	var source_texture = individual_generator.source_texture
 	
-	_stop_condition.began_generating()
-	while not _stop_condition.should_stop():
+	# In case the image generator starts with some progress
+	if first_src_texture != null:
+		individual_generator.source_texture = first_src_texture
 		
+	var source_texture = individual_generator.source_texture
+	_individual_renderer.source_texture = source_texture
+	
+	var i = 0
+	_stop_condition.began_generating()
+	while not _stop_condition.should_stop() and i < 1000:
+		i += 1
 		# Checks if the algorithm should stop executing
 		_mutex.lock()
 		if _stop:
@@ -41,8 +48,10 @@ func generate_image() -> RendererTexture:
 			break
 		_mutex.unlock()
 		
+		# Generates individual
 		var individual: Individual = individual_generator.generate_individual()
 		
+		# Renders the individual onto the source texture
 		_individual_renderer.render_individual(individual)
 		source_texture.copy_contents(_individual_renderer.get_color_attachment_texture())
 		individual_generated.emit(individual)
@@ -85,8 +94,7 @@ func setup():
 				push_error("Unimplemented individual generator of type %s" % params.individual_generator_type)
 
 		_current_individual_generator_type = params.individual_generator_type
-	individual_generator.params = params.individual_generator_params
-	_individual_renderer.source_texture = individual_generator.source_texture
-	
+		individual_generator.params = params.individual_generator_params
+
 func _init() -> void:
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()

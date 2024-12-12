@@ -17,8 +17,8 @@ _Franco Yudica (13922)_
   - [Implementación](#implementación)
     - [Generación de imagen](#generación-de-imagen)
       - [Algoritmo de generación de individuo](#algoritmo-de-generación-de-individuo)
-        - [Construcción de la imagen](#construcción-de-la-imagen)
-        - [Condiciones de parada](#condiciones-de-parada)
+      - [Construcción de la imagen](#construcción-de-la-imagen)
+      - [Condiciones de parada](#condiciones-de-parada)
     - [Algoritmo genético](#algoritmo-genético)
       - [Individuo](#individuo)
         - [Tinte](#tinte)
@@ -33,16 +33,22 @@ _Franco Yudica (13922)_
         - [Selección de sobrevivientes](#selección-de-sobrevivientes)
         - [Criterio de finalización](#criterio-de-finalización)
     - [Algoritmo aleatorio](#algoritmo-aleatorio)
-  - [Métricas](#métricas)
+    - [Algoritmo mejor de aleatorios](#algoritmo-mejor-de-aleatorios)
+  - [Métrica](#métrica)
+
+    - [Delta E medio](#delta-e-medio)
+      - [Cálculo de delta E 1994](#cálculo-de-delta-e-1994)
+
   - [Herramientas](#herramientas)
   - [Experimentos y resultados obtenidos](#experimentos-y-resultados-obtenidos)
     - [Algoritmo de generación de individuos genético](#algoritmo-de-generación-de-individuos-genético)
+      - [Parámetros](#parámetros)
       - [Caso de prueba básico](#caso-de-prueba-básico)
       - [Caso real con Mona Lisa](#caso-real-con-mona-lisa)
       - [Estudio comparativo basado en ejecuciones múltiples del algoritmo](#estudio-comparativo-basado-en-ejecuciones-múltiples-del-algoritmo)
     - [Algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen)
       - [Límite en cantidad de individuos generados](#límite-en-cantidad-de-individuos-generados)
-      - [Límite en tiempo de ejecución](#límite-en-tiempo-de-ejecución)
+      - [Límite en tiempo de ejecución y cantidad máxima de individuos generados](#límite-en-tiempo-de-ejecución-y-cantidad-máxima-de-individuos-generados)
 
 - [Conclusiones](#conclusiones)
 
@@ -75,9 +81,7 @@ Existen dos fuerzas principales que forman la base de los sistemas evolutivos:
 
 La aplicación combinada de la variación y la selección generalmente conduce a la mejora de los valores de aptitud en poblaciones consecutivas. Es fácil visualizar este proceso como si la evolución estuviera optimizando (o al menos "aproximando") la función de aptitud, acercándose cada vez más a los valores óptimos con el tiempo.
 
-Es importante destacar que muchos componentes de los procesos evolutivos son estocásticos. Por ejemplo, la selección de los mejores individuos no es completamente determinista; incluso los individuos menos aptos suelen tener alguna probabilidad de convertirse en padres o de pasar a la siguiente generación. Durante el proceso de recombinación, la elección de qué atributos de cada padre serán combinados es aleatoria. De manera similar, en el caso de la mutación, la selección de los atributos a modificar en una solución candidata también sigue un comportamiento aleatorio.
-
-[_Introduction to evolutionary computing second edition_](#bibliografía)
+Es importante destacar que muchos componentes de los procesos evolutivos son estocásticos. Por ejemplo, la selección de los mejores individuos no es completamente determinista; incluso los individuos menos aptos suelen tener alguna probabilidad de convertirse en padres o de pasar a la siguiente generación. Durante el proceso de recombinación, la elección de qué atributos de cada padre serán combinados es aleatoria. De manera similar, en el caso de la mutación, la selección de los atributos a modificar en una solución candidata también sigue un comportamiento aleatorio. [\[1\] _Introduction to evolutionary computing second edition_](#evolutionary-computing).
 
 ## Justificación
 
@@ -90,7 +94,6 @@ Un algoritmo genético es especialmente adecuado para este problema debido a su 
 **Aspectos adicionales:**
 
 - No es de interés analizar los pasos intermedios que realiza el algoritmo genético para alcanzar la solución.
-- El entorno es observable, determinista y estático, lo que lo hace ideal para la aplicación de algoritmos genéticos.
 - Los algoritmos genéticos son altamente configurables, lo que permite adaptarlos a diferentes entornos y necesidades. Esta flexibilidad ofrece un amplio margen para explorar diversas estrategias en la generación de imágenes.
 
 # Diseño experimental
@@ -119,7 +122,6 @@ Es importante tener en mente la diferencia entre _imagen fuente_ e _imagen objet
 
 - **Cantidad de individuos generados**: La generación de imagen finaliza al alcanzar una cantidad de individuos previamente establecida.
 - **Tiempo de ejecución**: La generación de imagen finaliza tras pasar una cantidad de tiempo específica.
-- **Valor de métrica**: El proceso de generación de imagen continúa indefinidamente hasta lograr un valor específico de la métrica seleccionada.
 
 ### Algoritmo genético
 
@@ -167,18 +169,14 @@ Esta función realiza las siguientes tareas:
 
 A continuación se detallarán los dos métodos que se han utilizado para determinar el fitness de los individuos. Teniendo en cuenta que los individuos obtienen los colores diréctamente de la _imagen objetivo_, los métodos de cálculo de fitness pueden trabajar con los colores en el espacio RGB. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
 
-Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR:
+Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR. [\[12\]](#genetic-algorithm-for-image-recreation), [\[14\]](#procedural-paintings), [\[15\]](#genetic-drawing), [\[16\]](#ellipspace).
 
-- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa).
+##### MPA (Mean Power Accuracy)
 
-- [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703).
+La función de fitness utilizada en este trabajo es la siguiente:
 
-- [EllipScape](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57).
-
-##### MSE (Mean Squared Error)
-
-![](imgs/formulas/MSE.png)
-_[Figura 1] Fórmula de error cuadrático medio sobre imágenes en espacio de color RGB._
+![](imgs/formulas/MPANPower.png)
+_[Figura 3]_ Fórmula de fitness utilizando MPA.
 
 Donde:
 
@@ -186,29 +184,12 @@ Donde:
 - **{R, G, B}**: Es el conjunto de canales sobre los cuales se calculará la diferencia. Cada canal toma un valor normalizado del intervalo: [0.0, 1.0].
 - La diferencia de realiza entre la _imagen objetivo_ y la _imagen fuente del individuo_.
 
-Nótese que MSE está dividido por la cantidad de canales, motivo por el cuál MSE tomará el valor de 0 cuando las imágenes sean idénticas, pero tomará 1.0 cuando sean completamente distintas.
+Se realiza la sumatoria de la exactitud potenciada a cierto valor. Nótese que los valores de los canales de la imagen están normalizados, y es este el motivo por el cuál se calcula el complemento a uno. Además, el resultado está normalizado, en el intervalo [0.0, 1.0] al dividir la sumatoria por la cantidad de canales totales, _3N_.
 
-Luego, el fitness se calcula como:
+De esta forma la penalización aumenta sobre aquellos canales cuyo error sea mayor. Además, se puede modificar el valor de exponente, o también llamado factor de penalización para modificar la distribución de los valores.
 
-![](imgs/formulas/MSE-Fitness.png)
-_[Figura 2] Fitness partiendo de MSE._
+La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintings), la cuál utiliza el factor de penalización `n = 4`:
 
-Esto se debe a que el fitness debe medir la similitud y no el error.
-
-MSE es una posible función de fitness que logrará su tarea, pero la distribución de fitness no será la deseada debido a que se trabaja con valores normalizados. Al aplicar cualquier potencia mayor a 1.0 en un valor normalizado, el resultado es un número más chico que el de la base. Esto significa que MSE, en este caso, disminiye el error calculado.
-
-##### MPA (Mean Power Accuracy)
-
-Por los motivos mencionados anteriormente, se decidió implementar otra función de fitness, la cuál provee una mejor distribución y es utilizada en lugar de MSE:
-
-![](imgs/formulas/MPANPower.png)
-_[Figura 3]_ Fórmula de fitness utilizando MPA.
-
-A primera vista resulta similar a MSE, pero en realidad tiene una gran diferencia. En lugar de realizar la sumatoria del error cuadrático, se realiza la sumatoria de la exactitud potenciada a cierto valor.
-
-De esta forma la penalización aumenta sobre aquellos canales cuyo error sea mayor.
-
-La siguiente función de fitness es la planteada en [Procedural Paintings with Genetic Evolution Algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703), la cuál utiliza la potencia `n = 4`:
 
 ![](imgs/formulas/MPA4Power.png)
 _[Figura 4] Fórmula MPA con potencia 4._
@@ -226,7 +207,7 @@ Reiterando, el tinte es obtenido mediante un muestreo de la sub-imagen objetivo 
 
 #### Operadores
 
-Los operadores de un algoritmo genético son las funciones principales que manipulan una población de posibles soluciones para buscar la solución óptima a un problema. [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8).
+Los operadores de un algoritmo genético son las funciones principales que manipulan una población de posibles soluciones para buscar la solución óptima a un problema. [\[1\] _Introduction to evolutionary computing second edition_](#evolutionary-computing).
 
 ##### Selección
 
@@ -279,7 +260,7 @@ Tras el nacimiento de un hijo, se aplica el operador de mutación sobre los sigu
 
 - **Rotación**: La rotación es modificada por un valor aleatorio del intervalo [-PI/2, PI/2].
 
-Nótese que los atributos de tamaño y posición tienen mutaciones relativas, lo cuál es de caracter fundamental para explorar nuevas soluciones, pero al mismo tiempo no perder el progreso evolutivo logrado.
+Nótese que los atributos de tamaño y posición tienen mutaciones relativas, lo cuál significa que los factores de mutación de estos atributos se calculan proporcionalmente, en función del valor de cada atributo. Esto es de caracter fundamental para explorar nuevas soluciones, pero al mismo tiempo no perder el progreso evolutivo logrado.
 
 ##### Selección de sobrevivientes
 
@@ -299,9 +280,16 @@ Con el fin de evaluar el rendimiento del [algoritmo de generación de individuo 
 
 Este algoritmo generará un único individuo de forma aleatoria, bajo los mismos principios de [iniciación del algoritmo genético](#inicialización-del-algoritmo).
 
-## Métricas
+### Algoritmo mejor de aleatorios
 
-La métrica utilizada para evaluar la similitud entre las imágenes será el [_Delta E (ΔE)_](https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/) medio, aplicado en el espacio de color [CIE L*a*b\*](https://en.wikipedia.org/wiki/CIELAB_color_space). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
+Otro algoritmo de generación de individuos que se ha implementado en este trabajo, es el algoritmo mejor de aleatorios. Como su nombre lo describe, este algoritmo genera X cantidad de individuos aleatoriamente, de igual manera que el [algoritmo aleatorio](#algoritmo-aleatorio), pero selecciona al mejor de los generados.
+La selección del mejor de los individuos se hace mediante la misma función de fitness que el algoritmo genético. A este algoritmo se lo podría considerar como un híbrido entre el aleatorio y el genético ya que cuenta con la misma generación aleatoria de individuos que el algoritmo aleatorio, pero también utiliza la función de fitness del algoritmo genético.
+
+El motivo principal por el cuál se ha implementado este algoritmo se debe al bajo rendimiento del [algoritmo aleatorio](#algoritmo-aleatorio), el cual será analizado en la sección de [algoritmo de generación de imagen](#algoritmo-de-generación-de-imagen).
+
+## Métrica
+
+La métrica utilizada para evaluar la similitud entre las imágenes será el _Delta E (ΔE)_ [\[8\]](#what-is-delta-e). medio, aplicado en el espacio de color CIE L*a*b\* [\[10\]](#what-is-cielab). Este espacio, a diferencia del RGB, es perceptualmente uniforme, lo que significa que las diferencias calculadas en él se corresponden mejor con la percepción humana de las variaciones de color.
 
 El delta E es una medida estándar utilizada para cuantificar la diferencia entre dos colores en este espacio, y en este proyecto será clave para comparar la imagen generada con la _imagen objetivo_.
 
@@ -324,24 +312,54 @@ _[Figura 5] - ΔE medio sobre imágenes en espacio de color CEILab_
 - **(L, a, b)** son los canales del espacio de color _CEILab_.
 - **ΔE(img1, img2)** es la función utilizada para calcular ΔE entre dos pixeles de la _imagen generada_ y la _imagen objetivo_.
 
-A lo largo del tiempo se han desarrollado múltiples funciones para calcular ΔE. En este proyecto se han implementado dos funciones, ΔE de 1976, y la de 1994. Ambas funciones cuentan con exelentes explicaciones sobre su implementación en este [recurso](http://zschuessler.github.io/DeltaE/learn/).
+A lo largo del tiempo, se han desarrollado diversas funciones para calcular ΔE, considerando las versiones de 1976, 1994 y 2000. Se ha optado por implementar la fórmula de ΔE de 1994, ya que ofrece una mayor precisión que la de 1976, pero sin la exigencia computacional de la versión de 2000. Además, es importante destacar que la métrica utilizada no será ΔE en sí misma, sino el ΔE medio, lo que hace que el uso de una función de extrema precisión sea innecesario, dado que se calcula el promedio, haciendo que el exeso de detalles percibidos por la función se pierdan.
 
-En este trabajo se ha decidido establecer como función de cálculo ΔE a la de 1994, siendo esta mas precisa que la de 1976.
+#### Cálculo de delta E 1994
+
+<div align="center">
+
+| _[Figura 6] - Fórmula de delta E 1994_ |
+| :------------------------------------: |
+|  ![](imgs/formulas/formula-cie94.png)  |
+|   Referencia [\[9\]](#delta-e-math).   |
+
+</div>
+
+- **(L, a, b)** son los canales del espacio de color _CEILab_.
+- Las constantes _K1_, _K2_, _Kl_, _Kc_, _Kh_ son pesos que permiten ajustar la importancia de distintas componentes. Tras analizar implementaciones ya existentes utilizadas en proyectos similares se ha encontrado que es común tratar a todas las componentes por igual, motivo por el cuál se les asigna el valor de 1 a todas las constantes. [\[17\]](#python-colour)
 
 ## Herramientas
 
-Para llevar a cabo este trabajo, se emplearon las siguientes herramientas:
-
-- [**Godot 4.3**](https://godotengine.org/): Motor de desarrollo de videojuegos utilizado como plataforma principal.
-- [**GDScript**](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html): Lenguaje de programación empleado para la lógica del proyecto.
-- [**GLSL**](<https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)>): Lenguaje utilizado para la programación de shaders y paralelización de múltiples tareas.
-- [**Python**](https://www.python.org/) y la biblioteca [**matplotlib**](https://matplotlib.org/): Herramientas utilizadas para la generación de gráficos y visualización de datos.
+Para el desarrollo de este proyecto, se utilizó Godot 4.3 [\[3\]](#godot-43), con lógica programada en GDScript [\[4\]](#gdscript) y paralelización implementada en GLSL [\[5\]](#glsl). La visualización de resultados se realizó con Python [\[6\]](#python) y matplotlib [\[7\]](#matplotlib).
 
 ## Experimentos y resultados obtenidos
 
 ### Algoritmo de generación de individuos genético
 
 Como se detalló previamente, se implementaron dos algoritmos para la generación de individuos: el genético y el aleatorio. La experimentación descrita en esta sección se enfocó exclusivamente en el algoritmo genético. Se consideró que incluir un análisis del algoritmo aleatorio en este contexto sería poco significativo, pero su estudio será de gran importancia al comparar los resultados de ambos algoritmos en el proceso de generación de imágenes.
+
+#### Parámetros
+
+Los experimentos presentados en las siguientes secciones mantienen constantes los parámetros establecidos, con el objetivo de minimizar la cantidad de variables y garantizar una experimentación coherente y consistente.
+
+El algoritmo genético cuenta con los siguientes parámetros:
+
+<div align="center">
+
+| Parámetro                | Valor |
+| ------------------------ | ----- |
+| Generaciones             | 20    |
+| Población                | 150   |
+| Probabilidad de mutación | 20%   |
+| Porcentaje elitista      | 25%   |
+
+</div>
+
+Es importante aclarar que en los siguientes experimentos, los únicos parámetros que varían son:
+
+- Imagen fuente
+- Imagen objetivo
+- Dominio de imágenes de los individuos.
 
 #### Caso de prueba básico
 
@@ -383,19 +401,6 @@ Se plantea este escenario porque es posible agregar un individuo sobre la imagen
 
 ##### Resultados
 
-El algoritmo cuenta con los siguientes parámetros:
-
-<div align="center">
-
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
-
 Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguiente individuo:
 
 <div align="center">
@@ -412,6 +417,8 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         <tr><td>Size X</td><td>96.3577575683594</td></tr>
         <tr><td>Size Y</td><td>108.490371704102</td></tr>
         <tr><td>Rotation</td><td>3.27535051368461</td></tr>
+        <tr><td>Color</td><td>(1.0, 1.0, 1.0)</td></tr>
+        <tr><td>Texture index</td><td>0 (Correspondiente al rectángulo)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -427,6 +434,7 @@ Tras ejectutar el algoritmo genético durante 2,6 segundos, se obtuvo el siguien
         </tr>
       </table>
     </td>
+
   </tr>
 </table>
 </div>
@@ -462,26 +470,22 @@ La figura 13 muesta de manera intuitiva la posición de los individuos en cada u
 
 La Mona Lisa será utilizada como la imagen estándar a partir de este punto con el fin de mantener constante la mayor cantidad de parámetros. Además es comunmente utilizada en trabajos similares de generación de imágenes.
 
+<div align="center">
+
+|         _[Figura 14] - Textura 1 del dominio de texturas de individuos_         |
+| :-----------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) |
+
+</div>
+La figura 14 ilustra la única textura que será utilizada por los individuos.
+
 ##### Resultados desde cero
 
 Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no tiene nada renderizado, únicamente el color promedio de la imagen objetivo.
 
-|                       _[Figura 14] - Imagen fuente_                        |  _[Figura 15] - Imagen objetivo: Mona Lisa original_   |
+|                      _[Figura 15.1] - Imagen fuente_                       | _[Figura 15.2] - Imagen objetivo: Mona Lisa original_  |
 | :------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-
-El algoritmo cuenta con los siguientes parámetros:
-
-<div align="center">
-
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
 
@@ -499,6 +503,8 @@ Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguien
         <tr><td>Size X</td><td>688.973754882812</td></tr>
         <tr><td>Size Y</td><td>1072.1259765625</td></tr>
         <tr><td>Rotation</td><td>4.64755909331613</td></tr>
+        <tr><td>Color</td><td>(0.1568, 0.0784, 0.0470)</td></tr>
+        <tr><td>Texture index</td><td>0 (Correspondiente al círculo)</td></tr>
       </table>
     </td>
     <!-- Image on the right -->
@@ -556,15 +562,17 @@ Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguien
 
 <div align="center">
 
-| Attribute    | Value             |
-| ------------ | ----------------- |
-| Fitness      | 0.808261032735021 |
-| Metric Score | 10.6251412383781  |
-| Position X   | 499               |
-| Position Y   | 445               |
-| Size X       | 49.4948654174805  |
-| Size Y       | 291.158996582031  |
-| Rotation     | 2.45406044618326  |
+| Attribute     | Value                          |
+| ------------- | ------------------------------ |
+| Fitness       | 0.808261032735021              |
+| Metric Score  | 10.6251412383781               |
+| Position X    | 499                            |
+| Position Y    | 445                            |
+| Size X        | 49.4948654174805               |
+| Size Y        | 291.158996582031               |
+| Rotation      | 2.45406044618326               |
+| Color         | (0.1294, 0.0627, 0.043)        |
+| Texture index | 0 (Correspondiente al círculo) |
 
 </div>
 
@@ -643,90 +651,95 @@ De manera similar a los análisis previos, considerar el atributo genético de l
 
 #### Algoritmo de generación de imagen
 
-Tras probar el algortmo genético del generación de individuos se evaluó el comportamiento del algoritmo genético y aleatorio en el proceso de generación de imágenes. Se evaluarán los resultados obtenidos por ambos algortimos considerando los distintos puntos de corte:
+En esta sección, tras probar el algortmo genético del generación de individuos se evaluó el comportamiento del [algoritmo genético](#algoritmo-genético), [aleatorio](#algoritmo-aleatorio) y [mejor de aleatorios](#algoritmo-mejor-de-aleatorios), en el proceso de generación de imágenes. Se evaluarán los resultados obtenidos por los tres algortimos considerando los distintos puntos de corte:
 
-- Límite en cantidad de individuos generados
-- Límite en tiempo de ejecución
+- **Límite en cantidad de individuos generados**
+- **Límite en tiempo de ejecución y cantidad máxima de individuos generados**: La condición a evaluar principalmente es el tiempo de ejecución, pero también se añade un límite alto en la cantidad de individuos.
 
-Se seleccionaron dos texturas, las cuales forman el conjunto dominio de texturas de los individuos:
+##### Parámetros
+
+El dominio de texturas de los individuos está formado por las siguientes ilustradas en las figuras 36.
 
 <div align="center">
 
-|         _[Figura 36] - Textura 1 del dominio de texturas de individuos_         |         _[Figura 37] - Textura 2 del dominio de texturas de individuos_         |
+|        _[Figura 36.1] - Textura 1 del dominio de texturas de individuos_        |        _[Figura 36.2] - Textura 2 del dominio de texturas de individuos_        |
 | :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_0.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/shapes_used/shape_1.png) |
 
 </div>
-Los parámetros utilizados por el algoritmo genético son los mismos que se han utilizado en las experimentaciones previas:
 
-<div align="center">
+|                      _[Figura 37.1] - Imagen fuente_                       | _[Figura 37.2] - Imagen objetivo: Mona Lisa original_  |
+| :------------------------------------------------------------------------: | :----------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
-| Parámetro                | Valor |
-| ------------------------ | ----- |
-| Generaciones             | 20    |
-| Población                | 150   |
-| Probabilidad de mutación | 20%   |
-| Porcentaje elitista      | 25%   |
-
-</div>
+- Los parámetros utilizados por el **algoritmo genético** son los mismos que se utilizaron al experimentar con el algoritmo genético en la sección anterior.
+- El **algoritmo aleatorio** no cuenta con parámetros, por lo que no hay nada que especificar.
+- El **algoritmo mejor de aleatorios** cuenta con un parámetro _N_, que establece la cantidad de individuos que se generan. En esta experimentación _N_ toma el valor de 150, el cuál equivale al tamaño de la población del algoritmo genético. Se ha establecido este valor con el objetivo de poder medir cuanto impacto tiene la explotación del algoritmo genético a lo largo de las 20 generaciones.
 
 ##### Límite en cantidad de individuos generados
 
-Como primer condición de corte a evaluar, se ha utilizado un límite de 300 individuos.
+Como primer condición de corte a evaluar, se ha utilizado un límite de 200 individuos.
 
-|                             _[Figura 38] - Imagen generada con algoritmo genético_                             |                               _[Figura 39] - Imagen generada con algoritmo aleatorio_                                |
-| :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/generated_mona_lisa.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/generated_mona_lisa_random.png) |
-|                                            Generada en 743 segundos                                            |                                               Generada en 1,2 segundos                                               |
-|                                   Puntuación de la métrica: 7.56027569731405                                   |                                      Puntuación de la métrica: 25.0826882102273                                      |
+|                            _[Figura 38.1] - Imagen generada con algoritmo genético_                            |                              _[Figura 38.2] - Imagen generada con algoritmo aleatorio_                               |                  _[Figura 38.3] - Imagen generada con algoritmo mejor de aleatorios_                  |
+| :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/generated_mona_lisa.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/generated_mona_lisa_random.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/out.png) |
+|                                            Generada en 743 segundos                                            |                                               Generada en 1,2 segundos                                               |                                       Generada en 34,5 segundos                                       |
+|                                   Puntuación de la métrica: 7.56027569731405                                   |                                      Puntuación de la métrica: 25.0826882102273                                      |                              Puntuación de la métrica: 9.03677685950413                               |
 
-En las fuguras 38 y 39 se pueden observar las imágenes generadas con los algoritmos genético y aleatorio respectivamente. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
+En las fuguras 38 se puede observar las imágenes generadas con cada algoritmo. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
 
-|   _[Figura 40] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_   |  _[Figura 41] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_  |
-| :-----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png) |
+Además, al comparar las figuras 38.1 y 38.3, se puede observar claramente que, aunque el tamaño de la población es el mismo en ambas, es decir, 150, el proceso evolutivo implementado por el algoritmo genético tiene un impacto significativo, logrando generar individuos con una mayor precisión al optimizar la cantidad de individuos para generar una imagen con mayor calidad.
 
-- El gráfico ilustrado en la figura 40, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Nótese que a diferencia del fitness utilizado en el algoritmo genético, la métrica delta E 94 tiende a decrecer, debido a que mide el error y no la similitud entre las imágenes. Se observa que la curva tiene una forma logarítmica, sin retrocesos, ya que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar individuos que contribuyan en cada una de las etapas.
-- El gráfico de la figura 41 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
+|  _[Figura 40.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_  | _[Figura 40.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 40.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
+| :-----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------- |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/metric.png)   |
 
-¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál proboca una gran cantidad de retrocesos en el algoritmo aleatorio.
+- El gráfico ilustrado en la figura 40.1, describe el comportamiento de la métrica en el proceso de generación de imagen utilizando el algoritmo genético como generador de individuos. Se observa que la curva tiene una forma logarítmica, sin retrocesos, debido a que cada individuo generado, y añadido a la imagen, reduce el error medio entre la imagen objetivo y la imagen fuente de cada etapa. Se considera que estos resultados son sumamente importantes ya que muestran como el algoritmo genético es capaz de encontrar los mejores individuos posibles en cada etapa.
+- El gráfico de la figura 40.2 tiene un comportamiento completamente distinto al del algoritmo genético. Se observa que debido a la aleatoriedad existe una gran cantidad de retrocesos en la métrica, este comportamiento está lejos de ser idoneo y el gran contraste entre los resultados obtenidos hace brillar al algoritmo genético.
+- En cuanto al algoritmo mejor de aleatorios, representado en la figura 40.3, se observa un comportamiento logarítmico similar al del algoritmo genético. Sin embargo, a diferencia del algoritmo genético, no se ha alcanzado el mismo valor de métrica, lo que provoca que la asíntota de la métrica parezca estar en un valor superior al compararla con la asíntota del algoritmo genético.
 
-| _[Figura 42] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 43] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ |
-| :----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|       ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png)        |        ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png)         |
 
-En las figuras 42 y 43 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas.
+¿Por qué la métrica presenta un comportamiento logarítmico? A primera vista, lo ideal sería lograr un comportamiento lineal. Hay un atributo que tiene mucha importancia el cuál impacta directamente en los resultados obtenidos. Este atributo es el del tamaño, el cuál provoca una gran cantidad de retrocesos en el algoritmo aleatorio.
+
+| _[Figura 41.1] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_ | _[Figura 41.2] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 41.3] - Area de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
+| :------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------- |
+|        ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png)         |         ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png)          | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/area.png)                    |
+
+En las figuras 41 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas. El algoritmo mejor de aleatorios tiene un comportamiento similar, aunque no tan definido como el del genético.
 En cuanto al algoritmo aleatorio, el tamaño es aleatorio y esto provoca grandes retrocesos cuando el área es grande.
 
-La reducción del tamaño de los individuos a lo largo de las etapas explica el comportamiento logarítmico presentado en la fugura 40. Inicialmente los individuos son de gran tamaño, esto implica que cubren mayor cantidad de pixeles, provocando un disminución significativa en la métrica. A medida que avanza el algoritmo, el tamaño de los individuos disminuye de tal forma que no se provocan retrocesos, pero dado a que el tamaño es menor, la contribución de cada individuo en la imagen es menor, provocando el comportamiento logarítmico de la función de la métrica.
+La reducción del tamaño de los individuos a lo largo de las etapas explica el comportamiento logarítmico presentado en la figura 40. Inicialmente los individuos son de gran tamaño, esto implica que cubren mayor cantidad de pixeles, provocando un disminución significativa en la métrica. A medida que avanza el proceso de generación de imagen, el tamaño de los individuos disminuye de tal forma que no se provocan retrocesos, pero dado a que el tamaño es menor, la contribución de cada individuo en la imagen es menor, provocando el comportamiento logarítmico de la función de la métrica.
 
-| _[Figura 44] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_ | _[Figura 45] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ |
-| :------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-|        ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/time_taken.png)         |         ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/time_taken.png)          |
+| _[Figura 42.1] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo genético_ | _[Figura 42.2] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo aleatorio_ | _[Figura 42.3] - Tiempo de generación por cada individuo en el proceso de generación de imagen con algoritmo mejor de aleatorios_ |
+| :--------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------- |
+|         ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/time_taken.png)          |          ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/time_taken.png)           | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/time_taken.png)                      |
 
-Las figuras 44 y 45 muestran los tiempos de ejecucion de cada etapa para ambos algoritmos. Se añadieron estas figuras con el fin de ilustrar la relación del tamaño de los individuos generados y el tiempo de ejecución. Esta relación se puede observar con mayor claridad en el algoritmo genético, pero también sucede en el aleatorio. La relación del tamaño y los tiempos de ejecución se debe principalmente al muestreo del color promedio, ya que el muestreador debe considerar una mayor cantidad de pixeles, lo cuál implica mayor cantidad de operaciones matemáticas y mecanismos de sincronización.
+Las figuras 42 muestran los tiempos de ejecucion de cada etapa para cada algoritmo. Se añadieron estas figuras con el fin de ilustrar la relación del tamaño de los individuos generados y el tiempo de ejecución. Esta relación se puede observar con mayor claridad en el algoritmo genético, pero también sucede en el aleatorio y mejor de aleatorios. La relación del tamaño y los tiempos de ejecución se debe principalmente al muestreo del color promedio, ya que el muestreador debe considerar una mayor cantidad de pixeles, lo cuál implica mayor cantidad de operaciones matemáticas y mecanismos de sincronización.
 
-Tras analizar resultados anteriores se cosidera que continuar con un análisis compartativo sobre las condiciones de corte restantes con los mismos parámetros carece de sentido debido a la amplia superioridad del algoritmo genético sobre el aleatorio. Es por este motivo que se decide establecer un tamaño fijo de los individuos, de tal modo que el algoritmo aleatorio no pueda generar individuos demasiado grandes que provoquen muchos retrocesos.
+Tras analizar resultados anteriores se considera que continuar con un análisis compartativo sobre las condiciones de corte restantes con los mismos parámetros carece de sentido debido a la amplia superioridad del algoritmo genético y el mejor de aleatorios sobre el algoritmo aleatorio. Con el fin de intentar mejorar el rendimiento del algoritmo aleatorio se decide establecer un tamaño fijo de los individuos, de tal modo que el algoritmo aleatorio no pueda generar individuos demasiado grandes que provoquen muchos retrocesos.
 
 Se ha establecido que el ancho de los individuos sea igual al 30% del ancho de la imagen, y el alto es un valor que se calcula luego de establecer el ancho con el fin de mantener la relación de aspecto de la textura del individuo.
 
-##### Límite en tiempo de ejecución
+##### Límite en tiempo de ejecución y cantidad máxima de individuos generados
 
-Se estableció un límite de 400 segundos.
-| _[Figura 46] - Imagen generada con algoritmo genético_ | _[Figura 47] - Imagen generada con algoritmo aleatorio_ |
-| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/genetated_genetic.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/generated_random_1000.png) |
-| Formada por 112 individuos| Formada por 1000 individuos |
-| Puntuación de la métrica: 9.25097091296488| Puntuación de la métrica: 17.2200897469008 |
+Se estableció un tiempo de ejecución límite de 400 segundos, y en cuanto a la cantidad de individuos, se estableció un límite alto de 1000 individuos.
+| _[Figura 46] - Imagen generada con algoritmo genético_ | _[Figura 47] - Imagen generada con algoritmo aleatorio_ | _[Figura 47] - Imagen generada con algoritmo aleatorio_ |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/genetated_genetic.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/generated_random_1000.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/execution_time_limit/out.png) |
+| Formada por 112 individuos| Formada por 1000 individuos | Formada por 1000 individuos |
+| Tiempo de ejecución 400 segundos | Tiempo de ejecución 5 segundos | Tiempo de ejecución 165 segundos |
+| Puntuación de la métrica: 9.25097091296488| Puntuación de la métrica: 17.2200897469008 | Puntuación de la métrica: 8.76277440599173 |
 
-Comparando las imágenes generadas con ambos algoritmos se observa que el algoritmo genético es capaz de distribuir tan solo 112 individuos de tal forma que reduzca la superposición y se pueda lograr cierto nivel de similitud con la imagen objetivo. El algoritmo aleatorio, por lo contrario, muestra mucha superposición de individuos.
+Tras establecer un tamaño fijo para los individuos, se obtuvieron notables mejoras en el algoritmo aleatorio si se compara la figura 47 con la 38.2, sin embargo los resultados tras utilizar este algoritmo continuan siendo insatisfactorios. De hecho, este algoritmo presenta un comportamiento similar a la ejecución anterior, obteniendo muchos retrocesos debido a la superposición de individuos.
 
-La imagen del algoritmo aleatorio se generó en 5 segundos en lugar de 400. Se ha tomado esta decisión tras observar que nuevamente se llega a un punto de retrocesos, tal como se ilustra en las figuras 48.1 y 48.2.
-| _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ |
-| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png) |
+Dejando de lado el algoritmo aleatorio y comparando el genético y mejor de aleatorios, se puede observar que el algoritmo mejor de aleatorios obtuvo un mejor resultado que el genético. Esta diferencia de calidad es captada correctamente por la métrica. Sin embargo, el algoritmo genético obtuvo un resultado similar utilizando tan solo 112 individuos, a diferencia del mejor de aleatorios que llegó al límite de 1000.
 
-La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica durante los 400 segundos de ejecución, mientras que el algoritmo aleatorio presenta retrocesos a partir de la etapa 200.
+Es claro que el algoritmo aleatorio genera retrocesos de la métrica a partir de cierta cantidad de individuos, tal como se ilustra en las figura 48.2.
+| _[Figura 48.1] - Métrica calculada en el proceso de genración de imagen con algoritmo genético_ | _[Figura 48.2] - Métrica calculada en el proceso de genración de imagen con algoritmo aleatorio_ | _[Figura 48.3] - Métrica calculada en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
+| :-------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| ![](imgs/plots_and_statistics/mona_lisa_img_generation/genetic/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/random/execution_time_limit/metric.png) | ![](imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/execution_time_limit/metric.png) |
+
+La métrica tras utilizar el algoritmo genético mantiene la curva logarítmica durante los 400 segundos de ejecución, mientras que el algoritmo aleatorio presenta retrocesos a partir de la etapa 200. En cuanto al algorimo mejor de aleatorios, se observa que la asíntota está mucho mas definida que el algoritmo genético, lo cuál quiere decir que llegada cierta cantidad de individuos, el beneficio de agregar nuevos individuos es cada vez menor. Se considera que esta propiedad no es única del algoritmo mejor de aleatorios y que también se presentaría en el algoritmo genético si se generaran 1000 individuos.
 
 En cuanto al uso del algoritmo aleatorio en el proceso de generación de imágenes, se han obtenido mejores resultados tras reducir y establecer un valor fijo para el ancho de los individuos. Si se buscan mejores resultados con el algoritmo aleatorio, sería necesario continuar reduciendo el tamaño cada vez mas, de tal modo que se reduzca la probabilidad de superposición.
 
@@ -740,20 +753,50 @@ Existen múltiples oportunidades de mejora y posibilidades para añadir caracter
 
 # Bibliografía
 
-- [Introduction to evolutionary computing](https://link.springer.com/book/10.1007/978-3-662-44874-8)
-- Artificial Intelligence A Modern Approach, Third Edition
-- [What is Delta E? And Why Is It Important for Color Accuracy? ](https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/)
-- [Formulación matemática de _delta e_](http://zschuessler.github.io/DeltaE/learn/)
+### Libros
 
-Papers y proyectos:
+**[1]** <a id="evolutionary-computing"></a> A. E. Eiben and J. E. Smith, Introduction to Evolutionary Computing, 2nd Edition, Springer, 2015. Disponible en: https://link.springer.com/book/10.1007/978-3-662-44874-8.
 
-- [Inspiración del proyecto](https://www.youtube.com/watch?v=6aXx6RA1IK4)
-- [Procedural paintings with genetic evolution algorithm](https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703). Cálculo de métrica con _delta e_ sobre el espacio [_CIELab_](https://en.wikipedia.org/wiki/CIELAB_color_space), mismos atributos genéticos propuestos en este proyecto y paralelización con [_compute shaders_](https://www.khronos.org/opengl/wiki/Compute_Shader).
-- [Genetic algorithm for image recreation](https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa). Utilización de _delta e_.
+**[2]**. S. Russell and P. Norvig, Artificial Intelligence: A Modern Approach, 3rd Edition, Pearson Education, 2010.
 
-- [Grow Your Own Picture Genetic Algorithms & Generative Art](https://chriscummins.cc/s/genetics/#). Aplicación web para generar imagen con algoritmos genéticos.
+### Referencias de herramientas
 
-- [Genetic drawing](https://github.com/anopara/genetic-drawing). Código fuente para replicar imágenes como pinturas.
+**[3]** <a id="godot-43"></a> Godot Engine, Godot 4.3, Disponible en: https://godotengine.org/.
 
-- [EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57). Algoritmo genético completamente distito, pero utiliza como función de fitness y métrica _Peak Signal-to-Noise_
-  Ratio (PSNR). Se muestran resultados en cuanto a los tiempos de ejecución y como cambia la función de fitness a lo largo de las generaciones.
+**[4]** <a id="gdscript"></a> GDScript Basics, Disponible en: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html.
+
+**[5]** <a id="glsl"></a> Khronos Group, Core Language (GLSL), Disponible en: https://www.khronos.org/opengl/wiki/Core_Language_(GLSL).
+
+**[6]** <a id="python"></a> Python Software Foundation, Python 3.10 Documentation, Disponible en: https://www.python.org/.
+
+**[7]** <a id="matplotlib"></a> The Matplotlib Development Team, Matplotlib: Visualization with Python, Disponible en: https://matplotlib.org/.
+
+### Artículos en línea
+
+**[8]** <a id="what-is-delta-e"></a> ViewSonic, "What is Delta E? And Why Is It Important for Color Accuracy?", Disponible en: https://www.viewsonic.com/library/creative-work/what-is-delta-e-and-why-is-it-important-for-color-accuracy/.
+
+**[9]** <a id="delta-e-math"></a> Z. Schuessler, "Formulación matemática de Delta E", Disponible en: http://zschuessler.github.io/DeltaE/learn/.
+
+**[10]** <a id="what-is-cielab"></a> "¿Que es CELab\*?", Disponible en: https://en.wikipedia.org/wiki/CIELAB_color_space
+
+### Papers y proyectos
+
+**[11]** Inspiración del proyecto, YouTube, Disponible en: https://www.youtube.com/watch?v=6aXx6RA1IK4.
+
+**[12]** <a id="genetic-algorithm-for-image-recreation"></a> S. Charmot, "Genetic Algorithm for Image Recreation", Medium, Disponible en: https://medium.com/@sebastian.charmot/genetic-algorithm-for-image-recreation-4ca546454aaa.
+
+**[13]** C. Cummins, "Grow Your Own Picture: Genetic Algorithms & Generative Art", Disponible en: https://chriscummins.cc/s/genetics/#.
+
+**[14]** <a id="procedural-paintings"></a> S. Shahrabi, "Procedural Paintings with Genetic Evolution Algorithm", Medium, Disponible en: https://shahriyarshahrabi.medium.com/procedural-paintings-with-genetic-evolution-algorithm-6838a6e64703.
+
+- Incluye cálculo de métricas con Delta E en el espacio de color CIELab, atributos genéticos propuestos y paralelización mediante compute shaders.
+
+
+**[15]** <a id="genetic-drawing"></a> N. Opara, Genetic Drawing, Repositorio en GitHub, Disponible en: https://
+github.com/anopara/genetic-drawing.
+
+**[16]** <a id="ellipspace"></a> S. Mukherjee et al., "EllipScape: A Genetic Algorithm Based Approach to Non-Photorealistic Colored Image Reconstruction for Evolutionary Art", Proceedings of the 57th Hawaii International Conference on System Sciences (HICSS), 2024. Disponible en: https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1613&context=hicss-57.
+
+- Algoritmo genético distinto, utiliza Peak Signal-to-Noise Ratio (PSNR) como métrica de fitness.
+
+**[17]** <a id="python-colour"></a> Librería de Python que cuenta con implementaciones de cálculo de delta E. https://github.com/colour-science/colour

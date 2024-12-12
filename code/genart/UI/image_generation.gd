@@ -11,8 +11,10 @@ signal target_texture_updated
 
 var image_generator: ImageGenerator
 var metrics: Array[Metric]
+var image_generation_details := ImageGenerationDetails.new()
 
-func clear_source_texture():
+func clear_progress():
+	_clear_image_generation_details()
 	image_generator.individual_generator.clear_source_texture()
 	source_texture_updated.emit()
 
@@ -33,11 +35,10 @@ func refresh_target_texture():
 		.target_texture)
 	
 	target_texture_updated.emit()
-	clear_source_texture()
+	clear_progress()
 
 func _ready() -> void:
 	_setup_references()
-	target_texture_updated.emit()
 	
 	for metric_script in metric_scripts:
 		var metric = metric_script.new() as Metric
@@ -57,11 +58,44 @@ func _setup_references():
 			call_deferred("_emit_individual_generated_signal", i)
 			call_deferred("emit_signal", "source_texture_updated"))
 	image_generator.setup()
-	clear_source_texture()
+	clear_progress()
+	target_texture_updated.emit()
+	
 
 func _emit_individual_generated_signal(individual: Individual):
+	image_generation_details.individuals.append(individual)
 	individual_generated.emit(individual)
 
 func _begin_image_generation():
-	image_generator.generate_image()
+	var src = image_generation_details.generated_texture.copy()
+	image_generator.generate_image(src)
 	call_deferred("emit_signal", "generation_finished")
+	
+	# Renders the texture and stores the generated texture
+	ImageGenerationRenderer.render_image_generation(image_generation_details)
+	var color_attachment := Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	image_generation_details.generated_texture.copy_contents(color_attachment)
+	
+	
+func _clear_image_generation_details():
+	
+	var target_texture: RendererTexture = Globals \
+										.settings \
+										.image_generator_params \
+										.individual_generator_params \
+										.target_texture
+	
+	image_generation_details.individuals.clear()
+	image_generation_details.clear_color = ImageUtils.get_texture_average_color(
+		target_texture)
+	image_generation_details.viewport_size = target_texture.get_size()
+	
+	# Initializes generated texture
+	var img = ImageUtils.create_monochromatic_image(
+		target_texture.get_width(),
+		target_texture.get_height(),
+		image_generation_details.clear_color)
+	
+	# Creates to image texture and then to RD local texture
+	var generated_global_rd = ImageTexture.create_from_image(img)
+	image_generation_details.generated_texture = RendererTexture.load_from_texture(generated_global_rd)

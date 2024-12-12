@@ -1,11 +1,8 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=22 format=3]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=51 format=3]
 
 [ext_resource type="Texture2D" path="res://art/Mona_Lisa.jpg" id="1_cfm67"]
-[ext_resource type="Texture2D" path="res://art/simple_shapes/circle_1_512x512.png" id="1_hte5q"]
 [ext_resource type="Script" path="res://generation/app_settings.gd" id="1_xypp1"]
-[ext_resource type="Texture2D" path="res://art/test/bar.png" id="3_4r8n6"]
 [ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator_params.gd" id="4_dw5rp"]
-[ext_resource type="Texture2D" path="res://art/simple_shapes/circle_0.png" id="4_l6fao"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="5_4egqq"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="6_web0x"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="7_15qub"]
@@ -13,10 +10,38 @@
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="9_iepvh"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="10_wayag"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="11_d1ait"]
+[ext_resource type="Script" path="res://generation/individuals_texture_group.gd" id="13_bu06x"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/brush_strokes/brush_0.png" id="14_vcku4"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/brush_strokes/brush_1.png" id="15_sigci"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/brush_strokes/brush_2.png" id="16_edy01"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/brush_strokes/brush_3.png" id="17_ueb1i"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/brush_strokes/brush_4.png" id="18_75ipp"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/circular_shapes/capsule.png" id="19_fkhsv"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/transparent_shapes/glow_ring.png" id="19_wiek5"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/transparent_shapes/horizontal_glow.png" id="20_are3s"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/circular_shapes/circle.png" id="20_kfr4u"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/transparent_shapes/splash.png" id="21_80yra"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/circular_shapes/square.png" id="21_hgmsx"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/circular_shapes/triangle.png" id="22_5a4ml"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_31569506.png" id="22_30ebp"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_32047928.png" id="23_d7fnb"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (2).png" id="28_5ogje"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (3).png" id="29_eyhqb"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (4).png" id="30_g6h7t"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (5).png" id="31_c452r"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (6).png" id="32_il1q5"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (8).png" id="33_x03pt"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (7).png" id="34_5gck7"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (9).png" id="35_1bkbb"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (11).png" id="36_42lj8"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (10).png" id="37_rnjbg"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (12).png" id="38_11tgm"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image (13).png" id="39_dn13d"]
+[ext_resource type="Texture2D" path="res://art/individual_textures_group/emoji/Dropped Image.png" id="40_c2rnv"]
 
 [sub_resource type="Resource" id="Resource_o7fvl"]
 script = ExtResource("4_dw5rp")
-individual_count = 10
+individual_count = 150
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_ixjp0"]
@@ -26,8 +51,8 @@ tournament_size = 10
 
 [sub_resource type="Resource" id="Resource_dnu0u"]
 script = ExtResource("5_4egqq")
-generation_count = 20
-population_size = 150
+generation_count = 15
+population_size = 70
 fitness_calculator = 1
 mutation_rate = 0.2
 mutation_factor = 1.0
@@ -41,11 +66,11 @@ survivor_selection_params = SubResource("Resource_ixjp0")
 script = ExtResource("7_15qub")
 textures = Array[ExtResource("8_v6ont")]([])
 position_bound_min = Vector2i(0, 0)
-position_bound_max = Vector2i(449, 600)
+position_bound_max = Vector2i(640, 968)
 size_bound_min = Vector2i(8, 8)
-size_bound_max = Vector2i(600, 600)
+size_bound_max = Vector2i(968, 968)
 
-[sub_resource type="Texture2D" id="Texture2D_rxrt6"]
+[sub_resource type="Texture2D" id="Texture2D_my8q1"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("8_v6ont")
@@ -53,34 +78,55 @@ script = ExtResource("8_v6ont")
 [sub_resource type="Resource" id="Resource_w27th"]
 script = ExtResource("9_iepvh")
 populator_params = SubResource("Resource_2sdn3")
-target_texture = SubResource("Texture2D_rxrt6")
+target_texture = SubResource("Texture2D_my8q1")
 color_sampler = 1
 clear_color_average = true
 keep_aspect_ratio = true
 clamp_position_in_canvas = true
-fixed_rotation = true
-fixed_rotation_angle = 0.785398
-fixed_size = false
+fixed_rotation = false
+fixed_rotation_angle = 0.0
+fixed_size = true
 fixed_size_width_ratio = 0.3
 best_of_random_params = SubResource("Resource_o7fvl")
 genetic_params = SubResource("Resource_dnu0u")
 
 [sub_resource type="Resource" id="Resource_urrnu"]
 script = ExtResource("11_d1ait")
-individual_count = 200
+individual_count = 700
 execution_time = 400.0
 target_fitness = 0.9
 
 [sub_resource type="Resource" id="Resource_ddurg"]
 script = ExtResource("10_wayag")
 individual_generator_params = SubResource("Resource_w27th")
-individual_generator_type = 2
-stop_condition = 0
+individual_generator_type = 1
+stop_condition = 1
 stop_condition_params = SubResource("Resource_urrnu")
+
+[sub_resource type="Resource" id="Resource_w6sbu"]
+script = ExtResource("13_bu06x")
+name = "Brush strokes"
+textures = Array[Texture]([ExtResource("14_vcku4"), ExtResource("15_sigci"), ExtResource("16_edy01"), ExtResource("17_ueb1i"), ExtResource("18_75ipp")])
+
+[sub_resource type="Resource" id="Resource_5xe3f"]
+script = ExtResource("13_bu06x")
+name = "Circular"
+textures = Array[Texture]([ExtResource("19_fkhsv"), ExtResource("20_kfr4u"), ExtResource("21_hgmsx"), ExtResource("22_5a4ml")])
+
+[sub_resource type="Resource" id="Resource_t2fdh"]
+script = ExtResource("13_bu06x")
+name = "Glow"
+textures = Array[Texture]([ExtResource("19_wiek5"), ExtResource("20_are3s"), ExtResource("21_80yra"), ExtResource("22_30ebp"), ExtResource("23_d7fnb")])
+
+[sub_resource type="Resource" id="Resource_08py8"]
+script = ExtResource("13_bu06x")
+name = "Emojis"
+textures = Array[Texture]([ExtResource("28_5ogje"), ExtResource("29_eyhqb"), ExtResource("30_g6h7t"), ExtResource("31_c452r"), ExtResource("32_il1q5"), ExtResource("33_x03pt"), ExtResource("34_5gck7"), ExtResource("35_1bkbb"), ExtResource("36_42lj8"), ExtResource("37_rnjbg"), ExtResource("38_11tgm"), ExtResource("39_dn13d"), ExtResource("40_c2rnv")])
 
 [resource]
 script = ExtResource("1_xypp1")
 image_generator_params = SubResource("Resource_ddurg")
 default_target_texture = ExtResource("1_cfm67")
-default_textures = Array[Texture]([ExtResource("1_hte5q"), ExtResource("3_4r8n6"), ExtResource("4_l6fao")])
+default_texture_group_name = "Brush strokes"
+individuals_texture_groups = Array[ExtResource("13_bu06x")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8")])
 render_while_generating = false
