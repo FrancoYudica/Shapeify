@@ -482,9 +482,13 @@ La figura 14 ilustra la única textura que será utilizada por los individuos.
 
 Se realiza una ejecución desde cero, lo cuál significa que la imagen fuente no tiene nada renderizado, únicamente el color promedio de la imagen objetivo.
 
-|                      _[Figura 15.1] - Imagen fuente_                       | _[Figura 15.2] - Imagen objetivo: Mona Lisa original_  |
-| :------------------------------------------------------------------------: | :----------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
+<div align="center">
+
+|                               _[Figura 37.1] - Imagen fuente_                               |          _[Figura 37.2] - Imagen objetivo: Mona Lisa original_          |
+| :-----------------------------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png" width=400> | <img src="imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg" width=400> |
+
+</div>
 
 Tras ejectutar el algoritmo genético durante 5,5 segundos, se obtuvo el siguiente individuo:
 
@@ -667,9 +671,13 @@ El dominio de texturas de los individuos está formado por las siguientes ilustr
 
 </div>
 
-|                      _[Figura 37.1] - Imagen fuente_                       | _[Figura 37.2] - Imagen objetivo: Mona Lisa original_  |
-| :------------------------------------------------------------------------: | :----------------------------------------------------: |
-| ![](imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
+<div align="center">
+
+|                               _[Figura 37.1] - Imagen fuente_                               |          _[Figura 37.2] - Imagen objetivo: Mona Lisa original_          |
+| :-----------------------------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| <img src="imgs/plots_and_statistics/mona_lisa/mona_lisa_average_color_clear.png" width=400> | <img src="imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg" width=400> |
+
+</div>
 
 - Los parámetros utilizados por el **algoritmo genético** son los mismos que se utilizaron al experimentar con el algoritmo genético en la sección anterior.
 - El **algoritmo aleatorio** no cuenta con parámetros, por lo que no hay nada que especificar.
