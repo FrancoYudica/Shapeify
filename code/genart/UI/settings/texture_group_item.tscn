@@ -1,13 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d26mj4eo12d1o"]
 
+[ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="1_8nnd3"]
 [ext_resource type="Script" path="res://UI/settings/texture_group_item.gd" id="1_wo586"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_053ah"]
-bg_color = Color(0.266575, 0.266575, 0.266575, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyoih"]
 bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
@@ -17,7 +11,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="TextureGroupItem" type="PanelContainer" node_paths=PackedStringArray("textures_container", "title_label")]
-theme_override_styles/panel = SubResource("StyleBoxFlat_053ah")
+theme_override_styles/panel = ExtResource("1_8nnd3")
 script = ExtResource("1_wo586")
 textures_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/MarginContainer/TexturesHBoxContainer")
 title_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label")

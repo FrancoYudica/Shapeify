@@ -16,3 +16,8 @@ func _ready() -> void:
 		func():
 			disabled = false
 	)
+	
+	image_generation.generation_started.connect(
+		func():
+			disabled = true
+	)

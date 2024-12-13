@@ -17,6 +17,9 @@ func _create_texture():
 
 func _update_texture():
 	
+	if not Globals.settings.render_while_generating:
+		return
+	
 	if texture == null:
 		_create_texture()
 	

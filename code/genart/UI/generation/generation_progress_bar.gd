@@ -12,8 +12,8 @@ func _ready() -> void:
 	
 	image_generation.generation_started.connect(
 		func():
-			visible = true
 			value = 0.0
+			visible = true
 	)
 	image_generation.generation_finished.connect(
 		func():

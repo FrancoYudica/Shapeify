@@ -10,6 +10,7 @@ var _mutex: Mutex = Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
 var _individual_renderer: IndividualRenderer
+var _generating: bool = false
 
 func update_target_texture(target_texture: RendererTexture):
 	individual_generator.update_target_texture(target_texture)
@@ -20,7 +21,7 @@ func stop():
 	_mutex.unlock()
 
 func get_progress() -> float:
-	if _stop_condition == null:
+	if _stop_condition == null or not _generating:
 		return 0.0
 	return _stop_condition.get_progress()
 
@@ -37,10 +38,9 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	var source_texture = individual_generator.source_texture
 	_individual_renderer.source_texture = source_texture
 	
-	var i = 0
+	_generating = true
 	_stop_condition.began_generating()
-	while not _stop_condition.should_stop() and i < 1000:
-		i += 1
+	while not _stop_condition.should_stop():
 		# Checks if the algorithm should stop executing
 		_mutex.lock()
 		if _stop:
@@ -57,6 +57,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		individual_generated.emit(individual)
 		_stop_condition.individual_generated(individual)
 	
+	_generating = false
 	Profiler.image_generation_finished(individual_generator.source_texture)
 	
 	return individual_generator.source_texture
