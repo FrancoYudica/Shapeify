@@ -6,7 +6,6 @@ extends PanelContainer
 
 func _ready() -> void:
 	image_generation.individual_generated.connect(_generated_individual)
-	image_generation.source_texture_updated.connect(_update_metrics)
 	visibility_changed.connect(_update_metrics)
 
 func _generated_individual(individual: Individual):

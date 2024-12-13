@@ -3,7 +3,6 @@ extends Node
 signal generation_started
 signal generation_finished
 signal individual_generated(individual: Individual)
-signal source_texture_updated
 signal target_texture_updated
 
 @export_group("Metric")
@@ -16,7 +15,6 @@ var image_generation_details := ImageGenerationDetails.new()
 func clear_progress():
 	_clear_image_generation_details()
 	image_generator.individual_generator.clear_source_texture()
-	source_texture_updated.emit()
 
 func generate() -> void:
 	generation_started.emit()
@@ -55,8 +53,7 @@ func _setup_references():
 	image_generator.params = Globals.settings.image_generator_params
 	image_generator.individual_generated.connect(
 		func(i): 
-			call_deferred("_emit_individual_generated_signal", i)
-			call_deferred("emit_signal", "source_texture_updated"))
+			call_deferred("_emit_individual_generated_signal", i))
 	image_generator.setup()
 	clear_progress()
 	target_texture_updated.emit()
@@ -72,9 +69,11 @@ func _begin_image_generation():
 	call_deferred("emit_signal", "generation_finished")
 	
 	# Renders the texture and stores the generated texture
-	ImageGenerationRenderer.render_image_generation(image_generation_details)
+	image_generator.texture_mutex.lock()
+	ImageGenerationRenderer.render_image_generation(Renderer, image_generation_details)
 	var color_attachment := Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	image_generation_details.generated_texture.copy_contents(color_attachment)
+	image_generator.texture_mutex.unlock()
 	
 	
 func _clear_image_generation_details():

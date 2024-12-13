@@ -1,6 +1,6 @@
 extends Batch
 
-const _MAX_SUMISSIONS = 1025
+const _MAX_SUMISSIONS = 1024
 
 var _vertex_buffers: Dictionary
 var _vertex_buffers_data: Dictionary
@@ -26,7 +26,7 @@ func push_sprite(
 	id: float
 ):
 	
-	if _submissions_count == _MAX_SUMISSIONS:
+	if _submissions_count == _MAX_SUMISSIONS - 1:
 		flush()
 	
 	var index = _submissions_count * 4

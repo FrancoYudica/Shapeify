@@ -91,7 +91,7 @@ func render_sprite(
 		id)
 
 func _enter_tree() -> void:
-	RenderingServer.call_on_render_thread(_initialize)
+	_initialize()
 
 
 # Called when the node enters the scene tree for the first time.

@@ -7,6 +7,7 @@ var params: ImageGeneratorParams
 var individual_generator: IndividualGenerator
 
 var _mutex: Mutex = Mutex.new()
+var texture_mutex := Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
 var _individual_renderer: IndividualRenderer
@@ -48,12 +49,15 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			break
 		_mutex.unlock()
 		
+		texture_mutex.lock()
 		# Generates individual
 		var individual: Individual = individual_generator.generate_individual()
 		
 		# Renders the individual onto the source texture
 		_individual_renderer.render_individual(individual)
 		source_texture.copy_contents(_individual_renderer.get_color_attachment_texture())
+		texture_mutex.unlock()
+		
 		individual_generated.emit(individual)
 		_stop_condition.individual_generated(individual)
 	
@@ -62,6 +66,18 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	return individual_generator.source_texture
 
+func copy_source_texture_contents(dest: Texture2DRD):
+	texture_mutex.lock()
+	
+	RenderingCommon.texture_copy(
+		individual_generator.source_texture.rd_rid,
+		dest.texture_rd_rid,
+		Renderer.rd,
+		RenderingServer.get_rendering_device()
+	)
+	texture_mutex.unlock()
+	
+	
 var _current_individual_generator_type: int = -1
 
 func setup():
