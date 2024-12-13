@@ -60,7 +60,7 @@ En este proyecto se ha desarrollado un método para generar imágenes _transform
 
 Se considera que el abordar el problema mediante el uso de IA es una excelente decisión, debido a que esta se centra en el desarrollo de sistemas capaces de adaptarse y tomar decisiones en función de su entorno, siendo esta una característica últil en los procesos de generación de imágenes.
 
-A continuación se explicarán los fundamentos del algoritmo genético, los motivos por los que se decide usarlo, la implementación del mismo, las métricas utilizadas con el fin de establecer el alcance y rendimiento del algoritmo sobre el problema dado, herramientas de implementación, una descripción de los experimentos y resultados obtenidos, en conjunto con un análisis de los mismos y finalmente conlcusiones sobre el proyecto.
+A continuación, se explicarán los fundamentos del algoritmo genético, los motivos detrás de su elección, su implementación, y las métricas utilizadas para evaluar su alcance y rendimiento en el problema planteado. También se detallarán las herramientas empleadas para la implementación, la descripción de los experimentos realizados tanto con el algoritmo genético como con alternativas, los resultados obtenidos y su análisis. Finalmente, se presentarán las conclusiones sobre el proyecto.
 
 # Marco teórico
 
@@ -159,6 +159,8 @@ En definitiva, un individuo puede interpretarse como una sub-imagen que se rende
 
 El tinte de un individuo será el color promedio de la sub-imagen de la _imagen objetivo_ que ocupe el individuo.
 
+El tinte será asignado tras ejecutar un algoritmo de muestreo de color promedio.
+
 ###### Muestreo de color promedio de subrectángulo
 
 Una vez determinada la posición, tamaño y rotación del individuo, se calcula su AABB (Axis Aligned Bounding Box) o subrectángulo, el cuál describe cuál es la porción de la pantalla que ocupa el individuo.
@@ -183,18 +185,19 @@ Esta función realiza las siguientes tareas:
 1. Renderiza al individuo sobre la _imagen fuente_, obteniendo la _imagen fuente del individuo_.
 2. Envía la _imagen fuente del individuo_ a una función que se encargará de determinar la diferencia entre esta y la _imagen objetivo_, retornando un valor normalizado que representa el fitness del individuo.
 
-A continuación se detallarán los dos métodos que se han utilizado para determinar el fitness de los individuos. Teniendo en cuenta que los individuos obtienen los colores diréctamente de la _imagen objetivo_, los métodos de cálculo de fitness pueden trabajar con los colores en el espacio RGB. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
+A continuación se detallará el método utilizado para determinar el fitness de los individuos. Teniendo en cuenta que los individuos obtienen los colores diréctamente de la _imagen objetivo_, los métodos de cálculo de fitness pueden trabajar con los colores en el espacio RGB. Si los colores fueran aleatorizados, entonces se debería mejorar la función de fitness, cambiando el espacio RGB a uno que sea perceptualmente uniforme, tal como CEILab.
 
 Existen estudios similares que debido a la aleatorización de colores se han encontrado con este mismo problema, y utilizan representaciones de colores en espacios alternativos para su función de fitness, tales como el espacio CEILab o PSNR. [\[12\]](#genetic-algorithm-for-image-recreation), [\[14\]](#procedural-paintings), [\[15\]](#genetic-drawing), [\[16\]](#ellipspace).
 
 ##### MPA (Mean Power Accuracy)
 
 La función de fitness utilizada en este trabajo es la siguiente:
+
 <div align="center">
 
-|             _[Figura 3] Fórmula de fitness utilizando MPA_             |
-| :---------------------------------------------------------------------------------: |
-| <img src="imgs/formulas/MPANPower.png"> |
+| _[Figura 3] Fórmula de fitness utilizando MPA_ |
+| :--------------------------------------------: |
+|    <img src="imgs/formulas/MPANPower.png">     |
 
 </div>
 
@@ -212,8 +215,8 @@ La siguiente función de fitness es la planteada en [\[14\]](#procedural-paintin
 
 <div align="center">
 
-|            _[Figura 4] Fórmula MPA con potencia 4_             |
-| :---------------------------------------------------------------------------------: |
+| _[Figura 4] Fórmula MPA con potencia 4_ |
+| :-------------------------------------: |
 | <img src="imgs/formulas/MPA4Power.png"> |
 
 </div>
@@ -331,9 +334,9 @@ Una vez realizada tal transformación, obteniendo las componentes de cada pixel 
 
 <div align="center">
 
-|            _[Figura 5]  ΔE medio sobre imágenes en espacio de color CEILab_             |
-| :---------------------------------------------------------------------------------: |
-| <img src="imgs/formulas/average_delta_e.png"> |
+| _[Figura 5] ΔE medio sobre imágenes en espacio de color CEILab_ |
+| :-------------------------------------------------------------: |
+|          <img src="imgs/formulas/average_delta_e.png">          |
 
 </div>
 
@@ -575,8 +578,7 @@ La figura 18 muesta los gráficos de caja del fitness por generación. Se puede 
 
 En la figura 20.1, se ilustran las posiciones por generación de los individuos donde se puede observar que los puntos se trasladan hacia arriba, mientras que el individuo fue renderizado en la parte inferior de la imagen. Esto no es un error porque la orientación del eje Y en Godot y matplotlib están invertidos.
 
-
-|                   _[Figura 20.1] - Posiciones de los individuos por generación_                   |                                _[Figura 20.2] - Imagen fuente del individuo_                                |
+|                  _[Figura 20.1] - Posiciones de los individuos por generación_                  |                               _[Figura 20.2] - Imagen fuente del individuo_                               |
 | :---------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/positions.gif) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_0/source_image_result.png) |
 
@@ -584,13 +586,11 @@ En definitiva, se observa el correcto funcionamiento del algoritmo, cuyos result
 
 ##### Resultados con progreso
 
-En el experimento anterior se evaluaron estadísticas del algoritmo genético tomando una imagen fuente vacía. Debido a que se utilizarán iteraciones sucesivas del algoritmo genético, el estudio del caso anterior no basta para poder asegurar el correcto funcionamiento del algoritmo en el proceso de generación de imágenes. Es por este motivo que a continuación se hará un análisis similar pero con un punto de partida más avanzado, donde la imagen fuente no está vacía, simulando una etapa de generación de imagen.
+En el experimento anterior se evaluaron estadísticas del algoritmo genético tomando una imagen fuente vacía. Debido a que se utilizarán iteraciones sucesivas del algoritmo genético, el estudio del caso anterior no basta para poder asegurar el correcto funcionamiento del algoritmo en el proceso de generación de imágenes. Es por este motivo que a continuación se hará un análisis similar pero con un punto de partida más avanzado, donde la imagen fuente no está vacía, simulando una etapa avanzada de generación de imagen.
 
-
-|                   _[Figura 21.1] - Imagen fuente avanzada con 50 individuos (Etapa 50)_                   |  _[Figura 21.2] - Imagen objetivo: Mona Lisa original_   |
+|                  _[Figura 21.1] - Imagen fuente avanzada con 50 individuos (Etapa 50)_                  | _[Figura 21.2] - Imagen objetivo: Mona Lisa original_  |
 | :-----------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
-
 
 El algoritmo cuenta con los mismos parámetros que se utilizaron en la ejecución desde cero.
 
@@ -614,7 +614,7 @@ Tras ejectutar el algoritmo genético durante 4,5 segundos, se obtuvo el siguien
 
 A continuación, en la figuras 22.1 y 22.2 se pueden observar las imágenes fuentes de los individuos generados en la etapa 50 y 51 correspondientemente, siendo el de la etapa 51 el recientemente generado:
 
-|                              _[Figura 22.1] - Imagen fuente de la etapa 50_                               |                            _[Figura 22.2] - Imagen fuente de la etapa 51_                             |  _[Figura 22.3] - Imagen objetivo: Mona Lisa original_   |
+|                             _[Figura 22.1] - Imagen fuente de la etapa 50_                              |                           _[Figura 22.2] - Imagen fuente de la etapa 51_                            | _[Figura 22.3] - Imagen objetivo: Mona Lisa original_  |
 | :-----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :----------------------------------------------------: |
 | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_50_ind.png) | ![](imgs/plots_and_statistics/mona_lisa/precise_optimization_params/individual_51/mona_lisa_51.png) | ![](imgs/plots_and_statistics/mona_lisa/Mona_Lisa.jpg) |
 
@@ -653,7 +653,7 @@ En la figura 26, a diferencia de los gráficos ilustrados en la figura 24 y 25, 
 Previamente, se analizó el comportamiento de una única ejecución del algoritmo genético con el objetivo de evaluar la evolución de la población a lo largo de las generaciones. Sin embargo, generalizar los resultados obtenidos en esa ejecución sería incorrecto. Por esta razón, y manteniendo los mismos parámetros, se llevaron a cabo 100 ejecuciones del algoritmo genético. A continuación, se presentan los resultados de estas pruebas, tanto para la imagen objetivo del caso básico como para la de Mona Lisa.
 Es importante aclarar que la imagen fuente utilizada para evaluar las distintas ejecuciones siempre fue la misma. Para el caso básico, se utilizó el fondo negro, y para la Mona Lisa, se utilizó la imagen de la etapa 50.
 
-|          _[Figura 27.1] - Distribución del tiempo de ejecución con imagen objetivo del caso básico_          |       _[Figura 27.2] - Distribución del tiempo de ejecución con imagen objetivo Mona Lisa_       |
+|         _[Figura 27.1] - Distribución del tiempo de ejecución con imagen objetivo del caso básico_         |      _[Figura 27.2] - Distribución del tiempo de ejecución con imagen objetivo Mona Lisa_      |
 | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/time_taken_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/time_taken_boxplot.png) |
 
@@ -669,14 +669,14 @@ Esta variación en los tiempos medios se debe a la diferencia en la resolución 
 
 Esto significa que la imagen de Mona Lisa tiene 37,81 veces más píxeles que la del caso básico. No obstante, cabe destacar que, a pesar de esta gran diferencia en la cantidad de datos a procesar, el tiempo medio de ejecución en el caso básico fue 1,7 veces más rápido que en el caso de Mona Lisa.
 
-|              _[Figura 28.1] - Distribución del fitness con imagen objetivo del caso básico_               |           _[Figura 28.2] - Distribución del fitness con imagen objetivo Mona Lisa_            |
+|             _[Figura 28.1] - Distribución del fitness con imagen objetivo del caso básico_              |          _[Figura 28.2] - Distribución del fitness con imagen objetivo Mona Lisa_           |
 | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/fitness_boxplot.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/fitness_boxplot.png) |
 
 En la figura 28.1 se observa que las ejecuciones del algoritmo genético para el caso básico presentan una mayor dispersión del fitness en comparación con las correspondientes a la Mona Lisa, mostradas en la figura 28.2.
 Esta diferencia en la dispersión se explica porque, en el caso básico, la imagen fuente es completamente negra, lo que genera una mayor sensibilidad al error ante pequeñas imperfecciones en los individuos generados. Por otro lado, en el caso de la Mona Lisa, cuya imagen fuente corresponde a la etapa 50, existe un mayor nivel de similitud entre la imagen fuente y la imagen objetivo. Esto reduce el impacto de ligeras imperfecciones en los individuos generados, resultando en una menor variación en el fitness de los individuos generados.
 
-|                _[Figura 29.1] - Posiciones de los individuos generados con imagen objetivo del caso básico_                |             _[Figura 29.2] - Posiciones de los individuos generados con imagen objetivo Mona Lisa_             |
+|               _[Figura 29.1] - Posiciones de los individuos generados con imagen objetivo del caso básico_               |            _[Figura 29.2] - Posiciones de los individuos generados con imagen objetivo Mona Lisa_            |
 | :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
 | ![](imgs/plots_and_statistics/simple_rectangle_test/multiple_individual_generators/individual_positions_with_scores.png) | ![](imgs/plots_and_statistics/mona_lisa/multiple_individual_generators/individual_positions_with_scores.png) |
 
@@ -726,9 +726,9 @@ Como primer condición de corte a evaluar, se ha utilizado un límite de 200 ind
 |                                            Generada en 743 segundos                                            |                                               Generada en 1,2 segundos                                               |                                       Generada en 34,5 segundos                                       |
 |                                   Puntuación de la métrica: 7.56027569731405                                   |                                      Puntuación de la métrica: 25.0826882102273                                      |                              Puntuación de la métrica: 9.03677685950413                               |
 
-En las fuguras 32 se puede observar las imágenes generadas con cada algoritmo. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
+En las figuras 32 se puede observar las imágenes generadas con cada algoritmo. Es notable la diferencia de calidad, y se puede observar que el algoritmo aleatorio tiene un problema con el tamaño de los individuos generados.
 
-Además, al comparar las figuras 32.1 y 32.3, se puede observar claramente que, aunque el tamaño de la población es el mismo en ambas, es decir, 150, el proceso evolutivo implementado por el algoritmo genético tiene un impacto significativo, logrando generar individuos con una mayor precisión al optimizar la cantidad de individuos para generar una imagen con mayor calidad.
+Además, al comparar las figuras 32.1 y 32.3, se puede observar claramente que, aunque el tamaño de la población es el mismo en ambas, es decir, 150, el proceso evolutivo implementado por el algoritmo genético mediante las 20 generaciones tiene un impacto significativo, logrando generar individuos con una mayor precisión al optimizar la cantidad de individuos para generar una imagen con mayor calidad. Nótese que la métrica utilizada es capaz de detectar esta diferencia.
 
 <div align="center">
 
@@ -754,7 +754,7 @@ Además, al comparar las figuras 32.1 y 32.3, se puede observar claramente que, 
 
 <div align="center">
 
-|   _[Figura 34.1] - Area de los individuos generados en el proceso de genración de imagen con algoritmo genético_   |  _[Figura 34.2] - Area de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_  |
+|   _[Figura 34.1] - Área de los individuos generados en el proceso de genración de imagen con algoritmo genético_   |  _[Figura 34.2] - Área de los individuos generados en el proceso de genración de imagen con algoritmo aleatorio_  |
 | :----------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
 | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/genetic/individual_count_limit/area.png" width="500"> | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/random/individual_count_limit/area.png" width="500"> |
 
@@ -762,13 +762,15 @@ Además, al comparar las figuras 32.1 y 32.3, se puede observar claramente que, 
 
 <div align="center">
 
-| _[Figura 34.3] - Area de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
+| _[Figura 34.3] - Área de los individuos generados en el proceso de genración de imagen con algoritmo mejor de aleatorios_ |
 | :-----------------------------------------------------------------------------------------------------------------------: |
 | <img src="imgs/plots_and_statistics/mona_lisa_img_generation/best_of_random/individual_count_limit/area.png" width="500"> |
 
 </div>
 
-En las figuras 34 se puede observar la gran diferencia de los tamaños de los individuos generados. El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas. El algoritmo mejor de aleatorios tiene un comportamiento similar, aunque no tan definido como el del genético.
+En las figuras 34 se puede observar la gran diferencia de los tamaños de los individuos generados. Nótese que el tamaño se mide en ancho y alto, pero para poder graficar la cantidad de pixeles ocupados por cada individuo en un solo gráfico se utiliza el área.
+
+El algoritmo genético tiende a reducir el área de los individuos generados, lo cuál tiene sentido debido a que de este modo se evita perder secciones de la imagen previamente desarrolladas. El algoritmo mejor de aleatorios tiene un comportamiento similar, aunque no tan definido como el del genético.
 En cuanto al algoritmo aleatorio, el tamaño es aleatorio y esto provoca grandes retrocesos cuando el área es grande.
 
 La reducción del tamaño de los individuos a lo largo de las etapas explica el comportamiento logarítmico presentado en las figuras 33. Inicialmente los individuos son de gran tamaño, esto implica que cubren mayor cantidad de pixeles, provocando un disminución significativa en la métrica. A medida que avanza el proceso de generación de imagen, el tamaño de los individuos disminuye de tal forma que no se provocan retrocesos, pero dado a que el tamaño es menor, la contribución de cada individuo en la imagen es menor, provocando el comportamiento logarítmico de la función de la métrica.
