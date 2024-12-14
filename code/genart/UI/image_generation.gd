@@ -6,11 +6,10 @@ signal individual_generated(individual: Individual)
 signal target_texture_updated
 signal generation_cleared
 
-@export_group("Metric")
-@export var metric_scripts: Array[GDScript]
+@export var notification_popup: Control
+
 
 var image_generator: ImageGenerator
-var metrics: Array[Metric]
 var image_generation_details := ImageGenerationDetails.new()
 
 func clear_progress():
@@ -18,6 +17,17 @@ func clear_progress():
 	image_generator.individual_generator.clear_source_texture()
 
 func generate() -> void:
+	
+	if Globals \
+		.settings \
+		.image_generator_params \
+		.individual_generator_params \
+		.populator_params \
+		.textures.size() == 0:
+		notification_popup.message = "Unable to begin generation without textures."
+		notification_popup.visible = true
+		return
+
 	generation_started.emit()
 	# Executes the generation in another thread to avoild locking the UI
 	WorkerThreadPool.add_task(_begin_image_generation)
@@ -38,15 +48,6 @@ func refresh_target_texture():
 
 func _ready() -> void:
 	_setup_references()
-	
-	for metric_script in metric_scripts:
-		var metric = metric_script.new() as Metric
-		if metric == null:
-			push_error("Trying to create a metric with invalid script: %s" % metric_script.resource_path)
-			continue
-			
-		metrics.append(metric)
-	
 	
 func _setup_references():
 	# Image generator

@@ -1,27 +1,21 @@
-[gd_scene load_steps=60 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=54 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
-[ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
-[ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_fitnenss_metric.gd" id="10_s37im"]
 [ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="11_pg2rs"]
-[ext_resource type="Script" path="res://generation/metric/mpa/mpa_CEILab_fitnenss_metric.gd" id="11_r0x3m"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
-[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1976_mean.gd" id="12_r7utl"]
 [ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="13_fjqiy"]
 [ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
-[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1976_max.gd" id="13_yphm4"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/textures_handler_ui.gd" id="14_gfkqp"]
 [ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
 [ext_resource type="Texture2D" uid="uid://cgxtsqc0xrobj" path="res://art/icons/info-24-dark.png" id="14_r343e"]
 [ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_mean.gd" id="14_y6244"]
 [ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
-[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_max.gd" id="15_40eb2"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="15_umn17"]
 [ext_resource type="Texture2D" uid="uid://bdxb1ivniwnj7" path="res://art/icons/film-2-24.png" id="16_fxeqj"]
 [ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
@@ -94,9 +88,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="ImageGeneration" type="Node"]
+[node name="ImageGeneration" type="Node" node_paths=PackedStringArray("notification_popup")]
 script = ExtResource("1_h14uf")
-metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("11_r0x3m"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
+notification_popup = NodePath("UICanvasLayer/Panel/NotificationPopup")
 
 [node name="OutputTextureHolder" type="Node" parent="." node_paths=PackedStringArray("image_generation")]
 script = ExtResource("9_hlcsw")
