@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=60 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://generation/metric/mse/mse_compute.gd" id="9_f4u7v"]
+[ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
 [ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
 [ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_fitnenss_metric.gd" id="10_s37im"]
@@ -21,7 +22,6 @@
 [ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_mean.gd" id="14_y6244"]
 [ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
 [ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_max.gd" id="15_40eb2"]
-[ext_resource type="Script" path="res://UI/generation/rendering_time_label.gd" id="15_ddae6"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="15_umn17"]
 [ext_resource type="Texture2D" uid="uid://bdxb1ivniwnj7" path="res://art/icons/film-2-24.png" id="16_fxeqj"]
 [ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
@@ -35,11 +35,10 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab.gd" id="19_efp5f"]
 [ext_resource type="Script" path="res://UI/generation/output_info_texture_button.gd" id="19_w0gf2"]
 [ext_resource type="Texture2D" uid="uid://swh5n2u6bvj5" path="res://art/icons/erase-24-dark.png" id="20_nf4cs"]
-[ext_resource type="Script" path="res://UI/generation/metrics_panel_container.gd" id="21_mrtou"]
 [ext_resource type="Texture2D" uid="uid://m5q8q3ignig6" path="res://art/icons/play-24-dark.png" id="23_4anu0"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
 [ext_resource type="Script" path="res://UI/settings/genetic_settings_v_box_container.gd" id="25_jv4l3"]
-[ext_resource type="Script" path="res://UI/generation/individual_generating_time_label.gd" id="31_jo20f"]
+[ext_resource type="Script" path="res://UI/generation/info_panel_container.gd" id="34_18hvq"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="35_ad0r6"]
 [ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="36_2df3k"]
 [ext_resource type="Script" path="res://UI/settings/save_settings_button.gd" id="37_bnia1"]
@@ -99,6 +98,10 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_h14uf")
 metric_scripts = Array[GDScript]([ExtResource("9_f4u7v"), ExtResource("10_s37im"), ExtResource("11_r0x3m"), ExtResource("12_r7utl"), ExtResource("13_yphm4"), ExtResource("14_y6244"), ExtResource("15_40eb2")])
 
+[node name="OutputTextureHolder" type="Node" parent="." node_paths=PackedStringArray("image_generation")]
+script = ExtResource("9_hlcsw")
+image_generation = NodePath("..")
+
 [node name="ImageLoader" type="Node" parent="."]
 script = ExtResource("10_a6yyn")
 
@@ -126,10 +129,9 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jg87p")
-current_tab = 1
+current_tab = 0
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -140,6 +142,7 @@ metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
@@ -166,7 +169,7 @@ texture_normal = ExtResource("18_t5cu0")
 texture_hover = ExtResource("14_r343e")
 script = ExtResource("19_w0gf2")
 image_generation = NodePath("../../../../../../../../../..")
-metrics_panel = NodePath("../../../../TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer")
+metrics_panel = NodePath("../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
 
 [node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "file_dialog", "notification_popup")]
 layout_mode = 2
@@ -235,77 +238,15 @@ image_generation = NodePath("../../../../../../../../../..")
 [node name="TexturesHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 16
 
-[node name="OutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="OutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer" node_paths=PackedStringArray("output_texture_holder")]
 layout_mode = 2
 size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("13_u81ho")
-image_generation = NodePath("../../../../../../../..")
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="MetricsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer" node_paths=PackedStringArray("image_generation", "metrics_label", "generator_label")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("21_mrtou")
-image_generation = NodePath("../../../../../../../../../..")
-metrics_label = NodePath("MarginContainer/VBoxContainer/MetricsLabel")
-generator_label = NodePath("MarginContainer/VBoxContainer/IndividualGeneratorName")
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="RenderingTimeLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("image_generation")]
-layout_mode = 2
-text = "Rendering: "
-script = ExtResource("15_ddae6")
-image_generation = NodePath("../../../../../../../../../../../../..")
-
-[node name="IndividualGeneratingTimeLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("image_generation")]
-layout_mode = 2
-text = "Rendering: "
-script = ExtResource("31_jo20f")
-image_generation = NodePath("../../../../../../../../../../../../..")
-
-[node name="IndividualGeneratorTitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Individual generator"
-
-[node name="IndividualGeneratorName" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "
-"
-
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Metrics"
-
-[node name="MetricsLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputTextureRect/MarginContainer/MetricsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "
-"
+output_texture_holder = NodePath("../../../../../../../../OutputTextureHolder")
 
 [node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -316,7 +257,125 @@ stretch_mode = 5
 script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../..")
 
+[node name="InfoPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect" node_paths=PackedStringArray("individual_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "close_button", "output_texture_holder", "image_generation")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("34_18hvq")
+metric_script = ExtResource("14_y6244")
+individual_count_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/IndividualCountValue")
+current_execution_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/CurrentExecutionTimeValue")
+executions_count_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ExecutionsCountValue")
+time_taken_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/TotalTimeTakenValue")
+metric_score_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/MetricScoreValue")
+close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton")
+output_texture_holder = NodePath("../../../../../../../../../OutputTextureHolder")
+image_generation = NodePath("../../../../../../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("35_ad0r6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Output info"
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("36_2df3k")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MetricScoreLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Metric score"
+
+[node name="MetricScoreValue" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.0"
+horizontal_alignment = 2
+
+[node name="IndividualCountLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Individual count"
+
+[node name="IndividualCountValue" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "400"
+horizontal_alignment = 2
+
+[node name="CurrentExecutionTimeLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Current execution time"
+
+[node name="CurrentExecutionTimeValue" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100ms"
+horizontal_alignment = 2
+
+[node name="TotalTimeTakenLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Total Time taken"
+
+[node name="TotalTimeTakenValue" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100ms"
+horizontal_alignment = 2
+
+[node name="ExecutionsCountLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Executions count"
+
+[node name="ExecutionsCountValue" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "300"
+horizontal_alignment = 2
+
+[node name="CloseButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close"
+
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24

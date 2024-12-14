@@ -4,6 +4,7 @@ signal generation_started
 signal generation_finished
 signal individual_generated(individual: Individual)
 signal target_texture_updated
+signal generation_cleared
 
 @export_group("Metric")
 @export var metric_scripts: Array[GDScript]
@@ -64,8 +65,11 @@ func _emit_individual_generated_signal(individual: Individual):
 	individual_generated.emit(individual)
 
 func _begin_image_generation():
+	var clock := Clock.new()
 	var src = image_generation_details.generated_texture.copy()
 	image_generator.generate_image(src)
+	image_generation_details.time_taken_ms += clock.elapsed_ms()
+	image_generation_details.executed_count += 1
 	call_deferred("emit_signal", "generation_finished")
 	
 	# Renders the texture and stores the generated texture
@@ -84,6 +88,8 @@ func _clear_image_generation_details():
 										.individual_generator_params \
 										.target_texture
 	
+	image_generation_details.time_taken_ms = 0.0
+	image_generation_details.executed_count = 0
 	image_generation_details.individuals.clear()
 	image_generation_details.clear_color = ImageUtils.get_texture_average_color(
 		target_texture)
@@ -98,3 +104,4 @@ func _clear_image_generation_details():
 	# Creates to image texture and then to RD local texture
 	var generated_global_rd = ImageTexture.create_from_image(img)
 	image_generation_details.generated_texture = RendererTexture.load_from_texture(generated_global_rd)
+	generation_cleared.emit()
