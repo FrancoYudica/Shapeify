@@ -1,6 +1,5 @@
 extends PanelContainer
 
-@export var clear_color_average: CheckBox
 @export var color_sampler: OptionButton
 
 @onready var _params: IndividualGeneratorParams = Globals \
@@ -9,7 +8,6 @@ extends PanelContainer
 												.individual_generator_params
 
 func _ready() -> void:
-	clear_color_average.button_pressed = _params.clear_color_average
 
 	# Color sampler option -----------------------------------------------------
 	for option in ColorSamplerStrategy.Type.keys():
@@ -20,6 +18,3 @@ func _ready() -> void:
 		func(index):
 			_params.color_sampler = index as ColorSamplerStrategy.Type
 	)
-
-func _on_clear_color_average_check_box_toggled(toggled_on: bool) -> void:
-	_params.clear_color_average = toggled_on

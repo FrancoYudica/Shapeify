@@ -44,10 +44,7 @@ func generate_individual() -> Individual:
 
 func clear_source_texture():
 	
-	var image_color: Color = Color.BLACK
-	
-	if params.clear_color_average:
-		image_color = ImageUtils.get_texture_average_color(params.target_texture)
+	var image_color = ImageUtils.get_texture_average_color(params.target_texture)
 	
 	var img = ImageUtils.create_monochromatic_image(
 		params.target_texture.get_width(),
@@ -122,4 +119,3 @@ func _init() -> void:
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
 	# Setup populator ----------------------------------------------------------
 	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()
-	

@@ -12,9 +12,10 @@ signal generation_cleared
 var image_generator: ImageGenerator
 var image_generation_details := ImageGenerationDetails.new()
 
+var _clear_color_strategy: ClearColorStrategy
+
 func clear_progress():
 	_clear_image_generation_details()
-	image_generator.individual_generator.clear_source_texture()
 
 func generate() -> void:
 	
@@ -88,12 +89,24 @@ func _clear_image_generation_details():
 										.image_generator_params \
 										.individual_generator_params \
 										.target_texture
-	
+	_clear_color_strategy = ClearColorStrategyFactory.create(
+		Globals \
+		.settings \
+		.image_generator_params \
+		.clear_color_type)
+
+	_clear_color_strategy.sample_texture = target_texture
+	_clear_color_strategy.set_params(
+		Globals \
+		.settings \
+		.image_generator_params \
+		.clear_color_params
+	)
+
 	image_generation_details.time_taken_ms = 0.0
 	image_generation_details.executed_count = 0
 	image_generation_details.individuals.clear()
-	image_generation_details.clear_color = ImageUtils.get_texture_average_color(
-		target_texture)
+	image_generation_details.clear_color = _clear_color_strategy.get_clear_color()
 	image_generation_details.viewport_size = target_texture.get_size()
 	
 	# Initializes generated texture
@@ -105,4 +118,5 @@ func _clear_image_generation_details():
 	# Creates to image texture and then to RD local texture
 	var generated_global_rd = ImageTexture.create_from_image(img)
 	image_generation_details.generated_texture = RendererTexture.load_from_texture(generated_global_rd)
+	image_generator.individual_generator.source_texture = image_generation_details.generated_texture.copy()
 	generation_cleared.emit()

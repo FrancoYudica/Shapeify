@@ -2,6 +2,8 @@ extends PanelContainer
 
 
 @export var stop_condition: OptionButton
+@export var clear_color: OptionButton
+
 @onready var _params := Globals.settings.image_generator_params
 
 func _ready() -> void:
@@ -15,5 +17,13 @@ func _ready() -> void:
 		func(index):
 			_params.stop_condition = index as StopCondition.Type
 	)
-func _on_individual_count_spin_box_value_changed(value: float) -> void:
-	_params.individual_count = value
+
+	# Clear color option ----------------------------------------------------
+	for option in ClearColorStrategy.Type.keys():
+		clear_color.add_item(option)
+		
+	clear_color.select(_params.clear_color_type)
+	clear_color.item_selected.connect(
+		func(index):
+			_params.clear_color_type = index as ClearColorStrategy.Type
+	)

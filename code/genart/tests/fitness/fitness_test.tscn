@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
-[ext_resource type="Texture2D" uid="uid://dg71bk4klwqm7" path="res://art/test/target_test_1920x1080.png" id="2_ee3s7"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_jtpkh"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_m76jf"]
-[ext_resource type="Texture2D" uid="uid://dm2v4ueh2at0p" path="res://art/test/source_test_1920x1080.png" id="4_yh8gn"]
+[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="4_le87a"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="6_2g4hy"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd" id="7_qjf2d"]
@@ -14,13 +14,13 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_m76jf")
-_src_texture = ExtResource("2_ee3s7")
+_src_texture = ExtResource("2_jtpkh")
 
 [sub_resource type="Texture2D" id="Texture2D_22c7c"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_m76jf")
-_src_texture = ExtResource("4_yh8gn")
+_src_texture = ExtResource("4_le87a")
 
 [node name="FitnessTest" type="Node"]
 script = ExtResource("1_pm2mh")

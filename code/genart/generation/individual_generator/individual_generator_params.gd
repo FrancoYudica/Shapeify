@@ -5,7 +5,6 @@ class_name IndividualGeneratorParams extends Resource
 
 @export var color_sampler := ColorSamplerStrategy.Type.MASKED
 
-@export var clear_color_average: bool = true
 @export var keep_aspect_ratio: bool = false
 @export var clamp_position_in_canvas: bool = true
 @export var fixed_rotation: bool = true

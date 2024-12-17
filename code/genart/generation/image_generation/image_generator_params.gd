@@ -6,6 +6,8 @@ class_name ImageGeneratorParams extends Resource
 @export var individual_generator_type := IndividualGenerator.Type.Genetic
 @export var stop_condition := StopCondition.Type.INDIVIDUAL_COUNT
 @export var stop_condition_params := StopConditionParams.new()
+@export var clear_color_type := ClearColorStrategy.Type.AVERAGE
+@export var clear_color_params := ClearColorParams.new()
 
 func to_dict():
 	return {
