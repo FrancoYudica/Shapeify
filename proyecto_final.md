@@ -4,7 +4,7 @@ Código de proyecto: GAFSIR (Genetic Algorithm for Stylized Image replication)
 
 _Franco Yudica (13922)_
 
-## Indice
+## Índice
 
 - [Introducción](#introducción)
 - [Marco teórico](#marco-teórico)
@@ -843,7 +843,7 @@ No obstante, la principal desventaja de los algoritmos genéticos persiste: el t
 
 Existen múltiples oportunidades de mejora y posibilidades para añadir características que amplíen la variedad de imágenes generadas. Una tarea pendiente, que podría mejorar significativamente los resultados en imágenes con gran cantidad de detalles, es la incorporación de filtros de detección de bordes, como el [operador de Sobel](https://de.wikipedia.org/wiki/Sobel-Operator), combinados con un [filtro Gaussiano](https://en.wikipedia.org/wiki/Gaussian_filter), para ponderar el fitness de los individuos de forma más precisa, fomentando la exploración de porciones de imagen más detalladas.
 
-Otra de las tareas pendientes de este trabajo es realizar una comparativa de la cantidad de individuos requeridos para poder generar una imagen con un valor de la métrica fijo. Aunque según la experimentación realizada en este trabajo, es claro que el algoritmo genético logaría la métrica objetivo con una menor cantidad de individuos que el algoritmo mejor de individuos.
+Otra de las tareas pendientes de este trabajo es realizar una comparativa de la cantidad de individuos requeridos para poder generar una imagen con un valor de la métrica fijo. Aunque según la experimentación realizada en este trabajo, es claro que el algoritmo genético logaría la métrica objetivo con una menor cantidad de individuos que el algoritmo mejor de aleatorios.
 
 # Bibliografía
 
