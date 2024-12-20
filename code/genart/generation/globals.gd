@@ -4,8 +4,15 @@ var settings: AppSettings
 
 func save():
 	ResourceSaver.save(settings)
+	
+	var test_params : PopulatorParams = load("res://generation/test_params.tres")
+	test_params.position_bound_max.x += 100
+	ResourceSaver.save(test_params)
+	
 
 func _init() -> void:
+	var test_params : PopulatorParams = load("res://generation/test_params.tres")
+	print(test_params.position_bound_max.x)
 	settings = load("res://generation/settings.tres")
 	
 	# Initializes settings in case these are empty
