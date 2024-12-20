@@ -16,12 +16,15 @@ func _ready() -> void:
 	
 	# Adds the default textures
 	for renderer_texture in _populator_params.textures:
+		
+		if not renderer_texture.is_valid():
+			continue
+		
 		var texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)
 		var image_item = image_item_packed.instantiate()
 		_add_image_item(image_item, renderer_texture)
 		image_item.texture = texture
 		
-	
 
 func _on_image_loader_image_file_dropped(filepath: String) -> void:
 	

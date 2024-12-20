@@ -3,17 +3,15 @@ extends Node
 var settings: AppSettings
 
 func save():
-	ResourceSaver.save(settings)
-	
-	var test_params : PopulatorParams = load("res://generation/test_params.tres")
-	test_params.position_bound_max.x += 100
-	ResourceSaver.save(test_params)
-	
+	ResourceSaver.save(settings, "user://settings.tres")
 
 func _init() -> void:
-	var test_params : PopulatorParams = load("res://generation/test_params.tres")
-	print(test_params.position_bound_max.x)
-	settings = load("res://generation/settings.tres")
+	
+	# The first time loads the default settings
+	if not ResourceLoader.exists("user://settings.tres"):
+		settings = load("res://default_settings.tres")
+	else:
+		settings = load("user://settings.tres")
 	
 	# Initializes settings in case these are empty
 	if settings.image_generator_params == null:
