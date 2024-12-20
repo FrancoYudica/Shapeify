@@ -4,7 +4,6 @@ extends TextureButton
 @export var recording_panel: Control
 @export var file_dialog: FileDialog
 @export var progress_bar: ProgressBar
-@export var notification_popup: Control
 
 var _animation_recorder := AnimationVideoRecorder.new()
 
@@ -12,8 +11,7 @@ func _ready() -> void:
 	
 	_animation_recorder.recorded.connect(
 		func(saved_path: String):
-			notification_popup.message = "Frames saved at: %s" % saved_path
-			notification_popup.visible = true
+			Notifier.notify_info("Frames saved at: %s" % saved_path)
 			recording_panel.visible = false
 	)
 	

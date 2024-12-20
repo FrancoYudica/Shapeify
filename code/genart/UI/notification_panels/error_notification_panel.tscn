@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c32trck2vs10q"]
+
+[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="1_1yc5u"]
+[ext_resource type="Texture2D" uid="uid://s5jwppcthukl" path="res://art/icons/error-64.png" id="2_x0lvs"]
+
+[node name="ErrorNotificationPanel" instance=ExtResource("1_1yc5u")]
+type = 2
+
+[node name="TextureRect" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+modulate = Color(1, 0, 0.0166664, 1)
+texture = ExtResource("2_x0lvs")
+
+[node name="TitleLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+text = "FATAL ERROR"

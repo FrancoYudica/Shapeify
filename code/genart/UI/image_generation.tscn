@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=58 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://m5q8q3ignig6" path="res://art/icons/play-24-dark.png" id="23_4anu0"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
 [ext_resource type="Script" path="res://UI/settings/genetic_settings_v_box_container.gd" id="25_jv4l3"]
+[ext_resource type="Texture2D" uid="uid://skcui5fa8fmk" path="res://art/icons/info-64.png" id="27_eq3l8"]
 [ext_resource type="Script" path="res://UI/generation/info_panel_container.gd" id="34_18hvq"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="35_ad0r6"]
 [ext_resource type="Script" path="res://UI/settings/clear_color_any_v_box_container.gd" id="35_qngho"]
@@ -44,7 +45,9 @@
 [ext_resource type="Script" path="res://UI/settings/elitism_panel_container.gd" id="43_t0xaq"]
 [ext_resource type="Script" path="res://UI/settings/tournament_panel_container.gd" id="44_ificu"]
 [ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
-[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panel.tscn" id="49_blt6o"]
+[ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/notification_panels/info_notification_panel.tscn" id="48_a87i4"]
+[ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/notification_panels/error_notification_panel.tscn" id="49_3r88r"]
+[ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/notification_panels/warning_notification_panel.tscn" id="50_fapon"]
 [ext_resource type="Script" path="res://UI/settings/profiler_params_panel_container.gd" id="51_klyxb"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/individuals_texure_groups.tscn" id="51_wwnxg"]
 
@@ -89,9 +92,8 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="ImageGeneration" type="Node" node_paths=PackedStringArray("notification_popup")]
+[node name="ImageGeneration" type="Node"]
 script = ExtResource("1_h14uf")
-notification_popup = NodePath("UICanvasLayer/Panel/NotificationPopup")
 
 [node name="OutputTextureHolder" type="Node" parent="." node_paths=PackedStringArray("image_generation")]
 script = ExtResource("9_hlcsw")
@@ -166,7 +168,7 @@ script = ExtResource("19_w0gf2")
 image_generation = NodePath("../../../../../../../../../..")
 metrics_panel = NodePath("../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
 
-[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "file_dialog", "notification_popup")]
+[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "file_dialog")]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Opens a file dialog to save the generated image"
@@ -177,7 +179,6 @@ script = ExtResource("11_wj4rh")
 image_generation = NodePath("../../../../../../../../../..")
 output_texture_rect = NodePath("../../../../TexturesHBoxContainer/OutputTextureRect")
 file_dialog = NodePath("../../../../../../../FileDialog")
-notification_popup = NodePath("../../../../../../../../NotificationPopup")
 
 [node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
 layout_mode = 2
@@ -295,7 +296,17 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0, 0.583333, 1, 1)
+layout_mode = 2
+texture = ExtResource("27_eq3l8")
+expand_mode = 3
+
+[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Output info"
@@ -979,11 +990,19 @@ visible = false
 layout_mode = 1
 _image_generation = NodePath("../../..")
 
-[node name="NotificationPopup" parent="UICanvasLayer/Panel" instance=ExtResource("49_blt6o")]
+[node name="IndividualsTexureGroups" parent="UICanvasLayer/Panel" instance=ExtResource("51_wwnxg")]
 visible = false
 layout_mode = 1
 
-[node name="IndividualsTexureGroups" parent="UICanvasLayer/Panel" instance=ExtResource("51_wwnxg")]
+[node name="InfoNotificationPanel" parent="UICanvasLayer/Panel" instance=ExtResource("48_a87i4")]
+visible = false
+layout_mode = 1
+
+[node name="ErrorNotificationPanel" parent="UICanvasLayer/Panel" instance=ExtResource("49_3r88r")]
+visible = false
+layout_mode = 1
+
+[node name="WarningNotificationPanel" parent="UICanvasLayer/Panel" instance=ExtResource("50_fapon")]
 visible = false
 layout_mode = 1
 

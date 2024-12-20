@@ -3,7 +3,6 @@ extends TextureButton
 @export var image_generation: Node
 @export var output_texture_rect: TextureRect
 @export var file_dialog: FileDialog
-@export var notification_popup: Control
 
 func _ready() -> void:
 	
@@ -37,8 +36,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		)
 		
 		if img.save_png(path) == OK:
-			notification_popup.message = "Successfully saved image at: %s" % path
+			Notifier.notify_info("Successfully saved image at: %s" % path)
 		else:
-			notification_popup.message = "Error (%s) while saving image at: %s" % path
-			
-		notification_popup.visible = true
+			Notifier.notify_info("Error (%s) while saving image at: %s" % path)

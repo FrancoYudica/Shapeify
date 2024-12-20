@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://UI/animator/animation_type_option_button.gd" id="11_uo1fi"]
 [ext_resource type="Script" path="res://UI/animator/close_button.gd" id="12_pmlre"]
 [ext_resource type="Texture2D" uid="uid://ctcol4saicfjs" path="res://art/icons/save-24-dark.png" id="12_yhsg7"]
-[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panel.tscn" id="14_mshqm"]
+[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="14_mshqm"]
 
 [sub_resource type="Texture2D" id="Texture2D_ccnob"]
 resource_local_to_scene = false

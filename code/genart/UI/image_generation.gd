@@ -25,8 +25,8 @@ func generate() -> void:
 		.individual_generator_params \
 		.populator_params \
 		.textures.size() == 0:
-		notification_popup.message = "Unable to begin generation without textures."
-		notification_popup.visible = true
+			
+		Notifier.notify_warning("Unable to begin generation without textures.")
 		return
 
 	generation_started.emit()

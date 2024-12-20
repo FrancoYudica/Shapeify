@@ -1,6 +1,8 @@
 extends Node
 
 var settings: AppSettings
+var error_notification: Control
+
 
 func save():
 	ResourceSaver.save(settings, "user://settings.tres")
