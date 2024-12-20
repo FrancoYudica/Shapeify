@@ -50,7 +50,11 @@ func _copy_texture_contents():
 	if texture == null:
 		_create_texture()
 	
-	renderer_texture.copy_contents(image_generation.image_generator.individual_generator.source_texture)
+	var src_texture = image_generation.image_generator.individual_generator.source_texture
+	if src_texture == null:
+		return
+	
+	renderer_texture.copy_contents(src_texture)
 	image_generation.image_generator.copy_source_texture_contents(texture)
 	_copying_contents = false
 	

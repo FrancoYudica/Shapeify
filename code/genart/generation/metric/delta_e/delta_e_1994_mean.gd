@@ -92,8 +92,14 @@ func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
 	metric_name = "Mean Delta E 1994"
 
-func _exit_tree() -> void:
-	_rd.free_rid(_shader)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if _rd.uniform_set_is_valid(_target_texture_set_rid):
+			_rd.free_rid(_target_texture_set_rid)
+		if _rd.uniform_set_is_valid(_source_texture_set_rid):
+			_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_pipeline)
+		_rd.free_rid(_shader)
 
 func _load_shader():
 	_rd = Renderer.rd

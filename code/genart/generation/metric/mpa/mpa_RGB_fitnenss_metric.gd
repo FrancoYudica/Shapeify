@@ -94,8 +94,13 @@ func _init() -> void:
 	_initialize_compute_code()
 	metric_name = "MPA RGB"
 
-func _exit_tree() -> void:
-	_rd.free_rid(_shader)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_rd.free_rid(_target_texture_set_rid)
+		_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_pipeline)
+		_rd.free_rid(_shader)
+
 
 func _load_shader():
 	_rd = Renderer.rd

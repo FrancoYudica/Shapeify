@@ -102,8 +102,12 @@ func _init() -> void:
 	RenderingServer.call_on_render_thread(_initialize_compute_code)
 	metric_name = "Max Delta E 1976"
 
-func _exit_tree() -> void:
-	_rd.free_rid(_shader)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_rd.free_rid(_target_texture_set_rid)
+		_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_pipeline)
+		_rd.free_rid(_shader)
 
 func _load_shader():
 	_rd = Renderer.rd

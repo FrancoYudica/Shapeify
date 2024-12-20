@@ -59,7 +59,6 @@ func _setup_references():
 			call_deferred("_emit_individual_generated_signal", i))
 	image_generator.setup()
 	clear_progress()
-	target_texture_updated.emit()
 	
 
 func _emit_individual_generated_signal(individual: Individual):
