@@ -88,7 +88,7 @@ func _clear_image_generation_details():
 										.image_generator_params \
 										.individual_generator_params \
 										.target_texture
-	_clear_color_strategy = ClearColorStrategyFactory.create(
+	_clear_color_strategy = ClearColorStrategy.factory_create(
 		Globals \
 		.settings \
 		.image_generator_params \

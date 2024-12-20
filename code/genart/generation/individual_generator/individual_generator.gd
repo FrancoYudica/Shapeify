@@ -73,15 +73,7 @@ func _setup():
 	
 	# Setup color sampler strategy ---------------------------------------------
 	if _current_sampler_strategy != params.color_sampler or _color_sampler_strategy == null:
-	
-		match params.color_sampler:
-			ColorSamplerStrategy.Type.SUB_RECT:
-				_color_sampler_strategy = load("res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd").new()
-			ColorSamplerStrategy.Type.MASKED:
-				_color_sampler_strategy = load("res://generation/individual_generator/color_sampler/masked_color_sampler_strategy.gd").new()
-			_:
-				push_error("Unimplemented color sampler of type: %s" % params.color_sampler)
-				
+		_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 		_current_sampler_strategy = params.color_sampler
 	
 	_color_sampler_strategy.sample_texture = params.target_texture
@@ -119,3 +111,17 @@ func _init() -> void:
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
 	# Setup populator ----------------------------------------------------------
 	_populator = load("res://generation/individual_generator/common/random_populator.gd").new()
+
+
+static func factory_create(type: Type):
+	# Setup individual generator -----------------------------------------------
+	match type:
+		Type.Random:
+			return load("res://generation/individual_generator/random/random_individual_generator.gd").new()
+		Type.BestOfRandom:
+			return load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
+		Type.Genetic:
+			return load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
+		_:
+			push_error("Unimplemented individual generator of type %s" % type)
+			return null

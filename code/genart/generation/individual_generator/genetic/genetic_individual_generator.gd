@@ -75,68 +75,21 @@ func _setup():
 	super._setup()
 	
 	var genetic_params := params.genetic_params
-
-	# Creates selection strategy -----------------------------------------------
-	match genetic_params.selection_strategy:
-		SelectionStrategy.Type.Ranking:
-			_selection_strategy = load("res://generation/individual_generator/genetic/selection/ranking_selection_strategy.gd").new()
-			
-		SelectionStrategy.Type.FitnessProportionate:
-			_selection_strategy = load("res://generation/individual_generator/genetic/selection/fitness_proportionate_selection_strategy.gd").new()
-			
-		SelectionStrategy.Type.Uniform:
-			_selection_strategy = load("res://generation/individual_generator/genetic/selection/uniform_selection_strategy.gd").new()
-		_:
-			push_error("Selection strategy not implemented")
-
-	# Creates crossover strategy -----------------------------------------------
-	match genetic_params.crossover_strategy:
-		CrossoverStrategy.Type.CLONE_PARENT_A:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/clone_a_crossover_strategy.gd").new()
-		CrossoverStrategy.Type.BLEND_MIDPOINT:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_midpoint_crossover_strategy.gd").new()
-		CrossoverStrategy.Type.PARENT_BLEND_RANDOM:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/parent_blend_random.gd").new()
-		CrossoverStrategy.Type.ATTRIBUTE_SPECIFIC_BLEND_RANDOM:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/attribute_specific_blend_crossover.gd").new()
-		CrossoverStrategy.Type.BLEND_BY_FITNESS:
-			_crossover_strategy = load("res://generation/individual_generator/genetic/crossover/blend_by_fitness_crossover_strategy.gd").new()
-		_:
-			push_error("Crossover strategy not implemented")
 	
-	# Creates mutation strategy ------------------------------------------------
-	match genetic_params.mutation_strategy:
-		MutationStrategy.Type.DONT_MUTATE:
-			_mutation_strategy = load("res://generation/individual_generator/genetic/mutation/mutation_strategy_base.gd").new()
-		MutationStrategy.Type.RANDOM:
-			_mutation_strategy = load("res://generation/individual_generator/genetic/mutation/random_mutation_strategy.gd").new()
-		_:
-			push_error("Mutation strategy not implemented")
+	# Selection strategy factory
+	_selection_strategy = SelectionStrategy.factory_create(genetic_params.selection_strategy)
 	
+	# Crossover factory
+	_crossover_strategy = CrossoverStrategy.factory_create(genetic_params.crossover_strategy)
+	
+	# Mutation factory
+	_mutation_strategy = MutationStrategy.factory_create(genetic_params.mutation_strategy)
 	_mutation_strategy.set_params(genetic_params)
 	
-	# Creates survivor selection strategy --------------------------------------
-	match genetic_params.survivor_selection_strategy:
-		SurvivorSelectionStrategy.Type.KEEP_CHILDREN:
-			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/keep_children_survivor_selection_strategy.gd").new()
-		SurvivorSelectionStrategy.Type.ELITISM:
-			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/elitism_survivor_selection_strategy.gd").new()
-		SurvivorSelectionStrategy.Type.TOURNAMENT:
-			_survivor_selection_strategy = load("res://generation/individual_generator/genetic/survivor_selection/tournament_survivor_selection_strategy.gd").new()
-		_:
-			push_error("Survivor selection strategy not implemented")
-
+	# Survivor selection factory
+	_survivor_selection_strategy = SurvivorSelectionStrategy.factory_create(genetic_params.survivor_selection_strategy)
 	_survivor_selection_strategy.set_params(genetic_params.survivor_selection_params)
-
-	# Creates fitness calculator -----------------------------------------------
-	match genetic_params.fitness_calculator:
-		FitnessCalculator.Type.MPA_CEILab:
-			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
-		FitnessCalculator.Type.MPA_RGB:
-			_fitness_calculator = load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
-		FitnessCalculator.Type.MSE:
-			_fitness_calculator = load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
-		_:
-			push_error("Unimplemented fitness calculator: %s" % genetic_params.fitness_calculator)
 	
+	# Fitness calculator factory
+	_fitness_calculator = FitnessCalculator.factory_create(genetic_params.fitness_calculator)
 	_fitness_calculator.target_texture = params.target_texture

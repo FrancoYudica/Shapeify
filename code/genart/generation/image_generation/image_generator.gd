@@ -82,34 +82,12 @@ var _current_individual_generator_type: int = -1
 
 func setup():
 	_stop = false
-	
-	# Setup stop condition strategy --------------------------------------------
-	match params.stop_condition:
-		StopCondition.Type.INDIVIDUAL_COUNT:
-			_stop_condition = load("res://generation/image_generation/stop_condition/individual_count_stop_condition.gd").new()
-		StopCondition.Type.EXECUTION_TIME:
-			_stop_condition = load("res://generation/image_generation/stop_condition/execution_time_stop_condition.gd").new()
-		StopCondition.Type.TARGET_FITNESS:
-			_stop_condition = load("res://generation/image_generation/stop_condition/target_fitness_stop_condition.gd").new()
-
-		_:
-			push_error("Unimplemented stop condition of type %s" % params.stop_condition)
-	
+	_stop_condition = StopCondition.factory_create(params.stop_condition)
 	_stop_condition.set_params(params.stop_condition_params)
 	
 	# Setup individual generator -----------------------------------------------
 	if _current_individual_generator_type != params.individual_generator_type:
-		match params.individual_generator_type:
-			IndividualGenerator.Type.Random:
-				individual_generator = load("res://generation/individual_generator/random/random_individual_generator.gd").new()
-			IndividualGenerator.Type.BestOfRandom:
-				individual_generator = load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
-			IndividualGenerator.Type.Genetic:
-				individual_generator = load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
-
-			_:
-				push_error("Unimplemented individual generator of type %s" % params.individual_generator_type)
-
+		individual_generator = IndividualGenerator.factory_create(params.individual_generator_type)
 		_current_individual_generator_type = params.individual_generator_type
 		individual_generator.params = params.individual_generator_params
 
