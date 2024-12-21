@@ -4,6 +4,7 @@ class_name RenderingCommon extends Node
 static func texture_format_copy(
 	rd: RenderingDevice, 
 	texture_rd_rid: RID) -> RDTextureFormat:
+		
 	var src_format := rd.texture_get_format(texture_rd_rid)
 	var texture_format = RDTextureFormat.new() 
 	texture_format.texture_type = src_format.texture_type

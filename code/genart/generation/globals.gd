@@ -15,11 +15,6 @@ func _init() -> void:
 	else:
 		settings = load("user://settings.tres")
 	
-	# Initializes settings in case these are empty
-	if settings.image_generator_params == null:
-		settings.image_generator_params = ImageGeneratorParams.new()
-	
-	
 func _enter_tree() -> void:
 	
 	var textures = settings \
@@ -37,7 +32,6 @@ func _enter_tree() -> void:
 	if texture_group == null:
 		push_error("Unable to find texture group named: %s" % settings.default_texture_group_name)
 	
-	
 	# Loads default textures
 	for default_texture in texture_group.textures:
 		var renderer_texture = RendererTexture.load_from_texture(default_texture)
@@ -45,6 +39,11 @@ func _enter_tree() -> void:
 	
 	# Loads default target texture
 	var target_texture = RendererTexture.load_from_texture(settings.default_target_texture)
+	
+	if target_texture == null or not target_texture.is_valid():
+		Notifier.notify_error("Unable to load default target texture")
+		return
+	
 	settings.image_generator_params.individual_generator_params.target_texture = target_texture
 
 func _exit_tree() -> void:

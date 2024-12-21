@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Notifier="*res://UI/notifier.gd"
 Renderer="*res://renderer/renderer.gd"
 Globals="*res://generation/globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
-Notifier="*res://UI/notifier.gd"

@@ -19,6 +19,11 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 		return
 		
 	var renderer_texture := RendererTexture.load_from_path(filepath)
+	
+	if renderer_texture == null or not renderer_texture.is_valid():
+		Notifier.notify_error("Unable to load texture")
+		return
+	
 	_individual_generation_params.target_texture = renderer_texture
 	image_generation.refresh_target_texture()
 	# Frees previous texture and updates
@@ -35,6 +40,10 @@ func _free_texture():
 
 func _update_target_texture():
 	
+	var target_texture: RendererTexture = _individual_generation_params.target_texture
+	if target_texture == null or not target_texture.is_valid():
+		Notifier.notify_error("Unable to update_target_texture() if target texture is null")
+		return
+	
 	# Creates texture for the first time
-	texture = RenderingCommon.create_texture_from_rd_rid(
-		_individual_generation_params.target_texture.rd_rid)
+	texture = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
