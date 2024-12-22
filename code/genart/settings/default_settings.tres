@@ -102,6 +102,7 @@ target_fitness = 0.9
 
 [sub_resource type="Resource" id="Resource_ddurg"]
 script = ExtResource("9_l7xcl")
+type = 0
 individual_generator_params = SubResource("Resource_w27th")
 individual_generator_type = 2
 stop_condition = 0
@@ -116,7 +117,7 @@ textures = Array[Texture]([ExtResource("12_86liw"), ExtResource("13_sfuf8"), Ext
 
 [sub_resource type="Resource" id="Resource_5xe3f"]
 script = ExtResource("11_f4wjl")
-name = "Circular"
+name = "Rounded shapes"
 textures = Array[Texture]([ExtResource("17_qlpu2"), ExtResource("18_04xxk"), ExtResource("19_q03vu"), ExtResource("20_m5g72")])
 
 [sub_resource type="Resource" id="Resource_t2fdh"]

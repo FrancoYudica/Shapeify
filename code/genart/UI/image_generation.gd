@@ -6,9 +6,6 @@ signal individual_generated(individual: Individual)
 signal target_texture_updated
 signal generation_cleared
 
-@export var notification_popup: Control
-
-
 var image_generator: ImageGenerator
 var image_generation_details := ImageGenerationDetails.new()
 
@@ -68,6 +65,7 @@ func _emit_individual_generated_signal(individual: Individual):
 func _begin_image_generation():
 	var clock := Clock.new()
 	var src = image_generation_details.generated_texture.copy()
+	image_generator.params = Globals.settings.image_generator_params
 	image_generator.generate_image(src)
 	image_generation_details.time_taken_ms += clock.elapsed_ms()
 	image_generation_details.executed_count += 1

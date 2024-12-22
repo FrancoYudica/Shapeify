@@ -93,7 +93,8 @@ func setup():
 	if _current_individual_generator_type != params.individual_generator_type:
 		individual_generator = IndividualGenerator.factory_create(params.individual_generator_type)
 		_current_individual_generator_type = params.individual_generator_type
-		individual_generator.params = params.individual_generator_params
+
+	individual_generator.params = params.individual_generator_params
 
 func _init() -> void:
 	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()

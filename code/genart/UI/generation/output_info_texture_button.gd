@@ -6,7 +6,7 @@ extends TextureButton
 
 func _ready() -> void:
 	metrics_panel.visible = false
-	toggled.connect(_on_pressed)
+	pressed.connect(_on_pressed)
 
-func _on_pressed(toggled_on) -> void:
-	metrics_panel.visible = toggled_on
+func _on_pressed() -> void:
+	metrics_panel.visible = not metrics_panel.visible

@@ -20,7 +20,7 @@ func _ready() -> void:
 				profile_depth.disabled = true
 				
 	)
-	
+	 
 	save_button.disabled = true
 	save_button.pressed.connect(
 		func():

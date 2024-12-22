@@ -6,7 +6,7 @@ signal selected_texture_group(texture_group: IndividualsTextureGroup)
 
 func _ready() -> void:
 	
-	var texture_group_item_packed = load("res://UI/settings/texture_group_item.tscn")
+	var texture_group_item_packed = load("res://UI/settings/images_tab/texture_groups/texture_group_item.tscn")
 	
 	var texture_groups = Globals.settings.individuals_texture_groups
 	for group in texture_groups:

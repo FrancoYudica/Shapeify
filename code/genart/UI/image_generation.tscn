@@ -1,8 +1,8 @@
-[gd_scene load_steps=59 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=60 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
-[ext_resource type="Script" path="res://UI/settings/image_loader.gd" id="10_a6yyn"]
+[ext_resource type="Script" path="res://UI/settings/images_tab/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
 [ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="11_pg2rs"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
@@ -11,46 +11,47 @@
 [ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="13_fjqiy"]
 [ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
-[ext_resource type="Script" path="res://UI/settings/textures_handler_ui.gd" id="14_gfkqp"]
+[ext_resource type="Script" path="res://UI/settings/images_tab/textures_handler_ui.gd" id="14_gfkqp"]
 [ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
 [ext_resource type="Texture2D" uid="uid://cgxtsqc0xrobj" path="res://art/icons/info-24-dark.png" id="14_r343e"]
 [ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_mean.gd" id="14_y6244"]
-[ext_resource type="Script" path="res://UI/settings/renderer_settings_handler_ui.gd" id="15_5jwjh"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/renderer/renderer_settings_handler_ui.gd" id="15_5jwjh"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="15_umn17"]
 [ext_resource type="Texture2D" uid="uid://bdxb1ivniwnj7" path="res://art/icons/film-2-24.png" id="16_fxeqj"]
-[ext_resource type="Script" path="res://UI/settings/individual_generator_params_handler_ui.gd" id="16_s4vac"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/individual_generator_params_handler_ui.gd" id="16_s4vac"]
 [ext_resource type="Script" path="res://UI/generation/animation_texture_button.gd" id="17_38fws"]
 [ext_resource type="Texture2D" uid="uid://ci0nghn4ls1d3" path="res://art/icons/film-2-24-dark.png" id="17_bu3ap"]
 [ext_resource type="Texture2D" uid="uid://ctcol4saicfjs" path="res://art/icons/save-24-dark.png" id="17_eo1oy"]
-[ext_resource type="Script" path="res://UI/settings/populator_params_ui_handler.gd" id="17_k1uov"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual/populator_params_ui_handler.gd" id="17_k1uov"]
 [ext_resource type="Texture2D" uid="uid://bqguirqucw3lq" path="res://art/icons/erase-24.png" id="17_q2u4h"]
-[ext_resource type="Script" path="res://UI/settings/image_generator_params_handler_ui.gd" id="18_lja4i"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/image_generator_params_handler_ui.gd" id="18_lja4i"]
 [ext_resource type="Texture2D" uid="uid://nbcr1vfhdna5" path="res://art/icons/info-24.png" id="18_t5cu0"]
-[ext_resource type="Script" path="res://UI/settings/settings_tab.gd" id="19_efp5f"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/settings_tab.gd" id="19_efp5f"]
 [ext_resource type="Script" path="res://UI/generation/output_info_texture_button.gd" id="19_w0gf2"]
 [ext_resource type="Texture2D" uid="uid://swh5n2u6bvj5" path="res://art/icons/erase-24-dark.png" id="20_nf4cs"]
 [ext_resource type="Texture2D" uid="uid://m5q8q3ignig6" path="res://art/icons/play-24-dark.png" id="23_4anu0"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
-[ext_resource type="Script" path="res://UI/settings/genetic_settings_v_box_container.gd" id="25_jv4l3"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/genetic/genetic_settings_v_box_container.gd" id="25_jv4l3"]
 [ext_resource type="Texture2D" uid="uid://skcui5fa8fmk" path="res://art/icons/info-64.png" id="27_eq3l8"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/preset_option_button.gd" id="32_ww3ur"]
 [ext_resource type="Script" path="res://UI/generation/info_panel_container.gd" id="34_18hvq"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="35_ad0r6"]
-[ext_resource type="Script" path="res://UI/settings/clear_color_any_v_box_container.gd" id="35_qngho"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/clear_color_any_v_box_container.gd" id="35_qngho"]
 [ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="36_2df3k"]
-[ext_resource type="Script" path="res://UI/settings/save_settings_button.gd" id="37_bnia1"]
-[ext_resource type="Script" path="res://UI/settings/individual_count_v_box_container.gd" id="40_588b5"]
-[ext_resource type="Script" path="res://UI/settings/time_count_v_box_container.gd" id="41_stjs3"]
-[ext_resource type="Script" path="res://UI/settings/target_fitness_v_box_container.gd" id="42_84n2v"]
-[ext_resource type="Script" path="res://UI/settings/random_settings_v_box_container.gd" id="43_dmfwt"]
-[ext_resource type="Script" path="res://UI/settings/elitism_panel_container.gd" id="43_t0xaq"]
-[ext_resource type="Script" path="res://UI/settings/tournament_panel_container.gd" id="44_ificu"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/save_settings_button.gd" id="37_bnia1"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/individual_count_v_box_container.gd" id="40_588b5"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/time_count_v_box_container.gd" id="41_stjs3"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/target_fitness_v_box_container.gd" id="42_84n2v"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/best_of_random/random_settings_v_box_container.gd" id="43_dmfwt"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/genetic/elitism_panel_container.gd" id="43_t0xaq"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/genetic/tournament_panel_container.gd" id="44_ificu"]
 [ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
 [ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/notification_panels/info_notification_panel.tscn" id="48_a87i4"]
 [ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/notification_panels/error_notification_panel.tscn" id="49_3r88r"]
 [ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/notification_panels/warning_notification_panel.tscn" id="50_fapon"]
-[ext_resource type="Script" path="res://UI/settings/profiler_params_panel_container.gd" id="51_klyxb"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/profiler/profiler_params_panel_container.gd" id="51_klyxb"]
 [ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.tscn" id="51_r3i0d"]
-[ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/individuals_texure_groups.tscn" id="51_wwnxg"]
+[ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/images_tab/texture_groups/individuals_texure_groups.tscn" id="51_wwnxg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.187176, 0.187176, 0.187176, 1)
@@ -127,9 +128,10 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jg87p")
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -162,7 +164,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 tooltip_text = "Output information"
-toggle_mode = true
 texture_normal = ExtResource("18_t5cu0")
 texture_hover = ExtResource("14_r343e")
 script = ExtResource("19_w0gf2")
@@ -382,7 +383,6 @@ layout_mode = 2
 text = "Close"
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -489,6 +489,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -497,9 +498,20 @@ text = "Settings"
 
 [node name="SaveSettingsButton" type="Button" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
 text = "Save"
 script = ExtResource("37_bnia1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Preset type"
+
+[node name="PresetOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("32_ww3ur")
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -601,6 +613,7 @@ value = 1.0
 suffix = "seconds"
 
 [node name="TargetFitnessVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("42_84n2v")
 

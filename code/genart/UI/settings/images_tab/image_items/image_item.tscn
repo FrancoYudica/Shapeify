@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xdi5ffyh1i4v"]
 
-[ext_resource type="Script" path="res://UI/settings/image_item.gd" id="1_rfjw7"]
+[ext_resource type="Script" path="res://UI/settings/images_tab/image_items/image_item.gd" id="1_rfjw7"]
 [ext_resource type="Texture2D" uid="uid://btd0nbas030ov" path="res://art/icons/trash-2-24.png" id="2_edcoa"]
 [ext_resource type="Texture2D" uid="uid://bgj7hx4fu0gr" path="res://art/icons/trash-2-24-dark.png" id="3_igxm1"]
 

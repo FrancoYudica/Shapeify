@@ -3,7 +3,7 @@ extends PanelContainer
 @export var texture_group_selector: Control
 @export var textures_ui_container: Control
 
-var image_item_packed = preload("res://UI/settings/image_item.tscn")
+var image_item_packed = preload("res://UI/settings/images_tab/image_items/image_item.tscn")
 
 ## Maps image_item to RendererTexture
 var _textures_map: Dictionary

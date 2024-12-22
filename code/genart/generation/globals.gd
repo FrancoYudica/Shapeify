@@ -1,5 +1,8 @@
 extends Node
 
+signal image_generator_params_updated
+
+
 var settings: AppSettings
 var error_notification: Control
 
@@ -11,7 +14,7 @@ func _init() -> void:
 	
 	# The first time loads the default settings
 	if not ResourceLoader.exists("user://settings.tres"):
-		settings = load("res://default_settings.tres")
+		settings = load("res://settings/default_settings.tres")
 	else:
 		settings = load("user://settings.tres")
 	
@@ -45,6 +48,9 @@ func _enter_tree() -> void:
 		return
 	
 	settings.image_generator_params.individual_generator_params.target_texture = target_texture
+	
+	Globals.settings.image_generator_params.setup_changed_signals()
+	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
 
 func _exit_tree() -> void:
 
@@ -55,5 +61,33 @@ func _exit_tree() -> void:
 			.populator_params.textures
 	
 	textures.clear()
-
 	save()
+	
+
+func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
+	
+	# Loads any of the presets and duplicates
+	var preset: ImageGeneratorParams = null
+	match preset_type:
+		ImageGeneratorParams.Type.FAST:
+			preset = load("res://settings/image_generator_params/fast_image_generator_params.tres").duplicate(true)
+		ImageGeneratorParams.Type.PERFORMANT:
+			preset = load("res://settings/image_generator_params/performant_image_generator_params.tres").duplicate(true)
+		ImageGeneratorParams.Type.QUALITY:
+			preset = load("res://settings/image_generator_params/quality_image_generator_params.tres").duplicate(true)
+	
+	# Copies runtime params
+	var previous_params = Globals.settings.image_generator_params
+	preset.individual_generator_params.target_texture = previous_params.individual_generator_params.target_texture
+	preset.individual_generator_params.populator_params = previous_params.individual_generator_params.populator_params
+	
+	# Updates the individual generator params
+	Globals.settings.image_generator_params = preset
+	image_generator_params_updated.emit()
+	
+	# Connects changed signals
+	Globals.settings.image_generator_params.setup_changed_signals()
+	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
+
+func _image_generator_params_changed():
+	Globals.settings.image_generator_params.type = ImageGeneratorParams.Type.CUSTOM
