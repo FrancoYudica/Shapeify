@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=59 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/notification_panels/error_notification_panel.tscn" id="49_3r88r"]
 [ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/notification_panels/warning_notification_panel.tscn" id="50_fapon"]
 [ext_resource type="Script" path="res://UI/settings/profiler_params_panel_container.gd" id="51_klyxb"]
+[ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.tscn" id="51_r3i0d"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/individuals_texure_groups.tscn" id="51_wwnxg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
@@ -168,7 +169,7 @@ script = ExtResource("19_w0gf2")
 image_generation = NodePath("../../../../../../../../../..")
 metrics_panel = NodePath("../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
 
-[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "file_dialog")]
+[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "save_dialog")]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Opens a file dialog to save the generated image"
@@ -178,7 +179,7 @@ texture_hover = ExtResource("17_eo1oy")
 script = ExtResource("11_wj4rh")
 image_generation = NodePath("../../../../../../../../../..")
 output_texture_rect = NodePath("../../../../TexturesHBoxContainer/OutputTextureRect")
-file_dialog = NodePath("../../../../../../../FileDialog")
+save_dialog = NodePath("../../../../../../../../SaveImageDialog")
 
 [node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
 layout_mode = 2
@@ -979,18 +980,16 @@ text = "Can't edit settings while generating image"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FileDialog" type="FileDialog" parent="UICanvasLayer/Panel/VBoxContainer"]
-size = Vector2i(303, 180)
-access = 1
-filters = PackedStringArray("*.png")
-use_native_dialog = true
-
 [node name="Animator" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("_image_generation") instance=ExtResource("46_2ayc0")]
 visible = false
 layout_mode = 1
 _image_generation = NodePath("../../..")
 
 [node name="IndividualsTexureGroups" parent="UICanvasLayer/Panel" instance=ExtResource("51_wwnxg")]
+visible = false
+layout_mode = 1
+
+[node name="SaveImageDialog" parent="UICanvasLayer/Panel" instance=ExtResource("51_r3i0d")]
 visible = false
 layout_mode = 1
 
@@ -1014,4 +1013,3 @@ layout_mode = 1
 [connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LoadPresetButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_load_preset_button_pressed"]
 [connection signal="item_selected" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/GeneratorOptionButton" method="_on_item_selected"]
 [connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer" method="_on_render_while_generating_check_box_toggled"]
-[connection signal="file_selected" from="UICanvasLayer/Panel/VBoxContainer/FileDialog" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_file_dialog_file_selected"]
