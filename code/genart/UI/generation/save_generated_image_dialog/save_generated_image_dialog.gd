@@ -37,7 +37,15 @@ func open(gen_details: ImageGenerationDetails):
 	final_resolution_label.text = "%sx%s" % [
 		int(_src_img_generation_details.viewport_size.x * scale_spin_box.value),
 		int(_src_img_generation_details.viewport_size.y * scale_spin_box.value)]
-	
+
+	# Frees previous texture
+	if save_texture.texture != null and save_texture.texture is Texture2DRD:
+		var rd = RenderingServer.get_rendering_device()
+		var texture_rd_rid = save_texture.texture.texture_rd_rid
+		save_texture.texture.texture_rd_rid = RID()
+		save_texture.texture = null
+		rd.free_rid(texture_rd_rid)
+
 	save_texture.texture = RenderingCommon.create_texture_from_rd_rid(
 		_src_img_generation_details.generated_texture.rd_rid)
 

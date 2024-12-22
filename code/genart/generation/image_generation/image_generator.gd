@@ -67,6 +67,10 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	return individual_generator.source_texture
 
 func copy_source_texture_contents(dest: Texture2DRD):
+	
+	if not dest.texture_rd_rid.is_valid():
+		return
+	
 	texture_mutex.lock()
 	
 	RenderingCommon.texture_copy(
