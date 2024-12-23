@@ -14,6 +14,8 @@ extends CanvasLayer
 var _individual_generator: IndividualGenerator
 var _individual_renderer: IndividualRenderer
 
+@onready var _output_texture_rect := $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect
+
 func _ready() -> void:
 	
 	individual_generator_parms.target_texture = target_texture
@@ -61,6 +63,8 @@ func generate() -> void:
 	
 	output_label.call_deferred("set_text", "Generation finished")
 	generate_button.call_deferred("set_disabled", false)
+	_output_texture_rect.call_deferred("update_texture")
+	
 
 func _on_button_pressed() -> void:
 	WorkerThreadPool.add_task(generate)

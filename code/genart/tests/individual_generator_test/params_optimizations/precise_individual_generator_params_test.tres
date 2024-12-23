@@ -49,7 +49,7 @@ size_bound_max = Vector2i(512, 512)
 [resource]
 script = ExtResource("8_eanj1")
 populator_params = SubResource("Resource_a32bs")
-color_sampler = 1
+color_sampler = 0
 keep_aspect_ratio = false
 clamp_position_in_canvas = true
 fixed_rotation = false

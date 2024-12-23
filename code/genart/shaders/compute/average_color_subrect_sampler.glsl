@@ -51,9 +51,9 @@ void main()
 
     // Ensure we are within the bounds of the image
     if (x < params.texture_size.x
-        && x > 0
+        && x >= 0
         && y < params.texture_size.y
-        && y > 0) {
+        && y >= 0) {
         vec4 color = imageLoad(sample_image, ivec2(uint(x), uint(y)));
 
         // Use atomicAdd to safely accumulate the colors

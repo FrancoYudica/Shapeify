@@ -28,7 +28,6 @@ func sample_rect(rect: Rect2i) -> Color:
 	var local_size = 8
 	var group_size_x = ceili(float(sample_width) / local_size)
 	var group_size_y = ceili(float(sample_height) / local_size)
-	
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
 	result_float_array.append_array(

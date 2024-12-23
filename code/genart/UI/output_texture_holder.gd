@@ -45,6 +45,13 @@ func _copy_texture_contents():
 		
 	renderer_texture.copy_contents(src_texture)
 	image_generation.image_generator.copy_source_texture_contents(texture)
-	
+
 func _free_texture():
+	if texture == null:
+		return
+	
+	var rd = RenderingServer.get_rendering_device()
+	var texture_rd_rid = texture.texture_rd_rid
+	texture.texture_rd_rid = RID()
 	texture = null
+	rd.free_rid(texture_rd_rid)

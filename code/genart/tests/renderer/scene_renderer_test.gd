@@ -1,6 +1,7 @@
 extends Node
 
 @onready var viewport_control := $ViewportControl
+@onready var output_texture := $"../CanvasLayer/RendererOutputTextureRect"
 
 func _ready() -> void:
 	Renderer.clear_color = Color.BEIGE
@@ -27,3 +28,5 @@ func _process(delta: float) -> void:
 	
 	var dt_ms = (Time.get_ticks_usec() - t0) / 1000.0
 	print(dt_ms)
+	
+	output_texture.update_texture()
