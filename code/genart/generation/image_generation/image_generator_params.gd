@@ -4,7 +4,7 @@ enum Type
 {
 	CUSTOM,
 	FAST,
-	PERFORMANT,
+	PERFORMANCE,
 	QUALITY
 }
 

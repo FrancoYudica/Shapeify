@@ -41,11 +41,12 @@ func refresh_target_texture():
 		.individual_generator_params \
 		.target_texture)
 	
-	target_texture_updated.emit()
 	clear_progress()
+	target_texture_updated.emit()
 
 func _ready() -> void:
 	_setup_references()
+	Globals.image_generator_params_updated.connect(image_generator.setup)
 	
 func _setup_references():
 	# Image generator

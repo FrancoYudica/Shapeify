@@ -71,7 +71,7 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	match preset_type:
 		ImageGeneratorParams.Type.FAST:
 			preset = load("res://settings/image_generator_params/fast_image_generator_params.tres").duplicate(true)
-		ImageGeneratorParams.Type.PERFORMANT:
+		ImageGeneratorParams.Type.PERFORMANCE:
 			preset = load("res://settings/image_generator_params/performant_image_generator_params.tres").duplicate(true)
 		ImageGeneratorParams.Type.QUALITY:
 			preset = load("res://settings/image_generator_params/quality_image_generator_params.tres").duplicate(true)
@@ -86,8 +86,8 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	image_generator_params_updated.emit()
 	
 	# Connects changed signals
-	Globals.settings.image_generator_params.setup_changed_signals()
-	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
+	preset.setup_changed_signals()
+	preset.changed.connect(_image_generator_params_changed)
 
 func _image_generator_params_changed():
 	Globals.settings.image_generator_params.type = ImageGeneratorParams.Type.CUSTOM

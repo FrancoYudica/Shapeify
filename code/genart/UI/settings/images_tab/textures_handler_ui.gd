@@ -7,12 +7,12 @@ var image_item_packed = preload("res://UI/settings/images_tab/image_items/image_
 
 ## Maps image_item to RendererTexture
 var _textures_map: Dictionary
-var _populator_params: PopulatorParams
+var _populator_params: PopulatorParams:
+	get:
+		return Globals.settings.image_generator_params.individual_generator_params.populator_params
 
 func _ready() -> void:
 	texture_group_selector.selected_texture_group.connect(_load_texture_group)
-	
-	_populator_params = Globals.settings.image_generator_params.individual_generator_params.populator_params
 	
 	# Adds the default textures
 	for renderer_texture in _populator_params.textures:
