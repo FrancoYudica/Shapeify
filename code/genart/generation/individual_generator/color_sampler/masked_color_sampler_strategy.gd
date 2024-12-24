@@ -6,7 +6,7 @@ var _masked_sampler: AverageColorSampler
 
 func _init() -> void:
 	_individual_renderer = IndividualRenderer.new()
-	_masked_sampler = preload("res://generation/average_color_sampler/avg_masked/masked_avg_color_sampler_compute.gd").new()
+	_masked_sampler = preload("res://generation/average_color_sampler/avg_masked/masked_avg_color_subrect_sampler_compute_reduction.gd").new()
 	
 func set_sample_color(individual: Individual) -> void:
 

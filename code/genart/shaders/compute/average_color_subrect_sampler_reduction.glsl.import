@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dbc4b4vfjjiq6"
+path="res://.godot/imported/average_color_subrect_sampler_reduction.glsl-27b5806802e980586f4a72dd92ffaffe.res"
+
+[deps]
+
+source_file="res://shaders/compute/average_color_subrect_sampler_reduction.glsl"
+dest_files=["res://.godot/imported/average_color_subrect_sampler_reduction.glsl-27b5806802e980586f4a72dd92ffaffe.res"]
+
+[params]
+

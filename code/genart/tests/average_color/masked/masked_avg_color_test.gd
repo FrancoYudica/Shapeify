@@ -3,9 +3,8 @@ extends Control
 @export var background_texture: RendererTextureLoad
 @export var sprite_mask: RendererTextureLoad
 
-@export var sampler_script: GDScript
-
-var average_color_sampler: AverageColorSampler
+@export var sampler_scripts: Array[GDScript]
+var samplers: Array[AverageColorSampler] = []
 @export var compare_results: bool
 
 @onready var sample_color_rect := $OutlineColorRect/MarginContainer/SampleTextureRect
@@ -14,7 +13,8 @@ var average_color_sampler: AverageColorSampler
 
 func _ready() -> void:
 	
-	average_color_sampler = sampler_script.new()
+	for sampler_script in sampler_scripts:
+		samplers.append(sampler_script.new())
 
 var _textures_initialized = false
 
@@ -34,7 +34,9 @@ func _process(delta: float) -> void:
 	# Gets the clean sample texture
 	if not _textures_initialized:
 		var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-		average_color_sampler.sample_texture = color_attachment.copy()
+		var texture = color_attachment.copy()
+		for sampler in samplers:
+			sampler.sample_texture = texture
 	
 	# Renders background and sprite with it's ID
 	Renderer.begin_frame(size)
@@ -60,7 +62,9 @@ func _process(delta: float) -> void:
 
 	# Gets the clean sample texture
 	if not _textures_initialized:
-		average_color_sampler.id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
+		var id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
+		for sampler in samplers:
+			sampler.id_texture = id_texture
 		_textures_initialized = true
 
 	var rect: Rect2i
@@ -69,10 +73,12 @@ func _process(delta: float) -> void:
 		sample_color_rect.get_global_rect().size.x,
 		sample_color_rect.get_global_rect().size.y)
 	
+	
+	for sampler in samplers:
+		var clock = Clock.new()
+		var color = sampler.sample_rect(rect)
+		clock.print_elapsed("Sampled average color: %s" % color)
+		sample_color_rect.modulate = color
 		
-	var clock = Clock.new()
-	var color = average_color_sampler.sample_rect(rect)
-	clock.print_elapsed("Sampled average color: %s" % color)
-		
+	print()
 	parent_color_rect.position = rect.position
-	sample_color_rect.modulate = color
