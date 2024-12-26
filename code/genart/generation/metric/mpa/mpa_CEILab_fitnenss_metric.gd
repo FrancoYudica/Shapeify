@@ -36,14 +36,15 @@ func _compute(source_texture: RendererTexture) -> float:
 	
 	var texture_width =  target_texture.get_width()
 	var texture_height = target_texture.get_height()
+	var pixel_count = texture_width * texture_height
 	
-	var group_size_x = texture_width
-	var group_size_y = texture_height
-	var local_size = 8
+	var local_size_x = 256
+	var workgroup_size_x = ceili(float(pixel_count) / local_size_x)
 	
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
-	result_float_array.append(0.0)
+	result_float_array.resize(workgroup_size_x)
+	result_float_array.fill(0.0)
 	_result_bytes = result_float_array.to_byte_array()
 	
 	# Ensures synchronization, since the execute_compute function also uses
@@ -72,32 +73,34 @@ func _compute(source_texture: RendererTexture) -> float:
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 
-		ceili(float(group_size_x) / local_size), 
-		ceili(float(group_size_y) / local_size), 
+		workgroup_size_x, 
+		1, 
 		1)
 	_rd.compute_list_end()
 	
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
 	var output = output_bytes.to_float32_array()
-	var mse_sum = output[0]
-	var mse = mse_sum / (texture_width * texture_height * 3.0)
+	var mse_sum = 0.0
+	for n in output:
+		mse_sum += n
+	var mse = mse_sum / (3.0 * texture_width * texture_height)
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
-
 	_output_uniform.clear_ids()
-	
 	return mse
 
 func _init() -> void:
-	_initialize_compute_code()
+	RenderingServer.call_on_render_thread(_initialize_compute_code)
 	metric_name = "MPA CEILab"
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		_rd.free_rid(_target_texture_set_rid)
-		_rd.free_rid(_source_texture_set_rid)
+		if _rd.uniform_set_is_valid(_target_texture_set_rid):
+			_rd.free_rid(_target_texture_set_rid)
+		if _rd.uniform_set_is_valid(_source_texture_set_rid):
+			_rd.free_rid(_source_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 
@@ -105,7 +108,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/mean_fitness/CEILab_mean_fitness.glsl")
+	var shader_file := load("res://shaders/compute/metric/mean_fitness/mpa_CEILab.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

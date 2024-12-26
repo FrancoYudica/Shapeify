@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bkxgj7ux2c2v0"
+path="res://.godot/imported/mpa_CEILab.glsl-383282d375e47ae486def565efd99fef.res"
+
+[deps]
+
+source_file="res://shaders/compute/metric/mean_fitness/mpa_CEILab.glsl"
+dest_files=["res://.godot/imported/mpa_CEILab.glsl-383282d375e47ae486def565efd99fef.res"]
+
+[params]
+
