@@ -1,6 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=62 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
+[ext_resource type="Texture2D" uid="uid://bixvxq0a44x7e" path="res://art/genart_icon/logo_small.png" id="4_rrl1v"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
@@ -59,8 +60,19 @@ bg_color = Color(0.187176, 0.187176, 0.187176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg87p"]
 bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyb62"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_top = 3.0
+expand_margin_right = 5.0
+expand_margin_bottom = 3.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q43t0"]
-bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+bg_color = Color(0.2, 0.2, 0.2, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -143,22 +155,39 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="IconPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eyb62")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/IconPanelContainer"]
+layout_mode = 2
+texture = ExtResource("4_rrl1v")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_q43t0")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="OutputInfoTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "metrics_panel")]
+[node name="OutputInfoTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "metrics_panel")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -166,10 +195,10 @@ tooltip_text = "Output information"
 texture_normal = ExtResource("18_t5cu0")
 texture_hover = ExtResource("14_r343e")
 script = ExtResource("19_w0gf2")
-image_generation = NodePath("../../../../../../../../../..")
-metrics_panel = NodePath("../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
+image_generation = NodePath("../../../../../../../../../../..")
+metrics_panel = NodePath("../../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
 
-[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "save_dialog")]
+[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "save_dialog")]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Opens a file dialog to save the generated image"
@@ -177,11 +206,11 @@ texture_normal = ExtResource("15_umn17")
 texture_pressed = ExtResource("17_eo1oy")
 texture_hover = ExtResource("17_eo1oy")
 script = ExtResource("11_wj4rh")
-image_generation = NodePath("../../../../../../../../../..")
-output_texture_rect = NodePath("../../../../TexturesHBoxContainer/OutputTextureRect")
-save_dialog = NodePath("../../../../../../../../SaveImageDialog")
+image_generation = NodePath("../../../../../../../../../../..")
+output_texture_rect = NodePath("../../../../../TexturesHBoxContainer/OutputTextureRect")
+save_dialog = NodePath("../../../../../../../../../SaveImageDialog")
 
-[node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
+[node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("16_fxeqj")
@@ -189,19 +218,19 @@ texture_pressed = ExtResource("17_bu3ap")
 texture_hover = ExtResource("17_bu3ap")
 texture_disabled = ExtResource("17_bu3ap")
 script = ExtResource("17_38fws")
-image_generation = NodePath("../../../../../../../../../..")
-animator = NodePath("../../../../../../../../Animator")
+image_generation = NodePath("../../../../../../../../../../..")
+animator = NodePath("../../../../../../../../../Animator")
 
-[node name="ClearButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="ClearButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 tooltip_text = "Clears the generated image"
 texture_normal = ExtResource("17_q2u4h")
 texture_pressed = ExtResource("20_nf4cs")
 texture_hover = ExtResource("20_nf4cs")
 script = ExtResource("12_ft68k")
-image_generation = NodePath("../../../../../../../../../..")
+image_generation = NodePath("../../../../../../../../../../..")
 
-[node name="GenerateButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="GenerateButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 size_flags_vertical = 4
@@ -209,9 +238,9 @@ tooltip_text = "Start generating image"
 texture_normal = ExtResource("11_pg2rs")
 texture_hover = ExtResource("23_4anu0")
 script = ExtResource("10_mpcut")
-image_generation = NodePath("../../../../../../../../../..")
+image_generation = NodePath("../../../../../../../../../../..")
 
-[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 4
@@ -219,9 +248,9 @@ tooltip_text = "Stop image generation"
 texture_normal = ExtResource("13_fjqiy")
 texture_hover = ExtResource("13_fjqiy")
 script = ExtResource("14_pn2yp")
-image_generation = NodePath("../../../../../../../../../..")
+image_generation = NodePath("../../../../../../../../../../..")
 
-[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -230,7 +259,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_4tvwg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3clnb")
 max_value = 1.0
 script = ExtResource("12_hhf1r")
-image_generation = NodePath("../../../../../../../../../..")
+image_generation = NodePath("../../../../../../../../../../..")
 
 [node name="TexturesHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
@@ -1020,9 +1049,9 @@ layout_mode = 1
 
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]
-[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_pressed"]
-[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]
-[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/GenerateButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/GenerateButton" method="_on_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton" method="_on_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/GenerateButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/GenerateButton" method="_on_pressed"]
 [connection signal="pressed" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LoadPresetButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_load_preset_button_pressed"]
 [connection signal="item_selected" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/GeneratorOptionButton" method="_on_item_selected"]
 [connection signal="toggled" from="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox" to="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer" method="_on_render_while_generating_check_box_toggled"]
