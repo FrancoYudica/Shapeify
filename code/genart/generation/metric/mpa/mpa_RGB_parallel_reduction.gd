@@ -1,4 +1,4 @@
-extends DeltaEMetric
+extends MPAFitnessMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -17,7 +17,7 @@ var _result_bytes := PackedByteArray()
 
 func _target_texture_set():
 	
-	if _target_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_target_texture_set_rid):
+	if _target_texture_set_rid.is_valid():
 		_rd.free_rid(_target_texture_set_rid)
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
@@ -46,8 +46,6 @@ func _compute(source_texture: RendererTexture) -> float:
 	result_float_array.resize(workgroup_size_x)
 	result_float_array.fill(0.0)
 	_result_bytes = result_float_array.to_byte_array()
-	
-	# Ensures synchronization, since the execute_compute function also uses
 	var storage_buffer_result_rid = _rd.storage_buffer_create(
 		_result_bytes.size(),
 		_result_bytes)
@@ -60,7 +58,7 @@ func _compute(source_texture: RendererTexture) -> float:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		0.0, 0.0
+		power, 0.0
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()
@@ -80,35 +78,37 @@ func _compute(source_texture: RendererTexture) -> float:
 	
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
-	var output = output_bytes.to_float32_array()
-	var delta_e_sum = 0.0
-	for n in output:
-		delta_e_sum += n
-	var delta_e = delta_e_sum / (texture_width * texture_height)
+	var partial_sums = output_bytes.to_float32_array()
+	var mpa_sum: float = 0.0
+	for n in partial_sums:
+		mpa_sum += n
+	
+	var mpa = mpa_sum / (texture_width * texture_height * 3.0)
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
+
 	_output_uniform.clear_ids()
-	return delta_e
+	
+	return mpa
 
 func _init() -> void:
-	RenderingServer.call_on_render_thread(_initialize_compute_code)
-	metric_name = "Mean Delta E 1994"
+	_initialize_compute_code()
+	metric_name = "MPA RGB parallel"
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		if _rd.uniform_set_is_valid(_target_texture_set_rid):
-			_rd.free_rid(_target_texture_set_rid)
-		if _rd.uniform_set_is_valid(_source_texture_set_rid):
-			_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_target_texture_set_rid)
+		_rd.free_rid(_source_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
+
 
 func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/deltaE/deltaE_1994_mean.glsl")
+	var shader_file := load("res://shaders/compute/metric/mean_fitness/mpa_rgb.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bkhyt1bpx2mta"
+path="res://.godot/imported/mpa_rgb.glsl-07d9da9ad738bc91867c799555470af7.res"
+
+[deps]
+
+source_file="res://shaders/compute/metric/mean_fitness/mpa_rgb.glsl"
+dest_files=["res://.godot/imported/mpa_rgb.glsl-07d9da9ad738bc91867c799555470af7.res"]
+
+[params]
+

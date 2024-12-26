@@ -36,14 +36,15 @@ func _compute(source_texture: RendererTexture) -> float:
 	
 	var texture_width =  target_texture.get_width()
 	var texture_height = target_texture.get_height()
+	var pixel_count = texture_width * texture_height
 	
-	var group_size_x = texture_width
-	var group_size_y = texture_height
-	var local_size = 8
+	var local_size_x = 256
+	var workgroup_size_x = ceili(float(pixel_count) / local_size_x)
 	
 	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
 	var result_float_array = PackedFloat32Array()
-	result_float_array.append(0.0)
+	result_float_array.resize(workgroup_size_x)
+	result_float_array.fill(0.0)
 	_result_bytes = result_float_array.to_byte_array()
 	
 	# Ensures synchronization, since the execute_compute function also uses
@@ -72,22 +73,22 @@ func _compute(source_texture: RendererTexture) -> float:
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 
-		ceili(float(group_size_x) / local_size), 
-		ceili(float(group_size_y) / local_size), 
+		workgroup_size_x, 
+		1, 
 		1)
 	_rd.compute_list_end()
 	
 	# Gets compute output. Note that buffer_get_data causes stall
 	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
 	var output = output_bytes.to_float32_array()
-	var delta_e_sum = output[0]
+	var delta_e_sum = 0.0
+	for n in output:
+		delta_e_sum += n
 	var delta_e = delta_e_sum / (texture_width * texture_height)
 	
 	# Frees resouces
 	_rd.free_rid(storage_buffer_result_rid)
-
 	_output_uniform.clear_ids()
-	
 	return delta_e
 
 func _init() -> void:
@@ -96,8 +97,10 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		_rd.free_rid(_target_texture_set_rid)
-		_rd.free_rid(_source_texture_set_rid)
+		if _rd.uniform_set_is_valid(_target_texture_set_rid):
+			_rd.free_rid(_target_texture_set_rid)
+		if _rd.uniform_set_is_valid(_source_texture_set_rid):
+			_rd.free_rid(_source_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 

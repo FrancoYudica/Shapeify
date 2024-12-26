@@ -1,11 +1,10 @@
 #[compute]
 #version 450
-#extension GL_EXT_shader_atomic_float : enable
 #include "../common/CEILab_common.glslinc"
 #include "../common/deltaE.glslinc"
 
 // Local invocation settings with 64 local invocations
-layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
+layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
 
 // Parameters passed to the shader
 layout(push_constant, std430) uniform Params
@@ -17,11 +16,8 @@ params;
 // Buffer to store the MSE result
 layout(set = 0, binding = 0, std430) restrict buffer ResultBuffer
 {
-    float delta_e_sum;
-
-    float debug_data[];
-}
-result_buffer;
+    float partial_sums[];
+};
 
 // Image bindings
 layout(rgba32f, set = 1, binding = 0) uniform
@@ -30,28 +26,10 @@ layout(rgba32f, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
 
 // Variable shared by invocations of the same work group
-shared float local_delta_e_sum;
+shared float shared_partial_sums[gl_WorkGroupSize.x];
 
-void main()
+float compute_delta_e(uint x, uint y)
 {
-    // Get the 2D coordinates of the current invocation
-    uint x = gl_GlobalInvocationID.x;
-    uint y = gl_GlobalInvocationID.y;
-
-    // Ensure we are within the bounds of the image
-    if (x >= params.texture_size.x || y >= params.texture_size.y)
-        return;
-
-    // The local invocation of index 0 initializes the `local_delta_e_sum` variable
-    // to 0
-    uint local_index = gl_LocalInvocationIndex;
-    if (local_index == 0) {
-        local_delta_e_sum = 0.0f;
-    }
-
-    // Ensures that `local_delta_e_sum` is set to 0
-    barrier();
-
     // Sample the target and source textures at the current pixel location
     vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
     vec4 source_pixel = imageLoad(source_image, ivec2(x, y));
@@ -60,15 +38,54 @@ void main()
     vec3 target_lab = rgb2lab(target_pixel.rgb);
     vec3 source_lab = rgb2lab(source_pixel.rgb);
 
+    // Calculates pixel delta e and adds to the shared buffer
     float pixel_delta_e = delta_e_1976(target_lab, source_lab);
+    return pixel_delta_e;
+}
 
-    atomicAdd(local_delta_e_sum, pixel_delta_e);
+void main()
+{
 
-    // Ensures that all invocations added it's values to `local_delta_e_sum`
+    uint global_id = gl_GlobalInvocationID.x;
+    uint local_id = gl_LocalInvocationID.x;
+    uint group_id = gl_WorkGroupID.x;
+
+    // Compute total number of pixels in the subrectangle
+    uint num_pixels = uint(params.texture_size.x * params.texture_size.y);
+
+    // Initialize shared data
+    shared_partial_sums[local_id] = 0.0;
+
     barrier();
 
-    // Only invocation of index 0 adds to the global buffer
-    if (local_index == 0) {
-        atomicAdd(result_buffer.delta_e_sum, local_delta_e_sum);
+    // Process pixel if within bounds of the subrectangle
+    if (global_id < num_pixels) {
+        // Map global_id to subrectangle coordinates
+        int x = int(global_id) % int(params.texture_size.x);
+        int y = int(global_id) / int(params.texture_size.x);
+
+        // Ensure coordinates are within the valid texture range
+        if (x < params.texture_size.x
+            && x >= 0
+            && y < params.texture_size.y
+            && y >= 0) {
+            shared_partial_sums[local_id] = compute_delta_e(x, y);
+        }
+    }
+
+    // Synchronize threads in the workgroup
+    barrier();
+
+    // Perform parallel reduction
+    for (uint stride = gl_WorkGroupSize.x / 2; stride > 0; stride /= 2) {
+        if (local_id < stride) {
+            shared_partial_sums[local_id] += shared_partial_sums[local_id + stride];
+        }
+        barrier();
+    }
+
+    // Write the result of the reduction to the output buffer (only thread 0)
+    if (local_id == 0) {
+        partial_sums[group_id] = shared_partial_sums[0];
     }
 }
