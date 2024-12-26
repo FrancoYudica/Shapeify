@@ -3,7 +3,7 @@ extends FitnessCalculator
 var metric: MPAFitnessMetric
 
 func _init() -> void:
-	metric = load("res://generation/metric/mpa/mpa_RGB_parallel_reduction.gd").new()
+	metric = load("res://generation/metric/mpa/mpa_RGB_metric.gd").new()
 
 func calculate_fitness(
 	individual: Individual,

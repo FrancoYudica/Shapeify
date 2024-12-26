@@ -92,7 +92,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	return mse
 
 func _init() -> void:
-	RenderingServer.call_on_render_thread(_initialize_compute_code)
+	_initialize_compute_code()
 	metric_name = "MPA CEILab"
 
 func _notification(what: int) -> void:
@@ -108,7 +108,7 @@ func _load_shader():
 	_rd = Renderer.rd
 
 	# Create our _shader.
-	var shader_file := load("res://shaders/compute/metric/mean_fitness/mpa_CEILab.glsl")
+	var shader_file := load("res://shaders/compute/metric/mpa/mpa_CEILab.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	_shader = _rd.shader_create_from_spirv(shader_spirv)
 	_pipeline = _rd.compute_pipeline_create(_shader)

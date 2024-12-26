@@ -34,7 +34,7 @@ static func factory_create(type: Type) -> FitnessCalculator:
 		FitnessCalculator.Type.MPA_RGB:
 			return load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MSE:
-			return load("res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd").new()
+			return load("res://generation/individual/fitness_calculator/mse_fitness_calculator.gd").new()
 		_:
 			push_error("Unimplemented fitness calculator: %s" % type)
 			return null

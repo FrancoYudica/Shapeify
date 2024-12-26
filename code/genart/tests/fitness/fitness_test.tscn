@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="4_le87a"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="6_2g4hy"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_compute.gd" id="7_qjf2d"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator.gd" id="7_qjf2d"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_cpu.gd" id="8_ir4hj"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd" id="9_yti3h"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1994_fitness_calculator.gd" id="10_8pjxm"]
