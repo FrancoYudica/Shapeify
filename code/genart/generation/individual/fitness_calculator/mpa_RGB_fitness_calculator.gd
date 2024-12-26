@@ -1,6 +1,6 @@
 extends FitnessCalculator
 
-var metric: MPAFitnessMetric
+var metric: MPAMetric
 
 func _init() -> void:
 	metric = load("res://generation/metric/mpa/mpa_RGB_metric.gd").new()

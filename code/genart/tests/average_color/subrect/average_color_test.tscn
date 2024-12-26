@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpw0nqmqg15um"]
 
 [ext_resource type="Script" path="res://tests/average_color/subrect/average_color_test.gd" id="1_ofwxx"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_cpu.gd" id="2_as0en"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute_reduction.gd" id="3_o6uxw"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/subrect/average_subrect_color_sampler_cpu.gd" id="2_as0en"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/subrect/average_subrect_color_sampler.gd" id="3_o6uxw"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="4_t3rxv"]
 
 [node name="AverageColorTest" type="Control"]

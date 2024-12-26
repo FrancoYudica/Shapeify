@@ -50,7 +50,7 @@ void main()
     uint local_id = gl_LocalInvocationID.x;
     uint group_id = gl_WorkGroupID.x;
 
-    // Compute total number of pixels in the subrectangle
+    // Compute total number of pixels in the image
     uint num_pixels = uint(params.texture_size.x * params.texture_size.y);
 
     // Initialize shared data
@@ -58,17 +58,14 @@ void main()
 
     barrier();
 
-    // Process pixel if within bounds of the subrectangle
+    // Process pixel if within bounds of the image
     if (global_id < num_pixels) {
-        // Map global_id to subrectangle coordinates
-        int x = int(global_id) % int(params.texture_size.x);
-        int y = int(global_id) / int(params.texture_size.x);
+        // Map global_id to image coordinates
+        uint x = global_id % uint(params.texture_size.x);
+        uint y = global_id / uint(params.texture_size.x);
 
-        // Ensure coordinates are within the valid texture range
-        if (x < params.texture_size.x
-            && x >= 0
-            && y < params.texture_size.y
-            && y >= 0) {
+        // Ensure coordinates are within the valid image range
+        if (y < params.texture_size.y) {
             shared_partial_sums[local_id] = compute_delta_e(x, y);
         }
     }

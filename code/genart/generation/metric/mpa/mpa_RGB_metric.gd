@@ -1,4 +1,4 @@
-extends MPAFitnessMetric
+extends MPAMetric
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice

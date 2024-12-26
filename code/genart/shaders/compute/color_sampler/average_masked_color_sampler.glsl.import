@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://fystn1sd2tmb"
+path="res://.godot/imported/average_masked_color_sampler.glsl-f524e406b256c2dda504c6a8c8c567a8.res"
+
+[deps]
+
+source_file="res://shaders/compute/color_sampler/average_masked_color_sampler.glsl"
+dest_files=["res://.godot/imported/average_masked_color_sampler.glsl-f524e406b256c2dda504c6a8c8c567a8.res"]
+
+[params]
+

@@ -34,7 +34,7 @@ static var _color_sampler: AverageColorSampler
 static func get_texture_average_color(texture: RendererTexture) -> Color:
 	
 	if _color_sampler == null:
-		_color_sampler = load("res://generation/average_color_sampler/avg_subrect/average_color_subrect_sampler_compute_reduction.gd").new()
+		_color_sampler = load("res://generation/average_color_sampler/subrect/average_subrect_color_sampler.gd").new()
 	
 	_color_sampler.sample_texture = texture
 	return _color_sampler.sample_rect(

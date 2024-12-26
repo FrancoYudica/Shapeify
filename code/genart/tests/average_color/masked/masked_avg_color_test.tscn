@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_x6ook"]
 [ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/simple_shapes/pipe_0.png" id="4_216s7"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="5_5snt7"]
-[ext_resource type="Script" path="res://generation/average_color_sampler/avg_masked/masked_avg_color_subrect_sampler_compute_reduction.gd" id="5_u5dhe"]
+[ext_resource type="Script" path="res://generation/average_color_sampler/masked/average_masked_color_sampler.gd" id="5_u5dhe"]
 
 [sub_resource type="Texture2D" id="Texture2D_86p73"]
 resource_local_to_scene = false

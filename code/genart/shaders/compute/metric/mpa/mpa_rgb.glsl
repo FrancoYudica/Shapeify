@@ -54,17 +54,14 @@ void main()
 
     barrier();
 
+    // Process pixel if within bounds of the image
     if (global_id < num_pixels) {
-        // Map global_id to subrectangle coordinates
-        int x = int(global_id) % int(params.texture_size.x);
-        int y = int(global_id) / int(params.texture_size.x);
+        // Map global_id to image coordinates
+        uint x = global_id % uint(params.texture_size.x);
+        uint y = global_id / uint(params.texture_size.x);
 
-        // Ensure coordinates are within the valid texture range
-        if (x < params.texture_size.x
-            && x >= 0
-            && y < params.texture_size.y
-            && y >= 0) {
-
+        // Ensure coordinates are within the valid image range
+        if (y < params.texture_size.y) {
             shared_partial_mpa_sum[local_id] = compute_mpa(x, y);
         }
     }

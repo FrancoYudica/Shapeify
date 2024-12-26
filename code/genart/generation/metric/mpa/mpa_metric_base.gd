@@ -1,4 +1,4 @@
-class_name MPAFitnessMetric extends Metric
+class_name MPAMetric extends Metric
 
 ## Power used to modulate the fitness curve.
 ## The fitness
