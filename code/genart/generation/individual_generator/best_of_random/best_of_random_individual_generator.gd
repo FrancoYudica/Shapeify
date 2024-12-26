@@ -15,13 +15,8 @@ func _generate() -> Individual:
 		_fix_individual_properties(individual)
 		_color_sampler_strategy.set_sample_color(individual)
 
-		# Renders to get the individual source texture
-		_individual_renderer.render_individual(individual)
-
 		# Calculates fitness
-		_fitness_calculator.calculate_fitness(
-			individual, 
-			_individual_renderer.get_color_attachment_texture())
+		_fitness_calculator.calculate_fitness(individual, source_texture)
 	
 	# Sorts population descending
 	population.sort_custom(func(a, b): return a.fitness > b.fitness)

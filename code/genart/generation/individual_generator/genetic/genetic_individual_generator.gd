@@ -6,17 +6,6 @@ var _selection_strategy: SelectionStrategy
 var _survivor_selection_strategy: SurvivorSelectionStrategy
 var _fitness_calculator: FitnessCalculator
 
-func _calculate_individual_fitness(individual: Individual):
-	_color_sampler_strategy.set_sample_color(individual)
-	
-	# Renders to get the individual source texture
-	_individual_renderer.render_individual(individual)
-	
-	# Calculates fitness
-	_fitness_calculator.calculate_fitness(
-		individual, 
-		_individual_renderer.get_color_attachment_texture())
-
 
 func _generate() -> Individual:
 	
@@ -30,7 +19,8 @@ func _generate() -> Individual:
 	# Calculates the fitness of the individuals of initial population
 	for individual in population:
 		_fix_individual_properties(individual)
-		_calculate_individual_fitness(individual)
+		_color_sampler_strategy.set_sample_color(individual)
+		_fitness_calculator.calculate_fitness(individual, source_texture)
 		
 	for generation in range(genetic_params.generation_count):
 		
@@ -45,8 +35,6 @@ func _generate() -> Individual:
 			population, 
 			population.size())
 		
-		#genetic_params.mutation_factor = 1.0 - 0.5 * float(generation) / genetic_params.generation_count
-		
 		for i in range(population.size()):
 			var parent_a = mating_pool.pick_random()
 			var parent_b = mating_pool.pick_random()
@@ -58,7 +46,8 @@ func _generate() -> Individual:
 				_mutation_strategy.mutate(child)
 			
 			_fix_individual_properties(child)
-			_calculate_individual_fitness(child)
+			_color_sampler_strategy.set_sample_color(child)
+			_fitness_calculator.calculate_fitness(child, source_texture)
 			children.append(child)
 		
 		population = _survivor_selection_strategy.select_survivors(

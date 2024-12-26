@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3p2ih0gqslrw"]
+[gd_scene load_steps=17 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_jtpkh"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="6_2g4hy"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator.gd" id="7_qjf2d"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator_cpu.gd" id="8_ir4hj"]
+[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_cpu_fitness_calculator.gd" id="8_ir4hj"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd" id="9_yti3h"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1994_fitness_calculator.gd" id="10_8pjxm"]
+[ext_resource type="Script" path="res://generation/individual/individual.gd" id="11_d8j6l"]
+[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="12_qyjx0"]
 
 [sub_resource type="Texture2D" id="Texture2D_dfntu"]
 resource_local_to_scene = false
@@ -23,9 +25,25 @@ resource_name = ""
 script = ExtResource("3_m76jf")
 _src_texture = ExtResource("4_le87a")
 
+[sub_resource type="Texture2D" id="Texture2D_8r80a"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_m76jf")
+_src_texture = ExtResource("12_qyjx0")
+
+[sub_resource type="Resource" id="Resource_6x7vt"]
+script = ExtResource("11_d8j6l")
+position = Vector2i(0, 0)
+size = Vector2(1, 1)
+rotation = 0.0
+texture = SubResource("Texture2D_8r80a")
+tint = Color(1, 1, 1, 1)
+fitness = 0.0
+
 [node name="FitnessTest" type="Node"]
 script = ExtResource("1_pm2mh")
 target_texture = SubResource("Texture2D_dfntu")
 source_texture = SubResource("Texture2D_22c7c")
 metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj"), ExtResource("9_yti3h"), ExtResource("10_8pjxm")])
 iterations = 1
+individual = SubResource("Resource_6x7vt")

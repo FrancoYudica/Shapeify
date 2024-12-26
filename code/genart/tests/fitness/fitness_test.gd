@@ -5,6 +5,7 @@ extends Node
 
 @export var metric_scripts: Array[GDScript]
 @export var iterations = 10
+@export var individual: Individual
 
 func _ready() -> void:
 	
@@ -21,9 +22,8 @@ func _ready() -> void:
 		for i in range(iterations):
 			
 			var t = Time.get_ticks_msec()
-			var ind = Individual.new()
-			fitness_calculator.calculate_fitness(ind, source_texture)
-			average_error += f * ind.fitness
+			fitness_calculator.calculate_fitness(individual, source_texture)
+			average_error += f * individual.fitness
 			var elapsed_t = Time.get_ticks_msec() - t
 			average_time += f * elapsed_t
 		

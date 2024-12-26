@@ -18,7 +18,7 @@ static func create_image_from_rgbaf_buffer(
 	width: int,
 	height: int,
 	contents
-):
+) -> Image:
 	# Creates an image with the same size and format
 	var img = Image.new()
 	img.set_data(

@@ -1,16 +1,20 @@
 extends FitnessCalculator
 
-var mse_metric: MSEMetric
+var metric: MSEMetric
+var _individual_renderer: IndividualRenderer
 
 func _init() -> void:
-	mse_metric = load("res://generation/metric/mse/mse_compute.gd").new()
+	metric = load("res://generation/metric/mse/mse_compute.gd").new()
+	_individual_renderer = IndividualRenderer.new()
 
 func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
-		
-	# Since the mse metric calculates the error, the "similarity" is the complement
-	individual.fitness = 1.0 - mse_metric.compute(source_texture)
+	
+	_individual_renderer.source_texture = source_texture
+	_individual_renderer.render_individual(individual)
+	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	individual.fitness = 1.0 - metric.compute(individual_source_texture)
 
 func _target_texture_set():
-	mse_metric.target_texture = target_texture
+	metric.target_texture = target_texture

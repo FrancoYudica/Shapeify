@@ -1,14 +1,20 @@
 extends FitnessCalculator
 
-var mpa: MPAMetric
+var metric: MPAMetric
+var _individual_renderer: IndividualRenderer
 
 func _init() -> void:
-	mpa = load("res://generation/metric/mpa/mpa_CEILab_metric.gd").new()
+	metric = load("res://generation/metric/mpa/mpa_CEILab_metric.gd").new()
+	_individual_renderer = IndividualRenderer.new()
 
 func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
-	individual.fitness = mpa.compute(source_texture)
+	
+	_individual_renderer.source_texture = source_texture
+	_individual_renderer.render_individual(individual)
+	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	individual.fitness = metric.compute(individual_source_texture)
 
 func _target_texture_set():
-	mpa.target_texture = target_texture
+	metric.target_texture = target_texture

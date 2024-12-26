@@ -4,7 +4,9 @@ enum Type
 {
 	MPA_CEILab,
 	MPA_RGB,
-	MSE
+	MSE,
+	DELTA_E_1976,
+	DELTA_E_1994
 }
 
 var target_texture: RendererTexture:
@@ -17,6 +19,9 @@ var target_texture: RendererTexture:
 		target_texture = texture
 		_target_texture_set()
 
+## Given the individual and source texture (individual musn't be rendered on source_texture) 
+## `calculate_fitness` sets the fitness to the individual. Note that fitness is a normalized value
+## in range [0.0, 1.0]
 func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
@@ -26,7 +31,6 @@ func calculate_fitness(
 func _target_texture_set():
 	pass
 
-
 static func factory_create(type: Type) -> FitnessCalculator:
 	match type:
 		FitnessCalculator.Type.MPA_CEILab:
@@ -35,6 +39,10 @@ static func factory_create(type: Type) -> FitnessCalculator:
 			return load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MSE:
 			return load("res://generation/individual/fitness_calculator/mse_fitness_calculator.gd").new()
+		FitnessCalculator.Type.DELTA_E_1976:
+			return load("res://generation/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd").new()
+		FitnessCalculator.Type.DELTA_E_1994:
+			return load("res://generation/individual/fitness_calculator/delta_e_1994_fitness_calculator.gd").new()
 		_:
 			push_error("Unimplemented fitness calculator: %s" % type)
 			return null
