@@ -1,7 +1,7 @@
-[gd_scene load_steps=62 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=61 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
-[ext_resource type="Texture2D" uid="uid://bixvxq0a44x7e" path="res://art/genart_icon/logo_small.png" id="4_rrl1v"]
+[ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
 [ext_resource type="Script" path="res://UI/output_texture_holder.gd" id="9_hlcsw"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
@@ -59,17 +59,6 @@ bg_color = Color(0.187176, 0.187176, 0.187176, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg87p"]
 bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyb62"]
-bg_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 5.0
-expand_margin_top = 3.0
-expand_margin_right = 5.0
-expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q43t0"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -160,27 +149,23 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 12
 
-[node name="IconPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_eyb62")
-
-[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/IconPanelContainer"]
-layout_mode = 2
-texture = ExtResource("4_rrl1v")
+texture = ExtResource("4_2n2h2")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_q43t0")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 4
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 4
 
 [node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
@@ -189,11 +174,12 @@ theme_override_constants/separation = 12
 
 [node name="OutputInfoTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "metrics_panel")]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 tooltip_text = "Output information"
 texture_normal = ExtResource("18_t5cu0")
 texture_hover = ExtResource("14_r343e")
+stretch_mode = 5
+flip_h = true
 script = ExtResource("19_w0gf2")
 image_generation = NodePath("../../../../../../../../../../..")
 metrics_panel = NodePath("../../../../../TexturesHBoxContainer/TargetTextureRect/InfoPanelContainer")
@@ -205,6 +191,7 @@ tooltip_text = "Opens a file dialog to save the generated image"
 texture_normal = ExtResource("15_umn17")
 texture_pressed = ExtResource("17_eo1oy")
 texture_hover = ExtResource("17_eo1oy")
+stretch_mode = 5
 script = ExtResource("11_wj4rh")
 image_generation = NodePath("../../../../../../../../../../..")
 output_texture_rect = NodePath("../../../../../TexturesHBoxContainer/OutputTextureRect")
@@ -213,6 +200,7 @@ save_dialog = NodePath("../../../../../../../../../SaveImageDialog")
 [node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
 layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "Opens the animator"
 texture_normal = ExtResource("16_fxeqj")
 texture_pressed = ExtResource("17_bu3ap")
 texture_hover = ExtResource("17_bu3ap")
@@ -227,6 +215,7 @@ tooltip_text = "Clears the generated image"
 texture_normal = ExtResource("17_q2u4h")
 texture_pressed = ExtResource("20_nf4cs")
 texture_hover = ExtResource("20_nf4cs")
+stretch_mode = 5
 script = ExtResource("12_ft68k")
 image_generation = NodePath("../../../../../../../../../../..")
 
