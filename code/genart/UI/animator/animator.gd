@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 signal individuals_animated(individuals: Array[Individual])
 signal animation_progress_updated(t: float)
