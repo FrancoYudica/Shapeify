@@ -128,7 +128,7 @@ step = 0.001
 script = ExtResource("8_aiw40")
 animator = NodePath("../../../../../../../..")
 
-[node name="RecordTextureButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator", "recording_panel", "file_dialog", "progress_bar", "notification_popup")]
+[node name="RecordTextureButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator", "recording_panel", "file_dialog", "progress_bar")]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 tooltip_text = "Save animation. 
@@ -140,7 +140,6 @@ animator = NodePath("../../../../../../../..")
 recording_panel = NodePath("../../../../../../../../RecordingPanel")
 file_dialog = NodePath("../../../../../../../../FileDialog")
 progress_bar = NodePath("../../../../../../../../RecordingPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
-notification_popup = NodePath("../../../../../../../../Notification")
 
 [node name="SettingsHBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

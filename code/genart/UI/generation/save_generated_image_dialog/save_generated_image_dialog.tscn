@@ -158,6 +158,6 @@ text = "Save"
 [node name="FileDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
 size = Vector2i(303, 180)
-access = 1
+access = 2
 filters = PackedStringArray("*.png")
 use_native_dialog = true

@@ -30,7 +30,8 @@ func _record_and_save():
 		return
 	
 	_video_recorder.video_folder_path = directory_path
-	_video_recorder.start_recording()
+	if not _video_recorder.start_recording():
+		return
 	
 	var dt = 1.0 / (fps * duration)
 	var t = 0.0

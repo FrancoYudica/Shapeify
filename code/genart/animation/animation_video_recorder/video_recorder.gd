@@ -8,29 +8,40 @@ var video_folder_path = "res://out/animation"
 var _current_folder: String
 var _recording: bool = false
 
-func start_recording():
+var _path_separator: String:
+	get:
+		if OS.get_name() == "Windows":
+			return "\\"
+		return "/"
+
+func start_recording() -> bool:
 	
 	animations_dir = DirAccess.open(video_folder_path)
 	
 	if _recording:
 		push_error("Trying to start record but it's already recording")
-		return
+		return false
 	
 	_recording = true
 	
 	_frame_index = 0
-	_current_folder = Time.get_datetime_string_from_system()
+	_current_folder = Time.get_datetime_string_from_system().replace(":", "_")
 	var err = animations_dir.make_dir(_current_folder)
 	if err != OK:
-		push_error("Unable to create video directory %s" % _current_folder)
+		Notifier.call_deferred("notify_error", "Unable to create video directory %s in path: %s" % [_current_folder, video_folder_path])
+		return false
+		
+	return true
 
 func add_frame(image: Image):
 
 	if not _recording:
 		push_error("Trying to record frames but it's not recording")
 		return
-
-	image.save_png(video_folder_path + "/" + _current_folder + "/frame_%05d.png" % _frame_index)
+	
+	var err = image.save_png(video_folder_path + _path_separator + _current_folder + _path_separator + "frame_%05d.png" % _frame_index)
+	if err != OK:
+		print(err)
 	_frame_index += 1
 
 func finish_and_get_path() -> String:
@@ -41,4 +52,4 @@ func finish_and_get_path() -> String:
 	
 	_recording = false
 	
-	return ProjectSettings.globalize_path(video_folder_path + "/" + _current_folder)
+	return ProjectSettings.globalize_path(video_folder_path + _path_separator + _current_folder)

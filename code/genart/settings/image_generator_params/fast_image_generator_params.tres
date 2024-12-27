@@ -16,7 +16,7 @@ color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_jmjb0"]
 script = ExtResource("2_000q3")
-individual_count = 100
+individual_count = 150
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_kk0o3"]
@@ -68,7 +68,7 @@ target_fitness = 0.9
 script = ExtResource("8_typde")
 type = 1
 individual_generator_params = SubResource("Resource_q7t7k")
-individual_generator_type = 2
+individual_generator_type = 1
 stop_condition = 0
 stop_condition_params = SubResource("Resource_ea6fc")
 clear_color_type = 0
