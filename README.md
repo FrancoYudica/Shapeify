@@ -21,42 +21,48 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 - Utilize default image collections for effortless creation.
 - Fully customizable algorithm with a wide range of settings.
 
+## Animator
+
+<div align="center">
+
+<img src="imgs/GenartAppSampleAnimator.png" width=900></img>
+
+</div>
+
+Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
+
+<div align="center">
+
+|                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
+| <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
+
+</div>
+
+## Installing
+
+You can download the last github release or build the project yourself by cloning the source code and using Godot 4.3.
+
 ## Gallery
 
 Some examples with different images as building blocks.
 
 <div align="center">
 
-| <img src="imgs/samples/MonaLisa300ind.png" alt="Mona Lisa" style="width: 400px; object-fit: cover;"> |
-| :--------------------------------------------------------------------------------------------------: |
-|                               _Mona Lisa. 300 fixed rotation capsules_                               |
+| <img src="imgs/samples/MonaLisa300ind.png" alt="Mona Lisa" style="object-fit: cover;"> |
+| :------------------------------------------------------------------------------------: |
+|                        _Mona Lisa. 300 fixed rotation capsules_                        |
 
-| <img src="imgs/samples/lambo-200ind.png" alt="Lambo" style="width: 400px; object-fit: cover;"> |
-| :--------------------------------------------------------------------------------------------: |
-|                     _Lamborghini Aventador. 200 geometric rounded objects_                     |
+| <img src="imgs/samples/lambo-200ind.png" alt="Lambo" style="object-fit: cover;"> |
+| :------------------------------------------------------------------------------: |
+|              _Lamborghini Aventador. 200 geometric rounded objects_              |
 
-| <img src="imgs/samples/BillieEilish500.png" alt="Billie Eilish" style="width: 400px; object-fit: cover;"> |
-| :-------------------------------------------------------------------------------------------------------: |
-|                                    _Billie Eilish. 500 brush strokes_                                     |
+| <img src="imgs/samples/BillieEilish500.png" alt="Billie Eilish" style="object-fit: cover;"> |
+| :-----------------------------------------------------------------------------------------: |
+|                             _Billie Eilish. 500 brush strokes_                              |
 
-| <img src="imgs/samples/MilkyWay200indglow.png" alt="Milky Way" style="width: 400px; object-fit: cover;"> |
-| :------------------------------------------------------------------------------------------------------: |
-|                                      _Milky Way. 200 glow objects_                                       |
-
-</div>
-
-## Animations
-
-Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
-
-<div align="center">
-
-|                           Target ice cream                            |
-| :-------------------------------------------------------------------: |
-| <img src="imgs/samples/animations/icecream/icecream.png" width="200"> |
-
-|                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
-| <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
+| <img src="imgs/samples/MilkyWay200indglow.png" alt="Milky Way" style="object-fit: cover;"> |
+| :----------------------------------------------------------------------------------------: |
+|                               _Milky Way. 200 glow objects_                                |
 
 </div>
