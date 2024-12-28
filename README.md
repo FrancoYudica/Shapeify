@@ -1,38 +1,58 @@
-# Genart
+<img src="imgs/GenartIconAndName.png" width=500></img>
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/FrancoYudica/Genart/blob/main/LICENSE)
 
-Image generation with genetic algorithms
+Genart is an application that transforms your target image into uniquely stylized artwork.
+Smaller images are used as building blocks to reconstruct the target picture.
 
-### Some renders
+This tool is perfect for artists, designers, or anyone looking to experiment with creative and abstract image representations.
 
-![](imgs/samples/MonaLisa300ind.png)
+<div align="center">
 
-_[Fig 1] - Mona Lisa. 300 objects_
+<img src="imgs/GenartAppSample0.png" width=900></img>
 
-![](imgs/samples/Tsunami_by_hokusai_19th_century.png)
+</div>
 
-_[Fig 2] - The Great Wave of Kanagawa by Katsushika Hokusai. 1000 objects_
+## Features
 
-![](imgs/samples/lambo-200ind.png)
+- Reconstruct any image using a chosen set of smaller images as building blocks.
+- Save generated artwork in formats such as PNG, JPG, and JPEG.
+- Create dynamic animations with GenArt's integrated animator.
+- Optimize results easily with predefined FAST, PERFORMANCE, and QUALITY modes.
+- Utilize default image collections for effortless creation.
+- Fully customizable algorithm with a wide range of settings.
 
-_[Fig 3] - Lamborghini Aventador. 200 objects_
+## Gallery
 
-![](imgs/samples/MilkyWay200indglow.png)
+Some examples with different images as building blocks.
 
-_[Fig 4] - Milky Way. 200 objects_
+<div align="center">
 
-![](imgs/samples/icecream100.png)
+| <img src="imgs/samples/MonaLisa300ind.png" alt="Mona Lisa" style="width: 400px; object-fit: cover;"> |
+| :--------------------------------------------------------------------------------------------------: |
+|                               _Mona Lisa. 300 fixed rotation capsules_                               |
 
-_[Fig 5] - Ice cream. 100 brush strokes_
+| <img src="imgs/samples/lambo-200ind.png" alt="Lambo" style="width: 400px; object-fit: cover;"> |
+| :--------------------------------------------------------------------------------------------: |
+|                     _Lamborghini Aventador. 200 geometric rounded objects_                     |
 
-![](imgs/samples/UmaClose300Painting.png)
+| <img src="imgs/samples/BillieEilish500.png" alt="Billie Eilish" style="width: 400px; object-fit: cover;"> |
+| :-------------------------------------------------------------------------------------------------------: |
+|                                    _Billie Eilish. 500 brush strokes_                                     |
 
-_[Fig 6] - My cat Uma. 300 brush strokes_
+| <img src="imgs/samples/MilkyWay200indglow.png" alt="Milky Way" style="width: 400px; object-fit: cover;"> |
+| :------------------------------------------------------------------------------------------------------: |
+|                                      _Milky Way. 200 glow objects_                                       |
 
-![](imgs/samples/BillieEilish500.png)
+</div>
 
-_[Fig 7] - Billie Eilish. 500 brush strokes_
+## Animations
 
-|        Generated ice cream         |                     Animation                      |
-| :--------------------------------: | :------------------------------------------------: |
-| ![](imgs/samples/icecream200.png)  | ![](imgs/samples/videos/icecream_200_timeline.gif) |
-| _[Fig 8] - Ice cream. 200 objects_ |  _[Fig 9] Animated timeline of image generation_   |
+Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
+
+<div align="center">
+
+|                           Target ice cream                            |                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
+| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
+| <img src="imgs/samples/animations/icecream/icecream.png" width="200"> | <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
+
+</div>
