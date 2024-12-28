@@ -51,8 +51,12 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 
 <div align="center">
 
-|                           Target ice cream                            |                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
-| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
-| <img src="imgs/samples/animations/icecream/icecream.png" width="200"> | <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
+|                           Target ice cream                            |
+| :-------------------------------------------------------------------: |
+| <img src="imgs/samples/animations/icecream/icecream.png" width="200"> |
+
+|                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
+| <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
 
 </div>
