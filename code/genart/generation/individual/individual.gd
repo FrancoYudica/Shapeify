@@ -73,6 +73,8 @@ func to_dict() -> Dictionary:
 		"position_y": position.y,
 		"size_x": size.x,
 		"size_y": size.y,
+		"tint": [tint.r, tint.g, tint.b, tint.a],
+		"texture": [texture.rd_rid],
 		"rotation": rotation,
 		"fitness": fitness
 	}

@@ -30,5 +30,7 @@ static func factory_create(type: Type) -> FrameSaver:
 			return load("res://generation/frame_saver/strategies/jpg_frame_save_strategy.gd").new()
 		Type.WEBP:
 			return load("res://generation/frame_saver/strategies/webp_frame_save_strategy.gd").new()
+		Type.JSON_FORMAT:
+			return load("res://generation/frame_saver/strategies/json_frame_save_strategy.gd").new()
 		_:
 			return null
