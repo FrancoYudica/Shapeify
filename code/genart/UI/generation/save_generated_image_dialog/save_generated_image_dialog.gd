@@ -8,8 +8,10 @@ extends Control
 @export var final_resolution_label: Label
 @export var file_dialog: FileDialog
 @export var save_texture: TextureRect
+@export var format_option_button: OptionButton
 
 var _src_img_generation_details: ImageGenerationDetails
+var _frame_saver: FrameSaver
 
 func _ready() -> void:
 	close_button.pressed.connect(
@@ -25,6 +27,18 @@ func _ready() -> void:
 				int(_src_img_generation_details.viewport_size.x * scale_spin_box.value),
 				int(_src_img_generation_details.viewport_size.y * scale_spin_box.value)]
 	)
+	
+	for item in FrameSaver.Type.keys():
+		format_option_button.add_item(item)
+	
+	format_option_button.item_selected.connect(
+		func(index):
+			_frame_saver = FrameSaver.factory_create(index as FrameSaver.Type)
+	)
+	
+	format_option_button.select(0)
+	_frame_saver = FrameSaver.factory_create(FrameSaver.Type.PNG)
+	
 
 func open(gen_details: ImageGenerationDetails):
 	visible = true
@@ -50,36 +64,16 @@ func open(gen_details: ImageGenerationDetails):
 		_src_img_generation_details.generated_texture.rd_rid)
 
 func _save():
+	file_dialog.clear_filters()
+	file_dialog.add_filter("*%s" % _frame_saver.get_extension())
 	file_dialog.visible = true
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	
-	# Creates scaled individuals and ImageGenerationDetails with new data
-	var render_details := ImageGenerationDetails.new()
-	render_details.clear_color = _src_img_generation_details.clear_color
-	render_details.viewport_size = Vector2(
-		_src_img_generation_details.viewport_size.x * scale_spin_box.value,
-		_src_img_generation_details.viewport_size.y * scale_spin_box.value
+	var success = _frame_saver.save(
+		path,
+		_src_img_generation_details.individuals,
+		_src_img_generation_details.clear_color,
+		_src_img_generation_details.viewport_size,
+		scale_spin_box.value
 	)
-	for individual in _src_img_generation_details.individuals:
-		var ind = individual.copy()
-		ind.position *= scale_spin_box.value
-		ind.size *= scale_spin_box.value
-		render_details.individuals.append(ind)
-	
-	# Renders the individuals
-	ImageGenerationRenderer.render_image_generation(Renderer, render_details)
-	
-	# Gets renderer output texture
-	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
-	
-	# Transforms to image and saves
-	var img = ImageUtils.create_image_from_rgbaf_buffer(
-		render_details.viewport_size.x,
-		render_details.viewport_size.y,
-		color_attachment_data
-	)
-	
-	if img.save_png(path) == OK:
-		Notifier.notify_info("Successfully saved image at: %s" % path)

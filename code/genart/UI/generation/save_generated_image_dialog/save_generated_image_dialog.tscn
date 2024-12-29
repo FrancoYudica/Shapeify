@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct1cq1e303o8m"]
+[gd_scene load_steps=8 format=3 uid="uid://ct1cq1e303o8m"]
 
 [ext_resource type="Script" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.gd" id="1_au3md"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_t2qo2"]
@@ -7,7 +7,14 @@
 [ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="5_u1p44"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="6_1qvvg"]
 
-[node name="SaveImageDialog" type="Control" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uryem"]
+bg_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SaveImageDialog" type="Control" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture", "format_option_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +28,8 @@ scale_spin_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxCo
 resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/ResolutionPanelContainer/MarginContainer/ResolutionValueLabel")
 final_resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/FinalResolutionPanelContainer/MarginContainer/FinalResolutionValueLabel")
 file_dialog = NodePath("FileDialog")
-save_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextureRect")
+save_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/TextureRect")
+format_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/SaveFormatOptionButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -77,7 +85,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "SAVE GENERATED IMAGE"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uryem")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_vertical = 3
@@ -156,6 +169,13 @@ theme_override_constants/margin_right = 8
 layout_mode = 2
 text = "1920x1080"
 
+[node name="SaveFormatLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Format"
+
+[node name="SaveFormatOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -177,5 +197,5 @@ text = "Save"
 auto_translate_mode = 1
 size = Vector2i(303, 180)
 access = 2
-filters = PackedStringArray("*.png")
+filters = PackedStringArray("*.jpg")
 use_native_dialog = true
