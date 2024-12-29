@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=68 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -30,9 +30,11 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab/settings_tab.gd" id="19_efp5f"]
 [ext_resource type="Script" path="res://UI/generation/output_info_texture_button.gd" id="19_w0gf2"]
 [ext_resource type="Texture2D" uid="uid://swh5n2u6bvj5" path="res://art/icons/erase-24-dark.png" id="20_nf4cs"]
+[ext_resource type="Texture2D" uid="uid://cxno5ky3w2ak4" path="res://art/icons/stop-24-dark.png" id="21_2n0o6"]
 [ext_resource type="Texture2D" uid="uid://m5q8q3ignig6" path="res://art/icons/play-24-dark.png" id="23_4anu0"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/image_panel_container.tres" id="24_de6d3"]
+[ext_resource type="Script" path="res://UI/loading_generating_texture_rect.gd" id="24_q3gvo"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/genetic/genetic_settings_v_box_container.gd" id="25_jv4l3"]
 [ext_resource type="Texture2D" uid="uid://skcui5fa8fmk" path="res://art/icons/info-64.png" id="27_eq3l8"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/preset_option_button.gd" id="32_ww3ur"]
@@ -50,10 +52,14 @@
 [ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
 [ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/notification_panels/info_notification_panel.tscn" id="48_a87i4"]
 [ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/notification_panels/error_notification_panel.tscn" id="49_3r88r"]
+[ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="50_3wht3"]
 [ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/notification_panels/warning_notification_panel.tscn" id="50_fapon"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/profiler/profiler_params_panel_container.gd" id="51_klyxb"]
 [ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.tscn" id="51_r3i0d"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/images_tab/texture_groups/individuals_texure_groups.tscn" id="51_wwnxg"]
+[ext_resource type="Script" path="res://UI/stopping_generation_panel_container.gd" id="51_xqa51"]
+[ext_resource type="Texture2D" uid="uid://cofrjda15jidr" path="res://art/icons/loading-256.png" id="52_wmemr"]
+[ext_resource type="Script" path="res://UI/generation/loading_texture_rect.gd" id="53_0o5l4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.187176, 0.187176, 0.187176, 1)
@@ -230,15 +236,16 @@ texture_hover = ExtResource("23_4anu0")
 script = ExtResource("10_mpcut")
 image_generation = NodePath("../../../../../../../../../../..")
 
-[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
+[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "stopping_notification")]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Stop image generation"
 texture_normal = ExtResource("13_fjqiy")
-texture_hover = ExtResource("13_fjqiy")
+texture_hover = ExtResource("21_2n0o6")
 script = ExtResource("14_pn2yp")
 image_generation = NodePath("../../../../../../../../../../..")
+stopping_notification = NodePath("../../../../../../../../../StoppingGenerationPanelContainer")
 
 [node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -250,6 +257,23 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_3clnb")
 max_value = 1.0
 script = ExtResource("12_hhf1r")
 image_generation = NodePath("../../../../../../../../../../..")
+
+[node name="Control" type="Control" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LoadingGeneratingTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/ButtonsHBoxContainer/Control" node_paths=PackedStringArray("image_generation")]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("52_wmemr")
+expand_mode = 3
+script = ExtResource("24_q3gvo")
+image_generation = NodePath("../../../../../../../../../../../..")
 
 [node name="TexturesHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Generation/VBoxContainer"]
 layout_mode = 2
@@ -1025,6 +1049,47 @@ vertical_alignment = 1
 [node name="Animator" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("_image_generation") instance=ExtResource("46_2ayc0")]
 layout_mode = 1
 _image_generation = NodePath("../../..")
+
+[node name="StoppingGenerationPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("image_generation")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("50_3wht3")
+script = ExtResource("51_xqa51")
+image_generation = NodePath("../../..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StoppingLabel" type="Label" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Stopping"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="LoadingTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("52_wmemr")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("53_0o5l4")
 
 [node name="IndividualsTexureGroups" parent="UICanvasLayer/Panel" instance=ExtResource("51_wwnxg")]
 visible = false

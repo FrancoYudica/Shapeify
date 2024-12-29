@@ -1,8 +1,8 @@
-extends TextureButton
+extends TextureRect
 
 
 @export var image_generation: Node
-@export var stopping_notification: Control
+
 
 func _ready() -> void:
 	
@@ -17,8 +17,5 @@ func _ready() -> void:
 			visible = false
 	)
 	
-	pressed.connect(_on_pressed)
-
-func _on_pressed() -> void:
-	stopping_notification.visible = true
-	image_generation.stop()
+func _process(delta: float) -> void:
+	rotation += abs(sin(Time.get_ticks_msec() * 0.002)) * 0.2
