@@ -39,10 +39,15 @@ func add_frame(image: Image):
 		push_error("Trying to record frames but it's not recording")
 		return
 	
-	var err = image.save_png(video_folder_path + _path_separator + _current_folder + _path_separator + "frame_%05d.png" % _frame_index)
+	var path = iterator_next_path() + ".png"
+	var err = image.save_png(path)
 	if err != OK:
 		print(err)
+
+func iterator_next_path() -> String:
+	var path = video_folder_path + _path_separator + _current_folder + _path_separator + "frame_%05d" % _frame_index
 	_frame_index += 1
+	return path
 
 func finish_and_get_path() -> String:
 	

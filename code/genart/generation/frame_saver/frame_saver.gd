@@ -8,6 +8,9 @@ enum Type
 	JSON_FORMAT
 }
 
+## True if notifications are silenced
+var silent: bool = false
+
 func save(
 	filepath: String,
 	individuals: Array[Individual],

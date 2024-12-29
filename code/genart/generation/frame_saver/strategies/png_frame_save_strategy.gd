@@ -37,7 +37,7 @@ func save(
 		Notifier.notify_error("Unable to create image")
 		return false
 	
-	if img.save_png(filepath) == OK:
+	if img.save_png(filepath) == OK and not silent:
 		Notifier.notify_info(
 			"Successfully saved PNG image at: %s" % filepath,
 			filepath)
