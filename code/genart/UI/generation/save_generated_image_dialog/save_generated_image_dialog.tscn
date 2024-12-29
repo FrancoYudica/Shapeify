@@ -4,15 +4,9 @@
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_t2qo2"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="3_48lue"]
 [ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="4_6lnxe"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/image_panel_container.tres" id="5_qyqr0"]
 [ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="5_u1p44"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="6_1qvvg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uryem"]
-bg_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [node name="SaveImageDialog" type="Control" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture", "format_option_button")]
 layout_mode = 3
@@ -88,7 +82,7 @@ text = "SAVE GENERATED IMAGE"
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_uryem")
+theme_override_styles/panel = ExtResource("5_qyqr0")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(256, 256)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8g5x3rg0yhvo"
-path="res://.godot/imported/Genetic300IndPop50x5gen2shapesRotationLocked.png-fbb654ce3c3c026264363259ba84eba6.ctex"
+uid="uid://4v3cb5dqbxmm"
+path="res://.godot/imported/circle_1_512x512.png-c08a264cf76c2d09b48e0567835c4f6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/output/Genetic300IndPop50x5gen2shapesRotationLocked.png"
-dest_files=["res://.godot/imported/Genetic300IndPop50x5gen2shapesRotationLocked.png-fbb654ce3c3c026264363259ba84eba6.ctex"]
+source_file="res://art/test/simple_shapes/circle_1_512x512.png"
+dest_files=["res://.godot/imported/circle_1_512x512.png-c08a264cf76c2d09b48e0567835c4f6a.ctex"]
 
 [params]
 

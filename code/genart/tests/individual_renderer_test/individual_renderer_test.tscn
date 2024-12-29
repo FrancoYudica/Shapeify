@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://tests/individual_renderer_test/individual_renderer_test.gd" id="1_rvydi"]
 [ext_resource type="Texture2D" uid="uid://dm2v4ueh2at0p" path="res://art/test/source_test_1920x1080.png" id="2_n4qnr"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_bilb8"]
-[ext_resource type="Texture2D" uid="uid://c44fivjm5vwck" path="res://art/godot_icon.png" id="4_gia1c"]
 [ext_resource type="Script" path="res://generation/individual/individual_renderer.gd" id="4_l58vo"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="4_tdiq0"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="6_hm8m1"]
 
 [sub_resource type="Texture2D" id="Texture2D_03tba"]
@@ -17,7 +17,7 @@ _src_texture = ExtResource("2_n4qnr")
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_bilb8")
-_src_texture = ExtResource("4_gia1c")
+_src_texture = ExtResource("4_tdiq0")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_itb2w"]
 

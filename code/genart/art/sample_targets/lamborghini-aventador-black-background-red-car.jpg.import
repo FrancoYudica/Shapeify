@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b46p230ou2wua"
-path="res://.godot/imported/UmaClose300Painting.png-c2dc45d62a9d2095c521b93a80504be2.ctex"
+uid="uid://e4c2jdargpn7"
+path="res://.godot/imported/lamborghini-aventador-black-background-red-car.jpg-9bb31a2f26ffc8af5256c583f7d63c82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/output/UmaClose300Painting.png"
-dest_files=["res://.godot/imported/UmaClose300Painting.png-c2dc45d62a9d2095c521b93a80504be2.ctex"]
+source_file="res://art/sample_targets/lamborghini-aventador-black-background-red-car.jpg"
+dest_files=["res://.godot/imported/lamborghini-aventador-black-background-red-car.jpg-9bb31a2f26ffc8af5256c583f7d63c82.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kp5f85edqv8s"
-path="res://.godot/imported/Pipe600Ind50pop5gen45DegFixed.png-07e217fdcc54107c18f05132c19ca01a.ctex"
+uid="uid://dp8fung1gm4s7"
+path="res://.godot/imported/BillieEilish.jpg-815f7b0e41d7fc123d6488175b045a7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/output/Pipe600Ind50pop5gen45DegFixed.png"
-dest_files=["res://.godot/imported/Pipe600Ind50pop5gen45DegFixed.png-07e217fdcc54107c18f05132c19ca01a.ctex"]
+source_file="res://art/sample_targets/BillieEilish.jpg"
+dest_files=["res://.godot/imported/BillieEilish.jpg-815f7b0e41d7fc123d6488175b045a7e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s7wccr2cdako"
-path="res://.godot/imported/UmaClose.jpg-8dca6662f56d137b0c79b67f093257ec.ctex"
+uid="uid://u5tfipfaxeow"
+path="res://.godot/imported/Mona_Lisa.jpg-1e19ba8d3406d32853c46353efa9066b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UmaClose.jpg"
-dest_files=["res://.godot/imported/UmaClose.jpg-8dca6662f56d137b0c79b67f093257ec.ctex"]
+source_file="res://art/sample_targets/Mona_Lisa.jpg"
+dest_files=["res://.godot/imported/Mona_Lisa.jpg-1e19ba8d3406d32853c46353efa9066b.ctex"]
 
 [params]
 

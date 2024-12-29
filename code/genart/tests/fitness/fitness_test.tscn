@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_jtpkh"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="2_jtpkh"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_m76jf"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="4_le87a"]
 [ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]

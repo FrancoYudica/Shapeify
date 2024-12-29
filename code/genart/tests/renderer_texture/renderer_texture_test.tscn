@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtr0nddh0jdr3"]
 
 [ext_resource type="Script" path="res://tests/renderer_texture/renderer_texture_test.gd" id="1_vnjl0"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/Mona_Lisa.jpg" id="2_4gdpd"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="2_4gdpd"]
 
 [node name="RendererTexture" type="Node2D"]
 script = ExtResource("1_vnjl0")
