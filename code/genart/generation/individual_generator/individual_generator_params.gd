@@ -56,7 +56,7 @@ class_name IndividualGeneratorParams extends Resource
 
 @export var best_of_random_params := BestOfRandomIndividualGeneratorParams.new()
 @export var genetic_params := GeneticIndividualGeneratorParams.new()
-
+@export var hill_climbing_params := HillClimbingIndividualGeneratorParams.new()
 
 func to_dict() -> Dictionary:
 	return {
@@ -73,3 +73,4 @@ func setup_changed_signals() -> void:
 	
 	best_of_random_params.changed.connect(emit_changed)
 	genetic_params.changed.connect(emit_changed)
+	hill_climbing_params.changed.connect(emit_changed)

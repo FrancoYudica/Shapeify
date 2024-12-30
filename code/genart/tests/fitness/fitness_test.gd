@@ -16,19 +16,19 @@ func _ready() -> void:
 		var average_time = 0.0
 		var f = 1.0 / iterations
 		var fitness_calculator: FitnessCalculator = script.new()
-		var t0 = Time.get_ticks_msec()
+		var t0 = Time.get_ticks_usec()
 		fitness_calculator.target_texture = target_texture
 		
 		for i in range(iterations):
 			
-			var t = Time.get_ticks_msec()
+			var t = Time.get_ticks_usec()
 			fitness_calculator.calculate_fitness(individual, source_texture)
 			average_error += f * individual.fitness
-			var elapsed_t = Time.get_ticks_msec() - t
+			var elapsed_t = (Time.get_ticks_usec() - t) * 0.001
 			average_time += f * elapsed_t
 		
 		print(" Executed %s iterations of Metric: %s" % [iterations, script.resource_path])
 		print(" - Average: %s" % average_error)
 		print(" - Average compute time taken: %sms " % average_time)
-		print(" - Total time taken: %sms " % (Time.get_ticks_msec() - t0))
+		print(" - Total time taken: %sms " % ((Time.get_ticks_usec() - t0) * 0.001))
 		print()

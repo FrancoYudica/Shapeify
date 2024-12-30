@@ -6,7 +6,8 @@ class_name IndividualGenerator extends RefCounted
 enum Type{
 	Random,
 	BestOfRandom,
-	Genetic
+	Genetic,
+	HillClimb
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
@@ -122,6 +123,8 @@ static func factory_create(type: Type):
 			return load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
 		Type.Genetic:
 			return load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
+		Type.HillClimb:
+			return load("res://generation/individual_generator/hill_climbing/hill_climbing_individual_generator.gd").new()
 		_:
 			push_error("Unimplemented individual generator of type %s" % type)
 			return null

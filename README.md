@@ -15,11 +15,11 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 ## Features
 
 - Reconstruct any image using a chosen set of smaller images as building blocks.
-- Save generated artwork in formats such as PNG, JPG, and JPEG.
-- Create dynamic animations with GenArt's integrated animator.
+- Save generated artwork in formats such as PNG, JPG, WEBP and JSON for use in custom projects.
+- Create animations with GenArt's integrated animator.
 - Optimize results easily with predefined FAST, PERFORMANCE, and QUALITY modes.
 - Utilize default image collections for effortless creation.
-- Fully customizable algorithm with a wide range of settings.
+- Customizable algorithm with a wide range of settings.
 
 ## Animator
 

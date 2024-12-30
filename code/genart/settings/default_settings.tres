@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=52 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=54 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="4_2f6rr"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="5_ef5tc"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="6_uj1yx"]
+[ext_resource type="Script" path="res://generation/individual_generator/hill_climbing/hill_climbing_individual_generator_params.gd" id="6_wsr2s"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="7_df2vp"]
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="8_oum2w"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="9_l7xcl"]
@@ -67,6 +68,11 @@ mutation_strategy = 1
 survivor_selection_strategy = 1
 survivor_selection_params = SubResource("Resource_ws8ig")
 
+[sub_resource type="Resource" id="Resource_torcr"]
+script = ExtResource("6_wsr2s")
+max_age = 30
+fitness_calculator = 1
+
 [sub_resource type="Resource" id="Resource_a75i4"]
 script = ExtResource("6_uj1yx")
 textures = Array[ExtResource("7_df2vp")]([])
@@ -87,6 +93,7 @@ fixed_size = false
 fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_uqt7i")
 genetic_params = SubResource("Resource_rq143")
+hill_climbing_params = SubResource("Resource_torcr")
 
 [sub_resource type="Resource" id="Resource_vnspm"]
 script = ExtResource("10_mxc8r")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=69 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -52,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
 [ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/notification_panels/info_notification_panel.tscn" id="48_a87i4"]
 [ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/notification_panels/error_notification_panel.tscn" id="49_3r88r"]
+[ext_resource type="Script" path="res://UI/generation/hill_climbing_settings_v_box_container.gd" id="49_rxsje"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="50_3wht3"]
 [ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/notification_panels/warning_notification_panel.tscn" id="50_fapon"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/profiler/profiler_params_panel_container.gd" id="51_klyxb"]
@@ -136,9 +137,10 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jg87p")
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -435,7 +437,6 @@ layout_mode = 2
 text = "Close"
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -883,6 +884,31 @@ text = "Fitness
 "
 
 [node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RandomSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HillClimbingSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("max_age", "fitness_option")]
+layout_mode = 2
+script = ExtResource("49_rxsje")
+max_age = NodePath("MaxAgeSpinBox")
+fitness_option = NodePath("FitnessHBoxContainer/FitnessOptionButton")
+
+[node name="MaxAgeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HillClimbingSettingsVBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 10000.0
+value = 100.0
+prefix = "Max age"
+
+[node name="FitnessHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HillClimbingSettingsVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HillClimbingSettingsVBoxContainer/FitnessHBoxContainer"]
+layout_mode = 2
+text = "Fitness
+"
+
+[node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/IndividualGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HillClimbingSettingsVBoxContainer/FitnessHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
