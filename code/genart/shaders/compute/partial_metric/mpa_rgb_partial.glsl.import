@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dipdenmw232cw"
+path="res://.godot/imported/mpa_rgb_partial.glsl-24effd1d559ca58e8c73ba7fefecb6e2.res"
+
+[deps]
+
+source_file="res://shaders/compute/partial_metric/mpa_rgb_partial.glsl"
+dest_files=["res://.godot/imported/mpa_rgb_partial.glsl-24effd1d559ca58e8c73ba7fefecb6e2.res"]
+
+[params]
+

@@ -9,7 +9,6 @@ extends Node
 
 func _ready() -> void:
 	
-	
 	for script in metric_scripts:
 	
 		var average_error = 0.0
@@ -20,7 +19,6 @@ func _ready() -> void:
 		fitness_calculator.target_texture = target_texture
 		
 		for i in range(iterations):
-			
 			var t = Time.get_ticks_usec()
 			fitness_calculator.calculate_fitness(individual, source_texture)
 			average_error += f * individual.fitness

@@ -34,7 +34,7 @@ _src_texture = ExtResource("12_qyjx0")
 [sub_resource type="Resource" id="Resource_6x7vt"]
 script = ExtResource("11_d8j6l")
 position = Vector2i(0, 0)
-size = Vector2(1, 1)
+size = Vector2(100, 100)
 rotation = 0.0
 texture = SubResource("Texture2D_8r80a")
 tint = Color(1, 1, 1, 1)
@@ -45,5 +45,5 @@ script = ExtResource("1_pm2mh")
 target_texture = SubResource("Texture2D_dfntu")
 source_texture = SubResource("Texture2D_22c7c")
 metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj"), ExtResource("9_yti3h"), ExtResource("10_8pjxm")])
-iterations = 1
+iterations = 30
 individual = SubResource("Resource_6x7vt")
