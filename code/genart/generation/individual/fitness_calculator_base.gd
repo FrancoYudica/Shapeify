@@ -4,6 +4,7 @@ enum Type
 {
 	MPA_CEILab,
 	MPA_RGB,
+	MPA_RGB_PARTIAL,
 	MSE,
 	DELTA_E_1976,
 	DELTA_E_1994
@@ -37,6 +38,8 @@ static func factory_create(type: Type) -> FitnessCalculator:
 			return load("res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MPA_RGB:
 			return load("res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd").new()
+		FitnessCalculator.Type.MPA_RGB_PARTIAL:
+			return load("res://generation/individual/fitness_calculator/partial_mpa_RGB_fitness_calculator.gd").new()
 		FitnessCalculator.Type.MSE:
 			return load("res://generation/individual/fitness_calculator/mse_fitness_calculator.gd").new()
 		FitnessCalculator.Type.DELTA_E_1976:

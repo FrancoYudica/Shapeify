@@ -8,7 +8,12 @@ var _pipeline: RID
 
 # Uniform that holds the result
 var _output_uniform: RDUniform
+var _output_storage_buffer: RID
+
 var _samples_output_uniform: RDUniform
+var _samples_storage_buffer: RID
+
+var _uniform_set_rid: RID
 
 var _sample_texture_set_rid: RID
 var _id_texture_set_rid: RID
@@ -27,32 +32,6 @@ func sample_rect(rect: Rect2i) -> Color:
 	
 	var local_size_x = 256
 	var workgroup_size_x = ceili(float(pixel_count) / local_size_x)
-	
-	# Creates a storage buffer that holds the partial colors sum -----------------------------------
-	var color_sum_array = PackedFloat32Array()
-	color_sum_array.resize(workgroup_size_x * 4)
-	color_sum_array.fill(0.0)
-	var color_sum_bytes = color_sum_array.to_byte_array()
-	var color_sum_storage_buffer = _rd.storage_buffer_create(
-		color_sum_bytes.size(),
-		color_sum_bytes)
-		
-	# Creates a storage buffer that holds the partial samples count sum ----------------------------
-	var samples_count_array = PackedFloat32Array()
-	samples_count_array.resize(workgroup_size_x)
-	samples_count_array.fill(0.0)
-	var samples_count_bytes = samples_count_array.to_byte_array()
-	var samples_count_storage_buffer = _rd.storage_buffer_create(
-		samples_count_bytes.size(),
-		samples_count_bytes)
-		
-	_output_uniform.add_id(color_sum_storage_buffer)
-	_samples_output_uniform.add_id(samples_count_storage_buffer)
-	
-	var uniform_set_rid = _rd.uniform_set_create(
-		[_output_uniform, _samples_output_uniform], 
-		_shader, 
-		0)
 	
 	var push_constant := PackedFloat32Array([
 		# Vec2 texture size
@@ -75,7 +54,7 @@ func sample_rect(rect: Rect2i) -> Color:
 	# Run our compute _shader.
 	var compute_list := _rd.compute_list_begin()
 	_rd.compute_list_bind_compute_pipeline(compute_list, _pipeline)
-	_rd.compute_list_bind_uniform_set(compute_list, uniform_set_rid, 0)
+	_rd.compute_list_bind_uniform_set(compute_list, _uniform_set_rid, 0)
 	_rd.compute_list_bind_uniform_set(compute_list, _sample_texture_set_rid, 1)
 	_rd.compute_list_bind_uniform_set(compute_list, _id_texture_set_rid, 2)
 
@@ -90,12 +69,12 @@ func sample_rect(rect: Rect2i) -> Color:
 	_rd.sync()
 	
 	# Gets compute output. Note that buffer_get_data causes stall
-	var partial_colors_sum_output_bytes = _rd.buffer_get_data(color_sum_storage_buffer)
+	var partial_colors_sum_output_bytes = _rd.buffer_get_data(
+		_output_storage_buffer, 0, workgroup_size_x * 4 * 4)
 	var partial_colors_sum_output = partial_colors_sum_output_bytes.to_float32_array()
 
-	var partial_samples_sum_output_bytes = _rd.buffer_get_data(samples_count_storage_buffer)
+	var partial_samples_sum_output_bytes = _rd.buffer_get_data(_samples_storage_buffer, 0, workgroup_size_x * 4)
 	var partial_samples_sum = partial_samples_sum_output_bytes.to_float32_array()
-	
 	var sample_count = 0
 	for n in partial_samples_sum:
 		sample_count += n
@@ -109,16 +88,6 @@ func sample_rect(rect: Rect2i) -> Color:
 		accumulated_colors.b += partial_colors_sum_output[index + 2]
 		accumulated_colors.a += partial_colors_sum_output[index + 3]
 	
-	# Frees resouces
-	_rd.free_rid(color_sum_storage_buffer)
-	_rd.free_rid(samples_count_storage_buffer)
-
-	_output_uniform.clear_ids()
-	_samples_output_uniform.clear_ids()
-	
-	if _rd.uniform_set_is_valid(uniform_set_rid):
-		_rd.free_rid(uniform_set_rid)
-
 	return accumulated_colors / sample_count
 
 func _init() -> void:
@@ -126,6 +95,9 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
+		_rd.free_rid(_output_storage_buffer)
+		_rd.free_rid(_samples_storage_buffer)
+		_rd.free_rid(_uniform_set_rid)
 		_rd.free_rid(_sample_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
@@ -152,6 +124,31 @@ func _initialize_compute_code() -> void:
 	_samples_output_uniform = RDUniform.new()
 	_samples_output_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	_samples_output_uniform.binding = 1
+
+	# Creates a storage buffer that holds the partial colors sum -----------------------------------
+	var color_bytes = PackedByteArray()
+	color_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE)
+	color_bytes.fill(0)
+	
+	_output_storage_buffer = _rd.storage_buffer_create(
+		color_bytes.size(),
+		color_bytes)
+		
+	# Creates a storage buffer that holds the partial samples count sum ----------------------------
+	var samples_count_bytes = PackedByteArray()
+	samples_count_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE)
+	samples_count_bytes.fill(0)
+	_samples_storage_buffer = _rd.storage_buffer_create(
+		samples_count_bytes.size(),
+		samples_count_bytes)
+		
+	_output_uniform.add_id(_output_storage_buffer)
+	_samples_output_uniform.add_id(_samples_storage_buffer)
+	
+	_uniform_set_rid = _rd.uniform_set_create(
+		[_output_uniform, _samples_output_uniform], 
+		_shader, 
+		0)
 
 
 func _sample_texture_set():

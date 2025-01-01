@@ -1,7 +1,7 @@
 extends MPAPartialMetric
 
 const LOCAL_SIZE_X: int = 256
-const BUFFER_DATA_COUNT: int = 2000 * 2000 / LOCAL_SIZE_X
+var BUFFER_DATA_COUNT: int = Constants.MAX_COMPUTE_BUFFER_SIZE
 
 # Everything after this point is designed to run on our rendering thread.
 var _rd: RenderingDevice
@@ -21,7 +21,8 @@ var _new_source_texture_set_rid: RID
 
 
 var _mpa_metric: MPAMetric
-var _global_mpa_value: float
+var _global_metric_value: float
+var _global_value_invalidated: bool = true
 
 func _target_texture_set():
 	
@@ -30,7 +31,7 @@ func _target_texture_set():
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
 	_mpa_metric.target_texture = target_texture
-	_global_mpa_value = -1.0
+	_global_value_invalidated = true
 
 func _source_texture_set():
 	
@@ -38,7 +39,7 @@ func _source_texture_set():
 		_rd.free_rid(_source_texture_set_rid)
 	
 	_source_texture_set_rid = _create_texture_uniform_set(source_texture.rd_rid, 2)
-	_global_mpa_value = -1.0
+	_global_value_invalidated = true
 
 func _new_source_texture_set():
 	
@@ -51,9 +52,10 @@ func _new_source_texture_set():
 func _compute(subrect: Rect2i) -> float:
 	
 	# Calculates the global MPA value
-	if _global_mpa_value == -1.0:
+	if _global_value_invalidated:
 		_mpa_metric.power = power
-		_global_mpa_value = _mpa_metric.compute(source_texture)
+		_global_metric_value = _mpa_metric.compute(source_texture)
+		_global_value_invalidated = false
 	
 	var sample_texture_width = subrect.size.x
 	var sample_texture_height = subrect.size.y
@@ -103,7 +105,7 @@ func _compute(subrect: Rect2i) -> float:
 		
 	var delta_mpa = delta_mpa_sum / (target_texture.get_width() * target_texture.get_height() * 3.0)
 
-	var mpa = _global_mpa_value + delta_mpa
+	var mpa = _global_metric_value + delta_mpa
 	return mpa
 
 func _init() -> void:
@@ -139,10 +141,9 @@ func _initialize_compute_code() -> void:
 	_input_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	_input_uniform.binding = 0
 
-	var input_float_array = PackedFloat32Array()
-	input_float_array.resize(BUFFER_DATA_COUNT)
-	input_float_array.fill(0.0)
-	var input_bytes = input_float_array.to_byte_array()
+	var input_bytes = PackedByteArray()
+	input_bytes.resize(BUFFER_DATA_COUNT * 4)
+	input_bytes.fill(0)
 	_input_storage_buffer = _rd.storage_buffer_create(
 		input_bytes.size(),
 		input_bytes)

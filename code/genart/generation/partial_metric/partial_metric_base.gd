@@ -1,5 +1,7 @@
-# PartialMetric serves the same purpose as **Metric**, but it is optimized to calculate
-# the metric within a specific subregion of the textures, thereby avoiding unnecessary computations.
+## PartialMetric serves the same purpose as **Metric**, but it is optimized to calculate
+## the metric within a specific subregion of the textures, thereby avoiding unnecessary computations.
+## PartialMetric uses a shader that calculates the difference of the average metric withing a subrect
+## then this difference is added to the metric value of the entire texture.
 class_name PartialMetric extends RefCounted
 
 var metric_name: String = "Metric base"
