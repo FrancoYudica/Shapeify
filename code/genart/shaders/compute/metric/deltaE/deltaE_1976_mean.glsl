@@ -19,20 +19,34 @@ layout(set = 0, binding = 0, std430) restrict buffer ResultBuffer
     float partial_sums[];
 };
 
+layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
+{
+    float partial_weight_sums[];
+};
+
 // Image bindings
 layout(rgba32f, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
 layout(rgba32f, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
+layout(rgba32f, set = 3, binding = 0) uniform
+    restrict readonly image2D weight_image;
 
 // Variable shared by invocations of the same work group
 shared float shared_partial_sums[gl_WorkGroupSize.x];
+shared float shared_partial_weights_sum[gl_WorkGroupSize.x];
 
-float compute_delta_e(uint x, uint y)
+struct MetricData {
+    float value;
+    float weight;
+};
+
+MetricData compute_delta_e(uint x, uint y)
 {
     // Sample the target and source textures at the current pixel location
     vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
     vec4 source_pixel = imageLoad(source_image, ivec2(x, y));
+    vec4 weight_pixel = imageLoad(weight_image, ivec2(x, y));
 
     // Compute colors in CEILab color space
     vec3 target_lab = rgb2lab(target_pixel.rgb);
@@ -40,7 +54,9 @@ float compute_delta_e(uint x, uint y)
 
     // Calculates pixel delta e and adds to the shared buffer
     float pixel_delta_e = delta_e_1976(target_lab, source_lab);
-    return pixel_delta_e;
+
+    float weight = weight_pixel.r;
+    return MetricData(pixel_delta_e * weight, weight);
 }
 
 void main()
@@ -55,6 +71,7 @@ void main()
 
     // Initialize shared data
     shared_partial_sums[local_id] = 0.0;
+    shared_partial_weights_sum[local_id] = 0.0;
 
     barrier();
 
@@ -66,7 +83,9 @@ void main()
 
         // Ensure coordinates are within the valid image range
         if (y < params.texture_size.y) {
-            shared_partial_sums[local_id] = compute_delta_e(x, y);
+            MetricData data = compute_delta_e(x, y);
+            shared_partial_sums[local_id] = data.value;
+            shared_partial_weights_sum[local_id] = data.weight;
         }
     }
 
@@ -77,6 +96,7 @@ void main()
     for (uint stride = gl_WorkGroupSize.x / 2; stride > 0; stride /= 2) {
         if (local_id < stride) {
             shared_partial_sums[local_id] += shared_partial_sums[local_id + stride];
+            shared_partial_weights_sum[local_id] += shared_partial_weights_sum[local_id + stride];
         }
         barrier();
     }
@@ -84,5 +104,6 @@ void main()
     // Write the result of the reduction to the output buffer (only thread 0)
     if (local_id == 0) {
         partial_sums[group_id] = shared_partial_sums[0];
+        partial_weight_sums[group_id] = shared_partial_weights_sum[0];
     }
 }

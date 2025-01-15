@@ -11,6 +11,8 @@ func _generate() -> Individual:
 	
 	var genetic_params := params.genetic_params
 	
+	_fitness_calculator.weight_texture = weight_texture
+	
 	# Creates initial population
 	var population: Array[Individual] = _populator.generate_population(
 		genetic_params.population_size,

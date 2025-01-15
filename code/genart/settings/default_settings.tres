@@ -104,6 +104,7 @@ target_fitness = 0.9
 [sub_resource type="Resource" id="Resource_ej335"]
 script = ExtResource("9_l7xcl")
 type = 1
+weight_texture_generator_type = 0
 individual_generator_params = SubResource("Resource_5vsv2")
 individual_generator_type = 2
 stop_condition = 0

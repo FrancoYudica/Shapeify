@@ -10,6 +10,11 @@ enum Type
 
 @export var type: Type = Type.CUSTOM
 
+@export var weight_texture_generator_type := WeightTextureGenerator.Type.WHITE:
+	set(value):
+		weight_texture_generator_type = value
+		emit_changed()
+
 @export var individual_generator_params := IndividualGeneratorParams.new():
 	set(value):
 		individual_generator_params = value
@@ -40,6 +45,11 @@ enum Type
 		clear_color_params = value
 		emit_changed()
 
+@export var weight_texture_generator_params := WeightTextureGeneratorParams.new():
+	set(value):
+		weight_texture_generator_params = value
+		emit_changed()
+
 func to_dict():
 	return {
 		"stop_condition": StopCondition.Type.keys()[stop_condition],
@@ -53,3 +63,4 @@ func setup_changed_signals() -> void:
 	individual_generator_params.changed.connect(emit_changed)
 	stop_condition_params.changed.connect(emit_changed)
 	clear_color_params.changed.connect(emit_changed)
+	weight_texture_generator_params.changed.connect(emit_changed)

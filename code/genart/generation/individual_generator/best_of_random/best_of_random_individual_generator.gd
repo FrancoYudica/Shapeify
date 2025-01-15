@@ -9,6 +9,8 @@ func _generate() -> Individual:
 		params.best_of_random_params.individual_count, 
 		params.populator_params)
 	
+	_fitness_calculator.weight_texture = weight_texture
+	
 	# Queues all individuals for source texture rendering
 	for individual in population:
 		

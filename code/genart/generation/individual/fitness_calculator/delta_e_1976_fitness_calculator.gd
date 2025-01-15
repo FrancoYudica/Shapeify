@@ -12,6 +12,9 @@ func calculate_fitness(
 	source_texture: RendererTexture) -> void:
 	_individual_renderer.source_texture = source_texture
 	_individual_renderer.render_individual(individual)
+	
+	metric.weight_texture = weight_texture
+
 	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	
 	# Mapps error to normalized accuracy

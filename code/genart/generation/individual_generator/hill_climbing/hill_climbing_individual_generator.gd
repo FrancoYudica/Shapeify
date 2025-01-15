@@ -18,6 +18,7 @@ func mutate(individual: Individual) -> void:
 			)
 
 func _generate() -> Individual:
+	_fitness_calculator.weight_texture = weight_texture
 	
 	var individual = _populator.generate_one(params.populator_params)
 	_fix_individual_properties(individual)

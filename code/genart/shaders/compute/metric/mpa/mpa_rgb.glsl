@@ -16,17 +16,31 @@ layout(set = 0, binding = 0, std430) restrict buffer ResultBuffer
     float partial_mpa_sums[];
 };
 
+layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
+{
+    float partial_weight_sums[];
+};
+
 layout(rgba32f, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
 layout(rgba32f, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
+layout(rgba32f, set = 3, binding = 0) uniform
+    restrict readonly image2D weight_image;
 
 shared float shared_partial_mpa_sum[gl_WorkGroupSize.x];
+shared float shared_partial_weights_sum[gl_WorkGroupSize.x];
 
-float compute_mpa(uint x, uint y)
+struct MetricData {
+    float value;
+    float weight;
+};
+
+MetricData compute_mpa(uint x, uint y)
 {
     vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
     vec4 source_pixel = imageLoad(source_image, ivec2(x, y));
+    vec4 weight_pixel = imageLoad(weight_image, ivec2(x, y));
 
     vec3 diff = abs(target_pixel.rgb - source_pixel.rgb);
 
@@ -36,7 +50,9 @@ float compute_mpa(uint x, uint y)
     // Applies power to all channels, punishing those with lower fitness
     fitness_color = pow(fitness_color, vec3(params.power));
     float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
-    return fitness;
+
+    float weight = weight_pixel.r;
+    return MetricData(fitness * weight, weight);
 }
 
 void main()
@@ -51,6 +67,7 @@ void main()
 
     // Initialize shared data
     shared_partial_mpa_sum[local_id] = 0.0;
+    shared_partial_weights_sum[local_id] = 0.0;
 
     barrier();
 
@@ -62,7 +79,9 @@ void main()
 
         // Ensure coordinates are within the valid image range
         if (y < params.texture_size.y) {
-            shared_partial_mpa_sum[local_id] = compute_mpa(x, y);
+            MetricData data = compute_mpa(x, y);
+            shared_partial_mpa_sum[local_id] += data.value;
+            shared_partial_weights_sum[local_id] += data.weight;
         }
     }
 
@@ -73,6 +92,7 @@ void main()
     for (uint stride = gl_WorkGroupSize.x / 2; stride > 0; stride /= 2) {
         if (local_id < stride) {
             shared_partial_mpa_sum[local_id] += shared_partial_mpa_sum[local_id + stride];
+            shared_partial_weights_sum[local_id] += shared_partial_weights_sum[local_id + stride];
         }
         barrier();
     }
@@ -80,5 +100,6 @@ void main()
     // Write the result of the reduction to the output buffer (only thread 0)
     if (local_id == 0) {
         partial_mpa_sums[group_id] = shared_partial_mpa_sum[0];
+        partial_weight_sums[group_id] = shared_partial_weights_sum[0];
     }
 }

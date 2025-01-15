@@ -25,6 +25,12 @@ var new_source_texture: RendererTexture:
 			new_source_texture = texture
 			_new_source_texture_set()
 
+var weight_texture: RendererTexture:
+	set(texture):
+		if texture != weight_texture:
+			weight_texture = texture
+			_weight_texture_set()
+
 func _target_texture_set():
 	pass
 
@@ -32,6 +38,9 @@ func _source_texture_set():
 	pass
 
 func _new_source_texture_set():
+	pass
+	
+func _weight_texture_set():
 	pass
 
 func compute(subrect: Rect2i) -> float:
@@ -48,9 +57,14 @@ func compute(subrect: Rect2i) -> float:
 	if not new_source_texture.is_valid():
 		printerr("new_source_texture must be valid in Metric.compute()")
 		return -1.0
-	
+
+	if not weight_texture.is_valid():
+		printerr("new_source_texture must be valid in Metric.compute()")
+		return -1.0
+
 	if target_texture.get_size() != source_texture.get_size() \
-		|| source_texture.get_size() != new_source_texture.get_size():
+		|| target_texture.get_size() != new_source_texture.get_size() \
+		|| target_texture.get_size() != weight_texture.get_size():
 		printerr("Texture sizes doesn't match")
 		return -1.0
 	

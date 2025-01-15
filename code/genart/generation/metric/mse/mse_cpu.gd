@@ -3,15 +3,19 @@
 extends MSEMetric
 
 var target_image: Image = null
+var weight_image: Image = null
 var _target_texture_2d_rd: Texture2DRD
 
 func _init() -> void:
 	metric_name = "Mean squared error"
 
 func _target_texture_set():
-	# TODO: This might be leaking texture
-	_target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
-	target_image = _target_texture_2d_rd.get_image()
+	var target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
+	target_image = target_texture_2d_rd.get_image()
+
+func _weight_texture_set():
+	var weight_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(weight_texture.rd_rid)
+	weight_image = weight_texture_2d_rd.get_image()
 
 
 func _compute(source_texture: RendererTexture) -> float:
@@ -31,18 +35,19 @@ func _compute(source_texture: RendererTexture) -> float:
 	var height = target_image.get_height()
 	
 	# Calculates the sum of the squared differences
-	var accumulated = 0.0
+	var accumulated: float = 0.0
+	var total_weight: float = 0.0
 	for x in range(width):
 		for y in range(height):
 			var target_color = target_image.get_pixel(x, y)
 			var source_color = source_image.get_pixel(x, y)
+			var weight_color = weight_image.get_pixel(x, y)
 			var diff = target_color - source_color
 			var squared_diffs = diff.r * diff.r + diff.g * diff.g + diff.b * diff.b
-			accumulated += squared_diffs
+			accumulated += squared_diffs * weight_color.r
+			total_weight += weight_color.r
 			
 	# Calculates MSE
 	var num_channels = 3.0
-	var n = 1.0 / (width * height * num_channels)
-	var mse = accumulated * n
-	
+	var mse = accumulated / (total_weight * num_channels)
 	return mse

@@ -1,0 +1,94 @@
+[gd_scene load_steps=17 format=3 uid="uid://bclwkogyv2e3t"]
+
+[ext_resource type="Script" path="res://tests/image_processing/edge_detection_test.gd" id="1_3k4vw"]
+[ext_resource type="Script" path="res://generation/image_processing/sobel_edge_detection_processor.gd" id="2_1rgb5"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="3_3qab8"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="4_h8g1x"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="5_o8dwn"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="6_gldvy"]
+[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="7_k3cam"]
+[ext_resource type="Texture2D" uid="uid://cru6qvrruooer" path="res://art/test/mona_lisa_blurred.png" id="7_pytlw"]
+[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/sample_targets/BillieEilish.jpg" id="8_x2bus"]
+[ext_resource type="Texture2D" uid="uid://dklvfkvdj5dci" path="res://art/test/billie_blurred.png" id="9_lh0lm"]
+
+[sub_resource type="Texture2D" id="Texture2D_la15x"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_o8dwn")
+_src_texture = ExtResource("4_h8g1x")
+
+[sub_resource type="Texture2D" id="Texture2D_sajxa"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_o8dwn")
+_src_texture = ExtResource("6_gldvy")
+
+[sub_resource type="Texture2D" id="Texture2D_rkyiy"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_o8dwn")
+_src_texture = ExtResource("7_pytlw")
+
+[sub_resource type="Texture2D" id="Texture2D_kn3xs"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_o8dwn")
+_src_texture = ExtResource("8_x2bus")
+
+[sub_resource type="Texture2D" id="Texture2D_hnp4u"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_o8dwn")
+_src_texture = ExtResource("9_lh0lm")
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_hh7go"]
+
+[node name="EdgeDetectionTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3k4vw")
+process_script = ExtResource("2_1rgb5")
+textures = Array[ExtResource("3_3qab8")]([SubResource("Texture2D_la15x"), SubResource("Texture2D_sajxa"), SubResource("Texture2D_rkyiy"), SubResource("Texture2D_kn3xs"), SubResource("Texture2D_hnp4u")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("Texture2DRD_hh7go")
+script = ExtResource("7_k3cam")
+
+[node name="ChangeTextureButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Change texture"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -246.0
+offset_bottom = 66.0
+grow_horizontal = 0
+
+[node name="PowerSpinBox" type="SpinBox" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+step = 0.25
+value = 1.0
+prefix = "Power"
+
+[node name="ThresholdSpinBox" type="SpinBox" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+prefix = "Threshold"
+
+[connection signal="pressed" from="ChangeTextureButton" to="." method="_on_change_texture_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/PowerSpinBox" to="." method="_on_power_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ThresholdSpinBox" to="." method="_on_threshold_spin_box_value_changed"]

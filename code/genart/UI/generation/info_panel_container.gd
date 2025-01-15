@@ -7,7 +7,7 @@ extends PanelContainer
 @export var time_taken_value_label: Label
 @export var metric_score_label: Label
 @export var close_button: Button
-
+@export var weight_texture_rect: TextureRect
 @export var output_texture_holder: Node
 @export var image_generation: Node
 
@@ -17,6 +17,7 @@ var _clock: Clock
 
 func _ready() -> void:
 	_metric = metric_script.new() as Metric
+	weight_texture_rect.visible = false
 	
 	close_button.pressed.connect(
 		func():
@@ -35,13 +36,14 @@ func _ready() -> void:
 	image_generation.generation_started.connect(
 		func():
 			_clock = Clock.new()
+			weight_texture_rect.visible = true
 	)
 	
 	image_generation.generation_finished.connect(
 		func():
 			_clock = null
+			weight_texture_rect.visible = false
 	)
-
 
 
 func _process(delta: float) -> void:
@@ -71,7 +73,9 @@ func _process(delta: float) -> void:
 		var score = _metric.compute(output_texture_holder.renderer_texture)
 		metric_score_label.text = "%.6f" % score
 		_should_recalculate_metric = false
-
+	
+	weight_texture_rect.texture = output_texture_holder.weight_texture
+	
 func _ms_to_str(milliseconds: int) -> String:
 	var seconds = (milliseconds / 1000) % 60  # Seconds part
 	var ms = milliseconds % 1000  # Milliseconds part

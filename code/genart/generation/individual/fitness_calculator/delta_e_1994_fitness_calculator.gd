@@ -10,6 +10,9 @@ func _init() -> void:
 func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
+
+	metric.weight_texture = weight_texture
+
 	_individual_renderer.source_texture = source_texture
 	_individual_renderer.render_individual(individual)
 	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)

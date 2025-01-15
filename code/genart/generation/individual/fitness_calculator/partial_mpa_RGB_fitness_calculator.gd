@@ -12,6 +12,8 @@ func calculate_fitness(
 	individual: Individual,
 	source_texture: RendererTexture) -> void:
 	
+	metric.weight_texture = weight_texture
+	
 	# Gets individual's source texture
 	_individual_renderer.source_texture = source_texture
 	_individual_renderer.render_individual(individual)

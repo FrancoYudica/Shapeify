@@ -7,13 +7,18 @@ var _pipeline: RID
 
 # Uniform that holds the result
 var _output_uniform: RDUniform
+var _output_storage_buffer: RID
+
+var _weights_uniform: RDUniform
+var _weights_storage_buffer: RID
+
+var _uniform_set_rid: RID
 
 ## Textures and texture sets
 var _target_texture_set_rid: RID
+var _weight_texture_set_rid: RID
 var _source_texture_set_rid: RID
 
-# Array where the calculations results are stored
-var _result_bytes := PackedByteArray()
 
 func _target_texture_set():
 	
@@ -21,6 +26,13 @@ func _target_texture_set():
 		_rd.free_rid(_target_texture_set_rid)
 	
 	_target_texture_set_rid = _create_texture_uniform_set(target_texture.rd_rid, 1)
+
+func _weight_texture_set():
+	
+	if _weight_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_weight_texture_set_rid):
+		_rd.free_rid(_weight_texture_set_rid)
+	
+	_weight_texture_set_rid = _create_texture_uniform_set(weight_texture.rd_rid, 3)
 
 var _previous_source_texture_rd_rid: RID
 
@@ -41,21 +53,6 @@ func _compute(source_texture: RendererTexture) -> float:
 	var local_size_x = 256
 	var workgroup_size_x = ceili(float(pixel_count) / local_size_x)
 	
-	# Creates the buffer, that will hold the actual data that the CPU will send to the GPU
-	var result_float_array = PackedFloat32Array()
-	result_float_array.resize(workgroup_size_x)
-	result_float_array.fill(0.0)
-	_result_bytes = result_float_array.to_byte_array()
-	
-	# Ensures synchronization, since the execute_compute function also uses
-	var storage_buffer_result_rid = _rd.storage_buffer_create(
-		_result_bytes.size(),
-		_result_bytes)
-		
-	_output_uniform.add_id(storage_buffer_result_rid)
-	
-	var uniform_set_rid = _rd.uniform_set_create([_output_uniform], _shader, 0)
-	
 	var push_constant := PackedFloat32Array([
 		# Vec2 texture size
 		texture_width,
@@ -67,9 +64,10 @@ func _compute(source_texture: RendererTexture) -> float:
 	# Run our compute _shader.
 	var compute_list := _rd.compute_list_begin()
 	_rd.compute_list_bind_compute_pipeline(compute_list, _pipeline)
-	_rd.compute_list_bind_uniform_set(compute_list, uniform_set_rid, 0)
+	_rd.compute_list_bind_uniform_set(compute_list, _uniform_set_rid, 0)
 	_rd.compute_list_bind_uniform_set(compute_list, _target_texture_set_rid, 1)
 	_rd.compute_list_bind_uniform_set(compute_list, _source_texture_set_rid, 2)
+	_rd.compute_list_bind_uniform_set(compute_list, _weight_texture_set_rid, 3)
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 
@@ -79,17 +77,20 @@ func _compute(source_texture: RendererTexture) -> float:
 	_rd.compute_list_end()
 	
 	# Gets compute output. Note that buffer_get_data causes stall
-	var output_bytes = _rd.buffer_get_data(storage_buffer_result_rid)
-	var output = output_bytes.to_float32_array()
-	var delta_e_sum = 0.0
-	for n in output:
+	var output_bytes = _rd.buffer_get_data(_output_storage_buffer, 0, workgroup_size_x * 4)
+	var partial_sums = output_bytes.to_float32_array()
+	var delta_e_sum: float = 0.0
+	for n in partial_sums:
 		delta_e_sum += n
-	var delta_e = delta_e_sum / (texture_width * texture_height)
 	
-	# Frees resouces
-	_rd.free_rid(storage_buffer_result_rid)
-	_output_uniform.clear_ids()
-	return delta_e
+	var weights_output_bytes = _rd.buffer_get_data(_weights_storage_buffer, 0, workgroup_size_x * 4)
+	var weights_partial_sums = weights_output_bytes.to_float32_array()
+	var total_weights: float = 0.0
+	for n in weights_partial_sums:
+		total_weights += n
+
+	var avg_delta_e = delta_e_sum / total_weights
+	return avg_delta_e
 
 func _init() -> void:
 	_initialize_compute_code()
@@ -97,10 +98,11 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		if _rd.uniform_set_is_valid(_target_texture_set_rid):
-			_rd.free_rid(_target_texture_set_rid)
-		if _rd.uniform_set_is_valid(_source_texture_set_rid):
-			_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_output_storage_buffer)
+		_rd.free_rid(_weights_storage_buffer)
+		_rd.free_rid(_target_texture_set_rid)
+		_rd.free_rid(_source_texture_set_rid)
+		_rd.free_rid(_weight_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 
@@ -121,6 +123,31 @@ func _initialize_compute_code() -> void:
 	_output_uniform = RDUniform.new()
 	_output_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	_output_uniform.binding = 0
+
+	var bytes = PackedByteArray()
+	bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE * 4)
+	bytes.fill(0)
+	_output_storage_buffer = _rd.storage_buffer_create(
+		bytes.size(),
+		bytes)
+	_output_uniform.add_id(_output_storage_buffer)
+
+	
+	# Uniform where weights results are stored
+	_weights_uniform = RDUniform.new()
+	_weights_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
+	_weights_uniform.binding = 1
+
+	var weight_bytes = PackedByteArray()
+	weight_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE * 4)
+	weight_bytes.fill(0)
+	_weights_storage_buffer = _rd.storage_buffer_create(
+		weight_bytes.size(),
+		weight_bytes)
+	_weights_uniform.add_id(_weights_storage_buffer)
+	
+	# Cretates uniform set in set = 0
+	_uniform_set_rid = _rd.uniform_set_create([_output_uniform, _weights_uniform], _shader, 0)
 	
 
 ## Creates an uniform set containing the texture

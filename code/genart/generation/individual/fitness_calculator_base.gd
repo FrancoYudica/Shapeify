@@ -20,6 +20,8 @@ var target_texture: RendererTexture:
 		target_texture = texture
 		_target_texture_set()
 
+var weight_texture: RendererTexture
+
 ## Given the individual and source texture (individual musn't be rendered on source_texture) 
 ## `calculate_fitness` sets the fitness to the individual. Note that fitness is a normalized value
 ## in range [0.0, 1.0]

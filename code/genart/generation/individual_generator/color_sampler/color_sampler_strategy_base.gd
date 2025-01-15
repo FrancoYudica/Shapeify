@@ -4,7 +4,8 @@ class_name ColorSamplerStrategy extends RefCounted
 enum Type
 {
 	SUB_RECT,
-	MASKED
+	MASKED,
+	WHITE
 }
 
 @export var sample_texture: RendererTexture:
@@ -24,6 +25,8 @@ static func factory_create(type: Type) -> ColorSamplerStrategy:
 			return load("res://generation/individual_generator/color_sampler/subrect_color_sampler_strategy.gd").new()
 		Type.MASKED:
 			return load("res://generation/individual_generator/color_sampler/masked_color_sampler_strategy.gd").new()
+		Type.WHITE:
+			return load("res://generation/individual_generator/color_sampler/white_color_sampler_strategy.gd").new()
 		_:
 			push_error("Unimplemented color sampler of type: %s" % Type.keys()[type])
 			return null

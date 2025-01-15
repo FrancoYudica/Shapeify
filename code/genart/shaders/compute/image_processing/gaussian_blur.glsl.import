@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://be7gj753wrefb"
+path="res://.godot/imported/gaussian_blur.glsl-6b6fabaa0f615cc042e9d4bc971eb8cd.res"
+
+[deps]
+
+source_file="res://shaders/compute/image_processing/gaussian_blur.glsl"
+dest_files=["res://.godot/imported/gaussian_blur.glsl-6b6fabaa0f615cc042e9d4bc971eb8cd.res"]
+
+[params]
+

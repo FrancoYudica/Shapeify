@@ -95,10 +95,10 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		_rd.free_rid(_output_storage_buffer)
-		_rd.free_rid(_samples_storage_buffer)
 		_rd.free_rid(_uniform_set_rid)
 		_rd.free_rid(_sample_texture_set_rid)
+		_rd.free_rid(_output_storage_buffer)
+		_rd.free_rid(_samples_storage_buffer)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 		

@@ -12,6 +12,9 @@ var _stop: bool = false
 var _stop_condition: StopCondition
 var _individual_renderer: IndividualRenderer
 var _generating: bool = false
+var _weight_texture_generator: WeightTextureGenerator
+
+var weight_texture: RendererTexture
 
 func update_target_texture(target_texture: RendererTexture):
 	individual_generator.update_target_texture(target_texture)
@@ -37,6 +40,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		individual_generator.source_texture = first_src_texture
 		
 	var source_texture = individual_generator.source_texture
+	var target_texture = params.individual_generator_params.target_texture
 	_individual_renderer.source_texture = source_texture
 	
 	_generating = true
@@ -49,8 +53,26 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			break
 		_mutex.unlock()
 		
+		
+		# Generates weight texture
 		texture_mutex.lock()
+		weight_texture = _weight_texture_generator.generate(
+			_stop_condition.get_progress(),
+			target_texture)
+		texture_mutex.unlock()
+		
+		if weight_texture == null:
+			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
+			break
+		
+		if weight_texture.get_size() != target_texture.get_size():
+			Notifier.call_deferred("notify_error", ("Weight texture doesn't match target texture resolution. Weight(%sx%s) Target(%sx%s)" % [weight_texture.get_width(), weight_texture.get_height(), target_texture.get_width(), target_texture.get_height()]))
+			break
+		
+		individual_generator.weight_texture = weight_texture
+		
 		# Generates individual
+		texture_mutex.lock()
 		var individual: Individual = individual_generator.generate_individual()
 		
 		# Renders the individual onto the source texture
@@ -66,6 +88,28 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	return individual_generator.source_texture
 
+
+var _current_individual_generator_type: int = -1
+
+func setup():
+	_stop = false
+	_stop_condition = StopCondition.factory_create(params.stop_condition)
+	_stop_condition.set_params(params.stop_condition_params)
+	
+	# Setup individual generator -----------------------------------------------
+	if _current_individual_generator_type != params.individual_generator_type:
+		individual_generator = IndividualGenerator.factory_create(params.individual_generator_type)
+		_current_individual_generator_type = params.individual_generator_type
+
+	individual_generator.params = params.individual_generator_params
+	
+	_weight_texture_generator = WeightTextureGenerator.factory_create(params.weight_texture_generator_type)
+	_weight_texture_generator.set_params(params.weight_texture_generator_params)
+	
+func _init() -> void:
+	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
+
+
 func copy_source_texture_contents(dest: Texture2DRD):
 	
 	if not dest.texture_rd_rid.is_valid():
@@ -80,21 +124,21 @@ func copy_source_texture_contents(dest: Texture2DRD):
 		RenderingServer.get_rendering_device()
 	)
 	texture_mutex.unlock()
-	
-	
-var _current_individual_generator_type: int = -1
 
-func setup():
-	_stop = false
-	_stop_condition = StopCondition.factory_create(params.stop_condition)
-	_stop_condition.set_params(params.stop_condition_params)
+func copy_weight_texture_contents(dest: Texture2DRD):
 	
-	# Setup individual generator -----------------------------------------------
-	if _current_individual_generator_type != params.individual_generator_type:
-		individual_generator = IndividualGenerator.factory_create(params.individual_generator_type)
-		_current_individual_generator_type = params.individual_generator_type
-
-	individual_generator.params = params.individual_generator_params
-
-func _init() -> void:
-	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
+	if not dest.texture_rd_rid.is_valid():
+		return
+	
+	if weight_texture == null:
+		return
+	
+	texture_mutex.lock()
+	
+	RenderingCommon.texture_copy(
+		weight_texture.rd_rid,
+		dest.texture_rd_rid,
+		Renderer.rd,
+		RenderingServer.get_rendering_device()
+	)
+	texture_mutex.unlock()

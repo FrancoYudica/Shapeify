@@ -15,7 +15,7 @@ var _individual_renderer: IndividualRenderer
 var _populator: Populator
 
 var source_texture: RendererTexture
-
+var weight_texture: RendererTexture
 
 var params: IndividualGeneratorParams:
 	set(value):
