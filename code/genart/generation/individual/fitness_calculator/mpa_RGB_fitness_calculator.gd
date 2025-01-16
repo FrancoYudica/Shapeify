@@ -4,7 +4,7 @@ var metric: MPAMetric
 var _individual_renderer: IndividualRenderer
 
 func _init() -> void:
-	metric = load("res://generation/metric/mpa/mpa_RGB_metric.gd").new()
+	metric = Metric.factory_create(Metric.Type.MPA_RGB) as MPAMetric
 	_individual_renderer = IndividualRenderer.new()
 
 func calculate_fitness(

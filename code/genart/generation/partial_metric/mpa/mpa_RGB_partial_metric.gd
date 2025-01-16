@@ -111,7 +111,7 @@ func _compute(subrect: Rect2i) -> float:
 func _init() -> void:
 	_initialize_compute_code()
 	metric_name = "MPA RGB Partial"
-	_mpa_metric = load("res://generation/metric/mpa/mpa_RGB_metric.gd").new()
+	_mpa_metric = Metric.factory_create(Metric.Type.MPA_RGB)
 	
 
 func _notification(what: int) -> void:

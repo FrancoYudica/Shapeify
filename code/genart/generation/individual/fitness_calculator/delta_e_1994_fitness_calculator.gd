@@ -4,7 +4,7 @@ var metric: DeltaEMetric
 var _individual_renderer: IndividualRenderer
 
 func _init() -> void:
-	metric = load("res://generation/metric/delta_e/delta_e_1994_mean.gd").new()
+	metric = Metric.factory_create(Metric.Type.DELTA_E_1994) as DeltaEMetric
 	_individual_renderer = IndividualRenderer.new()
 
 func calculate_fitness(
