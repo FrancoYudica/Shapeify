@@ -100,9 +100,12 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		_rd.free_rid(_output_storage_buffer)
 		_rd.free_rid(_weights_storage_buffer)
-		_rd.free_rid(_target_texture_set_rid)
-		_rd.free_rid(_source_texture_set_rid)
-		_rd.free_rid(_weight_texture_set_rid)
+		if _target_texture_set_rid.is_valid():
+			_rd.free_rid(_target_texture_set_rid)
+		if _source_texture_set_rid.is_valid():
+			_rd.free_rid(_source_texture_set_rid)
+		if _weight_texture_set_rid.is_valid():
+			_rd.free_rid(_weight_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 

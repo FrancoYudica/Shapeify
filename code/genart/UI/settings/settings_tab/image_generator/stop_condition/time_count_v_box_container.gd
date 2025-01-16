@@ -1,7 +1,7 @@
 
 extends VBoxContainer
 
-@onready var execution_time := $ExecutionTimeSpinBox
+@export var execution_time: SpinBox
 var _params : ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params

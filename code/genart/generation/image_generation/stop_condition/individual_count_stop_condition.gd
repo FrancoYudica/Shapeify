@@ -6,7 +6,10 @@ var _stop_count: int = 10
 func began_generating():
 	_generated_count = 0
 
-func individual_generated(individual: Individual):
+func individual_generated(
+	source_texture: RendererTexture,
+	target_texture: RendererTexture,
+	individual: Individual):
 	_generated_count += 1
 	
 func should_stop() -> bool:

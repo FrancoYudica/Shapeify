@@ -81,7 +81,10 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		texture_mutex.unlock()
 		
 		individual_generated.emit(individual)
-		_stop_condition.individual_generated(individual)
+		_stop_condition.individual_generated(
+			source_texture,
+			target_texture,
+			individual)
 	
 	_generating = false
 	Profiler.image_generation_finished(individual_generator.source_texture)

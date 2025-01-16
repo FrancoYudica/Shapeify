@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var individual_count := $IndividualCountSpinBox
+@export var individual_count: SpinBox
 var _params : ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params

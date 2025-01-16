@@ -4,6 +4,15 @@
 ## error is being calculated.
 class_name Metric extends RefCounted
 
+enum Type
+{
+	MPA_CEILab,
+	MPA_RGB,
+	MSE,
+	DELTA_E_1976,
+	DELTA_E_1994
+}
+
 var metric_name: String = "Metric base"
 
 var target_texture: RendererTexture:
@@ -58,3 +67,20 @@ func compute(source_texture: RendererTexture) -> float:
 	
 func _compute(source_texture: RendererTexture) -> float:
 	return -1.0
+
+
+static func factory_create(type: Type) -> Metric:
+	match type:
+		Type.MPA_CEILab:
+			return load("res://generation/metric/mpa/mpa_CEILab_metric.gd").new()
+		Type.MPA_RGB:
+			return load("res://generation/metric/mpa/mpa_RGB_metric.gd").new()
+		Type.MSE:
+			return load("res://generation/metric/mse/mse_compute.gd").new()
+		Type.DELTA_E_1976:
+			return load("res://generation/metric/delta_e/delta_e_1976_mean.gd").new()
+		Type.DELTA_E_1994:
+			return load("res://generation/metric/delta_e/delta_e_1994_mean.gd").new()
+		_:
+			push_error("Unimplemented factory_create(type: %s)" % type)
+			return null

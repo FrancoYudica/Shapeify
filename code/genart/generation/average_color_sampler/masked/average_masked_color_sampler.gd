@@ -127,7 +127,7 @@ func _initialize_compute_code() -> void:
 
 	# Creates a storage buffer that holds the partial colors sum -----------------------------------
 	var color_bytes = PackedByteArray()
-	color_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE)
+	color_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE * 4)
 	color_bytes.fill(0)
 	
 	_output_storage_buffer = _rd.storage_buffer_create(
@@ -136,7 +136,7 @@ func _initialize_compute_code() -> void:
 		
 	# Creates a storage buffer that holds the partial samples count sum ----------------------------
 	var samples_count_bytes = PackedByteArray()
-	samples_count_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE)
+	samples_count_bytes.resize(Constants.MAX_COMPUTE_BUFFER_SIZE * 4)
 	samples_count_bytes.fill(0)
 	_samples_storage_buffer = _rd.storage_buffer_create(
 		samples_count_bytes.size(),
