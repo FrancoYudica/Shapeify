@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=54 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=77 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -40,6 +40,25 @@
 [ext_resource type="Texture2D" uid="uid://bvl2a0m0bd7j2" path="res://art/individual_textures_group/emoji/Dropped Image (13).png" id="37_t7blk"]
 [ext_resource type="Texture2D" uid="uid://cip0lr26kh35c" path="res://art/individual_textures_group/emoji/Dropped Image.png" id="38_5fofv"]
 [ext_resource type="Script" path="res://generation/app_settings.gd" id="39_t5xji"]
+[ext_resource type="Texture2D" uid="uid://cqdww7kohygiv" path="res://art/individual_textures_group/polygons/rhomboid.png" id="40_dova5"]
+[ext_resource type="Texture2D" uid="uid://c7m6r47sqjh5c" path="res://art/individual_textures_group/polygons/triangle0.png" id="41_edoef"]
+[ext_resource type="Texture2D" uid="uid://diikdmcqdmuch" path="res://art/individual_textures_group/polygons/octagon.png" id="42_sdcaa"]
+[ext_resource type="Texture2D" uid="uid://db0cyur7hhb2i" path="res://art/individual_textures_group/polygons/cross.png" id="43_7whp6"]
+[ext_resource type="Texture2D" uid="uid://dom1peclos8lt" path="res://art/individual_textures_group/polygons/pentagon.png" id="44_mh6gi"]
+[ext_resource type="Texture2D" uid="uid://c1u4m3uwto7vv" path="res://art/individual_textures_group/rings/ring0.png" id="45_rs73q"]
+[ext_resource type="Texture2D" uid="uid://bbn6lwgwfalw0" path="res://art/individual_textures_group/rings/ring1.png" id="46_67cgg"]
+[ext_resource type="Texture2D" uid="uid://exe2ai1q0vs4" path="res://art/individual_textures_group/rings/ring2.png" id="47_hn0gq"]
+[ext_resource type="Texture2D" uid="uid://b0mb7j3lpph46" path="res://art/individual_textures_group/rings/ring3.png" id="48_qgd35"]
+[ext_resource type="Texture2D" uid="uid://dbk1mqayeq6xh" path="res://art/individual_textures_group/rings/ring4.png" id="49_mnsp6"]
+[ext_resource type="Texture2D" uid="uid://cf123iddm3oks" path="res://art/individual_textures_group/rings/ring5.png" id="50_xr135"]
+[ext_resource type="Texture2D" uid="uid://cnu5lwht36h4n" path="res://art/individual_textures_group/gears/gear0.png" id="51_lofcj"]
+[ext_resource type="Texture2D" uid="uid://jhjvv41fkx1c" path="res://art/individual_textures_group/gears/gear1.png" id="52_ivegt"]
+[ext_resource type="Texture2D" uid="uid://bltcrbkxvii0g" path="res://art/individual_textures_group/curves/curve0.png" id="53_c6gp7"]
+[ext_resource type="Texture2D" uid="uid://dpgiq8orw4a5g" path="res://art/individual_textures_group/curves/curve1.png" id="54_13xx1"]
+[ext_resource type="Texture2D" uid="uid://dor770t15k23e" path="res://art/individual_textures_group/curves/curve2.png" id="55_6kwt7"]
+[ext_resource type="Texture2D" uid="uid://4fbigonu2hcy" path="res://art/individual_textures_group/curves/curve3.png" id="56_yd108"]
+[ext_resource type="Texture2D" uid="uid://b1llvvb6ljcxn" path="res://art/individual_textures_group/curves/curve4.png" id="57_ugd8r"]
+[ext_resource type="Texture2D" uid="uid://e7mtp56c4een" path="res://art/individual_textures_group/curves/curve5.png" id="58_yuoen"]
 
 [sub_resource type="Resource" id="Resource_yhknk"]
 script = ExtResource("2_oxdqy")
@@ -100,6 +119,7 @@ script = ExtResource("10_mxc8r")
 individual_count = 200
 execution_time = 100.0
 target_fitness = 0.9
+metric_type = 4
 
 [sub_resource type="Resource" id="Resource_ej335"]
 script = ExtResource("9_l7xcl")
@@ -132,10 +152,30 @@ script = ExtResource("11_f4wjl")
 name = "Emojis"
 textures = Array[Texture]([ExtResource("26_g1xw6"), ExtResource("27_y0de6"), ExtResource("28_mfts7"), ExtResource("29_jyuit"), ExtResource("30_8xuce"), ExtResource("31_x58bt"), ExtResource("32_pxp60"), ExtResource("33_ixq4v"), ExtResource("34_c2c8n"), ExtResource("35_1g6mw"), ExtResource("36_jukan"), ExtResource("37_t7blk"), ExtResource("38_5fofv")])
 
+[sub_resource type="Resource" id="Resource_e4kka"]
+script = ExtResource("11_f4wjl")
+name = "Polygons"
+textures = Array[Texture]([ExtResource("40_dova5"), ExtResource("41_edoef"), ExtResource("42_sdcaa"), ExtResource("43_7whp6"), ExtResource("44_mh6gi")])
+
+[sub_resource type="Resource" id="Resource_c7n1q"]
+script = ExtResource("11_f4wjl")
+name = "Rings"
+textures = Array[Texture]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), ExtResource("47_hn0gq"), ExtResource("48_qgd35"), ExtResource("49_mnsp6"), ExtResource("50_xr135")])
+
+[sub_resource type="Resource" id="Resource_ixunu"]
+script = ExtResource("11_f4wjl")
+name = "Gears"
+textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt")])
+
+[sub_resource type="Resource" id="Resource_vsdhb"]
+script = ExtResource("11_f4wjl")
+name = "Curves"
+textures = Array[Texture]([ExtResource("53_c6gp7"), ExtResource("54_13xx1"), ExtResource("55_6kwt7"), ExtResource("56_yd108"), ExtResource("57_ugd8r"), ExtResource("58_yuoen")])
+
 [resource]
 script = ExtResource("39_t5xji")
 image_generator_params = SubResource("Resource_ej335")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
-individuals_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8")])
+individuals_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8"), SubResource("Resource_e4kka"), SubResource("Resource_c7n1q"), SubResource("Resource_ixunu"), SubResource("Resource_vsdhb")])
 render_while_generating = true
