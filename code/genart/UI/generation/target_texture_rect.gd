@@ -19,6 +19,39 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 		
 	var renderer_texture := RendererTexture.load_from_path(filepath)
 	
+	# If the pixel count is greater than the limit, the texture is downscaled to
+	# satisfy the pixel count constraint
+	var src_width =  renderer_texture.get_width()
+	var src_height = renderer_texture.get_height()
+	var pixel_count = src_width * src_height
+	if pixel_count > Constants.MAX_PIXEL_COUNT:
+		var aspect_ratio = float(src_width) / src_height
+		
+		var new_height = floori(sqrt(Constants.MAX_PIXEL_COUNT / aspect_ratio))
+		var new_width = floori(aspect_ratio * new_height)
+		
+		Renderer.begin_frame(Vector2i(new_width, new_height))
+		Renderer.render_sprite(
+			Vector2(new_width, new_height) * 0.5,
+			Vector2(new_width, new_height),
+			0.0,
+			Color.WHITE,
+			renderer_texture,
+			0)
+		Renderer.end_frame()
+		
+		renderer_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+
+		Notifier.notify_warning(
+			"Target texture resolution is %sx%s, which has too many pixels to process.\n\
+			Target texture was downscaled to resolution %sx%s. \n\
+			Keep in mind that larger textures take longer to compute" % [
+			src_width,
+			src_height,
+			new_width,
+			new_height
+		])
+
 	if renderer_texture == null or not renderer_texture.is_valid():
 		Notifier.notify_error("Unable to load texture")
 		return
