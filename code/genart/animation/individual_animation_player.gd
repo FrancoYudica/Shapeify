@@ -5,19 +5,7 @@ var _animator_strategy: IndividualAnimatorStrategy
 var animator := IndividualAnimatorStrategy.Type.TIMELINE:
 	set(type):
 		animator = type
-		match(type):
-			IndividualAnimatorStrategy.Type.TIMELINE:
-				_animator_strategy = load("res://animation/animator_strategy/individual_animator_timeline_strategy.gd").new()
-			IndividualAnimatorStrategy.Type.TIMELINE_SCALE:
-				_animator_strategy = load("res://animation/animator_strategy/individual_animator_timeline_scale_strategy.gd").new()
-			IndividualAnimatorStrategy.Type.TRANSLATE_TOP:
-				_animator_strategy = load("res://animation/animator_strategy/individual_animator_translate_top_strategy.gd").new()
-			IndividualAnimatorStrategy.Type.WAVE_FROM_LEFT:
-				_animator_strategy = load("res://animation/animator_strategy/individual_animator_wave_from_left_strategy.gd").new()
-			IndividualAnimatorStrategy.Type.SCALE_ALL:
-				_animator_strategy = load("res://animation/animator_strategy/individual_animator_scale_all_strategy.gd").new()
-			_:
-				push_error("Unimplemented _animator_strategy type")
+		_animator_strategy = IndividualAnimatorStrategy.factory_create(type)
 
 func animate(
 	individuals: Array[Individual],
