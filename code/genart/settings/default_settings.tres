@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=77 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=95 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -54,11 +54,27 @@
 [ext_resource type="Texture2D" uid="uid://cnu5lwht36h4n" path="res://art/individual_textures_group/gears/gear0.png" id="51_lofcj"]
 [ext_resource type="Texture2D" uid="uid://jhjvv41fkx1c" path="res://art/individual_textures_group/gears/gear1.png" id="52_ivegt"]
 [ext_resource type="Texture2D" uid="uid://bltcrbkxvii0g" path="res://art/individual_textures_group/curves/curve0.png" id="53_c6gp7"]
+[ext_resource type="Texture2D" uid="uid://d1hmiwmng68m7" path="res://art/individual_textures_group/gears/gear2.png" id="53_qeeeg"]
 [ext_resource type="Texture2D" uid="uid://dpgiq8orw4a5g" path="res://art/individual_textures_group/curves/curve1.png" id="54_13xx1"]
 [ext_resource type="Texture2D" uid="uid://dor770t15k23e" path="res://art/individual_textures_group/curves/curve2.png" id="55_6kwt7"]
 [ext_resource type="Texture2D" uid="uid://4fbigonu2hcy" path="res://art/individual_textures_group/curves/curve3.png" id="56_yd108"]
 [ext_resource type="Texture2D" uid="uid://b1llvvb6ljcxn" path="res://art/individual_textures_group/curves/curve4.png" id="57_ugd8r"]
 [ext_resource type="Texture2D" uid="uid://e7mtp56c4een" path="res://art/individual_textures_group/curves/curve5.png" id="58_yuoen"]
+[ext_resource type="Texture2D" uid="uid://7feaqdt8v0wd" path="res://art/individual_textures_group/water_droplets/water_droplet0.png" id="59_w31nu"]
+[ext_resource type="Texture2D" uid="uid://b1can88gwippa" path="res://art/individual_textures_group/water_droplets/water_droplet1.png" id="60_ybbp7"]
+[ext_resource type="Texture2D" uid="uid://cpube3wt85et6" path="res://art/individual_textures_group/water_droplets/water_droplet2.png" id="61_vxk4f"]
+[ext_resource type="Texture2D" uid="uid://daaqtr6k14tlu" path="res://art/individual_textures_group/water_droplets/water_droplet3.png" id="62_bhmbp"]
+[ext_resource type="Texture2D" uid="uid://d3tufnguvwgji" path="res://art/individual_textures_group/water_droplets/water_droplet4.png" id="63_8oo51"]
+[ext_resource type="Texture2D" uid="uid://dvhlqi6csrs08" path="res://art/individual_textures_group/pixelart_numbers/0_pixelart.png" id="65_womos"]
+[ext_resource type="Texture2D" uid="uid://ca4q7ra23urpt" path="res://art/individual_textures_group/pixelart_numbers/1_pixelart.png" id="66_dr8hs"]
+[ext_resource type="Texture2D" uid="uid://c4snt6var63fx" path="res://art/individual_textures_group/pixelart_numbers/2_pixelart.png" id="67_xc8ua"]
+[ext_resource type="Texture2D" uid="uid://cnjay45rb2tsj" path="res://art/individual_textures_group/pixelart_numbers/3_pixelart.png" id="68_2b84e"]
+[ext_resource type="Texture2D" uid="uid://oia3mlhxy2co" path="res://art/individual_textures_group/pixelart_numbers/4_pixelart.png" id="69_u6keu"]
+[ext_resource type="Texture2D" uid="uid://phdacjlrqdrp" path="res://art/individual_textures_group/pixelart_numbers/5_pixelart.png" id="70_5edn1"]
+[ext_resource type="Texture2D" uid="uid://c0ssi32m4omwg" path="res://art/individual_textures_group/pixelart_numbers/6_pixelart.png" id="71_ghpdn"]
+[ext_resource type="Texture2D" uid="uid://cmvhsv2j7in0i" path="res://art/individual_textures_group/pixelart_numbers/7_pixelart.png" id="72_itasb"]
+[ext_resource type="Texture2D" uid="uid://lc21i0rrgp6f" path="res://art/individual_textures_group/pixelart_numbers/8_pixelart.png" id="73_dxtsd"]
+[ext_resource type="Texture2D" uid="uid://ppueuselhdj4" path="res://art/individual_textures_group/pixelart_numbers/9_pixelart.png" id="74_tvqj3"]
 
 [sub_resource type="Resource" id="Resource_yhknk"]
 script = ExtResource("2_oxdqy")
@@ -165,17 +181,27 @@ textures = Array[Texture]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), Ext
 [sub_resource type="Resource" id="Resource_ixunu"]
 script = ExtResource("11_f4wjl")
 name = "Gears"
-textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt")])
+textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt"), ExtResource("53_qeeeg")])
 
 [sub_resource type="Resource" id="Resource_vsdhb"]
 script = ExtResource("11_f4wjl")
 name = "Curves"
 textures = Array[Texture]([ExtResource("53_c6gp7"), ExtResource("54_13xx1"), ExtResource("55_6kwt7"), ExtResource("56_yd108"), ExtResource("57_ugd8r"), ExtResource("58_yuoen")])
 
+[sub_resource type="Resource" id="Resource_p1s0e"]
+script = ExtResource("11_f4wjl")
+name = "Water droplets"
+textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), ExtResource("61_vxk4f"), ExtResource("62_bhmbp"), ExtResource("63_8oo51")])
+
+[sub_resource type="Resource" id="Resource_7i1d8"]
+script = ExtResource("11_f4wjl")
+name = "Pixelart numbers"
+textures = Array[Texture]([ExtResource("65_womos"), ExtResource("66_dr8hs"), ExtResource("67_xc8ua"), ExtResource("68_2b84e"), ExtResource("69_u6keu"), ExtResource("70_5edn1"), ExtResource("71_ghpdn"), ExtResource("72_itasb"), ExtResource("73_dxtsd"), ExtResource("74_tvqj3")])
+
 [resource]
 script = ExtResource("39_t5xji")
 image_generator_params = SubResource("Resource_ej335")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
-individuals_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8"), SubResource("Resource_e4kka"), SubResource("Resource_c7n1q"), SubResource("Resource_ixunu"), SubResource("Resource_vsdhb")])
+individuals_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8"), SubResource("Resource_e4kka"), SubResource("Resource_c7n1q"), SubResource("Resource_ixunu"), SubResource("Resource_vsdhb"), SubResource("Resource_p1s0e"), SubResource("Resource_7i1d8")])
 render_while_generating = true

@@ -48,7 +48,7 @@ texture_normal = ExtResource("2_edcoa")
 texture_hover = ExtResource("3_igxm1")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-texture_filter = 2
+texture_filter = 3
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3

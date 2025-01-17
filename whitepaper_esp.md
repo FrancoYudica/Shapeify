@@ -2,8 +2,6 @@
 
 Código de proyecto: GAFSIR (Genetic Algorithm for Stylized Image replication)
 
-_Franco Yudica (13922)_
-
 ## Índice
 
 - [Introducción](#introducción)

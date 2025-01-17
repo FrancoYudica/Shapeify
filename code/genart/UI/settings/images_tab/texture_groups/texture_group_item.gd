@@ -17,6 +17,7 @@ func _ready() -> void:
 		var texture_rect := TextureRect.new()
 		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		texture_rect.texture = texture
 		textures_container.add_child(texture_rect)
 
