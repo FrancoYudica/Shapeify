@@ -44,9 +44,13 @@ Genart provides an extensive range of configurable settings, allowing users to a
 <img src="https://github.com/user-attachments/assets/25160229-3b51-4571-ae51-573f59288e33" width=500></img>
 </div>
 
-## Installing
+## Installation
 
-You can download the last github release or build the project yourself by cloning the source code and using Godot 4.3.
+Genart is available through the following options:  
+- [Itch.io](https://franco-yudica.itch.io/genart)  
+- The latest [GitHub release](https://github.com/FrancoYudica/Genart/releases)  
+- Building the project locally using [Godot 4.3](https://godotengine.org/download).
+
 
 ## Remaining tasks
 
