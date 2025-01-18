@@ -8,7 +8,7 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 
 <div align="center">
 
-<img src="imgs/GenartAppSample0.png" width=900></img>
+<img src="https://github.com/user-attachments/assets/93a80909-5bb0-4a7d-bca0-6a515866f7e3" width=800></img>
 
 </div>
 
@@ -24,9 +24,7 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 ## Animator
 
 <div align="center">
-
-<img src="imgs/GenartAppSampleAnimator.png" width=900></img>
-
+<img src="https://github.com/user-attachments/assets/bc3f2675-75ab-4b8f-9d19-9b900da3f427" width=800></img>
 </div>
 
 Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
