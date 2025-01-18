@@ -53,20 +53,14 @@ Some examples with different images as building blocks.
 
 <div align="center">
 
-| <img src="imgs/samples/MonaLisa300ind.png" alt="Mona Lisa" style="object-fit: cover;"> |
-| :------------------------------------------------------------------------------------: |
-|                        _Mona Lisa. 300 fixed rotation capsules_                        |
 
-| <img src="imgs/samples/lambo-200ind.png" alt="Lambo" style="object-fit: cover;"> |
-| :------------------------------------------------------------------------------: |
-|              _Lamborghini Aventador. 200 geometric rounded objects_              |
+| <img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="object-fit: cover;"> | <img src="https://github.com/user-attachments/assets/8bac080b-9d6a-4193-a19e-3a335b2f673c" alt="Billie Eilish" style="object-fit: cover;">| 
+| :------------------------------------------------------------------------------------: | :----------: |
+|                        _Mona Lisa. 300 fixed rotation capsules_                        | _Billie Eilish. 500 brush strokes_ |
 
-| <img src="imgs/samples/BillieEilish500.png" alt="Billie Eilish" style="object-fit: cover;"> |
-| :-----------------------------------------------------------------------------------------: |
-|                             _Billie Eilish. 500 brush strokes_                              |
-
-| <img src="imgs/samples/MilkyWay200indglow.png" alt="Milky Way" style="object-fit: cover;"> |
-| :----------------------------------------------------------------------------------------: |
-|                               _Milky Way. 200 glow objects_                                |
+| <img src="https://github.com/user-attachments/assets/22099d50-b632-4ea3-a019-428ac209c54b"> | <img src="https://github.com/user-attachments/assets/8b3cb5a1-ec83-4138-9438-bc45177a0d86" alt="Milky Way" style="object-fit: cover;"> |
+| :------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+|              _Lamborghini Aventador. 200 geometric rounded objects_              |                                _Milky Way. 200 glow objects_                                |
+| 
 
 </div>
