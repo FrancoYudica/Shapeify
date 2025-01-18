@@ -37,6 +37,13 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 
 </div>
 
+## Settings
+Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
+<div align="center">
+<img src="https://github.com/user-attachments/assets/6d462f63-1d08-4e41-b413-e8cdcd1c96fe" width=500></img>
+<img src="https://github.com/user-attachments/assets/25160229-3b51-4571-ae51-573f59288e33" width=500></img>
+</div>
+
 ## Installing
 
 You can download the last github release or build the project yourself by cloning the source code and using Godot 4.3.
@@ -55,12 +62,11 @@ Some examples with different images as building blocks.
 
 
 | <img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="object-fit: cover;"> | <img src="https://github.com/user-attachments/assets/8bac080b-9d6a-4193-a19e-3a335b2f673c" alt="Billie Eilish" style="object-fit: cover;">| 
-| :------------------------------------------------------------------------------------: | :----------: |
-|                        _Mona Lisa. 300 fixed rotation capsules_                        | _Billie Eilish. 500 brush strokes_ |
+| :------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
+|                        _Mona Lisa. 300 fixed rotation capsules_                                                                        | _Billie Eilish. 500 brush strokes_                                                                                                        |
 
 | <img src="https://github.com/user-attachments/assets/22099d50-b632-4ea3-a019-428ac209c54b"> | <img src="https://github.com/user-attachments/assets/8b3cb5a1-ec83-4138-9438-bc45177a0d86" alt="Milky Way" style="object-fit: cover;"> |
-| :------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
-|              _Lamborghini Aventador. 200 geometric rounded objects_              |                                _Milky Way. 200 glow objects_                                |
-| 
+| :-----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
+|              _Lamborghini Aventador. 200 geometric rounded objects_                         |                                _Milky Way. 200 glow objects_                                                                           |
 
 </div>
