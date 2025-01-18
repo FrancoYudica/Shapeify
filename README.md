@@ -40,8 +40,8 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 ## Settings
 Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
 <div align="center">
-<img src="https://github.com/user-attachments/assets/6d462f63-1d08-4e41-b413-e8cdcd1c96fe" width=450></img>
-<img src="https://github.com/user-attachments/assets/25160229-3b51-4571-ae51-573f59288e33" width=450></img>
+<img src="https://github.com/user-attachments/assets/6d462f63-1d08-4e41-b413-e8cdcd1c96fe" width=400></img>
+<img src="https://github.com/user-attachments/assets/25160229-3b51-4571-ae51-573f59288e33" width=400></img>
 </div>
 
 ## Installation
