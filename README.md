@@ -43,6 +43,12 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 
 You can download the last github release or build the project yourself by cloning the source code and using Godot 4.3.
 
+## Remaining tasks
+
+### Multithreaded individual generator
+
+Genart prioritizes offering a wide range of creative control over raw performance. While this focus enables extensive customization, it may come at the cost of speed. Implementing multithreading within the individual generator algorithms will address this by enhancing responsiveness and overall user experience.
+
 ## Gallery
 
 Some examples with different images as building blocks.

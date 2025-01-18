@@ -25,7 +25,6 @@ func save(
 	# Gets renderer output texture
 	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
-	
 	# Transforms to image and saves
 	var img = ImageUtils.create_image_from_rgbaf_buffer(
 		render_details.viewport_size.x,
