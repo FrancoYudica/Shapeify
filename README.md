@@ -12,14 +12,15 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 
 </div>
 
-## Features
+## Features  
 
-- Reconstruct any image using a chosen set of smaller images as building blocks.
-- Save generated artwork in formats such as PNG, JPG, WEBP and JSON for use in custom projects.
-- Create animations with GenArt's integrated animator.
-- Optimize results easily with predefined FAST, PERFORMANCE, and QUALITY modes.
-- Utilize default image collections for effortless creation.
-- Customizable algorithm with a wide range of settings.
+- Reconstruct any image using a chosen set of smaller images as building blocks.  
+- Save generated artwork in formats such as PNG, JPG, WEBP, and JSON for use in custom projects.  
+- Create animations with GenArt's integrated animator.  
+- Optimize results easily with predefined FAST, PERFORMANCE, and QUALITY modes.  
+- Utilize default image collections for effortless creation.  
+- Customize algorithms with an extensive range of settings.  
+- Prioritize specific areas of the target image using a weight texture, guiding the algorithm to focus on the most important regions.  
 
 ## Animator
 
