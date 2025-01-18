@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=95 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=97 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_mxc8r"]
 [ext_resource type="Script" path="res://generation/individuals_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
+[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_ovpig"]
 [ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
 [ext_resource type="Texture2D" uid="uid://6vk4tcoal0tn" path="res://art/individual_textures_group/brush_strokes/brush_2.png" id="14_c4yru"]
 [ext_resource type="Texture2D" uid="uid://bwhsec413qhqh" path="res://art/individual_textures_group/brush_strokes/brush_3.png" id="15_5lylu"]
@@ -82,7 +83,7 @@ color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_uqt7i"]
 script = ExtResource("3_kalsu")
-individual_count = 100
+individual_count = 150
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_ws8ig"]
@@ -137,16 +138,20 @@ execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
 
+[sub_resource type="Resource" id="Resource_bec32"]
+script = ExtResource("12_ovpig")
+
 [sub_resource type="Resource" id="Resource_ej335"]
 script = ExtResource("9_l7xcl")
 type = 1
 weight_texture_generator_type = 0
 individual_generator_params = SubResource("Resource_5vsv2")
-individual_generator_type = 2
+individual_generator_type = 1
 stop_condition = 0
 stop_condition_params = SubResource("Resource_vnspm")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_yhknk")
+weight_texture_generator_params = SubResource("Resource_bec32")
 
 [sub_resource type="Resource" id="Resource_w6sbu"]
 script = ExtResource("11_f4wjl")

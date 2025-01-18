@@ -51,7 +51,7 @@ func _enter_tree() -> void:
 	
 	Globals.settings.image_generator_params.setup_changed_signals()
 	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
-
+	
 func _exit_tree() -> void:
 
 	# Clears previous textures

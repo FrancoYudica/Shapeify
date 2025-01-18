@@ -63,10 +63,12 @@ script = ExtResource("9_ewyx0")
 individual_count = 200
 execution_time = 100.0
 target_fitness = 0.9
+metric_type = 4
 
 [resource]
 script = ExtResource("1_indu4")
 type = 3
+weight_texture_generator_type = 0
 individual_generator_params = SubResource("Resource_vv7yo")
 individual_generator_type = 2
 stop_condition = 0

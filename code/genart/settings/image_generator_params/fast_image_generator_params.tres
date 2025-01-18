@@ -63,10 +63,12 @@ script = ExtResource("9_ocore")
 individual_count = 200
 execution_time = 100.0
 target_fitness = 0.9
+metric_type = 4
 
 [resource]
 script = ExtResource("8_typde")
 type = 1
+weight_texture_generator_type = 0
 individual_generator_params = SubResource("Resource_q7t7k")
 individual_generator_type = 1
 stop_condition = 0
