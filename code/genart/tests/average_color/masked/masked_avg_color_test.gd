@@ -1,6 +1,6 @@
 extends Control
 
-@export var background_texture: RendererTextureLoad
+@export var sub_viewport: SubViewport
 @export var sprite_mask: RendererTextureLoad
 
 @export var sampler_scripts: Array[GDScript]
@@ -20,14 +20,17 @@ var _textures_initialized = false
 
 func _process(delta: float) -> void:
 	
+	var sub_viewport_texture = sub_viewport.get_texture()
+	var sub_viewport_renderer_texture = RendererTexture.load_from_texture(sub_viewport_texture)
+	
 	# Renders background only
 	Renderer.begin_frame(size)
 	Renderer.render_sprite(
-		background_texture.get_size() * 0.5,
-		background_texture.get_size(),
+		sub_viewport_renderer_texture.get_size() * 0.5,
+		sub_viewport_renderer_texture.get_size(),
 		0.0,
 		Color.WHITE,
-		background_texture
+		sub_viewport_renderer_texture
 	)
 	Renderer.end_frame()
 	
@@ -41,11 +44,11 @@ func _process(delta: float) -> void:
 	# Renders background and sprite with it's ID
 	Renderer.begin_frame(size)
 	Renderer.render_sprite(
-		background_texture.get_size() * 0.5,
-		background_texture.get_size(),
+		sub_viewport_renderer_texture.get_size() * 0.5,
+		sub_viewport_renderer_texture.get_size(),
 		0.0,
 		Color.WHITE,
-		background_texture
+		sub_viewport_renderer_texture
 	)
 	
 	var mouse = get_local_mouse_position()
@@ -65,14 +68,13 @@ func _process(delta: float) -> void:
 		var id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
 		for sampler in samplers:
 			sampler.id_texture = id_texture
-		_textures_initialized = true
+		_textures_initialized = false
 
 	var rect: Rect2i
-	rect.position = Vector2i(mouse - parent_color_rect.size * 0.5)
+	rect.position = Vector2i(mouse - sample_color_rect.get_global_rect().size * 0.5)
 	rect.size = Vector2i(
 		sample_color_rect.get_global_rect().size.x,
 		sample_color_rect.get_global_rect().size.y)
-	
 	
 	for sampler in samplers:
 		var clock = Clock.new()
@@ -80,5 +82,4 @@ func _process(delta: float) -> void:
 		clock.print_elapsed("Sampled average color: %s" % color)
 		sample_color_rect.modulate = color
 		
-	print()
 	parent_color_rect.position = rect.position

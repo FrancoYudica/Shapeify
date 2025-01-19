@@ -32,7 +32,6 @@ func sample_rect(rect: Rect2i) -> Color:
 	
 	var local_size_x = 256
 	var workgroup_size_x = ceili(float(pixel_count) / local_size_x)
-	
 	var push_constant := PackedFloat32Array([
 		# Vec2 texture size
 		sample_texture.get_width(),
@@ -87,6 +86,9 @@ func sample_rect(rect: Rect2i) -> Color:
 		accumulated_colors.g += partial_colors_sum_output[index + 1]
 		accumulated_colors.b += partial_colors_sum_output[index + 2]
 		accumulated_colors.a += partial_colors_sum_output[index + 3]
+		
+	if sample_count == 0:
+		return Color.TRANSPARENT
 	
 	return accumulated_colors / sample_count
 
