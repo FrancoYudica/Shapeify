@@ -1,5 +1,7 @@
 class_name AppSettings extends Resource
 
+@export var version: String
+
 @export var image_generator_params := ImageGeneratorParams.new()
 
 @export var default_target_texture: Texture

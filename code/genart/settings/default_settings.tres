@@ -205,6 +205,7 @@ textures = Array[Texture]([ExtResource("65_womos"), ExtResource("66_dr8hs"), Ext
 
 [resource]
 script = ExtResource("39_t5xji")
+version = "1.0.0"
 image_generator_params = SubResource("Resource_ej335")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
