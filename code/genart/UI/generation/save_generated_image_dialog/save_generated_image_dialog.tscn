@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct1cq1e303o8m"]
+[gd_scene load_steps=9 format=3 uid="uid://ct1cq1e303o8m"]
 
 [ext_resource type="Script" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.gd" id="1_au3md"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_t2qo2"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="3_48lue"]
-[ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="4_6lnxe"]
+[ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/icons/save.png" id="4_majp7"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/image_panel_container.tres" id="5_qyqr0"]
-[ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="5_u1p44"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/settings/label_header.tres" id="5_vknee"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="6_1qvvg"]
+[ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="8_kbnit"]
 
 [node name="SaveImageDialog" type="Control" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture", "format_option_button")]
 layout_mode = 3
@@ -54,9 +55,9 @@ theme = ExtResource("3_48lue")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -69,15 +70,19 @@ size_flags_vertical = 0
 theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-modulate = Color(0.933333, 1, 0, 1)
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture = ExtResource("4_6lnxe")
+size_flags_vertical = 0
+texture = ExtResource("4_majp7")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "SAVE GENERATED IMAGE"
+text = "Save Image"
+label_settings = ExtResource("5_vknee")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -96,21 +101,16 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("5_u1p44")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -119,6 +119,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
 columns = 2
 
 [node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
@@ -189,7 +191,13 @@ text = "Save"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
-size = Vector2i(303, 180)
+size = Vector2i(355, 180)
 access = 2
 filters = PackedStringArray("*.jpg")
 use_native_dialog = true
+
+[node name="CloseOnCancel" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_kbnit")

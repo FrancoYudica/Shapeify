@@ -18,5 +18,8 @@ func should_stop() -> bool:
 func get_progress() -> float:
 	return float(_generated_count) / _stop_count
 
+func get_process_number() -> int:
+	return _generated_count
+
 func set_params(params: StopConditionParams) -> void:
 	_stop_count = params.individual_count

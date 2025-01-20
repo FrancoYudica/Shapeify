@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://btrs1qhbtd3bx"]
+[gd_scene load_steps=9 format=3 uid="uid://btrs1qhbtd3bx"]
 
 [ext_resource type="Script" path="res://UI/notification_panels/notification_panel_base.gd" id="1_4cyn7"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_8v48t"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="2_qeset"]
-[ext_resource type="Texture2D" uid="uid://skcui5fa8fmk" path="res://art/icons/info-64.png" id="4_u630w"]
+[ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/icons/info.png" id="4_74oe1"]
 [ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="5_f3cpp"]
-[ext_resource type="Texture2D" uid="uid://guyjujonplae" path="res://art/icons/copy-32.png" id="6_k2r3b"]
-[ext_resource type="Texture2D" uid="uid://ltfbgrfjuf1r" path="res://art/icons/copy-32-dark.png" id="7_gw7u4"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/settings/label_header.tres" id="5_kwwqe"]
+[ext_resource type="Texture2D" uid="uid://cnh2s8oyof1mc" path="res://art/icons/copy.png" id="6_dg8us"]
+[ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="7_n74ym"]
 
 [node name="NotificationPanel" type="Control" node_paths=PackedStringArray("message_label", "ok_button", "copy_texture_button")]
 layout_mode = 3
@@ -50,14 +51,17 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-modulate = Color(0, 0.583333, 1, 1)
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("4_u630w")
+texture = ExtResource("4_74oe1")
+expand_mode = 2
 
 [node name="TitleLabel" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "NOTIFICATION"
+label_settings = ExtResource("5_kwwqe")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,6 +72,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -87,11 +92,19 @@ text = "
 "
 
 [node name="CopyTextureButton" type="TextureButton" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = ExtResource("6_k2r3b")
-texture_hover = ExtResource("7_gw7u4")
+texture_normal = ExtResource("6_dg8us")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="OkButton" type="Button" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Ok"
+text = "Close"
+
+[node name="CloseOnCancel" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_n74ym")

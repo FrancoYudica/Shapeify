@@ -26,7 +26,8 @@ func on_files_dropped(files):
 	
 	for file: String in files:
 		
-		var valid_file = file.ends_with(".png") or file.ends_with(".jpg")
+		var valid_file = file.to_lower().ends_with(".png") or file.to_lower().ends_with(".jpg") or file.to_lower().ends_with(".jpeg")
+		print(valid_file)
 		
 		if valid_file:
 			image_file_dropped.emit(file)
