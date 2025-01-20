@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=17 format=3 uid="uid://s0msppwv0bka"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=21 format=3 uid="uid://s0msppwv0bka"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_gi0nv"]
 [ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator_params.gd" id="2_000q3"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="3_gs02x"]
 [ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="4_d3dff"]
+[ext_resource type="Script" path="res://generation/individual_generator/hill_climbing/hill_climbing_individual_generator_params.gd" id="5_35d5k"]
 [ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="5_oi3lg"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="6_aqo1v"]
 [ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="7_0imcw"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="8_typde"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="9_ocore"]
+[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="11_hvat7"]
 
 [sub_resource type="Resource" id="Resource_xfaeu"]
 script = ExtResource("1_gi0nv")
@@ -37,6 +39,11 @@ mutation_strategy = 1
 survivor_selection_strategy = 1
 survivor_selection_params = SubResource("Resource_kk0o3")
 
+[sub_resource type="Resource" id="Resource_fot4a"]
+script = ExtResource("5_35d5k")
+max_age = 50
+fitness_calculator = 1
+
 [sub_resource type="Resource" id="Resource_ejact"]
 script = ExtResource("5_oi3lg")
 textures = Array[ExtResource("6_aqo1v")]([])
@@ -57,6 +64,7 @@ fixed_size = false
 fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_jmjb0")
 genetic_params = SubResource("Resource_01mr2")
+hill_climbing_params = SubResource("Resource_fot4a")
 
 [sub_resource type="Resource" id="Resource_ea6fc"]
 script = ExtResource("9_ocore")
@@ -64,6 +72,9 @@ individual_count = 200
 execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
+
+[sub_resource type="Resource" id="Resource_q544q"]
+script = ExtResource("11_hvat7")
 
 [resource]
 script = ExtResource("8_typde")
@@ -75,3 +86,4 @@ stop_condition = 0
 stop_condition_params = SubResource("Resource_ea6fc")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_xfaeu")
+weight_texture_generator_params = SubResource("Resource_q544q")
