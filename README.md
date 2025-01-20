@@ -17,3 +17,6 @@ I did not add any new features or fixed any major bugs; Rather, I focused on cre
 ![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_2.png)
 
 ![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_3.png)
+
+![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_4.png)
+
