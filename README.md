@@ -11,3 +11,9 @@ I did not add any new features or fixed any major bugs; Rather, I focused on cre
 - Added a "clear all" button to the texture groups container
 - Every panel and window can be quickly closed by hitting "ESC"
 - Clairified some settings and added more tooltips
+
+![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_1.png)
+
+![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_2.png)
+
+![](https://github.com/DancingEngie/Genart-UI/blob/main/screenshots/Screenshot_3.png)
