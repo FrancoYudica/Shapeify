@@ -31,11 +31,14 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 	if not is_visible_in_tree():
 		return
 	
-	var image_item = image_item_packed.instantiate()
-	
 	# Creates a renderer texture and adds to pupupator params
 	var renderer_texture = RendererTexture.load_from_path(filepath)
+	if renderer_texture == null:
+		Notifier.notify_error("Dropped texture is null. File format not supported")
+		return
+	
 	_populator_params.textures.append(renderer_texture)
+	var image_item = image_item_packed.instantiate()
 	_add_image_item(image_item, renderer_texture)
 	image_item.filepath = filepath
 	

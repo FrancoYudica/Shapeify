@@ -6,3 +6,12 @@ static var MAX_PIXEL_COUNT: int = 1920 * 1080
 
 ## Sizes in bytes of the maximum memory allocated by compute shaders
 static var MAX_COMPUTE_BUFFER_SIZE: int = 524288
+
+static var VALID_INPUT_IMAGE_EXTENSIONS: Array[String] = [
+	".png",
+	".jpg",
+	".svg",
+	".jpeg",
+	".bmp",
+	".webp"
+]
