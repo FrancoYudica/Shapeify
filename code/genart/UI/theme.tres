@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=36 format=3 uid="uid://hsiwarkkc1wt"]
+[gd_resource type="Theme" load_steps=39 format=3 uid="uid://hsiwarkkc1wt"]
 
 [ext_resource type="FontFile" uid="uid://dvvmugqg352g2" path="res://UI/fonts/Outfit-Regular.ttf" id="1_1nnkf"]
 [ext_resource type="Texture2D" uid="uid://bqbvpi2acju6r" path="res://art/icons/close.png" id="1_8ruu0"]
@@ -132,6 +132,39 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.6, 0.741176, 0.964706, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a44in"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hnpp"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.290196, 0.301961, 0.313726, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwf2x"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.290196, 0.301961, 0.313726, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -335,6 +368,9 @@ ColorPickerButton/styles/focus = SubResource("StyleBoxFlat_407a7")
 ColorPickerButton/styles/hover = SubResource("StyleBoxFlat_tn132")
 ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_lxvhq")
 ColorPickerButton/styles/pressed = SubResource("StyleBoxFlat_5jnjy")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_a44in")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_6hnpp")
+HSlider/styles/slider = SubResource("StyleBoxFlat_xwf2x")
 LineEdit/icons/clear = ExtResource("1_8ruu0")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_mr1a3")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_gmipk")

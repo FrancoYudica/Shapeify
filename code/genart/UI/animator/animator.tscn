@@ -35,8 +35,8 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6wr5"]
-bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpax1"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -208,7 +208,7 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_w6wr5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpax1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -242,8 +242,10 @@ animator = NodePath("../../../../../../../../..")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = ExtResource("2_arjf1")
 max_value = 1.0
 step = 0.001
+value = 0.245
 script = ExtResource("8_aiw40")
 animator = NodePath("../../../../../../../../..")
 
