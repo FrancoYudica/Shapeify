@@ -11,4 +11,4 @@ modulate = Color(0.865625, 0.705935, 0.18124, 1)
 texture = ExtResource("2_1gn54")
 
 [node name="TitleLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-text = "WARNING"
+text = "Warning"

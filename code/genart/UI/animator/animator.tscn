@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c46kw3qtcbjh0"]
+[gd_scene load_steps=26 format=3 uid="uid://c46kw3qtcbjh0"]
 
 [ext_resource type="Script" path="res://UI/animator/animator.gd" id="1_r8qxr"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="2_arjf1"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/icons/stop.png" id="12_fpe2q"]
 [ext_resource type="Script" path="res://UI/animator/close_button.gd" id="12_pmlre"]
 [ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="14_mshqm"]
+[ext_resource type="Script" path="res://UI/modulate_on_hover.gd" id="15_fp0vk"]
 [ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/icons/save.png" id="16_tu0q4"]
 [ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="21_olqt4"]
 
@@ -130,6 +131,14 @@ size_flags_vertical = 0
 text = "Settings"
 label_settings = ExtResource("9_c8uoi")
 
+[node name="Note" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Note that the animator exports a series of frames, not a video file."
+autowrap_mode = 3
+justification_flags = 162
+
 [node name="SettingsGridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("animator", "scale_spin_box", "resolution_label", "final_resolution_label", "format_option_button")]
 layout_mode = 2
 theme_override_constants/h_separation = 24
@@ -172,7 +181,7 @@ text = "1920x1080"
 
 [node name="ScaleFactorLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer"]
 layout_mode = 2
-text = "Scale factor"
+text = "Upscaling"
 
 [node name="ScaleSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer"]
 layout_mode = 2
@@ -237,6 +246,15 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("8_y67us")
 animator = NodePath("../../../../../../../../..")
+
+[node name="Modulate On Hover" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_fp0vk")
 
 [node name="ProgressSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator")]
 layout_mode = 2

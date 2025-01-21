@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=67 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/icons/info.png" id="9_r4t7k"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_loader.gd" id="10_a6yyn"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
+[ext_resource type="Script" path="res://UI/modulate_on_hover.gd" id="11_hpdpl"]
 [ext_resource type="Script" path="res://UI/generation/save_output_button.gd" id="11_wj4rh"]
 [ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/icons/save.png" id="11_x6vfg"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
@@ -31,6 +32,7 @@
 [ext_resource type="Script" path="res://UI/loading_generating_texture_rect.gd" id="24_q3gvo"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/individual_generator/genetic/genetic_settings_v_box_container.gd" id="25_jv4l3"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/preset_option_button.gd" id="32_ww3ur"]
+[ext_resource type="Script" path="res://UI/dynamic_grid_container.gd" id="33_qv2k4"]
 [ext_resource type="Script" path="res://UI/generation/info_panel_container.gd" id="34_18hvq"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="34_j5x4r"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="35_ad0r6"]
@@ -168,6 +170,15 @@ stretch_mode = 5
 script = ExtResource("10_mpcut")
 image_generation = NodePath("../../../../../../../../../../../..")
 
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/GenerateButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
+
 [node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation", "stopping_notification")]
 modulate = Color(0.6, 0.741176, 0.964706, 1)
 custom_minimum_size = Vector2(36, 36)
@@ -180,6 +191,15 @@ stretch_mode = 5
 script = ExtResource("14_pn2yp")
 image_generation = NodePath("../../../../../../../../../../../..")
 stopping_notification = NodePath("../../../../../../../../../../StoppingGenerationPanelContainer")
+
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/StopTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
 
 [node name="ToolsContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -207,6 +227,15 @@ script = ExtResource("19_w0gf2")
 image_generation = NodePath("../../../../../../../../../../../..")
 metrics_panel = NodePath("../../../../../TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect/InfoPanelContainer")
 
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/OutputInfoTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
+
 [node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "save_dialog")]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -220,6 +249,15 @@ image_generation = NodePath("../../../../../../../../../../../..")
 output_texture_rect = NodePath("../../../../../TexturesHBoxContainer/OutputPanelContainer/OutputTextureRect")
 save_dialog = NodePath("../../../../../../../../../../SaveImageDialog")
 
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
+
 [node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "animator")]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -232,6 +270,15 @@ script = ExtResource("17_38fws")
 image_generation = NodePath("../../../../../../../../../../../..")
 animator = NodePath("../../../../../../../../../../Animator")
 
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/AnimationTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
+
 [node name="ClearButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -242,6 +289,15 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("12_ft68k")
 image_generation = NodePath("../../../../../../../../../../../..")
+
+[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_hpdpl")
 
 [node name="Progress Bar Container" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -334,7 +390,7 @@ theme_override_constants/margin_bottom = 8
 [node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputPanelContainer/BottomTextMargin"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Output texture"
 vertical_alignment = 1
 
@@ -511,7 +567,7 @@ theme_override_constants/margin_bottom = 8
 [node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/BottomTextMargin2"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Input texture (drag and drop a *.png or *.jpg file to change)"
 vertical_alignment = 1
 
@@ -535,10 +591,11 @@ theme_override_constants/separation = 16
 [node name="TexturesPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer" node_paths=PackedStringArray("texture_group_selector", "textures_ui_container")]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
 theme = ExtResource("35_ad0r6")
 script = ExtResource("14_gfkqp")
 texture_group_selector = NodePath("../../../../../../IndividualsTexureGroups")
-textures_ui_container = NodePath("MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TextureItemVBoxContainer")
+textures_ui_container = NodePath("MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer/TextureItemVBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer"]
 layout_mode = 2
@@ -567,7 +624,7 @@ theme_override_constants/separation = 0
 [node name="AddPresetButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-tooltip_text = "Add Preset"
+tooltip_text = "Add preset images"
 icon = ExtResource("38_r17sk")
 flat = true
 
@@ -605,15 +662,22 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureItemVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="TextureItemVBoxContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer"]
+clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 size_flags_vertical = 3
-theme_override_constants/separation = 16
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+script = ExtResource("33_qv2k4")
+width_2_columns = 1010
+width_3_columns = 1410
+width_4_columns = 1910
 
 [node name="DragNDropHint" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -627,9 +691,9 @@ theme = ExtResource("35_ad0r6")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
+theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer"]
@@ -864,6 +928,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="WeightTextureHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -885,8 +950,9 @@ size_flags_horizontal = 3
 
 [node name="UserTextureVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("_weight_texture_rect", "_load_texture_button", "_image_file_dialog", "_texture_label")]
 layout_mode = 2
+theme_override_constants/separation = 16
 script = ExtResource("44_t3qpp")
-_weight_texture_rect = NodePath("PanelContainer/WeightTextureRect")
+_weight_texture_rect = NodePath("PanelContainer/MarginContainer/WeightTextureRect")
 _load_texture_button = NodePath("HBoxContainer/LoadButton")
 _image_file_dialog = NodePath("../../../../../../../../../../../../../../../../../../../../ImageFileDialog")
 _texture_label = NodePath("PanelContainer/TextureLabel")
@@ -900,15 +966,22 @@ layout_mode = 2
 text = "Weight texture"
 
 [node name="LoadButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Load"
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("24_de6d3")
 
-[node name="WeightTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="WeightTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 expand_mode = 1
@@ -916,7 +989,7 @@ stretch_mode = 5
 
 [node name="TextureLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTexturePanelContainer/MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer"]
 layout_mode = 2
-text = "Weight texture is provided by user"
+text = "Upload a valid texture"
 horizontal_alignment = 1
 
 [node name="IndividualGeneratorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" node_paths=PackedStringArray("color_sampler")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btrs1qhbtd3bx"]
+[gd_scene load_steps=10 format=3 uid="uid://btrs1qhbtd3bx"]
 
 [ext_resource type="Script" path="res://UI/notification_panels/notification_panel_base.gd" id="1_4cyn7"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_8v48t"]
@@ -8,6 +8,7 @@
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/settings/label_header.tres" id="5_kwwqe"]
 [ext_resource type="Texture2D" uid="uid://cnh2s8oyof1mc" path="res://art/icons/copy.png" id="6_dg8us"]
 [ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="7_n74ym"]
+[ext_resource type="Script" path="res://UI/modulate_on_hover.gd" id="8_6bigf"]
 
 [node name="NotificationPanel" type="Control" node_paths=PackedStringArray("message_label", "ok_button", "copy_texture_button")]
 layout_mode = 3
@@ -60,7 +61,7 @@ expand_mode = 2
 [node name="TitleLabel" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "NOTIFICATION"
+text = "Notification"
 label_settings = ExtResource("5_kwwqe")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -98,6 +99,15 @@ layout_mode = 2
 texture_normal = ExtResource("6_dg8us")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Modulate On Hover" type="Control" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CopyTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_6bigf")
 
 [node name="OkButton" type="Button" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -141,7 +141,7 @@ text = "1920x1080"
 
 [node name="ScaleFactorLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Scale factor"
+text = "Upscaling"
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
