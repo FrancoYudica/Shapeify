@@ -2,8 +2,8 @@ class_name ClearColorStrategy extends RefCounted
 
 enum Type {
 	AVERAGE,
-	ANY,
-	BLACK
+	BLACK,
+	USER
 }
 
 var sample_texture: RendererTexture:
@@ -26,7 +26,7 @@ static func factory_create(type: Type) -> ClearColorStrategy:
 			return load("res://generation/image_generation/clear_color/strategies/clear_color_black_strategy.gd").new()
 		ClearColorStrategy.Type.AVERAGE:
 			return load("res://generation/image_generation/clear_color/strategies/clear_color_average_strategy.gd").new()
-		ClearColorStrategy.Type.ANY:
+		ClearColorStrategy.Type.USER:
 			return load("res://generation/image_generation/clear_color/strategies/clear_color_any_strategy.gd").new()
 		_:
 			push_error("Unimplemented ClearColorStrategyType: %s" % ClearColorStrategy.Type.keys()[type])

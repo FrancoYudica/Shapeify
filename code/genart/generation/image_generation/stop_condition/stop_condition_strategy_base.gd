@@ -1,6 +1,5 @@
 class_name StopCondition extends RefCounted
 
-
 enum Type
 {
 	INDIVIDUAL_COUNT,
