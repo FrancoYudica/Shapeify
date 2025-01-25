@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 @export var clear_color: ColorPickerButton
 var _params : ImageGeneratorParams:
@@ -19,4 +19,4 @@ func _update():
 
 
 func _process(delta: float) -> void:
-	visible = _params.clear_color_type == ClearColorStrategy.Type.ANY
+	visible = _params.clear_color_type == ClearColorStrategy.Type.USER

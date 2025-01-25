@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="1_v3o13"]
 
 [node name="InfoNotificationPanel" instance=ExtResource("1_v3o13")]
+
+[node name="TitleLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+text = "Notifiction"

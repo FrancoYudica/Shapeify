@@ -15,10 +15,7 @@ func _ready() -> void:
 			recording_panel.visible = false
 	)
 	
-	pressed.connect(
-		func():
-			file_dialog.visible = true
-	)
+	pressed.connect(on_pressed)
 
 func _process(delta: float) -> void:
 	progress_bar.value = _animation_recorder.progress
@@ -37,3 +34,6 @@ func _begin_recording():
 		settings_control.render_scale
 	)
 	recording_panel.visible = true
+
+func on_pressed():
+	file_dialog.visible = true

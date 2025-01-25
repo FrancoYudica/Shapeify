@@ -1,25 +1,27 @@
-[gd_scene load_steps=23 format=3 uid="uid://c46kw3qtcbjh0"]
+[gd_scene load_steps=26 format=3 uid="uid://c46kw3qtcbjh0"]
 
 [ext_resource type="Script" path="res://UI/animator/animator.gd" id="1_r8qxr"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/theme.tres" id="2_arjf1"]
 [ext_resource type="Script" path="res://UI/animator/output_texture_rect.gd" id="2_bu1eh"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="2_rlkso"]
 [ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="3_6fhbb"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/settings/label_header.tres" id="4_5mbtv"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/image_panel_container.tres" id="4_7k4h5"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_fecb7"]
-[ext_resource type="Texture2D" uid="uid://drg6bnn4k7tap" path="res://art/icons/play-24.png" id="6_4q3br"]
-[ext_resource type="StyleBox" uid="uid://c0j73qjbcce1h" path="res://UI/settings/item_panel_container.tres" id="7_7ot58"]
-[ext_resource type="Texture2D" uid="uid://cabuwipmdm7go" path="res://art/icons/stop-24.png" id="7_jt2e8"]
 [ext_resource type="Script" path="res://UI/animator/progress_slider.gd" id="8_aiw40"]
 [ext_resource type="Script" path="res://UI/animator/settings_grid_container.gd" id="8_lr1wo"]
 [ext_resource type="Script" path="res://UI/animator/play_stop_texture_button.gd" id="8_y67us"]
-[ext_resource type="Texture2D" uid="uid://fkedotgaxusg" path="res://art/icons/save-24.png" id="9_e106u"]
+[ext_resource type="LabelSettings" uid="uid://r3h22evgnibe" path="res://UI/settings/label_subheader.tres" id="9_c8uoi"]
 [ext_resource type="Script" path="res://UI/animator/duration_spin_box.gd" id="10_buwol"]
 [ext_resource type="Script" path="res://UI/animator/record_texture_button.gd" id="10_u23sa"]
+[ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/icons/play.png" id="11_f4g6f"]
 [ext_resource type="Script" path="res://UI/animator/animation_type_option_button.gd" id="11_uo1fi"]
+[ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/icons/stop.png" id="12_fpe2q"]
 [ext_resource type="Script" path="res://UI/animator/close_button.gd" id="12_pmlre"]
-[ext_resource type="Texture2D" uid="uid://ctcol4saicfjs" path="res://art/icons/save-24-dark.png" id="12_yhsg7"]
 [ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="14_mshqm"]
+[ext_resource type="Script" path="res://UI/modulate_on_hover.gd" id="15_fp0vk"]
+[ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/icons/save.png" id="16_tu0q4"]
+[ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="21_olqt4"]
 
 [sub_resource type="Texture2D" id="Texture2D_ccnob"]
 resource_local_to_scene = false
@@ -27,8 +29,15 @@ resource_name = ""
 script = ExtResource("4_fecb7")
 _src_texture = ExtResource("3_6fhbb")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6wr5"]
-bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwtgw"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpax1"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -75,8 +84,8 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 24
 text = "Animator"
+label_settings = ExtResource("4_5mbtv")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -100,9 +109,9 @@ animator = NodePath("../../../../../../..")
 white_texture = SubResource("Texture2D_ccnob")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/panel = ExtResource("7_7ot58")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kwtgw")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -117,14 +126,22 @@ theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 24
 text = "Settings"
-horizontal_alignment = 1
+label_settings = ExtResource("9_c8uoi")
+
+[node name="Note" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Note that the animator exports a series of frames, not a video file."
+autowrap_mode = 3
+justification_flags = 162
 
 [node name="SettingsGridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("animator", "scale_spin_box", "resolution_label", "final_resolution_label", "format_option_button")]
 layout_mode = 2
+theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 8
 columns = 2
 script = ExtResource("8_lr1wo")
@@ -153,7 +170,9 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/ResolutionPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="ResolutionValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/ResolutionPanelContainer/MarginContainer"]
 layout_mode = 2
@@ -162,7 +181,7 @@ text = "1920x1080"
 
 [node name="ScaleFactorLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer"]
 layout_mode = 2
-text = "Scale factor"
+text = "Upscaling"
 
 [node name="ScaleSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer"]
 layout_mode = 2
@@ -180,7 +199,9 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/FinalResolutionPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="FinalResolutionValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/FinalResolutionPanelContainer/MarginContainer"]
 layout_mode = 2
@@ -196,7 +217,7 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_w6wr5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpax1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -214,20 +235,35 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="PlayStopTextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator")]
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
-texture_normal = ExtResource("6_4q3br")
-texture_pressed = ExtResource("7_jt2e8")
+texture_normal = ExtResource("11_f4g6f")
+texture_pressed = ExtResource("12_fpe2q")
+ignore_texture_size = true
+stretch_mode = 5
 script = ExtResource("8_y67us")
 animator = NodePath("../../../../../../../../..")
+
+[node name="Modulate On Hover" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_fp0vk")
 
 [node name="ProgressSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = ExtResource("2_arjf1")
 max_value = 1.0
 step = 0.001
+value = 0.245
 script = ExtResource("8_aiw40")
 animator = NodePath("../../../../../../../../..")
 
@@ -242,12 +278,15 @@ script = ExtResource("10_buwol")
 animator = NodePath("../../../../../../../../..")
 
 [node name="RecordTextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("animator", "settings_control", "recording_panel", "file_dialog", "progress_bar")]
+visible = false
 modulate = Color(1, 1, 0, 1)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Save animation. 
 Keep in mind that the output isn't a video, it's a set of frames."
-texture_normal = ExtResource("9_e106u")
-texture_hover = ExtResource("12_yhsg7")
+texture_normal = ExtResource("16_tu0q4")
+texture_hover = ExtResource("16_tu0q4")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("10_u23sa")
 animator = NodePath("../../../../../../../../..")
@@ -256,12 +295,22 @@ recording_panel = NodePath("../../../../../../../../../RecordingPanel")
 file_dialog = NodePath("../../../../../../../../../FileDialog")
 progress_bar = NodePath("../../../../../../../../../RecordingPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
 
-[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("animator")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 8
 text = "Close"
 script = ExtResource("12_pmlre")
-animator = NodePath("../../../../..")
+animator = NodePath("../../../../../..")
+
+[node name="SaveButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Save"
 
 [node name="RecordingPanel" type="PanelContainer" parent="."]
 visible = false
@@ -278,10 +327,12 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="RecordingPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-text = "Please wait
-Recording animation..."
+text = "Recording animation..."
+label_settings = ExtResource("4_5mbtv")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationRecordProgressBar" type="ProgressBar" parent="RecordingPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -299,6 +350,12 @@ use_native_dialog = true
 visible = false
 layout_mode = 2
 
+[node name="CloseOnCancel" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("21_olqt4")
+metadata/_edit_lock_ = true
+
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" method="_on_toggled"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" method="_on_value_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/SaveButton" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RecordTextureButton" method="on_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RecordTextureButton" method="_on_file_dialog_dir_selected"]

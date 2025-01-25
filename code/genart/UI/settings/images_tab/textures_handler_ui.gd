@@ -54,7 +54,14 @@ func _add_image_item(image_item, renderer_texture):
 			var texture: RendererTexture = _textures_map[image_item]
 			_populator_params.textures.erase(texture)
 	)
+
+func _delete_all_images() -> void:
+	if textures_ui_container.get_child_count() < 1:
+		return
 	
+	for child in textures_ui_container.get_children():
+		child._on_delete_texture_button_pressed()
+
 
 func _load_texture_group(group: IndividualsTextureGroup) -> void:
 	
@@ -68,3 +75,6 @@ func _load_texture_group(group: IndividualsTextureGroup) -> void:
 
 func _on_load_preset_button_pressed() -> void:
 	texture_group_selector.visible = true
+
+func _on_delete_presets_button_pressed() -> void:
+	_delete_all_images()

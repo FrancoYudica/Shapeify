@@ -25,3 +25,27 @@ Notifier="*res://UI/notifier.gd"
 Renderer="*res://renderer/renderer.gd"
 Globals="*res://generation/globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[gui]
+
+timers/tooltip_delay_sec=0.25
+timers/tooltip_delay_sec.editor_hint=0.25
+theme/custom="res://UI/theme.tres"
+
+[input]
+
+ui_cancel={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194305,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194308,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.156863, 0.160784, 0.164706, 1)
