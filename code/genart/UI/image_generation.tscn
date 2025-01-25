@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=72 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -63,6 +63,7 @@
 [ext_resource type="Script" path="res://UI/stopping_generation_panel_container.gd" id="51_xqa51"]
 [ext_resource type="Texture2D" uid="uid://cofrjda15jidr" path="res://art/icons/loading-256.png" id="52_wmemr"]
 [ext_resource type="Script" path="res://UI/generation/loading_texture_rect.gd" id="53_0o5l4"]
+[ext_resource type="Script" path="res://UI/image_file_dialog.gd" id="65_mkg28"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.156863, 0.160784, 0.164706, 1)
@@ -1488,8 +1489,8 @@ title = "Open a File"
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png", "*.jpg")
 use_native_dialog = true
+script = ExtResource("65_mkg28")
 
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]

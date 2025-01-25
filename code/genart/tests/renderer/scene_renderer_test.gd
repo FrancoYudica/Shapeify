@@ -3,8 +3,9 @@ extends Node
 @onready var viewport_control := $ViewportControl
 @onready var output_texture := $"../CanvasLayer/RendererOutputTextureRect"
 
+var clear_color := Color.BEIGE
+
 func _ready() -> void:
-	Renderer.clear_color = Color.BEIGE
 	Renderer.render_scale = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,6 +14,7 @@ func _process(delta: float) -> void:
 	var t0 = Time.get_ticks_usec()
 
 	Renderer.begin_frame(viewport_control.size)
+	Renderer.render_clear(clear_color)
 	var i = 0
 	for texture_rect: TextureRect in viewport_control.get_children():
 		Renderer.render_sprite(

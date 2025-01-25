@@ -12,11 +12,19 @@ func save():
 
 func _init() -> void:
 	
+	var default_settings: AppSettings = load("res://settings/default_settings.tres")
+	
 	# The first time loads the default settings
 	if not ResourceLoader.exists("user://settings.tres"):
-		settings = load("res://settings/default_settings.tres")
+		settings = default_settings
 	else:
+		
+		#  Loads settings from user path
 		settings = load("user://settings.tres")
+		
+		# If the versions doesn't match, overrides with default settings
+		if settings.version != default_settings.version:
+			settings = default_settings
 	
 func _enter_tree() -> void:
 	

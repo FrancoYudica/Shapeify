@@ -25,12 +25,16 @@ func save(
 	# Gets renderer output texture
 	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
+
 	# Transforms to image and saves
 	var img = ImageUtils.create_image_from_rgbaf_buffer(
 		render_details.viewport_size.x,
 		render_details.viewport_size.y,
 		color_attachment_data
 	)
+	
+	# Converts image format from RGBA32F to RGBA8. This is necessary to allow saving transparency
+	img.convert(Image.FORMAT_RGBA8)
 	
 	if img == null:
 		Notifier.notify_error("Unable to create image")

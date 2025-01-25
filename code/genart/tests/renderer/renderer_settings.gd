@@ -1,5 +1,7 @@
 extends Control
 
+@onready var scene_renderer := $"../../SceneRenderer"
+
 @onready var render_attachment_texture_rect := $"../RendererOutputTextureRect"
 
 @onready var render_scale_label := $PanelContainer/MarginContainer/GridContainer/RenderScaleLabel
@@ -10,7 +12,7 @@ func _ready() -> void:
 		fb_attachment_option.add_item(option)
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
-	Renderer.clear_color = color
+	scene_renderer.clear_color = color
 
 func _on_h_slider_value_changed(value: float) -> void:
 	render_scale_label.text = "Render scale: %s " % value

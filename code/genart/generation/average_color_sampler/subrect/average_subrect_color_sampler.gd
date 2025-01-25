@@ -115,6 +115,9 @@ func sample_rect(rect: Rect2i) -> Color:
 	if _rd.uniform_set_is_valid(uniform_set_rid):
 		_rd.free_rid(uniform_set_rid)
 
+	if sample_count == 0:
+		return Color.TRANSPARENT
+
 	return accumulated_colors / sample_count
 
 func _init() -> void:

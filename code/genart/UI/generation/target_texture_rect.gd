@@ -16,8 +16,12 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 	
 	if not is_visible_in_tree():
 		return
-		
+	
 	var renderer_texture := RendererTexture.load_from_path(filepath)
+	
+	if renderer_texture == null:
+		Notifier.notify_error("Dropped texture is null. File format not supported")
+		return
 	
 	# If the pixel count is greater than the limit, the texture is downscaled to
 	# satisfy the pixel count constraint

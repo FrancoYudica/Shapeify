@@ -4,7 +4,6 @@ signal rendered
 signal initialized
 signal resized
 
-@export var clear_color: Color = Color.BLACK
 
 ## Scales the viewport size by this factor. Note that projection matrix isn't affected, therefore 
 ## the result is the same scene rendered but with less resolution.
@@ -59,6 +58,16 @@ func end_frame():
 	_sprite_batch.end_frame()
 	call_deferred("emit_signal", "rendered")
 
+# Renders a texture that covers the entire framebuffer with a single color
+func render_clear(clear_color):
+	render_sprite(
+		_viewport_size * 0.5,
+		_viewport_size,
+		0.0,
+		clear_color,
+		_default_texture,
+		0.0
+	)
 
 func render_sprite(
 	position: Vector2,
@@ -282,7 +291,10 @@ func flush() -> void:
 		RenderingDevice.FINAL_ACTION_READ,	  # Final color action
 		RenderingDevice.INITIAL_ACTION_CLEAR, # Initial depth action
 		RenderingDevice.FINAL_ACTION_READ,	  # Final depth action
-		PackedColorArray([clear_color, Color.BLACK])
+		
+		# Color framebuffer clears with transparent color
+		# ID framebuffer clears with black color
+		PackedColorArray([Color.TRANSPARENT, Color.BLACK])
 	)
 	rd.draw_list_bind_uniform_set(draw_list, uniform_set_rid, 0)
 	rd.draw_list_bind_render_pipeline(draw_list, _pipeline)

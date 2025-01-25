@@ -26,8 +26,9 @@ func on_files_dropped(files):
 	
 	for file: String in files:
 		
-		var valid_file = file.to_lower().ends_with(".png") or file.to_lower().ends_with(".jpg") or file.to_lower().ends_with(".jpeg")
-		print(valid_file)
-		
-		if valid_file:
+		if ImageUtils.is_input_format_supported(file):
 			image_file_dropped.emit(file)
+		else:
+			Notifier.notify_warning(
+				"Unable to load image: %s\n\
+				Unsuported file format: %s" % [file, file.split(".")[1]])

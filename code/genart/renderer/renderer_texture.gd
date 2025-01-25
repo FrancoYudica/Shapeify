@@ -30,7 +30,15 @@ static func load_from_texture(src: Texture2D) -> RendererTexture:
 
 static func load_from_path(path: String) -> RendererTexture:
 	var img = Image.load_from_file(path)
+
+	if img == null:
+		return null
+
 	var texture_img = ImageTexture.create_from_image(img)
+	
+	if texture_img == null:
+		return null
+	
 	var texture = RendererTexture.new()
 	texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(texture_img)
 	return texture
