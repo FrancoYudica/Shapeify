@@ -1,17 +1,17 @@
 class_name AnimationRenderer extends RefCounted
 
-var animation_player: IndividualAnimationPlayer
+var animation_player: ShapeAnimationPlayer
 var image_generation_details: ImageGenerationDetails
 
 func render_frame(t: float) -> Image:
 	
-	var frame_individuals := animation_player.animate(
-		image_generation_details.individuals,
+	var frame_shapes := animation_player.animate(
+		image_generation_details.shapes,
 		image_generation_details.viewport_size,
 		t
 	)
 	var details := ImageGenerationDetails.new()
-	details.individuals = frame_individuals
+	details.shapes = frame_shapes
 	details.viewport_size = image_generation_details.viewport_size
 	details.clear_color = image_generation_details.clear_color
 	

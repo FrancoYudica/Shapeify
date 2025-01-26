@@ -13,15 +13,15 @@ func _ready() -> void:
 		func():
 			# Connects signal directly to the image generator. This will run in the
 			# algorithm thread, slowing it down by the texture copy time. 
-			image_generation.image_generator.individual_generated.connect(_individual_generated)
+			image_generation.image_generator.shape_generated.connect(_shape_generated)
 			
 	)
 	image_generation.generation_finished.connect(
 		func():
-			image_generation.image_generator.individual_generated.disconnect(_individual_generated)
+			image_generation.image_generator.shape_generated.disconnect(_shape_generated)
 	)
 
-func _individual_generated(individual):
+func _shape_generated(shape):
 	_copy_texture_contents()
 
 func _exit_tree() -> void:
@@ -31,15 +31,15 @@ func _exit_tree() -> void:
 func _create_texture():
 	_free_texture()
 	texture = RenderingCommon.create_texture_from_rd_rid(
-		image_generation.image_generator.individual_generator.source_texture.rd_rid)
+		image_generation.image_generator.shape_generator.source_texture.rd_rid)
 	
-	renderer_texture = image_generation.image_generator.individual_generator.source_texture.copy()
+	renderer_texture = image_generation.image_generator.shape_generator.source_texture.copy()
 
 func _generation_cleared():
 	_copy_texture_contents()
 
 func _copy_texture_contents():
-	var src_texture = image_generation.image_generator.individual_generator.source_texture
+	var src_texture = image_generation.image_generator.shape_generator.source_texture
 	
 	if src_texture == null:
 		return

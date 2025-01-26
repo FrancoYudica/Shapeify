@@ -2,7 +2,7 @@ extends FrameSaver
 
 func save(
 	filepath: String,
-	individuals: Array[Individual],
+	shapes: Array[Shape],
 	clear_color: Color,
 	viewport_size: Vector2i,
 	viewport_scale: float) -> bool:
@@ -13,13 +13,13 @@ func save(
 		viewport_size.x * viewport_scale,
 		viewport_size.y * viewport_scale
 	)
-	for individual in individuals:
-		var ind = individual.copy()
-		ind.position *= viewport_scale
-		ind.size *= viewport_scale
-		render_details.individuals.append(ind)
+	for shape in shapes:
+		var s = shape.copy()
+		s.position *= viewport_scale
+		s.size *= viewport_scale
+		render_details.shapes.append(s)
 	
-	# Renders the individuals
+	# Renders the shapes
 	ImageGenerationRenderer.render_image_generation(Renderer, render_details)
 	
 	# Gets renderer output texture

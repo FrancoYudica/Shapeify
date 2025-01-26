@@ -9,7 +9,7 @@ var frame_saver_type: FrameSaver.Type
 var _video_recorder := VideoRecorder.new()
 var _progress: float = 0.0
 
-var _animation_player: IndividualAnimationPlayer
+var _animation_player: ShapeAnimationPlayer
 var _image_generation_details: ImageGenerationDetails
 var _frame_saver: FrameSaver
 var _render_scale: float
@@ -19,7 +19,7 @@ var progress: float:
 		return _progress
 
 func record(
-	animation_player: IndividualAnimationPlayer,
+	animation_player: ShapeAnimationPlayer,
 	image_generation_details: ImageGenerationDetails,
 	frame_saver_type: FrameSaver.Type,
 	scale: float
@@ -47,9 +47,9 @@ func _record_and_save():
 	
 	while t < 1.0:
 		
-		# Gets frame individuals
-		var frame_individuals := _animation_player.animate(
-			_image_generation_details.individuals,
+		# Gets frame shapes
+		var frame_shapes := _animation_player.animate(
+			_image_generation_details.shapes,
 			_image_generation_details.viewport_size,
 			t
 		)
@@ -60,7 +60,7 @@ func _record_and_save():
 		# Saves frame with frame saver
 		if not _frame_saver.save(
 			path,
-			frame_individuals,
+			frame_shapes,
 			_image_generation_details.clear_color,
 			_image_generation_details.viewport_size,
 			_render_scale

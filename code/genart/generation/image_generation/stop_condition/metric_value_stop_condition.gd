@@ -10,7 +10,7 @@ var _weight_texture_generator: WeightTextureGenerator
 func began_generating():
 	_current_metric_value = 100.0
 	
-func individual_generated(
+func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
 	individual: Individual):

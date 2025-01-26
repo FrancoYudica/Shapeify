@@ -9,12 +9,12 @@ extends VBoxContainer
 @export var mutation_option: OptionButton
 @export var survivor_selection_option: OptionButton
 
-var _params : GeneticIndividualGeneratorParams:
+var _params : GeneticShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_params \
+				.shape_generator_params \
 				.genetic_params
 	
 func _ready() -> void:
@@ -99,4 +99,4 @@ func _process(dt) -> void:
 	visible = Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_type == IndividualGenerator.Type.Genetic
+				.shape_generator_type == ShapeGenerator.Type.Genetic

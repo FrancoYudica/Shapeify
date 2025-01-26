@@ -1,11 +1,11 @@
 extends PanelContainer
 
-signal selected(group: IndividualsTextureGroup)
+signal selected(group: ShapeTextureGroup)
 
 @export var textures_container: Container
 @export var title_label: Label
 
-var texture_group: IndividualsTextureGroup
+var texture_group: ShapeTextureGroup
 
 
 # Called when the node enters the scene tree for the first time.

@@ -5,11 +5,11 @@ extends Node
 
 @export var individual_renderer_script: GDScript
 
-var _individual_renderer: IndividualRenderer
+var _shape_renderer: ShapeRenderer
 
 func _ready() -> void:
-	_individual_renderer = individual_renderer_script.new()
-	_individual_renderer.source_texture = source_texture
+	_shape_renderer = individual_renderer_script.new()
+	_shape_renderer.source_texture = source_texture
 	
 func _process(delta: float) -> void:
 	var individual = Individual.new()
@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 	
 	individual.rotation = Time.get_ticks_msec() * 0.001
 	individual.tint = Color.WHITE
-	_individual_renderer.render_individual(individual)
+	_shape_renderer.render_shape(individual)

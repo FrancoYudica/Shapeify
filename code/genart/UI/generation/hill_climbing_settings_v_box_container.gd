@@ -3,12 +3,12 @@ extends VBoxContainer
 @export var max_age: SpinBox
 @export var fitness_option: OptionButton
 
-var _params : HillClimbingIndividualGeneratorParams:
+var _params : HillClimbingShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_params \
+				.shape_generator_params \
 				.hill_climbing_params
 	
 func _ready() -> void:
@@ -39,4 +39,4 @@ func _process(dt) -> void:
 	visible = Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_type == IndividualGenerator.Type.HillClimb
+				.shape_generator_type == ShapeGenerator.Type.HillClimb

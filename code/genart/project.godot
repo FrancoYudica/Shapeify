@@ -23,7 +23,7 @@ config/windows_native_icon="res://art/genart_icon/genart_icon.ico"
 
 Notifier="*res://UI/notifier.gd"
 Renderer="*res://renderer/renderer.gd"
-Globals="*res://generation/globals.gd"
+Globals="*res://globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
 
 [display]

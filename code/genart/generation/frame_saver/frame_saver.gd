@@ -13,7 +13,7 @@ var silent: bool = false
 
 func save(
 	filepath: String,
-	individuals: Array[Individual],
+	shapes: Array[Shape],
 	clear_color: Color,
 	viewport_size: Vector2i,
 	viewport_scale: float) -> bool:

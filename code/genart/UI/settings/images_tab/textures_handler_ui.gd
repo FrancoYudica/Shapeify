@@ -9,7 +9,7 @@ var image_item_packed = preload("res://UI/settings/images_tab/image_items/image_
 var _textures_map: Dictionary
 var _populator_params: PopulatorParams:
 	get:
-		return Globals.settings.image_generator_params.individual_generator_params.populator_params
+		return Globals.settings.image_generator_params.shape_generator_params.populator_params
 
 func _ready() -> void:
 	texture_group_selector.selected_texture_group.connect(_load_texture_group)
@@ -63,7 +63,7 @@ func _delete_all_images() -> void:
 		child._on_delete_texture_button_pressed()
 
 
-func _load_texture_group(group: IndividualsTextureGroup) -> void:
+func _load_texture_group(group: ShapeTextureGroup) -> void:
 	
 	for texture in group.textures:
 		var renderer_texture := RendererTexture.load_from_texture(texture)

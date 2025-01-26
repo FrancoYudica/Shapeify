@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="IndividualGeneratorParams" load_steps=14 format=3 uid="uid://da7g40v5lfd28"]
 
-[ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator_params.gd" id="1_b4j7h"]
-[ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="2_7rdsa"]
-[ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_ulgy6"]
-[ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="4_r4qdj"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="1_b4j7h"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_7rdsa"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_ulgy6"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/populator_params.gd" id="4_r4qdj"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="5_i4grm"]
 [ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/convergence_tests/convergence_rectangle_shape_test.png" id="6_mbuhn"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="7_qdmdt"]
-[ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="8_eanj1"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="8_eanj1"]
 
 [sub_resource type="Resource" id="Resource_4k61h"]
 script = ExtResource("1_b4j7h")

@@ -11,8 +11,8 @@ static func render_image_generation(
 	# Renders background
 	renderer.render_clear(details.clear_color)
 	
-	# Renders individuals
-	for individual in details.individuals:
+	# Renders shapes
+	for individual in details.shapes:
 		renderer.render_sprite(
 			individual.position,
 			individual.size,

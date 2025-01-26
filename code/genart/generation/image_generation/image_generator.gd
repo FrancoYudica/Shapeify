@@ -1,23 +1,23 @@
 class_name ImageGenerator extends RefCounted
 
-signal individual_generated(individual: Individual)
+signal shape_generated(shape: Shape)
 
 var params: ImageGeneratorParams
 
-var individual_generator: IndividualGenerator
+var shape_generator: ShapeGenerator
 
 var _mutex: Mutex = Mutex.new()
 var texture_mutex := Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
-var _individual_renderer: IndividualRenderer
+var _shape_renderer: ShapeRenderer
 var _generating: bool = false
 var _weight_texture_generator: WeightTextureGenerator
 
 var weight_texture: RendererTexture
 
 func update_target_texture(target_texture: RendererTexture):
-	individual_generator.update_target_texture(target_texture)
+	shape_generator.update_target_texture(target_texture)
 
 func stop():
 	_mutex.lock()
@@ -37,11 +37,11 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	# In case the image generator starts with some progress
 	if first_src_texture != null:
-		individual_generator.source_texture = first_src_texture
+		shape_generator.source_texture = first_src_texture
 		
-	var source_texture = individual_generator.source_texture
-	var target_texture = params.individual_generator_params.target_texture
-	_individual_renderer.source_texture = source_texture
+	var source_texture = shape_generator.source_texture
+	var target_texture = params.shape_generator_params.target_texture
+	_shape_renderer.source_texture = source_texture
 	
 	_generating = true
 	_stop_condition.began_generating()
@@ -52,7 +52,6 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			_mutex.unlock()
 			break
 		_mutex.unlock()
-		
 		
 		# Generates weight texture
 		texture_mutex.lock()
@@ -69,48 +68,48 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			Notifier.call_deferred("notify_error", ("Weight texture doesn't match target texture resolution. Weight(%sx%s) Target(%sx%s)" % [weight_texture.get_width(), weight_texture.get_height(), target_texture.get_width(), target_texture.get_height()]))
 			break
 		
-		individual_generator.weight_texture = weight_texture
+		shape_generator.weight_texture = weight_texture
 		
-		# Generates individual
+		# Generates Shape
 		texture_mutex.lock()
-		var individual: Individual = individual_generator.generate_individual()
+		var shape: Shape = shape_generator.generate_shape()
 		
 		# Renders the individual onto the source texture
-		_individual_renderer.render_individual(individual)
-		source_texture.copy_contents(_individual_renderer.get_color_attachment_texture())
+		_shape_renderer.render_shape(shape)
+		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
 		texture_mutex.unlock()
 		
-		individual_generated.emit(individual)
-		_stop_condition.individual_generated(
+		shape_generated.emit(shape)
+		_stop_condition.shape_generated(
 			source_texture,
 			target_texture,
-			individual)
+			shape)
 	
 	_generating = false
-	Profiler.image_generation_finished(individual_generator.source_texture)
+	Profiler.image_generation_finished(shape_generator.source_texture)
 	
-	return individual_generator.source_texture
+	return shape_generator.source_texture
 
 
-var _current_individual_generator_type: int = -1
+var _current_shape_generator_type: int = -1
 
 func setup():
 	_stop = false
 	_stop_condition = StopCondition.factory_create(params.stop_condition)
 	_stop_condition.set_params(params.stop_condition_params)
 	
-	# Setup individual generator -----------------------------------------------
-	if _current_individual_generator_type != params.individual_generator_type:
-		individual_generator = IndividualGenerator.factory_create(params.individual_generator_type)
-		_current_individual_generator_type = params.individual_generator_type
+	# Setup shape generator -----------------------------------------------
+	if _current_shape_generator_type != params.shape_generator_type:
+		shape_generator = ShapeGenerator.factory_create(params.shape_generator_type)
+		_current_shape_generator_type = params.shape_generator_type
 
-	individual_generator.params = params.individual_generator_params
+	shape_generator.params = params.shape_generator_params
 	
 	_weight_texture_generator = WeightTextureGenerator.factory_create(params.weight_texture_generator_type)
 	_weight_texture_generator.set_params(params.weight_texture_generator_params)
 	
 func _init() -> void:
-	_individual_renderer = load("res://generation/individual/individual_renderer.gd").new()
+	_shape_renderer = ShapeRenderer.new()
 
 
 func copy_source_texture_contents(dest: Texture2DRD):
@@ -121,7 +120,7 @@ func copy_source_texture_contents(dest: Texture2DRD):
 	texture_mutex.lock()
 	
 	RenderingCommon.texture_copy(
-		individual_generator.source_texture.rd_rid,
+		shape_generator.source_texture.rd_rid,
 		dest.texture_rd_rid,
 		Renderer.rd,
 		RenderingServer.get_rendering_device()

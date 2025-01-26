@@ -72,7 +72,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	
 	var success = _frame_saver.save(
 		path,
-		_src_img_generation_details.individuals,
+		_src_img_generation_details.shapes,
 		_src_img_generation_details.clear_color,
 		_src_img_generation_details.viewport_size,
 		scale_spin_box.value

@@ -8,11 +8,11 @@ func image_generation_began(params: ImageGeneratorParams):
 func image_generation_finished(generated_image: RendererTexture):
 	pass
 
-func individual_generation_began(params: IndividualGeneratorParams):
+func shape_generation_began(params: ShapeGeneratorParams):
 	pass
 
-func individual_generation_finished(
-	individual: Individual,
+func shape_generation_finished(
+	shape: Shape,
 	source_texture: RendererTexture):
 	pass
 

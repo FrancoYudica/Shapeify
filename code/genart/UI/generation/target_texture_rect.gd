@@ -2,9 +2,9 @@ extends TextureRect
 
 @export var image_generation: Node
 
-var _individual_generation_params: IndividualGeneratorParams:
+var _individual_generation_params: ShapeGeneratorParams:
 	get:
-		return Globals.settings.image_generator_params.individual_generator_params 
+		return Globals.settings.image_generator_params.shape_generator_params 
 
 func _ready() -> void:
 	_update_target_texture()

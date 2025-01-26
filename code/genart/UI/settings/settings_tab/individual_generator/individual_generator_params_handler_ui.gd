@@ -2,9 +2,9 @@ extends PanelContainer
 
 @export var color_sampler: OptionButton
 
-var _params : IndividualGeneratorParams:
+var _params : ShapeGeneratorParams:
 	get:
-		return Globals.settings.image_generator_params.individual_generator_params
+		return Globals.settings.image_generator_params.shape_generator_params
 
 func _ready() -> void:
 

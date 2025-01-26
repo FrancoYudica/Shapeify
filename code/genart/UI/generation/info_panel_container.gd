@@ -24,7 +24,7 @@ func _ready() -> void:
 			visible = false
 	)
 	
-	image_generation.individual_generated.connect(
+	image_generation.shape_generated.connect(
 		func(i):
 			_should_recalculate_metric = true
 	)
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 		
 		
 	var details: ImageGenerationDetails = image_generation.image_generation_details
-	individual_count_value_label.text = str(details.individuals.size())
+	individual_count_value_label.text = str(details.shapes.size())
 	executions_count_value_label.text = str(details.executed_count)
 	
 	if _clock != null:
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		_metric.target_texture = Globals \
 								.settings \
 								.image_generator_params \
-								.individual_generator_params \
+								.shape_generator_params \
 								.target_texture
 								
 		var score = _metric.compute(output_texture_holder.renderer_texture)

@@ -5,7 +5,7 @@ extends TextureRect
 var _output_rd_texture
 
 func _ready() -> void:
-	animator.individuals_animated.connect(_animated_individuals)
+	animator.shapes_animated.connect(_animated_shapes)
 	
 func _exit_tree() -> void:
 	_free_texture()
@@ -15,13 +15,13 @@ func _process(delta: float) -> void:
 		_free_texture()
 		
 
-func _animated_individuals(individuals: Array[Individual]):
+func _animated_shapes(shapes: Array[Shape]):
 	
-	_render_individuals(individuals)
+	_render_shapes(shapes)
 	_update_texture()
 
 
-func _render_individuals(individuals):
+func _render_shapes(shapes):
 	
 	var viewport_size = animator.image_generation_details.viewport_size
 	Renderer.begin_frame(viewport_size)
@@ -35,14 +35,14 @@ func _render_individuals(individuals):
 		white_texture,
 		0.0)
 	
-	# Renders individuals
-	for individual in individuals:
+	# Renders shapes
+	for shape in shapes:
 		Renderer.render_sprite(
-			individual.position,
-			individual.size,
-			individual.rotation,
-			individual.tint,
-			individual.texture,
+			shape.position,
+			shape.size,
+			shape.rotation,
+			shape.tint,
+			shape.texture,
 			1.0)
 	Renderer.end_frame()
 	

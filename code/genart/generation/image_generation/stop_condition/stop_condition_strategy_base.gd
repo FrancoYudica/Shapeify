@@ -11,7 +11,7 @@ enum Type
 func began_generating():
 	pass
 
-func individual_generated(
+func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
 	individual: Individual):

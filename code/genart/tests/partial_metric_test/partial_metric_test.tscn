@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_metric.gd" id="3_xo3e5"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_jtatx"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="5_5txdc"]
-[ext_resource type="Script" path="res://generation/individual/individual.gd" id="6_gn2i2"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/individual.gd" id="6_gn2i2"]
 [ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="7_76613"]
 
 [sub_resource type="Texture2D" id="Texture2D_lcw56"]

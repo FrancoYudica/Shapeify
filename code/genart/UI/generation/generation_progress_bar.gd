@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 	visible = false
 	
-	image_generation.individual_generated.connect(
+	image_generation.shape_generated.connect(
 		func(individual):
 			generated_individuals += 1
 	)

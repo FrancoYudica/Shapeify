@@ -1,6 +1,6 @@
 extends MarginContainer
 
-signal individuals_animated(individuals: Array[Individual])
+signal shapes_animated(shapes: Array[Shape])
 signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
@@ -11,14 +11,14 @@ var image_generation_details: ImageGenerationDetails:
 	get:
 		return _image_generation.image_generation_details
 		
-var animation_player: IndividualAnimationPlayer
+var animation_player: ShapeAnimationPlayer
 
 var _tween: Tween
 var _current_t: float = 0.0
 var duration: float = 5.0
 
 func _ready() -> void:
-	animation_player = IndividualAnimationPlayer.new()
+	animation_player = ShapeAnimationPlayer.new()
 	visibility_changed.connect(
 		func():
 			if visible:
@@ -42,11 +42,11 @@ func play_animation(start_t: float):
 
 func _interpolate(t: float):
 		
-	var animated_individuals = animation_player.animate(
-		image_generation_details.individuals, 
+	var animated_shapes = animation_player.animate(
+		image_generation_details.shapes, 
 		image_generation_details.viewport_size,
 		t)
-	individuals_animated.emit(animated_individuals)
+	shapes_animated.emit(animated_shapes)
 	animation_progress_updated.emit(t)
 	_current_t = t
 

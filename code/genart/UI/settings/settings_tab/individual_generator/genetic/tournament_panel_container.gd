@@ -3,12 +3,12 @@ extends PanelContainer
 
 @onready var tournament_size := $MarginContainer/TournamentSizeBox
 
-var _params : GeneticIndividualGeneratorParams:
+var _params : GeneticShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_params \
+				.shape_generator_params \
 				.genetic_params
 
 func _ready() -> void:

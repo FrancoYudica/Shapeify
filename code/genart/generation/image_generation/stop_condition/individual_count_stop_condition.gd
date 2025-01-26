@@ -6,7 +6,7 @@ var _stop_count: int = 10
 func began_generating():
 	_generated_count = 0
 
-func individual_generated(
+func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
 	individual: Individual):

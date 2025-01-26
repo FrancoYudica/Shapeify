@@ -9,14 +9,14 @@ extends PanelContainer
 @export var fixed_size_width_ratio: SpinBox
 
 
-var _ind_gen_params : IndividualGeneratorParams:
+var _ind_gen_params : ShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_params
+				.shape_generator_params
 
-var _params : IndividualGeneratorParams:
+var _params : ShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \

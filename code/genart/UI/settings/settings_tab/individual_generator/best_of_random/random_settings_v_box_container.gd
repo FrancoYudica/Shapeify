@@ -1,22 +1,22 @@
 extends VBoxContainer
 
-@export var individual_count: SpinBox
+@export var shape_count_spin_box: SpinBox
 @export var fitness_option: OptionButton
 
-var _params : BestOfRandomIndividualGeneratorParams:
+var _params : BestOfRandomShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_params \
+				.shape_generator_params \
 				.best_of_random_params
 	
 func _ready() -> void:
 	
 	# Generations spin ---------------------------------------------------------
-	individual_count.value_changed.connect(
+	shape_count_spin_box.value_changed.connect(
 		func(v):
-			_params.individual_count = v
+			_params.shape_count = v
 	)
 	
 	# Fitness option -----------------------------------------------------------
@@ -32,11 +32,11 @@ func _ready() -> void:
 	_update()
 	
 func _update():
-	individual_count.value = _params.individual_count
+	shape_count_spin_box.value = _params.shape_count
 	fitness_option.select(_params.fitness_calculator)
 
 func _process(dt) -> void:
 	visible = Globals \
 				.settings \
 				.image_generator_params \
-				.individual_generator_type == IndividualGenerator.Type.BestOfRandom
+				.shape_generator_type == ShapeGenerator.Type.BestOfRandom

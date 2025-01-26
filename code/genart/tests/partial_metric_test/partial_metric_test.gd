@@ -9,13 +9,13 @@ extends Node2D
 var _partial_metric: PartialMetric
 var _metric: Metric
 
-var _individual_renderer := IndividualRenderer.new()
+var _shape_renderer := ShapeRenderer.new()
 
 func _ready() -> void:
 	
 	# Initializes PartialMetrics and setups attributes
-	_individual_renderer.source_texture = source_texture
-	_individual_renderer.render_individual(individual)
+	_shape_renderer.source_texture = source_texture
+	_shape_renderer.render_shape(individual)
 	var new_source_texutre = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
 	
 	_partial_metric = partial_metric_script.new()
