@@ -77,7 +77,7 @@ func render_sprite(
 	texture: RendererTexture,
 	id: float = 0):
 	
-	if not texture.is_valid():
+	if texture == null or not texture.is_valid():
 		printerr("Trying to render sprite with invalid texture")
 		return
 	

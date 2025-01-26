@@ -1,34 +1,36 @@
 extends CanvasLayer
 
-@export var individual_generator_parms: ShapeGeneratorParams
+@export var shape_generator_params: ShapeGeneratorParams
 @export var source_texture: RendererTextureLoad
 @export var target_texture: RendererTextureLoad
 @export var output_texture: TextureRect
 @export var generate_button: Button
 @export var save_button: Button
-@export var individual_generator_option: OptionButton
+@export var shape_generator_option: OptionButton
 @export var profiling_depth_option_button: OptionButton
 @export var count_spin_box: SpinBox
 @export var output_label: Label
+@export var weight_generator_option: OptionButton
+@export var _output_texture_rect: TextureRect
 
-var _individual_generator: ShapeGenerator
+var _shape_generator: ShapeGenerator
 var _shape_renderer: ShapeRenderer
+var _weight_texture_generator: WeightTextureGenerator
 
-@onready var _output_texture_rect := $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect
 
 func _ready() -> void:
 	
-	individual_generator_parms.target_texture = target_texture
+	shape_generator_params.target_texture = target_texture
 	
-	_shape_renderer = load("res://generation/common/individual/individual_renderer.gd").new()
+	_shape_renderer = ShapeRenderer.new()
 	
-	# Inividual generator option -----------------------------------------------
+	# shape generator option -----------------------------------------------
 	for generator in ShapeGenerator.Type.keys():
-		individual_generator_option.add_item(generator)
-	individual_generator_option.select(ShapeGenerator.Type.Genetic)
-	individual_generator_option.item_selected.connect(
+		shape_generator_option.add_item(generator)
+	shape_generator_option.select(ShapeGenerator.Type.Genetic)
+	shape_generator_option.item_selected.connect(
 		func(i):
-			_set_individual_generator(i as ShapeGenerator.Type)
+			_set_shape_generator(i as ShapeGenerator.Type)
 	)
 	# Profiling depth option ---------------------------------------------------
 	for depth in Profiler.Depth.keys():
@@ -38,9 +40,19 @@ func _ready() -> void:
 		func(i):
 			Profiler.depth = i as Profiler.Depth
 	)
-	
-	# Sets individual generator
-	_set_individual_generator(ShapeGenerator.Type.Genetic)
+
+	# Weight texture generator option ---------------------------------------------------
+	for generator in WeightTextureGenerator.Type.keys():
+		weight_generator_option.add_item(generator)
+	weight_generator_option.select(WeightTextureGenerator.Type.WHITE)
+	weight_generator_option.item_selected.connect(
+		func(i):
+			_weight_texture_generator = WeightTextureGenerator.factory_create(i)
+	)
+	_weight_texture_generator = WeightTextureGenerator.factory_create(WeightTextureGenerator.Type.WHITE)
+
+	# Sets shape generator
+	_set_shape_generator(ShapeGenerator.Type.Genetic)
 	
 func generate() -> void:
 	
@@ -48,18 +60,19 @@ func generate() -> void:
 
 	generate_button.call_deferred("set_disabled", true)
 	for i in range(int(count_spin_box.value)):
-		_individual_generator.source_texture = source_texture
+		_shape_generator.weight_texture = _weight_texture_generator.generate(0, target_texture)
+		_shape_generator.source_texture = source_texture
 		
 		var clock = Clock.new()
-		var individual = _individual_generator.generate_shape()
+		var shape = _shape_generator.generate_shape()
 		output_label.call_deferred(
 			"set_text", 
-			"%s. Generated individual in %sms with fitness %s" % [i, clock.elapsed_ms(), individual.fitness]
+			"%s. Generated shape in %sms with fitness %s" % [i, clock.elapsed_ms(), shape.fitness]
 		)
-		# Renders the best individual
-		_shape_renderer.source_texture = _individual_generator.source_texture
-		_shape_renderer.render_shape(individual)
-		_individual_generator.source_texture = null
+		# Renders the best shape
+		_shape_renderer.source_texture = _shape_generator.source_texture
+		_shape_renderer.render_shape(shape)
+		_shape_generator.source_texture = null
 	
 	output_label.call_deferred("set_text", "Generation finished")
 	generate_button.call_deferred("set_disabled", false)
@@ -83,22 +96,11 @@ func _on_save_profiling_button_pressed() -> void:
 	_save_output()
 	print("Output saved")
 
-func _set_individual_generator(type: ShapeGenerator.Type):
-	# Setup individual generator -----------------------------------------------
-	match type:
-		ShapeGenerator.Type.Random:
-			_individual_generator = load("res://generation/individual_generator/random/random_individual_generator.gd").new()
-		ShapeGenerator.Type.BestOfRandom:
-			_individual_generator = load("res://generation/individual_generator/best_of_random/best_of_random_individual_generator.gd").new()
-		ShapeGenerator.Type.Genetic:
-			_individual_generator = load("res://generation/individual_generator/genetic/genetic_individual_generator.gd").new()
-
-		_:
-			push_error("Unimplemented individual generator of type %s" % type)
-
-	_individual_generator.params = individual_generator_parms
-	_individual_generator.source_texture = source_texture
-
+func _set_shape_generator(type: ShapeGenerator.Type):
+	# Setup shape generator -----------------------------------------------
+	_shape_generator = ShapeGenerator.factory_create(type)
+	_shape_generator.params = shape_generator_params
+	_shape_generator.source_texture = source_texture
 
 func _save_output():
 	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)

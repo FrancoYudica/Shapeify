@@ -23,7 +23,7 @@ func _init() -> void:
 		settings = load("user://settings.tres")
 		
 		# If the versions doesn't match, overrides with default settings
-		if settings.version != default_settings.version:
+		if settings == null or settings.version != default_settings.version:
 			settings = default_settings
 	
 func _enter_tree() -> void:

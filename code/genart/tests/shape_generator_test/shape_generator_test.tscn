@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Resource" uid="uid://da7g40v5lfd28" path="res://tests/individual_generator_test/params_optimizations/precise_individual_generator_params_test.tres" id="2_yfadj"]
+[ext_resource type="Resource" uid="uid://c8ljel77jp37e" path="res://tests/shape_generator_test/params_optimizations/balanced_optimization_individual_generator_params_test.tres" id="2_nfbea"]
 [ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/convergence_tests/convergence_rectangle_target_test.png" id="3_0t4m0"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
-[ext_resource type="Script" path="res://tests/individual_generator_test/ui_canvas_layer.gd" id="13_jgyce"]
+[ext_resource type="Script" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
 [sub_resource type="Texture2D" id="Texture2D_4uqcx"]
@@ -16,17 +16,19 @@ _src_texture = ExtResource("3_0t4m0")
 
 [node name="IndividualGeneratorTest" type="Node"]
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "individual_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label")]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "shape_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label", "weight_generator_option", "_output_texture_rect")]
 script = ExtResource("13_jgyce")
-individual_generator_parms = ExtResource("2_yfadj")
+shape_generator_params = ExtResource("2_nfbea")
 target_texture = SubResource("Texture2D_4uqcx")
-output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/IndividualSourceTextureRect")
+output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SourceTextureRect")
 generate_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button")
 save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
-individual_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IndividualGeneratorOptionButton")
+shape_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/ShapeGeneratorOptionButton")
 profiling_depth_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer/ProfilingDepthOptionButton")
 count_spin_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/CountSpinBox")
 output_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OutputLabel")
+weight_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/WeightTextureGeneratorOptionButton")
+_output_texture_rect = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SourceTextureRect")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
 anchors_preset = 15
@@ -60,9 +62,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Individual generator"
+text = "Shape generator"
 
-[node name="IndividualGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="ShapeGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -91,6 +93,16 @@ layout_mode = 2
 disabled = true
 text = "Save"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Weight texture generator"
+
+[node name="WeightTextureGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -99,14 +111,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
-prefix = "Count"
+prefix = "Shape count"
 
 [node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Generate"
 
-[node name="IndividualSourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("Texture2DRD_vyacx")

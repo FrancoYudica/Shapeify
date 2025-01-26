@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="IndividualGeneratorParams" load_steps=14 format=3 uid="uid://da7g40v5lfd28"]
+[gd_resource type="Resource" script_class="ShapeGeneratorParams" load_steps=14 format=3 uid="uid://da7g40v5lfd28"]
 
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="1_b4j7h"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_7rdsa"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_4k61h"]
 script = ExtResource("1_b4j7h")
-individual_count = 3000
+shape_count = 300
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_uwsub"]

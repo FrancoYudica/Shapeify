@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="IndividualGeneratorParams" load_steps=14 format=3 uid="uid://c8ljel77jp37e"]
+[gd_resource type="Resource" script_class="ShapeGeneratorParams" load_steps=16 format=3 uid="uid://c8ljel77jp37e"]
 
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="1_iduag"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_38wee"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_y2phk"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/populator_params.gd" id="4_glbr3"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="4_nv7r3"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="5_u8r1t"]
 [ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/convergence_tests/convergence_rectangle_shape_test.png" id="6_r6odd"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="7_80ye5"]
@@ -11,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_4k61h"]
 script = ExtResource("1_iduag")
-individual_count = 700
+shape_count = 300
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_uwsub"]
@@ -31,6 +32,11 @@ crossover_strategy = 3
 mutation_strategy = 1
 survivor_selection_strategy = 1
 survivor_selection_params = SubResource("Resource_uwsub")
+
+[sub_resource type="Resource" id="Resource_cq3b6"]
+script = ExtResource("4_nv7r3")
+max_age = 100
+fitness_calculator = 1
 
 [sub_resource type="Texture2D" id="Texture2D_s61cg"]
 resource_local_to_scene = false
@@ -58,3 +64,4 @@ fixed_size = false
 fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_4k61h")
 genetic_params = SubResource("Resource_df2jm")
+hill_climbing_params = SubResource("Resource_cq3b6")
