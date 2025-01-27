@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2cj4labac2rj"]
 
 [ext_resource type="Script" path="res://tests/weight_texture_generator_test/weight_texture_generator_test.gd" id="1_6ie0o"]
-[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="1_nkfak"]
-[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/sample_targets/BillieEilish.jpg" id="2_3456o"]
+[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="1_nkfak"]
+[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/textures/sample_targets/BillieEilish.jpg" id="2_3456o"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_ujixy"]
 
 [sub_resource type="Texture2D" id="Texture2D_fqx83"]

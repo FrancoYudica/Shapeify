@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://xdi5ffyh1i4v"]
 
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_items/image_item.gd" id="1_rfjw7"]
-[ext_resource type="Texture2D" uid="uid://bdiawfb3r0o1t" path="res://art/icons/delete.png" id="2_0irmf"]
+[ext_resource type="Texture2D" uid="uid://bdiawfb3r0o1t" path="res://art/textures/icons/delete.png" id="2_0irmf"]
 [ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="3_uw43b"]
 
 [node name="ImageItem" type="PanelContainer" node_paths=PackedStringArray("_label", "_texture_rect")]

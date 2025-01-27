@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d26mj4eo12d1o"]
 
 [ext_resource type="Script" path="res://UI/settings/images_tab/texture_groups/texture_group_item.gd" id="1_wo586"]
-[ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/icons/plus.png" id="2_8yyvl"]
+[ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="2_8yyvl"]
 [ext_resource type="LabelSettings" uid="uid://r3h22evgnibe" path="res://UI/themes/label_subheader.tres" id="2_ooa0f"]
 
 [node name="TextureGroupItem" type="PanelContainer" node_paths=PackedStringArray("textures_container", "title_label")]

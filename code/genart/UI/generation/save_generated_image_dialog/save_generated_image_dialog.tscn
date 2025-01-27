@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.gd" id="1_au3md"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="2_t2qo2"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="3_48lue"]
-[ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/icons/save.png" id="4_majp7"]
+[ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/textures/icons/save.png" id="4_majp7"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="5_qyqr0"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="5_vknee"]
-[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="6_1qvvg"]
+[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="6_1qvvg"]
 [ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="8_kbnit"]
 
 [node name="SaveImageDialog" type="Control" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture", "format_option_button")]

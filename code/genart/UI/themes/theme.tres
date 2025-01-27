@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=39 format=3 uid="uid://hsiwarkkc1wt"]
 
 [ext_resource type="FontFile" uid="uid://dvvmugqg352g2" path="res://art/fonts/Outfit-Regular.ttf" id="1_1nnkf"]
-[ext_resource type="Texture2D" uid="uid://bqbvpi2acju6r" path="res://art/icons/close.png" id="1_8ruu0"]
-[ext_resource type="Texture2D" uid="uid://b5mp8cb68iwkc" path="res://art/icons/checkbox2.png" id="1_kr6fy"]
-[ext_resource type="Texture2D" uid="uid://lfsk317i0xy5" path="res://art/icons/updown.png" id="2_3pcqm"]
-[ext_resource type="Texture2D" uid="uid://y6tj46mejdp3" path="res://art/icons/checkbox1.png" id="2_fqdwi"]
-[ext_resource type="Texture2D" uid="uid://c8pye3e5hapow" path="res://art/icons/check_blue.png" id="4_ytne1"]
+[ext_resource type="Texture2D" uid="uid://bqbvpi2acju6r" path="res://art/textures/icons/close.png" id="1_8ruu0"]
+[ext_resource type="Texture2D" uid="uid://b5mp8cb68iwkc" path="res://art/textures/icons/checkbox2.png" id="1_kr6fy"]
+[ext_resource type="Texture2D" uid="uid://lfsk317i0xy5" path="res://art/textures/icons/updown.png" id="2_3pcqm"]
+[ext_resource type="Texture2D" uid="uid://y6tj46mejdp3" path="res://art/textures/icons/checkbox1.png" id="2_fqdwi"]
+[ext_resource type="Texture2D" uid="uid://c8pye3e5hapow" path="res://art/textures/icons/check_blue.png" id="4_ytne1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xn64"]
 content_margin_left = 8.0

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/populator_params.gd" id="4_glbr3"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="4_nv7r3"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="5_u8r1t"]
-[ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/convergence_tests/convergence_rectangle_shape_test.png" id="6_r6odd"]
+[ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/textures/convergence_tests/convergence_rectangle_shape_test.png" id="6_r6odd"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="7_80ye5"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="8_yjst7"]
 

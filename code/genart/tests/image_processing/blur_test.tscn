@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="2_m73eg"]
 [ext_resource type="Script" path="res://generation/image_processing/gaussian_blur.gd" id="2_ro80o"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="3_8v20u"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="3_cgqif"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="3_cgqif"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_wingi"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="6_0r1wx"]
-[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/sample_targets/BillieEilish.jpg" id="7_nba3k"]
+[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/textures/sample_targets/BillieEilish.jpg" id="7_nba3k"]
 
 [sub_resource type="Texture2D" id="Texture2D_pd0h6"]
 resource_local_to_scene = false

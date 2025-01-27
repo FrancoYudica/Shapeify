@@ -15,7 +15,7 @@ signal resized
 
 var is_initialized: bool = false
 
-const _DEFAULT_TEXTURE_PATH = "res://art/white_1x1.png"
+const _DEFAULT_TEXTURE_PATH = "res://art/textures/white_1x1.png"
 
 var rd: RenderingDevice
 var _pipeline: RID

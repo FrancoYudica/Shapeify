@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tests/average_color/subrect/average_color_test.gd" id="1_ofwxx"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/subrect/average_subrect_color_sampler_cpu.gd" id="2_as0en"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/subrect/average_subrect_color_sampler.gd" id="3_o6uxw"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="4_t3rxv"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="4_t3rxv"]
 
 [node name="AverageColorTest" type="Control"]
 layout_mode = 3

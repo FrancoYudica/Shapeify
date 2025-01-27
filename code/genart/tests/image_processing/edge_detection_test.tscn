@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://tests/image_processing/edge_detection_test.gd" id="1_3k4vw"]
 [ext_resource type="Script" path="res://generation/image_processing/sobel_edge_detection_processor.gd" id="2_1rgb5"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="3_3qab8"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="4_h8g1x"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="4_h8g1x"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="5_o8dwn"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="6_gldvy"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="7_k3cam"]
-[ext_resource type="Texture2D" uid="uid://cru6qvrruooer" path="res://art/test/mona_lisa_blurred.png" id="7_pytlw"]
-[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/sample_targets/BillieEilish.jpg" id="8_x2bus"]
-[ext_resource type="Texture2D" uid="uid://dklvfkvdj5dci" path="res://art/test/billie_blurred.png" id="9_lh0lm"]
+[ext_resource type="Texture2D" uid="uid://cru6qvrruooer" path="res://art/textures/test/mona_lisa_blurred.png" id="7_pytlw"]
+[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/textures/sample_targets/BillieEilish.jpg" id="8_x2bus"]
+[ext_resource type="Texture2D" uid="uid://dklvfkvdj5dci" path="res://art/textures/test/billie_blurred.png" id="9_lh0lm"]
 
 [sub_resource type="Texture2D" id="Texture2D_la15x"]
 resource_local_to_scene = false
