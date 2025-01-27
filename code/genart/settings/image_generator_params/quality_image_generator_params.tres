@@ -78,7 +78,7 @@ script = ExtResource("11_l2pw6")
 
 [resource]
 script = ExtResource("2_67d4q")
-type = 3
+type = 2
 weight_texture_generator_type = 0
 shape_generator_params = SubResource("Resource_spa1h")
 shape_generator_type = 2

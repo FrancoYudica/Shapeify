@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dvvmugqg352g2"
-path="res://.godot/imported/Outfit-Regular.ttf-0468b9e0aa3e11b227be45ac8d3d034d.fontdata"
+uid="uid://vnb2anlyi7y3"
+path="res://.godot/imported/Outfit-Bold.ttf-74c541d3e7498ccfe562aa3d98775cc2.fontdata"
 
 [deps]
 
-source_file="res://UI/fonts/Outfit-Regular.ttf"
-dest_files=["res://.godot/imported/Outfit-Regular.ttf-0468b9e0aa3e11b227be45ac8d3d034d.fontdata"]
+source_file="res://art/fonts/Outfit-Bold.ttf"
+dest_files=["res://.godot/imported/Outfit-Bold.ttf-74c541d3e7498ccfe562aa3d98775cc2.fontdata"]
 
 [params]
 

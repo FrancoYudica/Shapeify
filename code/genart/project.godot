@@ -21,7 +21,7 @@ config/windows_native_icon="res://art/genart_icon/genart_icon.ico"
 
 [autoload]
 
-Notifier="*res://UI/notifier.gd"
+Notifier="*res://UI/utils/notifier.gd"
 Renderer="*res://renderer/renderer.gd"
 Globals="*res://globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
@@ -35,7 +35,7 @@ window/size/viewport_height=720
 
 timers/tooltip_delay_sec=0.25
 timers/tooltip_delay_sec.editor_hint=0.25
-theme/custom="res://UI/theme.tres"
+theme/custom="res://UI/themes/theme.tres"
 
 [input]
 

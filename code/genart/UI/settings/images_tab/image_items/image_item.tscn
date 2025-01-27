@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_items/image_item.gd" id="1_rfjw7"]
 [ext_resource type="Texture2D" uid="uid://bdiawfb3r0o1t" path="res://art/icons/delete.png" id="2_0irmf"]
-[ext_resource type="Script" path="res://UI/modulate_on_hover.gd" id="3_uw43b"]
+[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="3_uw43b"]
 
 [node name="ImageItem" type="PanelContainer" node_paths=PackedStringArray("_label", "_texture_rect")]
 script = ExtResource("1_rfjw7")
