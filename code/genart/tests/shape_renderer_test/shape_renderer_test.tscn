@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwl3ru8nypy42"]
 
 [ext_resource type="Script" path="res://tests/shape_renderer_test/shape_renderer_test.gd" id="1_rvydi"]
-[ext_resource type="Texture2D" uid="uid://dm2v4ueh2at0p" path="res://art/textures/test/source_test_1920x1080.png" id="2_n4qnr"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_g6mqg"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_bilb8"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="4_tdiq0"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="6_hm8m1"]
@@ -10,7 +10,7 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_bilb8")
-_src_texture = ExtResource("2_n4qnr")
+_src_texture = ExtResource("2_g6mqg")
 
 [sub_resource type="Texture2D" id="Texture2D_1i40l"]
 resource_local_to_scene = false
@@ -20,7 +20,7 @@ _src_texture = ExtResource("4_tdiq0")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_itb2w"]
 
-[node name="IndividualRendererTest" type="Node"]
+[node name="ShapeRendererTest" type="Node"]
 script = ExtResource("1_rvydi")
 source_texture = SubResource("Texture2D_03tba")
 shape_texture = SubResource("Texture2D_1i40l")

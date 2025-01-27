@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Resource" uid="uid://c8ljel77jp37e" path="res://tests/shape_generator_test/params_optimizations/balanced_optimization_individual_generator_params_test.tres" id="2_nfbea"]
+[ext_resource type="Resource" uid="uid://c8ljel77jp37e" path="res://tests/shape_generator_test/params_optimizations/shape_generator_params_test.tres" id="2_nfbea"]
 [ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/textures/convergence_tests/convergence_rectangle_target_test.png" id="3_0t4m0"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
 [ext_resource type="Script" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]

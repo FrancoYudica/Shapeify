@@ -73,7 +73,7 @@ execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
 
-[sub_resource type="Resource" id="Resource_h6ifh"]
+[sub_resource type="Resource" id="Resource_tbdou"]
 script = ExtResource("11_l2pw6")
 
 [resource]
@@ -86,4 +86,4 @@ stop_condition = 0
 stop_condition_params = SubResource("Resource_ujs6t")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_rjnk8")
-weight_texture_generator_params = SubResource("Resource_h6ifh")
+weight_texture_generator_params = SubResource("Resource_tbdou")
