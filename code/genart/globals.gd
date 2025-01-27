@@ -86,7 +86,7 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 		ImageGeneratorParams.Type.FAST:
 			preset = load("res://settings/image_generator_params/fast_image_generator_params.tres").duplicate(true)
 		ImageGeneratorParams.Type.PERFORMANCE:
-			preset = load("res://settings/image_generator_params/performant_image_generator_params.tres").duplicate(true)
+			preset = load("res://settings/image_generator_params/performance_image_generator_params.tres").duplicate(true)
 		ImageGeneratorParams.Type.QUALITY:
 			preset = load("res://settings/image_generator_params/quality_image_generator_params.tres").duplicate(true)
 	
