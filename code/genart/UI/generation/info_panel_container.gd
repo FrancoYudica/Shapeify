@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @export var metric_script: GDScript
-@export var individual_count_value_label: Label
+@export var shape_count_value_label: Label
 @export var current_execution_value_label: Label
 @export var executions_count_value_label: Label
 @export var time_taken_value_label: Label
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 		
 		
 	var details: ImageGenerationDetails = image_generation.image_generation_details
-	individual_count_value_label.text = str(details.shapes.size())
+	shape_count_value_label.text = str(details.shapes.size())
 	executions_count_value_label.text = str(details.executed_count)
 	
 	if _clock != null:

@@ -2,7 +2,7 @@ extends TextureRect
 
 @export var image_generation: Node
 
-var _individual_generation_params: ShapeGeneratorParams:
+var _shape_generator_params: ShapeGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params.shape_generator_params 
 
@@ -60,7 +60,7 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 		Notifier.notify_error("Unable to load texture")
 		return
 	
-	_individual_generation_params.target_texture = renderer_texture
+	_shape_generator_params.target_texture = renderer_texture
 	image_generation.refresh_target_texture()
 	# Frees previous texture and updates
 	_free_texture()
@@ -76,7 +76,7 @@ func _free_texture():
 
 func _update_target_texture():
 	
-	var target_texture: RendererTexture = _individual_generation_params.target_texture
+	var target_texture: RendererTexture = _shape_generator_params.target_texture
 	if target_texture == null or not target_texture.is_valid():
 		Notifier.notify_error("Unable to update_target_texture() if target texture is null")
 		return

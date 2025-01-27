@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nsoykcasr2a8"]
 
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/blur_panel_style_box.tres" id="1_ahcgi"]
-[ext_resource type="Script" path="res://UI/settings/images_tab/texture_groups/individuals_texure_groups.gd" id="1_if866"]
+[ext_resource type="Script" path="res://UI/settings/images_tab/texture_groups/shape_texture_groups.gd" id="1_if866"]
 [ext_resource type="Script" path="res://UI/close_on_cancel.gd" id="4_5rdpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eejfd"]
@@ -11,7 +11,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="IndividualsTexureGroups" type="Control" node_paths=PackedStringArray("group_item_container")]
+[node name="ShapeTexureGroups" type="Control" node_paths=PackedStringArray("group_item_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

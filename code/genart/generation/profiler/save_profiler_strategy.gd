@@ -66,19 +66,19 @@ func shape_generation_finished(
 	shape_generation["generated_shape"] = shape.to_dict()
 	shape_generation["time_taken"] = Time.get_ticks_msec() * 0.001 - shape_generation["time_taken"]
 	
-	# Renders individual over source texture
+	# Renders shape over source texture
 	_shape_renderer.source_texture = source_texture
 	_shape_renderer.render_shape(shape)
 	
 	_delta_e_1994_metric.target_texture = _shape_generator_params.target_texture
-	var individual_source_texture := _shape_renderer.get_color_attachment_texture()
-	shape_generation["generated_shape"]["metric_score"] = _delta_e_1994_metric.compute(individual_source_texture)
+	var shape_source_texture := _shape_renderer.get_color_attachment_texture()
+	shape_generation["generated_shape"]["metric_score"] = _delta_e_1994_metric.compute(shape_source_texture)
 
 func genetic_population_generated(
 	population: Array[Individual],
 	source_texture: RendererTexture):
 	
-	var individual_generation = _get_current_shape_generation()
+	var shape_generation = _get_current_shape_generation()
 	
 	# Setup components data in order to calculate the metric
 	_delta_e_1994_metric.target_texture = _shape_generator_params.target_texture
@@ -96,7 +96,7 @@ func genetic_population_generated(
 		
 		population_data.append(individual_data)
 	
-	individual_generation["genetic_generations"].append(population_data)
+	shape_generation["genetic_generations"].append(population_data)
 
 
 func _get_current_image_generation() -> Dictionary:
