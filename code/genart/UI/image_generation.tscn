@@ -42,7 +42,7 @@
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/settings/label_header.tres" id="38_lwjl2"]
 [ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/icons/plus.png" id="38_r17sk"]
 [ext_resource type="Texture2D" uid="uid://dmogt7wyvnvqi" path="res://art/icons/deleteall.png" id="39_xslnu"]
-[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/individual_count_v_box_container.gd" id="40_588b5"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/shape_count_v_box_container.gd" id="40_588b5"]
 [ext_resource type="StyleBox" uid="uid://cqq6d3mymdifj" path="res://UI/type_settings_panel.tres" id="40_fgnoh"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/time_count_v_box_container.gd" id="41_stjs3"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/target_fitness_v_box_container.gd" id="42_84n2v"]
@@ -119,9 +119,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -573,7 +574,6 @@ text = "Input texture (drag and drop a *.png or *.jpg file to change)"
 vertical_alignment = 1
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -798,6 +798,7 @@ text = "Stop condition"
 
 [node name="StopConditionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionHBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="StopConditionPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -809,21 +810,21 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="IndividualCountVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer" node_paths=PackedStringArray("individual_count")]
+[node name="ShapeCountVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer" node_paths=PackedStringArray("shape_count_spin_box")]
 layout_mode = 2
 script = ExtResource("40_588b5")
-individual_count = NodePath("GridContainer/IndividualCountSpinBox")
+shape_count_spin_box = NodePath("GridContainer/ShapeCountSpinBox")
 
-[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/IndividualCountVBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/ShapeCountVBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 20
 columns = 2
 
-[node name="IndividualCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/IndividualCountVBoxContainer/GridContainer"]
+[node name="ShapeCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/ShapeCountVBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Individual count"
+text = "Shape count"
 
-[node name="IndividualCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/IndividualCountVBoxContainer/GridContainer"]
+[node name="ShapeCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/ShapeCountVBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0

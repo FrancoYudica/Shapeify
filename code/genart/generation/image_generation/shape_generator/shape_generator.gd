@@ -115,7 +115,7 @@ func _init() -> void:
 
 
 static func factory_create(type: Type):
-	# Setup individual generator -----------------------------------------------
+	# Setup shape generator -----------------------------------------------
 	match type:
 		Type.Random:
 			return load("res://generation/image_generation/shape_generator/random/random_shape_generator.gd").new()
@@ -126,5 +126,5 @@ static func factory_create(type: Type):
 		Type.HillClimb:
 			return load("res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator.gd").new()
 		_:
-			push_error("Unimplemented individual generator of type %s" % type)
+			push_error("Unimplemented shape generator of type %s" % type)
 			return null

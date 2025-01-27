@@ -12,12 +12,12 @@ static func render_image_generation(
 	renderer.render_clear(details.clear_color)
 	
 	# Renders shapes
-	for individual in details.shapes:
+	for shape in details.shapes:
 		renderer.render_sprite(
-			individual.position,
-			individual.size,
-			individual.rotation,
-			individual.tint,
-			individual.texture,
+			shape.position,
+			shape.size,
+			shape.rotation,
+			shape.tint,
+			shape.texture,
 			1.0)
 	renderer.end_frame()

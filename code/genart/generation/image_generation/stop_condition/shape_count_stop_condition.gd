@@ -9,7 +9,7 @@ func began_generating():
 func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
-	individual: Individual):
+	shape: Shape):
 	_generated_count += 1
 	
 func should_stop() -> bool:
@@ -18,8 +18,5 @@ func should_stop() -> bool:
 func get_progress() -> float:
 	return float(_generated_count) / _stop_count
 
-func get_process_number() -> int:
-	return _generated_count
-
 func set_params(params: StopConditionParams) -> void:
-	_stop_count = params.individual_count
+	_stop_count = params.shape_count

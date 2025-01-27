@@ -95,7 +95,7 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	preset.shape_generator_params.target_texture = previous_params.shape_generator_params.target_texture
 	preset.shape_generator_params.populator_params = previous_params.shape_generator_params.populator_params
 	preset.weight_texture_generator_params.user_weight_texture = previous_params.weight_texture_generator_params.user_weight_texture
-	# Updates the individual generator params
+	# Updates the image generator params
 	Globals.settings.image_generator_params = preset
 	image_generator_params_updated.emit()
 	

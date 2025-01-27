@@ -74,7 +74,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		texture_mutex.lock()
 		var shape: Shape = shape_generator.generate_shape()
 		
-		# Renders the individual onto the source texture
+		# Renders the shape onto the source texture
 		_shape_renderer.render_shape(shape)
 		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
 		texture_mutex.unlock()

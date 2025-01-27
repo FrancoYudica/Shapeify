@@ -13,7 +13,7 @@ func began_generating():
 func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
-	individual: Individual):
+	shape: Shape):
 		
 	_metric.weight_texture = _weight_texture_generator.generate(0, target_texture)
 	_metric.target_texture = target_texture

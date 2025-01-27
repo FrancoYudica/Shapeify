@@ -27,7 +27,7 @@ func get_bounding_rect() -> Rect2i:
 	]
 	
 	# Finds top, bottom, left and right after rotating the local positions 
-	# around individual's center
+	# around shape's center
 	var top: float = INF
 	var bottom: float = -INF
 	var left: float = INF

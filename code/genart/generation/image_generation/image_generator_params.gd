@@ -25,7 +25,7 @@ enum Type
 		shape_generator_type = value
 		emit_changed()
 
-@export var stop_condition := StopCondition.Type.INDIVIDUAL_COUNT:
+@export var stop_condition := StopCondition.Type.SHAPE_COUNT:
 	set(value):
 		stop_condition = value
 		emit_changed()
