@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc6gqs0b0gp20"]
+
+[ext_resource type="Script" path="res://tests/texture_scalar_function_test/texture_scalar_function_test.gd" id="1_mfis7"]
+[ext_resource type="Texture2D" uid="uid://ckne4vpc6tryi" path="res://art/textures/test/large_single_white_pixel.png" id="2_kfmm5"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_56soa"]
+
+[sub_resource type="Texture2D" id="Texture2D_8vn2l"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_56soa")
+_src_texture = ExtResource("2_kfmm5")
+
+[node name="TextureScalarFunctionTest" type="Node2D"]
+script = ExtResource("1_mfis7")
+texture = SubResource("Texture2D_8vn2l")
+scalar_function_type = 2

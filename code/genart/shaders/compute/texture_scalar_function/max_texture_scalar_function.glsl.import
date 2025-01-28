@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bgoxf6ux37u72"
+path="res://.godot/imported/max_texture_scalar_function.glsl-bef47af51a3099f0a530903138c9f986.res"
+
+[deps]
+
+source_file="res://shaders/compute/texture_scalar_function/max_texture_scalar_function.glsl"
+dest_files=["res://.godot/imported/max_texture_scalar_function.glsl-bef47af51a3099f0a530903138c9f986.res"]
+
+[params]
+

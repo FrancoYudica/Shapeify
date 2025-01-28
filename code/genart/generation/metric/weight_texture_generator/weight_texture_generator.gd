@@ -4,6 +4,7 @@ enum Type
 {
 	WHITE,
 	GAUSSIAN_SOBEL,
+	SOBEL_GAUSSIAN,
 	USER
 }
 
@@ -23,6 +24,8 @@ static func factory_create(type: Type) -> WeightTextureGenerator:
 			return load("res://generation/metric/weight_texture_generator/white_weight_texture_generator.gd").new()
 		Type.GAUSSIAN_SOBEL:
 			return load("res://generation/metric/weight_texture_generator/gaussian_sobel_weight_texture_generator.gd").new()
+		Type.SOBEL_GAUSSIAN:
+			return load("res://generation/metric/weight_texture_generator/sobel_gaussian_weight_texture_generator.gd").new()
 		Type.USER:
 			return load("res://generation/metric/weight_texture_generator/user_weight_texture_generator.gd").new()
 		_:

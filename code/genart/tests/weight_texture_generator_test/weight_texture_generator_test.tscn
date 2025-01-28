@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://tests/weight_texture_generator_test/weight_texture_generator_test.gd" id="1_6ie0o"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="1_nkfak"]
-[ext_resource type="Texture2D" uid="uid://dp8fung1gm4s7" path="res://art/textures/sample_targets/BillieEilish.jpg" id="2_3456o"]
+[ext_resource type="Texture2D" uid="uid://bded7mbwoqvrk" path="res://art/textures/test/test_face.png" id="2_wg7qw"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_ujixy"]
 
 [sub_resource type="Texture2D" id="Texture2D_fqx83"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_ujixy")
-_src_texture = ExtResource("2_3456o")
+_src_texture = ExtResource("2_wg7qw")
 
 [node name="WeightTextureGeneratorTest" type="Control" node_paths=PackedStringArray("src_texture_rect", "out_texture_rect", "generate_button", "generator_type_option_button", "progress_spin_box")]
 layout_mode = 3
