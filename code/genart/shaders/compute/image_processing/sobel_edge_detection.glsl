@@ -55,10 +55,8 @@ void main()
 
     // Compute gradient magnitude
     float magnitude = sqrt(sum_x * sum_x + sum_y * sum_y);
-    // float edge_strength = magnitude;
     // Normalize and write to output
-    // float edge_strength = clamp(magnitude, 0.0, 1.0) * step(params.threshold, magnitude);
-    // edge_strength = pow(edge_strength, params.power);
-    float edge_strength = step(params.threshold, magnitude);
+    float edge_strength = clamp(magnitude, 0.0, 1.0) * step(params.threshold, magnitude);
+    edge_strength = pow(edge_strength, params.power);
     imageStore(write_image, coord, vec4(edge_strength, edge_strength, edge_strength, 1.0));
 }

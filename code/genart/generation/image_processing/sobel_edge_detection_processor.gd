@@ -23,21 +23,10 @@ var _last_texture_rd_rid: RID
 
 func process_image(texture: RendererTexture) -> RendererTexture:
 	
-	
 	if texture.rd_rid != _last_texture_rd_rid:
 		_refresh_textures(texture)
 		_last_texture_rd_rid = texture.rd_rid
 		
-	
-	_texture_a_uniform.clear_ids()
-	_texture_b_uniform.clear_ids()
-
-	_texture_a_uniform.add_id(_texture_a.rd_rid)
-	_texture_b_uniform.add_id(_texture_b.rd_rid)
-	
-	_texture_a_set_rid = _rd.uniform_set_create([_texture_a_uniform], _shader, 0)
-	_texture_b_set_rid = _rd.uniform_set_create([_texture_b_uniform], _shader, 1)
-
 	var texture_width = _texture_a.get_width()
 	var texture_height = _texture_a.get_height()
 	
@@ -100,3 +89,17 @@ func _notification(what: int) -> void:
 func _refresh_textures(texture: RendererTexture):
 	_texture_a = texture.copy()
 	_texture_b = texture.copy()
+	
+	_texture_a_uniform.clear_ids()
+	_texture_b_uniform.clear_ids()
+
+	_texture_a_uniform.add_id(_texture_a.rd_rid)
+	_texture_b_uniform.add_id(_texture_b.rd_rid)
+
+	if _texture_a_set_rid.is_valid() and _rd.uniform_set_is_valid(_texture_a_set_rid):
+		_rd.free_rid(_texture_a_set_rid)
+	if _texture_b_set_rid.is_valid() and _rd.uniform_set_is_valid(_texture_b_set_rid):
+		_rd.free_rid(_texture_b_set_rid)
+
+	_texture_a_set_rid = _rd.uniform_set_create([_texture_a_uniform], _shader, 0)
+	_texture_b_set_rid = _rd.uniform_set_create([_texture_b_uniform], _shader, 1)

@@ -1,0 +1,166 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6576dho72ej2"]
+
+[ext_resource type="Script" path="res://tests/image_processing/image_processing_test.gd" id="1_rx3xy"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_fuxdj"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_fpt8v"]
+[ext_resource type="Script" path="res://tests/image_processing/display_for_type_container.gd" id="4_busj4"]
+[ext_resource type="Script" path="res://tests/image_processing/multiply_v_box_container.gd" id="5_mfqkg"]
+[ext_resource type="Script" path="res://tests/image_processing/gaussian_blur_v_box_container.gd" id="6_ia5yv"]
+[ext_resource type="Script" path="res://tests/image_processing/sobel_edge_detection_v_box_container.gd" id="7_carih"]
+
+[sub_resource type="Texture2D" id="Texture2D_1mjo8"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_fpt8v")
+_src_texture = ExtResource("2_fuxdj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k84c1"]
+
+[node name="ImageProcessingTest" type="CanvasLayer" node_paths=PackedStringArray("time_taken_label", "output_texture_rect", "processor_option_button")]
+script = ExtResource("1_rx3xy")
+texture = SubResource("Texture2D_1mjo8")
+time_taken_label = NodePath("Control/VBoxContainer/PanelContainer/TimeTakenLabel")
+output_texture_rect = NodePath("Control/VBoxContainer/TextureRect")
+processor_option_button = NodePath("Control/MarginContainer/VBoxContainer/ProcessorTypeOptionButton")
+
+[node name="Control" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k84c1")
+
+[node name="TimeTakenLabel" type="Label" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Time taken"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProcessorTypeOptionButton" type="OptionButton" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MultiplyContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+processor_type = 2
+
+[node name="MultiplyVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MultiplyContainer" node_paths=PackedStringArray("image_processing")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_mfqkg")
+image_processing = NodePath("../../../../../../..")
+
+[node name="MultiplySpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MultiplyContainer/MultiplyVBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+value = 0.5
+prefix = "Value"
+
+[node name="GaussianBlurContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+
+[node name="GaussianBlurVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GaussianBlurContainer" node_paths=PackedStringArray("image_processing")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_ia5yv")
+image_processing = NodePath("../../../../../../..")
+
+[node name="SigmaSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GaussianBlurContainer/GaussianBlurVBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+value = 2.0
+prefix = "Sigma"
+
+[node name="KernelSizeSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GaussianBlurContainer/GaussianBlurVBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 32.0
+value = 5.0
+prefix = "Kernel size"
+
+[node name="IterationsSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GaussianBlurContainer/GaussianBlurVBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+value = 5.0
+prefix = "Iterations"
+
+[node name="SobelOperator" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+processor_type = 1
+
+[node name="SobelEdgeDetectionVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SobelOperator" node_paths=PackedStringArray("image_processing")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_carih")
+image_processing = NodePath("../../../../../../..")
+
+[node name="PowerSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SobelOperator/SobelEdgeDetectionVBoxContainer"]
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+value = 1.0
+prefix = "Power"
+
+[node name="ThresholdSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/SobelOperator/SobelEdgeDetectionVBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.5
+prefix = "Threshold"
