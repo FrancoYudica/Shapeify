@@ -8,6 +8,7 @@ extends CanvasLayer
 @export var clear_samples_btn: Button
 @export var samples_container: Control
 @export var debug_label: Label
+@export var sample_count_spin_box: SpinBox
 
 var texture_position_sampler: TexturePositionSampler
 
@@ -24,7 +25,11 @@ func _ready() -> void:
 	
 	weight_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(weight_texture.rd_rid)
 	
-	generate_sample_btn.pressed.connect(_generate_sample)
+	generate_sample_btn.pressed.connect(
+		func():
+			for i in range(sample_count_spin_box.value):
+				_generate_sample()
+	)
 	
 	clear_samples_btn.pressed.connect(_clear_samples)
 	
