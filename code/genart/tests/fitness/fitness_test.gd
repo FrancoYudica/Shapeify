@@ -20,6 +20,11 @@ func _ready() -> void:
 		fitness_calculator.weight_texture = weight_texture
 		
 		for i in range(iterations):
+			
+			if i == 0:
+				fitness_calculator.calculate_fitness(individual, source_texture)
+				continue
+			
 			var t = Time.get_ticks_usec()
 			fitness_calculator.calculate_fitness(individual, source_texture)
 			average_error += f * individual.fitness

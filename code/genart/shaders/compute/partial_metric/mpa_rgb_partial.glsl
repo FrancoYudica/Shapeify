@@ -63,7 +63,6 @@ void main()
 
     // Initialize shared data
     shared_partial_delta_mpa_sum[local_id] = 0.0;
-    barrier();
 
     // Process pixel if within bounds of the image
     if (global_id < num_pixels) {

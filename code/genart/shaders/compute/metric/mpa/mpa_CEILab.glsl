@@ -75,20 +75,15 @@ void main()
     shared_partial_mpa_sum[local_id] = 0.0;
     shared_partial_weights_sum[local_id] = 0.0;
 
-    barrier();
-
     // Process pixel if within bounds of the image
     if (global_id < num_pixels) {
         // Map global_id to image coordinates
         uint x = global_id % uint(params.texture_size.x);
         uint y = global_id / uint(params.texture_size.x);
 
-        // Ensure coordinates are within the valid image range
-        if (y < params.texture_size.y) {
-            MetricData data = compute_mpa_ceilab(x, y);
-            shared_partial_mpa_sum[local_id] += data.value;
-            shared_partial_weights_sum[local_id] += data.weight;
-        }
+        MetricData data = compute_mpa_ceilab(x, y);
+        shared_partial_mpa_sum[local_id] += data.value;
+        shared_partial_weights_sum[local_id] += data.weight;
     }
 
     // Synchronize threads in the workgroup
