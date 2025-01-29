@@ -43,9 +43,6 @@ void main()
     shared_data[local_id] = vec4(0.0);
     shared_sample_count[local_id] = 0.0;
 
-    barrier();
-
-    int sample_count = 0;
     // Process pixel if within bounds of the subrectangle
     if (global_id < num_pixels) {
         // Map global_id to subrectangle coordinates
