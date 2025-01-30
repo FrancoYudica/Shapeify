@@ -14,7 +14,7 @@ layout(set = 0, binding = 1, std430) buffer SamplesOutputBuffer
 };
 
 // Image bindings
-layout(rgba32f, set = 1, binding = 0) uniform restrict readonly image2D sample_image;
+layout(rgba8, set = 1, binding = 0) uniform restrict readonly image2D sample_image;
 
 // Parameters passed to the shader
 layout(push_constant, std430) uniform Params

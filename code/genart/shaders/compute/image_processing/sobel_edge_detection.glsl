@@ -4,8 +4,8 @@
 
 layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 
-layout(rgba32f, set = 0, binding = 0) uniform restrict readonly image2D read_image;
-layout(rgba32f, set = 1, binding = 0) uniform restrict writeonly image2D write_image;
+layout(rgba8, set = 0, binding = 0) uniform restrict readonly image2D read_image;
+layout(rgba8, set = 1, binding = 0) uniform restrict writeonly image2D write_image;
 
 layout(push_constant, std430) uniform Params
 {

@@ -16,7 +16,7 @@ layout(set = 0, binding = 0, std430) restrict buffer ResultBuffer
     float partial_max[];
 };
 
-layout(rgba32f, set = 1, binding = 0) uniform
+layout(rgba8, set = 1, binding = 0) uniform
     restrict readonly image2D sample_image;
 
 shared float shared_partial_max[gl_WorkGroupSize.x];

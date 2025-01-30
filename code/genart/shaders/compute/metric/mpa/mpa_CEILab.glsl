@@ -22,11 +22,11 @@ layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
     float partial_weight_sums[];
 };
 
-layout(rgba32f, set = 1, binding = 0) uniform
+layout(rgba8, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
-layout(rgba32f, set = 2, binding = 0) uniform
+layout(rgba8, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
-layout(rgba32f, set = 3, binding = 0) uniform
+layout(rgba8, set = 3, binding = 0) uniform
     restrict readonly image2D weight_image;
 
 shared float shared_partial_mpa_sum[gl_WorkGroupSize.x];

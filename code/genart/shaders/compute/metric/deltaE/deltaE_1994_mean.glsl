@@ -25,11 +25,11 @@ layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
 };
 
 // Image bindings
-layout(rgba32f, set = 1, binding = 0) uniform
+layout(rgba8, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
-layout(rgba32f, set = 2, binding = 0) uniform
+layout(rgba8, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
-layout(rgba32f, set = 3, binding = 0) uniform
+layout(rgba8, set = 3, binding = 0) uniform
     restrict readonly image2D weight_image;
 
 // Variable shared by invocations of the same work group

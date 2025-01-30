@@ -18,11 +18,11 @@ layout(set = 0, binding = 0, std430) restrict buffer InputBuffer
     float partial_delta_mpa_sums[];
 };
 
-layout(rgba32f, set = 1, binding = 0) uniform
+layout(rgba8, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
-layout(rgba32f, set = 2, binding = 0) uniform
+layout(rgba8, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
-layout(rgba32f, set = 3, binding = 0) uniform
+layout(rgba8, set = 3, binding = 0) uniform
     restrict readonly image2D new_source_image;
 
 shared float shared_partial_delta_mpa_sum[gl_WorkGroupSize.x];
