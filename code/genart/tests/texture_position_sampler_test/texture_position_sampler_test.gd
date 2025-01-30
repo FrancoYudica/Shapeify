@@ -37,22 +37,22 @@ func _ready() -> void:
 func _create_sampler(type):
 	texture_position_sampler = TexturePositionSampler.factory_create(type)
 	
+	# The texture weight texture could be directly the weight texture attribute
+	# but it's important to test that the output of the renderer is in the correct format
 	Renderer.begin_frame(weight_texture.get_size())
-	
 	Renderer.render_sprite(
 		weight_texture.get_size() * 0.5,
 		weight_texture.get_size(),
 		0,
 		Color.WHITE,
 		weight_texture,
-		0
-	)
+		0)
 	Renderer.end_frame()
 	
-	#texture_position_sampler.weight_texture = Renderer.get_attachment_texture(
-		#Renderer.FramebufferAttachment.COLOR
-	#).copy()
-	texture_position_sampler.weight_texture = weight_texture
+	# Creates a copy of the rendered texture
+	texture_position_sampler.weight_texture = Renderer.get_attachment_texture(
+		Renderer.FramebufferAttachment.COLOR
+	).copy()
 
 func _generate_sample():
 	

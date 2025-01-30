@@ -9,7 +9,6 @@ extends Control
 
 var texture_generator: WeightTextureGenerator
 
-
 func _ready() -> void:
 	
 	texture_generator = WeightTextureGenerator.factory_create(WeightTextureGenerator.Type.WHITE)

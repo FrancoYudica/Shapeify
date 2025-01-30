@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_etmf6"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_ctagt"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="4_eins3"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/populator_params.gd" id="5_opbde"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/populator/populator_params.gd" id="5_opbde"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="6_1e2ua"]
 [ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/textures/convergence_tests/convergence_rectangle_shape_test.png" id="7_kq78p"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="8_5t0au"]

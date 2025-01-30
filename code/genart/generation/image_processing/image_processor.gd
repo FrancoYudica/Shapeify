@@ -4,7 +4,8 @@ enum Type
 {
 	GAUSSIAN_BLUR,
 	SOBEL_EDGE_DETECTION,
-	MULTIPLY
+	MULTIPLY,
+	POWER
 }
 
 func process_image(texture: RendererTexture) -> RendererTexture:
@@ -18,6 +19,8 @@ static func factory_create(type: Type) -> ImageProcessor:
 			return load("res://generation/image_processing/sobel_edge_detection_processor.gd").new()
 		Type.MULTIPLY:
 			return load("res://generation/image_processing/multiply_image_processor.gd").new()
+		Type.POWER:
+			return load("res://generation/image_processing/power_image_processor.gd").new()
 		_:
 			push_error("Unimplemented type: %s" % type)
 			return null

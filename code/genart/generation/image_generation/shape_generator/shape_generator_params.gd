@@ -5,7 +5,13 @@ class_name ShapeGeneratorParams extends Resource
 		if value != populator_params:
 			populator_params = value
 			emit_changed()
-			
+
+@export var populator_type := Populator.Type.RANDOM:
+	set(value):
+		if value != populator_type:
+			populator_type = value
+			emit_changed()
+
 @export var target_texture: RendererTexture:
 	set(value):
 		if value != target_texture:
@@ -17,6 +23,8 @@ class_name ShapeGeneratorParams extends Resource
 		if value != color_sampler:
 			color_sampler = value
 			emit_changed()
+
+
 
 @export var keep_aspect_ratio: bool = false:
 	set(value):

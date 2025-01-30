@@ -8,3 +8,8 @@ class_name PopulatorParams extends Resource
 
 @export var size_bound_min: Vector2i = Vector2i(8, 8)
 @export var size_bound_max: Vector2i = Vector2i(512, 512)
+
+@export var weighted_populator_params := WeightedPopulatorParams.new()
+
+func _init() -> void:
+	weighted_populator_params.changed.connect(emit_changed)

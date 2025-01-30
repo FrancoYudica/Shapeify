@@ -71,7 +71,10 @@ func _setup():
 	params.populator_params.position_bound_max = source_texture.get_size()
 	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
-	
+
+	_populator = Populator.factory_create(params.populator_type)
+	_populator.weight_texture = weight_texture
+
 	# Setup color sampler strategy ---------------------------------------------
 	if _current_sampler_strategy != params.color_sampler or _color_sampler_strategy == null:
 		_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
@@ -110,9 +113,6 @@ func _fix_shape_attributes(shape: Shape):
 
 func _init() -> void:
 	_shape_renderer = ShapeRenderer.new()
-	# Setup populator ----------------------------------------------------------
-	_populator = load("res://generation/image_generation/shape_generator/common/random_populator.gd").new()
-
 
 static func factory_create(type: Type):
 	# Setup shape generator -----------------------------------------------

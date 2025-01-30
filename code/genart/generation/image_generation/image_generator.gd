@@ -45,6 +45,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	_generating = true
 	_stop_condition.began_generating()
+	var iteration = 0
 	while not _stop_condition.should_stop():
 		# Checks if the algorithm should stop executing
 		_mutex.lock()
@@ -53,12 +54,13 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			break
 		_mutex.unlock()
 		
-		# Generates weight texture
-		texture_mutex.lock()
-		weight_texture = _weight_texture_generator.generate(
-			_stop_condition.get_progress(),
-			target_texture)
-		texture_mutex.unlock()
+		# Generates weight texture every 5 shapes
+		if iteration % 5 == 0:
+			texture_mutex.lock()
+			weight_texture = _weight_texture_generator.generate(
+				_stop_condition.get_progress(),
+				target_texture)
+			texture_mutex.unlock()
 		
 		if weight_texture == null:
 			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
@@ -84,6 +86,8 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			source_texture,
 			target_texture,
 			shape)
+			
+		iteration += 1
 	
 	_generating = false
 	Profiler.image_generation_finished(shape_generator.source_texture)

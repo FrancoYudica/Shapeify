@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6576dho72ej2"]
+[gd_scene load_steps=11 format=3 uid="uid://c6576dho72ej2"]
 
 [ext_resource type="Script" path="res://tests/image_processing/image_processing_test.gd" id="1_rx3xy"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_fuxdj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://tests/image_processing/display_for_type_container.gd" id="4_busj4"]
 [ext_resource type="Script" path="res://tests/image_processing/multiply_v_box_container.gd" id="5_mfqkg"]
 [ext_resource type="Script" path="res://tests/image_processing/gaussian_blur_v_box_container.gd" id="6_ia5yv"]
+[ext_resource type="Script" path="res://tests/image_processing/porwer_v_box_container.gd" id="6_vwfwf"]
 [ext_resource type="Script" path="res://tests/image_processing/sobel_edge_detection_v_box_container.gd" id="7_carih"]
 
 [sub_resource type="Texture2D" id="Texture2D_1mjo8"]
@@ -94,6 +95,30 @@ script = ExtResource("5_mfqkg")
 image_processing = NodePath("../../../../../../..")
 
 [node name="MultiplySpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MultiplyContainer/MultiplyVBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+value = 0.5
+prefix = "Value"
+
+[node name="PowerContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+processor_type = 3
+
+[node name="PorwerVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PowerContainer" node_paths=PackedStringArray("image_processing")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_vwfwf")
+image_processing = NodePath("../../../../../../..")
+
+[node name="PowerSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PowerContainer/PorwerVBoxContainer"]
 layout_mode = 2
 max_value = 10.0
 step = 0.1

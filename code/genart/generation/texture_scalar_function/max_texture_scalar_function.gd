@@ -22,7 +22,7 @@ func _set_sample_texture(texture: RendererTexture):
 	if texture.rd_rid == _last_sample_texture_rid:
 		return
 	
-	if _sample_texture_set_rid.is_valid():
+	if _sample_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_sample_texture_set_rid):
 		_rd.free_rid(_sample_texture_set_rid)
 
 	# Creates the texture uniform
@@ -85,7 +85,9 @@ func _init() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		_rd.free_rid(_output_storage_buffer)
-		_rd.free_rid(_sample_texture_set_rid)
+		
+		if _sample_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_sample_texture_set_rid):
+			_rd.free_rid(_sample_texture_set_rid)
 		_rd.free_rid(_pipeline)
 		_rd.free_rid(_shader)
 
