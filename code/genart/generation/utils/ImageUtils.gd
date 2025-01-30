@@ -17,12 +17,12 @@ static func create_monochromatic_image(
 		width,
 		height,
 		false, 
-		Image.FORMAT_RGBAF)
+		Image.FORMAT_RGBA8)
 	
 	img.fill(color)
 	return img
 
-static func create_image_from_rgbaf_buffer(
+static func create_image_from_rgba8_buffer(
 	width: int,
 	height: int,
 	contents
@@ -33,7 +33,7 @@ static func create_image_from_rgbaf_buffer(
 		width,
 		height,
 		false,
-		Image.Format.FORMAT_RGBAF,
+		Image.Format.FORMAT_RGBA8,
 		contents)
 	return img
 

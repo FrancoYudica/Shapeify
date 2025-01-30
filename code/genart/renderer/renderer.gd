@@ -153,7 +153,7 @@ func _resize(viewport_size: Vector2i):
 	texture_format.texture_type = RenderingDevice.TEXTURE_TYPE_2D
 	texture_format.width = viewport_size.x * render_scale
 	texture_format.height = viewport_size.y * render_scale
-	texture_format.format = RenderingDevice.DATA_FORMAT_R32G32B32A32_SFLOAT
+	texture_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |

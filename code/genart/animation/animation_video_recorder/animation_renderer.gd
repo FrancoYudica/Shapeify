@@ -19,7 +19,7 @@ func render_frame(t: float) -> Image:
 	
 	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment.rd_rid, 0)
-	var img = ImageUtils.create_image_from_rgbaf_buffer(
+	var img = ImageUtils.create_image_from_rgba8_buffer(
 		color_attachment.get_width(),
 		color_attachment.get_height(),
 		color_attachment_data
