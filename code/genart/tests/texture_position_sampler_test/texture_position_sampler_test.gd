@@ -16,11 +16,11 @@ func _ready() -> void:
 	for type in TexturePositionSampler.Type.keys():
 		sampler_type_option_btn.add_item(type)
 	sampler_type_option_btn.select(0)
-	texture_position_sampler = TexturePositionSampler.factory_create(0)
+	_create_sampler(0)
 	
 	sampler_type_option_btn.item_selected.connect(
 		func(index):
-			texture_position_sampler = TexturePositionSampler.factory_create(index)
+			_create_sampler(index)
 	)
 	
 	weight_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(weight_texture.rd_rid)
@@ -33,17 +33,36 @@ func _ready() -> void:
 	
 	clear_samples_btn.pressed.connect(_clear_samples)
 	
+
+func _create_sampler(type):
+	texture_position_sampler = TexturePositionSampler.factory_create(type)
 	
+	Renderer.begin_frame(weight_texture.get_size())
+	
+	Renderer.render_sprite(
+		weight_texture.get_size() * 0.5,
+		weight_texture.get_size(),
+		0,
+		Color.WHITE,
+		weight_texture,
+		0
+	)
+	Renderer.end_frame()
+	
+	#texture_position_sampler.weight_texture = Renderer.get_attachment_texture(
+		#Renderer.FramebufferAttachment.COLOR
+	#).copy()
+	texture_position_sampler.weight_texture = weight_texture
+
 func _generate_sample():
 	
 	var clock := Clock.new()
-	var local_position = texture_position_sampler.sample_position(weight_texture)
+	var local_position = texture_position_sampler.sample()
 	var elapsed = clock.elapsed_ms()
 	debug_label.text = "Generated position: %s. Time taken: %sms" % [local_position, elapsed]
 	var global_rect = weight_texture_rect.get_global_rect()
 	
 	# Maps local position to global position
-	
 	var normalized_local_position = Vector2(
 		float(local_position.x) / weight_texture.get_width(),
 		float(local_position.y) / weight_texture.get_height()

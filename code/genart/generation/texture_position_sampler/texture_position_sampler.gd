@@ -7,9 +7,17 @@ enum Type
 	LUMINEST
 }
 
+var weight_texture: RendererTexture:
+	set(value):
+		weight_texture = value
+		_weight_texture_set()
+
 ## Given a weight texture, a single pixel position is returned
-func sample_position(weight_texture: RendererTexture) -> Vector2i:
+func sample() -> Vector2i:
 	return Vector2.ZERO
+
+func _weight_texture_set():
+	pass
 
 
 static func factory_create(type: Type) -> TexturePositionSampler:

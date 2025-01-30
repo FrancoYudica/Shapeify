@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgiuo3dxvu8h5"]
 
 [ext_resource type="Script" path="res://tests/texture_position_sampler_test/texture_position_sampler_test.gd" id="1_a8v01"]
-[ext_resource type="Texture2D" uid="uid://cnk6duwls082p" path="res://art/textures/test/weight_texture_test.png" id="2_c8gt1"]
+[ext_resource type="Texture2D" uid="uid://ckne4vpc6tryi" path="res://art/textures/test/large_single_white_pixel.png" id="2_crlb8"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_av72v"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="4_1e7s6"]
 
@@ -9,7 +9,7 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_av72v")
-_src_texture = ExtResource("2_c8gt1")
+_src_texture = ExtResource("2_crlb8")
 
 [node name="TexturePositionSamplerTest" type="CanvasLayer" node_paths=PackedStringArray("weight_texture_rect", "sampler_type_option_btn", "sample_texture_rect", "generate_sample_btn", "clear_samples_btn", "samples_container", "debug_label", "sample_count_spin_box")]
 script = ExtResource("1_a8v01")
@@ -80,6 +80,8 @@ text = "Generate sample"
 [node name="SampleCountSpinBox" type="SpinBox" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+min_value = 1.0
+value = 1.0
 prefix = "Count"
 
 [node name="ClearSamplesButton" type="Button" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
