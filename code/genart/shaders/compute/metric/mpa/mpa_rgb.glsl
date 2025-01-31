@@ -51,8 +51,12 @@ MetricData compute_mpa(uint x, uint y)
     fitness_color = pow(fitness_color, vec3(params.power));
     float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
 
-    float weight = weight_pixel.r;
-    return MetricData(fitness * weight, weight);
+    float weight = weight_pixel.r * 2.0f - 1.0f;
+
+    if (weight > 0.0)
+        return MetricData(fitness * weight, weight_pixel.r);
+    else
+        return MetricData((1.0f - fitness) * weight, weight_pixel.r);
 }
 
 void main()

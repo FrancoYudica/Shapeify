@@ -8,6 +8,8 @@ extends Control
 @export var generator_type_option_button: OptionButton
 @export var progress_spin_box: SpinBox
 @export var time_taken_label: Label
+@export var save_button: Button
+@export var save_file_dialog: FileDialog
 
 var texture_generator: WeightTextureGenerator
 
@@ -39,4 +41,14 @@ func _ready() -> void:
 			var elapsed = clock.elapsed_ms()
 			time_taken_label.text = "Generation time taken: %s" % elapsed
 			out_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(texture.rd_rid)
+	)
+	
+	save_button.pressed.connect(save_file_dialog.show)
+	save_file_dialog.file_selected.connect(
+		func(filepath):
+			var image = out_texture_rect.texture.get_image()
+			if image.save_png(filepath) != OK:
+				push_error("Unable to save image %s" % filepath)
+			else:
+				print("Image saved successfully at %s" % filepath)
 	)

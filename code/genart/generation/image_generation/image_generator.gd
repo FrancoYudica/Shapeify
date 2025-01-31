@@ -55,7 +55,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		_mutex.unlock()
 		
 		# Generates weight texture every 5 shapes
-		if iteration % 5 == 0:
+		if iteration % 1 == 0:
 			texture_mutex.lock()
 			weight_texture = _weight_texture_generator.generate(
 				_stop_condition.get_progress(),

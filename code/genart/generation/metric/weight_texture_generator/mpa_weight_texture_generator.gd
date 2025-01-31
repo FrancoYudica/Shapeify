@@ -23,8 +23,8 @@ func generate(
 	source_texture: RendererTexture) -> RendererTexture:
 	
 	_gaussian_image_processor.iterations = 20
-	_gaussian_image_processor.kernel_size = lerp(32, 5, progress)
-	_gaussian_image_processor.sigma = 5
+	_gaussian_image_processor.kernel_size = lerp(16, 5, progress)
+	_gaussian_image_processor.sigma = 4
 	
 	_mpa_image_processor.power = 10.0
 	_mpa_image_processor.src_texture = source_texture
