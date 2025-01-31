@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2cj4labac2rj"]
+[gd_scene load_steps=7 format=3 uid="uid://b2cj4labac2rj"]
 
 [ext_resource type="Script" path="res://tests/weight_texture_generator_test/weight_texture_generator_test.gd" id="1_6ie0o"]
 [ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="1_nkfak"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_83y6i"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_ujixy"]
 
-[sub_resource type="Texture2D" id="Texture2D_fqx83"]
+[sub_resource type="Texture2D" id="Texture2D_82f3l"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_ujixy")
 _src_texture = ExtResource("2_83y6i")
 
-[node name="WeightTextureGeneratorTest" type="Control" node_paths=PackedStringArray("src_texture_rect", "out_texture_rect", "generate_button", "generator_type_option_button", "progress_spin_box")]
+[sub_resource type="Texture2D" id="Texture2D_fqx83"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_ujixy")
+_src_texture = ExtResource("1_nkfak")
+
+[node name="WeightTextureGeneratorTest" type="Control" node_paths=PackedStringArray("target_texture_rect", "out_texture_rect", "generate_button", "generator_type_option_button", "progress_spin_box", "time_taken_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,12 +25,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ie0o")
+target_texture = SubResource("Texture2D_82f3l")
 source_texture = SubResource("Texture2D_fqx83")
-src_texture_rect = NodePath("VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SrcTextureRect")
+target_texture_rect = NodePath("VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TargetTextureRect")
 out_texture_rect = NodePath("VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OutTextureRect")
 generate_button = NodePath("VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Button")
 generator_type_option_button = NodePath("VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/GridContainer/GeneratorTypeOptionButton")
 progress_spin_box = NodePath("VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/GridContainer/ProgressSpinBox")
+time_taken_label = NodePath("VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/GridContainer/TimeTakenLabel")
 
 [node name="VBoxContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,7 +70,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="SrcTextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TargetTextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_nkfak")
@@ -118,3 +126,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
+
+[node name="TimeTakenLabel" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Time taken"

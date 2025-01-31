@@ -59,7 +59,8 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			texture_mutex.lock()
 			weight_texture = _weight_texture_generator.generate(
 				_stop_condition.get_progress(),
-				target_texture)
+				target_texture,
+				source_texture)
 			texture_mutex.unlock()
 		
 		if weight_texture == null:

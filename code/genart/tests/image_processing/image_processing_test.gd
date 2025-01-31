@@ -29,6 +29,10 @@ func _process_image() -> void:
 	var output_texture: RendererTexture = image_processor.process_image(texture)
 	time_taken_label.text = "Time taken %sms" % clock.elapsed_ms()
 	
+	if output_texture == null:
+		time_taken_label.text = "Texture is null"
+		return
+	
 	var previous_texture = output_texture_rect.texture
 	output_texture_rect.texture = null
 	

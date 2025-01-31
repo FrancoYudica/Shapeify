@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6576dho72ej2"]
+[gd_scene load_steps=14 format=3 uid="uid://c6576dho72ej2"]
 
 [ext_resource type="Script" path="res://tests/image_processing/image_processing_test.gd" id="1_rx3xy"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_fuxdj"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_fpt8v"]
 [ext_resource type="Script" path="res://tests/image_processing/display_for_type_container.gd" id="4_busj4"]
 [ext_resource type="Script" path="res://tests/image_processing/multiply_v_box_container.gd" id="5_mfqkg"]
+[ext_resource type="Script" path="res://tests/image_processing/add_v_box_container.gd" id="6_7d6gr"]
 [ext_resource type="Script" path="res://tests/image_processing/gaussian_blur_v_box_container.gd" id="6_ia5yv"]
 [ext_resource type="Script" path="res://tests/image_processing/porwer_v_box_container.gd" id="6_vwfwf"]
+[ext_resource type="Script" path="res://tests/image_processing/mpav_box_container.gd" id="7_2ok3g"]
 [ext_resource type="Script" path="res://tests/image_processing/sobel_edge_detection_v_box_container.gd" id="7_carih"]
+[ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="10_fg7gf"]
 
 [sub_resource type="Texture2D" id="Texture2D_1mjo8"]
 resource_local_to_scene = false
@@ -82,7 +85,7 @@ visible = false
 layout_mode = 2
 script = ExtResource("4_busj4")
 image_processing_test = NodePath("../../../../../..")
-processor_type = 2
+processor_type = 3
 
 [node name="MultiplyVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MultiplyContainer" node_paths=PackedStringArray("image_processing")]
 layout_mode = 1
@@ -101,12 +104,91 @@ step = 0.1
 value = 0.5
 prefix = "Value"
 
+[node name="AddContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+processor_type = 2
+
+[node name="AddVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/AddContainer" node_paths=PackedStringArray("image_processing", "add_check_box", "load_texture_b_button", "b_texture_rect", "image_file_dialog")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_7d6gr")
+image_processing = NodePath("../../../../../../..")
+add_check_box = NodePath("AddCheckBox")
+load_texture_b_button = NodePath("LoadButton")
+b_texture_rect = NodePath("BTextureRect")
+image_file_dialog = NodePath("../../../../../../../ImageFileDialog")
+
+[node name="AddCheckBox" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/AddContainer/AddVBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Add"
+
+[node name="LoadButton" type="Button" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/AddContainer/AddVBoxContainer"]
+layout_mode = 2
+text = "Load texture b"
+
+[node name="BTextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/AddContainer/AddVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_fuxdj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MPAContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+layout_mode = 2
+script = ExtResource("4_busj4")
+image_processing_test = NodePath("../../../../../..")
+processor_type = 6
+
+[node name="MPAVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MPAContainer" node_paths=PackedStringArray("image_processing", "power_spin_box", "load_texture_b_button", "src_texture_rect", "image_file_dialog")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_2ok3g")
+image_processing = NodePath("../../../../../../..")
+power_spin_box = NodePath("PowerSpinBox")
+load_texture_b_button = NodePath("LoadButton")
+src_texture_rect = NodePath("SRCTextureRect")
+image_file_dialog = NodePath("../../../../../../../ImageFileDialog")
+
+[node name="PowerSpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MPAContainer/MPAVBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+step = 0.5
+value = 4.0
+
+[node name="AddCheckBox" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MPAContainer/MPAVBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Add"
+
+[node name="LoadButton" type="Button" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MPAContainer/MPAVBoxContainer"]
+layout_mode = 2
+text = "Load source texture"
+
+[node name="SRCTextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MPAContainer/MPAVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_fuxdj")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="PowerContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
 visible = false
 layout_mode = 2
 script = ExtResource("4_busj4")
 image_processing_test = NodePath("../../../../../..")
-processor_type = 3
+processor_type = 4
 
 [node name="PorwerVBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PowerContainer" node_paths=PackedStringArray("image_processing")]
 layout_mode = 1
@@ -126,6 +208,7 @@ value = 0.5
 prefix = "Value"
 
 [node name="GaussianBlurContainer" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+visible = false
 layout_mode = 2
 script = ExtResource("4_busj4")
 image_processing_test = NodePath("../../../../../..")
@@ -161,6 +244,7 @@ value = 5.0
 prefix = "Iterations"
 
 [node name="SobelOperator" type="Control" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("image_processing_test")]
+visible = false
 layout_mode = 2
 script = ExtResource("4_busj4")
 image_processing_test = NodePath("../../../../../..")
@@ -189,3 +273,13 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 prefix = "Threshold"
+
+[node name="ImageFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+size = Vector2i(207, 175)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+script = ExtResource("10_fg7gf")
