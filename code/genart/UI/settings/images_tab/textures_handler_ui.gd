@@ -7,15 +7,16 @@ var image_item_packed = preload("res://UI/settings/images_tab/image_items/image_
 
 ## Maps image_item to RendererTexture
 var _textures_map: Dictionary
-var _populator_params: PopulatorParams:
+
+var _shape_spawner_params: ShapeSpawnerParams:
 	get:
-		return Globals.settings.image_generator_params.shape_generator_params.populator_params
+		return Globals.settings.image_generator_params.shape_generator_params.shape_spawner_params
 
 func _ready() -> void:
 	texture_group_selector.selected_texture_group.connect(_load_texture_group)
 	
 	# Adds the default textures
-	for renderer_texture in _populator_params.textures:
+	for renderer_texture in _shape_spawner_params.textures:
 		
 		if not renderer_texture.is_valid():
 			continue
@@ -37,7 +38,7 @@ func _on_image_loader_image_file_dropped(filepath: String) -> void:
 		Notifier.notify_error("Dropped texture is null. File format not supported")
 		return
 	
-	_populator_params.textures.append(renderer_texture)
+	_shape_spawner_params.textures.append(renderer_texture)
 	var image_item = image_item_packed.instantiate()
 	_add_image_item(image_item, renderer_texture)
 	image_item.filepath = filepath
@@ -52,7 +53,7 @@ func _add_image_item(image_item, renderer_texture):
 	image_item.tree_exiting.connect(
 		func():
 			var texture: RendererTexture = _textures_map[image_item]
-			_populator_params.textures.erase(texture)
+			_shape_spawner_params.textures.erase(texture)
 	)
 
 func _delete_all_images() -> void:
@@ -67,7 +68,7 @@ func _load_texture_group(group: ShapeTextureGroup) -> void:
 	
 	for texture in group.textures:
 		var renderer_texture := RendererTexture.load_from_texture(texture)
-		_populator_params.textures.append(renderer_texture)
+		_shape_spawner_params.textures.append(renderer_texture)
 		var image_item = image_item_packed.instantiate()
 		_add_image_item(image_item, renderer_texture)
 		image_item.texture = texture

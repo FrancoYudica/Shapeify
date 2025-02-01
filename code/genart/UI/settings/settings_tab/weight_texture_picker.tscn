@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://wbiik8aan6o2"]
+
+[ext_resource type="StyleBox" uid="uid://cqq6d3mymdifj" path="res://UI/themes/type_settings_panel.tres" id="1_rkyes"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/weight_texture/user_texture_v_box_container.gd" id="2_5xg14"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/weight_texture_picker.gd" id="2_xahjk"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="3_fr81y"]
+[ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="4_di153"]
+
+[node name="WeightTextureGeneratorPickerPanelContainer" type="PanelContainer" node_paths=PackedStringArray("weight_texture_generator")]
+theme_override_styles/panel = ExtResource("1_rkyes")
+script = ExtResource("2_xahjk")
+weight_texture_generator = NodePath("MarginContainer/VBoxContainer/WeightTextureHBoxContainer/WeightTextureGeneratorOptionButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WeightTextureHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/WeightTextureHBoxContainer"]
+layout_mode = 2
+tooltip_text = "Weight texture tells the algorithm wich parts of the image are more important.
+ - WHITE: The entire image is important
+ - GAUSSIAN_SOBEL: Dynamic weight texture that focuses on smaller details over time.
+ - USER: User can create it's custom weight texture and use it instead, allowing more 
+               creative control. Note that weight texture size must match target texture size."
+mouse_filter = 1
+text = "Weight texture generator"
+
+[node name="WeightTextureGeneratorOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/WeightTextureHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UserTextureVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("_weight_texture_rect", "_load_texture_button", "_image_file_dialog", "_texture_label", "weight_texture_generator_picker")]
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("2_5xg14")
+_weight_texture_rect = NodePath("PanelContainer/MarginContainer/WeightTextureRect")
+_load_texture_button = NodePath("HBoxContainer/LoadButton")
+_image_file_dialog = NodePath("../../../ImageFileDialog")
+_texture_label = NodePath("PanelContainer/TextureLabel")
+weight_texture_generator_picker = NodePath("../../..")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Weight texture"
+
+[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Load"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_fr81y")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="WeightTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureLabel" type="Label" parent="MarginContainer/VBoxContainer/UserTextureVBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Upload a valid texture"
+horizontal_alignment = 1
+
+[node name="ImageFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+size = Vector2i(207, 175)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+script = ExtResource("4_di153")

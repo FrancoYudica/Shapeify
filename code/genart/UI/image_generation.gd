@@ -20,7 +20,7 @@ func generate() -> void:
 		.settings \
 		.image_generator_params \
 		.shape_generator_params \
-		.populator_params \
+		.shape_spawner_params \
 		.textures.size() == 0:
 			
 		Notifier.notify_warning("Unable to begin generation without textures.")

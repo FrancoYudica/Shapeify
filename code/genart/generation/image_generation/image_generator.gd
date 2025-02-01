@@ -11,6 +11,9 @@ var texture_mutex := Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
 var _shape_renderer: ShapeRenderer
+
+var _similarity_delta_e_metric: DeltaEMetric
+
 var _generating: bool = false
 var _weight_texture_generator: WeightTextureGenerator
 
@@ -56,11 +59,16 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			break
 		_mutex.unlock()
 		
+		# Computes the similarity between the target and source texture
+		texture_mutex.lock()
+		var similarity = _compute_similarity(target_texture, source_texture)
+		texture_mutex.unlock()
+		
 		# Generates weight texture every 5 shapes
-		if iteration % 5 == 0:
+		if iteration % 10 == 0:
 			texture_mutex.lock()
 			weight_texture = _weight_texture_generator.generate(
-				_stop_condition.get_progress(),
+				similarity,
 				target_texture,
 				source_texture)
 			texture_mutex.unlock()
@@ -77,7 +85,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		
 		# Generates Shape
 		texture_mutex.lock()
-		var shape: Shape = shape_generator.generate_shape()
+		var shape: Shape = shape_generator.generate_shape(similarity)
 		# Renders the shape onto the source texture
 		_shape_renderer.render_shape(shape)
 		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
@@ -112,12 +120,27 @@ func setup():
 
 	shape_generator.params = params.shape_generator_params
 	
-	_weight_texture_generator = WeightTextureGenerator.factory_create(params.weight_texture_generator_type)
+	_weight_texture_generator = WeightTextureGenerator.factory_create(params.weight_texture_generator_params.weight_texture_generator_type)
 	_weight_texture_generator.set_params(params.weight_texture_generator_params)
 	
 func _init() -> void:
 	_shape_renderer = ShapeRenderer.new()
+	_similarity_delta_e_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
 
+func _compute_similarity(
+	target_texture,
+	source_texture
+) -> float:
+	# Computes the current normalized progress -----------------------------------------------------
+	_similarity_delta_e_metric.target_texture = target_texture
+	var metric_error = _similarity_delta_e_metric.compute(source_texture)
+	
+	# Normalizes deltaE progress from range [0.0, 100.0]
+	var max_error = 0.31
+	var mapped_similarity = -(max_error - metric_error) / max_error
+	var normalized_similarity = 1.0 - mapped_similarity * 0.01
+	return normalized_similarity
+	
 func copy_source_texture_contents(dest: Texture2DRD):
 	
 	if not dest.texture_rd_rid.is_valid():

@@ -1,16 +1,5 @@
 class_name ShapeGeneratorParams extends Resource
 
-@export var populator_params := PopulatorParams.new():
-	set(value):
-		if value != populator_params:
-			populator_params = value
-			emit_changed()
-
-@export var populator_type := Populator.Type.RANDOM:
-	set(value):
-		if value != populator_type:
-			populator_type = value
-			emit_changed()
 
 @export var target_texture: RendererTexture:
 	set(value):
@@ -23,8 +12,6 @@ class_name ShapeGeneratorParams extends Resource
 		if value != color_sampler:
 			color_sampler = value
 			emit_changed()
-
-
 
 @export var keep_aspect_ratio: bool = false:
 	set(value):
@@ -67,6 +54,8 @@ class_name ShapeGeneratorParams extends Resource
 @export var hill_climbing_params := HillClimbingShapeGeneratorParams.new()
 @export var shader_driven_params := ShaderDrivenShapeGeneratorParams.new()
 
+@export var shape_spawner_params := ShapeSpawnerParams.new()
+
 func to_dict() -> Dictionary:
 	return {
 		"target_texture_width" : target_texture.get_width(),
@@ -88,3 +77,5 @@ func setup_changed_signals() -> void:
 	genetic_params.changed.connect(emit_changed)
 	hill_climbing_params.changed.connect(emit_changed)
 	shader_driven_params.changed.connect(emit_changed)
+	
+	shape_spawner_params.changed.connect(emit_changed)

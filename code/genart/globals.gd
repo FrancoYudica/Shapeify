@@ -31,7 +31,8 @@ func _enter_tree() -> void:
 	var textures = settings \
 		.image_generator_params \
 		.shape_generator_params \
-		.populator_params.textures
+		.shape_spawner_params \
+		.textures
 	
 	var texture_group: ShapeTextureGroup = null
 	
@@ -66,7 +67,7 @@ func _exit_tree() -> void:
 	var textures = settings \
 			.image_generator_params \
 			.shape_generator_params \
-			.populator_params.textures
+			.shape_spawner_params.textures
 	
 	textures.clear()
 	
@@ -93,7 +94,7 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	# Copies runtime params
 	var previous_params = Globals.settings.image_generator_params
 	preset.shape_generator_params.target_texture = previous_params.shape_generator_params.target_texture
-	preset.shape_generator_params.populator_params = previous_params.shape_generator_params.populator_params
+	preset.shape_generator_params.shape_spawner_params = previous_params.shape_generator_params.shape_spawner_params
 	preset.weight_texture_generator_params.user_weight_texture = previous_params.weight_texture_generator_params.user_weight_texture
 	# Updates the image generator params
 	Globals.settings.image_generator_params = preset

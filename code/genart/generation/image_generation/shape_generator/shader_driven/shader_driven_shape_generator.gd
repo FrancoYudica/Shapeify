@@ -27,25 +27,14 @@ func mutate(shape: Shape) -> void:
 				shape.rotation + randf_range(-PI * 0.25, PI * 0.25), 2 * PI
 			)
 
-func _generate() -> Shape:
+func _generate(similarity: float) -> Shape:
 
-	# Computes the current normalized progress -----------------------------------------------------
-	var progress = _progress_metric.compute(source_texture)
-	
-	# Normalizes deltaE progress from range [0.0, 100.0]
-	var max_error = 0.31
-	var mapped_error = -(max_error - progress) / max_error
-	_normalized_progress = 1.0 - mapped_error * 0.01
-	
-	# Updates the weight texture of the fitness calculator -----------------------------------------
+	 #Updates the weight texture of the fitness calculator
 	_fitness_calculator.weight_texture = weight_texture
+	var shape = _shape_spawner.spawn_one(similarity)
 	
-	var shape = _populator.generate_one(params.populator_params)
 	var individual = Individual.from_shape(shape)
-	var clock = Clock.new()
 	
-	var shape_width = source_texture.get_width() * lerpf(1.0, 0.01, _normalized_progress)
-	individual.size.x = shape_width
 	_fix_shape_attributes(individual)
 	_color_sampler_strategy.set_sample_color(individual)
 	
@@ -69,7 +58,6 @@ func _generate() -> Shape:
 		else:
 			age += 1
 	
-	print("fitness time %s" % clock.elapsed_ms())
 	return individual
 
 func _setup():

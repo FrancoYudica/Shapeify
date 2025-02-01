@@ -4,10 +4,11 @@ extends VBoxContainer
 @export var _load_texture_button: Button
 @export var _image_file_dialog: FileDialog
 @export var _texture_label: Label
+@export var weight_texture_generator_picker: WeightTextureGeneratorPicker
 
-var _params: ImageGeneratorParams:
+var _params: WeightTextureGeneratorParams:
 	get:
-		return Globals.settings.image_generator_params
+		return weight_texture_generator_picker.params
 						
 func _ready() -> void:
 	
@@ -25,22 +26,21 @@ func _ready() -> void:
 				Notifier.notify_error("Unable to load texture")
 				return
 			
-			_params.weight_texture_generator_params.user_weight_texture = renderer_texture
+			_params.user_weight_texture = renderer_texture
 			_set_texture(renderer_texture)
 	)
 	
-	Globals.image_generator_params_updated.connect(_update)
-	_update()
+	weight_texture_generator_picker.params_updated.connect(_update)
 	
 func _exit_tree() -> void:
 	_free_weight_texture()
 
 func _process(delta: float) -> void:
 	visible = _params.weight_texture_generator_type == WeightTextureGenerator.Type.USER
-	_texture_label.visible = _params.weight_texture_generator_params.user_weight_texture == null
+	_texture_label.visible = _params.user_weight_texture == null
 
 func _update():
-	_set_texture(_params.weight_texture_generator_params.user_weight_texture)
+	_set_texture(_params.user_weight_texture)
 
 func _set_texture(texture: RendererTexture):
 	if texture == null:

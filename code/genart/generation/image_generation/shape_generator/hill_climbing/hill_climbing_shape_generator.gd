@@ -17,12 +17,13 @@ func mutate(shape: Shape) -> void:
 				shape.rotation + randf_range(-PI * 0.25, PI * 0.25), 2 * PI
 			)
 
-func _generate() -> Shape:
+func _generate(similarity: float) -> Shape:
 	
 	_fitness_calculator.weight_texture = weight_texture
 	
-	var shape = _populator.generate_one(params.populator_params)
+	var shape = _shape_spawner.spawn_one(similarity)
 	var individual = Individual.from_shape(shape)
+	
 	_fix_shape_attributes(individual)
 	_color_sampler_strategy.set_sample_color(individual)
 	_fitness_calculator.calculate_fitness(individual, source_texture)

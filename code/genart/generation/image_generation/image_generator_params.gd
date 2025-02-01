@@ -10,11 +10,6 @@ enum Type
 
 @export var type: Type = Type.CUSTOM
 
-@export var weight_texture_generator_type := WeightTextureGenerator.Type.WHITE:
-	set(value):
-		weight_texture_generator_type = value
-		emit_changed()
-
 @export var shape_generator_params := ShapeGeneratorParams.new():
 	set(value):
 		shape_generator_params = value

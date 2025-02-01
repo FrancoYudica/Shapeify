@@ -7,21 +7,18 @@ var _survivor_selection_strategy: SurvivorSelectionStrategy
 var _fitness_calculator: FitnessCalculator
 
 
-func _generate() -> Shape:
+func _generate(similarity: float) -> Shape:
 	
 	var genetic_params := params.genetic_params
 	
 	_fitness_calculator.weight_texture = weight_texture
 	
 	# Creates population
-	var initial_shapes: Array[Shape] = _populator.generate_population(
-		params.genetic_params.population_size, 
-		params.populator_params)
-	
-	# Maps shapes to individuals
 	var population: Array[Individual] = []
-	for shape in initial_shapes:
+	for i in range(params.genetic_params.population_size):
+		var shape = _shape_spawner.spawn_one(similarity)
 		population.append(Individual.from_shape(shape))
+
 	
 	# Calculates the fitness of the individuals of initial population
 	for individual in population:

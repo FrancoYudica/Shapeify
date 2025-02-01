@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=99 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=102 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="5_1ldw3"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="6_5d6g0"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="7_2v1ua"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/populator/populator_params.gd" id="8_8n7o6"]
-[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="9_clb0i"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="9_l7xcl"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_mxc8r"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="10_t1ypc"]
@@ -15,9 +13,12 @@
 [ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/textures/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_ovpig"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="13_pyaws"]
 [ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/textures/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="14_8u5iy"]
 [ext_resource type="Texture2D" uid="uid://6vk4tcoal0tn" path="res://art/textures/individual_textures_group/brush_strokes/brush_2.png" id="14_c4yru"]
 [ext_resource type="Texture2D" uid="uid://bwhsec413qhqh" path="res://art/textures/individual_textures_group/brush_strokes/brush_3.png" id="15_5lylu"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="15_rds8n"]
 [ext_resource type="Texture2D" uid="uid://bowxgsm5us68n" path="res://art/textures/individual_textures_group/brush_strokes/brush_4.png" id="16_jsm3k"]
 [ext_resource type="Texture2D" uid="uid://dk0l86ekr55xe" path="res://art/textures/individual_textures_group/circular_shapes/capsule.png" id="17_qlpu2"]
 [ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/circular_shapes/circle.png" id="18_04xxk"]
@@ -110,23 +111,30 @@ script = ExtResource("7_2v1ua")
 max_age = 30
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_rc2n4"]
-script = ExtResource("8_8n7o6")
-textures = Array[ExtResource("9_clb0i")]([])
-position_bound_min = Vector2i(0, 0)
-position_bound_max = Vector2i(0, 0)
-size_bound_min = Vector2i(8, 8)
-size_bound_max = Vector2i(512, 512)
-
 [sub_resource type="Resource" id="Resource_dx317"]
 script = ExtResource("11_1stu7")
 max_age = 20
 fitness_calculator = 1
 
+[sub_resource type="Resource" id="Resource_n66ir"]
+script = ExtResource("14_8u5iy")
+weight_texture_generator_type = 3
+
+[sub_resource type="Resource" id="Resource_oonh6"]
+script = ExtResource("15_rds8n")
+
+[sub_resource type="Resource" id="Resource_gwera"]
+script = ExtResource("13_pyaws")
+shape_position_initializer_type = 1
+shape_size_initializer_type = 0
+shape_rotation_initializer_type = 0
+shape_tint_initializer_type = 0
+shape_texture_initializer_type = 0
+shape_position_initializer_params = SubResource("Resource_n66ir")
+shape_texture_initializer_params = SubResource("Resource_oonh6")
+
 [sub_resource type="Resource" id="Resource_nbuwk"]
 script = ExtResource("10_t1ypc")
-populator_params = SubResource("Resource_rc2n4")
-populator_type = 0
 color_sampler = 1
 keep_aspect_ratio = true
 clamp_position_in_canvas = true
@@ -138,6 +146,7 @@ best_of_random_params = SubResource("Resource_10eue")
 genetic_params = SubResource("Resource_tl5x4")
 hill_climbing_params = SubResource("Resource_g703n")
 shader_driven_params = SubResource("Resource_dx317")
+shape_spawner_params = SubResource("Resource_gwera")
 
 [sub_resource type="Resource" id="Resource_vnspm"]
 script = ExtResource("10_mxc8r")

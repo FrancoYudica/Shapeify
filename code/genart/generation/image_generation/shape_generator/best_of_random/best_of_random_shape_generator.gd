@@ -2,16 +2,12 @@ extends ShapeGenerator
 
 var _fitness_calculator: FitnessCalculator
 
-func _generate() -> Shape:
+func _generate(similarity: float) -> Shape:
 	
 	# Creates population
-	var initial_shapes: Array[Shape] = _populator.generate_population(
-		params.best_of_random_params.shape_count, 
-		params.populator_params)
-	
-	# Maps shapes to individuals
 	var population: Array[Individual] = []
-	for shape in initial_shapes:
+	for i in range(params.best_of_random_params.shape_count):
+		var shape = _shape_spawner.spawn_one(similarity)
 		population.append(Individual.from_shape(shape))
 	
 	_fitness_calculator.weight_texture = weight_texture

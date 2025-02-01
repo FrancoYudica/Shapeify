@@ -12,14 +12,10 @@ enum Type{
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
-var _shape_renderer: ShapeRenderer
-var _populator: Populator
+var _shape_spawner: ShapeSpawner
 
 var source_texture: RendererTexture
-var weight_texture: RendererTexture:
-	set(texture):
-		weight_texture = texture
-		_weight_texture_set()
+var weight_texture: RendererTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
@@ -33,11 +29,7 @@ func update_target_texture(target_texture: RendererTexture):
 		
 	clear_source_texture()
 
-
 var generated_count = 0
-
-func _weight_texture_set():
-	pass
 
 func setup() -> void:
 	generated_count = 0
@@ -53,24 +45,20 @@ func setup() -> void:
 	
 func finished() -> void:
 	_color_sampler_strategy = null
-	_shape_renderer = null
-	_populator = null
 	source_texture = null
 	weight_texture = null
 
-func generate_shape() -> Shape:
+func generate_shape(similarity: float) -> Shape:
 	
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
 	
 	if generated_count % 10 == 0:
-		_populator.weight_texture = weight_texture
 		generated_count += 1
+		_shape_spawner.update(0, params.target_texture, source_texture)
 
-	_shape_renderer.source_texture = source_texture
-
-	var shape = _generate()
+	var shape = _generate(similarity)
 	Profiler.shape_generation_finished(
 		shape,
 		source_texture)
@@ -94,21 +82,14 @@ func _setup():
 	if source_texture == null:
 		clear_source_texture()
 
-	_shape_renderer = ShapeRenderer.new()
-
-	# Setup populator params ---------------------------------------------------
-	params.populator_params.position_bound_min = Vector2.ZERO
-	params.populator_params.position_bound_max = source_texture.get_size()
-	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
-	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
-	
-	_populator = Populator.factory_create(params.populator_type)
+	_shape_spawner = ShapeSpawner.new()
+	_shape_spawner.set_params(params.shape_spawner_params)
 	
 	# Setup color sampler strategy ---------------------------------------------
 	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 	_color_sampler_strategy.sample_texture = params.target_texture
 	
-func _generate() -> Shape:
+func _generate(similarity: float) -> Shape:
 	return
 
 ## Applies settings and ensures that all the properties have valid values
