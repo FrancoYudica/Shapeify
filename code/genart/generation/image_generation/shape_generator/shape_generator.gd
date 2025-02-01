@@ -7,7 +7,8 @@ enum Type{
 	Random,
 	BestOfRandom,
 	Genetic,
-	HillClimb
+	HillClimb,
+	ShaderDriven
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
@@ -15,7 +16,10 @@ var _shape_renderer: ShapeRenderer
 var _populator: Populator
 
 var source_texture: RendererTexture
-var weight_texture: RendererTexture
+var weight_texture: RendererTexture:
+	set(texture):
+		weight_texture = texture
+		_weight_texture_set()
 
 var params: ShapeGeneratorParams:
 	set(value):
@@ -29,14 +33,43 @@ func update_target_texture(target_texture: RendererTexture):
 		
 	clear_source_texture()
 
+
+var generated_count = 0
+
+func _weight_texture_set():
+	pass
+
+func setup() -> void:
+	generated_count = 0
+	if params == null:
+		printerr("IndividialGenerator not initialized")
+		return
+
+	Profiler.shape_generation_began(params)
+
+	var clock := Clock.new()
+	_setup()
+	print("Setup: %s" % clock.elapsed_ms())
+	
+func finished() -> void:
+	_color_sampler_strategy = null
+	_shape_renderer = null
+	_populator = null
+	source_texture = null
+	weight_texture = null
+
 func generate_shape() -> Shape:
 	
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
 	
-	Profiler.shape_generation_began(params)
-	_setup()
+	if generated_count % 10 == 0:
+		_populator.weight_texture = weight_texture
+		generated_count += 1
+
+	_shape_renderer.source_texture = source_texture
+
 	var shape = _generate()
 	Profiler.shape_generation_finished(
 		shape,
@@ -56,32 +89,24 @@ func clear_source_texture():
 	var source_texture_global_rd = ImageTexture.create_from_image(img)
 	source_texture = RendererTexture.load_from_texture(source_texture_global_rd)
 
-
-var _current_sampler_strategy : ColorSamplerStrategy.Type
-
 func _setup():
 	
 	if source_texture == null:
 		clear_source_texture()
-	
-	_shape_renderer.source_texture = source_texture
+
+	_shape_renderer = ShapeRenderer.new()
 
 	# Setup populator params ---------------------------------------------------
 	params.populator_params.position_bound_min = Vector2.ZERO
 	params.populator_params.position_bound_max = source_texture.get_size()
 	var max_width_height = maxf(source_texture.get_width(), source_texture.get_height())
 	params.populator_params.size_bound_max = Vector2(max_width_height, max_width_height)
-
+	
 	_populator = Populator.factory_create(params.populator_type)
-	_populator.weight_texture = weight_texture
-
+	
 	# Setup color sampler strategy ---------------------------------------------
-	if _current_sampler_strategy != params.color_sampler or _color_sampler_strategy == null:
-		_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
-		_current_sampler_strategy = params.color_sampler
-	
+	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 	_color_sampler_strategy.sample_texture = params.target_texture
-	
 	
 func _generate() -> Shape:
 	return
@@ -111,9 +136,6 @@ func _fix_shape_attributes(shape: Shape):
 	shape.size.x = max(shape.size.x, 1.0)
 	shape.size.y = max(shape.size.y, 1.0)
 
-func _init() -> void:
-	_shape_renderer = ShapeRenderer.new()
-
 static func factory_create(type: Type):
 	# Setup shape generator -----------------------------------------------
 	match type:
@@ -125,6 +147,8 @@ static func factory_create(type: Type):
 			return load("res://generation/image_generation/shape_generator/genetic/genetic_shape_generator.gd").new()
 		Type.HillClimb:
 			return load("res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator.gd").new()
+		Type.ShaderDriven:
+			return load("res://generation/image_generation/shape_generator/shader_driven/shader_driven_shape_generator.gd").new()
 		_:
 			push_error("Unimplemented shape generator of type %s" % type)
 			return null

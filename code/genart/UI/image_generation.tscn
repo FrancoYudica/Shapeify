@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=69 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/textures/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -61,6 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/generation/save_generated_image_dialog/save_generated_image_dialog.tscn" id="51_r3i0d"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/settings/images_tab/texture_groups/shape_texture_groups.tscn" id="51_wwnxg"]
 [ext_resource type="Script" path="res://UI/generation/stopping_generation_panel_container.gd" id="51_xqa51"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/shader_driven_settigns_v_box_container.gd" id="52_kjdlf"]
 [ext_resource type="Texture2D" uid="uid://cofrjda15jidr" path="res://art/textures/icons/loading-256.png" id="52_wmemr"]
 [ext_resource type="Script" path="res://UI/generation/loading_texture_rect.gd" id="53_0o5l4"]
 [ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="65_mkg28"]
@@ -1263,6 +1264,37 @@ text = "Fitness
 "
 
 [node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HillClimbingSettingsVBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShaderDrivenSettignsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("max_age", "fitness_option")]
+layout_mode = 2
+script = ExtResource("52_kjdlf")
+max_age = NodePath("GridContainer/MaxAgeSpinBox")
+fitness_option = NodePath("GridContainer/FitnessOptionButton")
+
+[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ShaderDrivenSettignsVBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+columns = 2
+
+[node name="MaxAgeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ShaderDrivenSettignsVBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Max age"
+
+[node name="MaxAgeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ShaderDrivenSettignsVBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10000.0
+value = 100.0
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ShaderDrivenSettignsVBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Fitness
+"
+
+[node name="FitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ShaderDrivenSettignsVBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 

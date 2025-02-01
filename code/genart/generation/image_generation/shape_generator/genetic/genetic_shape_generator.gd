@@ -89,3 +89,12 @@ func _setup():
 	# Fitness calculator factory
 	_fitness_calculator = FitnessCalculator.factory_create(genetic_params.fitness_calculator)
 	_fitness_calculator.target_texture = params.target_texture
+
+func finished():
+	super.finished()
+	_selection_strategy = null
+	_crossover_strategy = null
+	_mutation_strategy = null
+	_survivor_selection_strategy = null
+	_fitness_calculator = null
+	

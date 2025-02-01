@@ -39,6 +39,8 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	if first_src_texture != null:
 		shape_generator.source_texture = first_src_texture
 		
+	shape_generator.setup()
+
 	var source_texture = shape_generator.source_texture
 	var target_texture = params.shape_generator_params.target_texture
 	_shape_renderer.source_texture = source_texture
@@ -55,7 +57,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		_mutex.unlock()
 		
 		# Generates weight texture every 5 shapes
-		if iteration % 1 == 0:
+		if iteration % 5 == 0:
 			texture_mutex.lock()
 			weight_texture = _weight_texture_generator.generate(
 				_stop_condition.get_progress(),
@@ -76,7 +78,6 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		# Generates Shape
 		texture_mutex.lock()
 		var shape: Shape = shape_generator.generate_shape()
-		
 		# Renders the shape onto the source texture
 		_shape_renderer.render_shape(shape)
 		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
@@ -90,6 +91,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 			
 		iteration += 1
 	
+	shape_generator.finished()
 	_generating = false
 	Profiler.image_generation_finished(shape_generator.source_texture)
 	
@@ -115,7 +117,6 @@ func setup():
 	
 func _init() -> void:
 	_shape_renderer = ShapeRenderer.new()
-
 
 func copy_source_texture_contents(dest: Texture2DRD):
 	

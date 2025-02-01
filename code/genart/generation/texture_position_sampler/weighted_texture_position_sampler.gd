@@ -17,6 +17,7 @@ func _weight_texture_set():
 	_cache_cdf()
 
 func _cache_cdf():
+	
 	var rd = Renderer.rd
 	var rd_rid = weight_texture.rd_rid
 	

@@ -38,3 +38,7 @@ func _setup():
 	# Creates fitness calculator with factory
 	_fitness_calculator = FitnessCalculator.factory_create(best_of_random_params.fitness_calculator)
 	_fitness_calculator.target_texture = params.target_texture
+
+func finished():
+	super.finished()
+	_fitness_calculator = null

@@ -12,6 +12,8 @@ var weight_texture: RendererTexture:
 		weight_texture = value
 		_weight_texture_set()
 
+var type: Type
+
 func generate_one(params: PopulatorParams) -> Shape:
 	return null
 
@@ -32,9 +34,13 @@ func _weight_texture_set():
 static func factory_create(type: Type) -> Populator:
 	match type:
 		Type.RANDOM:
-			return load("res://generation/image_generation/shape_generator/populator/random_populator.gd").new()
+			var populator = load("res://generation/image_generation/shape_generator/populator/random_populator.gd").new()
+			populator.type = type
+			return populator
 		Type.WEIGHTED:
-			return load("res://generation/image_generation/shape_generator/populator/weighted_populator.gd").new()
+			var populator = load("res://generation/image_generation/shape_generator/populator/weighted_populator.gd").new()
+			populator.type = type
+			return populator
 		_:
 			push_error("Unimplemented factory_create for populator type: %s" % type)
 			return null

@@ -18,6 +18,7 @@ func mutate(shape: Shape) -> void:
 			)
 
 func _generate() -> Shape:
+	
 	_fitness_calculator.weight_texture = weight_texture
 	
 	var shape = _populator.generate_one(params.populator_params)
@@ -52,3 +53,6 @@ func _setup():
 	_fitness_calculator = FitnessCalculator.factory_create(hill_climb_params.fitness_calculator)
 	_fitness_calculator.target_texture = params.target_texture
 	_max_age = hill_climb_params.max_age
+
+func finished():
+	_fitness_calculator = null

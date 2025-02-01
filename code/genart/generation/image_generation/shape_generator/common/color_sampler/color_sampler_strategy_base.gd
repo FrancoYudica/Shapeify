@@ -14,6 +14,8 @@ enum Type
 		sample_texture = texture
 		_sample_texture_set()
 
+var type: Type
+
 func set_sample_color(shape: Shape) -> void:
 	shape.tint = Color.WHITE
 
@@ -23,11 +25,17 @@ func _sample_texture_set():
 static func factory_create(type: Type) -> ColorSamplerStrategy:
 	match type:
 		Type.SUB_RECT:
-			return load("res://generation/image_generation/shape_generator/common/color_sampler/subrect_color_sampler_strategy.gd").new()
+			var strategy = load("res://generation/image_generation/shape_generator/common/color_sampler/subrect_color_sampler_strategy.gd").new()
+			strategy.type = type
+			return strategy
 		Type.MASKED:
-			return load("res://generation/image_generation/shape_generator/common/color_sampler/masked_color_sampler_strategy.gd").new()
+			var strategy = load("res://generation/image_generation/shape_generator/common/color_sampler/masked_color_sampler_strategy.gd").new()
+			strategy.type = type
+			return strategy
 		Type.WHITE:
-			return load("res://generation/image_generation/shape_generator/common/color_sampler/white_color_sampler_strategy.gd").new()
+			var strategy = load("res://generation/image_generation/shape_generator/common/color_sampler/white_color_sampler_strategy.gd").new()
+			strategy.type = type
+			return strategy
 		_:
 			push_error("Unimplemented color sampler of type: %s" % Type.keys()[type])
 			return null
