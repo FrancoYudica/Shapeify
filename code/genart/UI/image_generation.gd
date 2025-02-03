@@ -34,12 +34,6 @@ func stop():
 	image_generator.stop()
 
 func refresh_target_texture():
-	image_generator.update_target_texture(
-		Globals \
-		.settings \
-		.image_generator_params \
-		.target_texture)
-	
 	clear_progress()
 	target_texture_updated.emit()
 
@@ -111,5 +105,4 @@ func _clear_image_generation_details():
 	# Creates to image texture and then to RD local texture
 	var generated_global_rd = ImageTexture.create_from_image(img)
 	image_generation_details.generated_texture = RendererTexture.load_from_texture(generated_global_rd)
-	image_generator.shape_generator.source_texture = image_generation_details.generated_texture.copy()
 	generation_cleared.emit()

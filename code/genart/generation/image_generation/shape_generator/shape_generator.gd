@@ -14,20 +14,11 @@ enum Type{
 var _color_sampler_strategy: ColorSamplerStrategy
 var _shape_spawner: ShapeSpawner
 
-var source_texture: RendererTexture
 var weight_texture: RendererTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
 		params = value
-		update_target_texture(params.target_texture)
-
-func update_target_texture(target_texture: RendererTexture):
-	if target_texture == null or not target_texture.is_valid():
-		printerr("Trying to initialize ShapeGenerator but target_texture is invalid")
-		return
-		
-	clear_source_texture()
 
 var generated_count = 0
 
@@ -45,7 +36,6 @@ func setup() -> void:
 	
 func finished() -> void:
 	_color_sampler_strategy = null
-	source_texture = null
 	weight_texture = null
 
 func generate_shape(similarity: float) -> Shape:
@@ -56,32 +46,18 @@ func generate_shape(similarity: float) -> Shape:
 	
 	if generated_count % 10 == 0:
 		generated_count += 1
-		_shape_spawner.update(similarity, params.target_texture, source_texture)
+		_shape_spawner.update(
+			similarity, 
+			params.target_texture, 
+			params.source_texture)
 
 	var shape = _generate(similarity)
 	Profiler.shape_generation_finished(
 		shape,
-		source_texture)
+		params.source_texture)
 	return shape
 
-func clear_source_texture():
-	
-	var image_color = ImageUtils.get_texture_average_color(params.target_texture)
-	
-	var img = ImageUtils.create_monochromatic_image(
-		params.target_texture.get_width(),
-		params.target_texture.get_height(),
-		image_color)
-	
-	# Creates to image texture and then to RD local texture
-	var source_texture_global_rd = ImageTexture.create_from_image(img)
-	source_texture = RendererTexture.load_from_texture(source_texture_global_rd)
-
 func _setup():
-	
-	if source_texture == null:
-		clear_source_texture()
-
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)
 	
@@ -110,7 +86,7 @@ func _fix_shape_attributes(shape: Shape):
 		shape.position.y = clampi(shape.position.y, 0, params.target_texture.get_height())
 	
 	if params.fixed_size:
-		shape.size.x = source_texture.get_width() * params.fixed_size_width_ratio
+		shape.size.x = params.source_texture.get_width() * params.fixed_size_width_ratio
 		var aspect = float(shape.texture.get_height()) / shape.texture.get_width()
 		shape.size.y = shape.size.x * aspect
 

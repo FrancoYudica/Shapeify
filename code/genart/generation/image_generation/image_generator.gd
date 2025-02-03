@@ -6,8 +6,7 @@ var params: ImageGeneratorParams
 
 var shape_generator: ShapeGenerator
 
-var _mutex: Mutex = Mutex.new()
-var texture_mutex := Mutex.new()
+var _stop_mutex: Mutex = Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
 var _shape_renderer: ShapeRenderer
@@ -22,13 +21,10 @@ var similarity: float = 0.0
 
 var weight_texture: RendererTexture
 
-func update_target_texture(target_texture: RendererTexture):
-	shape_generator.update_target_texture(target_texture)
-
 func stop():
-	_mutex.lock()
+	_stop_mutex.lock()
 	_stop = true
-	_mutex.unlock()
+	_stop_mutex.unlock()
 
 func get_progress() -> float:
 	if _stop_condition == null or not _generating:
@@ -41,13 +37,14 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	setup()
 	
-	shape_generator.source_texture = RenderingCommon.resize_texture(
+	# Resizes the source texture
+	var source_texture = RenderingCommon.resize_texture(
 		first_src_texture,
 		params.render_scale * params.target_texture.get_size())
-
+	params.shape_generator_params.source_texture = source_texture
+	
 	shape_generator.setup()
 
-	var source_texture = shape_generator.source_texture
 	var target_texture = params.shape_generator_params.target_texture
 	_shape_renderer.source_texture = source_texture
 	
@@ -56,25 +53,21 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	var iteration = 0
 	while not _stop_condition.should_stop():
 		# Checks if the algorithm should stop executing
-		_mutex.lock()
+		_stop_mutex.lock()
 		if _stop:
-			_mutex.unlock()
+			_stop_mutex.unlock()
 			break
-		_mutex.unlock()
+		_stop_mutex.unlock()
 		
 		# Computes the similarity between the target and source texture
-		texture_mutex.lock()
 		_compute_similarity(target_texture, source_texture)
-		texture_mutex.unlock()
 		
 		# Generates weight texture every X shapes
 		if iteration % 10 == 0:
-			texture_mutex.lock()
 			weight_texture = _weight_texture_generator.generate(
 				similarity,
 				target_texture,
 				source_texture)
-			texture_mutex.unlock()
 		
 		if weight_texture == null:
 			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
@@ -87,12 +80,10 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		shape_generator.weight_texture = weight_texture
 		
 		# Generates Shape
-		texture_mutex.lock()
 		var shape: Shape = shape_generator.generate_shape(similarity)
 		# Renders the shape onto the source texture
 		_shape_renderer.render_shape(shape)
 		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
-		texture_mutex.unlock()
 		
 		shape_generated.emit(shape)
 		_stop_condition.shape_generated(
@@ -103,9 +94,8 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		iteration += 1
 	
 	shape_generator.finished()
-	_generating = false
 	Profiler.image_generation_finished(source_texture)
-	
+	_generating = false
 	return source_texture
 
 func setup():
@@ -146,35 +136,3 @@ func _compute_similarity(
 	var mapped_similarity = -(max_error - metric_value) / max_error
 	similarity = 1.0 - mapped_similarity * 0.01
 	
-func copy_source_texture_contents(dest: Texture2DRD):
-	
-	if not dest.texture_rd_rid.is_valid():
-		return
-	
-	texture_mutex.lock()
-	
-	RenderingCommon.texture_copy(
-		shape_generator.source_texture.rd_rid,
-		dest.texture_rd_rid,
-		Renderer.rd,
-		RenderingServer.get_rendering_device()
-	)
-	texture_mutex.unlock()
-
-func copy_weight_texture_contents(dest: Texture2DRD):
-	
-	if not dest.texture_rd_rid.is_valid():
-		return
-	
-	if weight_texture == null:
-		return
-	
-	texture_mutex.lock()
-	
-	RenderingCommon.texture_copy(
-		weight_texture.rd_rid,
-		dest.texture_rd_rid,
-		Renderer.rd,
-		RenderingServer.get_rendering_device()
-	)
-	texture_mutex.unlock()

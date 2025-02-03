@@ -26,7 +26,7 @@ func _generate(similarity: float) -> Shape:
 	
 	_fix_shape_attributes(individual)
 	_color_sampler_strategy.set_sample_color(individual)
-	_fitness_calculator.calculate_fitness(individual, source_texture)
+	_fitness_calculator.calculate_fitness(individual, params.source_texture)
 
 	var age = 0
 	while age < _max_age:
@@ -38,7 +38,7 @@ func _generate(similarity: float) -> Shape:
 		# Sets attributes and calculates fitness
 		_fix_shape_attributes(new_individual)
 		_color_sampler_strategy.set_sample_color(new_individual)
-		_fitness_calculator.calculate_fitness(new_individual, source_texture)
+		_fitness_calculator.calculate_fitness(new_individual, params.source_texture)
 		if new_individual.fitness > individual.fitness:
 			age = 0
 			individual = new_individual

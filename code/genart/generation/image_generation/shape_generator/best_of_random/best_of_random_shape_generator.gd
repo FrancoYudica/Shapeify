@@ -19,7 +19,7 @@ func _generate(similarity: float) -> Shape:
 		_color_sampler_strategy.set_sample_color(individual)
 
 		# Calculates fitness
-		_fitness_calculator.calculate_fitness(individual, source_texture)
+		_fitness_calculator.calculate_fitness(individual, params.source_texture)
 	
 	# Sorts population descending
 	population.sort_custom(func(a, b): return a.fitness > b.fitness)
