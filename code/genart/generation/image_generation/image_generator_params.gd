@@ -45,6 +45,19 @@ enum Type
 		weight_texture_generator_params = value
 		emit_changed()
 
+@export var render_scale := 1.0:
+	set(value):
+		if value != render_scale:
+			render_scale = value
+			emit_changed()
+	
+## Holds the target texture without any transformation
+@export var target_texture: RendererTexture:
+	set(value):
+		if value != target_texture:
+			target_texture = value
+			emit_changed()
+
 func to_dict():
 	return {
 		"stop_condition": StopCondition.Type.keys()[stop_condition],

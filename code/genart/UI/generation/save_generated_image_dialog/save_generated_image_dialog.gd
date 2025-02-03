@@ -45,12 +45,12 @@ func open(gen_details: ImageGenerationDetails):
 	_src_img_generation_details = gen_details
 	
 	resolution_label.text = "%sx%s" % [
-		_src_img_generation_details.viewport_size.x,
-		_src_img_generation_details.viewport_size.y]
+		_src_img_generation_details.viewport_size.x / _src_img_generation_details.render_scale,
+		_src_img_generation_details.viewport_size.y / _src_img_generation_details.render_scale]
 	
 	final_resolution_label.text = "%sx%s" % [
-		int(_src_img_generation_details.viewport_size.x * scale_spin_box.value),
-		int(_src_img_generation_details.viewport_size.y * scale_spin_box.value)]
+		int(_src_img_generation_details.viewport_size.x * scale_spin_box.value / _src_img_generation_details.render_scale),
+		int(_src_img_generation_details.viewport_size.y * scale_spin_box.value / _src_img_generation_details.render_scale)]
 
 	# Frees previous texture
 	if save_texture.texture != null and save_texture.texture is Texture2DRD:
@@ -59,9 +59,11 @@ func open(gen_details: ImageGenerationDetails):
 		save_texture.texture.texture_rd_rid = RID()
 		save_texture.texture = null
 		rd.free_rid(texture_rd_rid)
-
-	save_texture.texture = RenderingCommon.create_texture_from_rd_rid(
-		_src_img_generation_details.generated_texture.rd_rid)
+	
+	# Renders the texture
+	ImageGenerationRenderer.render_image_generation(Renderer, gen_details)
+	var rendered = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	save_texture.texture = RenderingCommon.create_texture_from_rd_rid(rendered.rd_rid)
 
 func _save():
 	file_dialog.clear_filters()
@@ -75,5 +77,5 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		_src_img_generation_details.shapes,
 		_src_img_generation_details.clear_color,
 		_src_img_generation_details.viewport_size,
-		scale_spin_box.value
+		scale_spin_box.value / _src_img_generation_details.render_scale
 	)

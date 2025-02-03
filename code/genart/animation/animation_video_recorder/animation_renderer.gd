@@ -14,6 +14,7 @@ func render_frame(t: float) -> Image:
 	details.shapes = frame_shapes
 	details.viewport_size = image_generation_details.viewport_size
 	details.clear_color = image_generation_details.clear_color
+	details.render_scale = image_generation_details.render_scale
 	
 	ImageGenerationRenderer.render_image_generation(Renderer, details)
 	

@@ -56,7 +56,7 @@ func _enter_tree() -> void:
 		Notifier.notify_error("Unable to load default target texture")
 		return
 	
-	settings.image_generator_params.shape_generator_params.target_texture = target_texture
+	settings.image_generator_params.target_texture = target_texture
 	
 	Globals.settings.image_generator_params.setup_changed_signals()
 	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
@@ -93,7 +93,7 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	
 	# Copies runtime params
 	var previous_params = Globals.settings.image_generator_params
-	preset.shape_generator_params.target_texture = previous_params.shape_generator_params.target_texture
+	preset.target_texture = previous_params.target_texture
 	preset.shape_generator_params.shape_spawner_params = previous_params.shape_generator_params.shape_spawner_params
 	preset.weight_texture_generator_params.user_weight_texture = previous_params.weight_texture_generator_params.user_weight_texture
 	# Updates the image generator params

@@ -43,7 +43,7 @@ func _update():
 	_set_texture(_params.user_weight_texture)
 
 func _set_texture(texture: RendererTexture):
-	if texture == null:
+	if texture == null or not texture.is_valid():
 		return
 		
 	_free_weight_texture()

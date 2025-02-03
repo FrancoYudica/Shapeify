@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=73 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/textures/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -14,11 +14,9 @@
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
 [ext_resource type="Texture2D" uid="uid://dp1auesstg0tu" path="res://art/textures/icons/animator2.png" id="13_7pxwh"]
-[ext_resource type="Script" path="res://UI/generation/output_texture_rect.gd" id="13_u81ho"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/textures_handler_ui.gd" id="14_gfkqp"]
 [ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
-[ext_resource type="Script" path="res://generation/metric/delta_e/delta_e_1994_mean.gd" id="14_y6244"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/renderer/renderer_settings_handler_ui.gd" id="15_5jwjh"]
 [ext_resource type="Texture2D" uid="uid://s33wpc3gogy6" path="res://art/textures/icons/eraser.png" id="15_yjoj1"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/shape_generator_params_handler_ui.gd" id="16_s4vac"]
@@ -27,6 +25,8 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/image_generator_params_handler_ui.gd" id="18_lja4i"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/settings_tab.gd" id="19_efp5f"]
 [ext_resource type="Script" path="res://UI/generation/output_info_texture_button.gd" id="19_w0gf2"]
+[ext_resource type="Script" path="res://UI/generation/generated_output_texture_rect.gd" id="23_ckw05"]
+[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://godot_shape_renderer/godot_shape_renderer.tscn" id="23_il15v"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="24_de6d3"]
 [ext_resource type="Script" path="res://UI/generation/loading_generating_texture_rect.gd" id="24_q3gvo"]
@@ -71,6 +71,8 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.156863, 0.160784, 0.164706, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x2ckf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hfy4"]
 
@@ -242,7 +244,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_hpdpl")
 
-[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_rect", "save_dialog")]
+[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "save_dialog")]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
@@ -252,7 +254,6 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("11_wj4rh")
 image_generation = NodePath("../../../../../../../../../../../..")
-output_texture_rect = NodePath("../../../../../TexturesHBoxContainer/OutputPanelContainer/OutputTextureRect")
 save_dialog = NodePath("../../../../../../../../../../SaveImageDialog")
 
 [node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton"]
@@ -379,13 +380,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("24_de6d3")
 
-[node name="OutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputPanelContainer" node_paths=PackedStringArray("output_texture_holder")]
+[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputPanelContainer" node_paths=PackedStringArray("image_generation", "gd_shape_renderer")]
 layout_mode = 2
-size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_x2ckf")
 expand_mode = 1
 stretch_mode = 5
-script = ExtResource("13_u81ho")
-output_texture_holder = NodePath("../../../../../../../../../../OutputTextureHolder")
+script = ExtResource("23_ckw05")
+image_generation = NodePath("../../../../../../../../../..")
+gd_shape_renderer = NodePath("GodotShapeRenderer")
+
+[node name="GodotShapeRenderer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("23_il15v")]
+handle_input_locally = false
+size = Vector2i(608, 565)
+render_target_update_mode = 4
 
 [node name="BottomTextMargin" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/OutputPanelContainer"]
 layout_mode = 2
@@ -415,7 +422,7 @@ stretch_mode = 5
 script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../../../../..")
 
-[node name="InfoPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect" node_paths=PackedStringArray("shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "close_button", "weight_texture_rect", "output_texture_holder", "image_generation")]
+[node name="InfoPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect" node_paths=PackedStringArray("shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "close_button", "weight_texture_rect", "output_texture_holder", "image_generation")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -424,12 +431,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1hfy4")
 script = ExtResource("34_18hvq")
-metric_script = ExtResource("14_y6244")
 shape_count_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ShapeCountValue")
 current_execution_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/CurrentExecutionTimeValue")
 executions_count_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ExecutionsCountValue")
 time_taken_value_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/TotalTimeTakenValue")
 metric_score_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/MetricScoreValue")
+similarity_score_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SimilarityScoreValue")
 close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton")
 weight_texture_rect = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/WeightTextureRect")
 output_texture_holder = NodePath("../../../../../../../../../../../OutputTextureHolder")
@@ -497,6 +504,16 @@ layout_mode = 2
 text = "Metric score"
 
 [node name="MetricScoreValue" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.0"
+horizontal_alignment = 2
+
+[node name="SimilarityScoreLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Similarity score"
+
+[node name="SimilarityScoreValue" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect/InfoPanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0.0"
@@ -765,13 +782,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="ImageGeneratorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" node_paths=PackedStringArray("stop_condition", "clear_color", "weight_texture_generator_picker")]
+[node name="ImageGeneratorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" node_paths=PackedStringArray("stop_condition", "clear_color", "render_scale_spin_box", "weight_texture_generator_picker")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 script = ExtResource("18_lja4i")
 stop_condition = NodePath("MarginContainer/VBoxContainer/StopConditionHBoxContainer/StopConditionOptionButton")
 clear_color = NodePath("MarginContainer/VBoxContainer/ClearColorModeHBoxContainer/ClearColorModeOptionButton")
+render_scale_spin_box = NodePath("MarginContainer/VBoxContainer/RenderScaleHBoxContainer/RenderScaleSpinBox")
 weight_texture_generator_picker = NodePath("MarginContainer/VBoxContainer/WeightTexturePanelContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer"]
@@ -901,6 +919,22 @@ text = "Clear color mode"
 [node name="ClearColorModeOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorModeHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="RenderScaleHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer"]
+layout_mode = 2
+text = "Render scale"
+
+[node name="RenderScaleSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+value = 1.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -12,7 +12,7 @@ var _progress: float = 0.0
 var _animation_player: ShapeAnimationPlayer
 var _image_generation_details: ImageGenerationDetails
 var _frame_saver: FrameSaver
-var _render_scale: float
+var _upscale_factor: float
 
 var progress: float:
 	get:
@@ -28,7 +28,7 @@ func record(
 	_image_generation_details = image_generation_details
 	_frame_saver = FrameSaver.factory_create(frame_saver_type)
 	_frame_saver.silent = true
-	_render_scale = scale
+	_upscale_factor = scale
 	WorkerThreadPool.add_task(_record_and_save)
 
 func _record_and_save():
@@ -63,7 +63,7 @@ func _record_and_save():
 			frame_shapes,
 			_image_generation_details.clear_color,
 			_image_generation_details.viewport_size,
-			_render_scale
+			_upscale_factor / _image_generation_details.render_scale
 		):
 			return
 		

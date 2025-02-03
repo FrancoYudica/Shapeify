@@ -81,3 +81,19 @@ static func create_texture_from_rd_rid(texture_rd_rid: RID) -> Texture2DRD:
 	var texture_rd = Texture2DRD.new()
 	texture_rd.texture_rd_rid = new_global_texture_rd_rid
 	return texture_rd
+
+static func resize_texture(
+	texture: RendererTexture,
+	size: Vector2
+) -> RendererTexture:
+	Renderer.begin_frame(size)
+	Renderer.render_sprite(
+		size * 0.5,
+		size,
+		0.0,
+		Color.WHITE,
+		texture,
+		0
+	)
+	Renderer.end_frame()
+	return Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()

@@ -18,4 +18,5 @@ func _ready() -> void:
 
 func set_params(params: WeightTextureGeneratorParams):
 	self.params = params
+	weight_texture_generator.select(params.weight_texture_generator_type)
 	params_updated.emit()

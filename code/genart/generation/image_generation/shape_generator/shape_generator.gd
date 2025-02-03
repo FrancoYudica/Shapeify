@@ -23,7 +23,7 @@ var params: ShapeGeneratorParams:
 		update_target_texture(params.target_texture)
 
 func update_target_texture(target_texture: RendererTexture):
-	if not target_texture.is_valid():
+	if target_texture == null or not target_texture.is_valid():
 		printerr("Trying to initialize ShapeGenerator but target_texture is invalid")
 		return
 		
@@ -56,7 +56,7 @@ func generate_shape(similarity: float) -> Shape:
 	
 	if generated_count % 10 == 0:
 		generated_count += 1
-		_shape_spawner.update(0, params.target_texture, source_texture)
+		_shape_spawner.update(similarity, params.target_texture, source_texture)
 
 	var shape = _generate(similarity)
 	Profiler.shape_generation_finished(

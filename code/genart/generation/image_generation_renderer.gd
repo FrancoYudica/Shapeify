@@ -5,7 +5,7 @@ static func render_image_generation(
 	renderer,
 	details: ImageGenerationDetails):
 	
-	var viewport_size = details.viewport_size
+	var viewport_size = details.viewport_size / details.render_scale
 	renderer.begin_frame(viewport_size)
 	
 	# Renders background
@@ -14,8 +14,8 @@ static func render_image_generation(
 	# Renders shapes
 	for shape in details.shapes:
 		renderer.render_sprite(
-			shape.position,
-			shape.size,
+			shape.position / details.render_scale,
+			shape.size / details.render_scale,
 			shape.rotation,
 			shape.tint,
 			shape.texture,

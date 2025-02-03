@@ -43,6 +43,10 @@ func _execute_pass(i: int) -> RendererTexture:
 		i % 2,
 		1.0 - (i % 2))
 	
+	# Scales the direction based on texture size to ensure that the blur effect
+	# works the same for any texture resolution.
+	var scaled_direction = direction * _texture_a.get_size() / Vector2(640, 640)
+	
 	_texture_a_uniform.clear_ids()
 	_texture_b_uniform.clear_ids()
 
@@ -63,13 +67,13 @@ func _execute_pass(i: int) -> RendererTexture:
 		texture_width,
 		texture_height,
 		
-		direction.x,
-		direction.y,
+		scaled_direction.x,
+		scaled_direction.y,
 		
 		sigma,
 		kernel_size,
 		0.0,
-		0.0,
+		0.0
 	])
 
 	var push_constant_byte_array = push_constant.to_byte_array()

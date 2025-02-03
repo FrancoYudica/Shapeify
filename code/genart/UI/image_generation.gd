@@ -38,7 +38,6 @@ func refresh_target_texture():
 		Globals \
 		.settings \
 		.image_generator_params \
-		.shape_generator_params \
 		.target_texture)
 	
 	clear_progress()
@@ -66,17 +65,14 @@ func _begin_image_generation():
 	var clock := Clock.new()
 	var src = image_generation_details.generated_texture.copy()
 	image_generator.params = Globals.settings.image_generator_params
-	image_generator.generate_image(src)
-	image_generation_details.time_taken_ms += clock.elapsed_ms()
 	image_generation_details.executed_count += 1
-	call_deferred("emit_signal", "generation_finished")
+	var output_texture = image_generator.generate_image(src)
+	image_generation_details.time_taken_ms += clock.elapsed_ms()
 	
-	# Renders the texture and stores the generated texture
-	image_generator.texture_mutex.lock()
-	ImageGenerationRenderer.render_image_generation(Renderer, image_generation_details)
-	var color_attachment := Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-	image_generation_details.generated_texture.copy_contents(color_attachment)
-	image_generator.texture_mutex.unlock()
+	# Stores the generated texture
+	image_generation_details.generated_texture.copy_contents(output_texture)
+	
+	call_deferred("emit_signal", "generation_finished")
 	
 	
 func _clear_image_generation_details():
@@ -84,7 +80,6 @@ func _clear_image_generation_details():
 	var target_texture: RendererTexture = Globals \
 										.settings \
 										.image_generator_params \
-										.shape_generator_params \
 										.target_texture
 	_clear_color_strategy = ClearColorStrategy.factory_create(
 		Globals \
@@ -104,12 +99,13 @@ func _clear_image_generation_details():
 	image_generation_details.executed_count = 0
 	image_generation_details.shapes.clear()
 	image_generation_details.clear_color = _clear_color_strategy.get_clear_color()
-	image_generation_details.viewport_size = target_texture.get_size()
+	image_generation_details.render_scale = Globals.settings.image_generator_params.render_scale
+	image_generation_details.viewport_size = target_texture.get_size() * Globals.settings.image_generator_params.render_scale
 	
 	# Initializes generated texture
 	var img = ImageUtils.create_monochromatic_image(
-		target_texture.get_width(),
-		target_texture.get_height(),
+		image_generation_details.viewport_size.x,
+		image_generation_details.viewport_size.y,
 		image_generation_details.clear_color)
 	
 	# Creates to image texture and then to RD local texture

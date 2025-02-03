@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://cei6yb88r707w"]
+
+[ext_resource type="Script" path="res://tests/gd_shape_renderer_test/gd_shape_renderer_test.gd" id="1_6655g"]
+[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://godot_shape_renderer/godot_shape_renderer.tscn" id="1_j6468"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape.gd" id="2_7tvpo"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="3_wkluu"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_v1h8n"]
+[ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/circular_shapes/circle.png" id="5_0f6lu"]
+
+[sub_resource type="Texture2D" id="Texture2D_oyy8n"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_v1h8n")
+_src_texture = ExtResource("3_wkluu")
+
+[sub_resource type="Resource" id="Resource_eie48"]
+script = ExtResource("2_7tvpo")
+position = Vector2i(64, 64)
+size = Vector2(128, 128)
+rotation = 0.0
+texture = SubResource("Texture2D_oyy8n")
+tint = Color(1, 1, 1, 1)
+
+[sub_resource type="Texture2D" id="Texture2D_aa31w"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_v1h8n")
+_src_texture = ExtResource("5_0f6lu")
+
+[sub_resource type="Resource" id="Resource_qluvt"]
+script = ExtResource("2_7tvpo")
+position = Vector2i(300, 300)
+size = Vector2(128, 128)
+rotation = 0.0
+texture = SubResource("Texture2D_aa31w")
+tint = Color(1, 0, 0, 1)
+
+[node name="GdShapeRendererTest" type="Control" node_paths=PackedStringArray("gd_shape_renderer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6655g")
+shapes = Array[ExtResource("2_7tvpo")]([SubResource("Resource_eie48"), SubResource("Resource_qluvt")])
+gd_shape_renderer = NodePath("SubViewportContainer/GodotShapeRenderer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GodotShapeRenderer" parent="SubViewportContainer" instance=ExtResource("1_j6468")]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4

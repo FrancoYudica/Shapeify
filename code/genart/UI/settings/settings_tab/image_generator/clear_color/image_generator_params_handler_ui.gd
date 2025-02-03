@@ -3,6 +3,7 @@ extends PanelContainer
 
 @export var stop_condition: OptionButton
 @export var clear_color: OptionButton
+@export var render_scale_spin_box: SpinBox
 @export var weight_texture_generator_picker: WeightTextureGeneratorPicker
 
 var _params : ImageGeneratorParams:
@@ -28,6 +29,12 @@ func _ready() -> void:
 		func(index):
 			_params.clear_color_type = index as ClearColorStrategy.Type
 	)
+	
+	# Process scale ------------------------------------------------------------
+	render_scale_spin_box.value_changed.connect(
+		func(value):
+			_params.render_scale = value
+	)
 
 	Globals.image_generator_params_updated.connect(_update)
 	_update()
@@ -35,4 +42,5 @@ func _ready() -> void:
 func _update():
 	stop_condition.select(_params.stop_condition)
 	clear_color.select(_params.clear_color_type)
+	render_scale_spin_box.value = _params.render_scale
 	weight_texture_generator_picker.set_params(_params.weight_texture_generator_params)

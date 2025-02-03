@@ -1,8 +1,6 @@
 extends TextureRect
 
 @export var animator: Node
-@export var white_texture: RendererTextureLoad
-var _output_rd_texture
 
 func _ready() -> void:
 	animator.shapes_animated.connect(_animated_shapes)
@@ -23,23 +21,18 @@ func _animated_shapes(shapes: Array[Shape]):
 
 func _render_shapes(shapes):
 	
-	var viewport_size = animator.image_generation_details.viewport_size
+	var details: ImageGenerationDetails = animator.image_generation_details
+	var viewport_size = details.viewport_size / details.render_scale
 	Renderer.begin_frame(viewport_size)
 	
 	# Renders background
-	Renderer.render_sprite(
-		viewport_size * 0.5,
-		viewport_size,
-		0.0,
-		animator.image_generation_details.clear_color,
-		white_texture,
-		0.0)
+	Renderer.render_clear(animator.image_generation_details.clear_color)
 	
 	# Renders shapes
 	for shape in shapes:
 		Renderer.render_sprite(
-			shape.position,
-			shape.size,
+			shape.position / details.render_scale,
+			shape.size / details.render_scale,
 			shape.rotation,
 			shape.tint,
 			shape.texture,

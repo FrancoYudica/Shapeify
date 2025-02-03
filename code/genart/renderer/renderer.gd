@@ -233,7 +233,6 @@ func _resize(viewport_size: Vector2i):
 		printerr("Invalid render pipeline")
 		return
 
-	#resized.emit()
 	call_deferred("emit_signal", "resized")
 	
 func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
@@ -281,7 +280,7 @@ func flush() -> void:
 	# Create the uniform set .......................................................................
 	var uniform_set_rid = rd.uniform_set_create(uniforms, _sprite_batch.shader, 0)
 	
-	# The initial colo action changes from `clear` to `keep` if there are multiple flushes
+	# The initial color action changes from `clear` to `keep` if there are multiple flushes
 	var intial_color_action = RenderingDevice.INITIAL_ACTION_CLEAR \
 							  if _flush_count == 0 \
 							  else RenderingDevice.INITIAL_ACTION_KEEP
