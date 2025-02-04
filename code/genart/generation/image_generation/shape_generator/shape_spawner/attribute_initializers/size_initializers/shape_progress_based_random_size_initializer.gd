@@ -3,10 +3,12 @@ extends ShapeSizeInitializer
 var _texture_size: Vector2
 
 func initialize_attribute(shape: Shape) -> void:
-	var r = randf() * 0.5
-	var random_similarity = clampf(r + similarity, 0.0, 1.0)
-	shape.size.x = _texture_size.x * lerpf(1.0, 0.01, random_similarity)
-	shape.size.y = _texture_size.y * lerpf(1.0, 0.01, random_similarity)
+	var max_ratio = lerpf(1.0, 0.2, similarity)
+	var max_size = _texture_size * max_ratio
+	var min_size = Vector2(8.0, 8.0)
+	
+	shape.size.x = randf_range(min_size.x, max_size.x)
+	shape.size.y = randf_range(min_size.y, max_size.y)
 	
 func update(
 	target_texture: RendererTexture,

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=20 format=3 uid="uid://1ex8uixg8r05"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=27 format=3 uid="uid://1ex8uixg8r05"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_nomoq"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_8vin2"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="5_0123p"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="6_nxqw5"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="9_2i1d0"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="9_d136q"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shader_driven/shader_driven_shape_generator_params.gd" id="10_1i1g5"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="10_1qcb8"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_4j4s8"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="11_tvd45"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="12_vd1vx"]
 
 [sub_resource type="Resource" id="Resource_y5lgf"]
 script = ExtResource("1_nomoq")
@@ -40,13 +43,36 @@ survivor_selection_params = SubResource("Resource_v6iey")
 
 [sub_resource type="Resource" id="Resource_inypp"]
 script = ExtResource("6_nxqw5")
-max_age = 30
+max_age = 20
+random_restart_count = 6
+initial_random_samples = 10
 fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_xuyke"]
 script = ExtResource("10_1i1g5")
 max_age = 50
 fitness_calculator = 1
+
+[sub_resource type="Resource" id="Resource_oyre4"]
+script = ExtResource("11_tvd45")
+weight_texture_generator_type = 2
+
+[sub_resource type="Resource" id="Resource_ibrwy"]
+script = ExtResource("10_1qcb8")
+weight_texture_generator_params = SubResource("Resource_oyre4")
+
+[sub_resource type="Resource" id="Resource_v63d0"]
+script = ExtResource("12_vd1vx")
+
+[sub_resource type="Resource" id="Resource_ghcdf"]
+script = ExtResource("9_d136q")
+shape_position_initializer_type = 1
+shape_size_initializer_type = 2
+shape_rotation_initializer_type = 0
+shape_tint_initializer_type = 0
+shape_texture_initializer_type = 0
+shape_position_initializer_params = SubResource("Resource_ibrwy")
+shape_texture_initializer_params = SubResource("Resource_v63d0")
 
 [sub_resource type="Resource" id="Resource_a82k2"]
 script = ExtResource("9_2i1d0")
@@ -61,6 +87,7 @@ best_of_random_params = SubResource("Resource_1dnsv")
 genetic_params = SubResource("Resource_grum8")
 hill_climbing_params = SubResource("Resource_inypp")
 shader_driven_params = SubResource("Resource_xuyke")
+shape_spawner_params = SubResource("Resource_ghcdf")
 
 [sub_resource type="Resource" id="Resource_o2cc0"]
 script = ExtResource("10_4j4s8")
@@ -71,15 +98,16 @@ metric_type = 4
 
 [sub_resource type="Resource" id="Resource_tbdou"]
 script = ExtResource("11_tvd45")
+weight_texture_generator_type = 2
 
 [resource]
 script = ExtResource("2_8vin2")
 type = 2
-weight_texture_generator_type = 0
 shape_generator_params = SubResource("Resource_a82k2")
-shape_generator_type = 2
+shape_generator_type = 3
 stop_condition = 0
 stop_condition_params = SubResource("Resource_o2cc0")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_y5lgf")
 weight_texture_generator_params = SubResource("Resource_tbdou")
+render_scale = 0.5

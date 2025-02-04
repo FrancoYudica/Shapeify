@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=102 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=103 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -83,56 +83,63 @@
 script = ExtResource("2_oxdqy")
 color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_10eue"]
+[sub_resource type="Resource" id="Resource_l52y4"]
 script = ExtResource("4_mkkkp")
-shape_count = 150
+shape_count = 300
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_beeb3"]
+[sub_resource type="Resource" id="Resource_yvtaw"]
 script = ExtResource("6_5d6g0")
-elitisim_rate = 0.3
+elitisim_rate = 0.25
 tournament_size = 10
 
-[sub_resource type="Resource" id="Resource_tl5x4"]
+[sub_resource type="Resource" id="Resource_w2ugy"]
 script = ExtResource("5_1ldw3")
-generation_count = 10
-population_size = 30
+generation_count = 15
+population_size = 60
 fitness_calculator = 1
-mutation_rate = 0.1
+mutation_rate = 0.2
 mutation_factor = 1.0
 selection_strategy = 0
 crossover_strategy = 3
 mutation_strategy = 1
 survivor_selection_strategy = 1
-survivor_selection_params = SubResource("Resource_beeb3")
+survivor_selection_params = SubResource("Resource_yvtaw")
 
-[sub_resource type="Resource" id="Resource_g703n"]
+[sub_resource type="Resource" id="Resource_e0mao"]
 script = ExtResource("7_2v1ua")
-max_age = 30
-fitness_calculator = 1
-
-[sub_resource type="Resource" id="Resource_dx317"]
-script = ExtResource("11_1stu7")
 max_age = 20
+random_restart_count = 6
+initial_random_samples = 10
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_n66ir"]
-script = ExtResource("14_8u5iy")
+[sub_resource type="Resource" id="Resource_guqt6"]
+script = ExtResource("11_1stu7")
+max_age = 50
+fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_oonh6"]
+[sub_resource type="Resource" id="Resource_3gby8"]
+script = ExtResource("12_ovpig")
+weight_texture_generator_type = 2
+
+[sub_resource type="Resource" id="Resource_yrib8"]
+script = ExtResource("14_8u5iy")
+weight_texture_generator_params = SubResource("Resource_3gby8")
+
+[sub_resource type="Resource" id="Resource_videf"]
 script = ExtResource("15_rds8n")
 
-[sub_resource type="Resource" id="Resource_gwera"]
+[sub_resource type="Resource" id="Resource_7sst7"]
 script = ExtResource("13_pyaws")
 shape_position_initializer_type = 1
-shape_size_initializer_type = 0
+shape_size_initializer_type = 2
 shape_rotation_initializer_type = 0
 shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
-shape_position_initializer_params = SubResource("Resource_n66ir")
-shape_texture_initializer_params = SubResource("Resource_oonh6")
+shape_position_initializer_params = SubResource("Resource_yrib8")
+shape_texture_initializer_params = SubResource("Resource_videf")
 
-[sub_resource type="Resource" id="Resource_nbuwk"]
+[sub_resource type="Resource" id="Resource_5s6rj"]
 script = ExtResource("10_t1ypc")
 color_sampler = 1
 keep_aspect_ratio = true
@@ -141,11 +148,11 @@ fixed_rotation = false
 fixed_rotation_angle = 0.0
 fixed_size = false
 fixed_size_width_ratio = 0.1
-best_of_random_params = SubResource("Resource_10eue")
-genetic_params = SubResource("Resource_tl5x4")
-hill_climbing_params = SubResource("Resource_g703n")
-shader_driven_params = SubResource("Resource_dx317")
-shape_spawner_params = SubResource("Resource_gwera")
+best_of_random_params = SubResource("Resource_l52y4")
+genetic_params = SubResource("Resource_w2ugy")
+hill_climbing_params = SubResource("Resource_e0mao")
+shader_driven_params = SubResource("Resource_guqt6")
+shape_spawner_params = SubResource("Resource_7sst7")
 
 [sub_resource type="Resource" id="Resource_vnspm"]
 script = ExtResource("10_mxc8r")
@@ -156,19 +163,19 @@ metric_type = 4
 
 [sub_resource type="Resource" id="Resource_bec32"]
 script = ExtResource("12_ovpig")
-weight_texture_generator_type = 0
+weight_texture_generator_type = 2
 
 [sub_resource type="Resource" id="Resource_ej335"]
 script = ExtResource("9_l7xcl")
 type = 1
-shape_generator_params = SubResource("Resource_nbuwk")
-shape_generator_type = 1
+shape_generator_params = SubResource("Resource_5s6rj")
+shape_generator_type = 3
 stop_condition = 0
 stop_condition_params = SubResource("Resource_vnspm")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_yhknk")
 weight_texture_generator_params = SubResource("Resource_bec32")
-process_scale = 1.0
+render_scale = 0.5
 
 [sub_resource type="Resource" id="Resource_qsjoh"]
 script = ExtResource("11_f4wjl")

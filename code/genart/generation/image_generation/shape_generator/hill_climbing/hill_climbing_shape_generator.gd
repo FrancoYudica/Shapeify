@@ -104,7 +104,7 @@ func _setup():
 	_progress_metric.target_texture = params.target_texture
 	
 	# Rotation is more likely to mutate
-	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([1, 1, 2])
+	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([1, 2, 2])
 
 func finished():
 	super.finished()
