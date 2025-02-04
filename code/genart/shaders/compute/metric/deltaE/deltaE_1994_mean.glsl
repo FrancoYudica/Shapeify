@@ -2,6 +2,7 @@
 #version 450
 #include "../common/CEILab_common.glslinc"
 #include "../common/deltaE.glslinc"
+#include "../common/metric_constants.glslinc"
 
 // Local invocation settings with 64 local invocations
 layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
@@ -55,8 +56,11 @@ MetricData compute_delta_e(uint x, uint y)
     // Calculates pixel delta e and adds to the shared buffer
     float pixel_delta_e = delta_e_1994(target_lab, source_lab);
 
-    float weight = weight_pixel.r;
-    return MetricData(pixel_delta_e * weight, weight);
+    float normalized_weight = weight_pixel.r;
+
+    // Maps weight from range [0.0, 1.0] to range [MIN_WEIGHT_BOUND, 1.0]
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(pixel_delta_e * mapped_weight, mapped_weight);
 }
 
 void main()

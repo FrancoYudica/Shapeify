@@ -1,5 +1,6 @@
 #[compute]
 #version 450
+#include "../common/metric_constants.glslinc"
 
 layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
 
@@ -45,7 +46,12 @@ MetricData compute_mse(uint x, uint y)
     // Compute the squared difference for each color channel
     vec3 diff = abs(target_pixel.rgb - source_pixel.rgb);
     float squared_diff = dot(diff, diff);
-    return MetricData(squared_diff * weight_pixel.r, weight_pixel.r);
+
+    float normalized_weight = weight_pixel.r;
+
+    // Maps weight from range [0.0, 1.0] to range [MIN_WEIGHT_BOUND, 1.0]
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(squared_diff * mapped_weight, mapped_weight);
 }
 
 void main()

@@ -1,5 +1,6 @@
 #[compute]
 #version 450
+#include "../common/metric_constants.glslinc"
 
 layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
 
@@ -51,13 +52,11 @@ MetricData compute_mpa(uint x, uint y)
     fitness_color = pow(fitness_color, vec3(params.power));
     float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
 
-    return MetricData(fitness * weight_pixel.r, weight_pixel.r);
+    float normalized_weight = weight_pixel.r;
 
-    // float weight = weight_pixel.r * 2.0f - 1.0f;
-    // if (weight > 0.0)
-    //     return MetricData(fitness * weight, weight_pixel.r);
-    // else
-    //     return MetricData((1.0f - fitness) * weight, weight_pixel.r);
+    // Maps weight from range [0.0, 1.0] to range [MIN_WEIGHT_BOUND, 1.0]
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(fitness * mapped_weight, mapped_weight);
 }
 
 void main()
