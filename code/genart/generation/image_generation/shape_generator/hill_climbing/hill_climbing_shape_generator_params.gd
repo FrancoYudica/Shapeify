@@ -6,6 +6,10 @@ class_name HillClimbingShapeGeneratorParams extends Resource
 			max_age = value
 			emit_changed()
 
+@export var random_restart_count: int = 1
+
+@export var initial_random_samples: int = 5
+
 @export var fitness_calculator := FitnessCalculator.Type.MPA_RGB:
 	set(value):
 		if value != fitness_calculator:
@@ -15,6 +19,7 @@ class_name HillClimbingShapeGeneratorParams extends Resource
 func to_dict() -> Dictionary:
 	return {
 		"max_age" : max_age,
+		"ranndom_restart_count" : random_restart_count,
 		"fitness_calculator": FitnessCalculator.Type.keys()[fitness_calculator]
 	}
 

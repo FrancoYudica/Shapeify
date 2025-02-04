@@ -87,9 +87,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	var total_weights: float = 0.0
 	for n in weights_partial_sums:
 		total_weights += n
-
 	var mpa = mpa_sum / (total_weights * 3.0)
-	
 	return mpa
 
 func _init() -> void:

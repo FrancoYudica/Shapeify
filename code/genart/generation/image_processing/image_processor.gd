@@ -8,7 +8,8 @@ enum Type
 	MULTIPLY,
 	POWER,
 	MAP_TO_RED,
-	MPA
+	MPA,
+	MAP_TO_RANGE
 }
 
 func process_image(texture: RendererTexture) -> RendererTexture:
@@ -30,6 +31,8 @@ static func factory_create(type: Type) -> ImageProcessor:
 			return load("res://generation/image_processing/map_to_red_image_processor.gd").new()
 		Type.MPA:
 			return load("res://generation/image_processing/mpa_rgb_image_processor.gd").new()
+		Type.MAP_TO_RANGE:
+			return load("res://generation/image_processing/map_to_range_image_processor.gd").new()
 		_:
 			push_error("Unimplemented type: %s" % type)
 			return null
