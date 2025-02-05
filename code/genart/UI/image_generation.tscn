@@ -125,9 +125,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -594,7 +595,6 @@ text = "Input texture (drag and drop a *.png or *.jpg file to change)"
 vertical_alignment = 1
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -1065,7 +1065,7 @@ text = "Selected type random
 [node name="WeightedSettingsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/ShapeSpawnerPanelContainer/MarginContainer/GridContainer/PositionAttributeInitializerSettingsControl"]
 layout_mode = 2
 script = ExtResource("47_fnu6m")
-position_type = 1
+position_type = 2
 
 [node name="WeightedSettingsVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/GridContainer/ShapeSpawnerPanelContainer/MarginContainer/GridContainer/PositionAttributeInitializerSettingsControl/WeightedSettingsPanelContainer" node_paths=PackedStringArray("weight_texture_generator_picker")]
 layout_mode = 2

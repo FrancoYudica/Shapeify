@@ -9,7 +9,8 @@ func initialize_attribute(shape: Shape) -> void:
 ## Called when the spawner has to update it's properties
 func update(
 	target_texture: RendererTexture,
-	source_texture: RendererTexture) -> void:
+	source_texture: RendererTexture,
+	weight_texture: RendererTexture) -> void:
 	pass
 
 func set_params(params: ShapeSpawnerParams):

@@ -16,7 +16,7 @@ func _ready() -> void:
 			params.weight_texture_generator_type = index
 	)
 
-func set_params(params: WeightTextureGeneratorParams):
-	self.params = params
-	weight_texture_generator.select(params.weight_texture_generator_type)
+func set_params(new_params: WeightTextureGeneratorParams):
+	params = new_params
+	weight_texture_generator.select(new_params.weight_texture_generator_type)
 	params_updated.emit()

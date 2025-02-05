@@ -21,11 +21,12 @@ func spawn_one(similarity: float) -> Shape:
 func update(
 	similarity: float,
 	target_texture: RendererTexture,
-	source_texture: RendererTexture
+	source_texture: RendererTexture,
+	weight_texture: RendererTexture
 ):
 	for attr_initializer in _shape_attribute_initializers:
 		attr_initializer.similarity = similarity
-		attr_initializer.update(target_texture, source_texture)
+		attr_initializer.update(target_texture, source_texture, weight_texture)
 
 func set_params(params: ShapeSpawnerParams):
 	

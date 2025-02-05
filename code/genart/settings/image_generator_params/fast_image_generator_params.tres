@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=27 format=3 uid="uid://b51co6q6gxdls"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=28 format=3 uid="uid://b51co6q6gxdls"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_h23sq"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="3_ef2m5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="11_fhf1i"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="12_5asae"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_br8hi"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="13_gtre0"]
 
 [sub_resource type="Resource" id="Resource_yuk3t"]
 script = ExtResource("2_h23sq")
@@ -73,6 +74,7 @@ shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_5ruvd")
 shape_texture_initializer_params = SubResource("Resource_0a0m0")
+textures = Array[ExtResource("13_gtre0")]([])
 
 [sub_resource type="Resource" id="Resource_tkisg"]
 script = ExtResource("10_6sbek")

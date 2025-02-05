@@ -49,7 +49,8 @@ func generate_shape(similarity: float) -> Shape:
 		_shape_spawner.update(
 			similarity, 
 			params.target_texture, 
-			params.source_texture)
+			params.source_texture,
+			weight_texture)
 
 	var shape = _generate(similarity)
 	Profiler.shape_generation_finished(
