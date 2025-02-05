@@ -30,8 +30,8 @@ func render_shape(shape: Shape) -> void:
 		
 	# 2. Render shape
 	Renderer.render_sprite(
-		shape.position,
-		shape.size,
+		shape.position * source_texture.get_size(),
+		shape.size * source_texture.get_size(),
 		shape.rotation,
 		shape.tint,
 		shape.texture,

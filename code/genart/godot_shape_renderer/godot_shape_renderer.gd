@@ -27,14 +27,14 @@ func clear():
 	_texture_map.clear()
 
 
-func add_shape(shape: Shape, render_scale: float = 1.0):
+func add_shape(shape: Shape):
 	if not _texture_map.has(shape.texture.rd_rid):
 		_texture_map[shape.texture.rd_rid] = RenderingCommon.create_texture_from_rd_rid(
 				shape.texture.rd_rid
 			)
 			
 	var gd_shape = _gd_shape.instantiate()
-	gd_shape.from_shape(shape, _texture_map[shape.texture.rd_rid], render_scale)
+	gd_shape.from_shape(shape, _texture_map[shape.texture.rd_rid], size)
 	shapes_container.call_deferred("add_child", gd_shape)
 
 func _exit_tree() -> void:

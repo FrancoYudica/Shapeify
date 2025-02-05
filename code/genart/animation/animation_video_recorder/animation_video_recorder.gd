@@ -50,7 +50,6 @@ func _record_and_save():
 		# Gets frame shapes
 		var frame_shapes := _animation_player.animate(
 			_image_generation_details.shapes,
-			_image_generation_details.viewport_size,
 			t
 		)
 		
@@ -62,8 +61,7 @@ func _record_and_save():
 			path,
 			frame_shapes,
 			_image_generation_details.clear_color,
-			_image_generation_details.viewport_size,
-			_upscale_factor / _image_generation_details.render_scale
+			_image_generation_details.viewport_size * _upscale_factor
 		):
 			return
 		

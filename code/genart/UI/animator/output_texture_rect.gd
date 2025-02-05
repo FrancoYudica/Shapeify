@@ -15,30 +15,27 @@ func _process(delta: float) -> void:
 
 func _animated_shapes(shapes: Array[Shape]):
 	
-	_render_shapes(shapes)
-	_update_texture()
-
-
-func _render_shapes(shapes):
+	# Prepares details
+	var details := ImageGenerationDetails.new()
+	details.shapes = shapes
+	details.clear_color = animator.image_generation_details.clear_color
+	details.viewport_size = animator.image_generation_details.viewport_size
 	
-	var details: ImageGenerationDetails = animator.image_generation_details
-	var viewport_size = details.viewport_size / details.render_scale
-	Renderer.begin_frame(viewport_size)
+	# Renders the image
+	ImageGenerationRenderer.render_image_generation(Renderer, details)
 	
-	# Renders background
-	Renderer.render_clear(animator.image_generation_details.clear_color)
+	# Creates texture
+	if texture == null:
+		_create_texture()
 	
-	# Renders shapes
-	for shape in shapes:
-		Renderer.render_sprite(
-			shape.position / details.render_scale,
-			shape.size / details.render_scale,
-			shape.rotation,
-			shape.tint,
-			shape.texture,
-			1.0)
-	Renderer.end_frame()
-	
+	# Copies textures contents into TextureRect's texture
+	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	RenderingCommon.texture_copy(
+		color_attachment.rd_rid,
+		texture.texture_rd_rid,
+		Renderer.rd,
+		RenderingServer.get_rendering_device()
+	)
 
 func _create_texture():
 	_free_texture()
@@ -48,19 +45,6 @@ func _create_texture():
 	
 	texture = texture_rd
 
-
-func _update_texture():
-	
-	if texture == null:
-		_create_texture()
-
-	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-	RenderingCommon.texture_copy(
-		color_attachment.rd_rid,
-		texture.texture_rd_rid,
-		Renderer.rd,
-		RenderingServer.get_rendering_device()
-	)
 
 func _free_texture():
 	

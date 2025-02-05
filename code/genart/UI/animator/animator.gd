@@ -44,7 +44,6 @@ func _interpolate(t: float):
 		
 	var animated_shapes = animation_player.animate(
 		image_generation_details.shapes, 
-		image_generation_details.viewport_size,
 		t)
 	shapes_animated.emit(animated_shapes)
 	animation_progress_updated.emit(t)

@@ -5,16 +5,12 @@ func save(
 	filepath: String,
 	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i,
-	viewport_scale: float) -> bool:
+	viewport_size: Vector2i) -> bool:
 	
 	# Serializes the shapes to dicts
 	var data = {"shapes": []}
 	for shape in shapes:
-		var s = shape.copy()
-		s.position *= viewport_scale
-		s.size *= viewport_scale
-		data["shapes"].append(s.to_dict())
+		data["shapes"].append(shape.to_dict())
 	
 	# opens file
 	var file = FileAccess.open(filepath, FileAccess.WRITE)

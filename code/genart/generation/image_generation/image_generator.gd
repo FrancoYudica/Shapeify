@@ -134,5 +134,5 @@ func _compute_similarity(
 	# Normalizes deltaE progress from range [0.0, 100.0]
 	var max_error = 0.31
 	var mapped_similarity = -(max_error - metric_value) / max_error
-	similarity = 1.0 - mapped_similarity * 0.01
+	similarity = clampf(1.0 - mapped_similarity * 0.01, 0.0, 1.0)
 	

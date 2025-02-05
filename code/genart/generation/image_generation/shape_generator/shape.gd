@@ -1,9 +1,9 @@
 class_name Shape extends Resource
 
-## Central position
-@export var position: Vector2i = Vector2.ZERO
+## The normalized central position
+@export var position: Vector2 = Vector2.ZERO
 
-## Size of the rendered texture
+## The normalized size of the rendered texture, proportional to the canvas size
 @export var size: Vector2 = Vector2(128, 128)
 
 ## Clockwise rotation that starts from +X axis
@@ -15,7 +15,8 @@ class_name Shape extends Resource
 @export var tint: Color = Color.WHITE
 
 
-func get_bounding_rect() -> Rect2i:
+## Returns the normalized bounding rect
+func get_bounding_rect() -> Rect2:
 	
 	var rotation_matrix = Transform2D(rotation, Vector2.ZERO)
 
@@ -43,13 +44,13 @@ func get_bounding_rect() -> Rect2i:
 		right = max(pos.x, right)
 	
 	# Builds Axis aligned bounding box
-	var top_left = Vector2i(int(left), int(top))
-	var size = Vector2i(
-		int(right - left),
-		int(bottom - top)
+	var top_left = Vector2(left, top)
+	var size = Vector2(
+		right - left,
+		bottom - top
 	)
 	
-	var rect = Rect2i(top_left, size)
+	var rect = Rect2(top_left, size)
 	
 	return rect
 

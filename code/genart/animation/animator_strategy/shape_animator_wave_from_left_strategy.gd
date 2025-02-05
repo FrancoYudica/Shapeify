@@ -7,10 +7,7 @@ func animate(
 	count: int,
 	t: float) -> bool:
 	
-	var uv = Vector2(
-		float(shape.position.x) / viewport_size.x,
-		float(shape.position.y) / viewport_size.y
-	)
+	var uv = shape.position
 	
 	var visible_count = count * t
 	var fraction = (t * 2.0 - uv.y)
@@ -23,8 +20,7 @@ func animate(
 		shape.position.y
 	)
 	var current_pos = lerp(start_pos, target_pos, v)
-	shape.position.x = int(current_pos.x)
-	shape.position.y = int(current_pos.y)
+	shape.position = current_pos
 	shape.size *= v
 	
 	return v > 0.0

@@ -25,4 +25,4 @@ func _clear_shapes():
 	gd_shape_renderer.clear()
 
 func _shape_generated(shape):
-	gd_shape_renderer.add_shape(shape, image_generation.image_generation_details.render_scale)
+	gd_shape_renderer.add_shape(shape)

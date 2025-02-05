@@ -11,7 +11,6 @@ enum Type
 	WAVE_FROM_LEFT
 }
 
-var viewport_size: Vector2i
 
 ## Animates the given shape with the normalized t parameter
 ## Returns if its visible.

@@ -42,8 +42,8 @@ _src_texture = ExtResource("12_qyjx0")
 [sub_resource type="Resource" id="Resource_6x7vt"]
 script = ExtResource("11_d8j6l")
 fitness = 0.0
-position = Vector2i(0, 0)
-size = Vector2(100, 100)
+position = Vector2(0, 0)
+size = Vector2(0.1, 0.1)
 rotation = 0.0
 texture = SubResource("Texture2D_8r80a")
 tint = Color(1, 1, 1, 1)

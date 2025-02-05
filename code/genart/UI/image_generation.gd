@@ -71,35 +71,24 @@ func _begin_image_generation():
 	
 func _clear_image_generation_details():
 	
-	var target_texture: RendererTexture = Globals \
-										.settings \
-										.image_generator_params \
-										.target_texture
-	_clear_color_strategy = ClearColorStrategy.factory_create(
-		Globals \
-		.settings \
-		.image_generator_params \
-		.clear_color_type)
+	var params := Globals.settings.image_generator_params
+	
+	var target_texture := params.target_texture
+	_clear_color_strategy = ClearColorStrategy.factory_create(params.clear_color_type)
 
 	_clear_color_strategy.sample_texture = target_texture
-	_clear_color_strategy.set_params(
-		Globals \
-		.settings \
-		.image_generator_params \
-		.clear_color_params
-	)
+	_clear_color_strategy.set_params(params.clear_color_params)
 
 	image_generation_details.time_taken_ms = 0.0
 	image_generation_details.executed_count = 0
 	image_generation_details.shapes.clear()
 	image_generation_details.clear_color = _clear_color_strategy.get_clear_color()
-	image_generation_details.render_scale = Globals.settings.image_generator_params.render_scale
-	image_generation_details.viewport_size = target_texture.get_size() * Globals.settings.image_generator_params.render_scale
+	image_generation_details.viewport_size = target_texture.get_size()
 	
-	# Initializes generated texture
+	# Initializes generated texture. Note that it has the render scale applied
 	var img = ImageUtils.create_monochromatic_image(
-		image_generation_details.viewport_size.x,
-		image_generation_details.viewport_size.y,
+		params.target_texture.get_width() * params.render_scale,
+		params.target_texture.get_height() * params.render_scale,
 		image_generation_details.clear_color)
 	
 	# Creates to image texture and then to RD local texture

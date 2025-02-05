@@ -9,10 +9,7 @@ var animator := ShapeAnimatiorStrategy.Type.TIMELINE:
 
 func animate(
 	shapes: Array[Shape],
-	viewport_size: Vector2i,
 	t: float) -> Array[Shape]:
-	
-	_animator_strategy.viewport_size = viewport_size
 	
 	var copied: Array[Shape] = []
 	for i in range(shapes.size()):

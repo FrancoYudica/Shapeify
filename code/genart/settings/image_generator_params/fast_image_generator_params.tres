@@ -110,4 +110,4 @@ stop_condition_params = SubResource("Resource_s8edl")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_yuk3t")
 weight_texture_generator_params = SubResource("Resource_jwfuf")
-render_scale = 0.25
+render_scale = 0.5

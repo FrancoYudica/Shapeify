@@ -70,11 +70,11 @@ func _generate(similarity: float) -> Shape:
 
 ## Applies settings and ensures that all the properties have valid values
 func _fix_shape_attributes(shape: Shape):
-	
 	# If the aspect ratio
 	if params.keep_aspect_ratio:
-		var aspect = float(shape.texture.get_height()) / shape.texture.get_width()
-		shape.size.y = shape.size.x * aspect
+		var target_aspect = float(params.target_texture.get_width()) / params.target_texture.get_height()
+		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
+		shape.size.y = shape.size.x * target_aspect * texture_aspect
 	
 	# Can't rotate
 	if params.fixed_rotation:
@@ -82,16 +82,17 @@ func _fix_shape_attributes(shape: Shape):
 		
 	# Clamps position
 	if params.clamp_position_in_canvas:
-		shape.position.x = clampi(shape.position.x, 0, params.target_texture.get_width())
-		shape.position.y = clampi(shape.position.y, 0, params.target_texture.get_height())
+		shape.position.x = clamp(shape.position.x, 0, 1.0)
+		shape.position.y = clamp(shape.position.y, 0, 1.0)
 	
 	if params.fixed_size:
-		shape.size.x = params.source_texture.get_width() * params.fixed_size_width_ratio
-		var aspect = float(shape.texture.get_height()) / shape.texture.get_width()
-		shape.size.y = shape.size.x * aspect
+		shape.size.x = params.fixed_size_width_ratio
+		var target_aspect = float(params.target_texture.get_width()) / params.target_texture.get_height()
+		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
+		shape.size.y = shape.size.x * target_aspect * texture_aspect
 
-	shape.size.x = max(shape.size.x, 1.0)
-	shape.size.y = max(shape.size.y, 1.0)
+	shape.size.x = max(shape.size.x, 0.0001)
+	shape.size.y = max(shape.size.y, 0.0001)
 
 static func factory_create(type: Type):
 	# Setup shape generator -----------------------------------------------

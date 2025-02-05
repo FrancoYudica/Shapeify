@@ -4,20 +4,12 @@ func save(
 	filepath: String,
 	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i,
-	viewport_scale: float) -> bool:
+	viewport_size: Vector2i) -> bool:
 
 	var render_details := ImageGenerationDetails.new()
+	render_details.shapes = shapes
 	render_details.clear_color = clear_color
-	render_details.viewport_size = Vector2(
-		viewport_size.x * viewport_scale,
-		viewport_size.y * viewport_scale
-	)
-	for shape in shapes:
-		var s = shape.copy()
-		s.position *= viewport_scale
-		s.size *= viewport_scale
-		render_details.shapes.append(s)
+	render_details.viewport_size = viewport_size
 	
 	# Renders the shapes
 	ImageGenerationRenderer.render_image_generation(Renderer, render_details)

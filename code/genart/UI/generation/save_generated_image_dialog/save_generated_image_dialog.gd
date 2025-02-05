@@ -45,12 +45,12 @@ func open(gen_details: ImageGenerationDetails):
 	_src_img_generation_details = gen_details
 	
 	resolution_label.text = "%sx%s" % [
-		_src_img_generation_details.viewport_size.x / _src_img_generation_details.render_scale,
-		_src_img_generation_details.viewport_size.y / _src_img_generation_details.render_scale]
+		_src_img_generation_details.viewport_size.x,
+		_src_img_generation_details.viewport_size.y]
 	
 	final_resolution_label.text = "%sx%s" % [
-		int(_src_img_generation_details.viewport_size.x * scale_spin_box.value / _src_img_generation_details.render_scale),
-		int(_src_img_generation_details.viewport_size.y * scale_spin_box.value / _src_img_generation_details.render_scale)]
+		int(_src_img_generation_details.viewport_size.x * scale_spin_box.value),
+		int(_src_img_generation_details.viewport_size.y * scale_spin_box.value)]
 
 	# Frees previous texture
 	if save_texture.texture != null and save_texture.texture is Texture2DRD:
@@ -76,6 +76,5 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		path,
 		_src_img_generation_details.shapes,
 		_src_img_generation_details.clear_color,
-		_src_img_generation_details.viewport_size,
-		scale_spin_box.value / _src_img_generation_details.render_scale
+		_src_img_generation_details.viewport_size * scale_spin_box.value
 	)

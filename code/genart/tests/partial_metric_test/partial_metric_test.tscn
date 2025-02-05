@@ -29,7 +29,7 @@ _src_texture = ExtResource("8_geoib")
 
 [sub_resource type="Resource" id="Resource_ncw5t"]
 script = ExtResource("7_endqw")
-position = Vector2i(0, 0)
+position = Vector2(0, 0)
 size = Vector2(128, 128)
 rotation = 0.0
 texture = SubResource("Texture2D_ipmng")

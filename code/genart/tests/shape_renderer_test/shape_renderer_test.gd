@@ -12,9 +12,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var shape = Shape.new()
 	shape.texture = shape_texture
-	shape.position = Vector2(512, 512)
-	shape.size.x = 256
-	shape.size.y = shape.size.x * float(shape.texture.get_height()) / shape.texture.get_width()
+	shape.position = Vector2(0.5, 0.5)
+	shape.size.x = 0.1
+	shape.size.y = shape.size.x * float(source_texture.get_width()) / source_texture.get_height()
 	
 	shape.rotation = Time.get_ticks_msec() * 0.001
 	shape.tint = Color.WHITE
