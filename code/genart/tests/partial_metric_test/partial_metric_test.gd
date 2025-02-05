@@ -25,7 +25,7 @@ func _ready() -> void:
 	_partial_metric.target_texture = target_texture
 	_partial_metric.source_texture = source_texture
 	_partial_metric.new_source_texture = new_source_texutre
-	_partial_metric.weight_texture = _weight_texture_generator.generate(0, target_texture)
+	_partial_metric.weight_texture = _weight_texture_generator.generate(0, target_texture, source_texture)
 	_metric = metric_script.new()
 	_metric.target_texture = target_texture
 	
