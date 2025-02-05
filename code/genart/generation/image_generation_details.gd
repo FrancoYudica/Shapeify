@@ -13,5 +13,3 @@ var viewport_size: Vector2i
 var time_taken_ms: int
 
 var executed_count: int
-
-var generated_texture: RendererTexture

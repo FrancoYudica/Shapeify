@@ -21,8 +21,8 @@ func set_sample_color(shape: Shape) -> void:
 	var bounding_rect = Rect2i(
 		normalized_bounding_rect.position.x * sample_texture.get_width(),
 		normalized_bounding_rect.position.y * sample_texture.get_height(),
-		normalized_bounding_rect.size.x * sample_texture.get_width(),
-		normalized_bounding_rect.size.y * sample_texture.get_height()
+		max(1.0, normalized_bounding_rect.size.x * sample_texture.get_width()),
+		max(1.0, normalized_bounding_rect.size.y * sample_texture.get_height())
 	)
 	# Samples
 	shape.tint = _masked_sampler.sample_rect(bounding_rect)

@@ -57,14 +57,21 @@ func _emit_shape_generated_signal(shape: Shape):
 
 func _begin_image_generation():
 	var clock := Clock.new()
-	var src = image_generation_details.generated_texture.copy()
-	image_generator.params = Globals.settings.image_generator_params
+	var params := Globals.settings.image_generator_params
+	image_generator.params = params
 	image_generation_details.executed_count += 1
-	var output_texture = image_generator.generate_image(src)
-	image_generation_details.time_taken_ms += clock.elapsed_ms()
 	
-	# Stores the generated texture
-	image_generation_details.generated_texture.copy_contents(output_texture)
+	# Renders source texture
+	var details := ImageGenerationDetails.new()
+	details.shapes = image_generation_details.shapes
+	details.clear_color = image_generation_details.clear_color
+	details.viewport_size = params.target_texture.get_size() * params.render_scale
+	ImageGenerationRenderer.render_image_generation(Renderer, details)
+	var source_texture := Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	
+	# Generates the image
+	var output_texture = image_generator.generate_image(source_texture)
+	image_generation_details.time_taken_ms += clock.elapsed_ms()
 	
 	call_deferred("emit_signal", "generation_finished")
 	
@@ -85,13 +92,5 @@ func _clear_image_generation_details():
 	image_generation_details.clear_color = _clear_color_strategy.get_clear_color()
 	image_generation_details.viewport_size = target_texture.get_size()
 	
-	# Initializes generated texture. Note that it has the render scale applied
-	var img = ImageUtils.create_monochromatic_image(
-		params.target_texture.get_width() * params.render_scale,
-		params.target_texture.get_height() * params.render_scale,
-		image_generation_details.clear_color)
-	
 	# Creates to image texture and then to RD local texture
-	var generated_global_rd = ImageTexture.create_from_image(img)
-	image_generation_details.generated_texture = RendererTexture.load_from_texture(generated_global_rd)
 	generation_cleared.emit()
