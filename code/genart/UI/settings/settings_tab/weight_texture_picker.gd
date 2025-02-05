@@ -1,4 +1,4 @@
-class_name WeightTextureGeneratorPicker extends PanelContainer
+class_name WeightTextureGeneratorPicker extends GridContainer
 
 signal params_updated()
 

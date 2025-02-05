@@ -1,6 +1,7 @@
-extends VBoxContainer
+extends Node
 
 @export var shape_count_spin_box: SpinBox
+
 var _params : ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params
@@ -16,6 +17,3 @@ func _ready() -> void:
 	
 func _update():
 	shape_count_spin_box.value = _params.stop_condition_params.shape_count
-
-func _process(delta: float) -> void:
-	visible = _params.stop_condition == StopCondition.Type.SHAPE_COUNT

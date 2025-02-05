@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 @export var target_metric_value_spin: SpinBox
 @export var metric_type_option: OptionButton
@@ -36,6 +36,3 @@ func _update():
 		var metric_type_index = _metric_type_indices[i]
 		if metric_type_index == _params.stop_condition_params.metric_type:
 			metric_type_option.select(i)
-
-func _process(delta: float) -> void:
-	visible = _params.stop_condition == StopCondition.Type.METRIC_VALUE

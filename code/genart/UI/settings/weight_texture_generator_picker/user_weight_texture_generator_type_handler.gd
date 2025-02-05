@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 @export var _weight_texture_rect: TextureRect
 @export var _load_texture_button: Button
@@ -36,7 +36,6 @@ func _exit_tree() -> void:
 	_free_weight_texture()
 
 func _process(delta: float) -> void:
-	visible = _params.weight_texture_generator_type == WeightTextureGenerator.Type.USER
 	_texture_label.visible = _params.user_weight_texture == null
 
 func _update():

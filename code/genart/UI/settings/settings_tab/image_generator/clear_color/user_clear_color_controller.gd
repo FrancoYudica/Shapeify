@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Node
 
 @export var clear_color: ColorPickerButton
 var _params : ImageGeneratorParams:
@@ -16,7 +16,3 @@ func _ready() -> void:
 	
 func _update():
 	clear_color.color = _params.clear_color_params.color
-
-
-func _process(delta: float) -> void:
-	visible = _params.clear_color_type == ClearColorStrategy.Type.USER

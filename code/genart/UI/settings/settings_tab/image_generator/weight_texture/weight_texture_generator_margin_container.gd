@@ -1,4 +1,4 @@
-extends PanelContainer
+extends MarginContainer
 
 @export var weight_texture_generator_picker: WeightTextureGeneratorPicker
 

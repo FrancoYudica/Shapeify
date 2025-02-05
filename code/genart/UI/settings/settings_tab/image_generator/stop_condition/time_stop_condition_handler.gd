@@ -1,5 +1,5 @@
 
-extends VBoxContainer
+extends Node
 
 @export var execution_time: SpinBox
 var _params : ImageGeneratorParams:
@@ -16,6 +16,3 @@ func _ready() -> void:
 
 func _update():
 	execution_time.value = _params.stop_condition_params.execution_time
-
-func _process(delta: float) -> void:
-	visible = _params.stop_condition == StopCondition.Type.EXECUTION_TIME

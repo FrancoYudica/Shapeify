@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpsldwgq4xpxl"]
+
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="1_4u1we"]
+[ext_resource type="Script" path="res://UI/ui_test.gd" id="1_sk813"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpo6s"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="UiTest" type="Control" node_paths=PackedStringArray("tree")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sk813")
+tree = NodePath("Panel/MarginContainer/Tree")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -962.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Tree" type="Tree" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fpo6s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_4u1we")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Image generator"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "Something"
+
+[node name="SpinBox" type="SpinBox" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "Something"
+
+[node name="SpinBox2" type="SpinBox" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
