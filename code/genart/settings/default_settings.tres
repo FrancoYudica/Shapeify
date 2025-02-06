@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=103 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=102 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
@@ -9,10 +9,10 @@
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="9_l7xcl"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_mxc8r"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="10_t1ypc"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shader_driven/shader_driven_shape_generator_params.gd" id="11_1stu7"]
 [ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/textures/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_ovpig"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="13_hyl8u"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="13_pyaws"]
 [ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/textures/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="14_8u5iy"]
@@ -113,11 +113,6 @@ random_restart_count = 6
 initial_random_samples = 10
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_guqt6"]
-script = ExtResource("11_1stu7")
-max_age = 50
-fitness_calculator = 1
-
 [sub_resource type="Resource" id="Resource_3gby8"]
 script = ExtResource("12_ovpig")
 weight_texture_generator_type = 2
@@ -138,6 +133,7 @@ shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_yrib8")
 shape_texture_initializer_params = SubResource("Resource_videf")
+textures = Array[ExtResource("13_hyl8u")]([])
 
 [sub_resource type="Resource" id="Resource_5s6rj"]
 script = ExtResource("10_t1ypc")
@@ -151,7 +147,6 @@ fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_l52y4")
 genetic_params = SubResource("Resource_w2ugy")
 hill_climbing_params = SubResource("Resource_e0mao")
-shader_driven_params = SubResource("Resource_guqt6")
 shape_spawner_params = SubResource("Resource_7sst7")
 
 [sub_resource type="Resource" id="Resource_vnspm"]

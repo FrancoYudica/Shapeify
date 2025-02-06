@@ -105,5 +105,4 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	preset.changed.connect(_image_generator_params_changed)
 
 func _image_generator_params_changed():
-	print("Changed")
 	Globals.settings.image_generator_params.type = ImageGeneratorParams.Type.CUSTOM

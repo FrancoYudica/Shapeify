@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=28 format=3 uid="uid://bvloce8ka6r20"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=26 format=3 uid="uid://bvloce8ka6r20"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_jyvgk"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_67d4q"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="9_ao8nd"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_1o4h3"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="10_i1adq"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shader_driven/shader_driven_shape_generator_params.gd" id="10_r0ryr"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="11_l2pw6"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="12_50nwr"]
 [ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="13_uykpq"]
@@ -49,11 +48,6 @@ random_restart_count = 10
 initial_random_samples = 15
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_qpjvx"]
-script = ExtResource("10_r0ryr")
-max_age = 70
-fitness_calculator = 1
-
 [sub_resource type="Resource" id="Resource_4kpcy"]
 script = ExtResource("11_l2pw6")
 weight_texture_generator_type = 2
@@ -88,7 +82,6 @@ fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_56w3s")
 genetic_params = SubResource("Resource_r35lg")
 hill_climbing_params = SubResource("Resource_tevvn")
-shader_driven_params = SubResource("Resource_qpjvx")
 shape_spawner_params = SubResource("Resource_nvj3j")
 
 [sub_resource type="Resource" id="Resource_ujs6t"]

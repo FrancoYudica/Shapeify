@@ -49,7 +49,6 @@ class_name ShapeGeneratorParams extends Resource
 @export var best_of_random_params := BestOfRandomShapeGeneratorParams.new()
 @export var genetic_params := GeneticShapeGeneratorParams.new()
 @export var hill_climbing_params := HillClimbingShapeGeneratorParams.new()
-@export var shader_driven_params := ShaderDrivenShapeGeneratorParams.new()
 
 @export var shape_spawner_params := ShapeSpawnerParams.new()
 
@@ -60,19 +59,16 @@ func to_dict() -> Dictionary:
 		"color_sampler": ColorSamplerStrategy.Type.keys()[color_sampler],
 		"best_of_random_params" : best_of_random_params.to_dict(),
 		"genetic_params" : genetic_params.to_dict(),
-		"hill_climbing_params" : hill_climbing_params.to_dict(),
-		"shader_driven_params" : shader_driven_params.to_dict()
+		"hill_climbing_params" : hill_climbing_params.to_dict()
 	}
 
 func setup_changed_signals() -> void:
 	best_of_random_params.setup_changed_signals()
 	genetic_params.setup_changed_signals()
 	hill_climbing_params.setup_changed_signals()
-	shader_driven_params.setup_changed_signals()
 	
 	best_of_random_params.changed.connect(emit_changed)
 	genetic_params.changed.connect(emit_changed)
 	hill_climbing_params.changed.connect(emit_changed)
-	shader_driven_params.changed.connect(emit_changed)
 	
 	shape_spawner_params.changed.connect(emit_changed)

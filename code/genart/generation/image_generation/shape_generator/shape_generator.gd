@@ -7,8 +7,7 @@ enum Type{
 	Random,
 	BestOfRandom,
 	Genetic,
-	HillClimb,
-	ShaderDriven
+	HillClimb
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
@@ -106,8 +105,6 @@ static func factory_create(type: Type):
 			return load("res://generation/image_generation/shape_generator/genetic/genetic_shape_generator.gd").new()
 		Type.HillClimb:
 			return load("res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator.gd").new()
-		Type.ShaderDriven:
-			return load("res://generation/image_generation/shape_generator/shader_driven/shader_driven_shape_generator.gd").new()
 		_:
 			push_error("Unimplemented shape generator of type %s" % type)
 			return null
