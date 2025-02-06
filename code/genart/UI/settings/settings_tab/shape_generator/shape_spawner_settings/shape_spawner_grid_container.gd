@@ -1,4 +1,4 @@
-extends PanelContainer
+extends GridContainer
 
 @export var position_initializer_option: OptionButton
 @export var size_initializer_option: OptionButton

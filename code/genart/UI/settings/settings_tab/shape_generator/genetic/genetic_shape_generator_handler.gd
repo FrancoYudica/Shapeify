@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 @export var generations: SpinBox
 @export var population_size: SpinBox
@@ -93,10 +93,3 @@ func _update():
 	crossover_option.select(_params.crossover_strategy)
 	mutation_option.select(_params.mutation_strategy)
 	survivor_selection_option.select(_params.survivor_selection_strategy)
-
-
-func _process(dt) -> void:
-	visible = Globals \
-				.settings \
-				.image_generator_params \
-				.shape_generator_type == ShapeGenerator.Type.Genetic

@@ -1,7 +1,6 @@
-extends PanelContainer
+extends Node
 
-
-@onready var tournament_size := $MarginContainer/TournamentSizeBox
+@export var tournament_size_spin_box: SpinBox
 
 var _params : GeneticShapeGeneratorParams:
 	get:
@@ -12,7 +11,7 @@ var _params : GeneticShapeGeneratorParams:
 				.genetic_params
 
 func _ready() -> void:
-	tournament_size.value_changed.connect(
+	tournament_size_spin_box.value_changed.connect(
 		func(value):
 			_params.survivor_selection_params.tournament_size = value
 	)
@@ -21,7 +20,4 @@ func _ready() -> void:
 	_update()
 	
 func _update():
-	tournament_size.value = _params.survivor_selection_params.tournament_size
-
-func _process(delta: float) -> void:
-	visible = _params.survivor_selection_strategy == SurvivorSelectionStrategy.Type.TOURNAMENT
+	tournament_size_spin_box.value = _params.survivor_selection_params.tournament_size

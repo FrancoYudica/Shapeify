@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 @export var max_age: SpinBox
 @export var fitness_option: OptionButton
@@ -50,9 +50,3 @@ func _update():
 	fitness_option.select(_params.fitness_calculator)
 	random_restart_count.value = _params.random_restart_count
 	initial_random_sample_count.value = _params.initial_random_samples
-
-func _process(dt) -> void:
-	visible = Globals \
-				.settings \
-				.image_generator_params \
-				.shape_generator_type == ShapeGenerator.Type.HillClimb

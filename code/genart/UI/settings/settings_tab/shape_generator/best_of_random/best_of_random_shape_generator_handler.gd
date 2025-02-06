@@ -1,22 +1,22 @@
-extends VBoxContainer
+extends Node
 
-@export var max_age: SpinBox
+@export var shape_count_spin_box: SpinBox
 @export var fitness_option: OptionButton
 
-var _params : ShaderDrivenShapeGeneratorParams:
+var _params : BestOfRandomShapeGeneratorParams:
 	get:
 		return Globals \
 				.settings \
 				.image_generator_params \
 				.shape_generator_params \
-				.shader_driven_params
+				.best_of_random_params
 	
 func _ready() -> void:
 	
 	# Generations spin ---------------------------------------------------------
-	max_age.value_changed.connect(
+	shape_count_spin_box.value_changed.connect(
 		func(v):
-			_params.max_age = v
+			_params.shape_count = v
 	)
 	
 	# Fitness option -----------------------------------------------------------
@@ -32,11 +32,5 @@ func _ready() -> void:
 	_update()
 	
 func _update():
-	max_age.value = _params.max_age
+	shape_count_spin_box.value = _params.shape_count
 	fitness_option.select(_params.fitness_calculator)
-
-func _process(dt) -> void:
-	visible = Globals \
-				.settings \
-				.image_generator_params \
-				.shape_generator_type == ShapeGenerator.Type.ShaderDriven

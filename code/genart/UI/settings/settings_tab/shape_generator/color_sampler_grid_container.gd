@@ -1,4 +1,4 @@
-extends PanelContainer
+extends GridContainer
 
 @export var color_sampler: OptionButton
 

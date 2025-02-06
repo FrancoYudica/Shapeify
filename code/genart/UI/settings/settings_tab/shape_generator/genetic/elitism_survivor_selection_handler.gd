@@ -1,6 +1,7 @@
-extends PanelContainer
+extends Node
 
-@onready var elitism_rate := $MarginContainer/ElitismRateSpinBox
+
+@export var elitism_rate_spin_box: SpinBox
 
 var _params : GeneticShapeGeneratorParams:
 	get:
@@ -11,7 +12,7 @@ var _params : GeneticShapeGeneratorParams:
 				.genetic_params
 
 func _ready() -> void:
-	elitism_rate.value_changed.connect(
+	elitism_rate_spin_box.value_changed.connect(
 		func(value):
 			_params.survivor_selection_params.elitisim_rate = value * 0.01
 	)
@@ -20,7 +21,4 @@ func _ready() -> void:
 	_update()
 	
 func _update():
-	elitism_rate.value = _params.survivor_selection_params.elitisim_rate * 100.0
-
-func _process(delta: float) -> void:
-	visible = _params.survivor_selection_strategy == SurvivorSelectionStrategy.Type.ELITISM
+	elitism_rate_spin_box.value = _params.survivor_selection_params.elitisim_rate * 100.0
