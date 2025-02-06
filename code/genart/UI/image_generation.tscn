@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/textures_handler_ui.gd" id="14_gfkqp"]
 [ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
-[ext_resource type="Script" path="res://UI/settings/settings_tab/renderer/renderer_settings_handler_ui.gd" id="15_5jwjh"]
 [ext_resource type="Texture2D" uid="uid://s33wpc3gogy6" path="res://art/textures/icons/eraser.png" id="15_yjoj1"]
 [ext_resource type="Script" path="res://UI/generation/animation_texture_button.gd" id="17_38fws"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape/shape_settings_ui_panel_container.gd" id="17_k1uov"]
@@ -45,8 +44,7 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/shape_count_stop_condition_handler.gd" id="40_ivlls"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/time_stop_condition_handler.gd" id="41_stjs3"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/stop_condition/target_metric_stop_condition_handler.gd" id="42_ixxgr"]
-[ext_resource type="PackedScene" uid="uid://wbiik8aan6o2" path="res://UI/settings/settings_tab/weight_texture_picker.tscn" id="43_o13x3"]
-[ext_resource type="LabelSettings" uid="uid://r3h22evgnibe" path="res://UI/themes/label_subheader.tres" id="44_5pex5"]
+[ext_resource type="PackedScene" uid="uid://wbiik8aan6o2" path="res://UI/settings/settings_tab/weight_texture_generator_picker/weight_texture_picker.tscn" id="43_o13x3"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/clear_color_type_controller.gd" id="44_8vxhj"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/clear_color_grid_container.gd" id="44_ru5un"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/image_generator/clear_color/user_clear_color_controller.gd" id="45_p025v"]
@@ -63,8 +61,10 @@
 [ext_resource type="Script" path="res://UI/generation/stopping_generation_panel_container.gd" id="51_xqa51"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/shape_spawner_settings/shape_spawner_grid_container.gd" id="52_e8683"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/color_sampler_grid_container.gd" id="52_lao8y"]
+[ext_resource type="Theme" uid="uid://bps0t8dk6416s" path="res://UI/themes/toggle_tree_button.tres" id="52_m1cpn"]
 [ext_resource type="Texture2D" uid="uid://cofrjda15jidr" path="res://art/textures/icons/loading-256.png" id="52_wmemr"]
 [ext_resource type="Script" path="res://UI/generation/loading_texture_rect.gd" id="53_0o5l4"]
+[ext_resource type="Script" path="res://UI/toggle_tree_button.gd" id="53_o77ne"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/shape_generator_type_controller.gd" id="54_de7wp"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/genetic/genetic_shape_generator_handler.gd" id="55_41dfq"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/best_of_random/best_of_random_shape_generator_handler.gd" id="55_tqk15"]
@@ -792,67 +792,74 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 script = ExtResource("18_lja4i")
-weight_texture_generator_picker = NodePath("MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer/WeightTextureGeneratorMarginContainer/WeightTextureGeneratorPicker")
+weight_texture_generator_picker = NodePath("VBoxContainer/MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer/WeightTextureGeneratorMarginContainer/WeightTextureGeneratorPicker")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer"]
+layout_mode = 2
+
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
+layout_mode = 2
+theme = ExtResource("52_m1cpn")
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Image generator"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-text = "Image generator"
-label_settings = ExtResource("44_5pex5")
-
-[node name="StopConditionPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="StopConditionPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="StopConditionGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer" node_paths=PackedStringArray("stop_condition")]
+[node name="StopConditionGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer" node_paths=PackedStringArray("stop_condition")]
 layout_mode = 2
 columns = 2
 script = ExtResource("40_1sxna")
 stop_condition = NodePath("StopConditionOptionButton")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Tells the algorithm when to stop"
 mouse_filter = 1
 text = "Stop condition"
 
-[node name="StopConditionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="StopConditionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShapeCountStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="ShapeCountStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("39_1bksa")
 ui_items = [NodePath("../ShapeCountSpinBox"), NodePath("../ShapeCountLabel")]
 
-[node name="ShapeCountHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/ShapeCountStopConditionTypeController" node_paths=PackedStringArray("shape_count_spin_box")]
+[node name="ShapeCountHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/ShapeCountStopConditionTypeController" node_paths=PackedStringArray("shape_count_spin_box")]
 script = ExtResource("40_ivlls")
 shape_count_spin_box = NodePath("../../ShapeCountSpinBox")
 
-[node name="ShapeCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="ShapeCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 text = "Shape count"
 
-[node name="ShapeCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="ShapeCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -860,21 +867,21 @@ min_value = 1.0
 max_value = 10000.0
 value = 1.0
 
-[node name="TimeStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="TimeStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("39_1bksa")
 type = 1
 ui_items = [NodePath("../ExecutionTimeLabel"), NodePath("../ExecutionTimeSpinBox")]
 
-[node name="TimeStopConditionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/TimeStopConditionTypeController" node_paths=PackedStringArray("execution_time")]
+[node name="TimeStopConditionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/TimeStopConditionTypeController" node_paths=PackedStringArray("execution_time")]
 script = ExtResource("41_stjs3")
 execution_time = NodePath("../../ExecutionTimeSpinBox")
 
-[node name="ExecutionTimeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="ExecutionTimeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 text = "Execution time"
 
-[node name="ExecutionTimeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="ExecutionTimeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -883,113 +890,113 @@ max_value = 7200.0
 value = 1.0
 suffix = "seconds"
 
-[node name="TargetMetricStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="TargetMetricStopConditionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("39_1bksa")
 type = 2
 ui_items = [NodePath("../MetricTypeLabel"), NodePath("../MetricTypeOptionButton"), NodePath("../MetricValueLabel"), NodePath("../TargeMetricValueSpinBox")]
 
-[node name="TargetMetricStopConditionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/TargetMetricStopConditionTypeController" node_paths=PackedStringArray("target_metric_value_spin", "metric_type_option")]
+[node name="TargetMetricStopConditionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer/TargetMetricStopConditionTypeController" node_paths=PackedStringArray("target_metric_value_spin", "metric_type_option")]
 script = ExtResource("42_ixxgr")
 target_metric_value_spin = NodePath("../../TargeMetricValueSpinBox")
 metric_type_option = NodePath("../../MetricTypeOptionButton")
 
-[node name="MetricTypeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="MetricTypeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 text = "Metric type"
 
-[node name="MetricTypeOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="MetricTypeOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MetricValueLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="MetricValueLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 text = "Target metric value"
 
-[node name="TargeMetricValueSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
+[node name="TargeMetricValueSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/StopConditionPanelContainer/MarginContainer/StopConditionGridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ClearColorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ClearColorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ClearColorGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer" node_paths=PackedStringArray("clear_color")]
+[node name="ClearColorGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer" node_paths=PackedStringArray("clear_color")]
 layout_mode = 2
 columns = 2
 script = ExtResource("44_ru5un")
 clear_color = NodePath("ClearColorOptionButton")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Tells the algorithm when to stop"
 mouse_filter = 1
 text = "Clear color"
 
-[node name="ClearColorOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="ClearColorOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AverageClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="AverageClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 script = ExtResource("44_8vxhj")
 
-[node name="BlackClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="BlackClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 script = ExtResource("44_8vxhj")
 
-[node name="UserClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="UserClearColorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("44_8vxhj")
 type = 2
 ui_items = [NodePath("../CustomColor"), NodePath("../ColorPickerButton")]
 
-[node name="UserClearColorController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer/UserClearColorTypeController" node_paths=PackedStringArray("clear_color")]
+[node name="UserClearColorController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer/UserClearColorTypeController" node_paths=PackedStringArray("clear_color")]
 script = ExtResource("45_p025v")
 clear_color = NodePath("../../ColorPickerButton")
 
-[node name="CustomColor" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="CustomColor" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 layout_mode = 2
 text = "Custom color"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Clear color"
 
-[node name="RenderScalePanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="RenderScalePanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="RenderScaleGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer" node_paths=PackedStringArray("render_scale_spin_box")]
+[node name="RenderScaleGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer" node_paths=PackedStringArray("render_scale_spin_box")]
 layout_mode = 2
 columns = 2
 script = ExtResource("48_e0int")
 render_scale_spin_box = NodePath("RenderScaleSpinBox")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer/RenderScaleGridContainer"]
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer/RenderScaleGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Tells the algorithm when to stop"
 mouse_filter = 1
 text = "Render scale"
 
-[node name="RenderScaleSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer/RenderScaleGridContainer"]
+[node name="RenderScaleSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer/RenderScaleGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.1
@@ -997,11 +1004,11 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="WeightTextureGeneratorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="WeightTextureGeneratorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="WeightTextureGeneratorMarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer" node_paths=PackedStringArray("weight_texture_generator_picker")]
+[node name="WeightTextureGeneratorMarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer" node_paths=PackedStringArray("weight_texture_generator_picker")]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1010,49 +1017,55 @@ theme_override_constants/margin_bottom = 4
 script = ExtResource("49_seq4u")
 weight_texture_generator_picker = NodePath("WeightTextureGeneratorPicker")
 
-[node name="WeightTextureGeneratorPicker" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer/WeightTextureGeneratorMarginContainer" instance=ExtResource("43_o13x3")]
+[node name="WeightTextureGeneratorPicker" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/WeightTextureGeneratorPanelContainer/WeightTextureGeneratorMarginContainer" instance=ExtResource("43_o13x3")]
 layout_mode = 2
 
 [node name="ShapeGeneratorParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer"]
+layout_mode = 2
+
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
+layout_mode = 2
+theme = ExtResource("52_m1cpn")
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Shape generator"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Shape generator"
-label_settings = ExtResource("44_5pex5")
-
-[node name="ColorSamplerPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ColorSamplerPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ColorSamplerGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer" node_paths=PackedStringArray("color_sampler")]
+[node name="ColorSamplerGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer" node_paths=PackedStringArray("color_sampler")]
 layout_mode = 2
 columns = 2
 script = ExtResource("52_lao8y")
 color_sampler = NodePath("ColorSamplerOptionButton")
 
-[node name="ColorSamplerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer/ColorSamplerGridContainer"]
+[node name="ColorSamplerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer/ColorSamplerGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Sets individual tint color
@@ -1063,41 +1076,33 @@ tooltip_text = "Sets individual tint color
 mouse_filter = 1
 text = "Color sampler"
 
-[node name="ColorSamplerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer/ColorSamplerGridContainer"]
+[node name="ColorSamplerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ColorSamplerPanelContainer/MarginContainer/ColorSamplerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShapeSpawnerPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ShapeSpawnerPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
 layout_mode = 2
+theme = ExtResource("52_m1cpn")
+text = "Shape spawner"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../ShapeSpawnerGridContainer")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-tooltip_text = "Sets individual tint color
- - SUB_RECT: Tint color is sampled using individuals bounding box average color.
- - MASKED: Average color is sampled from non transparent pixels, avoiding pixels that aren't shown.
-                     This takes more time, but outputs way better results.
- - WHITE: Tint color is white, meaning that individual's texture will keep it's color."
-mouse_filter = 1
-text = "Shape spawner settings"
-horizontal_alignment = 1
-
-[node name="ShapeSpawnerGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("position_initializer_option", "size_initializer_option", "rotation_initializer_option", "tint_initializer_option", "texture_initializer_option")]
+[node name="ShapeSpawnerGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("position_initializer_option", "size_initializer_option", "rotation_initializer_option", "tint_initializer_option", "texture_initializer_option")]
 layout_mode = 2
 columns = 2
 script = ExtResource("52_e8683")
@@ -1107,82 +1112,74 @@ rotation_initializer_option = NodePath("RotationAttributeInitializerOptionButton
 tint_initializer_option = NodePath("TintAttributeInitializerOptionButton")
 texture_initializer_option = NodePath("TextureAttributeInitializerOptionButton")
 
-[node name="PositionAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="PositionAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Position initializer"
 
-[node name="PositionAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="PositionAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SizeAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="SizeAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 text = "Size initializer"
 
-[node name="SizeAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="SizeAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RotationAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="RotationAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 text = "Rotation initializer"
 
-[node name="RotationAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="RotationAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TintAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="TintAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 text = "Tint initializer"
 
-[node name="TintAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="TintAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="TextureAttributeInitializerLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 text = "Texture initializer"
 
-[node name="TextureAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
+[node name="TextureAttributeInitializerOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeSpawnerPanelContainer/MarginContainer/VBoxContainer/ShapeSpawnerGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShapeGeneratorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ShapeGeneratorPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("39_rmc4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
 layout_mode = 2
+theme = ExtResource("52_m1cpn")
+text = "Generator"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../ShapeGeneratorGridContainer")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-tooltip_text = "Sets individual tint color
- - SUB_RECT: Tint color is sampled using individuals bounding box average color.
- - MASKED: Average color is sampled from non transparent pixels, avoiding pixels that aren't shown.
-                     This takes more time, but outputs way better results.
- - WHITE: Tint color is white, meaning that individual's texture will keep it's color."
-mouse_filter = 1
-text = "Shape generator"
-horizontal_alignment = 1
-
-[node name="ShapeGeneratorGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ShapeGeneratorGridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="GeneratorLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="GeneratorLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Algorithm used to generate individuals
@@ -1199,99 +1196,99 @@ tooltip_text = "Algorithm used to generate individuals
 mouse_filter = 1
 text = "Generator"
 
-[node name="GeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("image_generation")]
+[node name="GeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("23_qrtn1")
-image_generation = NodePath("../../../../../../../../../../../../../../../../../../../../../../..")
+image_generation = NodePath("../../../../../../../../../../../../../../../../../../../../../../../..")
 
-[node name="BestOfRandomShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="BestOfRandomShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("54_de7wp")
 type = 1
 ui_items = [NodePath("../ShapeCountLabel"), NodePath("../ShapeCountSpinBox"), NodePath("../BestOfRandomFitnessLabel"), NodePath("../BestOfRandomFitnessOptionButton")]
 
-[node name="BestOfRandomShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/BestOfRandomShapeGeneratorTypeController" node_paths=PackedStringArray("shape_count_spin_box", "fitness_option")]
+[node name="BestOfRandomShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/BestOfRandomShapeGeneratorTypeController" node_paths=PackedStringArray("shape_count_spin_box", "fitness_option")]
 script = ExtResource("55_tqk15")
 shape_count_spin_box = NodePath("../../ShapeCountSpinBox")
 fitness_option = NodePath("../../BestOfRandomFitnessOptionButton")
 
-[node name="ShapeCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="ShapeCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Individual count"
 
-[node name="ShapeCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="ShapeCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 10000.0
 value = 100.0
 
-[node name="BestOfRandomFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="BestOfRandomFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Fitness
 "
 
-[node name="BestOfRandomFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="BestOfRandomFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HillClimbOfRandomShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="HillClimbOfRandomShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("54_de7wp")
 type = 3
 ui_items = [NodePath("../MaxAgeLabel"), NodePath("../MaxAgeSpinBox"), NodePath("../HillClimbFitnessLabel"), NodePath("../HillClimbFitnessOptionButton"), NodePath("../RandomRestartLabel"), NodePath("../RandomRestartCountSpinBox"), NodePath("../InitialRandomSampleCountLabel"), NodePath("../InitialRandomSampleCountSpinBox")]
 
-[node name="HillClimbShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/HillClimbOfRandomShapeGeneratorTypeController" node_paths=PackedStringArray("max_age", "fitness_option", "random_restart_count", "initial_random_sample_count")]
+[node name="HillClimbShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/HillClimbOfRandomShapeGeneratorTypeController" node_paths=PackedStringArray("max_age", "fitness_option", "random_restart_count", "initial_random_sample_count")]
 script = ExtResource("56_yyq3e")
 max_age = NodePath("../../MaxAgeSpinBox")
 fitness_option = NodePath("../../HillClimbFitnessOptionButton")
 random_restart_count = NodePath("../../RandomRestartCountSpinBox")
 initial_random_sample_count = NodePath("../../InitialRandomSampleCountSpinBox")
 
-[node name="MaxAgeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MaxAgeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Max age"
 
-[node name="MaxAgeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MaxAgeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 10000.0
 value = 100.0
 
-[node name="HillClimbFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="HillClimbFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Fitness
 "
 
-[node name="HillClimbFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="HillClimbFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RandomRestartLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="RandomRestartLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Random restart count"
 
-[node name="RandomRestartCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="RandomRestartCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InitialRandomSampleCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="InitialRandomSampleCountLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Initial random sample count"
 
-[node name="InitialRandomSampleCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="InitialRandomSampleCountSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 30.0
 value = 1.0
 
-[node name="GeneticShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="GeneticShapeGeneratorTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("54_de7wp")
 type = 2
 ui_items = [NodePath("../GenerationsLabel"), NodePath("../GeneticGenerationsSpinBox"), NodePath("../PopulationSizeLabel"), NodePath("../PopulationSizeSpinBox"), NodePath("../MutationRateLabel"), NodePath("../MutationRateSpinBox"), NodePath("../GeneticFitnessLabel"), NodePath("../GeneticFitnessOptionButton"), NodePath("../SelectionLabel"), NodePath("../SelectionOptionButton"), NodePath("../CrossoverLabel"), NodePath("../CrossoverOptionButton"), NodePath("../MutationLabel"), NodePath("../MutationOptionButton"), NodePath("../SurvivorSelectionLabel"), NodePath("../SurvivorSelectionOptionButton"), NodePath("../ElitismLabel"), NodePath("../ElitismRateSpinBox"), NodePath("../TournamentLabel"), NodePath("../TournamentSizeSpinBox")]
 
-[node name="GeneticShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticShapeGeneratorTypeController" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "fitness_option", "selection_option", "crossover_option", "mutation_option", "survivor_selection_option")]
+[node name="GeneticShapeGeneratorHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticShapeGeneratorTypeController" node_paths=PackedStringArray("generations", "population_size", "mutation_rate", "fitness_option", "selection_option", "crossover_option", "mutation_option", "survivor_selection_option")]
 script = ExtResource("55_41dfq")
 generations = NodePath("../../GeneticGenerationsSpinBox")
 population_size = NodePath("../../PopulationSizeSpinBox")
@@ -1302,108 +1299,108 @@ crossover_option = NodePath("../../CrossoverOptionButton")
 mutation_option = NodePath("../../MutationOptionButton")
 survivor_selection_option = NodePath("../../SurvivorSelectionOptionButton")
 
-[node name="GenerationsLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="GenerationsLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Generations"
 
-[node name="GeneticGenerationsSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="GeneticGenerationsSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 1000.0
 value = 1.0
 
-[node name="PopulationSizeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="PopulationSizeLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Population size"
 
-[node name="PopulationSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="PopulationSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 tooltip_text = "Count of individuals of the individual generator, where only the fittest is selected and added to the final image."
 min_value = 1.0
 max_value = 10000.0
 value = 100.0
 
-[node name="MutationRateLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MutationRateLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Mutation rate"
 
-[node name="MutationRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MutationRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 suffix = "%"
 
-[node name="GeneticFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="GeneticFitnessLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Fitness function
 "
 
-[node name="GeneticFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="GeneticFitnessOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SelectionLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="SelectionLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Selection"
 
-[node name="SelectionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="SelectionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CrossoverLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="CrossoverLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Crossover"
 
-[node name="CrossoverOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="CrossoverOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MutationLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MutationLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Mutation"
 
-[node name="MutationOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="MutationOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SurvivorSelectionLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="SurvivorSelectionLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Survivor selection"
 
-[node name="SurvivorSelectionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="SurvivorSelectionOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GeneticElitismSurvivorSelectionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="GeneticElitismSurvivorSelectionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("56_ocms1")
 type = 1
 ui_items = [NodePath("../ElitismLabel"), NodePath("../ElitismRateSpinBox")]
 
-[node name="ElitismSurvivorSelectionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticElitismSurvivorSelectionTypeController" node_paths=PackedStringArray("elitism_rate_spin_box")]
+[node name="ElitismSurvivorSelectionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticElitismSurvivorSelectionTypeController" node_paths=PackedStringArray("elitism_rate_spin_box")]
 script = ExtResource("57_sn0o0")
 elitism_rate_spin_box = NodePath("../../ElitismRateSpinBox")
 
-[node name="ElitismLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="ElitismLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Elitism rate"
 
-[node name="ElitismRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="ElitismRateSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 suffix = "%"
 
-[node name="GeneticTournamentSurvivorSelectionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
+[node name="GeneticTournamentSurvivorSelectionTypeController" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer" node_paths=PackedStringArray("ui_items")]
 script = ExtResource("56_ocms1")
 type = 2
 ui_items = [NodePath("../TournamentLabel"), NodePath("../TournamentSizeSpinBox")]
 
-[node name="TournamentSurvivorSelectionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticTournamentSurvivorSelectionTypeController" node_paths=PackedStringArray("tournament_size_spin_box")]
+[node name="TournamentSurvivorSelectionHandler" type="Node" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneticTournamentSurvivorSelectionTypeController" node_paths=PackedStringArray("tournament_size_spin_box")]
 script = ExtResource("58_n4gu1")
 tournament_size_spin_box = NodePath("../../TournamentSizeSpinBox")
 
-[node name="TournamentLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="TournamentLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 text = "Elitism rate"
 
-[node name="TournamentSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
+[node name="TournamentSizeSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer"]
 layout_mode = 2
 suffix = "%"
 
@@ -1411,138 +1408,123 @@ suffix = "%"
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("17_k1uov")
-keep_aspect_ratio = NodePath("MarginContainer/VBoxContainer/KeepAspectRatioCheckBox")
-clamp_position = NodePath("MarginContainer/VBoxContainer/ClampPositionInCanvasCheckBox")
-fixed_rotation = NodePath("MarginContainer/VBoxContainer/GridContainer/FixedRotationCheckBox")
-fixed_rotation_value = NodePath("MarginContainer/VBoxContainer/GridContainer/FixedRotationSpinBox")
-fixed_size = NodePath("MarginContainer/VBoxContainer/GridContainer/FixedSizeCheckBox")
-fixed_size_width_ratio = NodePath("MarginContainer/VBoxContainer/GridContainer/FixedSizeRatioSpinBox")
+keep_aspect_ratio = NodePath("VBoxContainer/MarginContainer/VBoxContainer/KeepAspectRatioCheckBox")
+clamp_position = NodePath("VBoxContainer/MarginContainer/VBoxContainer/ClampPositionInCanvasCheckBox")
+fixed_rotation = NodePath("VBoxContainer/MarginContainer/VBoxContainer/GridContainer/FixedRotationCheckBox")
+fixed_rotation_value = NodePath("VBoxContainer/MarginContainer/VBoxContainer/GridContainer/FixedRotationSpinBox")
+fixed_size = NodePath("VBoxContainer/MarginContainer/VBoxContainer/GridContainer/FixedSizeCheckBox")
+fixed_size_width_ratio = NodePath("VBoxContainer/MarginContainer/VBoxContainer/GridContainer/FixedSizeRatioSpinBox")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer"]
+layout_mode = 2
+
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
+layout_mode = 2
+theme = ExtResource("52_m1cpn")
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Shape"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-text = "Shape"
-label_settings = ExtResource("44_5pex5")
-
-[node name="KeepAspectRatioCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer"]
+[node name="KeepAspectRatioCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Avoids distorting the texture by keeping it's aspect ratio"
 text = "Keep aspect ratio"
 flat = true
 
-[node name="ClampPositionInCanvasCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer"]
+[node name="ClampPositionInCanvasCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 disabled = true
 text = "Clamp position in canvas"
 
-[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="FixedRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="FixedRotationCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Fixed rotation angle"
 flat = true
 
-[node name="FixedRotationSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="FixedRotationSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 360.0
 step = 45.0
 suffix = "°"
 
-[node name="FixedSizeCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="FixedSizeCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Fixed size width ratio"
 flat = true
 
-[node name="FixedSizeRatioSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="FixedSizeRatioSpinBox" type="SpinBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 suffix = "%"
-
-[node name="RendererParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" node_paths=PackedStringArray("render_while_generating")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-script = ExtResource("15_5jwjh")
-render_while_generating = NodePath("MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox")
-
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Renderer"
-
-[node name="RenderWhileGeneratingCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
-text = "Render while generating"
 
 [node name="ProfilerParamsPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" node_paths=PackedStringArray("profile", "save_button", "profile_depth")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 script = ExtResource("51_klyxb")
-profile = NodePath("MarginContainer/VBoxContainer/ProfileCheckBox")
-save_button = NodePath("MarginContainer/VBoxContainer/SaveButton")
-profile_depth = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ProfileDepthOptionButton")
+profile = NodePath("VBoxContainer/MarginContainer/VBoxContainer/ProfileCheckBox")
+save_button = NodePath("VBoxContainer/MarginContainer/VBoxContainer/SaveButton")
+profile_depth = NodePath("VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ProfileDepthOptionButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer"]
+layout_mode = 2
+
+[node name="ToggleTreeButton" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer" node_paths=PackedStringArray("toggle_control")]
+layout_mode = 2
+theme = ExtResource("52_m1cpn")
+theme_override_font_sizes/font_size = 20
+text = "Profiler"
+alignment = 1
+script = ExtResource("53_o77ne")
+toggle_control = NodePath("../MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-text = "Profiler"
-label_settings = ExtResource("44_5pex5")
-
-[node name="ProfileCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileCheckBox" type="CheckBox" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Boolean flag to control if the algorithm should be displaying the output while generating the image."
 text = "Profile"
 flat = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Profile depth"
 
-[node name="ProfileDepthOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ProfileDepthOptionButton" type="OptionButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/MarginContainer/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Save"
 
@@ -1654,5 +1636,4 @@ script = ExtResource("65_mkg28")
 [connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]
 [connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/AddPresetButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_load_preset_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/DeletePresetsButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_delete_presets_button_pressed"]
-[connection signal="item_selected" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" method="_on_item_selected"]
-[connection signal="toggled" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer/MarginContainer/VBoxContainer/RenderWhileGeneratingCheckBox" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/RendererParamsPanelContainer" method="_on_render_while_generating_check_box_toggled"]
+[connection signal="item_selected" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/MarginContainer/VBoxContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" method="_on_item_selected"]

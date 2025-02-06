@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://wbiik8aan6o2"]
 
-[ext_resource type="Script" path="res://UI/settings/settings_tab/weight_texture_picker.gd" id="2_xahjk"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/weight_texture_generator_picker/weight_texture_picker.gd" id="2_xahjk"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="3_fr81y"]
-[ext_resource type="Script" path="res://UI/settings/weight_texture_generator_picker/weight_texture_generator_type_controller.gd" id="3_lohef"]
-[ext_resource type="Script" path="res://UI/settings/weight_texture_generator_picker/user_weight_texture_generator_type_handler.gd" id="4_3gjia"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/weight_texture_generator_picker/weight_texture_generator_type_controller.gd" id="3_lohef"]
+[ext_resource type="Script" path="res://UI/settings/settings_tab/weight_texture_generator_picker/user_weight_texture_generator_type_handler.gd" id="4_3gjia"]
 [ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="4_di153"]
 
 [node name="WeightTextureGeneratorPickerGridContainer" type="GridContainer" node_paths=PackedStringArray("weight_texture_generator")]
