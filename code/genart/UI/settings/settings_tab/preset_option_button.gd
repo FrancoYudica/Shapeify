@@ -6,12 +6,16 @@ func _ready() -> void:
 	
 	set_item_disabled(0, true)
 	
-	selected = Globals.settings.image_generator_params.type
 	item_selected.connect(
 		func(index):
 			Globals.image_generator_params_set_preset(
 				index as ImageGeneratorParams.Type)
 	)
+	
+	_update()
 
 func _process(delta: float) -> void:
+	_update()
+
+func _update():
 	selected = Globals.settings.image_generator_params.type

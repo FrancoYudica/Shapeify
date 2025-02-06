@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d26mj4eo12d1o"]
+[gd_scene load_steps=5 format=3 uid="uid://d26mj4eo12d1o"]
 
 [ext_resource type="Script" path="res://UI/settings/images_tab/texture_groups/texture_group_item.gd" id="1_wo586"]
 [ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="2_8yyvl"]
 [ext_resource type="LabelSettings" uid="uid://r3h22evgnibe" path="res://UI/themes/label_subheader.tres" id="2_ooa0f"]
+[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="4_61s41"]
 
 [node name="TextureGroupItem" type="PanelContainer" node_paths=PackedStringArray("textures_container", "title_label")]
 offset_right = 220.0
@@ -35,6 +36,12 @@ layout_mode = 2
 size_flags_horizontal = 10
 icon = ExtResource("2_8yyvl")
 flat = true
+
+[node name="ModulateOnHover" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/Button"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_61s41")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

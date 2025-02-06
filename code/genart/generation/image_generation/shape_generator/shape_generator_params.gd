@@ -1,17 +1,8 @@
 class_name ShapeGeneratorParams extends Resource
 
 
-@export var target_texture: RendererTexture:
-	set(value):
-		if value != target_texture:
-			target_texture = value
-			emit_changed()
-
-@export var source_texture: RendererTexture:
-	set(value):
-		if value != source_texture:
-			source_texture = value
-			emit_changed()
+@export var target_texture: RendererTexture
+@export var source_texture: RendererTexture
 
 @export var color_sampler := ColorSamplerStrategy.Type.MASKED:
 	set(value):

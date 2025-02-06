@@ -6,7 +6,8 @@ extends TextureButton
 func _ready() -> void:
 	
 	disabled = true
-	
+	modulate = Color.DARK_GRAY
+
 	pressed.connect(
 		func():
 			animator.visible = true
@@ -15,9 +16,12 @@ func _ready() -> void:
 	image_generation.generation_finished.connect(
 		func():
 			disabled = false
+			modulate = Color.WHITE
 	)
 	
 	image_generation.generation_started.connect(
 		func():
 			disabled = true
+			modulate = Color.DARK_GRAY
+
 	)
