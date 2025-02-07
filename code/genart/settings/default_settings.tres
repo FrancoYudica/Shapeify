@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=102 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=104 format=3 uid="uid://075wo5henc7i"]
 
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_waj48"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_h2i7s"]
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="4_mkkkp"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="5_1ldw3"]
@@ -79,6 +81,10 @@
 [ext_resource type="Texture2D" uid="uid://lc21i0rrgp6f" path="res://art/textures/individual_textures_group/pixelart_numbers/8_pixelart.png" id="73_dxtsd"]
 [ext_resource type="Texture2D" uid="uid://ppueuselhdj4" path="res://art/textures/individual_textures_group/pixelart_numbers/9_pixelart.png" id="74_tvqj3"]
 
+[sub_resource type="Resource" id="Resource_1se8m"]
+script = ExtResource("1_waj48")
+shader_params = Array[ExtResource("2_h2i7s")]([])
+
 [sub_resource type="Resource" id="Resource_yhknk"]
 script = ExtResource("2_oxdqy")
 color = Color(0, 0, 0, 1)
@@ -113,13 +119,8 @@ random_restart_count = 6
 initial_random_samples = 10
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_3gby8"]
-script = ExtResource("12_ovpig")
-weight_texture_generator_type = 2
-
 [sub_resource type="Resource" id="Resource_yrib8"]
 script = ExtResource("14_8u5iy")
-weight_texture_generator_params = SubResource("Resource_3gby8")
 
 [sub_resource type="Resource" id="Resource_videf"]
 script = ExtResource("15_rds8n")
@@ -226,6 +227,7 @@ textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), Ext
 script = ExtResource("39_t5xji")
 version = "1.0.0"
 image_generator_params = SubResource("Resource_ej335")
+color_post_processing_pipeline_params = SubResource("Resource_1se8m")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
 shape_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_qsjoh"), SubResource("Resource_yam2b"), SubResource("Resource_phir3"), SubResource("Resource_8l3pv"), SubResource("Resource_fo0nc"), SubResource("Resource_7unyb"), SubResource("Resource_wuye4"), SubResource("Resource_xpeyg"), SubResource("Resource_8d7bk"), SubResource("Resource_mey14")])

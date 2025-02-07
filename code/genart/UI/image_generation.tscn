@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=78 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/textures/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -73,6 +73,7 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/genetic/elitism_survivor_selection_handler.gd" id="57_sn0o0"]
 [ext_resource type="Script" path="res://UI/settings/settings_tab/shape_generator/genetic/tournament_survivor_selection_handler.gd" id="58_n4gu1"]
 [ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="65_mkg28"]
+[ext_resource type="PackedScene" uid="uid://k1vy3ah8tcej" path="res://UI/color_post_processing/color_post_processing_pipeline.tscn" id="65_up2sf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.156863, 0.160784, 0.164706, 1)
@@ -577,6 +578,19 @@ text = "Close"
 layout_mode = 2
 script = ExtResource("35_pvmbs")
 metadata/_edit_lock_ = true
+
+[node name="ColorPostProcessingPipeline" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer/TargetTextureRect" instance=ExtResource("65_up2sf")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -86.5
+offset_right = 208.0
+offset_bottom = 86.5
+grow_horizontal = 2
 
 [node name="BottomTextMargin2" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/TexturesHBoxContainer/TargetPanelContainer"]
 layout_mode = 2

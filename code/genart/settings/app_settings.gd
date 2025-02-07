@@ -4,6 +4,8 @@ class_name AppSettings extends Resource
 
 @export var image_generator_params := ImageGeneratorParams.new()
 
+@export var color_post_processing_pipeline_params := ShapeColorPostProcessingPipelineParams.new()
+
 @export var default_target_texture: Texture
 
 ## Textures that are automatically loaded
