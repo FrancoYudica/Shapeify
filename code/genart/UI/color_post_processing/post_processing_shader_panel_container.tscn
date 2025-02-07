@@ -11,7 +11,7 @@ offset_right = 515.0
 offset_bottom = 68.0
 theme_override_styles/panel = ExtResource("1_4b0w0")
 script = ExtResource("1_tdujw")
-remove_button = NodePath("VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer/RemoveTextureButton")
+remove_button = NodePath("VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer/RemoveButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -22,7 +22,6 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HeaderPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HeaderPanelContainer/MarginContainer"]
 layout_mode = 2
@@ -34,20 +33,20 @@ theme_override_fonts/font = ExtResource("3_ifdfb")
 theme_override_font_sizes/font_size = 20
 text = "HUE Shift"
 
-[node name="RemoveTextureButton" type="TextureButton" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer"]
+[node name="RemoveButton" type="Button" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-texture_normal = ExtResource("2_hull0")
+icon = ExtResource("2_hull0")
 
-[node name="ModulateOnHover" type="Control" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer/RemoveTextureButton"]
+[node name="ModulateOnHover" type="Control" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer/RemoveButton"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
+offset_left = 202.0
 offset_top = -20.0
+offset_right = 242.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2

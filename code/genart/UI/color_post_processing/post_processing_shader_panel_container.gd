@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var remove_button: TextureButton
+@export var remove_button: Button
 
 var _pipeline_params: ShapeColorPostProcessingPipelineParams:
 	get:

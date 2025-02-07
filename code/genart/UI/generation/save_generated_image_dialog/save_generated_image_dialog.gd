@@ -1,6 +1,6 @@
 extends Control
 
-
+@export var image_generation: Node
 @export var close_button: Button
 @export var save_button: Button
 @export var scale_spin_box: SpinBox
@@ -39,8 +39,14 @@ func _ready() -> void:
 	format_option_button.select(0)
 	_frame_saver = FrameSaver.factory_create(FrameSaver.Type.PNG)
 	
+	visibility_changed.connect(
+		func():
+			if visible:
+				_oppened()
+	)
 
-func open(gen_details: ImageGenerationDetails):
+func _oppened():
+	var gen_details: ImageGenerationDetails = image_generation.image_generation_details
 	visible = true
 	_src_img_generation_details = gen_details
 	

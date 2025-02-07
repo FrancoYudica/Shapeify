@@ -1,7 +1,7 @@
 extends TextureButton
 
 @export var image_generation: Node
-@export var animator: Control
+@export var panel: Control
 
 func _ready() -> void:
 	
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 	pressed.connect(
 		func():
-			animator.visible = true
+			panel.visible = not panel.visible
 	)
 	
 	image_generation.generation_finished.connect(

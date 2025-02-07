@@ -1,0 +1,150 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjm3hln6xia2l"]
+
+[ext_resource type="Script" path="res://UI/generation/info_panel/info_panel_container.gd" id="1_ocsb6"]
+[ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="2_nfuup"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="3_e5tsi"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="4_tg802"]
+[ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="5_vtfe3"]
+
+[node name="InfoPanelContainer" type="PanelContainer" node_paths=PackedStringArray("shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "close_button", "weight_texture_rect")]
+size_flags_horizontal = 3
+script = ExtResource("1_ocsb6")
+shape_count_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/ShapeCountValue")
+current_execution_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/CurrentExecutionTimeValue")
+executions_count_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/ExecutionsCountValue")
+time_taken_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/TotalTimeTakenValue")
+metric_score_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/MetricScoreValue")
+similarity_score_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/SimilarityScoreValue")
+close_button = NodePath("MarginContainer/VBoxContainer/CloseButton")
+weight_texture_rect = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/WeightTextureRect")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+layout_mode = 2
+texture = ExtResource("2_nfuup")
+expand_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Output info"
+label_settings = ExtResource("3_e5tsi")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="MetricScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Metric score"
+
+[node name="MetricScoreValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.0"
+horizontal_alignment = 2
+
+[node name="SimilarityScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Similarity score"
+
+[node name="SimilarityScoreValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.0"
+horizontal_alignment = 2
+
+[node name="ShapeCountLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Shape count"
+
+[node name="ShapeCountValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "400"
+horizontal_alignment = 2
+
+[node name="CurrentExecutionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Current execution time"
+
+[node name="CurrentExecutionTimeValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100ms"
+horizontal_alignment = 2
+
+[node name="TotalTimeTakenLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Total Time taken"
+
+[node name="TotalTimeTakenValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100ms"
+horizontal_alignment = 2
+
+[node name="ExecutionsCountLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Executions count"
+
+[node name="ExecutionsCountValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "300"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WeightTextureLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Weight texture"
+
+[node name="WeightTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_tg802")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"
+
+[node name="CloseOnCancel" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("5_vtfe3")
+metadata/_edit_lock_ = true

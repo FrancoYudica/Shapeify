@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var add_button: TextureButton
+@export var add_button: Button
 @export var shader_option_button: OptionButton
 @export var item_container: Control
 @export var close_button: Button

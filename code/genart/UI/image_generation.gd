@@ -5,6 +5,7 @@ signal generation_finished
 signal shape_generated(shape: Shape)
 signal target_texture_updated
 signal generation_cleared
+signal weight_texture_updated(weight_texture: RendererTexture)
 
 var image_generator: ImageGenerator
 var image_generation_details := ImageGenerationDetails.new()
@@ -50,6 +51,10 @@ func _setup_references():
 			call_deferred("_emit_shape_generated_signal", shape))
 	image_generator.setup()
 	clear_progress()
+	
+	image_generator.weight_texture_updated.connect(
+		func(t):
+			weight_texture_updated.emit(t))
 	
 func _emit_shape_generated_signal(shape: Shape):
 	image_generation_details.shapes.append(shape)
