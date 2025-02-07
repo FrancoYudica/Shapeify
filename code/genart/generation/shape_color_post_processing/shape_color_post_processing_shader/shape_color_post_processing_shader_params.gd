@@ -4,6 +4,5 @@ class_name ShapeColorPostProcessingShaderParams extends Resource
 
 @export var hue_shift_params := HueShiftPostProcessingShaderParams.new()
 
-
-func _init() -> void:
+func setup_signals():
 	hue_shift_params.changed.connect(emit_changed)

@@ -35,7 +35,7 @@ func _add_shader():
 	var shader_type = shader_option_button.selected
 	var shader_params = ShapeColorPostProcessingShaderParams.new()
 	shader_params.type = shader_type
-	_params.shader_params.append(shader_params)
+	_params.add_shader_param(shader_params)
 	_create_ui_item(_params.shader_params.size() - 1)
 	
 func _create_ui_item(index):

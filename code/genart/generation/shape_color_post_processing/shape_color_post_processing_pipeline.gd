@@ -24,7 +24,27 @@ func execute_pipeline(
 		_execute_shader(duplicated_shapes, shader, t)
 		
 	return duplicated_shapes
+
+func execute_pipeline_on_one_shape(
+	shape: Shape,
+	shape_index: int,
+	t: float,
+	params: Array[ShapeColorPostProcessingShaderParams]) -> Shape:
 	
+	var duplicated_shape  := shape.copy()
+	
+	for param in params:
+		
+		# Creates the shader
+		var shader := ShapeColorPostProcessingShader.factory_create(param.type)
+		
+		# Sets parameters and executes
+		shader.set_params(param)
+		
+		duplicated_shape.tint = shader.process_color(shape_index, t, duplicated_shape)
+		
+	return duplicated_shape
+
 func _execute_shader(
 	shapes: Array[Shape],
 	shader: ShapeColorPostProcessingShader,

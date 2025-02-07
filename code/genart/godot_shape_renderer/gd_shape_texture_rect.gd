@@ -4,7 +4,7 @@ extends TextureRect
 var _shape_size: Vector2
 var _shape_position: Vector2
 
-func from_shape(shape: Shape, gd_texture: Texture2D, viewport_size: Vector2):
+func from_shape(shape: Shape, gd_texture: Texture2D):
 	_shape_size = shape.size
 	_shape_position = shape.position
 	

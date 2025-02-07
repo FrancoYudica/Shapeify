@@ -32,5 +32,5 @@ func _process(delta: float) -> void:
 	gd_shape_renderer.size.y = parent_size.y
 	gd_shape_renderer.size.x = parent_size.y * target_texture_aspect_ratio
 
-func _shape_generated(shape):
+func _shape_generated(shape):	
 	gd_shape_renderer.add_shape(shape)

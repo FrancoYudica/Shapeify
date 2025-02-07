@@ -11,13 +11,6 @@ var params: ShapeColorPostProcessingShaderParams
 func _ready() -> void:
 	remove_button.pressed.connect(
 		func():
-			
-			# Finds the index of the params and removes
-			for i in range(_pipeline_params.shader_params.size()):
-				var shader_params = _pipeline_params.shader_params[i]
-				if shader_params == params:
-					_pipeline_params.shader_params.pop_at(i)
-					break
-					
+			_pipeline_params.remove(params)
 			queue_free()
 	)

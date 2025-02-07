@@ -22,7 +22,7 @@ text = "Shift value"
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
-step = 0.05
+step = 0.01
 value = 0.1
 
 [node name="Randomize" type="Label" parent="VBoxContainer/ContentsMarginContainer/VBoxContainer/GridContainer" index="2"]

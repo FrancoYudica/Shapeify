@@ -15,3 +15,6 @@ class_name AppSettings extends Resource
 ## Boolean flag to control if the algorithm should be displaying the output while generating the
 ## image. Displaying the image takes more time, so it's better to keep this set to false
 @export var render_while_generating: bool = true
+
+func setup_signals():
+	color_post_processing_pipeline_params.setup_signals()

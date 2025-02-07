@@ -26,6 +26,8 @@ func _init() -> void:
 		if settings == null or settings.version != default_settings.version:
 			settings = default_settings
 	
+	settings.setup_signals()
+	
 func _enter_tree() -> void:
 	
 	var textures = settings \
