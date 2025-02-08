@@ -35,6 +35,7 @@ label_settings = ExtResource("2_ooa0f")
 [node name="AddButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+tooltip_text = "Add texture group"
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_goqm1")
 icon = ExtResource("2_8yyvl")

@@ -162,6 +162,7 @@ layout_mode = 2
 
 [node name="GenerateButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
+tooltip_text = "Start image generation"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
@@ -171,11 +172,11 @@ image_generation = NodePath("../../../../../../../../../../../..")
 
 [node name="StopButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation", "stopping_notification")]
 layout_mode = 2
+tooltip_text = "Stop image generation"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
 icon = ExtResource("7_vpvh8")
-icon_alignment = 1
 script = ExtResource("14_pn2yp")
 image_generation = NodePath("../../../../../../../../../../../..")
 stopping_notification = NodePath("../../../../../../../../../../StoppingGenerationPanelContainer")
@@ -195,6 +196,7 @@ layout_mode = 2
 
 [node name="InfoButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
+tooltip_text = "Open information panel"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("9_r4t7k")
@@ -204,6 +206,7 @@ panel = NodePath("../../../../../PanelsHBoxContainer/InfoPanelContainer")
 
 [node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
 layout_mode = 2
+tooltip_text = "Open save image dialog"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("11_x6vfg")
@@ -214,6 +217,7 @@ panel = NodePath("../../../../../../../../../../SaveImageDialog")
 
 [node name="AnimationButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
 layout_mode = 2
+tooltip_text = "Open animator"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("13_7pxwh")
@@ -224,6 +228,7 @@ panel = NodePath("../../../../../../../../../../Animator")
 
 [node name="PostProcessingButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
+tooltip_text = "Open post processing panel"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("16_rlr7f")
@@ -233,6 +238,7 @@ panel = NodePath("../../../../../PanelsHBoxContainer/ColorPostProcessingPipeline
 
 [node name="ClearButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
+tooltip_text = "Clear generated output"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("15_yjoj1")
@@ -417,12 +423,14 @@ theme_override_constants/separation = 0
 
 [node name="AddPresetButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Open preset texture group selector panel"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("38_r17sk")
 
 [node name="DeletePresetsButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Clear all"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("39_xslnu")

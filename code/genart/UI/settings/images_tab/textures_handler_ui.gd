@@ -57,8 +57,6 @@ func _add_image_item(image_item, renderer_texture):
 	)
 
 func _delete_all_images() -> void:
-	if textures_ui_container.get_child_count() < 1:
-		return
 	
 	for child in textures_ui_container.get_children():
 		child.queue_free()
@@ -72,10 +70,9 @@ func _load_texture_group(group: ShapeTextureGroup) -> void:
 		var image_item = image_item_packed.instantiate()
 		_add_image_item(image_item, renderer_texture)
 		image_item.texture = texture
-
+	
 func _on_delete_presets_button_pressed() -> void:
 	_delete_all_images()
-
 
 func _on_add_preset_button_pressed() -> void:
 	texture_group_selector.visible = true
