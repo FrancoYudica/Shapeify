@@ -1,4 +1,4 @@
-extends TextureButton
+extends Button
 
 
 @export var image_generation: Node

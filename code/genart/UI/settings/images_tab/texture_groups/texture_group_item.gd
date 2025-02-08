@@ -4,6 +4,7 @@ signal selected(group: ShapeTextureGroup)
 
 @export var textures_container: Container
 @export var title_label: Label
+@export var add_button: Button
 
 var texture_group: ShapeTextureGroup
 
@@ -20,6 +21,8 @@ func _ready() -> void:
 		texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		texture_rect.texture = texture
 		textures_container.add_child(texture_rect)
-
-func _on_button_pressed() -> void:
-	selected.emit(texture_group)
+		
+		add_button.pressed.connect(
+			func():
+				selected.emit(texture_group)
+		)

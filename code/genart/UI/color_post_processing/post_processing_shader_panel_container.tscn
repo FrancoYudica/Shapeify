@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpe4gfqmh1r6g"]
+[gd_scene load_steps=6 format=3 uid="uid://bpe4gfqmh1r6g"]
 
 [ext_resource type="StyleBox" uid="uid://bk1rifybx5ctq" path="res://UI/themes/category_panel_container.tres" id="1_4b0w0"]
 [ext_resource type="Script" path="res://UI/color_post_processing/post_processing_shader_panel_container.gd" id="1_tdujw"]
 [ext_resource type="Texture2D" uid="uid://bdiawfb3r0o1t" path="res://art/textures/icons/delete.png" id="2_hull0"]
-[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="3_82xsk"]
 [ext_resource type="FontFile" uid="uid://dvvmugqg352g2" path="res://art/fonts/Outfit-Regular.ttf" id="3_ifdfb"]
 [ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="3_xhige"]
 
@@ -43,21 +42,6 @@ text = "HUE Shift"
 layout_mode = 2
 theme = ExtResource("3_xhige")
 icon = ExtResource("2_hull0")
-
-[node name="ModulateOnHover" type="Control" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer/RemoveButton"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 202.0
-offset_top = -20.0
-offset_right = 242.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("3_82xsk")
 
 [node name="ContentsMarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

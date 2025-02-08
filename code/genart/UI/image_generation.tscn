@@ -7,15 +7,15 @@
 [ext_resource type="Script" path="res://UI/generation/output_texture_holder.gd" id="9_hlcsw"]
 [ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="9_r4t7k"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/image_loader.gd" id="10_a6yyn"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="10_f35ue"]
 [ext_resource type="Script" path="res://UI/generation/generate_button.gd" id="10_mpcut"]
-[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="11_hpdpl"]
 [ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/textures/icons/save.png" id="11_x6vfg"]
 [ext_resource type="Script" path="res://UI/generation/clear_button.gd" id="12_ft68k"]
 [ext_resource type="Script" path="res://UI/generation/generation_progress_bar.gd" id="12_hhf1r"]
 [ext_resource type="Texture2D" uid="uid://dp1auesstg0tu" path="res://art/textures/icons/animator2.png" id="13_7pxwh"]
 [ext_resource type="Script" path="res://UI/generation/target_texture_rect.gd" id="14_dr8w1"]
 [ext_resource type="Script" path="res://UI/settings/images_tab/textures_handler_ui.gd" id="14_gfkqp"]
-[ext_resource type="Script" path="res://UI/generation/stop_texture_button.gd" id="14_pn2yp"]
+[ext_resource type="Script" path="res://UI/generation/stop_button.gd" id="14_pn2yp"]
 [ext_resource type="Texture2D" uid="uid://s33wpc3gogy6" path="res://art/textures/icons/eraser.png" id="15_yjoj1"]
 [ext_resource type="Texture2D" uid="uid://wmnqbeew1f40" path="res://art/textures/icons/post_processing_icon.png" id="16_rlr7f"]
 [ext_resource type="Script" path="res://UI/generation/not_executing_panel_toggler_button.gd" id="17_38fws"]
@@ -119,9 +119,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Generation" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -151,172 +152,93 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
+theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="GenerateButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation")]
-modulate = Color(0.6, 0.741176, 0.964706, 1)
-custom_minimum_size = Vector2(36, 36)
+[node name="GenerateButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Start generating image"
-texture_normal = ExtResource("5_iryt5")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
+icon = ExtResource("5_iryt5")
 script = ExtResource("10_mpcut")
 image_generation = NodePath("../../../../../../../../../../../..")
 
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/GenerateButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
-
-[node name="StopTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation", "stopping_notification")]
-modulate = Color(0.6, 0.741176, 0.964706, 1)
-custom_minimum_size = Vector2(36, 36)
+[node name="StopButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("image_generation", "stopping_notification")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Stop image generation"
-texture_normal = ExtResource("7_vpvh8")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
+icon = ExtResource("7_vpvh8")
+icon_alignment = 1
 script = ExtResource("14_pn2yp")
 image_generation = NodePath("../../../../../../../../../../../..")
 stopping_notification = NodePath("../../../../../../../../../../StoppingGenerationPanelContainer")
-
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/StopTextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
 
 [node name="ToolsContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer"]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 12
+theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 12
+theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 12
 
-[node name="OutputInfoTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
-custom_minimum_size = Vector2(30, 30)
+[node name="InfoButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Output information"
-texture_normal = ExtResource("9_r4t7k")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+icon = ExtResource("9_r4t7k")
+icon_alignment = 1
 script = ExtResource("19_w0gf2")
 panel = NodePath("../../../../../PanelsHBoxContainer/InfoPanelContainer")
 
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/OutputInfoTextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
-
-[node name="SaveOutputButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
-custom_minimum_size = Vector2(30, 30)
+[node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Opens a file dialog to save the generated image"
-texture_normal = ExtResource("11_x6vfg")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+icon = ExtResource("11_x6vfg")
+icon_alignment = 1
 script = ExtResource("17_38fws")
 image_generation = NodePath("../../../../../../../../../../../..")
 panel = NodePath("../../../../../../../../../../SaveImageDialog")
 
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/SaveOutputButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
-
-[node name="AnimationTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
-custom_minimum_size = Vector2(30, 30)
+[node name="AnimationButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Opens the animator"
-texture_normal = ExtResource("13_7pxwh")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+icon = ExtResource("13_7pxwh")
+icon_alignment = 1
 script = ExtResource("17_38fws")
 image_generation = NodePath("../../../../../../../../../../../..")
 panel = NodePath("../../../../../../../../../../Animator")
 
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/AnimationTextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
-
-[node name="PostProcessingTextureButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
-custom_minimum_size = Vector2(30, 30)
+[node name="PostProcessingButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Opens the post processing pipeline editor"
-texture_normal = ExtResource("16_rlr7f")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+icon = ExtResource("16_rlr7f")
+icon_alignment = 1
 script = ExtResource("19_w0gf2")
 panel = NodePath("../../../../../PanelsHBoxContainer/ColorPostProcessingPipeline")
 
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/PostProcessingTextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
-
-[node name="ClearButton" type="TextureButton" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
-custom_minimum_size = Vector2(30, 30)
+[node name="ClearButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Clears the generated image"
-texture_normal = ExtResource("15_yjoj1")
-ignore_texture_size = true
-stretch_mode = 5
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
+icon = ExtResource("15_yjoj1")
+icon_alignment = 1
 script = ExtResource("12_ft68k")
 image_generation = NodePath("../../../../../../../../../../../..")
-
-[node name="Modulate On Hover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_hpdpl")
 
 [node name="Progress Bar Container" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer"]
 layout_mode = 2
@@ -445,7 +367,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -496,30 +417,15 @@ theme_override_constants/separation = 0
 
 [node name="AddPresetButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "Add preset images"
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
 icon = ExtResource("38_r17sk")
-flat = true
-
-[node name="ModulateOnHover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/AddPresetButton"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("11_hpdpl")
 
 [node name="DeletePresetsButton" type="Button" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "Clear all images"
+mouse_default_cursor_shape = 2
+theme = ExtResource("10_f35ue")
 icon = ExtResource("39_xslnu")
-flat = true
-
-[node name="ModulateOnHover" type="Control" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/DeletePresetsButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("11_hpdpl")
 
 [node name="ImagePanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1478,8 +1384,6 @@ script = ExtResource("65_mkg28")
 
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/PanelsHBoxContainer/TargetPanelContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
 [connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_image_loader_image_file_dropped"]
-[connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/GenerateButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer/GenerateButton" method="_on_pressed"]
-[connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer/ClearButton" method="_on_pressed"]
-[connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/AddPresetButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_load_preset_button_pressed"]
+[connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/AddPresetButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_add_preset_button_pressed"]
 [connection signal="pressed" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/DeletePresetsButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/TexturesPanelContainer" method="_on_delete_presets_button_pressed"]
 [connection signal="item_selected" from="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/VBoxContainer/MarginContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" to="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer/Settings/HBoxContainer/SettingsPanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/VBoxContainer/MarginContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" method="_on_item_selected"]

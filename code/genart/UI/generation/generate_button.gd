@@ -1,4 +1,4 @@
-extends TextureButton
+extends Button
 
 @export var image_generation: Node
 
@@ -12,7 +12,5 @@ func _ready() -> void:
 		func():
 			visible = true
 	)
-
-
-func _on_pressed() -> void:
-	image_generation.generate()
+	
+	pressed.connect(image_generation.generate)
