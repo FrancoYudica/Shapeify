@@ -4,9 +4,9 @@ extends GridContainer
 @export var value_spin_box: SpinBox
 @export var randomize_check_box: CheckBox
 
-var _params: HueShiftPostProcessingShaderParams:
+var _params: SaturationShiftPostProcessingShaderParams:
 	get:
-		return item.params.hue_shift_params
+		return item.params.saturation_shift_params
 		
 
 # Called when the node enters the scene tree for the first time.

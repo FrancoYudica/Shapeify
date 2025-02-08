@@ -45,6 +45,21 @@ func execute_pipeline_on_one_shape(
 		
 	return duplicated_shape
 
+func compute_clear_color(
+	src_clear_color: Color,
+	t: float,
+	params: Array[ShapeColorPostProcessingShaderParams]) -> Color:
+		
+	var shape = Shape.new()
+	shape.tint = src_clear_color
+	var processed = execute_pipeline_on_one_shape(
+		shape,
+		0,
+		0,
+		params
+	)
+	return processed.tint
+
 func _execute_shader(
 	shapes: Array[Shape],
 	shader: ShapeColorPostProcessingShader,
@@ -53,3 +68,28 @@ func _execute_shader(
 	for i in range(shapes.size()):
 		var shape = shapes[i]
 		shape.tint = shader.process_color(i, t, shape)
+
+
+static func process_details(
+	details: ImageGenerationDetails,
+	t: float,
+	params: Array[ShapeColorPostProcessingShaderParams]) -> ImageGenerationDetails:
+	
+	var processed_details := details.copy()
+	var pipeline := ShapeColorPostProcessingPipeline.new()
+	
+	# Sets the clear color
+	processed_details.clear_color = pipeline.compute_clear_color(
+ 		details.clear_color,
+		0,
+		Globals.settings.color_post_processing_pipeline_params.shader_params
+	)
+	
+	# Processes shapes
+	processed_details.shapes = pipeline.execute_pipeline(
+		processed_details.shapes,
+		t,
+		params
+	)
+	
+	return processed_details

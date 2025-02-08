@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cei6yb88r707w"]
 
 [ext_resource type="Script" path="res://tests/gd_shape_renderer_test/gd_shape_renderer_test.gd" id="1_6655g"]
-[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://godot_shape_renderer/godot_shape_renderer.tscn" id="1_j6468"]
+[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://UI/generation/godot_shape_renderer/godot_shape_renderer.tscn" id="1_j6468"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape.gd" id="2_7tvpo"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="3_wkluu"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_v1h8n"]

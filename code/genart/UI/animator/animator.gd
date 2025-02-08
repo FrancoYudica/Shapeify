@@ -42,15 +42,8 @@ func play_animation(start_t: float):
 
 func _interpolate(t: float):
 	
-	var color_post_processing := ShapeColorPostProcessingPipeline.new()
-	var new_shapes := color_post_processing.execute_pipeline(
-		image_generation_details.shapes,
-		t,
-		Globals.settings.color_post_processing_pipeline_params.shader_params
-	)
-	
 	var animated_shapes = animation_player.animate(
-		new_shapes, 
+		image_generation_details.shapes, 
 		t)
 	shapes_animated.emit(animated_shapes)
 	animation_progress_updated.emit(t)

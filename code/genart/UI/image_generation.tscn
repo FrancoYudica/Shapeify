@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://UI/settings/settings_tab/settings_tab.gd" id="19_efp5f"]
 [ext_resource type="Script" path="res://UI/generation/panel_toggler_button.gd" id="19_w0gf2"]
 [ext_resource type="Script" path="res://UI/generation/generated_output_texture_rect.gd" id="23_ckw05"]
-[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://godot_shape_renderer/godot_shape_renderer.tscn" id="23_il15v"]
+[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://UI/generation/godot_shape_renderer/godot_shape_renderer.tscn" id="23_il15v"]
 [ext_resource type="Script" path="res://UI/generation/generator_option_button.gd" id="23_qrtn1"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="24_de6d3"]
 [ext_resource type="Script" path="res://UI/generation/loading_generating_texture_rect.gd" id="24_q3gvo"]
@@ -442,7 +442,7 @@ image_generation = NodePath("../../../../../../../../..")
 visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 
 [node name="Settings" type="MarginContainer" parent="UICanvasLayer/Panel/MarginContainer/VBoxContainer/TabContainer" node_paths=PackedStringArray("image_generation", "block_input_panel")]
 visible = false

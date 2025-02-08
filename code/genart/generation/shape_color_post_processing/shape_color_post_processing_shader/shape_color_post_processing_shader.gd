@@ -2,7 +2,9 @@ class_name ShapeColorPostProcessingShader extends RefCounted
 
 enum Type
 {
-	HUE_SHIFT
+	HUE_SHIFT,
+	SATURATION_SHIFT,
+	VALUE_SHIFT
 }
 
 func process_color(
@@ -19,6 +21,10 @@ static func factory_create(type: Type) -> ShapeColorPostProcessingShader:
 	match type:
 		Type.HUE_SHIFT:
 			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/hue_shift/hue_shift_post_processing_shader.gd").new()
+		Type.SATURATION_SHIFT:
+			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/saturation_shift/saturation_shift_post_processing_shader.gd").new()
+		Type.VALUE_SHIFT:
+			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/value_shift/value_shift_post_processing_shader.gd").new()
 		_:
 			push_error("Unimplemenmted ShapeColorPostProcessingShader of type %s" % type)
 			return null

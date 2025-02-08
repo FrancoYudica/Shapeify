@@ -15,14 +15,21 @@ func _process(delta: float) -> void:
 
 func _animated_shapes(shapes: Array[Shape]):
 	
+	# Updates the details shapes
+	var raw_details = animator.image_generation_details.copy()
+	raw_details.shapes = shapes
+	
 	# Prepares details
-	var details := ImageGenerationDetails.new()
-	details.shapes = shapes
-	details.clear_color = animator.image_generation_details.clear_color
-	details.viewport_size = animator.image_generation_details.viewport_size
+	var processed_details := ShapeColorPostProcessingPipeline.process_details(
+		raw_details,
+		0,
+		Globals.settings.color_post_processing_pipeline_params.shader_params
+	)
+	
+	processed_details.viewport_size = animator.image_generation_details.viewport_size
 	
 	# Renders the image
-	ImageGenerationRenderer.render_image_generation(Renderer, details)
+	ImageGenerationRenderer.render_image_generation(Renderer, processed_details)
 	
 	# Creates texture
 	if texture == null:

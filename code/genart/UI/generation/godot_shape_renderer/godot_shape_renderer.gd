@@ -5,7 +5,7 @@ extends SubViewport
 @export var shapes_container: Control
 @export var shapes: Array[Shape]
 
-var _gd_shape = load("res://godot_shape_renderer/gd_shape_texture_rect.tscn")
+var _gd_shape = load("res://UI/generation/godot_shape_renderer/gd_shape_texture_rect.tscn")
 
 ## Maps shapes textures RID to godot Texture2D
 var _texture_map: Dictionary
@@ -15,12 +15,11 @@ var shape_count: int:
 		return shapes_container.get_child_count()
 
 func _ready() -> void:
-	Globals.settings.color_post_processing_pipeline_params.changed.connect(post_process_updated)
+	Globals.settings.color_post_processing_pipeline_params.changed.connect(_update_post_process)
 
 func clear():
 	shapes.clear()
-	color_rect.color = clear_color
-	
+
 	for child in shapes_container.get_children():
 		shapes_container.remove_child(child)
 		child.queue_free()
@@ -32,6 +31,8 @@ func clear():
 		global_rd.free_rid(texture_rd_rid)
 
 	_texture_map.clear()
+
+	_update_post_process()
 
 
 func add_shape(shape: Shape):
@@ -54,21 +55,26 @@ func add_shape(shape: Shape):
 	shapes_container.call_deferred("add_child", gd_shape)
 
 
-func post_process_updated():
+func _update_post_process():
 	
 	# Process
-	var post_process_pipeline := ShapeColorPostProcessingPipeline.new()
-	var processed_shapes: Array[Shape] = post_process_pipeline.execute_pipeline(
-		shapes,
+	var details = ImageGenerationDetails.new()
+	details.shapes = shapes
+	details.clear_color = clear_color
+	
+	var processed_details = ShapeColorPostProcessingPipeline.process_details(
+		details,
 		0.0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params
-	)
+		Globals.settings.color_post_processing_pipeline_params.shader_params)
 	
 	# Applies to gdshapes
 	for i in range(shapes_container.get_child_count()):
 		var gd_shape = shapes_container.get_child(i)
-		var shape = processed_shapes[i]
+		var shape = processed_details.shapes[i]
 		gd_shape.from_shape(shape, _texture_map[shape.texture.rd_rid])
-
+	
+	# Updates clear color
+	color_rect.color = processed_details.clear_color
+	
 func _exit_tree() -> void:
 	clear()

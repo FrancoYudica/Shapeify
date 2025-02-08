@@ -67,6 +67,7 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+text = "Add effect"
 icon = ExtResource("1_o355v")
 
 [node name="ModulateOnHover" type="Control" parent="MarginContainer/VBoxContainer/AddHBoxContainer/AddButton"]

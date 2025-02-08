@@ -48,3 +48,7 @@ func _create_ui_item_of_type(type):
 	match type:
 		ShapeColorPostProcessingShader.Type.HUE_SHIFT:
 			return load("res://UI/color_post_processing/shader_items/hue_shift_post_processing_shader_panel_container.tscn").instantiate()
+		ShapeColorPostProcessingShader.Type.SATURATION_SHIFT:
+			return load("res://UI/color_post_processing/shader_items/saturation_shift_post_processing_shader_panel_container.tscn").instantiate()
+		ShapeColorPostProcessingShader.Type.VALUE_SHIFT:
+			return load("res://UI/color_post_processing/shader_items/value_shift_post_processing_shader_panel_container.tscn").instantiate()
