@@ -16,6 +16,9 @@ func execute_pipeline(
 	
 	for param in params:
 		
+		if not param.enabled:
+			continue
+
 		# Creates the shader
 		var shader := ShapeColorPostProcessingShader.factory_create(param.type)
 		
@@ -35,6 +38,9 @@ func execute_pipeline_on_one_shape(
 	
 	for param in params:
 		
+		if not param.enabled:
+			continue
+		
 		# Creates the shader
 		var shader := ShapeColorPostProcessingShader.factory_create(param.type)
 		
@@ -51,6 +57,7 @@ func compute_clear_color(
 	params: Array[ShapeColorPostProcessingShaderParams]) -> Color:
 		
 	var shape = Shape.new()
+	shape.size = Vector2.ONE
 	shape.tint = src_clear_color
 	var processed = execute_pipeline_on_one_shape(
 		shape,
