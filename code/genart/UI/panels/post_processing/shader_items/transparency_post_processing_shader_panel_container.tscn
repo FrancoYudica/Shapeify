@@ -7,7 +7,7 @@
 offset_right = 891.0
 offset_bottom = 149.0
 
-[node name="Label" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer" index="0"]
+[node name="Label" parent="VBoxContainer/HeaderPanelContainer/MarginContainer/HBoxContainer" index="1"]
 text = "Transparency"
 
 [node name="GridContainer" parent="VBoxContainer/ContentsMarginContainer/VBoxContainer" index="0" node_paths=PackedStringArray("item", "value_spin_box")]
@@ -23,7 +23,6 @@ text = "Transparency"
 [node name="TransparencySpinBox" type="SpinBox" parent="VBoxContainer/ContentsMarginContainer/VBoxContainer/GridContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = -1.0
 max_value = 1.0
 step = 0.01
 value = 0.1
