@@ -81,7 +81,7 @@ theme_override_constants/margin_bottom = 8
 [node name="SettingsVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
 
 [node name="ImageGeneratorParamsPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer" index="0" node_paths=PackedStringArray("weight_texture_generator_picker")]
 layout_mode = 2

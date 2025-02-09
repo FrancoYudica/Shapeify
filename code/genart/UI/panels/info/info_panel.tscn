@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="3_qvf2u"]
 
 [node name="InfoPanel" node_paths=PackedStringArray("shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "weight_texture_rect") instance=ExtResource("1_kw27a")]
+custom_minimum_size = Vector2(400, 0)
 script = ExtResource("2_lkx0d")
 shape_count_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/ShapeCountValue")
 current_execution_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer/CurrentExecutionTimeValue")
@@ -39,7 +40,7 @@ theme_override_constants/v_separation = 8
 columns = 2
 
 [node name="MetricScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer" index="0"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Metric score"
 
@@ -72,7 +73,7 @@ horizontal_alignment = 2
 
 [node name="CurrentExecutionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer" index="6"]
 layout_mode = 2
-text = "Current execution time"
+text = "Time taken"
 
 [node name="CurrentExecutionTimeValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer" index="7"]
 layout_mode = 2

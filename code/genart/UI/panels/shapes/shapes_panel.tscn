@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://q0x7rqp5bev" path="res://art/textures/icons/shapes.png" id="3_lrui6"]
 [ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="4_3tu4m"]
 [ext_resource type="Texture2D" uid="uid://dmogt7wyvnvqi" path="res://art/textures/icons/deleteall.png" id="5_3p022"]
-[ext_resource type="Script" path="res://UI/panels/shapes/dynamic_grid_container.gd" id="6_5v734"]
+[ext_resource type="Texture2D" uid="uid://c3kuu10cgj770" path="res://art/textures/icons/upload.png" id="8_urcwe"]
 
 [node name="ShapesPanel" node_paths=PackedStringArray("textures_ui_container") instance=ExtResource("1_g6r7a")]
 script = ExtResource("2_1wln8")
-textures_ui_container = NodePath("MarginContainer/VBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/TextureItemVBoxContainer")
+textures_ui_container = NodePath("MarginContainer/VBoxContainer/ShapePanelContainer/ScrollContainer/MarginContainer/ItemsHFlowContainer")
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
 texture = ExtResource("3_lrui6")
@@ -35,7 +35,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="AddPresetButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer" index="0"]
+[node name="UploadImagesButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Load from filesystem"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_kkh8i")
+icon = ExtResource("8_urcwe")
+icon_alignment = 1
+
+[node name="AddPresetButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Open preset texture group selector panel"
@@ -44,7 +53,7 @@ theme = ExtResource("3_kkh8i")
 icon = ExtResource("4_3tu4m")
 icon_alignment = 1
 
-[node name="DeletePresetsButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer" index="1"]
+[node name="DeletePresetsButton" type="Button" parent="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer" index="2"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Clear all"
@@ -59,22 +68,11 @@ size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_lqd6g")
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer" index="0"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/ScrollContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/ScrollContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -83,17 +81,9 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureItemVBoxContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" index="0"]
-clip_contents = true
+[node name="ItemsHFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/ShapePanelContainer/ScrollContainer/MarginContainer" index="0"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
-script = ExtResource("6_5v734")
-width_2_columns = 1010
-width_3_columns = 1410
-width_4_columns = 1910
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer/UploadImagesButton" to="." method="_on_upload_images_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer/AddPresetButton" to="." method="_on_add_preset_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsPanelContainer/MarginContainer/HBoxContainer/DeletePresetsButton" to="." method="_on_delete_presets_button_pressed"]

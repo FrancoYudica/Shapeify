@@ -22,7 +22,10 @@ func _exit_tree() -> void:
 	_free_weight_texture()
 
 func _copy_texture_contents(texture: RendererTexture):
-
+	
+	if texture == null:
+		return
+	
 	# Copies weight texture
 	if weight_texture != null:
 		_free_weight_texture()

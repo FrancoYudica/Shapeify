@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="6_he3w5"]
 
 [node name="PostProcessingDisplayPanel" instance=ExtResource("1_6cru2")]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(350, 0)
 
 [node name="VBoxContainer" parent="MarginContainer" index="0" node_paths=PackedStringArray("add_button", "shader_option_button", "item_container")]
 script = ExtResource("2_flxv2")

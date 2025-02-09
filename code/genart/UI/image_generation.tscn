@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/image_generation.gd" id="1_h14uf"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/textures/genart_icon/sizes/genart_icon_64x64.png" id="4_2n2h2"]
@@ -23,11 +23,16 @@
 [ext_resource type="Script" path="res://UI/generation/panel_toggler_button.gd" id="19_w0gf2"]
 [ext_resource type="Script" path="res://UI/generation/generated_output_texture_rect.gd" id="23_ckw05"]
 [ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://UI/generation/godot_shape_renderer/godot_shape_renderer.tscn" id="23_il15v"]
+[ext_resource type="Texture2D" uid="uid://5npshbmgqm1k" path="res://art/textures/icons/rotate-96.png" id="23_wjdhm"]
 [ext_resource type="PackedScene" uid="uid://bfptu7crdcs01" path="res://UI/panels/info/info_panel.tscn" id="24_fyyne"]
 [ext_resource type="Script" path="res://UI/generation/loading_generating_texture_rect.gd" id="24_q3gvo"]
+[ext_resource type="Script" path="res://UI/generation/rotate_button_container.gd" id="26_7yej3"]
+[ext_resource type="Script" path="res://UI/visible_on_panel_hover.gd" id="27_3ffaa"]
 [ext_resource type="PackedScene" uid="uid://cf2d23xngayf7" path="res://UI/panels/settings/settings_panel.tscn" id="27_b71r7"]
 [ext_resource type="PackedScene" uid="uid://bbx14t18y1rme" path="res://UI/panels/shapes/shapes_panel.tscn" id="28_21ha2"]
 [ext_resource type="PackedScene" uid="uid://bve6cjoaqrkdp" path="res://UI/panels/post_processing/post_processing_display_panel.tscn" id="28_nkoww"]
+[ext_resource type="Texture2D" uid="uid://c3kuu10cgj770" path="res://art/textures/icons/upload.png" id="29_gu4jn"]
+[ext_resource type="Script" path="res://UI/generation/load_target_texture_button.gd" id="30_0bsiv"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="38_lwjl2"]
 [ext_resource type="PackedScene" uid="uid://c46kw3qtcbjh0" path="res://UI/animator/animator.tscn" id="46_2ayc0"]
 [ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/notification_panels/info_notification_panel.tscn" id="48_a87i4"]
@@ -155,7 +160,7 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("9_r4t7k")
 icon_alignment = 1
 script = ExtResource("19_w0gf2")
-panel = NodePath("../../../../../PanelsHBoxContainer/InfoPanel")
+panel = NodePath("../../../../../HSplitContainer/PanelsHBoxContainer/InfoPanel")
 
 [node name="SettingsButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
@@ -165,7 +170,7 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("12_xro8i")
 icon_alignment = 1
 script = ExtResource("19_w0gf2")
-panel = NodePath("../../../../../PanelsHBoxContainer/SettingsDisplayPanel")
+panel = NodePath("../../../../../HSplitContainer/PanelsHBoxContainer/SettingsDisplayPanel")
 
 [node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
 layout_mode = 2
@@ -197,7 +202,7 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("16_rlr7f")
 icon_alignment = 1
 script = ExtResource("19_w0gf2")
-panel = NodePath("../../../../../PanelsHBoxContainer/PostProcessingDisplayPanel")
+panel = NodePath("../../../../../HSplitContainer/PanelsHBoxContainer/PostProcessingDisplayPanel")
 
 [node name="ShapesButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
@@ -207,7 +212,7 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("17_5e5ch")
 icon_alignment = 1
 script = ExtResource("19_w0gf2")
-panel = NodePath("../../../../../PanelsHBoxContainer/ShapesPanel")
+panel = NodePath("../../../../../HSplitContainer/PanelsHBoxContainer/ShapesPanel")
 
 [node name="ClearButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -283,49 +288,78 @@ theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="PanelsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 16
 
-[node name="OutputPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer"]
+[node name="ImagesVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SplitContainer" type="SplitContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OutputPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/OutputPanelContainer" node_paths=PackedStringArray("image_generation", "gd_shape_renderer")]
+[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer" node_paths=PackedStringArray("image_generation", "gd_shape_renderer")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_x2ckf")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("23_ckw05")
-image_generation = NodePath("../../../../../../..")
+image_generation = NodePath("../../../../../../../../..")
 gd_shape_renderer = NodePath("GodotShapeRenderer")
 
-[node name="GodotShapeRenderer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("23_il15v")]
+[node name="GodotShapeRenderer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("23_il15v")]
 handle_input_locally = false
 size = Vector2i(608, 565)
 render_target_update_mode = 4
 
-[node name="BottomTextMargin" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/OutputPanelContainer"]
+[node name="BottomTextMargin" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/OutputPanelContainer/BottomTextMargin"]
+[node name="Label" type="Label" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/BottomTextMargin"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 14
 text = "Output texture"
 vertical_alignment = 1
 
-[node name="TargetPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RotateButtonContainer" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer" node_paths=PackedStringArray("split_container")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Rotate textures"
+mouse_filter = 1
+theme = ExtResource("10_f35ue")
+icon = ExtResource("23_wjdhm")
+script = ExtResource("26_7yej3")
+split_container = NodePath("../../..")
+
+[node name="VisibleOnPanelHover" type="Node" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer/RotateButtonContainer" node_paths=PackedStringArray("panel")]
+script = ExtResource("27_3ffaa")
+panel = NodePath("../../..")
+
+[node name="TargetPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/TargetPanelContainer" node_paths=PackedStringArray("image_generation")]
+[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Input texture.
@@ -333,24 +367,55 @@ Drag and drop anywhere to update it"
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("14_dr8w1")
+image_generation = NodePath("../../../../../../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LoadTargetTextureButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/MarginContainer" node_paths=PackedStringArray("image_generation", "image_loader")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Load target texture"
+mouse_filter = 1
+theme = ExtResource("10_f35ue")
+icon = ExtResource("29_gu4jn")
+script = ExtResource("30_0bsiv")
+image_generation = NodePath("../../../../../../../../../..")
+image_loader = NodePath("../../../../../../../../ImageFileDialog")
+
+[node name="VisibleOnPanelHover" type="Node" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/MarginContainer/LoadTargetTextureButton" node_paths=PackedStringArray("panel")]
+script = ExtResource("27_3ffaa")
+panel = NodePath("../../..")
+
+[node name="PanelsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="InfoPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/PanelsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_holder") instance=ExtResource("24_fyyne")]
+visible = false
+layout_mode = 2
 image_generation = NodePath("../../../../../../..")
+output_texture_holder = NodePath("../../../../../../../OutputTextureHolder")
 
-[node name="InfoPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_holder") instance=ExtResource("24_fyyne")]
-visible = false
-layout_mode = 2
-image_generation = NodePath("../../../../../..")
-output_texture_holder = NodePath("../../../../../../OutputTextureHolder")
-
-[node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" instance=ExtResource("28_nkoww")]
+[node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/PanelsHBoxContainer" instance=ExtResource("28_nkoww")]
 visible = false
 layout_mode = 2
 
-[node name="ShapesPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" node_paths=PackedStringArray("texture_group_selector") instance=ExtResource("28_21ha2")]
+[node name="ShapesPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/PanelsHBoxContainer" node_paths=PackedStringArray("image_file_dialog", "texture_group_selector") instance=ExtResource("28_21ha2")]
 visible = false
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
-texture_group_selector = NodePath("../../../../ShapeTexureGroups")
+image_file_dialog = NodePath("../../../../../ImageFilesDialog")
+texture_group_selector = NodePath("../../../../../ShapeTexureGroups")
 
-[node name="SettingsDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" instance=ExtResource("27_b71r7")]
+[node name="SettingsDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/PanelsHBoxContainer" instance=ExtResource("27_b71r7")]
+visible = false
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
@@ -430,4 +495,14 @@ access = 2
 use_native_dialog = true
 script = ExtResource("65_mkg28")
 
-[connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer/TargetPanelContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]
+[node name="ImageFilesDialog" type="FileDialog" parent="UICanvasLayer/Panel"]
+auto_translate_mode = 1
+title = "Open File(s)"
+size = Vector2i(207, 175)
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+use_native_dialog = true
+script = ExtResource("65_mkg28")
+
+[connection signal="image_file_dropped" from="ImageLoader" to="UICanvasLayer/Panel/Generation/VBoxContainer/HSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/TargetTextureRect" method="_on_image_loader_image_file_dropped"]

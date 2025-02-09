@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export var image_file_dialog: FileDialog
+
 @export var texture_group_selector: Control
 @export var textures_ui_container: Control
 
@@ -25,9 +27,15 @@ func _ready() -> void:
 		var image_item = image_item_packed.instantiate()
 		_add_image_item(image_item, renderer_texture)
 		image_item.texture = texture
-		
-
-func _on_image_loader_image_file_dropped(filepath: String) -> void:
+	
+	
+	image_file_dialog.files_selected.connect(
+		func(paths: PackedStringArray):
+			for path in paths:
+				_load_image(path)
+	)
+	
+func _load_image(filepath: String) -> void:
 	
 	if not is_visible_in_tree():
 		return
@@ -76,3 +84,7 @@ func _on_delete_presets_button_pressed() -> void:
 
 func _on_add_preset_button_pressed() -> void:
 	texture_group_selector.visible = true
+
+
+func _on_upload_images_button_pressed() -> void:
+	image_file_dialog.visible = true

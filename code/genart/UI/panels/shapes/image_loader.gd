@@ -17,6 +17,7 @@ func _ready() -> void:
 		func():
 			_generating = false
 	)
+	
 
 func on_files_dropped(files):
 	

@@ -18,10 +18,8 @@ func _ready() -> void:
 			image_generation.image_generator.shape_generated.disconnect(_shape_generated)
 	)
 	texture.viewport_path = gd_shape_renderer.get_path()
-	
 
 func _clear_shapes():
-
 	gd_shape_renderer.clear_color = image_generation.image_generation_details.clear_color
 	gd_shape_renderer.clear()
 
@@ -32,5 +30,5 @@ func _process(delta: float) -> void:
 	gd_shape_renderer.size.y = parent_size.y
 	gd_shape_renderer.size.x = parent_size.y * target_texture_aspect_ratio
 
-func _shape_generated(shape):	
+func _shape_generated(shape):
 	gd_shape_renderer.add_shape(shape)

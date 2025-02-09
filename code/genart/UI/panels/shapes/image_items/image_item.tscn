@@ -5,6 +5,12 @@
 [ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="2_cw44e"]
 
 [node name="ImageItem" type="PanelContainer" node_paths=PackedStringArray("_texture_rect")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_rfjw7")
 _texture_rect = NodePath("MarginContainer/VBoxContainer/TextureRect")
 

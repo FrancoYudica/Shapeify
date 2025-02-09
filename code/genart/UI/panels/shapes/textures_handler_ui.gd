@@ -2,8 +2,9 @@ extends PanelContainer
 
 @export var texture_group_selector: Control
 @export var textures_ui_container: Control
+@export var drag_preview: Control
 
-var image_item_packed = preload("res://UI/settings/shape_images_panel/image_items/image_item.tscn")
+var image_item_packed = preload("res://UI/panels/shapes/image_items/image_item.tscn")
 
 ## Maps image_item to RendererTexture
 var _textures_map: Dictionary
@@ -25,7 +26,9 @@ func _ready() -> void:
 		var image_item = image_item_packed.instantiate()
 		_add_image_item(image_item, renderer_texture)
 		image_item.texture = texture
-		
+	
+	set_drag_preview(drag_preview)
+
 
 func _on_image_loader_image_file_dropped(filepath: String) -> void:
 	
