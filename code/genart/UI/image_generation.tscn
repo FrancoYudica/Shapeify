@@ -201,7 +201,7 @@ panel = NodePath("../../../../../PanelsHBoxContainer/PostProcessingDisplayPanel"
 
 [node name="ShapesButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
-tooltip_text = "Open post processing panel"
+tooltip_text = "Open shapes panel"
 mouse_default_cursor_shape = 2
 theme = ExtResource("10_f35ue")
 icon = ExtResource("17_5e5ch")
@@ -336,14 +336,17 @@ script = ExtResource("14_dr8w1")
 image_generation = NodePath("../../../../../../..")
 
 [node name="InfoPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" node_paths=PackedStringArray("image_generation", "output_texture_holder") instance=ExtResource("24_fyyne")]
+visible = false
 layout_mode = 2
 image_generation = NodePath("../../../../../..")
 output_texture_holder = NodePath("../../../../../../OutputTextureHolder")
 
 [node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" instance=ExtResource("28_nkoww")]
+visible = false
 layout_mode = 2
 
 [node name="ShapesPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/PanelsHBoxContainer" node_paths=PackedStringArray("texture_group_selector") instance=ExtResource("28_21ha2")]
+visible = false
 layout_mode = 2
 texture_group_selector = NodePath("../../../../ShapeTexureGroups")
 
