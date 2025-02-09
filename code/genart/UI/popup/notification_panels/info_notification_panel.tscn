@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c07xd22u20ip5"]
 
-[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="1_v3o13"]
+[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/popup/notification_panels/notification_panel_base.tscn" id="1_v3o13"]
 
 [node name="InfoNotificationPanel" instance=ExtResource("1_v3o13")]
 

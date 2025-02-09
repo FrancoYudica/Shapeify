@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bssaem68t1fk7"]
-
-[ext_resource type="Script" path="res://UI/generation/godot_shape_renderer/gd_shape_texture_rect.gd" id="1_giqwg"]
-
-[node name="GdShapeTextureRect" type="TextureRect"]
-expand_mode = 1
-script = ExtResource("1_giqwg")

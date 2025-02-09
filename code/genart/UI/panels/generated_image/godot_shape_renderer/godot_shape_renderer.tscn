@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctwdyegx6p0t4"]
 
-[ext_resource type="Script" path="res://UI/generation/godot_shape_renderer/godot_shape_renderer.gd" id="1_43qkf"]
+[ext_resource type="Script" path="res://UI/panels/generated_image/godot_shape_renderer/godot_shape_renderer.gd" id="1_43qkf"]
 
 [node name="GodotShapeRenderer" type="SubViewport" node_paths=PackedStringArray("color_rect", "shapes_container")]
 script = ExtResource("1_43qkf")

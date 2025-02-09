@@ -5,7 +5,7 @@ extends SubViewport
 @export var shapes_container: Control
 @export var shapes: Array[Shape]
 
-var _gd_shape = load("res://UI/generation/godot_shape_renderer/gd_shape_texture_rect.tscn")
+var _gd_shape = load("res://UI/panels/generated_image/godot_shape_renderer/gd_shape_texture_rect.tscn")
 
 ## Maps shapes textures RID to godot Texture2D
 var _texture_map: Dictionary

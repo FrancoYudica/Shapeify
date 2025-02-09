@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmulcn6ln0agq"]
+
+[ext_resource type="Script" path="res://UI/panels/generated_image/godot_shape_renderer/gd_shape_texture_rect.gd" id="1_d8hxy"]
+
+[node name="GDShapeTextureRect" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+script = ExtResource("1_d8hxy")

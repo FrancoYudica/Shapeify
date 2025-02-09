@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdsssgakv1upp"]
 
-[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/notification_panels/notification_panel_base.tscn" id="1_6xlry"]
+[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/popup/notification_panels/notification_panel_base.tscn" id="1_6xlry"]
 [ext_resource type="Texture2D" uid="uid://bpspqiql2bdp0" path="res://art/textures/icons/warning.png" id="2_1gn54"]
 
 [node name="WarningNotificationPanel" instance=ExtResource("1_6xlry")]
