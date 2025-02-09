@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cf2d23xngayf7"]
+[gd_scene load_steps=32 format=3 uid="uid://cf2d23xngayf7"]
 
 [ext_resource type="PackedScene" uid="uid://qeygpngl8xvw" path="res://UI/panels/panel.tscn" id="1_0ja06"]
 [ext_resource type="Script" path="res://UI/panels/settings/preset_option_button.gd" id="2_25mp8"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://UI/panels/settings/shape_generator/genetic/tournament_survivor_selection_handler.gd" id="28_4eeyy"]
 [ext_resource type="Script" path="res://UI/panels/settings/shape/shape_settings_ui_panel_container.gd" id="29_tkndt"]
 [ext_resource type="Script" path="res://UI/panels/settings/profiler/profiler_params_panel_container.gd" id="30_vpd35"]
+[ext_resource type="PackedScene" uid="uid://deb7m8qovnpdo" path="res://UI/panels/disable_during_generation_panel_container.tscn" id="31_x67p8"]
 
 [node name="SettingsDisplayPanel" instance=ExtResource("1_0ja06")]
 anchors_preset = 15
@@ -822,5 +823,9 @@ size_flags_horizontal = 3
 [node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ProfilerParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 text = "Save"
+
+[node name="DisableDuringGenerationPanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer" index="1" instance=ExtResource("31_x67p8")]
+visible = false
+layout_mode = 2
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/VBoxContainer/MarginContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" to="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapeGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ShapeGeneratorPanelContainer/VBoxContainer/MarginContainer/ShapeGeneratorGridContainer/GeneratorOptionButton" method="_on_item_selected"]

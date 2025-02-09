@@ -12,6 +12,16 @@ func _ready() -> void:
 				index as ImageGeneratorParams.Type)
 	)
 	
+	Globals.generation_started.connect(
+		func():
+			disabled = true
+	)
+
+	Globals.generation_finished.connect(
+		func():
+			disabled = false
+	)
+
 	_update()
 
 func _process(delta: float) -> void:
