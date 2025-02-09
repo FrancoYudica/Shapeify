@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://qeygpngl8xvw"]
+
+[ext_resource type="Texture2D" uid="uid://cm8ofv2bcyq1u" path="res://art/textures/icons/settings.png" id="1_56p30"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="2_lpwh6"]
+[ext_resource type="Texture2D" uid="uid://n45rf8kiqcn8" path="res://art/textures/icons/x.png" id="4_coxjt"]
+[ext_resource type="Script" path="res://UI/panels/settings/close_panel_button.gd" id="4_h44bi"]
+
+[node name="DisplayPanel" type="PanelContainer"]
+offset_right = 300.0
+offset_bottom = 679.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer"]
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+layout_mode = 2
+texture = ExtResource("1_56p30")
+expand_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Title"
+label_settings = ExtResource("2_lpwh6")
+
+[node name="ClosePanelButton" type="Button" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" node_paths=PackedStringArray("panel")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("4_coxjt")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_h44bi")
+panel = NodePath("../../../..")

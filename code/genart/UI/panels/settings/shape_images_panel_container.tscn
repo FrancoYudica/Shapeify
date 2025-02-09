@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://c43802jhc3raf"]
+
+[ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="1_p716f"]
+[ext_resource type="Script" path="res://UI/panels/shapes/textures_handler_ui.gd" id="2_1pn5d"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="3_5xdpl"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="4_083dt"]
+[ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="5_ia8r5"]
+[ext_resource type="Texture2D" uid="uid://dmogt7wyvnvqi" path="res://art/textures/icons/deleteall.png" id="6_a8ajh"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="7_ga8fq"]
+[ext_resource type="Script" path="res://UI/panels/shapes/dynamic_grid_container.gd" id="8_dusok"]
+
+[node name="ShapeImagesPanelContainer" type="PanelContainer" node_paths=PackedStringArray("textures_ui_container")]
+offset_right = 332.0
+offset_bottom = 301.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
+theme = ExtResource("1_p716f")
+script = ExtResource("2_1pn5d")
+textures_ui_container = NodePath("MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer/TextureItemVBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Images"
+label_settings = ExtResource("3_5xdpl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 0
+
+[node name="AddPresetButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Open preset texture group selector panel"
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_083dt")
+icon = ExtResource("5_ia8r5")
+
+[node name="DeletePresetsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Clear all"
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_083dt")
+icon = ExtResource("6_a8ajh")
+
+[node name="ImagePanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("7_ga8fq")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ImagePanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureItemVBoxContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ImagePanelContainer/MarginContainer/ScrollContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+script = ExtResource("8_dusok")
+width_2_columns = 1010
+width_3_columns = 1410
+width_4_columns = 1910
+
+[node name="DragNDropHint" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Drag and drop to add more"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/AddPresetButton" to="." method="_on_add_preset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/DeletePresetsButton" to="." method="_on_delete_presets_button_pressed"]

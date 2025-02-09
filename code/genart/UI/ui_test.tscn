@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpsldwgq4xpxl"]
+[gd_scene load_steps=5 format=3 uid="uid://bpsldwgq4xpxl"]
 
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="1_4u1we"]
 [ext_resource type="Script" path="res://UI/ui_test.gd" id="1_sk813"]
+[ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="3_0l246"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpo6s"]
 bg_color = Color(0.241156, 0.241156, 0.241156, 1)
@@ -89,3 +90,15 @@ text = "Something"
 [node name="SpinBox2" type="SpinBox" parent="Panel/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+expand_icon = true
+selected = 0
+item_count = 2
+popup/item_0/text = "Add"
+popup/item_0/icon = ExtResource("3_0l246")
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Hello"
+popup/item_1/id = 2
