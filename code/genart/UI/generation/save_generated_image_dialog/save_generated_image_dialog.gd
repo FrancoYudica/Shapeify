@@ -1,6 +1,5 @@
 extends Control
 
-@export var image_generation: Node
 @export var close_button: Button
 @export var save_button: Button
 @export var scale_spin_box: SpinBox
@@ -47,7 +46,7 @@ func _ready() -> void:
 
 func _oppened():
 
-	var gen_details: ImageGenerationDetails = image_generation.image_generation_details
+	var gen_details: ImageGenerationDetails = Globals.image_generation_details
 	visible = true
 	
 	_processed_details = ShapeColorPostProcessingPipeline.process_details(

@@ -1,18 +1,15 @@
 extends TextureRect
 
 
-@export var image_generation: Node
-
-
 func _ready() -> void:
 	
 	visible = false
 	
-	image_generation.generation_started.connect(
+	Globals.generation_started.connect(
 		func():
 			visible = true
 	)
-	image_generation.generation_finished.connect(
+	Globals.generation_finished.connect(
 		func():
 			visible = false
 	)

@@ -16,22 +16,22 @@ var _clock: Clock
 func _ready() -> void:
 	weight_texture_rect.visible = false
 	
-	image_generation.shape_generated.connect(
+	Globals.shape_generated.connect(
 		func(i):
 			_update_metric_values()
 	)
 
-	image_generation.generation_cleared.connect(
+	Globals.generation_cleared.connect(
 		func():
 			_update_metric_values()
 	)
-	image_generation.generation_started.connect(
+	Globals.generation_started.connect(
 		func():
 			_clock = Clock.new()
 			weight_texture_rect.visible = true
 	)
 	
-	image_generation.generation_finished.connect(
+	Globals.generation_finished.connect(
 		func():
 			_clock = null
 			weight_texture_rect.visible = false
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	if not visible:
 		return
 		
-	var details: ImageGenerationDetails = image_generation.image_generation_details
+	var details: ImageGenerationDetails = Globals.image_generation_details
 	shape_count_value_label.text = str(details.shapes.size())
 	executions_count_value_label.text = str(details.executed_count)
 	

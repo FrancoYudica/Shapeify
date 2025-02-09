@@ -55,9 +55,8 @@ bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 [node name="ImageGeneration" type="Node"]
 script = ExtResource("1_h14uf")
 
-[node name="OutputTextureHolder" type="Node" parent="." node_paths=PackedStringArray("image_generation")]
+[node name="OutputTextureHolder" type="Node" parent="."]
 script = ExtResource("9_hlcsw")
-image_generation = NodePath("..")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -193,7 +192,7 @@ icon_alignment = 1
 script = ExtResource("19_w0gf2")
 panel = NodePath("../../../../../ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer/ShapesPanel")
 
-[node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
+[node name="SaveButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
 tooltip_text = "Open save image dialog"
 mouse_default_cursor_shape = 2
@@ -201,10 +200,9 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("11_x6vfg")
 icon_alignment = 1
 script = ExtResource("17_38fws")
-image_generation = NodePath("../../../../../../../../..")
 panel = NodePath("../../../../../../../SaveImageDialog")
 
-[node name="AnimationButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation", "panel")]
+[node name="AnimationButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
 tooltip_text = "Open animator"
 mouse_default_cursor_shape = 2
@@ -212,7 +210,6 @@ theme = ExtResource("10_f35ue")
 icon = ExtResource("13_7pxwh")
 icon_alignment = 1
 script = ExtResource("17_38fws")
-image_generation = NodePath("../../../../../../../../..")
 panel = NodePath("../../../../../../../Animator")
 
 [node name="ClearButton" type="Button" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("image_generation")]
@@ -246,7 +243,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="LoadingGeneratingTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2/Control" node_paths=PackedStringArray("image_generation")]
+[node name="LoadingGeneratingTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2/Control"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 1
@@ -266,7 +263,6 @@ texture = ExtResource("52_wmemr")
 expand_mode = 3
 stretch_mode = 5
 script = ExtResource("24_q3gvo")
-image_generation = NodePath("../../../../../../../../../..")
 
 [node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Panel/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2" node_paths=PackedStringArray("image_generation")]
 layout_mode = 2
@@ -312,13 +308,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer" node_paths=PackedStringArray("image_generation", "gd_shape_renderer")]
+[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer" node_paths=PackedStringArray("gd_shape_renderer")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_x2ckf")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("23_ckw05")
-image_generation = NodePath("../../../../../../../../../..")
 gd_shape_renderer = NodePath("GodotShapeRenderer")
 
 [node name="GodotShapeRenderer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("23_il15v")]
@@ -369,7 +364,7 @@ target_image_loader = NodePath("../TargetImageLoader")
 script = ExtResource("28_xgafg")
 image_generation = NodePath("../../../../../../../../../..")
 
-[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer" node_paths=PackedStringArray("image_generation")]
+[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Input texture.
@@ -377,7 +372,6 @@ Drag and drop anywhere to update it"
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("14_dr8w1")
-image_generation = NodePath("../../../../../../../../../..")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
 layout_mode = 2
@@ -436,11 +430,10 @@ visible = false
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="Animator" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("_image_generation") instance=ExtResource("46_2ayc0")]
+[node name="Animator" parent="UICanvasLayer/Panel" instance=ExtResource("46_2ayc0")]
 layout_mode = 1
-_image_generation = NodePath("../../..")
 
-[node name="StoppingGenerationPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("image_generation")]
+[node name="StoppingGenerationPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -450,7 +443,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("50_3wht3")
 script = ExtResource("51_xqa51")
-image_generation = NodePath("../../..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Panel/StoppingGenerationPanelContainer"]
 layout_mode = 2
@@ -487,10 +479,9 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
-[node name="SaveImageDialog" parent="UICanvasLayer/Panel" node_paths=PackedStringArray("image_generation") instance=ExtResource("51_r3i0d")]
+[node name="SaveImageDialog" parent="UICanvasLayer/Panel" instance=ExtResource("51_r3i0d")]
 visible = false
 layout_mode = 1
-image_generation = NodePath("../../..")
 
 [node name="InfoNotificationPanel" parent="UICanvasLayer/Panel" instance=ExtResource("48_a87i4")]
 visible = false

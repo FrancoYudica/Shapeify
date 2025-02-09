@@ -1,8 +1,6 @@
 extends OptionButton
 
 
-@export var image_generation: Node
-
 var _params : ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params

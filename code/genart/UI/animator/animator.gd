@@ -5,11 +5,9 @@ signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
 
-@export var _image_generation: Node
-
 var image_generation_details: ImageGenerationDetails:
 	get:
-		return _image_generation.image_generation_details
+		return Globals.image_generation_details
 		
 var animation_player: ShapeAnimationPlayer
 

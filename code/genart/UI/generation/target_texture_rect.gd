@@ -1,14 +1,15 @@
 extends TextureRect
 
-@export var image_generation: Node
-
 var _image_generator_params: ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params 
 
 func _ready() -> void:
 	_update_target_texture()
-	image_generation.target_texture_updated.connect(_target_texture_updated)
+	Globals.target_texture_updated.connect(_target_texture_updated)
+
+func _exit_tree() -> void:
+	_free_texture()
 
 func _target_texture_updated() -> void:
 
