@@ -14,6 +14,7 @@ config/name="Genart"
 run/main_scene="res://UI/image_generation.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
+run/low_processor_mode=true
 boot_splash/image="res://art/textures/genart_icon/sizes/genart_icon_256x256.png"
 boot_splash/fullsize=false
 config/icon="res://art/textures/genart_icon/genart_icon.svg"
