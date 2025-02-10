@@ -5,11 +5,11 @@ func _ready() -> void:
 	
 	visible = false
 	
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			visible = true
 	)
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			visible = false
 	)

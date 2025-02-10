@@ -15,22 +15,22 @@ var _clock: Clock
 func _ready() -> void:
 	weight_texture_rect.visible = false
 	
-	Globals.shape_generated.connect(
+	ImageGeneration.shape_generated.connect(
 		func(i):
 			_update_metric_values()
 	)
 
-	Globals.generation_cleared.connect(
+	ImageGeneration.generation_cleared.connect(
 		func():
 			_update_metric_values()
 	)
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			_clock = Clock.new()
 			weight_texture_rect.visible = true
 	)
 	
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			_clock = null
 			weight_texture_rect.visible = false

@@ -2,11 +2,11 @@ extends Button
 
 func _ready() -> void:
 	
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			disabled = true
 	)
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			disabled = false
 	)

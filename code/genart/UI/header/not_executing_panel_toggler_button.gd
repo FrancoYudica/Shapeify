@@ -11,12 +11,12 @@ func _ready() -> void:
 			panel.visible = not panel.visible
 	)
 	
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			disabled = false
 	)
 	
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			disabled = true
 	)

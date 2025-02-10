@@ -1,12 +1,5 @@
 extends Node
 
-signal generation_started
-signal generation_finished
-signal shape_generated(shape: Shape)
-signal target_texture_updated
-signal generation_cleared
-signal weight_texture_updated(weight_texture: RendererTexture)
-
 signal image_generator_params_updated
 
 var settings: AppSettings

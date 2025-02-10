@@ -3,7 +3,7 @@ extends Node
 var weight_texture: Texture2DRD
 
 func _ready() -> void:
-	Globals.weight_texture_updated.connect(_copy_texture_contents)
+	ImageGeneration.weight_texture_updated.connect(_copy_texture_contents)
 
 func _exit_tree() -> void:
 	_free_weight_texture()

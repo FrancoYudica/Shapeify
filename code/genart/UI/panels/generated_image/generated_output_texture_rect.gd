@@ -3,18 +3,18 @@ extends TextureRect
 @export var gd_shape_renderer: SubViewport
 
 func _ready() -> void:
-	Globals.target_texture_updated.connect(_clear_shapes)
-	Globals.generation_cleared.connect(_clear_shapes)
-	Globals.generation_started.connect(
+	ImageGeneration.target_texture_updated.connect(_clear_shapes)
+	ImageGeneration.generation_cleared.connect(_clear_shapes)
+	ImageGeneration.generation_started.connect(
 		func():
 			# Connects signal directly to the image generator. This will run in the
 			# algorithm thread, slowing it down by the texture copy time. 
-			Globals.shape_generated.connect(_shape_generated)
+			ImageGeneration.shape_generated.connect(_shape_generated)
 			
 	)
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
-			Globals.shape_generated.disconnect(_shape_generated)
+			ImageGeneration.shape_generated.disconnect(_shape_generated)
 	)
 	texture.viewport_path = gd_shape_renderer.get_path()
 	

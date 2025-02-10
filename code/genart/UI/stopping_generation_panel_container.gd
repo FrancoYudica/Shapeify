@@ -5,7 +5,7 @@ func _ready() -> void:
 	
 	visible = false
 	
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			visible = false
 	)

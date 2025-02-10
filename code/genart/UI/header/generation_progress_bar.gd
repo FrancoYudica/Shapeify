@@ -12,12 +12,12 @@ func _ready() -> void:
 	
 	visible = false
 	
-	Globals.shape_generated.connect(
+	ImageGeneration.shape_generated.connect(
 		func(shape):
 			generated_shape_count += 1
 	)
 	
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			value = 0.0
 			generation_time = 0.0
@@ -25,7 +25,7 @@ func _ready() -> void:
 			elapsed_time_label.visible = true
 			visible = true
 	)
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			visible = false
 	)

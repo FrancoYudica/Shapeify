@@ -6,7 +6,7 @@ var _image_generator_params: ImageGeneratorParams:
 
 func _ready() -> void:
 	_update_target_texture()
-	Globals.target_texture_updated.connect(_target_texture_updated)
+	ImageGeneration.target_texture_updated.connect(_target_texture_updated)
 
 func _exit_tree() -> void:
 	_free_texture()

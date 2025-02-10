@@ -1,16 +1,45 @@
 extends Node
 
+signal generation_started
+signal generation_finished
+signal shape_generated(shape: Shape)
+signal target_texture_updated
+signal generation_cleared
+signal weight_texture_updated(weight_texture: RendererTexture)
+
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 
 ## This method is called from the root of the application to ensure that all the nodes are ready
 ## to receive signals
 func application_ready() -> void:
-	_setup_references()
-	Globals.image_generator_params_updated.connect(image_generator.setup)
+	# Image generator
+	image_generator = ImageGenerator.new()
+	image_generator.shape_generated.connect(
+		func(shape): 
+			call_deferred("_emit_shape_generated_signal", shape))
 
+	refresh_target_texture()
+	
+	image_generator.weight_texture_updated.connect(
+		func(t):
+			weight_texture_updated.emit(t))
+	
 func clear_progress():
-	_clear_image_generation_details()
+	var params := Globals.settings.image_generator_params
+	
+	# Creates clear color strategy
+	var clear_color_strategy = ClearColorStrategy.factory_create(params.clear_color_type)
+	clear_color_strategy.sample_texture = params.target_texture
+	clear_color_strategy.set_params(params.clear_color_params)
+	
+	# Crates new ImageGenerationDetails
+	details = ImageGenerationDetails.new()
+	details.clear_color = clear_color_strategy.get_clear_color()
+	details.viewport_size = params.target_texture.get_size()
+	
+	# Creates to image texture and then to RD local texture
+	generation_cleared.emit()
 
 func generate() -> void:
 	
@@ -24,7 +53,7 @@ func generate() -> void:
 		Notifier.notify_warning("Unable to begin generation without textures.")
 		return
 
-	Globals.generation_started.emit()
+	generation_started.emit()
 	# Executes the generation in another thread to avoild locking the UI
 	WorkerThreadPool.add_task(_begin_image_generation)
 
@@ -33,23 +62,11 @@ func stop():
 
 func refresh_target_texture():
 	clear_progress()
-	Globals.target_texture_updated.emit()
+	target_texture_updated.emit()
 	
-func _setup_references():
-	# Image generator
-	image_generator = ImageGenerator.new()
-	image_generator.shape_generated.connect(
-		func(shape): 
-			call_deferred("_emit_shape_generated_signal", shape))
-	refresh_target_texture()
-	
-	image_generator.weight_texture_updated.connect(
-		func(t):
-			Globals.weight_texture_updated.emit(t))
-			
 func _emit_shape_generated_signal(shape: Shape):
 	details.shapes.append(shape)
-	Globals.shape_generated.emit(shape)
+	shape_generated.emit(shape)
 
 func _begin_image_generation():
 	var clock := Clock.new()
@@ -69,22 +86,4 @@ func _begin_image_generation():
 	var output_texture = image_generator.generate_image(source_texture)
 	details.time_taken_ms += clock.elapsed_ms()
 	
-	Globals.call_deferred("emit_signal", "generation_finished")
-	
-	
-func _clear_image_generation_details():
-	
-	var params := Globals.settings.image_generator_params
-	
-	var clear_color_strategy = ClearColorStrategy.factory_create(params.clear_color_type)
-	clear_color_strategy.sample_texture = params.target_texture
-	clear_color_strategy.set_params(params.clear_color_params)
-
-	details.time_taken_ms = 0.0
-	details.executed_count = 0
-	details.shapes.clear()
-	details.clear_color = clear_color_strategy.get_clear_color()
-	details.viewport_size = params.target_texture.get_size()
-	
-	# Creates to image texture and then to RD local texture
-	Globals.generation_cleared.emit()
+	call_deferred("emit_signal", "generation_finished")

@@ -7,11 +7,11 @@ var _image_generator_params: ImageGeneratorParams:
 var _generating = false
 
 func _ready() -> void:
-	Globals.generation_started.connect(
+	ImageGeneration.generation_started.connect(
 		func():
 			_generating = true
 	)
-	Globals.generation_finished.connect(
+	ImageGeneration.generation_finished.connect(
 		func():
 			_generating = false
 	)
