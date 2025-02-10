@@ -15,8 +15,9 @@ func _process(delta: float) -> void:
 
 func _animated_shapes(shapes: Array[Shape]):
 	
-	# Updates the details shapes
 	var raw_details = animator.image_generation_details.copy()
+	
+	# Updates the details shapes
 	raw_details.shapes = shapes
 	
 	# Prepares details
@@ -25,8 +26,6 @@ func _animated_shapes(shapes: Array[Shape]):
 		0,
 		Globals.settings.color_post_processing_pipeline_params.shader_params
 	)
-	
-	processed_details.viewport_size = animator.image_generation_details.viewport_size
 	
 	# Renders the image
 	ImageGenerationRenderer.render_image_generation(Renderer, processed_details)

@@ -431,6 +431,7 @@ custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
 [node name="Animator" parent="UICanvasLayer/Panel" instance=ExtResource("46_2ayc0")]
+visible = false
 layout_mode = 1
 
 [node name="StoppingGenerationPanelContainer" type="PanelContainer" parent="UICanvasLayer/Panel"]

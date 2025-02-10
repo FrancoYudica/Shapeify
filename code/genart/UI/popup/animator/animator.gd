@@ -5,6 +5,8 @@ signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
 
+@export var output_texture_panel_container: Control
+
 var image_generation_details: ImageGenerationDetails:
 	get:
 		return Globals.image_generation_details
@@ -26,6 +28,10 @@ func _ready() -> void:
 	)
 
 func play_animation(start_t: float):
+	
+	# Creates a local copy, since attributes get modified
+	image_generation_details = Globals.image_generation_details.copy()
+
 	_tween = create_tween()
 	var remaining = 1.0 - start_t
 	_tween.tween_method(_interpolate, start_t, 1.0, remaining * duration)
@@ -39,7 +45,15 @@ func play_animation(start_t: float):
 
 
 func _interpolate(t: float):
+
+	# The viewport size is scaled to fit into the animator
+	var src_size = image_generation_details.viewport_size
+	var aspect_ratio = float(src_size.x) / src_size.y
+	image_generation_details.viewport_size = Vector2i(
+		output_texture_panel_container.size.y * aspect_ratio, 
+		output_texture_panel_container.size.y)
 	
+	# Animates current frame
 	var animated_shapes = animation_player.animate(
 		image_generation_details.shapes, 
 		t)

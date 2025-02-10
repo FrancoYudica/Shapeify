@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c46kw3qtcbjh0"]
+[gd_scene load_steps=25 format=3 uid="uid://c46kw3qtcbjh0"]
 
 [ext_resource type="Script" path="res://UI/popup/animator/animator.gd" id="1_r8qxr"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="2_arjf1"]
@@ -6,6 +6,8 @@
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="2_rlkso"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="4_5mbtv"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="4_7k4h5"]
+[ext_resource type="Script" path="res://UI/utils/visible_on_panel_hover.gd" id="7_k8503"]
+[ext_resource type="Script" path="res://UI/popup/animator/resolution_label.gd" id="7_wuge1"]
 [ext_resource type="Script" path="res://UI/popup/animator/progress_slider.gd" id="8_aiw40"]
 [ext_resource type="Script" path="res://UI/popup/animator/settings_grid_container.gd" id="8_lr1wo"]
 [ext_resource type="Script" path="res://UI/popup/animator/play_stop_texture_button.gd" id="8_y67us"]
@@ -35,8 +37,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="Animator" type="MarginContainer"]
-visible = false
+[node name="Animator" type="MarginContainer" node_paths=PackedStringArray("output_texture_panel_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,6 +46,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 script = ExtResource("1_r8qxr")
+output_texture_panel_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TexturePanelContainer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -98,6 +100,24 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_bu1eh")
 animator = NodePath("../../../../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TexturePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TexturePanelContainer/MarginContainer" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("7_wuge1")
+animator = NodePath("../../../../../../../..")
+
+[node name="VisibleOnPanelHover" type="Node" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TexturePanelContainer/MarginContainer" node_paths=PackedStringArray("panel")]
+script = ExtResource("7_k8503")
+panel = NodePath("../..")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
