@@ -1,7 +1,5 @@
 extends Node
 
-@export var image_generation: Node
-
 var _image_generator_params: ImageGeneratorParams:
 	get:
 		return Globals.settings.image_generator_params 
@@ -76,4 +74,4 @@ func load_target_image_from_filepath(filepath: String) -> void:
 		return
 	
 	_image_generator_params.target_texture = renderer_texture
-	image_generation.refresh_target_texture()
+	ImageGeneration.refresh_target_texture()

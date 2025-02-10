@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Genart"
-run/main_scene="res://UI/image_generation.tscn"
+run/main_scene="res://UI/genart.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 run/low_processor_mode=true
@@ -26,6 +26,7 @@ Notifier="*res://UI/utils/notifier.gd"
 Renderer="*res://renderer/renderer.gd"
 Globals="*res://globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
+ImageGeneration="*res://UI/image_generation.gd"
 
 [display]
 

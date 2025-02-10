@@ -1,7 +1,5 @@
 extends Button
 
-@export var image_generation: Node
-
 func _ready() -> void:
 	
 	Globals.generation_started.connect(
@@ -13,4 +11,4 @@ func _ready() -> void:
 			visible = true
 	)
 	
-	pressed.connect(image_generation.generate)
+	pressed.connect(ImageGeneration.generate)

@@ -1,7 +1,5 @@
 extends Button
 
-
-@export var image_generation: Node
 @export var stopping_notification: Control
 
 func _ready() -> void:
@@ -21,4 +19,4 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	stopping_notification.visible = true
-	image_generation.stop()
+	ImageGeneration.stop()

@@ -4,6 +4,12 @@ var image_generator: ImageGenerator
 
 var _clear_color_strategy: ClearColorStrategy
 
+## This method is called from the root of the application to ensure that all the nodes are ready
+## to receive signals
+func application_ready() -> void:
+	_setup_references()
+	Globals.image_generator_params_updated.connect(image_generator.setup)
+
 func clear_progress():
 	_clear_image_generation_details()
 
@@ -29,20 +35,14 @@ func stop():
 func refresh_target_texture():
 	clear_progress()
 	Globals.target_texture_updated.emit()
-
-func _ready() -> void:
-	_setup_references()
-	Globals.image_generator_params_updated.connect(image_generator.setup)
 	
 func _setup_references():
 	# Image generator
 	image_generator = ImageGenerator.new()
-	image_generator.params = Globals.settings.image_generator_params
 	image_generator.shape_generated.connect(
 		func(shape): 
 			call_deferred("_emit_shape_generated_signal", shape))
-	image_generator.setup()
-	clear_progress()
+	refresh_target_texture()
 	
 	image_generator.weight_texture_updated.connect(
 		func(t):

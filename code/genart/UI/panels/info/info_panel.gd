@@ -1,6 +1,5 @@
 extends PanelContainer
 
-@export var image_generation: Node
 @export var output_texture_holder: Node
 
 @export var shape_count_value_label: Label
@@ -69,5 +68,5 @@ func _ms_to_str(milliseconds: int) -> String:
 		return "%s ms" % ms
 
 func _update_metric_values():
-	metric_score_label.text = "%.6f" % image_generation.image_generator.metric_value
-	similarity_score_label.text = "%.6f" % image_generation.image_generator.similarity
+	metric_score_label.text = "%.6f" % ImageGeneration.image_generator.metric_value
+	similarity_score_label.text = "%.6f" % ImageGeneration.image_generator.similarity
