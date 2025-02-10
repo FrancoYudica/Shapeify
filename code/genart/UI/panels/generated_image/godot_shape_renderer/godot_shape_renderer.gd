@@ -59,6 +59,7 @@ func add_shape(shape: Shape):
 	var gd_shape = _gd_shape.instantiate()
 	gd_shape.from_shape(processed_shape, _texture_map[processed_shape.texture.rd_rid])
 	shapes_container.add_child(gd_shape)
+	gd_shape.update()
 	render_target_update_mode = SubViewport.UPDATE_ONCE
 
 func _post_processing_updated():
