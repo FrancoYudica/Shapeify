@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	if not visible:
 		return
 		
-	var details: ImageGenerationDetails = Globals.image_generation_details
+	var details: ImageGenerationDetails = ImageGeneration.details
 	shape_count_value_label.text = str(details.shapes.size())
 	executions_count_value_label.text = str(details.executed_count)
 	

@@ -10,7 +10,6 @@ signal weight_texture_updated(weight_texture: RendererTexture)
 signal image_generator_params_updated
 
 var settings: AppSettings
-var image_generation_details := ImageGenerationDetails.new()
 
 func save():
 	ResourceSaver.save(settings, "user://genart_settings.tres")

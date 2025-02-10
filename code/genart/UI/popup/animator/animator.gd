@@ -9,7 +9,7 @@ signal animation_finished
 
 var image_generation_details: ImageGenerationDetails:
 	get:
-		return Globals.image_generation_details
+		return ImageGeneration.details
 		
 var animation_player: ShapeAnimationPlayer
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 func play_animation(start_t: float):
 	
 	# Creates a local copy, since attributes get modified
-	image_generation_details = Globals.image_generation_details.copy()
+	image_generation_details = ImageGeneration.details.copy()
 
 	_tween = create_tween()
 	var remaining = 1.0 - start_t
