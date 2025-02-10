@@ -13,23 +13,25 @@ var settings: AppSettings
 var image_generation_details := ImageGenerationDetails.new()
 
 func save():
-	ResourceSaver.save(settings, "user://settings.tres")
+	ResourceSaver.save(settings, "user://genart_settings.tres")
 
 func _init() -> void:
 	
 	var default_settings: AppSettings = load("res://settings/default_settings.tres")
 	
 	# The first time loads the default settings
-	if not ResourceLoader.exists("user://settings.tres"):
+	if not ResourceLoader.exists("user://genart_settings.tres"):
 		settings = default_settings
 	else:
 		
 		#  Loads settings from user path
-		settings = load("user://settings.tres")
+		var user_settings = load("user://genart_settings.tres")
 		
 		# If the versions doesn't match, overrides with default settings
 		if settings == null or settings.version != default_settings.version:
 			settings = default_settings
+		else:
+			settings = user_settings
 	
 	settings.setup_signals()
 	
