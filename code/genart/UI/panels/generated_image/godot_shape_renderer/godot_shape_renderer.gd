@@ -57,8 +57,8 @@ func add_shape(shape: Shape):
 			)
 			
 	var gd_shape = _gd_shape.instantiate()
-	gd_shape.from_shape(processed_shape, _texture_map[processed_shape.texture.rd_rid])
 	shapes_container.add_child(gd_shape)
+	gd_shape.from_shape(processed_shape, _texture_map[processed_shape.texture.rd_rid])
 	gd_shape.update()
 	render_target_update_mode = SubViewport.UPDATE_ONCE
 
@@ -79,16 +79,20 @@ func _post_processing_updated():
 		var gd_shape = shapes_container.get_child(i)
 		var shape = processed_details.shapes[i]
 		gd_shape.from_shape(shape, _texture_map[shape.texture.rd_rid])
+		gd_shape.update()
 	
 	# Updates clear color
 	color_rect.color = processed_details.clear_color
+	render_target_update_mode = SubViewport.UPDATE_ONCE
+	
 	
 func _exit_tree() -> void:
 	clear()
 
 func _process(delta: float) -> void:
-	# Updates the position and size of all the shapes only when the sub viewport updates
-	# it's render target
-	if render_target_update_mode == SubViewport.UPDATE_ONCE:
-		for gd_shape in shapes_container.get_children():
-			gd_shape.update()
+	## Updates the position and size of all the shapes only when the sub viewport updates
+	## it's render target
+	#if render_target_update_mode == SubViewport.UPDATE_ONCE:
+		#for gd_shape in shapes_container.get_children():
+			#gd_shape.update()
+	pass

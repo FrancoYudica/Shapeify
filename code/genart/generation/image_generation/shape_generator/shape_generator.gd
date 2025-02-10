@@ -28,10 +28,7 @@ func setup() -> void:
 		return
 
 	Profiler.shape_generation_began(params)
-
-	var clock := Clock.new()
 	_setup()
-	print("Setup: %s" % clock.elapsed_ms())
 	
 func finished() -> void:
 	_color_sampler_strategy = null
