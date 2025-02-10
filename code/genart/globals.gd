@@ -18,6 +18,7 @@ func save():
 func _init() -> void:
 	
 	var default_settings: AppSettings = load("res://settings/default_settings.tres")
+	default_settings.image_generator_params = load("res://settings/image_generator_params/fast_image_generator_params.tres")
 	
 	# The first time loads the default settings
 	if not ResourceLoader.exists("user://genart_settings.tres"):

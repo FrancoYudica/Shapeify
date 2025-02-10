@@ -1,26 +1,13 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=104 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=79 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_waj48"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
 [ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_h2i7s"]
-[ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="4_mkkkp"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="5_1ldw3"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="6_5d6g0"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="7_2v1ua"]
-[ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="9_l7xcl"]
-[ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_mxc8r"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="10_t1ypc"]
 [ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/textures/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
-[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_ovpig"]
-[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="13_hyl8u"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="13_pyaws"]
 [ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/textures/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="14_8u5iy"]
 [ext_resource type="Texture2D" uid="uid://6vk4tcoal0tn" path="res://art/textures/individual_textures_group/brush_strokes/brush_2.png" id="14_c4yru"]
 [ext_resource type="Texture2D" uid="uid://bwhsec413qhqh" path="res://art/textures/individual_textures_group/brush_strokes/brush_3.png" id="15_5lylu"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="15_rds8n"]
 [ext_resource type="Texture2D" uid="uid://bowxgsm5us68n" path="res://art/textures/individual_textures_group/brush_strokes/brush_4.png" id="16_jsm3k"]
 [ext_resource type="Texture2D" uid="uid://dk0l86ekr55xe" path="res://art/textures/individual_textures_group/circular_shapes/capsule.png" id="17_qlpu2"]
 [ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/circular_shapes/circle.png" id="18_04xxk"]
@@ -85,94 +72,6 @@
 script = ExtResource("1_waj48")
 shader_params = Array[ExtResource("2_h2i7s")]([])
 
-[sub_resource type="Resource" id="Resource_yhknk"]
-script = ExtResource("2_oxdqy")
-color = Color(0, 0, 0, 1)
-
-[sub_resource type="Resource" id="Resource_l52y4"]
-script = ExtResource("4_mkkkp")
-shape_count = 300
-fitness_calculator = 1
-
-[sub_resource type="Resource" id="Resource_yvtaw"]
-script = ExtResource("6_5d6g0")
-elitisim_rate = 0.25
-tournament_size = 10
-
-[sub_resource type="Resource" id="Resource_w2ugy"]
-script = ExtResource("5_1ldw3")
-generation_count = 15
-population_size = 60
-fitness_calculator = 1
-mutation_rate = 0.2
-mutation_factor = 1.0
-selection_strategy = 0
-crossover_strategy = 3
-mutation_strategy = 1
-survivor_selection_strategy = 1
-survivor_selection_params = SubResource("Resource_yvtaw")
-
-[sub_resource type="Resource" id="Resource_e0mao"]
-script = ExtResource("7_2v1ua")
-max_age = 20
-random_restart_count = 6
-initial_random_samples = 10
-fitness_calculator = 1
-
-[sub_resource type="Resource" id="Resource_yrib8"]
-script = ExtResource("14_8u5iy")
-
-[sub_resource type="Resource" id="Resource_videf"]
-script = ExtResource("15_rds8n")
-
-[sub_resource type="Resource" id="Resource_7sst7"]
-script = ExtResource("13_pyaws")
-shape_position_initializer_type = 1
-shape_size_initializer_type = 2
-shape_rotation_initializer_type = 0
-shape_tint_initializer_type = 0
-shape_texture_initializer_type = 0
-shape_position_initializer_params = SubResource("Resource_yrib8")
-shape_texture_initializer_params = SubResource("Resource_videf")
-textures = Array[ExtResource("13_hyl8u")]([])
-
-[sub_resource type="Resource" id="Resource_5s6rj"]
-script = ExtResource("10_t1ypc")
-color_sampler = 1
-keep_aspect_ratio = true
-clamp_position_in_canvas = true
-fixed_rotation = false
-fixed_rotation_angle = 0.0
-fixed_size = false
-fixed_size_width_ratio = 0.1
-best_of_random_params = SubResource("Resource_l52y4")
-genetic_params = SubResource("Resource_w2ugy")
-hill_climbing_params = SubResource("Resource_e0mao")
-shape_spawner_params = SubResource("Resource_7sst7")
-
-[sub_resource type="Resource" id="Resource_vnspm"]
-script = ExtResource("10_mxc8r")
-shape_count = 200
-execution_time = 100.0
-target_fitness = 0.9
-metric_type = 4
-
-[sub_resource type="Resource" id="Resource_bec32"]
-script = ExtResource("12_ovpig")
-weight_texture_generator_type = 2
-
-[sub_resource type="Resource" id="Resource_ej335"]
-script = ExtResource("9_l7xcl")
-type = 1
-shape_generator_params = SubResource("Resource_5s6rj")
-shape_generator_type = 3
-stop_condition = 0
-stop_condition_params = SubResource("Resource_vnspm")
-clear_color_type = 0
-clear_color_params = SubResource("Resource_yhknk")
-weight_texture_generator_params = SubResource("Resource_bec32")
-render_scale = 0.5
-
 [sub_resource type="Resource" id="Resource_qsjoh"]
 script = ExtResource("11_f4wjl")
 name = "Brush strokes"
@@ -225,8 +124,7 @@ textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), Ext
 
 [resource]
 script = ExtResource("39_t5xji")
-version = "1.0.0"
-image_generator_params = SubResource("Resource_ej335")
+version = "2.0.0"
 color_post_processing_pipeline_params = SubResource("Resource_1se8m")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
