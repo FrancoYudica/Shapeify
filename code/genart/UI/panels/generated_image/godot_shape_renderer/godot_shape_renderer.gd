@@ -21,6 +21,12 @@ func _ready() -> void:
 		func():
 			render_target_update_mode = SubViewport.UPDATE_DISABLED
 	)
+	
+	size_changed.connect(
+		func():
+			render_target_update_mode = SubViewport.UPDATE_ONCE
+	)
+	
 
 func clear():
 	shapes.clear()
@@ -92,7 +98,6 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	## Updates the position and size of all the shapes only when the sub viewport updates
 	## it's render target
-	#if render_target_update_mode == SubViewport.UPDATE_ONCE:
-		#for gd_shape in shapes_container.get_children():
-			#gd_shape.update()
-	pass
+	if render_target_update_mode == SubViewport.UPDATE_ONCE:
+		for gd_shape in shapes_container.get_children():
+			gd_shape.update()

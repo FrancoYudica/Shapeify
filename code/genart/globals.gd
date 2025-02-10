@@ -91,6 +91,8 @@ func image_generator_params_set_preset(preset_type: ImageGeneratorParams.Type):
 	# Loads any of the presets and duplicates
 	var preset: ImageGeneratorParams = null
 	match preset_type:
+		ImageGeneratorParams.Type.SUPER_FAST:
+			preset = load("res://settings/image_generator_params/super_fast_image_generator_params.tres").duplicate(true)
 		ImageGeneratorParams.Type.FAST:
 			preset = load("res://settings/image_generator_params/fast_image_generator_params.tres").duplicate(true)
 		ImageGeneratorParams.Type.PERFORMANCE:

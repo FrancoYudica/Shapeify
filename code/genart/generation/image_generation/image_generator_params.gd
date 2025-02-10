@@ -3,6 +3,7 @@ class_name ImageGeneratorParams extends Resource
 enum Type
 {
 	CUSTOM,
+	SUPER_FAST,
 	FAST,
 	PERFORMANCE,
 	QUALITY

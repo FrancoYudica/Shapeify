@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=26 format=3 uid="uid://1ex8uixg8r05"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=25 format=3 uid="uid://1ex8uixg8r05"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_nomoq"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_8vin2"]
@@ -48,13 +48,8 @@ random_restart_count = 6
 initial_random_samples = 10
 fitness_calculator = 1
 
-[sub_resource type="Resource" id="Resource_oyre4"]
-script = ExtResource("11_tvd45")
-weight_texture_generator_type = 2
-
 [sub_resource type="Resource" id="Resource_ibrwy"]
 script = ExtResource("10_1qcb8")
-weight_texture_generator_params = SubResource("Resource_oyre4")
 
 [sub_resource type="Resource" id="Resource_v63d0"]
 script = ExtResource("12_vd1vx")
@@ -97,7 +92,7 @@ weight_texture_generator_type = 2
 
 [resource]
 script = ExtResource("2_8vin2")
-type = 2
+type = 3
 shape_generator_params = SubResource("Resource_a82k2")
 shape_generator_type = 3
 stop_condition = 0
