@@ -15,7 +15,12 @@ var shape_count: int:
 		return shapes_container.get_child_count()
 
 func _ready() -> void:
-	Globals.settings.color_post_processing_pipeline_params.changed.connect(_update_post_process)
+	Globals.settings.color_post_processing_pipeline_params.changed.connect(_post_processing_updated)
+
+	RenderingServer.frame_post_draw.connect(
+		func():
+			render_target_update_mode = SubViewport.UPDATE_DISABLED
+	)
 
 func clear():
 	shapes.clear()
@@ -32,7 +37,8 @@ func clear():
 
 	_texture_map.clear()
 
-	_update_post_process()
+	_post_processing_updated()
+	render_target_update_mode = SubViewport.UPDATE_ONCE
 
 
 func add_shape(shape: Shape):
@@ -52,10 +58,10 @@ func add_shape(shape: Shape):
 			
 	var gd_shape = _gd_shape.instantiate()
 	gd_shape.from_shape(processed_shape, _texture_map[processed_shape.texture.rd_rid])
-	shapes_container.call_deferred("add_child", gd_shape)
+	shapes_container.add_child(gd_shape)
+	render_target_update_mode = SubViewport.UPDATE_ONCE
 
-
-func _update_post_process():
+func _post_processing_updated():
 	
 	# Process
 	var details = ImageGenerationDetails.new()
@@ -78,3 +84,10 @@ func _update_post_process():
 	
 func _exit_tree() -> void:
 	clear()
+
+func _process(delta: float) -> void:
+	# Updates the position and size of all the shapes only when the sub viewport updates
+	# it's render target
+	if render_target_update_mode == SubViewport.UPDATE_ONCE:
+		for gd_shape in shapes_container.get_children():
+			gd_shape.update()

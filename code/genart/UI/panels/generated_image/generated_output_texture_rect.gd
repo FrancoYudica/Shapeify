@@ -17,7 +17,7 @@ func _ready() -> void:
 			Globals.shape_generated.disconnect(_shape_generated)
 	)
 	texture.viewport_path = gd_shape_renderer.get_path()
-
+	
 func _clear_shapes():
 	gd_shape_renderer.clear_color = Globals.image_generation_details.clear_color
 	gd_shape_renderer.clear()

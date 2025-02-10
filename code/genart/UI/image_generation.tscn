@@ -319,7 +319,7 @@ gd_shape_renderer = NodePath("GodotShapeRenderer")
 [node name="GodotShapeRenderer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("23_il15v")]
 handle_input_locally = false
 size = Vector2i(608, 565)
-render_target_update_mode = 4
+render_target_update_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
 layout_mode = 2

@@ -13,8 +13,7 @@ func from_shape(shape: Shape, gd_texture: Texture2D):
 	texture = gd_texture
 	self_modulate = shape.tint
 
-func _process(_delta: float) -> void:
-	
+func update():
 	# Updates position and size relative to viewport resolution
 	var viewport_size = get_parent().size
 	size = _shape_size * viewport_size
