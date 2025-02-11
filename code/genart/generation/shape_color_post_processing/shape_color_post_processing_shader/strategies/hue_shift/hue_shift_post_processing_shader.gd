@@ -2,8 +2,7 @@ extends ShapeColorPostProcessingShader
 
 var params: HueShiftPostProcessingShaderParams
 
-## Must use local random number generator to avoid messing up the algorithm
-var rng = RandomNumberGenerator.new()
+var _noise_image: Image
 
 func process_color(
 	index: int,
@@ -12,14 +11,30 @@ func process_color(
 	
 	var out_color = Color(shape.tint)
 	
-	rng.seed = index
 	if params.random_shift:
-		out_color.h += (rng.randf() * 2.0 - 1.0) * params.shift
+		var uv = clamp(shape.position, Vector2.ZERO, Vector2.ONE)
+		var noise_pixel = Vector2i(
+			int((_noise_image.get_width() - 1) * uv.x),
+			int((_noise_image.get_height() - 1) * uv.y))
+			
+		var noise_value = _noise_image.get_pixel(noise_pixel.x, noise_pixel.y).r
+
+		out_color.h += (noise_value * 2.0 - 1.0) * params.shift
 		
 	else:
 		out_color.h += params.shift
 	
 	return out_color
-	
+
+
+var _noise_settings: NoiseSettings
+
 func set_params(params: ShapeColorPostProcessingShaderParams):
 	self.params = params.hue_shift_params
+	# Updates noise texture
+	if not self.params.noise_settings.equals(_noise_settings):
+		
+		_noise_settings = self.params.noise_settings.duplicate()
+		var clock: Clock = Clock.new()
+		_noise_image = NoiseSettings.create_fast_noise_image(_noise_settings)
+		clock.print_elapsed("Noise image time taken")

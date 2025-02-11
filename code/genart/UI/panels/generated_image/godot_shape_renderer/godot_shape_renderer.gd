@@ -51,7 +51,7 @@ func add_shape(shape: Shape):
 	shapes.append(shape)
 
 	var post_process_pipeline := ShapeColorPostProcessingPipeline.new()
-	var processed_shape = post_process_pipeline.execute_pipeline_on_one_shape(
+	var processed_shape = await post_process_pipeline.execute_pipeline_on_one_shape(
 		shape,
 		shape_count,
 		0.0,
@@ -75,7 +75,7 @@ func _post_processing_updated():
 	details.shapes = shapes
 	details.clear_color = clear_color
 	
-	var processed_details = ShapeColorPostProcessingPipeline.process_details(
+	var processed_details = await ShapeColorPostProcessingPipeline.process_details(
 		details,
 		0.0,
 		Globals.settings.color_post_processing_pipeline_params.shader_params)

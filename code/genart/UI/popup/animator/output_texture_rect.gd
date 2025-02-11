@@ -21,7 +21,7 @@ func _animated_shapes(shapes: Array[Shape]):
 	raw_details.shapes = shapes
 	
 	# Prepares details
-	var processed_details := ShapeColorPostProcessingPipeline.process_details(
+	var processed_details := await ShapeColorPostProcessingPipeline.process_details(
 		raw_details,
 		0,
 		Globals.settings.color_post_processing_pipeline_params.shader_params

@@ -15,6 +15,13 @@ class_name ShapeColorPostProcessingShaderParams extends Resource
 @export var rgb_shift_params := RGBShiftPostProcessingShaderParams.new()
 
 func setup_signals():
+
+	hue_shift_params.setup_signals()
+	saturation_shift_params.setup_signals()
+	value_shift_params.setup_signals()
+	transparency_params.setup_signals()
+	rgb_shift_params.setup_signals()
+
 	hue_shift_params.changed.connect(emit_changed)
 	saturation_shift_params.changed.connect(emit_changed)
 	value_shift_params.changed.connect(emit_changed)

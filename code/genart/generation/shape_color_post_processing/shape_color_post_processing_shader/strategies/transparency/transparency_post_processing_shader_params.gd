@@ -5,3 +5,7 @@ class_name TransparencyPostProcessingShaderParams extends Resource
 		if value != transparency:
 			transparency = value
 			emit_changed()
+
+
+func setup_signals() -> void:
+	pass
