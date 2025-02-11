@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btrs1qhbtd3bx"]
+[gd_scene load_steps=9 format=3 uid="uid://btrs1qhbtd3bx"]
 
 [ext_resource type="Script" path="res://UI/popup/notification_panels/notification_panel_base.gd" id="1_4cyn7"]
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="2_8v48t"]
@@ -8,9 +8,8 @@
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="5_kwwqe"]
 [ext_resource type="Texture2D" uid="uid://cnh2s8oyof1mc" path="res://art/textures/icons/copy.png" id="6_dg8us"]
 [ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="7_n74ym"]
-[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="8_6bigf"]
 
-[node name="NotificationPanel" type="Control" node_paths=PackedStringArray("message_label", "ok_button", "copy_texture_button")]
+[node name="NotificationPanel" type="Control" node_paths=PackedStringArray("message_label", "ok_button", "copy_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_4cyn7")
 message_label = NodePath("PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/Label")
 ok_button = NodePath("PanelContainer/PanelContainer/MarginContainer/VBoxContainer/OkButton")
-copy_texture_button = NodePath("PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CopyTextureButton")
+copy_button = NodePath("PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CopyButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -92,22 +91,10 @@ layout_mode = 2
 text = "
 "
 
-[node name="CopyTextureButton" type="TextureButton" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(30, 30)
+[node name="CopyButton" type="Button" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("6_dg8us")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Modulate On Hover" type="Control" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CopyTextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("8_6bigf")
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_dg8us")
 
 [node name="OkButton" type="Button" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

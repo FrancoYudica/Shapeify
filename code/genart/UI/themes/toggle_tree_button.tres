@@ -48,6 +48,8 @@ corner_radius_bottom_left = 8
 
 [resource]
 Button/styles/disabled = null
+CheckBox/colors/font_disabled_color = Color(1, 1, 1, 0.498039)
+CheckBox/colors/icon_disabled_color = Color(0.244776, 0.244776, 0.244776, 0.498039)
 CheckBox/fonts/font = ExtResource("1_w00b8")
 CheckBox/icons/checked = ExtResource("1_47743")
 CheckBox/icons/unchecked = ExtResource("2_ow0nk")

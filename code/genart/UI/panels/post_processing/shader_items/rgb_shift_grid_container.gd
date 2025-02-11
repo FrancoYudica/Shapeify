@@ -5,6 +5,7 @@ extends GridContainer
 @export var green_shift_spin_box: SpinBox
 @export var blue_shift_spin_box: SpinBox
 @export var randomize_check_box: CheckBox
+@export var noise_settings_panel: Control
 
 var _params: RGBShiftPostProcessingShaderParams:
 	get:
@@ -33,6 +34,9 @@ func _ready() -> void:
 	randomize_check_box.toggled.connect(
 		func(toggled_on):
 			_params.random_shift = toggled_on
+			noise_settings_panel.disabled = not toggled_on
 	)
-	
 	randomize_check_box.button_pressed = _params.random_shift
+	noise_settings_panel.disabled = not _params.random_shift
+	noise_settings_panel.noise_settings = _params.noise_settings
+	

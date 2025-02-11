@@ -35,6 +35,4 @@ func set_params(params: ShapeColorPostProcessingShaderParams):
 	if not self.params.noise_settings.equals(_noise_settings):
 		
 		_noise_settings = self.params.noise_settings.duplicate()
-		var clock: Clock = Clock.new()
 		_noise_image = NoiseSettings.create_fast_noise_image(_noise_settings)
-		clock.print_elapsed("Noise image time taken")

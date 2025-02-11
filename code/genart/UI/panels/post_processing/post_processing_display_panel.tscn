@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bve6cjoaqrkdp"]
+[gd_scene load_steps=6 format=3 uid="uid://bve6cjoaqrkdp"]
 
 [ext_resource type="PackedScene" uid="uid://qeygpngl8xvw" path="res://UI/panels/panel.tscn" id="1_6cru2"]
 [ext_resource type="Script" path="res://UI/panels/post_processing/post_processing_settings_handler.gd" id="2_flxv2"]
 [ext_resource type="Texture2D" uid="uid://wmnqbeew1f40" path="res://art/textures/icons/post_processing_icon.png" id="3_04qgx"]
 [ext_resource type="Texture2D" uid="uid://cy31h2qbyqyt0" path="res://art/textures/icons/plus.png" id="4_kgv5m"]
-[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="4_xa6dv"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="6_he3w5"]
 
 [node name="PostProcessingDisplayPanel" instance=ExtResource("1_6cru2")]
@@ -32,7 +31,7 @@ size_flags_horizontal = 3
 
 [node name="AddButton" type="Button" parent="MarginContainer/VBoxContainer/AddHBoxContainer" index="1"]
 layout_mode = 2
-theme = ExtResource("4_xa6dv")
+mouse_default_cursor_shape = 2
 icon = ExtResource("4_kgv5m")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" index="2"]
