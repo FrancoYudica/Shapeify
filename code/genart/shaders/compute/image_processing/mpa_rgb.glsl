@@ -37,7 +37,7 @@ void main()
     // Ensure we're within bounds
     if (global_id.x < int(params.texture_size.x) && global_id.y < int(params.texture_size.y)) {
         float mpa = 1.0f - compute_mpa(global_id.x, global_id.y);
-        vec4 output_color = vec4(mpa, 0.0, 0.0, 1.0);
+        vec4 output_color = vec4(mpa, mpa, mpa, 1.0);
         imageStore(output_image, global_id, output_color);
     }
 }

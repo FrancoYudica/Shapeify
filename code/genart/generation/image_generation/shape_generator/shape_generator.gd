@@ -39,9 +39,8 @@ func generate_shape(similarity: float) -> Shape:
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
-	
-	if generated_count % 10 == 0:
-		generated_count += 1
+		
+	if generated_count % 20 == 0:
 		_shape_spawner.update(
 			similarity, 
 			params.target_texture, 
@@ -49,6 +48,8 @@ func generate_shape(similarity: float) -> Shape:
 			weight_texture)
 
 	var shape = _generate(similarity)
+	generated_count += 1
+	
 	Profiler.shape_generation_finished(
 		shape,
 		params.source_texture)
@@ -88,8 +89,8 @@ func _fix_shape_attributes(shape: Shape):
 		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
 		shape.size.y = shape.size.x * target_aspect * texture_aspect
 
-	shape.size.x = max(shape.size.x, 0.0001)
-	shape.size.y = max(shape.size.y, 0.0001)
+	shape.size.x = max(shape.size.x, 0.000001)
+	shape.size.y = max(shape.size.y, 0.000001)
 
 static func factory_create(type: Type):
 	# Setup shape generator -----------------------------------------------

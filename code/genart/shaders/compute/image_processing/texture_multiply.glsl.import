@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bht2n1gkb6b41"
+path="res://.godot/imported/texture_multiply.glsl-4f9bb267977a5d2df0a366d5c0fcf433.res"
+
+[deps]
+
+source_file="res://shaders/compute/image_processing/texture_multiply.glsl"
+dest_files=["res://.godot/imported/texture_multiply.glsl-4f9bb267977a5d2df0a366d5c0fcf433.res"]
+
+[params]
+

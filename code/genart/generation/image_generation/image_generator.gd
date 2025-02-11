@@ -63,7 +63,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		_compute_similarity(target_texture, source_texture)
 		
 		# Generates weight texture every X shapes
-		if iteration % 10 == 0:
+		if iteration % 20 == 0:
 			weight_texture = _weight_texture_generator.generate(
 				similarity,
 				target_texture,

@@ -23,8 +23,11 @@ func generate(
 	progress: float,
 	target_texture: RendererTexture,
 	source_texture: RendererTexture) -> RendererTexture:
-	_gaussian_blur_processor.iterations = int(lerpf(20.0, 1.0, progress))
-	_gaussian_blur_processor.kernel_size = int(lerpf(32, 4, progress))
+		
+	progress = sqrt(progress)
+		
+	_gaussian_blur_processor.iterations = int(lerpf(50.0, 1.0, progress))
+	_gaussian_blur_processor.kernel_size = int(lerpf(64, 4, progress))
 	_gaussian_blur_processor.sigma = 5
 	_sobel_operator_processor.threshold = lerpf(0.0, 0.1, progress)
 	

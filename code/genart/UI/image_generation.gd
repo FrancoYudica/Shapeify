@@ -7,6 +7,8 @@ signal target_texture_updated
 signal generation_cleared
 signal weight_texture_updated(weight_texture: RendererTexture)
 
+signal position_probability_texture_updated(texture: RendererTexture)
+
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 

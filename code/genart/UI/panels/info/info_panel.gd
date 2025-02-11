@@ -9,6 +9,7 @@ extends PanelContainer
 @export var metric_score_label: Label
 @export var similarity_score_label: Label
 @export var weight_texture_rect: TextureRect
+@export var position_probability_texture_rect: TextureRect
 
 var _clock: Clock
 
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 		time_taken_value_label.text = _ms_to_str(details.time_taken_ms)
 	
 	weight_texture_rect.texture = output_texture_holder.weight_texture
+	position_probability_texture_rect.texture = output_texture_holder.position_probability_texture
 	
 func _ms_to_str(milliseconds: int) -> String:
 	var seconds = (milliseconds / 1000) % 60  # Seconds part
