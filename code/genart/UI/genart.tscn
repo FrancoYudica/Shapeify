@@ -410,6 +410,7 @@ output_texture_holder = NodePath("../../../../../../../../OutputTextureHolder")
 
 [node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer" instance=ExtResource("32_v2g6e")]
 visible = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="ShapesPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer" node_paths=PackedStringArray("image_file_dialog", "texture_group_selector") instance=ExtResource("33_d1olh")]

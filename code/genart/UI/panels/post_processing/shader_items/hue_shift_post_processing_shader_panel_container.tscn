@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsv2oego7aax0"]
+[gd_scene load_steps=5 format=3 uid="uid://dsv2oego7aax0"]
 
 [ext_resource type="PackedScene" uid="uid://bpe4gfqmh1r6g" path="res://UI/panels/post_processing/post_processing_shader_panel_container.tscn" id="1_25f6k"]
 [ext_resource type="Script" path="res://UI/panels/post_processing/shader_items/hue_grid_container.gd" id="2_x0oiu"]
+[ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="3_72dyw"]
 [ext_resource type="PackedScene" uid="uid://dxr457fy5eco0" path="res://UI/panels/post_processing/noise_settings_panel_container.tscn" id="3_q2ryo"]
 
 [node name="HUEShiftPostProcessingShaderPanelContainer" instance=ExtResource("1_25f6k")]
@@ -34,6 +35,7 @@ text = "Randomize"
 
 [node name="RandomizeCheckBox" type="CheckBox" parent="VBoxContainer/ContentsMarginContainer/VBoxContainer/GridContainer" index="3"]
 layout_mode = 2
+theme = ExtResource("3_72dyw")
 
 [node name="NoiseSettingsPanelContainer" parent="VBoxContainer/ContentsMarginContainer/VBoxContainer" index="1" instance=ExtResource("3_q2ryo")]
 layout_mode = 2
