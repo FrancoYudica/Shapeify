@@ -37,7 +37,11 @@ enum FramebufferAttachment{
 	COLOR,
 	UID
 }
-	
+
+var is_valid: bool:
+	get:
+		return _pipeline.is_valid() and rd.render_pipeline_is_valid(_pipeline)
+
 func get_attachment_texture(attachment: FramebufferAttachment) -> RendererTexture:
 	return _framebuffer_attachment_textures[attachment]
 
