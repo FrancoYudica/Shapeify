@@ -27,6 +27,7 @@ Renderer="*res://renderer/renderer.gd"
 Globals="*res://globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
 ImageGeneration="*res://UI/image_generation.gd"
+DebugSignals="*res://generation/debug_signals.gd"
 
 [display]
 

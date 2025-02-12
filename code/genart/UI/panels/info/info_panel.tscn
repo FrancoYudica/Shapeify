@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://qeygpngl8xvw" path="res://UI/panels/panel.tscn" id="1_kw27a"]
 [ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="2_8xh0s"]
 [ext_resource type="Script" path="res://UI/panels/info/info_panel.gd" id="2_lkx0d"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="3_qvf2u"]
+[ext_resource type="Script" path="res://UI/panels/info/debug_texture_output_holder.gd" id="4_k1npr"]
 
-[node name="InfoPanel" node_paths=PackedStringArray("shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "weight_texture_rect", "position_probability_texture_rect") instance=ExtResource("1_kw27a")]
+[node name="InfoPanel" node_paths=PackedStringArray("debug_texture_holders", "shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "debug_textures_container") instance=ExtResource("1_kw27a")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,14 +15,14 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_lkx0d")
-shape_count_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/ShapeCountValue")
-current_execution_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/CurrentExecutionTimeValue")
-executions_count_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/ExecutionsCountValue")
-time_taken_value_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/TotalTimeTakenValue")
-metric_score_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/MetricScoreValue")
-similarity_score_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer/SimilarityScoreValue")
-weight_texture_rect = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/WeightTextureVBoxContainer/WeightTextureRect")
-position_probability_texture_rect = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PositionTextureVBoxContainer/PositionProbabilityTextureRect")
+debug_texture_holders = [NodePath("Debug/DebugWeightTextureHolder"), NodePath("Debug/DebugPositionSpawnTextureHolder"), NodePath("Debug/DebugSizeSpawnTextureHolder")]
+shape_count_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/ShapeCountValue")
+current_execution_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/CurrentExecutionTimeValue")
+executions_count_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/ExecutionsCountValue")
+time_taken_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/TotalTimeTakenValue")
+metric_score_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/MetricScoreValue")
+similarity_score_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/SimilarityScoreValue")
+debug_textures_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DebugTexturesVBoxContainer")
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
 texture = ExtResource("2_8xh0s")
@@ -30,131 +30,111 @@ texture = ExtResource("2_8xh0s")
 [node name="TitleLabel" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
 text = "Info"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="0"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="MetricScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="0"]
+[node name="MetricScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="0"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Metric score"
 
-[node name="MetricScoreValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="1"]
+[node name="MetricScoreValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="1"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0.0"
 horizontal_alignment = 2
 
-[node name="SimilarityScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="2"]
+[node name="SimilarityScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="2"]
 layout_mode = 2
 text = "Similarity score"
 
-[node name="SimilarityScoreValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="3"]
+[node name="SimilarityScoreValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0.0"
 horizontal_alignment = 2
 
-[node name="ShapeCountLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="4"]
+[node name="ShapeCountLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="4"]
 layout_mode = 2
 text = "Shape count"
 
-[node name="ShapeCountValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="5"]
+[node name="ShapeCountValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="5"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "400"
 horizontal_alignment = 2
 
-[node name="CurrentExecutionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="6"]
+[node name="CurrentExecutionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="6"]
 layout_mode = 2
 text = "Time taken"
 
-[node name="CurrentExecutionTimeValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="7"]
+[node name="CurrentExecutionTimeValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="7"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "100ms"
 horizontal_alignment = 2
 
-[node name="TotalTimeTakenLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="8"]
+[node name="TotalTimeTakenLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="8"]
 layout_mode = 2
 text = "Total Time taken"
 
-[node name="TotalTimeTakenValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="9"]
+[node name="TotalTimeTakenValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="9"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "100ms"
 horizontal_alignment = 2
 
-[node name="ExecutionsCountLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="10"]
+[node name="ExecutionsCountLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="10"]
 layout_mode = 2
 text = "Executions count"
 
-[node name="ExecutionsCountValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/GridContainer" index="11"]
+[node name="ExecutionsCountValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="11"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "300"
 horizontal_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="1"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 
-[node name="WeightTextureVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="2"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-
-[node name="WeightTextureLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/WeightTextureVBoxContainer" index="0"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Weight texture"
-
-[node name="WeightTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/WeightTextureVBoxContainer" index="1"]
-custom_minimum_size = Vector2(256, 256)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("3_qvf2u")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="3"]
+[node name="DebugTexturesVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 
-[node name="PositionTextureVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="4"]
-layout_mode = 2
-size_flags_vertical = 2
+[node name="Debug" type="Node" parent="." index="1"]
 
-[node name="PositionLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PositionTextureVBoxContainer" index="0"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Spawn position probability"
+[node name="DebugWeightTextureHolder" type="Node" parent="Debug" index="0"]
+script = ExtResource("4_k1npr")
+debug_signal_name = "updated_weight_texture"
+texture_name = "Weight texture"
 
-[node name="PositionProbabilityTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PositionTextureVBoxContainer" index="1"]
-custom_minimum_size = Vector2(256, 256)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("3_qvf2u")
-expand_mode = 1
-stretch_mode = 5
+[node name="DebugPositionSpawnTextureHolder" type="Node" parent="Debug" index="1"]
+script = ExtResource("4_k1npr")
+debug_signal_name = "updated_spawn_position_probability_texture"
+texture_name = "Spawn position probability"
+
+[node name="DebugSizeSpawnTextureHolder" type="Node" parent="Debug" index="2"]
+script = ExtResource("4_k1npr")
+debug_signal_name = "updated_spawn_size_texture"
+texture_name = "Spawn size"

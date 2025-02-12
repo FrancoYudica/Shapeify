@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var output_texture_holder: Node
+@export var debug_texture_holders: Array[DebugTextureHolder] = []
 
 @export var shape_count_value_label: Label
 @export var current_execution_value_label: Label
@@ -8,13 +8,13 @@ extends PanelContainer
 @export var time_taken_value_label: Label
 @export var metric_score_label: Label
 @export var similarity_score_label: Label
-@export var weight_texture_rect: TextureRect
-@export var position_probability_texture_rect: TextureRect
+@export var debug_textures_container: Control
+
+var debug_texture_scene = load("res://UI/panels/info/debug_texture_panel_container.tscn")
 
 var _clock: Clock
 
 func _ready() -> void:
-	weight_texture_rect.visible = false
 	
 	ImageGeneration.shape_generated.connect(
 		func(i):
@@ -28,14 +28,17 @@ func _ready() -> void:
 	ImageGeneration.generation_started.connect(
 		func():
 			_clock = Clock.new()
-			weight_texture_rect.visible = true
 	)
 	
 	ImageGeneration.generation_finished.connect(
 		func():
 			_clock = null
-			weight_texture_rect.visible = false
 	)
+	
+	for debug_texture_holder in debug_texture_holders:
+		var debug_texture = debug_texture_scene.instantiate()
+		debug_texture.title = debug_texture_holder.texture_name
+		debug_textures_container.add_child(debug_texture)
 
 
 func _process(delta: float) -> void:
@@ -54,8 +57,10 @@ func _process(delta: float) -> void:
 	else:
 		time_taken_value_label.text = _ms_to_str(details.time_taken_ms)
 	
-	weight_texture_rect.texture = output_texture_holder.weight_texture
-	position_probability_texture_rect.texture = output_texture_holder.position_probability_texture
+	# Updates the textures of all the containers
+	for i in range(debug_texture_holders.size()):
+		var debug_texture = debug_textures_container.get_child(i)
+		debug_texture.texture = debug_texture_holders[i].texture
 	
 func _ms_to_str(milliseconds: int) -> String:
 	var seconds = (milliseconds / 1000) % 60  # Seconds part

@@ -1,7 +1,6 @@
-[gd_scene load_steps=49 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=48 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/genart.gd" id="1_ncpyv"]
-[ext_resource type="Script" path="res://UI/panels/generated_image/output_texture_holder.gd" id="1_ptkw8"]
 [ext_resource type="Texture2D" uid="uid://cty1pfwaxnrba" path="res://art/textures/genart_icon/sizes/genart_icon_64x64.png" id="2_r03st"]
 [ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="3_rt8y6"]
 [ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/textures/icons/play.png" id="4_rdwgg"]
@@ -54,9 +53,6 @@ bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 
 [node name="Genart" type="Node"]
 script = ExtResource("1_ncpyv")
-
-[node name="OutputTextureHolder" type="Node" parent="."]
-script = ExtResource("1_ptkw8")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -405,10 +401,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="InfoPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer" node_paths=PackedStringArray("output_texture_holder") instance=ExtResource("31_1ksoc")]
+[node name="InfoPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer" instance=ExtResource("31_1ksoc")]
 visible = false
 layout_mode = 2
-output_texture_holder = NodePath("../../../../../../../../OutputTextureHolder")
 
 [node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Panel/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/PanelsHBoxContainer" instance=ExtResource("32_v2g6e")]
 visible = false

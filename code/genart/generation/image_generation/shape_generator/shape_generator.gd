@@ -46,7 +46,6 @@ func generate_shape(similarity: float) -> Shape:
 			params.target_texture, 
 			params.source_texture,
 			weight_texture)
-
 	var shape = _generate(similarity)
 	generated_count += 1
 	

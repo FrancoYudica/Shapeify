@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://q3fdtkwe4bvw"]
+
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="1_s6vu5"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_aegwu"]
+[ext_resource type="Script" path="res://UI/panels/info/debug_texture_panel_container.gd" id="2_ybefe"]
+
+[node name="DebugTexturePanelContainer" type="PanelContainer" node_paths=PackedStringArray("_label", "_texture_rect")]
+theme_override_styles/panel = ExtResource("1_s6vu5")
+script = ExtResource("2_ybefe")
+_label = NodePath("MarginContainer/WeightTextureVBoxContainer/TextureLabel")
+_texture_rect = NodePath("MarginContainer/WeightTextureVBoxContainer/TextureRect")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="WeightTextureVBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="TextureLabel" type="Label" parent="MarginContainer/WeightTextureVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Weight texture"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/WeightTextureVBoxContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_aegwu")
+expand_mode = 1
+stretch_mode = 5

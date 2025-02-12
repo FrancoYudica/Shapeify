@@ -1,7 +1,6 @@
 class_name ImageGenerator extends RefCounted
 
 signal shape_generated(shape: Shape)
-signal weight_texture_updated(weight_texture: RendererTexture)
 var params: ImageGeneratorParams
 
 var shape_generator: ShapeGenerator
@@ -68,8 +67,8 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 				similarity,
 				target_texture,
 				source_texture)
-			weight_texture_updated.emit(weight_texture)
-		
+			DebugSignals.updated_weight_texture.emit(weight_texture)
+			
 		if weight_texture == null:
 			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
 			break

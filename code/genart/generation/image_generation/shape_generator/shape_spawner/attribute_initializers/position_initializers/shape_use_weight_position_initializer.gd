@@ -18,8 +18,8 @@ func update(
 	weight_texture: RendererTexture) -> void:
 	_probability_texture = weight_texture
 	_texture_position_sampler.weight_texture = _probability_texture
-	ImageGeneration.position_probability_texture_updated.emit(_probability_texture)
-	
+	DebugSignals.updated_spawn_position_probability_texture.emit(_probability_texture)
+
 	
 func set_params(params: ShapeSpawnerParams):
 	_texture_position_sampler = TexturePositionSampler.factory_create(TexturePositionSampler.Type.WEIGHTED)

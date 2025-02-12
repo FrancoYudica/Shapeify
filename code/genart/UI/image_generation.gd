@@ -5,9 +5,7 @@ signal generation_finished
 signal shape_generated(shape: Shape)
 signal target_texture_updated
 signal generation_cleared
-signal weight_texture_updated(weight_texture: RendererTexture)
 
-signal position_probability_texture_updated(texture: RendererTexture)
 
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
@@ -20,12 +18,8 @@ func application_ready() -> void:
 	image_generator.shape_generated.connect(
 		func(shape): 
 			call_deferred("_emit_shape_generated_signal", shape))
-
 	refresh_target_texture()
 	
-	image_generator.weight_texture_updated.connect(
-		func(t):
-			weight_texture_updated.emit(t))
 	
 func clear_progress():
 	var params := Globals.settings.image_generator_params
