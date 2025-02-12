@@ -103,8 +103,11 @@ func _setup():
 	_progress_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
 	_progress_metric.target_texture = params.target_texture
 	
-	# Rotation is more likely to mutate
-	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([1, 2, 2])
+	# Creates the CDF. Note that the order matches the indices used in mutate
+	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([
+		hill_climbing_params.position_mutation_weight, 
+		hill_climbing_params.size_mutation_weight, 
+		hill_climbing_params.rotation_mutation_weight])
 
 func finished():
 	super.finished()

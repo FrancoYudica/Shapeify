@@ -16,6 +16,24 @@ class_name HillClimbingShapeGeneratorParams extends Resource
 			fitness_calculator = value
 			emit_changed()
 
+@export var position_mutation_weight: int = 1:
+	set(value):
+		if value != position_mutation_weight:
+			position_mutation_weight = value
+			emit_changed()
+			
+@export var size_mutation_weight: int = 2:
+	set(value):
+		if value != size_mutation_weight:
+			size_mutation_weight = value
+			emit_changed()
+
+@export var rotation_mutation_weight: int = 2:
+	set(value):
+		if value != rotation_mutation_weight:
+			rotation_mutation_weight = value
+			emit_changed()
+
 func to_dict() -> Dictionary:
 	return {
 		"max_age" : max_age,

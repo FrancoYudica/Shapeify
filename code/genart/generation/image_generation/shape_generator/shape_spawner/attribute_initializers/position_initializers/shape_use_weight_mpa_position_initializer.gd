@@ -24,6 +24,7 @@ func update(
 	
 	## Calculates MPA
 	_mpa_image_processor.src_texture = source_texture
+	_mpa_image_processor.power = 6
 	var mpa_texture = _mpa_image_processor.process_image(target_texture)
 	
 	_blur.sigma = 5
@@ -34,10 +35,12 @@ func update(
 	_multiply_image_processor.multiply_value = 1.0 / max_value
 	var normalized_mpa = _multiply_image_processor.process_image(blurred_mpa)
 	
-	_map_to_range.min_bound = 0.20
+	_map_to_range.min_bound = 0.10
 	_map_to_range.max_bound = 1.0
 	var mapped_mpa = _map_to_range.process_image(normalized_mpa)
 
+	_map_to_range.min_bound = 0.10
+	_map_to_range.max_bound = 1.0
 	var mapped_weight = _map_to_range.process_image(weight_texture)
 
 	# Multiplies
