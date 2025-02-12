@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://UI/panels/info/info_panel.gd" id="2_lkx0d"]
 [ext_resource type="Script" path="res://UI/panels/info/debug_texture_output_holder.gd" id="4_k1npr"]
 
-[node name="InfoPanel" node_paths=PackedStringArray("debug_texture_holders", "shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "debug_textures_container") instance=ExtResource("1_kw27a")]
+[node name="InfoPanel" node_paths=PackedStringArray("debug_texture_holders", "shape_count_value_label", "current_execution_value_label", "executions_count_value_label", "time_taken_value_label", "metric_score_label", "similarity_score_label", "processing_resolution_label", "debug_textures_container") instance=ExtResource("1_kw27a")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ executions_count_value_label = NodePath("MarginContainer/VBoxContainer/ScrollCon
 time_taken_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/TotalTimeTakenValue")
 metric_score_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/MetricScoreValue")
 similarity_score_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/SimilarityScoreValue")
+processing_resolution_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/ProcessingResolutionValue")
 debug_textures_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DebugTexturesVBoxContainer")
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
@@ -111,6 +112,16 @@ layout_mode = 2
 text = "Executions count"
 
 [node name="ExecutionsCountValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="11"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "300"
+horizontal_alignment = 2
+
+[node name="ProcessingResolutionLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="12"]
+layout_mode = 2
+text = "Processing resolution"
+
+[node name="ProcessingResolutionValue" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer" index="13"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "300"

@@ -8,6 +8,7 @@ extends PanelContainer
 @export var time_taken_value_label: Label
 @export var metric_score_label: Label
 @export var similarity_score_label: Label
+@export var processing_resolution_label: Label
 @export var debug_textures_container: Control
 
 var debug_texture_scene = load("res://UI/panels/info/debug_texture_panel_container.tscn")
@@ -49,6 +50,11 @@ func _process(delta: float) -> void:
 	var details: ImageGenerationDetails = ImageGeneration.details
 	shape_count_value_label.text = str(details.shapes.size())
 	executions_count_value_label.text = str(details.executed_count)
+	
+	var processing_resolution = details.viewport_size * Globals.settings.render_scale
+	processing_resolution_label.text = "%sx%s" % [
+		int(processing_resolution.x), 
+		int(processing_resolution.y)]
 	
 	if _clock != null:
 		current_execution_value_label.text = _ms_to_str(_clock.elapsed_ms())

@@ -45,12 +45,6 @@ enum Type
 	set(value):
 		weight_texture_generator_params = value
 		emit_changed()
-
-@export var render_scale := 1.0:
-	set(value):
-		if value != render_scale:
-			render_scale = value
-			emit_changed()
 	
 ## Holds the target texture without any transformation
 @export var target_texture: RendererTexture:

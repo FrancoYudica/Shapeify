@@ -39,7 +39,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	# Resizes the source texture
 	var source_texture = RenderingCommon.resize_texture(
 		first_src_texture,
-		params.render_scale * params.target_texture.get_size())
+		Globals.settings.render_scale * params.target_texture.get_size())
 	params.shape_generator_params.source_texture = source_texture
 	
 	shape_generator.setup()
@@ -108,7 +108,7 @@ func setup():
 	# Scales target texture ----------------------------------------------------
 	params.shape_generator_params.target_texture = RenderingCommon.resize_texture(
 		params.target_texture, 
-		params.render_scale * params.target_texture.get_size())
+		Globals.settings.render_scale * params.target_texture.get_size())
 
 	# Setup shape generator ----------------------------------------------------
 	shape_generator = ShapeGenerator.factory_create(params.shape_generator_type)

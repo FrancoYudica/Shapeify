@@ -19,7 +19,7 @@ func set_params(params: WeightTextureGeneratorParams) -> void:
 	if params.user_weight_texture == null:
 		return
 	
-	var render_scale = Globals.settings.image_generator_params.render_scale
+	var render_scale = Globals.settings.render_scale
 	var scaled_texture = RenderingCommon.resize_texture(
 		params.user_weight_texture,
 		params.user_weight_texture.get_size() * render_scale
