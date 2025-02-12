@@ -47,6 +47,9 @@ max_age = 20
 random_restart_count = 6
 initial_random_samples = 10
 fitness_calculator = 1
+position_mutation_weight = 1
+size_mutation_weight = 2
+rotation_mutation_weight = 2
 
 [sub_resource type="Resource" id="Resource_ibrwy"]
 script = ExtResource("10_1qcb8")
@@ -56,8 +59,8 @@ script = ExtResource("12_vd1vx")
 
 [sub_resource type="Resource" id="Resource_ghcdf"]
 script = ExtResource("9_d136q")
-shape_position_initializer_type = 1
-shape_size_initializer_type = 2
+shape_position_initializer_type = 2
+shape_size_initializer_type = 3
 shape_rotation_initializer_type = 0
 shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
@@ -100,4 +103,3 @@ stop_condition_params = SubResource("Resource_o2cc0")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_y5lgf")
 weight_texture_generator_params = SubResource("Resource_tbdou")
-render_scale = 0.5
