@@ -1,6 +1,11 @@
 class_name ShapeColorPostProcessingPipelineParams extends Resource
 
 @export var shader_params: Array[ShapeColorPostProcessingShaderParams] = []
+@export var enabled: bool = true:
+	set(value):
+		if value != enabled:
+			enabled = value
+			emit_changed()
 
 func add_shader_param(param: ShapeColorPostProcessingShaderParams):
 	shader_params.append(param)

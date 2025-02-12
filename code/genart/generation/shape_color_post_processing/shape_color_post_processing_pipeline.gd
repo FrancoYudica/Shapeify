@@ -5,7 +5,7 @@ class_name ShapeColorPostProcessingPipeline extends RefCounted
 func execute_pipeline(
 	shapes: Array[Shape],
 	t: float,
-	params: Array[ShapeColorPostProcessingShaderParams]
+	params: ShapeColorPostProcessingPipelineParams
 ) -> Array[Shape]:
 	
 	# Duplicates shapes to avoild accumulating the post processing effect over
@@ -14,7 +14,10 @@ func execute_pipeline(
 	for shape in shapes:
 		duplicated_shapes.append(shape.copy())
 	
-	for param in params:
+	if not params.enabled:
+		return duplicated_shapes
+	
+	for param in params.shader_params:
 		
 		if not param.enabled:
 			continue
@@ -32,11 +35,14 @@ func execute_pipeline_on_one_shape(
 	shape: Shape,
 	shape_index: int,
 	t: float,
-	params: Array[ShapeColorPostProcessingShaderParams]) -> Shape:
+	params: ShapeColorPostProcessingPipelineParams) -> Shape:
 	
-	var duplicated_shape  := shape.copy()
+	var duplicated_shape := shape.copy()
 	
-	for param in params:
+	if not params.enabled:
+		return duplicated_shape
+	
+	for param in params.shader_params:
 		
 		if not param.enabled:
 			continue
@@ -54,8 +60,11 @@ func execute_pipeline_on_one_shape(
 func compute_clear_color(
 	src_clear_color: Color,
 	t: float,
-	params: Array[ShapeColorPostProcessingShaderParams]) -> Color:
-		
+	params: ShapeColorPostProcessingPipelineParams) -> Color:
+	
+	if not params.enabled:
+		return src_clear_color
+	
 	var shape = Shape.new()
 	shape.size = Vector2.ONE
 	shape.tint = src_clear_color
@@ -80,7 +89,7 @@ func _execute_shader(
 static func process_details(
 	details: ImageGenerationDetails,
 	t: float,
-	params: Array[ShapeColorPostProcessingShaderParams]) -> ImageGenerationDetails:
+	params: ShapeColorPostProcessingPipelineParams) -> ImageGenerationDetails:
 	
 	var processed_details := details.copy()
 	var pipeline := ShapeColorPostProcessingPipeline.new()
@@ -89,7 +98,7 @@ static func process_details(
 	processed_details.clear_color = pipeline.compute_clear_color(
  		details.clear_color,
 		0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params
+		params
 	)
 	
 	# Processes shapes

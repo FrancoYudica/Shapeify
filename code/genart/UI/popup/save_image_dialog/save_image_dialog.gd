@@ -52,7 +52,7 @@ func _oppened():
 	_processed_details = ShapeColorPostProcessingPipeline.process_details(
 		gen_details,
 		0.0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params)
+		Globals.settings.color_post_processing_pipeline_params)
 
 	resolution_label.text = "%sx%s" % [
 		_processed_details.viewport_size.x,

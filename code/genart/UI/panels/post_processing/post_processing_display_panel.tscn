@@ -9,11 +9,12 @@
 [node name="PostProcessingDisplayPanel" instance=ExtResource("1_6cru2")]
 custom_minimum_size = Vector2(350, 0)
 
-[node name="VBoxContainer" parent="MarginContainer" index="0" node_paths=PackedStringArray("add_button", "shader_option_button", "item_container")]
+[node name="VBoxContainer" parent="MarginContainer" index="0" node_paths=PackedStringArray("add_button", "shader_option_button", "item_container", "enabled_check_box")]
 script = ExtResource("2_flxv2")
 add_button = NodePath("AddHBoxContainer/AddButton")
 shader_option_button = NodePath("AddHBoxContainer/ShaderOptionButton")
 item_container = NodePath("PanelContainer/ScrollContainer/MarginContainer/ItemVBoxContainer")
+enabled_check_box = NodePath("EnableCheckBox")
 
 [node name="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
 texture = ExtResource("3_04qgx")
@@ -21,7 +22,11 @@ texture = ExtResource("3_04qgx")
 [node name="TitleLabel" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
 text = "Post processing"
 
-[node name="AddHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="EnableCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+text = "Enabled"
+
+[node name="AddHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -34,7 +39,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 icon = ExtResource("4_kgv5m")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" index="2"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("6_he3w5")

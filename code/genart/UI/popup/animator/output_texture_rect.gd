@@ -24,7 +24,7 @@ func _animated_shapes(shapes: Array[Shape]):
 	var processed_details := await ShapeColorPostProcessingPipeline.process_details(
 		raw_details,
 		0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params
+		Globals.settings.color_post_processing_pipeline_params
 	)
 	
 	# Renders the image

@@ -55,7 +55,7 @@ func add_shape(shape: Shape):
 		shape,
 		shape_count,
 		0.0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params)
+		Globals.settings.color_post_processing_pipeline_params)
 
 	if not _texture_map.has(processed_shape.texture.rd_rid):
 		_texture_map[processed_shape.texture.rd_rid] = RenderingCommon.create_texture_from_rd_rid(
@@ -78,7 +78,7 @@ func _post_processing_updated():
 	var processed_details = await ShapeColorPostProcessingPipeline.process_details(
 		details,
 		0.0,
-		Globals.settings.color_post_processing_pipeline_params.shader_params)
+		Globals.settings.color_post_processing_pipeline_params)
 	
 	# Applies to gdshapes
 	for i in range(shapes_container.get_child_count()):

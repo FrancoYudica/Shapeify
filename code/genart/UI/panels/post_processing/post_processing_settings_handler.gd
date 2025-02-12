@@ -3,6 +3,7 @@ extends VBoxContainer
 @export var add_button: Button
 @export var shader_option_button: OptionButton
 @export var item_container: Control
+@export var enabled_check_box: CheckBox
 
 var _params: ShapeColorPostProcessingPipelineParams:
 	get:
@@ -14,7 +15,10 @@ func _ready() -> void:
 		shader_option_button.add_item(item)
 		
 	add_button.pressed.connect(_add_shader)
-	
+	enabled_check_box.toggled.connect(
+		func(toggled_on):
+			_params.enabled = toggled_on
+	)
 	Globals.image_generator_params_updated.connect(_update)
 	_update()
 
@@ -27,6 +31,7 @@ func _update():
 	for i in range(_params.shader_params.size()):
 		_create_ui_item(i)
 	
+	enabled_check_box.button_pressed = _params.enabled
 
 func _add_shader():
 	var shader_type = shader_option_button.selected
