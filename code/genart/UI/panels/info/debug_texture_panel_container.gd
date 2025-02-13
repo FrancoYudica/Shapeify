@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @export var _label: Label
-@export var _texture_rect: TextureRect
+@export var texture_rect: TextureRect
 
 var title: String:
 	set(value):
@@ -9,4 +9,4 @@ var title: String:
 		
 var texture: Texture2D:
 	set(value):
-		_texture_rect.texture = value
+		texture_rect.texture = value

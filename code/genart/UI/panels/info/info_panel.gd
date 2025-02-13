@@ -44,7 +44,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if not visible:
+	if not is_visible_in_tree():
 		return
 		
 	var details: ImageGenerationDetails = ImageGeneration.details
@@ -66,7 +66,8 @@ func _process(delta: float) -> void:
 	# Updates the textures of all the containers
 	for i in range(debug_texture_holders.size()):
 		var debug_texture = debug_textures_container.get_child(i)
-		debug_texture.texture = debug_texture_holders[i].texture
+		var debug_texture_holder = debug_texture_holders[i]
+		debug_texture_holder.update_texture_rect(debug_texture.texture_rect)
 	
 func _ms_to_str(milliseconds: int) -> String:
 	var seconds = (milliseconds / 1000) % 60  # Seconds part
