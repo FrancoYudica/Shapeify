@@ -1,0 +1,370 @@
+[gd_scene load_steps=17 format=3 uid="uid://bg3ohwtngjn1o"]
+
+[ext_resource type="PackedScene" uid="uid://cdsq37hq1u2vs" path="res://UI/popup/popup.tscn" id="1_iopcy"]
+[ext_resource type="Texture2D" uid="uid://dly5gkgvfo1ob" path="res://art/textures/genart_icon/genart_icon_transparent_512.png" id="2_e0eyc"]
+[ext_resource type="Shader" path="res://UI/genart.gdshader" id="2_xcrlj"]
+[ext_resource type="Texture2D" uid="uid://gongpg10f2ut" path="res://art/textures/MITLicense.png" id="3_6mdv4"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="3_sbgc5"]
+[ext_resource type="Script" path="res://UI/popup/genart_info/vesion_value_label.gd" id="4_5o0m0"]
+[ext_resource type="FontFile" uid="uid://vnb2anlyi7y3" path="res://art/fonts/Outfit-Bold.ttf" id="4_kyndj"]
+[ext_resource type="Texture2D" uid="uid://k3hrrm07tdlk" path="res://art/Godot_icon.png" id="4_o0phv"]
+[ext_resource type="Script" path="res://UI/popup/genart_info/update_date_value_label.gd" id="5_g848j"]
+[ext_resource type="Texture2D" uid="uid://bpoasmfau5k4r" path="res://art/github.png" id="6_rerk0"]
+[ext_resource type="Texture2D" uid="uid://bhq5spfegi5s4" path="res://art/textures/icons/user.png" id="8_r5rxp"]
+[ext_resource type="Texture2D" uid="uid://wx78ahv7a8q5" path="res://art/itchio_icon.png" id="9_7jx1q"]
+[ext_resource type="Script" path="res://UI/popup/genart_info/contributors_value.gd" id="10_lyobv"]
+[ext_resource type="Texture2D" uid="uid://db3kryvw0e3il" path="res://art/textures/icons/bug.png" id="12_r5nlc"]
+[ext_resource type="Script" path="res://UI/popup/genart_info/close_button.gd" id="13_2k6xn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyt5g"]
+shader = ExtResource("2_xcrlj")
+shader_parameter/t = 0.15
+
+[node name="GenartInfoPopup" instance=ExtResource("1_iopcy")]
+
+[node name="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0"]
+theme_override_constants/separation = 16
+
+[node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
+modulate = Color(0.96, 0.96, 0.96, 1)
+material = SubResource("ShaderMaterial_dyt5g")
+custom_minimum_size = Vector2(64, 64)
+texture = ExtResource("2_e0eyc")
+
+[node name="TitleLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
+text = "Genart"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_kyndj")
+bbcode_enabled = true
+text = "Genart is an application that transforms your target image into uniquely stylized artwork. Smaller images are used as building blocks to reconstruct the target picture."
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_sbgc5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+columns = 2
+
+[node name="VersionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="0"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Version"
+
+[node name="VersionValues" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/VersionValues" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/VersionValues/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VesionValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/VersionValues/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+text = "2.0.0"
+script = ExtResource("4_5o0m0")
+
+[node name="UpdateDateLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Update date"
+
+[node name="UpdateDateValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/UpdateDateValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/UpdateDateValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="UpdateDateValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/UpdateDateValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+text = "15/10/2002"
+script = ExtResource("5_g848j")
+
+[node name="DeveloperLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Lead developer"
+
+[node name="DeveloperValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="5"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DeveloperValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DeveloperValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DeveloperValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DeveloperValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("8_r5rxp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DeveloperValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Franco Yudica"
+uri = "https://github.com/FrancoYudica"
+
+[node name="DevelopedWithLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="6"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Development tool"
+
+[node name="DevelpedWithValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="7"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DevelpedWithValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DevelpedWithValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DevelpedWithValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DevelpedWithValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("4_o0phv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DevelpedWithValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Godot"
+uri = "https://godotengine.org/"
+
+[node name="LicenseLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="8"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "License"
+
+[node name="LicenceValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="9"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/LicenceValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/LicenceValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/LicenceValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/LicenceValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("3_6mdv4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/LicenceValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "License"
+uri = "https://github.com/FrancoYudica/Genart/blob/main/LICENSE"
+
+[node name="SouceCodeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="10"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Source code"
+
+[node name="SourceCodeValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="11"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SourceCodeValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SourceCodeValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SourceCodeValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SourceCodeValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("6_rerk0")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/SourceCodeValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "GitHub"
+uri = "https://github.com/FrancoYudica/Genart"
+
+[node name="DownloadLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="12"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Download"
+
+[node name="DownloadValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="13"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DownloadValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DownloadValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DownloadValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DownloadValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("9_7jx1q")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/DownloadValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Itch.io"
+uri = "https://franco-yudica.itch.io/genart"
+
+[node name="BugLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="14"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Not working as expected?"
+
+[node name="BugValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="15"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/BugValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/BugValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/BugValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/BugValue/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("12_r5nlc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/BugValue/PanelContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "Report the bug on GitHub so developers can fix it!"
+text = "Create an issue"
+uri = "https://github.com/FrancoYudica/Genart/issues"
+
+[node name="ContributorsLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="16"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Contributors"
+
+[node name="ContributorsValue" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="17" node_paths=PackedStringArray("contributors_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_lyobv")
+contributors_container = NodePath("PanelContainer/MarginContainer/ContributorsVBoxContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ContributorsValue" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ContributorsValue/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ContributorsVBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer/ContributorsValue/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+text = "Thank you! ♥ Your support means a lot. If you enjoy the app, consider sharing it with others or leaving feedback."
+fit_content = true
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="4" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+text = "Close"
+script = ExtResource("13_2k6xn")
+panel = NodePath("../../../../..")
