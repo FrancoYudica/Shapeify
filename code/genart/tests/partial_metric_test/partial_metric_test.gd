@@ -19,15 +19,21 @@ func _ready() -> void:
 	# Initializes PartialMetrics and setups attributes
 	_shape_renderer.source_texture = source_texture
 	_shape_renderer.render_shape(shape)
+	
 	var new_source_texutre = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	var weight_texture = _weight_texture_generator.generate(0, target_texture, source_texture)
 	
 	_partial_metric = partial_metric_script.new()
+	_partial_metric.power = 4.0
 	_partial_metric.target_texture = target_texture
 	_partial_metric.source_texture = source_texture
 	_partial_metric.new_source_texture = new_source_texutre
-	_partial_metric.weight_texture = _weight_texture_generator.generate(0, target_texture, source_texture)
+	_partial_metric.weight_texture = weight_texture
+	
 	_metric = metric_script.new()
+	_metric.power = 4.0
 	_metric.target_texture = target_texture
+	_metric.weight_texture = weight_texture
 	
 	# Evaluates results
 	var f = 1.0 / iterations
@@ -39,7 +45,16 @@ func _ready() -> void:
 	for i in range(iterations):
 	
 		var t = Time.get_ticks_usec()
-		var partial_metric_value = _partial_metric.compute(shape.get_bounding_rect())
+	
+		# Maps normalized bounding rect to canvas bounding rect
+		var normalized_bounding_rect = shape.get_bounding_rect()
+		var bounding_rect = Rect2i(
+			normalized_bounding_rect.position.x * source_texture.get_width(),
+			normalized_bounding_rect.position.y * source_texture.get_height(),
+			max(1.0, normalized_bounding_rect.size.x * source_texture.get_width()),
+			max(1.0, normalized_bounding_rect.size.y * source_texture.get_height())
+		)
+		var partial_metric_value = _partial_metric.compute(bounding_rect)
 		var elapsed_t = (Time.get_ticks_usec() - t) * 0.001
 		print("Partial metric took: %sms. Result: %s" % [elapsed_t, partial_metric_value])
 
