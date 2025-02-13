@@ -48,6 +48,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 16
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
@@ -127,11 +128,9 @@ size_flags_horizontal = 3
 text = "300"
 horizontal_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="DebugTexturesVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
-
-[node name="DebugTexturesVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
-layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="Debug" type="Node" parent="." index="1"]
 

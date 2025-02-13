@@ -8,6 +8,8 @@ extends ProgressBar
 var generation_time : float = 0.0
 var generated_shape_count := 0
 
+var _generation_finished: bool = false
+
 func _ready() -> void:
 	
 	visible = false
@@ -23,16 +25,22 @@ func _ready() -> void:
 			generation_time = 0.0
 			generated_shape_count = 0
 			elapsed_time_label.visible = true
+			_generation_finished = false
 			visible = true
 	)
 	ImageGeneration.generation_finished.connect(
 		func():
-			visible = false
+			_generation_finished = true
 	)
-	
+
 func _process(delta: float) -> void:
 	
-	if visible:
-		generation_time += delta
-		value = ImageGeneration.image_generator.get_progress()
-		elapsed_time_label.text = "%0.1fs (%s shapes)" % [generation_time, generated_shape_count]
+	if not visible:
+		return
+	
+	generation_time += delta
+	value = ImageGeneration.image_generator.get_progress()
+	elapsed_time_label.text = "%0.1fs (%s shapes)" % [generation_time, generated_shape_count]
+	
+	# Sets visibility change here to ensure the previous data gets updated
+	visible = not _generation_finished
