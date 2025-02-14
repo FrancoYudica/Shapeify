@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=79 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=82 format=3 uid="uid://075wo5henc7i"]
 
 [ext_resource type="Script" path="res://settings/contributor_data.gd" id="1_6kaui"]
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_e5oqy"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_8ndjb"]
 [ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/textures/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
 [ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/textures/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
@@ -66,6 +68,11 @@
 [ext_resource type="Texture2D" uid="uid://cmvhsv2j7in0i" path="res://art/textures/individual_textures_group/pixelart_numbers/7_pixelart.png" id="72_itasb"]
 [ext_resource type="Texture2D" uid="uid://lc21i0rrgp6f" path="res://art/textures/individual_textures_group/pixelart_numbers/8_pixelart.png" id="73_dxtsd"]
 [ext_resource type="Texture2D" uid="uid://ppueuselhdj4" path="res://art/textures/individual_textures_group/pixelart_numbers/9_pixelart.png" id="74_tvqj3"]
+
+[sub_resource type="Resource" id="Resource_qt8hf"]
+script = ExtResource("1_e5oqy")
+shader_params = Array[ExtResource("2_8ndjb")]([])
+enabled = true
 
 [sub_resource type="Resource" id="Resource_ixdxe"]
 script = ExtResource("1_6kaui")
@@ -132,6 +139,7 @@ script = ExtResource("39_t5xji")
 version = "2.0.0"
 version_date = "15/02/2025"
 render_scale = 1.0
+color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes"
 shape_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_qsjoh"), SubResource("Resource_yam2b"), SubResource("Resource_phir3"), SubResource("Resource_8l3pv"), SubResource("Resource_fo0nc"), SubResource("Resource_7unyb"), SubResource("Resource_wuye4"), SubResource("Resource_xpeyg"), SubResource("Resource_8d7bk"), SubResource("Resource_mey14")])

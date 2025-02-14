@@ -21,7 +21,7 @@ func _init() -> void:
 		var user_settings = load("user://genart_settings.tres")
 		
 		# If the versions doesn't match, overrides with default settings
-		if user_settings.version != default_settings.version:
+		if user_settings == null or user_settings.version != default_settings.version:
 			settings = default_settings
 		else:
 			settings = user_settings
