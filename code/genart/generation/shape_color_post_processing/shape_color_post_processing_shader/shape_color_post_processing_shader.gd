@@ -6,6 +6,7 @@ enum Type
 	SATURATION_SHIFT,
 	VALUE_SHIFT,
 	RGB_SHIFT,
+	CEILab_SHIFT,
 	TRANSPARENCY
 }
 
@@ -29,6 +30,8 @@ static func factory_create(type: Type) -> ShapeColorPostProcessingShader:
 			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/value_shift/value_shift_post_processing_shader.gd").new()
 		Type.RGB_SHIFT:
 			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/rgb_shift/rgb_shift_post_processing_shader.gd").new()
+		Type.CEILab_SHIFT:
+			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/CEILab_shift/CEILab_shift_post_processing_shader.gd").new()
 		Type.TRANSPARENCY:
 			return load("res://generation/shape_color_post_processing/shape_color_post_processing_shader/strategies/transparency/transparency_post_processing_shader.gd").new()
 		_:

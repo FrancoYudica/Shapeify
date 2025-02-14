@@ -29,13 +29,14 @@ func _animated_shapes(shapes: Array[Shape]):
 	
 	# Renders the image
 	ImageGenerationRenderer.render_image_generation(Renderer, processed_details)
-	
-	# Creates texture
-	if texture == null:
-		_create_texture()
-	
+
 	# Copies textures contents into TextureRect's texture
 	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	
+	# Creates texture
+	if texture == null or texture.get_size() != color_attachment.get_size():
+		_create_texture()
+	
 	RenderingCommon.texture_copy(
 		color_attachment.rd_rid,
 		texture.texture_rd_rid,

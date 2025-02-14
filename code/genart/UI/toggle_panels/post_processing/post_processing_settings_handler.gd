@@ -56,5 +56,7 @@ func _create_ui_item_of_type(type):
 			return load("res://UI/toggle_panels/post_processing/shader_items/value_shift_post_processing_shader_panel_container.tscn").instantiate()
 		ShapeColorPostProcessingShader.Type.RGB_SHIFT:
 			return load("res://UI/toggle_panels/post_processing/shader_items/rgb_shift_post_processing_shader_panel_container.tscn").instantiate()
+		ShapeColorPostProcessingShader.Type.CEILab_SHIFT:
+			return load("res://UI/toggle_panels/post_processing/shader_items/CEILab_shift_post_processing_shader_panel_container.tscn").instantiate()
 		ShapeColorPostProcessingShader.Type.TRANSPARENCY:
 			return load("res://UI/toggle_panels/post_processing/shader_items/transparency_post_processing_shader_panel_container.tscn").instantiate()
