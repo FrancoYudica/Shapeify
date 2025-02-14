@@ -12,7 +12,7 @@ func process_color(
 	var out_color = Color(shape.tint)
 	
 	var ceilab_color = CEILabUtils.rgb2lab(Vector3(out_color.r, out_color.g, out_color.b))
-	
+	_rng.seed = index
 	if params.random_shift:
 		
 		ceilab_color.x += params.lightness * (_rng.randf() * 2.0 - 1.0)
