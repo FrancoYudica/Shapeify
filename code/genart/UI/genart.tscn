@@ -42,12 +42,12 @@
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="36_3d8sg"]
 [ext_resource type="Script" path="res://UI/stopping_generation_panel_container.gd" id="37_e80ds"]
 [ext_resource type="Script" path="res://UI/header/loading_texture_rect.gd" id="38_37gvv"]
+[ext_resource type="PackedScene" uid="uid://b3hiuyiwc8oet" path="res://UI/popup/notification_popup/info_notification_popup.tscn" id="39_mrhlu"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="39_ta2co"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/toggle_panels/shapes/texture_groups/shape_texture_groups.tscn" id="40_ea2a2"]
+[ext_resource type="PackedScene" uid="uid://dt7o6q6q4df4j" path="res://UI/popup/notification_popup/error_notification_popup.tscn" id="40_rq6go"]
 [ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/popup/save_image_dialog/save_image_dialog.tscn" id="41_ldp2l"]
-[ext_resource type="PackedScene" uid="uid://c07xd22u20ip5" path="res://UI/popup/notification_panels/info_notification_panel.tscn" id="42_m7yyd"]
-[ext_resource type="PackedScene" uid="uid://c32trck2vs10q" path="res://UI/popup/notification_panels/error_notification_panel.tscn" id="43_11cfy"]
-[ext_resource type="PackedScene" uid="uid://bdsssgakv1upp" path="res://UI/popup/notification_panels/warning_notification_panel.tscn" id="44_wnkq7"]
+[ext_resource type="PackedScene" uid="uid://bu2kwxqdafa1q" path="res://UI/popup/notification_popup/warning_notification_popup.tscn" id="41_mqowe"]
 [ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="45_plyt3"]
 [ext_resource type="PackedScene" uid="uid://bg3ohwtngjn1o" path="res://UI/popup/genart_info/genart_info_popup.tscn" id="47_ldffe"]
 
@@ -557,27 +557,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="NotificationPanels" type="Control" parent="UICanvasLayer/Popup"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="WarningNotificationPanel" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("44_wnkq7")]
-visible = false
-layout_mode = 1
-
-[node name="ErrorNotificationPanel" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("43_11cfy")]
-visible = false
-layout_mode = 1
-
-[node name="InfoNotificationPanel" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("42_m7yyd")]
-visible = false
-layout_mode = 1
-
 [node name="Animator" parent="UICanvasLayer/Popup" instance=ExtResource("35_ghj5g")]
 visible = false
 layout_mode = 1
@@ -633,6 +612,27 @@ visible = false
 layout_mode = 1
 
 [node name="GenartInfoPopup" parent="UICanvasLayer/Popup" instance=ExtResource("47_ldffe")]
+visible = false
+layout_mode = 1
+
+[node name="NotificationPanels" type="Control" parent="UICanvasLayer/Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InfoNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("39_mrhlu")]
+visible = false
+layout_mode = 1
+
+[node name="ErrorNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("40_rq6go")]
+visible = false
+layout_mode = 1
+
+[node name="WarningNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("41_mqowe")]
 visible = false
 layout_mode = 1
 

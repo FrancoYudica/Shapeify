@@ -1,4 +1,4 @@
-class_name NotificationPanel extends Control
+class_name NotificationPopup extends Control
 
 enum Type
 {

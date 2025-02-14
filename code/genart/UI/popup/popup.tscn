@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdsq37hq1u2vs"]
+[gd_scene load_steps=5 format=3 uid="uid://cdsq37hq1u2vs"]
 
 [ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="1_uiaxq"]
 [ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="2_26jwa"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="3_njbts"]
+[ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="4_mhjs2"]
 
 [node name="Popup" type="Control"]
 layout_mode = 3
@@ -62,3 +63,10 @@ stretch_mode = 4
 layout_mode = 2
 text = "Popup"
 label_settings = ExtResource("3_njbts")
+
+[node name="CloseOnCancel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_mhjs2")

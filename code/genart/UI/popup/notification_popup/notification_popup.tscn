@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://rabkjcthqw3a"]
+
+[ext_resource type="PackedScene" uid="uid://cdsq37hq1u2vs" path="res://UI/popup/popup.tscn" id="1_4wiac"]
+[ext_resource type="Script" path="res://UI/popup/notification_popup/notification_popup.gd" id="2_nvpwh"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="2_v1i8c"]
+[ext_resource type="Texture2D" uid="uid://cnh2s8oyof1mc" path="res://art/textures/icons/copy.png" id="3_0h2dk"]
+
+[node name="NotificationPopup" node_paths=PackedStringArray("message_label", "ok_button", "copy_button") instance=ExtResource("1_4wiac")]
+script = ExtResource("2_nvpwh")
+message_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/Label")
+ok_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/OkButton")
+copy_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CopyButton")
+
+[node name="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0"]
+theme_override_constants/separation = 24
+
+[node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
+custom_minimum_size = Vector2(48, 48)
+
+[node name="TitleLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
+text = "Notification"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_v1i8c")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+text = "
+"
+
+[node name="CopyButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_0h2dk")
+
+[node name="OkButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+text = "Close"

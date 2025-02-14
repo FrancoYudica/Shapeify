@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3hiuyiwc8oet"]
+
+[ext_resource type="PackedScene" uid="uid://rabkjcthqw3a" path="res://UI/popup/notification_popup/notification_popup.tscn" id="1_kwdl8"]
+
+[node name="InfoNotificationPopup" instance=ExtResource("1_kwdl8")]

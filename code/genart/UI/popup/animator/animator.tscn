@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c46kw3qtcbjh0"]
+[gd_scene load_steps=24 format=3 uid="uid://c46kw3qtcbjh0"]
 
 [ext_resource type="Script" path="res://UI/popup/animator/animator.gd" id="1_r8qxr"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="2_arjf1"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://UI/popup/animator/animation_type_option_button.gd" id="11_uo1fi"]
 [ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/textures/icons/stop.png" id="12_fpe2q"]
 [ext_resource type="Script" path="res://UI/popup/animator/close_button.gd" id="12_pmlre"]
-[ext_resource type="PackedScene" uid="uid://btrs1qhbtd3bx" path="res://UI/popup/notification_panels/notification_panel_base.tscn" id="14_mshqm"]
 [ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="15_fp0vk"]
 [ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/textures/icons/save.png" id="16_tu0q4"]
 [ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="21_olqt4"]
@@ -356,10 +355,6 @@ ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
 use_native_dialog = true
-
-[node name="Notification" parent="." instance=ExtResource("14_mshqm")]
-visible = false
-layout_mode = 2
 
 [node name="CloseOnCancel" type="Control" parent="."]
 layout_mode = 2
