@@ -1,4 +1,4 @@
-extends TextureButton
+extends Button
 
 @export var animator: Node
 @export var settings_control: Control
@@ -16,6 +16,7 @@ func _ready() -> void:
 	)
 	
 	pressed.connect(on_pressed)
+	file_dialog.dir_selected.connect(_on_file_dialog_dir_selected)
 
 func _process(delta: float) -> void:
 	progress_bar.value = _animation_recorder.progress

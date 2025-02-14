@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 signal shapes_animated(shapes: Array[Shape])
 signal animation_progress_updated(t: float)
