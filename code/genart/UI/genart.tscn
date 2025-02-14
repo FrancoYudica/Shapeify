@@ -46,10 +46,10 @@
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="39_ta2co"]
 [ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/toggle_panels/shapes/texture_groups/shape_texture_groups.tscn" id="40_ea2a2"]
 [ext_resource type="PackedScene" uid="uid://dt7o6q6q4df4j" path="res://UI/popup/notification_popup/error_notification_popup.tscn" id="40_rq6go"]
-[ext_resource type="PackedScene" uid="uid://ct1cq1e303o8m" path="res://UI/popup/save_image_dialog/save_image_dialog.tscn" id="41_ldp2l"]
 [ext_resource type="PackedScene" uid="uid://bu2kwxqdafa1q" path="res://UI/popup/notification_popup/warning_notification_popup.tscn" id="41_mqowe"]
 [ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="45_plyt3"]
 [ext_resource type="PackedScene" uid="uid://bg3ohwtngjn1o" path="res://UI/popup/genart_info/genart_info_popup.tscn" id="47_ldffe"]
+[ext_resource type="PackedScene" uid="uid://cuh5iemnhgpnp" path="res://UI/popup/save_image/save_image_popup.tscn" id="49_xn13k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
 bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
@@ -316,7 +316,7 @@ theme = ExtResource("3_rt8y6")
 icon = ExtResource("13_d112y")
 icon_alignment = 1
 script = ExtResource("14_vbcxv")
-panel = NodePath("../../../../../../../Popup/SaveImageDialog")
+panel = NodePath("../../../../../../../Popup/SaveImagePopup")
 
 [node name="AnimationButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
 layout_mode = 2
@@ -607,11 +607,11 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
-[node name="SaveImageDialog" parent="UICanvasLayer/Popup" instance=ExtResource("41_ldp2l")]
+[node name="GenartInfoPopup" parent="UICanvasLayer/Popup" instance=ExtResource("47_ldffe")]
 visible = false
 layout_mode = 1
 
-[node name="GenartInfoPopup" parent="UICanvasLayer/Popup" instance=ExtResource("47_ldffe")]
+[node name="SaveImagePopup" parent="UICanvasLayer/Popup" instance=ExtResource("49_xn13k")]
 visible = false
 layout_mode = 1
 
