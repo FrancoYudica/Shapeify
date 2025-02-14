@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nsoykcasr2a8"]
 
-[ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="1_ahcgi"]
 [ext_resource type="Script" path="res://UI/toggle_panels/shapes/texture_groups/shape_texture_groups.gd" id="1_if866"]
+[ext_resource type="PackedScene" uid="uid://01ifiobgn1pg" path="res://UI/utils/blur_background_panel.tscn" id="2_jjfql"]
 [ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="4_5rdpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eejfd"]
@@ -21,14 +21,8 @@ grow_vertical = 2
 script = ExtResource("1_if866")
 group_item_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/VBoxContainer")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BlurBackgroundPanel" parent="." instance=ExtResource("2_jjfql")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("1_ahcgi")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(960, 640)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdsq37hq1u2vs"]
 
-[ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="1_uiaxq"]
+[ext_resource type="PackedScene" uid="uid://01ifiobgn1pg" path="res://UI/utils/blur_background_panel.tscn" id="1_slr8v"]
 [ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="2_26jwa"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="3_njbts"]
 [ext_resource type="Script" path="res://UI/utils/close_on_cancel.gd" id="4_mhjs2"]
@@ -13,14 +13,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BlurBackgroundPanel" parent="." instance=ExtResource("1_slr8v")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("1_uiaxq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

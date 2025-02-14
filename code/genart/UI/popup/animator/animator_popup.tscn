@@ -19,7 +19,7 @@
 [ext_resource type="Script" path="res://UI/popup/animator/duration_spin_box.gd" id="15_2loo1"]
 [ext_resource type="Script" path="res://UI/popup/animator/close_button.gd" id="18_lswg2"]
 [ext_resource type="Script" path="res://UI/popup/animator/save_button.gd" id="18_sxnfm"]
-[ext_resource type="StyleBox" uid="uid://f2gi2aj640g5" path="res://UI/themes/blur_panel_style_box.tres" id="19_l053b"]
+[ext_resource type="PackedScene" uid="uid://01ifiobgn1pg" path="res://UI/utils/blur_background_panel.tscn" id="20_62dod"]
 [ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="20_k4gq6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccapa"]
@@ -285,9 +285,9 @@ text = "Save"
 script = ExtResource("18_sxnfm")
 animator = NodePath("../../../../../../..")
 settings_control = NodePath("../../HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer")
-recording_panel = NodePath("../../../../../../../RecordingPanel")
+recording_panel = NodePath("../../../../../../../RecordingBlurBackgroundPanel")
 file_dialog = NodePath("../../../../../../../FileDialog")
-progress_bar = NodePath("../../../../../../../RecordingPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
+progress_bar = NodePath("../../../../../../../RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
 
 [node name="FileDialog" type="FileDialog" parent="." index="3"]
 auto_translate_mode = 1
@@ -298,26 +298,25 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[node name="RecordingPanel" type="PanelContainer" parent="." index="4"]
+[node name="RecordingBlurBackgroundPanel" parent="." index="4" instance=ExtResource("20_62dod")]
 visible = false
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="RecordingBlurBackgroundPanel" index="1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("19_l053b")
-
-[node name="MarginContainer" type="MarginContainer" parent="RecordingPanel" index="0"]
-layout_mode = 2
 theme_override_constants/margin_left = 128
 theme_override_constants/margin_right = 128
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RecordingPanel/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RecordingBlurBackgroundPanel/MarginContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="RecordingPanel/MarginContainer/VBoxContainer" index="0"]
+[node name="Label" type="Label" parent="RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer" index="0"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Recording animation..."
@@ -325,7 +324,7 @@ label_settings = ExtResource("20_k4gq6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationRecordProgressBar" type="ProgressBar" parent="RecordingPanel/MarginContainer/VBoxContainer" index="1"]
+[node name="AnimationRecordProgressBar" type="ProgressBar" parent="RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 max_value = 1.0
 
