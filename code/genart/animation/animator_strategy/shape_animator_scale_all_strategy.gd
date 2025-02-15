@@ -7,7 +7,7 @@ func animate(
 	count: int,
 	t: float) -> bool:
 	
-	var fraction = (t - index / count)
+	var fraction = (t - float(index) / count)
 	var scale = clampf(fraction, 0.0, 1.0)
 	scale = sin(PI * 0.5 * scale)
 	shape.size *= scale
