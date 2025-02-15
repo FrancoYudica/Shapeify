@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape.gd" id="2_7tvpo"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="3_wkluu"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_v1h8n"]
-[ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/circular_shapes/circle.png" id="5_0f6lu"]
+[ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/rounded_shapes/circle.png" id="5_0f6lu"]
 
 [sub_resource type="Texture2D" id="Texture2D_oyy8n"]
 resource_local_to_scene = false
