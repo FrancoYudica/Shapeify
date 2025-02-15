@@ -3,22 +3,28 @@ extends Node
 signal image_generator_params_updated
 
 var settings: AppSettings
+var _version: String
 
 func save():
-	ResourceSaver.save(settings, "user://genart_settings.tres")
+	ResourceSaver.save(settings, _get_settings_path())
+
+
+func _get_settings_path():
+	return "user://settings_v%s.tres" % _version
 
 func _init() -> void:
 	
 	var default_settings: AppSettings = load("res://settings/default_settings.tres")
 	default_settings.image_generator_params = load("res://settings/image_generator_params/fast_image_generator_params.tres")
+	_version = default_settings.version
 	
 	# The first time loads the default settings
-	if not ResourceLoader.exists("user://genart_settings.tres"):
+	if not ResourceLoader.exists(_get_settings_path()):
 		settings = default_settings
 	else:
 		
 		#  Loads settings from user path
-		var user_settings = load("user://genart_settings.tres")
+		var user_settings = load(_get_settings_path())
 		
 		# If the versions doesn't match, overrides with default settings
 		if user_settings == null or user_settings.version != default_settings.version:
