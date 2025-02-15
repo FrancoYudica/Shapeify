@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dbxr3rtamb485"]
+[gd_scene load_steps=23 format=3 uid="uid://dbxr3rtamb485"]
 
 [ext_resource type="PackedScene" uid="uid://cdsq37hq1u2vs" path="res://UI/popup/popup.tscn" id="1_36sam"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="2_n2nqh"]
@@ -12,8 +12,7 @@
 [ext_resource type="Script" path="res://UI/popup/animator/animation_type_option_button.gd" id="8_wuasx"]
 [ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/textures/icons/play.png" id="9_ac012"]
 [ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/textures/icons/stop.png" id="10_blm1k"]
-[ext_resource type="Script" path="res://UI/popup/animator/play_stop_texture_button.gd" id="11_ha8h0"]
-[ext_resource type="Script" path="res://UI/utils/modulate_on_hover.gd" id="12_r0hl6"]
+[ext_resource type="Script" path="res://UI/popup/animator/play_stop_button.gd" id="11_ha8h0"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="13_ayf3j"]
 [ext_resource type="Script" path="res://UI/popup/animator/progress_slider.gd" id="14_f6jdl"]
 [ext_resource type="Script" path="res://UI/popup/animator/duration_spin_box.gd" id="15_2loo1"]
@@ -222,27 +221,14 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="PlayStopTextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" node_paths=PackedStringArray("animator")]
-modulate = Color(0.6, 0.741176, 0.964706, 1)
-custom_minimum_size = Vector2(48, 48)
+[node name="PlayStopButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" node_paths=PackedStringArray("animator")]
 layout_mode = 2
-size_flags_vertical = 4
 toggle_mode = true
-texture_normal = ExtResource("9_ac012")
-texture_pressed = ExtResource("10_blm1k")
-ignore_texture_size = true
-stretch_mode = 5
+icon = ExtResource("9_ac012")
 script = ExtResource("11_ha8h0")
 animator = NodePath("../../../../../../../../../..")
-
-[node name="Modulate On Hover" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_r0hl6")
+play_icon = ExtResource("9_ac012")
+stop_icon = ExtResource("10_blm1k")
 
 [node name="ProgressSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1" node_paths=PackedStringArray("animator")]
 layout_mode = 2
@@ -256,7 +242,7 @@ script = ExtResource("14_f6jdl")
 animator = NodePath("../../../../../../../../../..")
 
 [node name="DurationSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="2" node_paths=PackedStringArray("animator")]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 min_value = 0.5
 step = 0.5
@@ -328,5 +314,4 @@ vertical_alignment = 1
 layout_mode = 2
 max_value = 1.0
 
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayStopTextureButton" method="_on_toggled"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" method="_on_value_changed"]
