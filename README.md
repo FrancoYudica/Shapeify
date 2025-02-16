@@ -66,12 +66,12 @@ Some examples with different images as building blocks.
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="object-fit: cover;" width=400>
-<img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" alt="Billie Eilish" style="object-fit: cover;" width=400>
-<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" width=400> 
-<img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" width=400>
-<img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" width=400>
-<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" width=400>
+<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" alt="Billie Eilish" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" style="vertical-align: top;" width=400> 
+<img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" style="vertical-align: top;" width=400>
 
 
 </div>
