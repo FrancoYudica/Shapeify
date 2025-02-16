@@ -60,12 +60,12 @@ Below are some examples showcasing the possibilities of the post-processing pipe
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/fb387ad2-3055-4ac5-b589-bc4ba7683eeb" title="Image without post processing" style="vertical-align: top;" width=150>
-<img src="https://github.com/user-attachments/assets/0414a146-a037-4041-8ec8-bace543dee71" style="vertical-align: top;" width=150>
-<img src="https://github.com/user-attachments/assets/8b27c4d4-b1cd-488d-aee7-3ace8eab9647" style="vertical-align: top;" width=150>
-<img src="https://github.com/user-attachments/assets/5b9338c8-e4fc-4512-b991-3c33dbb61ffc" style="vertical-align: top;" width=150>
-<img src="https://github.com/user-attachments/assets/3d739dd2-929e-4249-911f-cf8cfa7eaf48" style="vertical-align: top;" width=150>
-<img src="https://github.com/user-attachments/assets/f66d86a8-8439-4589-8d77-e418ed6c15ea" style="vertical-align: top;" width=150>
+<img src="https://github.com/user-attachments/assets/fb387ad2-3055-4ac5-b589-bc4ba7683eeb" title="Image without post processing" style="vertical-align: top;" width=125>
+<img src="https://github.com/user-attachments/assets/0414a146-a037-4041-8ec8-bace543dee71" style="vertical-align: top;" width=125>
+<img src="https://github.com/user-attachments/assets/8b27c4d4-b1cd-488d-aee7-3ace8eab9647" style="vertical-align: top;" width=125>
+<img src="https://github.com/user-attachments/assets/5b9338c8-e4fc-4512-b991-3c33dbb61ffc" style="vertical-align: top;" width=125>
+<img src="https://github.com/user-attachments/assets/3d739dd2-929e-4249-911f-cf8cfa7eaf48" style="vertical-align: top;" width=125>
+<img src="https://github.com/user-attachments/assets/f66d86a8-8439-4589-8d77-e418ed6c15ea" style="vertical-align: top;" width=125>
 
 </div>
 
