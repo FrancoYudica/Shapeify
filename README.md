@@ -16,24 +16,23 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 
 - Reconstruct any image using a chosen set of smaller images as building blocks.
 - Save generated artwork in formats such as PNG, JPG, WEBP, and JSON for use in custom projects.
+- Load PNG, JPG, SVG, JPEG, BMP and WEBP images.
 - Create animations with GenArt's integrated animator.
-- Optimize results easily with predefined FAST, PERFORMANCE, and QUALITY modes.
-- Utilize default image collections for effortless creation.
+- Optimize results easily with predefined SUPER_FAST, FAST, PERFORMANCE, and QUALITY modes.
+- Utilize tested default image collections for effortless creation.
 - Customize algorithms with an extensive range of settings.
-- Prioritize specific areas of the target image using a weight texture, guiding the algorithm to focus on the most important regions.
+- Prioritize specific areas of the image using an automatically generated weight texture, guiding the algorithm to focus on the most important regions. Weight texture can also be provided by user to develop specific image regions.
 
 ## Animator
 
-<div align="center">
-<img src="https://github.com/user-attachments/assets/bc3f2675-75ab-4b8f-9d19-9b900da3f427" width=800></img>
-</div>
+![animator](https://github.com/user-attachments/assets/0baeb40c-bf9c-4f46-ac72-11fcfd790161)
 
 Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
 
 <div align="center">
 
 
-|                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
+|                               Timeline                                |                               Scale all                                |                             Translate top                             |                               Wave from left                                |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
 | <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
 
@@ -43,11 +42,8 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 
 Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
 
-<div align="center">
-<img src="https://github.com/user-attachments/assets/6d462f63-1d08-4e41-b413-e8cdcd1c96fe" width=400></img>
-<img src="https://github.com/user-attachments/assets/25160229-3b51-4571-ae51-573f59288e33" width=400></img>
-</div>
 
+![all_toggle_panels](https://github.com/user-attachments/assets/72f9e4a2-1f81-4cd2-9c03-c2ad71e90678)
 ## Installation
 
 Genart is available through the following options:
@@ -72,7 +68,11 @@ Some examples with different images as building blocks.
 <img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" title="Eye 400 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" title="Dwayne Johnson 400 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" title="Sabana tree 300 shapes" style="vertical-align: top;" width=400>
-
+<img src="https://github.com/user-attachments/assets/9f3c5b9e-9f70-47e4-ab93-aebf85ef2b9b" title="Train station 600 shapes" style="vertical-align: top;" width=800>
+<img src="https://github.com/user-attachments/assets/8ffe17c1-1f48-4135-8410-453f323c3e0f" title="Breakdance 200 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/d430de88-51de-4205-b1e0-56ff1cab9419" title="Flowers 200 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/0df989fd-d0aa-41f0-b515-4e6e6d7497b8" title="Smoking 300 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/5500f41b-de4e-49ee-95ce-0addcbf3bf1f" title="Dog 300 shapes" style="vertical-align: top;" width=400>
 
 </div>
 
