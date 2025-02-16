@@ -62,8 +62,11 @@ Some examples with different images as building blocks.
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" title="Mona Lisa 300 rotated capsule shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" title="Billie Eilish 500 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/6969049d-084d-4483-b045-9413acb509dc" title="Flowers 500 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" title="Mona Lisa 300 rotated capsule shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/997b0a8f-9f2b-43c8-92ce-ac4b141511b7" title="Bunny 200 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/59c6cfed-ef1c-4be3-8ac0-e64f03511365" title="Beach 350 shapes" style="vertical-align: top;" width=800>
 <img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" title="People dancing 200 shapes" style="vertical-align: top;" width=400> 
 <img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" title="Eye 400 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" title="Dwayne Johnson 400 shapes" style="vertical-align: top;" width=400>
