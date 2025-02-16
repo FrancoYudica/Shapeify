@@ -71,8 +71,8 @@ Some examples with different images as building blocks.
 <img src="https://github.com/user-attachments/assets/9f3c5b9e-9f70-47e4-ab93-aebf85ef2b9b" title="Train station 600 shapes" style="vertical-align: top;" width=800>
 <img src="https://github.com/user-attachments/assets/8ffe17c1-1f48-4135-8410-453f323c3e0f" title="Breakdance 200 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/d430de88-51de-4205-b1e0-56ff1cab9419" title="Flowers 200 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/0df989fd-d0aa-41f0-b515-4e6e6d7497b8" title="Smoking 300 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/5500f41b-de4e-49ee-95ce-0addcbf3bf1f" title="Dog 300 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/0df989fd-d0aa-41f0-b515-4e6e6d7497b8" title="Smoking 300 shapes" style="vertical-align: top;" width=400>
 
 </div>
 
