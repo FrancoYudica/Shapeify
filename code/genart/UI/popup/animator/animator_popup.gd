@@ -1,6 +1,6 @@
 extends Control
 
-signal shapes_animated(shapes: Array[Shape])
+signal shapes_animated(details: ImageGenerationDetails)
 signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
@@ -10,7 +10,7 @@ signal animation_finished
 var image_generation_details: ImageGenerationDetails:
 	get:
 		return ImageGeneration.details
-		
+
 var animation_player: ShapeAnimationPlayer
 
 var _tween: Tween
@@ -52,12 +52,19 @@ func _interpolate(t: float):
 	image_generation_details.viewport_size = Vector2i(
 		output_texture_panel_container.size.y * aspect_ratio, 
 		output_texture_panel_container.size.y)
-	
+
+	# Applies post processing
+	var post_processed_details = await ShapeColorPostProcessingPipeline.process_details(
+		image_generation_details,
+		0,
+		Globals.settings.color_post_processing_pipeline_params
+	)
+
 	# Animates current frame
-	var animated_shapes = animation_player.animate(
-		image_generation_details.shapes, 
+	post_processed_details.shapes = animation_player.animate(
+		post_processed_details.shapes, 
 		t)
-	shapes_animated.emit(animated_shapes)
+	shapes_animated.emit(post_processed_details)
 	animation_progress_updated.emit(t)
 	_current_t = t
 

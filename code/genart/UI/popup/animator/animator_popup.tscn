@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dbxr3rtamb485"]
+[gd_scene load_steps=24 format=3 uid="uid://dbxr3rtamb485"]
 
 [ext_resource type="PackedScene" uid="uid://cdsq37hq1u2vs" path="res://UI/popup/popup.tscn" id="1_36sam"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="2_n2nqh"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/textures/icons/play.png" id="9_ac012"]
 [ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/textures/icons/stop.png" id="10_blm1k"]
 [ext_resource type="Script" path="res://UI/popup/animator/play_stop_button.gd" id="11_ha8h0"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="11_k5ni5"]
 [ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="13_ayf3j"]
 [ext_resource type="Script" path="res://UI/popup/animator/progress_slider.gd" id="14_f6jdl"]
 [ext_resource type="Script" path="res://UI/popup/animator/duration_spin_box.gd" id="15_2loo1"]
@@ -223,6 +224,9 @@ theme_override_constants/separation = 16
 
 [node name="PlayStopButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" node_paths=PackedStringArray("animator")]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_k5ni5")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
 toggle_mode = true
 icon = ExtResource("9_ac012")
 script = ExtResource("11_ha8h0")
