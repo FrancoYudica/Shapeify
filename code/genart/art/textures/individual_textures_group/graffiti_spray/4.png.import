@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://feej2tit3tfm"
-path="res://.godot/imported/5.png-8311068eddf19f8a015aeb37998ab969.ctex"
+uid="uid://b5nfnx686t78g"
+path="res://.godot/imported/4.png-df9293d84718c360b9802bfb55d45711.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/textures/individual_textures_group/grafiti_spray/5.png"
-dest_files=["res://.godot/imported/5.png-8311068eddf19f8a015aeb37998ab969.ctex"]
+source_file="res://art/textures/individual_textures_group/graffiti_spray/4.png"
+dest_files=["res://.godot/imported/4.png-df9293d84718c360b9802bfb55d45711.ctex"]
 
 [params]
 

@@ -35,7 +35,7 @@ func update(
 	source_texture: RendererTexture,
 	weight_texture: RendererTexture) -> void:
 	
-	_blur_processor.iterations = int(lerpf(10.0, 1.0, similarity))
+	_blur_processor.iterations = int(lerpf(10.0, 2.0, similarity))
 	_blur_processor.kernel_size = int(lerpf(9, 4, similarity))
 	_blur_processor.sigma = 5
 	_sobel_edge_detection.threshold = lerpf(0.0, 0.1, similarity)

@@ -1,6 +1,6 @@
 class_name HueShiftPostProcessingShaderParams extends Resource
 
-@export var shift: float = 0.25:
+@export var shift: float = 0.10:
 	set(value):
 		if value != shift:
 			shift = value

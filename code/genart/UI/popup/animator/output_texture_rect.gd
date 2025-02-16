@@ -13,22 +13,9 @@ func _process(delta: float) -> void:
 		_free_texture()
 		
 
-func _animated_shapes(shapes: Array[Shape]):
-	
-	var raw_details = animator.image_generation_details.copy()
-	
-	# Updates the details shapes
-	raw_details.shapes = shapes
-	
-	# Prepares details
-	var processed_details := await ShapeColorPostProcessingPipeline.process_details(
-		raw_details,
-		0,
-		Globals.settings.color_post_processing_pipeline_params
-	)
-	
+func _animated_shapes(details: ImageGenerationDetails):
 	# Renders the image
-	ImageGenerationRenderer.render_image_generation(Renderer, processed_details)
+	ImageGenerationRenderer.render_image_generation(Renderer, details)
 
 	# Copies textures contents into TextureRect's texture
 	var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
