@@ -32,6 +32,7 @@ Animations are exported as a sequence of images, therefore using a tool such as 
 
 <div align="center">
 
+
 |                               Timeline                                |                               Scale all                                |                             Translate from top                             |                               Wave from left                                |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
 | <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
@@ -67,14 +68,12 @@ Some examples with different images as building blocks.
 
 <div align="center">
 
-| <img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="object-fit: cover;"> | <img src="https://github.com/user-attachments/assets/8bac080b-9d6a-4193-a19e-3a335b2f673c" alt="Billie Eilish" style="object-fit: cover;"> |
-| :------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                _Mona Lisa. 300 fixed rotation capsules_                                                |                                                     _Billie Eilish. 500 brush strokes_                                                     |
-
-| <img src="https://github.com/user-attachments/assets/22099d50-b632-4ea3-a019-428ac209c54b"> | <img src="https://github.com/user-attachments/assets/8b3cb5a1-ec83-4138-9438-bc45177a0d86" alt="Milky Way" style="object-fit: cover;"> |
-| :-----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
-|                   _Lamborghini Aventador. 200 geometric rounded objects_                    |                                                     _Milky Way. 200 glow objects_                                                      |
-
+<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="object-fit: cover;">
+<img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" alt="Billie Eilish" style="object-fit: cover;">
+<img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6">
+<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6">
+<img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9">
+<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b"> 
 </div>
 
 ## Contributing
