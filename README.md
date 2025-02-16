@@ -66,12 +66,12 @@ Some examples with different images as building blocks.
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" alt="Mona Lisa" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" alt="Billie Eilish 500 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" alt="People dancing 200 shapes" style="vertical-align: top;" width=400> 
-<img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" alt="Eye 400 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" alt="Dwayne Johnson 400 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" alt="Sabana tree 300 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" title="Mona Lisa 300 rotated capsule shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" title="Billie Eilish 500 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" title="People dancing 200 shapes" style="vertical-align: top;" width=400> 
+<img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" title="Eye 400 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" title="Dwayne Johnson 400 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" title="Sabana tree 300 shapes" style="vertical-align: top;" width=400>
 
 
 </div>
