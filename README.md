@@ -1,5 +1,11 @@
+<div align="center">
+
 <img src="imgs/GenartIconAndName.png" width=500></img>
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/FrancoYudica/Genart/blob/main/LICENSE)
+
+<a href="https://github.com/FrancoYudica/Genart/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?" /></a>
+<a href="https://godotengine.org/download/"><img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot-v4.3+-blue.svg?" /></a>
+<a href="https://github.com/FrancoYudica/Genart/releases"><img alt="Latest Genart Release" src="https://img.shields.io/github/v/release/FrancoYudica/Genart?include_prereleases&"></a>
+</div>
 
 Genart is an application that transforms your target image into uniquely stylized artwork.
 Smaller images are used as building blocks to reconstruct the target picture.
