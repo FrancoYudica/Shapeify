@@ -8,7 +8,7 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/93a80909-5bb0-4a7d-bca0-6a515866f7e3" width=800></img>
+<img src="https://github.com/user-attachments/assets/22578a87-1d6a-4a08-9506-2c7e2c722967" width=800></img>
 
 </div>
 
@@ -33,16 +33,19 @@ Genart is available through the following options:
 
 ## Animator
 
-Animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
+After the image is generated, you can apply animations, which are built into Genart by default. These function similarly to vertex shaders, allowing you to create animations like the following:
 
 <div align="center">
 
-
-|                               Timeline                                |                               Scale all                                |                             Translate top                             |                               Wave from left                                |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
-| <img src="imgs/samples/animations/icecream/timeline.gif" width="200"> | <img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> | <img src="imgs/samples/animations/icecream/translate_top.gif" width="200"> | <img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200"> |
+<img src="imgs/samples/animations/icecream/timeline.gif" width="200"> 
+<img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> 
+<img src="imgs/samples/animations/icecream/translate_top.gif" width="200">
+<img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200">
 
 </div>
+
+Note that animations are exported as a sequence of images, therefore using a tool such as [ffmpeg](https://www.ffmpeg.org/) is required in order to generate a video or gif.
+
 
 ## Post processing
 
@@ -70,8 +73,6 @@ Below are some examples showcasing the possibilities of the post-processing pipe
 </div>
 
 ## Settings
-
-
 
 Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
 
