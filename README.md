@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="imgs/GenartIconAndName.png" width=500></img>
+<img src="https://github.com/user-attachments/assets/686e2203-19bd-4f98-b2a7-62e3b4901501" width=500></img>
 
 <a href="https://github.com/FrancoYudica/Genart/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?" /></a>
 <a href="https://godotengine.org/download/"><img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot-v4.3+-blue.svg?" /></a>
