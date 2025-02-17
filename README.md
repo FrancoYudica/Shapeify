@@ -20,14 +20,15 @@ This tool is perfect for artists, designers, or anyone looking to experiment wit
 
 ## Features
 
-- Reconstruct any image using a chosen set of smaller images as building blocks.
-- Save generated artwork in formats such as PNG, JPG, WEBP, and JSON for use in custom projects.
-- Load PNG, JPG, SVG, JPEG, BMP and WEBP images.
-- Create animations with GenArt's integrated animator.
-- Optimize results easily with predefined SUPER_FAST, FAST, PERFORMANCE, and QUALITY modes.
-- Utilize tested default image collections for effortless creation.
-- Customize algorithms with an extensive range of settings.
-- Prioritize specific areas of the image using an automatically generated weight texture, guiding the algorithm to focus on the most important regions. Weight texture can also be provided by user to develop specific image regions.
+Genart offers a powerful yet easy-to-use interface, allowing full control over the image reconstruction process with a wide range of tweakable parameters. Key features include:
+- Reconstruct any image using a selected set of smaller images as building blocks.
+- Save your artwork in multiple formats, including PNG, JPG, WEBP, and JSON, for integration into custom projects.
+- Load various image formats, including PNG, JPG, SVG, JPEG, BMP, and WEBP.
+- Animate your creations with Genart’s integrated animator.
+- Optimize results effortlessly with predefined modes: SUPER_FAST, FAST, PERFORMANCE, and QUALITY.
+- Access tested default image collections for quick and effortless artwork generation.
+- Customize every aspect of the algorithm with a wide range of adjustable parameters.
+- Guide the algorithm intelligently using an automatically generated weight texture, prioritizing key areas of the image. Users can also provide a custom weight texture to refine specific regions.
 
 ## Installation
 
@@ -36,6 +37,12 @@ Genart is available through the following options:
 - [Itch.io](https://franco-yudica.itch.io/genart)
 - The latest [GitHub release](https://github.com/FrancoYudica/Genart/releases)
 - Building the project locally using [Godot 4.3](https://godotengine.org/download).
+
+## Settings
+
+Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
+
+![all_toggle_panels](https://github.com/user-attachments/assets/72f9e4a2-1f81-4cd2-9c03-c2ad71e90678)
 
 ## Animator
 
@@ -77,13 +84,6 @@ Below are some examples showcasing the possibilities of the post-processing pipe
 <img src="https://github.com/user-attachments/assets/f66d86a8-8439-4589-8d77-e418ed6c15ea" style="vertical-align: top;" width=125>
 
 </div>
-
-## Settings
-
-Genart provides an extensive range of configurable settings, allowing users to adjust the attributes of its algorithms through a dedicated interface. Additionally, pre-tested presets are available to produce high-quality results, offering a practical option for users who may not have prior knowledge of the underlying algorithms.
-
-
-![all_toggle_panels](https://github.com/user-attachments/assets/72f9e4a2-1f81-4cd2-9c03-c2ad71e90678)
 
 ## Contributing
 
