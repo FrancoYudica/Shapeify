@@ -93,21 +93,21 @@ Contributions of all kinds are welcome! If you’re interested in contributing t
 
 Here are some examples showcasing Genart’s versatility:
 
-<div align="center">
 
+<div align="center">
 <img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" title="Billie Eilish 500 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/6969049d-084d-4483-b045-9413acb509dc" title="Flowers 500 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/2b24f0b4-e0cb-43d6-8619-0ec5454be19b" title="Mona Lisa 300 rotated capsule shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/997b0a8f-9f2b-43c8-92ce-ac4b141511b7" title="Bunny 200 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/7b5d8446-fa04-462f-a145-890644035e94" title="Bunny 200 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/59c6cfed-ef1c-4be3-8ac0-e64f03511365" title="Beach 350 shapes" style="vertical-align: top;" width=800>
-<img src="https://github.com/user-attachments/assets/e8680bb0-3a4f-45f6-acb3-75cbc1f26e0b" title="People dancing 200 shapes" style="vertical-align: top;" width=400> 
+<img src="https://github.com/user-attachments/assets/5dd0bb35-8150-4b1c-82c2-aca1d236d7b0" title="People dancing 200 shapes" style="vertical-align: top;" width=400> 
 <img src="https://github.com/user-attachments/assets/6fd4d317-b1c4-4eff-9258-c8698db704b9" title="Eye 400 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/6d54294a-e804-4ef1-a9c0-bfae469827b6" title="Dwayne Johnson 400 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/a5d00591-a1ca-4611-8aa1-480d6debd6b6" title="Sabana tree 300 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/43ce2e25-f2c3-46f1-9268-4af9d433847c" title="Sabana tree 300 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/9f3c5b9e-9f70-47e4-ab93-aebf85ef2b9b" title="Train station 600 shapes" style="vertical-align: top;" width=800>
 <img src="https://github.com/user-attachments/assets/8ffe17c1-1f48-4135-8410-453f323c3e0f" title="Breakdance 200 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/d430de88-51de-4205-b1e0-56ff1cab9419" title="Flowers 200 shapes" style="vertical-align: top;" width=400>
-<img src="https://github.com/user-attachments/assets/5500f41b-de4e-49ee-95ce-0addcbf3bf1f" title="Dog 300 shapes" style="vertical-align: top;" width=400>
+<img src="https://github.com/user-attachments/assets/e8559b60-c30f-4012-82b6-08838c8deae3" title="Dog 300 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/0df989fd-d0aa-41f0-b515-4e6e6d7497b8" title="Smoking 300 shapes" style="vertical-align: top;" width=400>
 
 </div>
