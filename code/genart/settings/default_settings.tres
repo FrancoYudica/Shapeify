@@ -159,7 +159,7 @@ textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), Ext
 [resource]
 script = ExtResource("39_t5xji")
 version = "2.0.0"
-version_date = "15/02/2025"
+version_date = "17/02/2025"
 render_scale = 1.0
 color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")
