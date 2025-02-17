@@ -43,10 +43,10 @@ After the image is generated, you can apply animations, which are built into Gen
 
 <div align="center">
 
-<img src="imgs/samples/animations/icecream/timeline.gif" width="200"> 
-<img src="imgs/samples/animations/icecream/scale_all.gif" width="200"> 
-<img src="imgs/samples/animations/icecream/translate_top.gif" width="200">
-<img src="imgs/samples/animations/icecream/wave_from_left.gif" width="200">
+<img src="https://github.com/user-attachments/assets/4435999a-13db-43ec-9bff-8201edceb9c2" width="200"> 
+<img src="https://github.com/user-attachments/assets/0e52b0c1-fd33-4e48-98ea-4ed8f249c339" width="200"> 
+<img src="https://github.com/user-attachments/assets/4cc8ea00-01cd-4a67-a7d0-c463d048d72a" width="200">
+<img src="https://github.com/user-attachments/assets/217b30cb-79d1-461d-87b7-c11d2a529545" width="200">
 
 </div>
 
