@@ -91,8 +91,7 @@ Contributions of all kinds are welcome! If you’re interested in contributing t
 
 ## Gallery
 
-Here are some examples showcasing Genart’s versatility:
-
+Here are some examples demonstrating Genart's versatility, using different shapes to create a diverse range of artistic styles:
 
 <div align="center">
 <img src="https://github.com/user-attachments/assets/1e0c5fa0-c56a-4779-976a-b878cb011da0" title="Billie Eilish 500 shapes" style="vertical-align: top;" width=400>
