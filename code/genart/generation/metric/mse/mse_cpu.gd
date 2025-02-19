@@ -24,7 +24,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
 
-	var source_image := ImageUtils.create_image_from_rgbaf_buffer(
+	var source_image := ImageUtils.create_image_from_rgba8_buffer(
 		color_attachment_texture.get_width(),
 		color_attachment_texture.get_height(),
 		color_attachment_data

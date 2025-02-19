@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cxlriq54udl66"
+path="res://.godot/imported/min_texture_scalar_function.glsl-b0faf8ae20536755000cf1f15420be87.res"
+
+[deps]
+
+source_file="res://shaders/compute/texture_scalar_function/min_texture_scalar_function.glsl"
+dest_files=["res://.godot/imported/min_texture_scalar_function.glsl-b0faf8ae20536755000cf1f15420be87.res"]
+
+[params]
+

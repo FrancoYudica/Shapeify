@@ -1,213 +1,168 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=97 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" load_steps=96 format=3 uid="uid://075wo5henc7i"]
 
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
-[ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_oxdqy"]
-[ext_resource type="Script" path="res://generation/individual_generator/best_of_random/best_of_random_individual_generator_params.gd" id="3_kalsu"]
-[ext_resource type="Script" path="res://generation/individual_generator/genetic/genetic_individual_generator_params.gd" id="4_2f6rr"]
-[ext_resource type="Script" path="res://generation/individual_generator/genetic/survivor_selection/survivor_selection_params.gd" id="5_ef5tc"]
-[ext_resource type="Script" path="res://generation/individual_generator/common/populator_params.gd" id="6_uj1yx"]
-[ext_resource type="Script" path="res://generation/individual_generator/hill_climbing/hill_climbing_individual_generator_params.gd" id="6_wsr2s"]
-[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="7_df2vp"]
-[ext_resource type="Script" path="res://generation/individual_generator/individual_generator_params.gd" id="8_oum2w"]
-[ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="9_l7xcl"]
-[ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="10_mxc8r"]
-[ext_resource type="Script" path="res://generation/individuals_texture_group.gd" id="11_f4wjl"]
-[ext_resource type="Texture2D" uid="uid://cka7bbhbg3ia4" path="res://art/individual_textures_group/brush_strokes/brush_0.png" id="12_86liw"]
-[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_ovpig"]
-[ext_resource type="Texture2D" uid="uid://dms0uqgwjpjob" path="res://art/individual_textures_group/brush_strokes/brush_1.png" id="13_sfuf8"]
-[ext_resource type="Texture2D" uid="uid://6vk4tcoal0tn" path="res://art/individual_textures_group/brush_strokes/brush_2.png" id="14_c4yru"]
-[ext_resource type="Texture2D" uid="uid://bwhsec413qhqh" path="res://art/individual_textures_group/brush_strokes/brush_3.png" id="15_5lylu"]
-[ext_resource type="Texture2D" uid="uid://bowxgsm5us68n" path="res://art/individual_textures_group/brush_strokes/brush_4.png" id="16_jsm3k"]
-[ext_resource type="Texture2D" uid="uid://dk0l86ekr55xe" path="res://art/individual_textures_group/circular_shapes/capsule.png" id="17_qlpu2"]
-[ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/individual_textures_group/circular_shapes/circle.png" id="18_04xxk"]
-[ext_resource type="Texture2D" uid="uid://ckaxyweu3mu8o" path="res://art/individual_textures_group/circular_shapes/square.png" id="19_q03vu"]
-[ext_resource type="Texture2D" uid="uid://cg701j0qhi1fe" path="res://art/individual_textures_group/circular_shapes/triangle.png" id="20_m5g72"]
-[ext_resource type="Texture2D" uid="uid://ilo78we81v7e" path="res://art/individual_textures_group/transparent_shapes/glow_ring.png" id="21_xb6pi"]
-[ext_resource type="Texture2D" uid="uid://ol08bumnmo6l" path="res://art/individual_textures_group/transparent_shapes/horizontal_glow.png" id="22_0u52r"]
-[ext_resource type="Texture2D" uid="uid://bsd28nw7lim3p" path="res://art/individual_textures_group/transparent_shapes/splash.png" id="23_nghpl"]
-[ext_resource type="Texture2D" uid="uid://caod0ecyioa7j" path="res://art/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_31569506.png" id="24_ckdkk"]
-[ext_resource type="Texture2D" uid="uid://burtcc0b0gkya" path="res://art/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_32047928.png" id="25_1l43m"]
-[ext_resource type="Texture2D" uid="uid://dasfc8acrlrb2" path="res://art/individual_textures_group/emoji/Dropped Image (2).png" id="26_g1xw6"]
-[ext_resource type="Texture2D" uid="uid://0w63nahxl4o0" path="res://art/individual_textures_group/emoji/Dropped Image (3).png" id="27_y0de6"]
-[ext_resource type="Texture2D" uid="uid://clp3bgltvvir" path="res://art/individual_textures_group/emoji/Dropped Image (4).png" id="28_mfts7"]
-[ext_resource type="Texture2D" uid="uid://c0o2wpngnrnka" path="res://art/individual_textures_group/emoji/Dropped Image (5).png" id="29_jyuit"]
-[ext_resource type="Texture2D" uid="uid://bk8xqynbjlq6b" path="res://art/individual_textures_group/emoji/Dropped Image (6).png" id="30_8xuce"]
-[ext_resource type="Texture2D" uid="uid://c4wcwl4invdhk" path="res://art/individual_textures_group/emoji/Dropped Image (8).png" id="31_x58bt"]
-[ext_resource type="Texture2D" uid="uid://bdswh5ejn8w1" path="res://art/individual_textures_group/emoji/Dropped Image (7).png" id="32_pxp60"]
-[ext_resource type="Texture2D" uid="uid://o1pk7sv5hkj3" path="res://art/individual_textures_group/emoji/Dropped Image (9).png" id="33_ixq4v"]
-[ext_resource type="Texture2D" uid="uid://v37q4fag0m5f" path="res://art/individual_textures_group/emoji/Dropped Image (11).png" id="34_c2c8n"]
-[ext_resource type="Texture2D" uid="uid://dbq5sh8cdsxn2" path="res://art/individual_textures_group/emoji/Dropped Image (10).png" id="35_1g6mw"]
-[ext_resource type="Texture2D" uid="uid://4wh4kfeadu6h" path="res://art/individual_textures_group/emoji/Dropped Image (12).png" id="36_jukan"]
-[ext_resource type="Texture2D" uid="uid://bvl2a0m0bd7j2" path="res://art/individual_textures_group/emoji/Dropped Image (13).png" id="37_t7blk"]
-[ext_resource type="Texture2D" uid="uid://cip0lr26kh35c" path="res://art/individual_textures_group/emoji/Dropped Image.png" id="38_5fofv"]
-[ext_resource type="Script" path="res://generation/app_settings.gd" id="39_t5xji"]
-[ext_resource type="Texture2D" uid="uid://cqdww7kohygiv" path="res://art/individual_textures_group/polygons/rhomboid.png" id="40_dova5"]
-[ext_resource type="Texture2D" uid="uid://c7m6r47sqjh5c" path="res://art/individual_textures_group/polygons/triangle0.png" id="41_edoef"]
-[ext_resource type="Texture2D" uid="uid://diikdmcqdmuch" path="res://art/individual_textures_group/polygons/octagon.png" id="42_sdcaa"]
-[ext_resource type="Texture2D" uid="uid://db0cyur7hhb2i" path="res://art/individual_textures_group/polygons/cross.png" id="43_7whp6"]
-[ext_resource type="Texture2D" uid="uid://dom1peclos8lt" path="res://art/individual_textures_group/polygons/pentagon.png" id="44_mh6gi"]
-[ext_resource type="Texture2D" uid="uid://c1u4m3uwto7vv" path="res://art/individual_textures_group/rings/ring0.png" id="45_rs73q"]
-[ext_resource type="Texture2D" uid="uid://bbn6lwgwfalw0" path="res://art/individual_textures_group/rings/ring1.png" id="46_67cgg"]
-[ext_resource type="Texture2D" uid="uid://exe2ai1q0vs4" path="res://art/individual_textures_group/rings/ring2.png" id="47_hn0gq"]
-[ext_resource type="Texture2D" uid="uid://b0mb7j3lpph46" path="res://art/individual_textures_group/rings/ring3.png" id="48_qgd35"]
-[ext_resource type="Texture2D" uid="uid://dbk1mqayeq6xh" path="res://art/individual_textures_group/rings/ring4.png" id="49_mnsp6"]
-[ext_resource type="Texture2D" uid="uid://cf123iddm3oks" path="res://art/individual_textures_group/rings/ring5.png" id="50_xr135"]
-[ext_resource type="Texture2D" uid="uid://cnu5lwht36h4n" path="res://art/individual_textures_group/gears/gear0.png" id="51_lofcj"]
-[ext_resource type="Texture2D" uid="uid://jhjvv41fkx1c" path="res://art/individual_textures_group/gears/gear1.png" id="52_ivegt"]
-[ext_resource type="Texture2D" uid="uid://bltcrbkxvii0g" path="res://art/individual_textures_group/curves/curve0.png" id="53_c6gp7"]
-[ext_resource type="Texture2D" uid="uid://d1hmiwmng68m7" path="res://art/individual_textures_group/gears/gear2.png" id="53_qeeeg"]
-[ext_resource type="Texture2D" uid="uid://dpgiq8orw4a5g" path="res://art/individual_textures_group/curves/curve1.png" id="54_13xx1"]
-[ext_resource type="Texture2D" uid="uid://dor770t15k23e" path="res://art/individual_textures_group/curves/curve2.png" id="55_6kwt7"]
-[ext_resource type="Texture2D" uid="uid://4fbigonu2hcy" path="res://art/individual_textures_group/curves/curve3.png" id="56_yd108"]
-[ext_resource type="Texture2D" uid="uid://b1llvvb6ljcxn" path="res://art/individual_textures_group/curves/curve4.png" id="57_ugd8r"]
-[ext_resource type="Texture2D" uid="uid://e7mtp56c4een" path="res://art/individual_textures_group/curves/curve5.png" id="58_yuoen"]
-[ext_resource type="Texture2D" uid="uid://7feaqdt8v0wd" path="res://art/individual_textures_group/water_droplets/water_droplet0.png" id="59_w31nu"]
-[ext_resource type="Texture2D" uid="uid://b1can88gwippa" path="res://art/individual_textures_group/water_droplets/water_droplet1.png" id="60_ybbp7"]
-[ext_resource type="Texture2D" uid="uid://cpube3wt85et6" path="res://art/individual_textures_group/water_droplets/water_droplet2.png" id="61_vxk4f"]
-[ext_resource type="Texture2D" uid="uid://daaqtr6k14tlu" path="res://art/individual_textures_group/water_droplets/water_droplet3.png" id="62_bhmbp"]
-[ext_resource type="Texture2D" uid="uid://d3tufnguvwgji" path="res://art/individual_textures_group/water_droplets/water_droplet4.png" id="63_8oo51"]
-[ext_resource type="Texture2D" uid="uid://dvhlqi6csrs08" path="res://art/individual_textures_group/pixelart_numbers/0_pixelart.png" id="65_womos"]
-[ext_resource type="Texture2D" uid="uid://ca4q7ra23urpt" path="res://art/individual_textures_group/pixelart_numbers/1_pixelart.png" id="66_dr8hs"]
-[ext_resource type="Texture2D" uid="uid://c4snt6var63fx" path="res://art/individual_textures_group/pixelart_numbers/2_pixelart.png" id="67_xc8ua"]
-[ext_resource type="Texture2D" uid="uid://cnjay45rb2tsj" path="res://art/individual_textures_group/pixelart_numbers/3_pixelart.png" id="68_2b84e"]
-[ext_resource type="Texture2D" uid="uid://oia3mlhxy2co" path="res://art/individual_textures_group/pixelart_numbers/4_pixelart.png" id="69_u6keu"]
-[ext_resource type="Texture2D" uid="uid://phdacjlrqdrp" path="res://art/individual_textures_group/pixelart_numbers/5_pixelart.png" id="70_5edn1"]
-[ext_resource type="Texture2D" uid="uid://c0ssi32m4omwg" path="res://art/individual_textures_group/pixelart_numbers/6_pixelart.png" id="71_ghpdn"]
-[ext_resource type="Texture2D" uid="uid://cmvhsv2j7in0i" path="res://art/individual_textures_group/pixelart_numbers/7_pixelart.png" id="72_itasb"]
-[ext_resource type="Texture2D" uid="uid://lc21i0rrgp6f" path="res://art/individual_textures_group/pixelart_numbers/8_pixelart.png" id="73_dxtsd"]
-[ext_resource type="Texture2D" uid="uid://ppueuselhdj4" path="res://art/individual_textures_group/pixelart_numbers/9_pixelart.png" id="74_tvqj3"]
+[ext_resource type="Script" path="res://settings/contributor_data.gd" id="1_6kaui"]
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_e5oqy"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
+[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_8ndjb"]
+[ext_resource type="Texture2D" uid="uid://dngtfn76cqt7h" path="res://art/textures/individual_textures_group/brush_strokes_1/0.png" id="7_6ukyh"]
+[ext_resource type="Texture2D" uid="uid://dl6sxxxeed13u" path="res://art/textures/individual_textures_group/brush_strokes_1/1.png" id="8_vttff"]
+[ext_resource type="Texture2D" uid="uid://b0kuxq83j10cu" path="res://art/textures/individual_textures_group/brush_strokes_1/2.png" id="9_8f8ie"]
+[ext_resource type="Texture2D" uid="uid://bh1c8jh8ka3ds" path="res://art/textures/individual_textures_group/brush_strokes_1/3.png" id="10_an6t7"]
+[ext_resource type="Texture2D" uid="uid://d0evl0bp41ec1" path="res://art/textures/individual_textures_group/brush_strokes_1/4.png" id="11_7k3ba"]
+[ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
+[ext_resource type="Texture2D" uid="uid://bl4jdxuo4a5pt" path="res://art/textures/individual_textures_group/brush_strokes_1/5.png" id="12_7n61o"]
+[ext_resource type="Texture2D" uid="uid://pfxxri08diwg" path="res://art/textures/individual_textures_group/brush_strokes_2/0.png" id="12_ui4dh"]
+[ext_resource type="Texture2D" uid="uid://dtlln634i7qt6" path="res://art/textures/individual_textures_group/brush_strokes_2/1.png" id="13_hunnm"]
+[ext_resource type="Texture2D" uid="uid://3fy72rd2r0l5" path="res://art/textures/individual_textures_group/brush_strokes_1/6.png" id="13_r85sq"]
+[ext_resource type="Texture2D" uid="uid://ojbjblqj144e" path="res://art/textures/individual_textures_group/brush_strokes_1/7.png" id="14_druov"]
+[ext_resource type="Texture2D" uid="uid://b4cvtgt3e4h83" path="res://art/textures/individual_textures_group/brush_strokes_2/2.png" id="14_rmaog"]
+[ext_resource type="Texture2D" uid="uid://b0a8slnocfywn" path="res://art/textures/individual_textures_group/brush_strokes_2/3.png" id="15_h10de"]
+[ext_resource type="Texture2D" uid="uid://k5chajyiv7av" path="res://art/textures/individual_textures_group/brush_strokes_2/4.png" id="16_koc73"]
+[ext_resource type="Texture2D" uid="uid://co8laq0e5j34d" path="res://art/textures/individual_textures_group/brush_strokes_2/5.png" id="17_bya7o"]
+[ext_resource type="Texture2D" uid="uid://o51n3obrae12" path="res://art/textures/individual_textures_group/graffiti_spray/0.png" id="21_gqr4m"]
+[ext_resource type="Texture2D" uid="uid://ilo78we81v7e" path="res://art/textures/individual_textures_group/transparent_shapes/glow_ring.png" id="21_xb6pi"]
+[ext_resource type="Texture2D" uid="uid://ol08bumnmo6l" path="res://art/textures/individual_textures_group/transparent_shapes/horizontal_glow.png" id="22_0u52r"]
+[ext_resource type="Texture2D" uid="uid://bc76sv1vdrh6e" path="res://art/textures/individual_textures_group/graffiti_spray/1.png" id="22_nl0s8"]
+[ext_resource type="Texture2D" uid="uid://bsd28nw7lim3p" path="res://art/textures/individual_textures_group/transparent_shapes/splash.png" id="23_nghpl"]
+[ext_resource type="Texture2D" uid="uid://8wvostuyfg12" path="res://art/textures/individual_textures_group/graffiti_spray/2.png" id="23_t1g0m"]
+[ext_resource type="Texture2D" uid="uid://caod0ecyioa7j" path="res://art/textures/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_31569506.png" id="24_ckdkk"]
+[ext_resource type="Texture2D" uid="uid://buidnqm8wtftx" path="res://art/textures/individual_textures_group/graffiti_spray/3.png" id="24_k17vr"]
+[ext_resource type="Texture2D" uid="uid://b5nfnx686t78g" path="res://art/textures/individual_textures_group/graffiti_spray/4.png" id="25_0b4xc"]
+[ext_resource type="Texture2D" uid="uid://burtcc0b0gkya" path="res://art/textures/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_32047928.png" id="25_1l43m"]
+[ext_resource type="Texture2D" uid="uid://feej2tit3tfm" path="res://art/textures/individual_textures_group/graffiti_spray/5.png" id="26_qev6m"]
+[ext_resource type="Texture2D" uid="uid://vpsu2nikgwws" path="res://art/textures/individual_textures_group/graffiti_spray/6.png" id="27_avrcu"]
+[ext_resource type="Script" path="res://settings/app_settings.gd" id="39_t5xji"]
+[ext_resource type="Texture2D" uid="uid://cqdww7kohygiv" path="res://art/textures/individual_textures_group/polygons/rhomboid.png" id="40_dova5"]
+[ext_resource type="Texture2D" uid="uid://c7m6r47sqjh5c" path="res://art/textures/individual_textures_group/polygons/triangle0.png" id="41_edoef"]
+[ext_resource type="Texture2D" uid="uid://diikdmcqdmuch" path="res://art/textures/individual_textures_group/polygons/octagon.png" id="42_sdcaa"]
+[ext_resource type="Texture2D" uid="uid://db0cyur7hhb2i" path="res://art/textures/individual_textures_group/polygons/cross.png" id="43_7whp6"]
+[ext_resource type="Texture2D" uid="uid://dom1peclos8lt" path="res://art/textures/individual_textures_group/polygons/pentagon.png" id="44_mh6gi"]
+[ext_resource type="Texture2D" uid="uid://c1u4m3uwto7vv" path="res://art/textures/individual_textures_group/rings/ring0.png" id="45_rs73q"]
+[ext_resource type="Texture2D" uid="uid://bbn6lwgwfalw0" path="res://art/textures/individual_textures_group/rings/ring1.png" id="46_67cgg"]
+[ext_resource type="Texture2D" uid="uid://dk0l86ekr55xe" path="res://art/textures/individual_textures_group/rounded_shapes/capsule.png" id="47_28uc3"]
+[ext_resource type="Texture2D" uid="uid://exe2ai1q0vs4" path="res://art/textures/individual_textures_group/rings/ring2.png" id="47_hn0gq"]
+[ext_resource type="Texture2D" uid="uid://bdljkpf5xqeb" path="res://art/textures/individual_textures_group/rounded_shapes/circle.png" id="48_5gl4m"]
+[ext_resource type="Texture2D" uid="uid://b0mb7j3lpph46" path="res://art/textures/individual_textures_group/rings/ring3.png" id="48_qgd35"]
+[ext_resource type="Texture2D" uid="uid://ckaxyweu3mu8o" path="res://art/textures/individual_textures_group/rounded_shapes/square.png" id="49_7sf5g"]
+[ext_resource type="Texture2D" uid="uid://dbk1mqayeq6xh" path="res://art/textures/individual_textures_group/rings/ring4.png" id="49_mnsp6"]
+[ext_resource type="Texture2D" uid="uid://cg701j0qhi1fe" path="res://art/textures/individual_textures_group/rounded_shapes/triangle.png" id="50_qs3c6"]
+[ext_resource type="Texture2D" uid="uid://cf123iddm3oks" path="res://art/textures/individual_textures_group/rings/ring5.png" id="50_xr135"]
+[ext_resource type="Texture2D" uid="uid://cnu5lwht36h4n" path="res://art/textures/individual_textures_group/gears/gear0.png" id="51_lofcj"]
+[ext_resource type="Texture2D" uid="uid://cx8aboj37e1o2" path="res://art/textures/individual_textures_group/paint_splashes_1/0.png" id="52_2avkj"]
+[ext_resource type="Texture2D" uid="uid://jhjvv41fkx1c" path="res://art/textures/individual_textures_group/gears/gear1.png" id="52_ivegt"]
+[ext_resource type="Texture2D" uid="uid://b066da7tq12es" path="res://art/textures/individual_textures_group/paint_splashes_1/1.png" id="53_52pkd"]
+[ext_resource type="Texture2D" uid="uid://bltcrbkxvii0g" path="res://art/textures/individual_textures_group/curves/curve0.png" id="53_c6gp7"]
+[ext_resource type="Texture2D" uid="uid://d1hmiwmng68m7" path="res://art/textures/individual_textures_group/gears/gear2.png" id="53_qeeeg"]
+[ext_resource type="Texture2D" uid="uid://dpgiq8orw4a5g" path="res://art/textures/individual_textures_group/curves/curve1.png" id="54_13xx1"]
+[ext_resource type="Texture2D" uid="uid://bei5aduh7ohjl" path="res://art/textures/individual_textures_group/paint_splashes_1/2.png" id="54_ujgbm"]
+[ext_resource type="Texture2D" uid="uid://dor770t15k23e" path="res://art/textures/individual_textures_group/curves/curve2.png" id="55_6kwt7"]
+[ext_resource type="Texture2D" uid="uid://7u1ari2vk5ep" path="res://art/textures/individual_textures_group/paint_splashes_1/3.png" id="55_13bcu"]
+[ext_resource type="Texture2D" uid="uid://bylp5cadp70v8" path="res://art/textures/individual_textures_group/paint_splashes_1/4.png" id="56_g5sve"]
+[ext_resource type="Texture2D" uid="uid://4fbigonu2hcy" path="res://art/textures/individual_textures_group/curves/curve3.png" id="56_yd108"]
+[ext_resource type="Texture2D" uid="uid://cnlhyg3te4h8w" path="res://art/textures/individual_textures_group/paint_splashes_1/5.png" id="57_tix6r"]
+[ext_resource type="Texture2D" uid="uid://b1llvvb6ljcxn" path="res://art/textures/individual_textures_group/curves/curve4.png" id="57_ugd8r"]
+[ext_resource type="Texture2D" uid="uid://crd7plvsxjnom" path="res://art/textures/individual_textures_group/paint_splashes_1/6.png" id="58_bh21r"]
+[ext_resource type="Texture2D" uid="uid://e7mtp56c4een" path="res://art/textures/individual_textures_group/curves/curve5.png" id="58_yuoen"]
+[ext_resource type="Texture2D" uid="uid://fy7luwddu0ry" path="res://art/textures/individual_textures_group/paint_splashes_2/0.png" id="59_2rhrp"]
+[ext_resource type="Texture2D" uid="uid://7feaqdt8v0wd" path="res://art/textures/individual_textures_group/water_droplets/water_droplet0.png" id="59_w31nu"]
+[ext_resource type="Texture2D" uid="uid://bb2qajincacdx" path="res://art/textures/individual_textures_group/paint_splashes_2/1.png" id="60_5352j"]
+[ext_resource type="Texture2D" uid="uid://b1can88gwippa" path="res://art/textures/individual_textures_group/water_droplets/water_droplet1.png" id="60_ybbp7"]
+[ext_resource type="Texture2D" uid="uid://drlxvmwfw2206" path="res://art/textures/individual_textures_group/paint_splashes_2/2.png" id="61_a75s7"]
+[ext_resource type="Texture2D" uid="uid://cpube3wt85et6" path="res://art/textures/individual_textures_group/water_droplets/water_droplet2.png" id="61_vxk4f"]
+[ext_resource type="Texture2D" uid="uid://daaqtr6k14tlu" path="res://art/textures/individual_textures_group/water_droplets/water_droplet3.png" id="62_bhmbp"]
+[ext_resource type="Texture2D" uid="uid://d13wqp4jwnox6" path="res://art/textures/individual_textures_group/paint_splashes_2/3.png" id="62_uqmtt"]
+[ext_resource type="Texture2D" uid="uid://cx1sg8cf46w0t" path="res://art/textures/individual_textures_group/paint_splashes_2/4.png" id="63_5eo7x"]
+[ext_resource type="Texture2D" uid="uid://d3tufnguvwgji" path="res://art/textures/individual_textures_group/water_droplets/water_droplet4.png" id="63_8oo51"]
+[ext_resource type="Texture2D" uid="uid://cbs85onbqhueu" path="res://art/textures/individual_textures_group/paint_splashes_2/5.png" id="64_bw83v"]
+[ext_resource type="Texture2D" uid="uid://cwbl4spmt4t25" path="res://art/textures/individual_textures_group/paint_splashes_2/6.png" id="65_t71iw"]
+[ext_resource type="Texture2D" uid="uid://cbbk0yx6ubl6f" path="res://art/textures/individual_textures_group/paint_splashes_2/7.png" id="66_dnnx2"]
+[ext_resource type="Texture2D" uid="uid://cw4467n0re6n3" path="res://art/textures/individual_textures_group/paint_splashes_2/8.png" id="67_6v8qw"]
+[ext_resource type="Texture2D" uid="uid://dhfnd7pj64ae2" path="res://art/textures/individual_textures_group/paint_splashes_2/9.png" id="68_icccq"]
+[ext_resource type="Texture2D" uid="uid://45uev5583t18" path="res://art/textures/individual_textures_group/paint_splashes_2/10.png" id="69_a3idw"]
+[ext_resource type="Texture2D" uid="uid://cjrvitdb17ahq" path="res://art/textures/individual_textures_group/paint_splashes_2/11.png" id="70_umadn"]
 
-[sub_resource type="Resource" id="Resource_yhknk"]
-script = ExtResource("2_oxdqy")
-color = Color(0, 0, 0, 1)
+[sub_resource type="Resource" id="Resource_qt8hf"]
+script = ExtResource("1_e5oqy")
+shader_params = Array[ExtResource("2_8ndjb")]([])
+enabled = true
 
-[sub_resource type="Resource" id="Resource_uqt7i"]
-script = ExtResource("3_kalsu")
-individual_count = 150
-fitness_calculator = 1
+[sub_resource type="Resource" id="Resource_ixdxe"]
+script = ExtResource("1_6kaui")
+contributor_name = "Franco Yudica"
+contact_uri = "https://github.com/FrancoYudica"
 
-[sub_resource type="Resource" id="Resource_ws8ig"]
-script = ExtResource("5_ef5tc")
-elitisim_rate = 0.3
-tournament_size = 10
+[sub_resource type="Resource" id="Resource_a883r"]
+script = ExtResource("1_6kaui")
+contributor_name = "DancingEngie"
+contact_uri = "https://github.com/DancingEngie"
 
-[sub_resource type="Resource" id="Resource_rq143"]
-script = ExtResource("4_2f6rr")
-generation_count = 10
-population_size = 30
-fitness_calculator = 1
-mutation_rate = 0.1
-mutation_factor = 1.0
-selection_strategy = 0
-crossover_strategy = 3
-mutation_strategy = 1
-survivor_selection_strategy = 1
-survivor_selection_params = SubResource("Resource_ws8ig")
-
-[sub_resource type="Resource" id="Resource_torcr"]
-script = ExtResource("6_wsr2s")
-max_age = 30
-fitness_calculator = 1
-
-[sub_resource type="Resource" id="Resource_a75i4"]
-script = ExtResource("6_uj1yx")
-textures = Array[ExtResource("7_df2vp")]([])
-position_bound_min = Vector2i(0, 0)
-position_bound_max = Vector2i(0, 0)
-size_bound_min = Vector2i(8, 8)
-size_bound_max = Vector2i(512, 512)
-
-[sub_resource type="Resource" id="Resource_5vsv2"]
-script = ExtResource("8_oum2w")
-populator_params = SubResource("Resource_a75i4")
-color_sampler = 1
-keep_aspect_ratio = true
-clamp_position_in_canvas = true
-fixed_rotation = false
-fixed_rotation_angle = 0.0
-fixed_size = false
-fixed_size_width_ratio = 0.1
-best_of_random_params = SubResource("Resource_uqt7i")
-genetic_params = SubResource("Resource_rq143")
-hill_climbing_params = SubResource("Resource_torcr")
-
-[sub_resource type="Resource" id="Resource_vnspm"]
-script = ExtResource("10_mxc8r")
-individual_count = 200
-execution_time = 100.0
-target_fitness = 0.9
-metric_type = 4
-
-[sub_resource type="Resource" id="Resource_bec32"]
-script = ExtResource("12_ovpig")
-
-[sub_resource type="Resource" id="Resource_ej335"]
-script = ExtResource("9_l7xcl")
-type = 1
-weight_texture_generator_type = 0
-individual_generator_params = SubResource("Resource_5vsv2")
-individual_generator_type = 1
-stop_condition = 0
-stop_condition_params = SubResource("Resource_vnspm")
-clear_color_type = 0
-clear_color_params = SubResource("Resource_yhknk")
-weight_texture_generator_params = SubResource("Resource_bec32")
-
-[sub_resource type="Resource" id="Resource_w6sbu"]
+[sub_resource type="Resource" id="Resource_hcf0j"]
 script = ExtResource("11_f4wjl")
-name = "Brush strokes"
-textures = Array[Texture]([ExtResource("12_86liw"), ExtResource("13_sfuf8"), ExtResource("14_c4yru"), ExtResource("15_5lylu"), ExtResource("16_jsm3k")])
+name = "Brush strokes 1"
+textures = Array[Texture]([ExtResource("7_6ukyh"), ExtResource("8_vttff"), ExtResource("9_8f8ie"), ExtResource("10_an6t7"), ExtResource("11_7k3ba"), ExtResource("12_7n61o"), ExtResource("13_r85sq"), ExtResource("14_druov")])
 
-[sub_resource type="Resource" id="Resource_5xe3f"]
+[sub_resource type="Resource" id="Resource_pdkce"]
+script = ExtResource("11_f4wjl")
+name = "Brush strokes 2"
+textures = Array[Texture]([ExtResource("12_ui4dh"), ExtResource("13_hunnm"), ExtResource("14_rmaog"), ExtResource("15_h10de"), ExtResource("16_koc73"), ExtResource("17_bya7o")])
+
+[sub_resource type="Resource" id="Resource_x5g2o"]
+script = ExtResource("11_f4wjl")
+name = "Graffiti sprays"
+textures = Array[Texture]([ExtResource("21_gqr4m"), ExtResource("22_nl0s8"), ExtResource("23_t1g0m"), ExtResource("24_k17vr"), ExtResource("25_0b4xc"), ExtResource("26_qev6m"), ExtResource("27_avrcu")])
+
+[sub_resource type="Resource" id="Resource_2snrg"]
+script = ExtResource("11_f4wjl")
+name = "Paint splashes 1"
+textures = Array[Texture]([ExtResource("52_2avkj"), ExtResource("53_52pkd"), ExtResource("54_ujgbm"), ExtResource("55_13bcu"), ExtResource("56_g5sve"), ExtResource("57_tix6r"), ExtResource("58_bh21r")])
+
+[sub_resource type="Resource" id="Resource_p6fjf"]
+script = ExtResource("11_f4wjl")
+name = "Paint splashes 2"
+textures = Array[Texture]([ExtResource("59_2rhrp"), ExtResource("60_5352j"), ExtResource("61_a75s7"), ExtResource("62_uqmtt"), ExtResource("63_5eo7x"), ExtResource("64_bw83v"), ExtResource("65_t71iw"), ExtResource("66_dnnx2"), ExtResource("67_6v8qw"), ExtResource("68_icccq"), ExtResource("69_a3idw"), ExtResource("70_umadn")])
+
+[sub_resource type="Resource" id="Resource_yam2b"]
 script = ExtResource("11_f4wjl")
 name = "Rounded shapes"
-textures = Array[Texture]([ExtResource("17_qlpu2"), ExtResource("18_04xxk"), ExtResource("19_q03vu"), ExtResource("20_m5g72")])
+textures = Array[Texture]([ExtResource("47_28uc3"), ExtResource("48_5gl4m"), ExtResource("49_7sf5g"), ExtResource("50_qs3c6")])
 
-[sub_resource type="Resource" id="Resource_t2fdh"]
-script = ExtResource("11_f4wjl")
-name = "Glow"
-textures = Array[Texture]([ExtResource("21_xb6pi"), ExtResource("22_0u52r"), ExtResource("23_nghpl"), ExtResource("24_ckdkk"), ExtResource("25_1l43m")])
-
-[sub_resource type="Resource" id="Resource_08py8"]
-script = ExtResource("11_f4wjl")
-name = "Emojis"
-textures = Array[Texture]([ExtResource("26_g1xw6"), ExtResource("27_y0de6"), ExtResource("28_mfts7"), ExtResource("29_jyuit"), ExtResource("30_8xuce"), ExtResource("31_x58bt"), ExtResource("32_pxp60"), ExtResource("33_ixq4v"), ExtResource("34_c2c8n"), ExtResource("35_1g6mw"), ExtResource("36_jukan"), ExtResource("37_t7blk"), ExtResource("38_5fofv")])
-
-[sub_resource type="Resource" id="Resource_e4kka"]
-script = ExtResource("11_f4wjl")
-name = "Polygons"
-textures = Array[Texture]([ExtResource("40_dova5"), ExtResource("41_edoef"), ExtResource("42_sdcaa"), ExtResource("43_7whp6"), ExtResource("44_mh6gi")])
-
-[sub_resource type="Resource" id="Resource_c7n1q"]
-script = ExtResource("11_f4wjl")
-name = "Rings"
-textures = Array[Texture]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), ExtResource("47_hn0gq"), ExtResource("48_qgd35"), ExtResource("49_mnsp6"), ExtResource("50_xr135")])
-
-[sub_resource type="Resource" id="Resource_ixunu"]
-script = ExtResource("11_f4wjl")
-name = "Gears"
-textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt"), ExtResource("53_qeeeg")])
-
-[sub_resource type="Resource" id="Resource_vsdhb"]
+[sub_resource type="Resource" id="Resource_phir3"]
 script = ExtResource("11_f4wjl")
 name = "Curves"
 textures = Array[Texture]([ExtResource("53_c6gp7"), ExtResource("54_13xx1"), ExtResource("55_6kwt7"), ExtResource("56_yd108"), ExtResource("57_ugd8r"), ExtResource("58_yuoen")])
 
-[sub_resource type="Resource" id="Resource_p1s0e"]
+[sub_resource type="Resource" id="Resource_fo0nc"]
+script = ExtResource("11_f4wjl")
+name = "Gears"
+textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt"), ExtResource("53_qeeeg")])
+
+[sub_resource type="Resource" id="Resource_wuye4"]
+script = ExtResource("11_f4wjl")
+name = "Polygons"
+textures = Array[Texture]([ExtResource("43_7whp6"), ExtResource("42_sdcaa"), ExtResource("44_mh6gi"), ExtResource("40_dova5"), ExtResource("41_edoef")])
+
+[sub_resource type="Resource" id="Resource_xpeyg"]
+script = ExtResource("11_f4wjl")
+name = "Rings"
+textures = Array[Texture]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), ExtResource("47_hn0gq"), ExtResource("48_qgd35"), ExtResource("49_mnsp6"), ExtResource("50_xr135")])
+
+[sub_resource type="Resource" id="Resource_8d7bk"]
+script = ExtResource("11_f4wjl")
+name = "Transparent"
+textures = Array[Texture]([ExtResource("21_xb6pi"), ExtResource("22_0u52r"), ExtResource("23_nghpl"), ExtResource("24_ckdkk"), ExtResource("25_1l43m")])
+
+[sub_resource type="Resource" id="Resource_mey14"]
 script = ExtResource("11_f4wjl")
 name = "Water droplets"
 textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), ExtResource("61_vxk4f"), ExtResource("62_bhmbp"), ExtResource("63_8oo51")])
 
-[sub_resource type="Resource" id="Resource_7i1d8"]
-script = ExtResource("11_f4wjl")
-name = "Pixelart numbers"
-textures = Array[Texture]([ExtResource("65_womos"), ExtResource("66_dr8hs"), ExtResource("67_xc8ua"), ExtResource("68_2b84e"), ExtResource("69_u6keu"), ExtResource("70_5edn1"), ExtResource("71_ghpdn"), ExtResource("72_itasb"), ExtResource("73_dxtsd"), ExtResource("74_tvqj3")])
-
 [resource]
 script = ExtResource("39_t5xji")
-version = "1.0.0"
-image_generator_params = SubResource("Resource_ej335")
+version = "2.0.0"
+version_date = "17/02/2025"
+render_scale = 1.0
+color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")
-default_texture_group_name = "Brush strokes"
-individuals_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_w6sbu"), SubResource("Resource_5xe3f"), SubResource("Resource_t2fdh"), SubResource("Resource_08py8"), SubResource("Resource_e4kka"), SubResource("Resource_c7n1q"), SubResource("Resource_ixunu"), SubResource("Resource_vsdhb"), SubResource("Resource_p1s0e"), SubResource("Resource_7i1d8")])
-render_while_generating = true
+default_texture_group_name = "Brush strokes 1"
+shape_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_hcf0j"), SubResource("Resource_pdkce"), SubResource("Resource_x5g2o"), SubResource("Resource_2snrg"), SubResource("Resource_p6fjf"), SubResource("Resource_yam2b"), SubResource("Resource_phir3"), SubResource("Resource_fo0nc"), SubResource("Resource_wuye4"), SubResource("Resource_xpeyg"), SubResource("Resource_8d7bk"), SubResource("Resource_mey14")])
+contributors = Array[ExtResource("1_6kaui")]([SubResource("Resource_ixdxe"), SubResource("Resource_a883r")])

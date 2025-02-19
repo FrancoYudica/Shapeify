@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="ShapeGeneratorParams" load_steps=22 format=3 uid="uid://c8ljel77jp37e"]
+
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="1_j7yeg"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_etmf6"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_ctagt"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="4_eins3"]
+[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="6_1e2ua"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="6_cvf5u"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="7_frgno"]
+[ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/textures/convergence_tests/convergence_rectangle_shape_test.png" id="7_kq78p"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="8_5t0au"]
+[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="8_rf6uc"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_gmhfq"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="9_wuuef"]
+
+[sub_resource type="Resource" id="Resource_4k61h"]
+script = ExtResource("1_j7yeg")
+shape_count = 300
+fitness_calculator = 1
+
+[sub_resource type="Resource" id="Resource_uwsub"]
+script = ExtResource("3_ctagt")
+elitisim_rate = 0.3
+tournament_size = 10
+
+[sub_resource type="Resource" id="Resource_df2jm"]
+script = ExtResource("2_etmf6")
+generation_count = 15
+population_size = 60
+fitness_calculator = 1
+mutation_rate = 0.1
+mutation_factor = 1.0
+selection_strategy = 0
+crossover_strategy = 3
+mutation_strategy = 1
+survivor_selection_strategy = 1
+survivor_selection_params = SubResource("Resource_uwsub")
+
+[sub_resource type="Resource" id="Resource_cq3b6"]
+script = ExtResource("4_eins3")
+max_age = 100
+random_restart_count = 1
+initial_random_samples = 5
+fitness_calculator = 1
+
+[sub_resource type="Resource" id="Resource_1kkqn"]
+script = ExtResource("8_rf6uc")
+weight_texture_generator_type = 2
+
+[sub_resource type="Resource" id="Resource_5v5hi"]
+script = ExtResource("7_frgno")
+weight_texture_generator_params = SubResource("Resource_1kkqn")
+
+[sub_resource type="Resource" id="Resource_6cgro"]
+script = ExtResource("9_gmhfq")
+
+[sub_resource type="Texture2D" id="Texture2D_m85nq"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("8_5t0au")
+_src_texture = ExtResource("7_kq78p")
+
+[sub_resource type="Resource" id="Resource_ufkyq"]
+script = ExtResource("6_cvf5u")
+shape_position_initializer_type = 1
+shape_size_initializer_type = 2
+shape_rotation_initializer_type = 0
+shape_tint_initializer_type = 0
+shape_texture_initializer_type = 0
+shape_position_initializer_params = SubResource("Resource_5v5hi")
+shape_texture_initializer_params = SubResource("Resource_6cgro")
+textures = Array[ExtResource("6_1e2ua")]([SubResource("Texture2D_m85nq")])
+
+[resource]
+script = ExtResource("9_wuuef")
+color_sampler = 1
+keep_aspect_ratio = false
+clamp_position_in_canvas = true
+fixed_rotation = false
+fixed_rotation_angle = 0.0
+fixed_size = false
+fixed_size_width_ratio = 0.1
+best_of_random_params = SubResource("Resource_4k61h")
+genetic_params = SubResource("Resource_df2jm")
+hill_climbing_params = SubResource("Resource_cq3b6")
+shape_spawner_params = SubResource("Resource_ufkyq")

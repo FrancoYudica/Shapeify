@@ -4,6 +4,9 @@ enum Type
 {
 	WHITE,
 	GAUSSIAN_SOBEL,
+	SOBEL_GAUSSIAN,
+	DIFFERENCE_OF_GAUSSIANS,
+	MPA,
 	USER
 }
 
@@ -11,7 +14,8 @@ enum Type
 ## returns a grayscale texture
 func generate(
 	progress: float,
-	target_texture: RendererTexture) -> RendererTexture:
+	target_texture: RendererTexture,
+	source_texture: RendererTexture) -> RendererTexture:
 	return null
 
 func set_params(params: WeightTextureGeneratorParams) -> void:
@@ -23,6 +27,12 @@ static func factory_create(type: Type) -> WeightTextureGenerator:
 			return load("res://generation/metric/weight_texture_generator/white_weight_texture_generator.gd").new()
 		Type.GAUSSIAN_SOBEL:
 			return load("res://generation/metric/weight_texture_generator/gaussian_sobel_weight_texture_generator.gd").new()
+		Type.SOBEL_GAUSSIAN:
+			return load("res://generation/metric/weight_texture_generator/sobel_gaussian_weight_texture_generator.gd").new()
+		Type.DIFFERENCE_OF_GAUSSIANS:
+			return load("res://generation/metric/weight_texture_generator/difference_of_gaussians_weight_texture_generator.gd").new()
+		Type.MPA:
+			return load("res://generation/metric/weight_texture_generator/mpa_weight_texture_generator.gd").new()
 		Type.USER:
 			return load("res://generation/metric/weight_texture_generator/user_weight_texture_generator.gd").new()
 		_:

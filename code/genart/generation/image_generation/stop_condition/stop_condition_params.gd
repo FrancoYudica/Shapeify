@@ -1,9 +1,9 @@
 class_name StopConditionParams extends Resource
 
-@export var individual_count: int = 10:
+@export var shape_count: int = 10:
 	set(value):
-		if value != individual_count:
-			individual_count = value
+		if value != shape_count:
+			shape_count = value
 			emit_changed()
 
 @export var execution_time: float = 10:
@@ -26,7 +26,7 @@ class_name StopConditionParams extends Resource
 
 func to_dict() -> Dictionary:
 	return {
-		"individual_count" : individual_count,
+		"shape_count" : shape_count,
 		"execution_time" : execution_time,
 		"target_fitness" : target_fitness
 	}

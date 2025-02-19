@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgiuo3dxvu8h5"]
+
+[ext_resource type="Script" path="res://tests/texture_position_sampler_test/texture_position_sampler_test.gd" id="1_a8v01"]
+[ext_resource type="Texture2D" uid="uid://b0ul0oon204n2" path="res://art/textures/test/weight_mpa_image.png" id="2_xgj8g"]
+[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_av72v"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="4_1e7s6"]
+
+[sub_resource type="Texture2D" id="Texture2D_ubbwe"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_av72v")
+_src_texture = ExtResource("2_xgj8g")
+
+[node name="TexturePositionSamplerTest" type="CanvasLayer" node_paths=PackedStringArray("weight_texture_rect", "sampler_type_option_btn", "sample_texture_rect", "generate_sample_btn", "clear_samples_btn", "samples_container", "debug_label", "sample_count_spin_box")]
+script = ExtResource("1_a8v01")
+weight_texture = SubResource("Texture2D_ubbwe")
+weight_texture_rect = NodePath("Control/HBoxContainer/TextureRect")
+sampler_type_option_btn = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/OptionButton")
+sample_texture_rect = NodePath("Control/SampleTextureRect")
+generate_sample_btn = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/GenerateButton")
+clear_samples_btn = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/ClearSamplesButton")
+samples_container = NodePath("Control/SamplesContainer")
+debug_label = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/DebugLabel")
+sample_count_spin_box = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/SampleCountSpinBox")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sampler type"
+
+[node name="OptionButton" type="OptionButton" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Generate sample"
+
+[node name="SampleCountSpinBox" type="SpinBox" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+prefix = "Count"
+
+[node name="ClearSamplesButton" type="Button" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Clear samples"
+
+[node name="DebugLabel" type="Label" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SampleTextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("4_1e7s6")
+expand_mode = 1
+
+[node name="SamplesContainer" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

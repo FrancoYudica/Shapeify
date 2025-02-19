@@ -14,7 +14,7 @@ layout(set = 0, binding = 1, std430) buffer SamplesOutputBuffer
 };
 
 // Image bindings
-layout(rgba32f, set = 1, binding = 0) uniform restrict readonly image2D sample_image;
+layout(rgba8, set = 1, binding = 0) uniform restrict readonly image2D sample_image;
 
 // Parameters passed to the shader
 layout(push_constant, std430) uniform Params
@@ -41,9 +41,6 @@ void main()
     shared_data[local_id] = vec4(0.0);
     shared_sample_count[local_id] = 0.0;
 
-    barrier();
-
-    int sample_count = 0;
     // Process pixel if within bounds of the subrectangle
     if (global_id < num_pixels) {
         // Map global_id to subrectangle coordinates

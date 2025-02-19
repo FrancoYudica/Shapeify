@@ -2,7 +2,8 @@ extends WeightTextureGenerator
 
 func generate(
 	progress: float,
-	target_texture: RendererTexture) -> RendererTexture:
+	target_texture: RendererTexture,
+	source_texture: RendererTexture) -> RendererTexture:
 	
 	var image = ImageUtils.create_monochromatic_image(
 		target_texture.get_width(),

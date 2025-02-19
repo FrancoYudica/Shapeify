@@ -5,19 +5,22 @@ static func render_image_generation(
 	renderer,
 	details: ImageGenerationDetails):
 	
-	var viewport_size = details.viewport_size
+	var viewport_size = Vector2(
+		details.viewport_size.x,
+		details.viewport_size.y)
+
 	renderer.begin_frame(viewport_size)
 	
 	# Renders background
 	renderer.render_clear(details.clear_color)
 	
-	# Renders individuals
-	for individual in details.individuals:
+	# Renders shapes
+	for shape in details.shapes:
 		renderer.render_sprite(
-			individual.position,
-			individual.size,
-			individual.rotation,
-			individual.tint,
-			individual.texture,
+			shape.position * viewport_size,
+			shape.size * viewport_size,
+			shape.rotation,
+			shape.tint,
+			shape.texture,
 			1.0)
 	renderer.end_frame()

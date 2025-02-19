@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://be5g6q7qt1rvq"
+path="res://.godot/imported/sum_ubo.glsl-bde7f30550b201ad481c1a0ede444bc9.res"
+
+[deps]
+
+source_file="res://shaders/compute/sum_ubo.glsl"
+dest_files=["res://.godot/imported/sum_ubo.glsl-bde7f30550b201ad481c1a0ede444bc9.res"]
+
+[params]
+

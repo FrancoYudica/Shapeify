@@ -2,24 +2,16 @@ extends FrameSaver
 
 func save(
 	filepath: String,
-	individuals: Array[Individual],
+	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i,
-	viewport_scale: float) -> bool:
+	viewport_size: Vector2i) -> bool:
 
 	var render_details := ImageGenerationDetails.new()
+	render_details.shapes = shapes
 	render_details.clear_color = clear_color
-	render_details.viewport_size = Vector2(
-		viewport_size.x * viewport_scale,
-		viewport_size.y * viewport_scale
-	)
-	for individual in individuals:
-		var ind = individual.copy()
-		ind.position *= viewport_scale
-		ind.size *= viewport_scale
-		render_details.individuals.append(ind)
+	render_details.viewport_size = viewport_size
 	
-	# Renders the individuals
+	# Renders the shapes
 	ImageGenerationRenderer.render_image_generation(Renderer, render_details)
 	
 	# Gets renderer output texture
@@ -27,7 +19,7 @@ func save(
 	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
 
 	# Transforms to image and saves
-	var img = ImageUtils.create_image_from_rgbaf_buffer(
+	var img = ImageUtils.create_image_from_rgba8_buffer(
 		render_details.viewport_size.x,
 		render_details.viewport_size.y,
 		color_attachment_data

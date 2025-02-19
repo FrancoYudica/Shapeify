@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu2kwxqdafa1q"]
+
+[ext_resource type="PackedScene" uid="uid://rabkjcthqw3a" path="res://UI/popup/notification/notification_popup.tscn" id="1_o2rjf"]
+[ext_resource type="Texture2D" uid="uid://bpspqiql2bdp0" path="res://art/textures/icons/warning.png" id="2_lw1pr"]
+
+[node name="WarningNotificationPopup" instance=ExtResource("1_o2rjf")]
+type = 1
+
+[node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
+modulate = Color(0.89, 0.74404, 0.1602, 1)
+texture = ExtResource("2_lw1pr")
+
+[node name="TitleLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
+text = "Warning"

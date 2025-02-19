@@ -9,17 +9,17 @@ var frame_saver_type: FrameSaver.Type
 var _video_recorder := VideoRecorder.new()
 var _progress: float = 0.0
 
-var _animation_player: IndividualAnimationPlayer
+var _animation_player: ShapeAnimationPlayer
 var _image_generation_details: ImageGenerationDetails
 var _frame_saver: FrameSaver
-var _render_scale: float
+var _upscale_factor: float
 
 var progress: float:
 	get:
 		return _progress
 
 func record(
-	animation_player: IndividualAnimationPlayer,
+	animation_player: ShapeAnimationPlayer,
 	image_generation_details: ImageGenerationDetails,
 	frame_saver_type: FrameSaver.Type,
 	scale: float
@@ -28,7 +28,7 @@ func record(
 	_image_generation_details = image_generation_details
 	_frame_saver = FrameSaver.factory_create(frame_saver_type)
 	_frame_saver.silent = true
-	_render_scale = scale
+	_upscale_factor = scale
 	WorkerThreadPool.add_task(_record_and_save)
 
 func _record_and_save():
@@ -47,10 +47,9 @@ func _record_and_save():
 	
 	while t < 1.0:
 		
-		# Gets frame individuals
-		var frame_individuals := _animation_player.animate(
-			_image_generation_details.individuals,
-			_image_generation_details.viewport_size,
+		# Gets frame shapes
+		var frame_shapes := _animation_player.animate(
+			_image_generation_details.shapes,
 			t
 		)
 		
@@ -60,10 +59,9 @@ func _record_and_save():
 		# Saves frame with frame saver
 		if not _frame_saver.save(
 			path,
-			frame_individuals,
+			frame_shapes,
 			_image_generation_details.clear_color,
-			_image_generation_details.viewport_size,
-			_render_scale
+			_image_generation_details.viewport_size * _upscale_factor
 		):
 			return
 		

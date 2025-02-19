@@ -1,0 +1,660 @@
+[gd_scene load_steps=61 format=3 uid="uid://ba1sfkw5c37x6"]
+
+[ext_resource type="Script" path="res://UI/genart.gd" id="1_ncpyv"]
+[ext_resource type="Shader" path="res://UI/genart.gdshader" id="2_ab1dl"]
+[ext_resource type="Texture2D" uid="uid://dly5gkgvfo1ob" path="res://art/textures/genart_icon/genart_icon_transparent_512.png" id="2_s0872"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="3_rt8y6"]
+[ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/textures/icons/play.png" id="4_rdwgg"]
+[ext_resource type="Script" path="res://UI/genart_icon_texture_rect.gd" id="4_ssv7y"]
+[ext_resource type="Script" path="res://UI/header/generate_button.gd" id="5_ckbo4"]
+[ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/textures/icons/stop.png" id="6_rkro1"]
+[ext_resource type="Script" path="res://UI/header/stop_button.gd" id="7_7dp0g"]
+[ext_resource type="Texture2D" uid="uid://csa2nqsctrmvw" path="res://art/textures/icons/info.png" id="8_fvh1d"]
+[ext_resource type="Script" path="res://UI/header/panel_toggler_button.gd" id="9_k2hyx"]
+[ext_resource type="Texture2D" uid="uid://cm8ofv2bcyq1u" path="res://art/textures/icons/settings.png" id="10_t14i0"]
+[ext_resource type="Texture2D" uid="uid://wmnqbeew1f40" path="res://art/textures/icons/post_processing_icon.png" id="11_qrblu"]
+[ext_resource type="Texture2D" uid="uid://q0x7rqp5bev" path="res://art/textures/icons/shapes.png" id="12_6tre0"]
+[ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/textures/icons/save.png" id="13_d112y"]
+[ext_resource type="Script" path="res://UI/header/not_executing_panel_toggler_button.gd" id="14_vbcxv"]
+[ext_resource type="Texture2D" uid="uid://dp1auesstg0tu" path="res://art/textures/icons/animator2.png" id="15_os140"]
+[ext_resource type="Texture2D" uid="uid://s33wpc3gogy6" path="res://art/textures/icons/eraser.png" id="16_x5a6b"]
+[ext_resource type="Script" path="res://UI/header/clear_button.gd" id="17_qaacj"]
+[ext_resource type="Texture2D" uid="uid://cofrjda15jidr" path="res://art/textures/icons/loading-256.png" id="18_muuhv"]
+[ext_resource type="Script" path="res://UI/header/loading_generating_texture_rect.gd" id="19_r7uah"]
+[ext_resource type="Script" path="res://UI/header/generation_progress_bar.gd" id="20_xgp21"]
+[ext_resource type="Script" path="res://UI/toggle_panels/generated_image/generated_output_texture_rect.gd" id="21_6miac"]
+[ext_resource type="PackedScene" uid="uid://ctwdyegx6p0t4" path="res://UI/toggle_panels/generated_image/godot_shape_renderer/godot_shape_renderer.tscn" id="22_kx2u2"]
+[ext_resource type="Script" path="res://UI/utils/visible_on_panel_hover.gd" id="23_3ovev"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="23_uempj"]
+[ext_resource type="Texture2D" uid="uid://5npshbmgqm1k" path="res://art/textures/icons/rotate-96.png" id="24_k0wlk"]
+[ext_resource type="Script" path="res://UI/toggle_panels/generated_image/rotate_button_container.gd" id="25_3751m"]
+[ext_resource type="Script" path="res://UI/toggle_panels/shapes/image_loader.gd" id="26_kuk3d"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/target_image_loader.gd" id="27_8l1fs"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/target_texture_rect.gd" id="28_pansn"]
+[ext_resource type="Texture2D" uid="uid://c3kuu10cgj770" path="res://art/textures/icons/upload.png" id="29_rn8mq"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/load_target_texture_button.gd" id="30_ogcrp"]
+[ext_resource type="PackedScene" uid="uid://bfptu7crdcs01" path="res://UI/toggle_panels/info/info_panel.tscn" id="31_1ksoc"]
+[ext_resource type="PackedScene" uid="uid://bve6cjoaqrkdp" path="res://UI/toggle_panels/post_processing/post_processing_display_panel.tscn" id="32_v2g6e"]
+[ext_resource type="PackedScene" uid="uid://bbx14t18y1rme" path="res://UI/toggle_panels/shapes/shapes_panel.tscn" id="33_d1olh"]
+[ext_resource type="Script" path="res://UI/toggle_panels_container.gd" id="33_rwuuy"]
+[ext_resource type="PackedScene" uid="uid://cf2d23xngayf7" path="res://UI/toggle_panels/settings/settings_panel.tscn" id="34_2jtwt"]
+[ext_resource type="Script" path="res://UI/stopping_generation_panel_container.gd" id="37_e80ds"]
+[ext_resource type="Script" path="res://UI/header/loading_texture_rect.gd" id="38_37gvv"]
+[ext_resource type="PackedScene" uid="uid://b3hiuyiwc8oet" path="res://UI/popup/notification/info_notification_popup.tscn" id="39_mrhlu"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="39_ta2co"]
+[ext_resource type="PackedScene" uid="uid://nsoykcasr2a8" path="res://UI/toggle_panels/shapes/texture_groups/shape_texture_groups.tscn" id="40_ea2a2"]
+[ext_resource type="PackedScene" uid="uid://01ifiobgn1pg" path="res://UI/utils/blur_background_panel.tscn" id="40_fx4pd"]
+[ext_resource type="PackedScene" uid="uid://dt7o6q6q4df4j" path="res://UI/popup/notification/error_notification_popup.tscn" id="40_rq6go"]
+[ext_resource type="PackedScene" uid="uid://bu2kwxqdafa1q" path="res://UI/popup/notification/warning_notification_popup.tscn" id="41_mqowe"]
+[ext_resource type="Script" path="res://UI/utils/image_file_dialog.gd" id="45_plyt3"]
+[ext_resource type="PackedScene" uid="uid://dbxr3rtamb485" path="res://UI/popup/animator/animator_popup.tscn" id="47_kuels"]
+[ext_resource type="PackedScene" uid="uid://bg3ohwtngjn1o" path="res://UI/popup/genart_info/genart_info_popup.tscn" id="47_ldffe"]
+[ext_resource type="PackedScene" uid="uid://cuh5iemnhgpnp" path="res://UI/popup/save_image/save_image_popup.tscn" id="49_xn13k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moxx7"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="Animation" id="Animation_m4k2x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/t")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_t1k1d"]
+resource_name = "generation_finished"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/t")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.35, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wf4ft"]
+resource_name = "generation_started"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/t")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.35]
+}
+
+[sub_resource type="Animation" id="Animation_rvj4e"]
+resource_name = "mouse_hover"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/t")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5bkir"]
+resource_name = "mouse_hover_lost"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/t")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jb3sd"]
+_data = {
+"RESET": SubResource("Animation_m4k2x"),
+"generation_finished": SubResource("Animation_t1k1d"),
+"generation_started": SubResource("Animation_wf4ft"),
+"mouse_hover": SubResource("Animation_rvj4e"),
+"mouse_hover_lost": SubResource("Animation_5bkir")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvddw"]
+shader = ExtResource("2_ab1dl")
+shader_parameter/t = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x2ckf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tss7v"]
+
+[node name="Genart" type="Node"]
+script = ExtResource("1_ncpyv")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackgroundPanel" type="Panel" parent="UICanvasLayer"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_moxx7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Generation" type="MarginContainer" parent="UICanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Generation"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HeaderHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="GenartButton" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer" node_paths=PackedStringArray("toggle_panel")]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("4_ssv7y")
+toggle_panel = NodePath("../../../../Popup/GenartInfoPopup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/GenartButton"]
+root_node = NodePath("../MarginContainer/GenartIconTextureRect")
+libraries = {
+"": SubResource("AnimationLibrary_jb3sd")
+}
+autoplay = "RESET"
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/GenartButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/GenartButton/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+
+[node name="GenartIconTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/GenartButton/MarginContainer"]
+material = SubResource("ShaderMaterial_qvddw")
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_s0872")
+expand_mode = 1
+
+[node name="PlayStopContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Start image generation"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
+icon = ExtResource("4_rdwgg")
+script = ExtResource("5_ckbo4")
+
+[node name="StopButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/PlayStopContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("stopping_notification")]
+layout_mode = 2
+tooltip_text = "Stop image generation"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
+icon = ExtResource("6_rkro1")
+script = ExtResource("7_7dp0g")
+stopping_notification = NodePath("../../../../../../../Popup/StoppingGenerationPanelContainer")
+
+[node name="ToolsContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InfoButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open information panel"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+toggle_mode = true
+icon = ExtResource("8_fvh1d")
+icon_alignment = 1
+script = ExtResource("9_k2hyx")
+panel = NodePath("../../../../../ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer/InfoPanel")
+
+[node name="SettingsButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open information panel"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+toggle_mode = true
+icon = ExtResource("10_t14i0")
+icon_alignment = 1
+script = ExtResource("9_k2hyx")
+panel = NodePath("../../../../../ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer/SettingsDisplayPanel")
+
+[node name="PostProcessingButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open post processing panel"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+toggle_mode = true
+icon = ExtResource("11_qrblu")
+icon_alignment = 1
+script = ExtResource("9_k2hyx")
+panel = NodePath("../../../../../ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer/PostProcessingDisplayPanel")
+
+[node name="ShapesButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open shapes panel"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+toggle_mode = true
+icon = ExtResource("12_6tre0")
+icon_alignment = 1
+script = ExtResource("9_k2hyx")
+panel = NodePath("../../../../../ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer/ShapesPanel")
+
+[node name="SaveButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open save image dialog"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+icon = ExtResource("13_d112y")
+icon_alignment = 1
+script = ExtResource("14_vbcxv")
+panel = NodePath("../../../../../../../Popup/SaveImagePopup")
+
+[node name="AnimationButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+tooltip_text = "Open animator"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+icon = ExtResource("15_os140")
+icon_alignment = 1
+script = ExtResource("14_vbcxv")
+panel = NodePath("../../../../../../../Popup/AnimatorPopup")
+
+[node name="ClearButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/ToolsContainer/MarginContainer/ButtonsHBoxContainer"]
+layout_mode = 2
+tooltip_text = "Clear generated output"
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+icon = ExtResource("16_x5a6b")
+icon_alignment = 1
+script = ExtResource("17_qaacj")
+
+[node name="Progress Bar Container" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LoadingGeneratingTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2/Control"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(14, 14)
+texture = ExtResource("18_muuhv")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("19_r7uah")
+
+[node name="GenerationProgressBar" type="ProgressBar" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+script = ExtResource("20_xgp21")
+
+[node name="ElapsedContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container"]
+layout_mode = 2
+theme_override_constants/margin_right = 24
+
+[node name="ElapsedTime" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/HeaderHBoxContainer/Progress Bar Container/ElapsedContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UICanvasLayer/Generation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelsHSplitContainer" type="HSplitContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ImagesVBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SplitContainer" type="SplitContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OutputPanelContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("23_uempj")
+
+[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer" node_paths=PackedStringArray("gd_shape_renderer")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_x2ckf")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("21_6miac")
+gd_shape_renderer = NodePath("GodotShapeRenderer")
+
+[node name="GodotShapeRenderer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/GeneratedOutputTextureRect" instance=ExtResource("22_kx2u2")]
+handle_input_locally = false
+size = Vector2i(608, 565)
+render_target_update_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VisibleOnPanelHover" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer" node_paths=PackedStringArray("panel")]
+script = ExtResource("23_3ovev")
+panel = NodePath("../..")
+
+[node name="RotateButtonContainer" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer" node_paths=PackedStringArray("split_container")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Rotate textures"
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+icon = ExtResource("24_k0wlk")
+script = ExtResource("25_3751m")
+split_container = NodePath("../../..")
+
+[node name="Label" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "Output image"
+vertical_alignment = 1
+
+[node name="TargetPanelContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("23_uempj")
+
+[node name="DragAndDropLoader" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer" node_paths=PackedStringArray("target_image_loader")]
+script = ExtResource("26_kuk3d")
+target_image_loader = NodePath("../TargetImageLoader")
+
+[node name="TargetImageLoader" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
+script = ExtResource("27_8l1fs")
+
+[node name="TargetTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Input texture.
+Drag and drop anywhere to update it"
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("28_pansn")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VisibleOnPanelHover" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/MarginContainer" node_paths=PackedStringArray("panel")]
+script = ExtResource("23_3ovev")
+panel = NodePath("../..")
+
+[node name="LoadTargetTextureButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/MarginContainer" node_paths=PackedStringArray("image_loader_dialog", "target_image_loader")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Load target texture"
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_rt8y6")
+icon = ExtResource("29_rn8mq")
+script = ExtResource("30_ogcrp")
+image_loader_dialog = NodePath("../../../../../../../../../ImageFileDialog")
+target_image_loader = NodePath("../../TargetImageLoader")
+
+[node name="Label" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "Target image"
+vertical_alignment = 1
+
+[node name="TogglePanelsHBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+script = ExtResource("33_rwuuy")
+
+[node name="InfoPanel" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer" instance=ExtResource("31_1ksoc")]
+visible = false
+layout_mode = 2
+
+[node name="PostProcessingDisplayPanel" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer" instance=ExtResource("32_v2g6e")]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="ShapesPanel" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer" node_paths=PackedStringArray("image_file_dialog", "texture_group_selector") instance=ExtResource("33_d1olh")]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+image_file_dialog = NodePath("../../../../../../ImageFilesDialog")
+texture_group_selector = NodePath("../../../../../../Popup/ShapeTexureGroups")
+
+[node name="SettingsDisplayPanel" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/TogglePanelsHBoxContainer" instance=ExtResource("34_2jtwt")]
+visible = false
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Popup" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StoppingGenerationPanelContainer" type="PanelContainer" parent="UICanvasLayer/Popup"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tss7v")
+script = ExtResource("37_e80ds")
+
+[node name="BlurBackgroundPanel" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer" instance=ExtResource("40_fx4pd")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LoadingTextureRect" type="TextureRect" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("18_muuhv")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("38_37gvv")
+
+[node name="StoppingLabel" type="Label" parent="UICanvasLayer/Popup/StoppingGenerationPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Stopping..."
+label_settings = ExtResource("39_ta2co")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShapeTexureGroups" parent="UICanvasLayer/Popup" instance=ExtResource("40_ea2a2")]
+visible = false
+layout_mode = 1
+
+[node name="GenartInfoPopup" parent="UICanvasLayer/Popup" instance=ExtResource("47_ldffe")]
+visible = false
+layout_mode = 1
+
+[node name="SaveImagePopup" parent="UICanvasLayer/Popup" instance=ExtResource("49_xn13k")]
+visible = false
+layout_mode = 1
+
+[node name="AnimatorPopup" parent="UICanvasLayer/Popup" instance=ExtResource("47_kuels")]
+visible = false
+layout_mode = 1
+
+[node name="NotificationPanels" type="Control" parent="UICanvasLayer/Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InfoNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("39_mrhlu")]
+visible = false
+layout_mode = 1
+
+[node name="ErrorNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("40_rq6go")]
+visible = false
+layout_mode = 1
+
+[node name="WarningNotificationPopup" parent="UICanvasLayer/Popup/NotificationPanels" instance=ExtResource("41_mqowe")]
+visible = false
+layout_mode = 1
+
+[node name="ImageFileDialog" type="FileDialog" parent="UICanvasLayer"]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+script = ExtResource("45_plyt3")
+
+[node name="ImageFilesDialog" type="FileDialog" parent="UICanvasLayer"]
+auto_translate_mode = 1
+title = "Open File(s)"
+size = Vector2i(207, 175)
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+use_native_dialog = true
+script = ExtResource("45_plyt3")

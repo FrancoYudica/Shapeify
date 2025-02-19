@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://qeygpngl8xvw"]
+
+[ext_resource type="Texture2D" uid="uid://cm8ofv2bcyq1u" path="res://art/textures/icons/settings.png" id="1_vtmft"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="2_q347s"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="3_pwme1"]
+[ext_resource type="Texture2D" uid="uid://n45rf8kiqcn8" path="res://art/textures/icons/x.png" id="4_nxv1b"]
+[ext_resource type="Script" path="res://UI/toggle_panels/settings/close_panel_button.gd" id="5_hx244"]
+
+[node name="TogglePanel" type="PanelContainer"]
+offset_right = 300.0
+offset_bottom = 679.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer"]
+modulate = Color(0.6, 0.741176, 0.964706, 1)
+layout_mode = 2
+texture = ExtResource("1_vtmft")
+expand_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Title"
+label_settings = ExtResource("2_q347s")
+
+[node name="ClosePanelButton" type="Button" parent="MarginContainer/VBoxContainer/HeaderHBoxContainer" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_pwme1")
+icon = ExtResource("4_nxv1b")
+icon_alignment = 1
+script = ExtResource("5_hx244")
+panel = NodePath("../../../..")

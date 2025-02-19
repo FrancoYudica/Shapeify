@@ -109,7 +109,9 @@ func initialize() -> bool:
 	var shader_file = load("res://shaders/renderer/sprite_batch.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	shader = rd.shader_create_from_spirv(shader_spirv)
-
+	if not shader.is_valid():
+		return false
+	
 	# Initializes vertex buffers and allocates space
 	_vertex_buffers_data[VertexComponentType.POSITION] = PackedVector3Array()
 	_vertex_buffers_data[VertexComponentType.UV] = PackedVector2Array()

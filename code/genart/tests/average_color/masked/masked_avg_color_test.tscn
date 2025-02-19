@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cs7n0577hqa67"]
 
 [ext_resource type="Script" path="res://tests/average_color/masked/masked_avg_color_test.gd" id="1_bvvgr"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="2_qg21q"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_qg21q"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_x6ook"]
-[ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/test/simple_shapes/pipe_0.png" id="4_216s7"]
+[ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/textures/test/pipe_0.png" id="4_216s7"]
 [ext_resource type="Script" path="res://generation/average_color_sampler/masked/average_masked_color_sampler.gd" id="5_u5dhe"]
 
 [sub_resource type="Texture2D" id="Texture2D_7ch5r"]
@@ -36,7 +36,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]

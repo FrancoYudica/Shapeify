@@ -2,7 +2,7 @@ class_name StopCondition extends RefCounted
 
 enum Type
 {
-	INDIVIDUAL_COUNT,
+	SHAPE_COUNT,
 	EXECUTION_TIME,
 	METRIC_VALUE
 }
@@ -11,10 +11,10 @@ enum Type
 func began_generating():
 	pass
 
-func individual_generated(
+func shape_generated(
 	source_texture: RendererTexture,
 	target_texture: RendererTexture,
-	individual: Individual):
+	shape: Shape):
 	pass
 	
 func should_stop() -> bool:
@@ -28,8 +28,8 @@ func set_params(params: StopConditionParams) -> void:
 
 static func factory_create(type: Type) -> StopCondition:
 	match type:
-		Type.INDIVIDUAL_COUNT:
-			return load("res://generation/image_generation/stop_condition/individual_count_stop_condition.gd").new()
+		Type.SHAPE_COUNT:
+			return load("res://generation/image_generation/stop_condition/shape_count_stop_condition.gd").new()
 		Type.EXECUTION_TIME:
 			return load("res://generation/image_generation/stop_condition/execution_time_stop_condition.gd").new()
 		Type.METRIC_VALUE:

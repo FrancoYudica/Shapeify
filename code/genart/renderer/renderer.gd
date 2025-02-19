@@ -15,7 +15,7 @@ signal resized
 
 var is_initialized: bool = false
 
-const _DEFAULT_TEXTURE_PATH = "res://art/white_1x1.png"
+const _DEFAULT_TEXTURE_PATH = "res://art/textures/white_1x1.png"
 
 var rd: RenderingDevice
 var _pipeline: RID
@@ -37,7 +37,11 @@ enum FramebufferAttachment{
 	COLOR,
 	UID
 }
-	
+
+var is_valid: bool:
+	get:
+		return _pipeline.is_valid() and rd.render_pipeline_is_valid(_pipeline)
+
 func get_attachment_texture(attachment: FramebufferAttachment) -> RendererTexture:
 	return _framebuffer_attachment_textures[attachment]
 
@@ -77,7 +81,7 @@ func render_sprite(
 	texture: RendererTexture,
 	id: float = 0):
 	
-	if not texture.is_valid():
+	if texture == null or not texture.is_valid():
 		printerr("Trying to render sprite with invalid texture")
 		return
 	
@@ -153,7 +157,7 @@ func _resize(viewport_size: Vector2i):
 	texture_format.texture_type = RenderingDevice.TEXTURE_TYPE_2D
 	texture_format.width = viewport_size.x * render_scale
 	texture_format.height = viewport_size.y * render_scale
-	texture_format.format = RenderingDevice.DATA_FORMAT_R32G32B32A32_SFLOAT
+	texture_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
@@ -233,7 +237,6 @@ func _resize(viewport_size: Vector2i):
 		printerr("Invalid render pipeline")
 		return
 
-	#resized.emit()
 	call_deferred("emit_signal", "resized")
 	
 func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
@@ -281,7 +284,7 @@ func flush() -> void:
 	# Create the uniform set .......................................................................
 	var uniform_set_rid = rd.uniform_set_create(uniforms, _sprite_batch.shader, 0)
 	
-	# The initial colo action changes from `clear` to `keep` if there are multiple flushes
+	# The initial color action changes from `clear` to `keep` if there are multiple flushes
 	var intial_color_action = RenderingDevice.INITIAL_ACTION_CLEAR \
 							  if _flush_count == 0 \
 							  else RenderingDevice.INITIAL_ACTION_KEEP

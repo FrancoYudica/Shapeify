@@ -1,5 +1,6 @@
 #[compute]
 #version 450
+#include "../metric/common/metric_constants.glslinc"
 
 layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
 
@@ -18,37 +19,55 @@ layout(set = 0, binding = 0, std430) restrict buffer InputBuffer
     float partial_delta_mpa_sums[];
 };
 
-layout(rgba32f, set = 1, binding = 0) uniform
-    restrict readonly image2D target_image;
-layout(rgba32f, set = 2, binding = 0) uniform
-    restrict readonly image2D source_image;
-layout(rgba32f, set = 3, binding = 0) uniform
-    restrict readonly image2D new_source_image;
-
-shared float shared_partial_delta_mpa_sum[gl_WorkGroupSize.x];
-
-float compute_mpa_target_source(uint x, uint y)
+layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
 {
-    vec4 pixel_a = imageLoad(target_image, ivec2(x, y));
-    vec4 pixel_b = imageLoad(source_image, ivec2(x, y));
+    float partial_weight_sums[];
+};
 
-    vec3 diff = abs(pixel_a.rgb - pixel_b.rgb);
+layout(rgba8, set = 1, binding = 0) uniform
+    restrict readonly image2D target_image;
+layout(rgba8, set = 2, binding = 0) uniform
+    restrict readonly image2D source_image;
+layout(rgba8, set = 3, binding = 0) uniform
+    restrict readonly image2D new_source_image;
+layout(rgba8, set = 4, binding = 0) uniform
+    restrict readonly image2D weight_image;
+shared float shared_partial_delta_mpa_sum[gl_WorkGroupSize.x];
+shared float shared_partial_weights_sum[gl_WorkGroupSize.x];
 
+struct MetricData {
+    float value;
+    float weight;
+};
+
+MetricData compute_mpa_target_source(uint x, uint y)
+{
+    vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
+    vec4 source_pixel = imageLoad(source_image, ivec2(x, y));
+    vec4 weight_pixel = imageLoad(weight_image, ivec2(x, y));
+
+    vec3 diff = abs(target_pixel.rgb - source_pixel.rgb);
     vec3 fitness_color = vec3(1.0f) - clamp(diff, vec3(0.0f), vec3(1.0f));
     fitness_color = pow(fitness_color, vec3(params.power));
-    return fitness_color.x + fitness_color.y + fitness_color.z;
+    float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
+    float normalized_weight = weight_pixel.r;
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(fitness * mapped_weight, mapped_weight);
 }
 
-float compute_mpa_target_new_source(uint x, uint y)
+MetricData compute_mpa_target_new_source(uint x, uint y)
 {
-    vec4 pixel_a = imageLoad(target_image, ivec2(x, y));
-    vec4 pixel_b = imageLoad(new_source_image, ivec2(x, y));
+    vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
+    vec4 new_source_pixel = imageLoad(new_source_image, ivec2(x, y));
+    vec4 weight_pixel = imageLoad(weight_image, ivec2(x, y));
 
-    vec3 diff = abs(pixel_a.rgb - pixel_b.rgb);
-
+    vec3 diff = abs(target_pixel.rgb - new_source_pixel.rgb);
     vec3 fitness_color = vec3(1.0f) - clamp(diff, vec3(0.0f), vec3(1.0f));
     fitness_color = pow(fitness_color, vec3(params.power));
-    return fitness_color.x + fitness_color.y + fitness_color.z;
+    float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
+    float normalized_weight = weight_pixel.r;
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(fitness * mapped_weight, mapped_weight);
 }
 
 void main()
@@ -63,7 +82,7 @@ void main()
 
     // Initialize shared data
     shared_partial_delta_mpa_sum[local_id] = 0.0;
-    barrier();
+    shared_partial_weights_sum[local_id] = 0.0;
 
     // Process pixel if within bounds of the image
     if (global_id < num_pixels) {
@@ -77,12 +96,13 @@ void main()
             && y < params.texture_size.y
             && y >= 0) {
             // Computes the MPA of the two textures
-            float mpa_0 = compute_mpa_target_source(x, y);
-            float mpa_1 = compute_mpa_target_new_source(x, y);
+            MetricData data_0 = compute_mpa_target_source(x, y);
+            MetricData data_1 = compute_mpa_target_new_source(x, y);
 
-            float delta_mpa = mpa_1 - mpa_0;
+            float delta_mpa = data_1.value - data_0.value;
 
             shared_partial_delta_mpa_sum[local_id] = delta_mpa;
+            shared_partial_weights_sum[local_id] = data_1.weight;
         }
     }
 
@@ -93,6 +113,7 @@ void main()
     for (uint stride = gl_WorkGroupSize.x / 2; stride > 0; stride /= 2) {
         if (local_id < stride) {
             shared_partial_delta_mpa_sum[local_id] += shared_partial_delta_mpa_sum[local_id + stride];
+            shared_partial_weights_sum[local_id] += shared_partial_weights_sum[local_id + stride];
         }
         barrier();
     }
@@ -100,5 +121,6 @@ void main()
     // Write the result of the reduction to the output buffer (only thread 0)
     if (local_id == 0) {
         partial_delta_mpa_sums[group_id] = shared_partial_delta_mpa_sum[0];
+        partial_weight_sums[group_id] = shared_partial_weights_sum[0];
     }
 }

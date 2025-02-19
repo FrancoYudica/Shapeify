@@ -1,0 +1,321 @@
+[gd_scene load_steps=24 format=3 uid="uid://dbxr3rtamb485"]
+
+[ext_resource type="PackedScene" uid="uid://cdsq37hq1u2vs" path="res://UI/popup/popup.tscn" id="1_36sam"]
+[ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="2_n2nqh"]
+[ext_resource type="Script" path="res://UI/popup/animator/animator_popup.gd" id="2_pv5rb"]
+[ext_resource type="Script" path="res://UI/popup/animator/output_texture_rect.gd" id="3_1tj23"]
+[ext_resource type="Texture2D" uid="uid://dp1auesstg0tu" path="res://art/textures/icons/animator2.png" id="3_ooxgh"]
+[ext_resource type="Script" path="res://UI/popup/animator/resolution_label.gd" id="4_in1tq"]
+[ext_resource type="Script" path="res://UI/utils/visible_on_panel_hover.gd" id="5_qt2xt"]
+[ext_resource type="LabelSettings" uid="uid://r3h22evgnibe" path="res://UI/themes/label_subheader.tres" id="6_rbh3x"]
+[ext_resource type="Script" path="res://UI/popup/animator/settings_grid_container.gd" id="7_xah0r"]
+[ext_resource type="Script" path="res://UI/popup/animator/animation_type_option_button.gd" id="8_wuasx"]
+[ext_resource type="Texture2D" uid="uid://cfwbupsudo30r" path="res://art/textures/icons/play.png" id="9_ac012"]
+[ext_resource type="Texture2D" uid="uid://1t8r0g2b0w6l" path="res://art/textures/icons/stop.png" id="10_blm1k"]
+[ext_resource type="Script" path="res://UI/popup/animator/play_stop_button.gd" id="11_ha8h0"]
+[ext_resource type="Theme" uid="uid://dkotf0apjh4dd" path="res://UI/themes/small_buttons_theme.tres" id="11_k5ni5"]
+[ext_resource type="Theme" uid="uid://hsiwarkkc1wt" path="res://UI/themes/theme.tres" id="13_ayf3j"]
+[ext_resource type="Script" path="res://UI/popup/animator/progress_slider.gd" id="14_f6jdl"]
+[ext_resource type="Script" path="res://UI/popup/animator/duration_spin_box.gd" id="15_2loo1"]
+[ext_resource type="Script" path="res://UI/popup/animator/close_button.gd" id="18_lswg2"]
+[ext_resource type="Script" path="res://UI/popup/animator/save_button.gd" id="18_sxnfm"]
+[ext_resource type="PackedScene" uid="uid://01ifiobgn1pg" path="res://UI/utils/blur_background_panel.tscn" id="20_62dod"]
+[ext_resource type="LabelSettings" uid="uid://bbpif4d3865ql" path="res://UI/themes/label_header.tres" id="20_k4gq6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccapa"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jbhk"]
+bg_color = Color(0.111197, 0.111197, 0.111197, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AnimatorPopup" node_paths=PackedStringArray("output_texture_panel_container") instance=ExtResource("1_36sam")]
+script = ExtResource("2_pv5rb")
+output_texture_panel_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer/OutputTextureRect")
+
+[node name="MarginContainer" parent="." index="1"]
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="PanelContainer" parent="MarginContainer" index="0"]
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
+texture = ExtResource("3_ooxgh")
+
+[node name="TitleLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="1"]
+text = "Animator"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="TexturePanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_n2nqh")
+
+[node name="OutputTextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer" index="0" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_1tj23")
+animator = NodePath("../../../../../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer/MarginContainer" index="0" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("4_in1tq")
+animator = NodePath("../../../../../../../../..")
+
+[node name="VisibleOnPanelHover" type="Node" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer/MarginContainer" index="1" node_paths=PackedStringArray("panel")]
+script = ExtResource("5_qt2xt")
+panel = NodePath("../..")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccapa")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Settings"
+label_settings = ExtResource("6_rbh3x")
+
+[node name="Note" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Note that the animator exports a series of frames, not a video file."
+autowrap_mode = 3
+justification_flags = 162
+
+[node name="SettingsGridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="2" node_paths=PackedStringArray("animator", "scale_spin_box", "resolution_label", "final_resolution_label", "format_option_button")]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 8
+columns = 2
+script = ExtResource("7_xah0r")
+animator = NodePath("../../../../../../../../../..")
+scale_spin_box = NodePath("ScaleSpinBox")
+resolution_label = NodePath("ResolutionPanelContainer/MarginContainer/ResolutionValueLabel")
+final_resolution_label = NodePath("FinalResolutionPanelContainer/MarginContainer/FinalResolutionValueLabel")
+format_option_button = NodePath("SaveFormatOptionButton")
+
+[node name="AnimationLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="0"]
+layout_mode = 2
+text = "Animation"
+
+[node name="AnimationTypeOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="1" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+script = ExtResource("8_wuasx")
+animator = NodePath("../../../../../../../../../../..")
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="2"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionPanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/ResolutionPanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ResolutionValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/ResolutionPanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.525101, 0.525101, 0.525101, 1)
+text = "1920x1080"
+
+[node name="ScaleFactorLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="4"]
+layout_mode = 2
+text = "Upscaling"
+
+[node name="ScaleSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="5"]
+layout_mode = 2
+min_value = 0.5
+step = 0.5
+value = 1.0
+
+[node name="FinalResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="6"]
+layout_mode = 2
+text = "Final resolution"
+
+[node name="FinalResolutionPanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="7"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/FinalResolutionPanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FinalResolutionValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer/FinalResolutionPanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+text = "1920x1080"
+
+[node name="SaveFormatLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="8"]
+layout_mode = 2
+text = "Format"
+
+[node name="SaveFormatOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer" index="9"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_1jbhk")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlayStopButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_k5ni5")
+theme_override_colors/icon_normal_color = Color(0.6, 0.741176, 0.964706, 1)
+toggle_mode = true
+icon = ExtResource("9_ac012")
+script = ExtResource("11_ha8h0")
+animator = NodePath("../../../../../../../../../..")
+play_icon = ExtResource("9_ac012")
+stop_icon = ExtResource("10_blm1k")
+
+[node name="ProgressSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("13_ayf3j")
+max_value = 1.0
+step = 0.001
+value = 0.245
+script = ExtResource("14_f6jdl")
+animator = NodePath("../../../../../../../../../..")
+
+[node name="DurationSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="2" node_paths=PackedStringArray("animator")]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+min_value = 0.5
+step = 0.5
+value = 5.0
+suffix = "seconds"
+script = ExtResource("15_2loo1")
+animator = NodePath("../../../../../../../../../..")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" index="0" node_paths=PackedStringArray("animator")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Close"
+script = ExtResource("18_lswg2")
+animator = NodePath("../../../../../../..")
+
+[node name="SaveButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" index="1" node_paths=PackedStringArray("animator", "settings_control", "recording_panel", "file_dialog", "progress_bar")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Save"
+script = ExtResource("18_sxnfm")
+animator = NodePath("../../../../../../..")
+settings_control = NodePath("../../HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsGridContainer")
+recording_panel = NodePath("../../../../../../../RecordingBlurBackgroundPanel")
+file_dialog = NodePath("../../../../../../../FileDialog")
+progress_bar = NodePath("../../../../../../../RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer/AnimationRecordProgressBar")
+
+[node name="FileDialog" type="FileDialog" parent="." index="3"]
+auto_translate_mode = 1
+title = "Open a Directory"
+size = Vector2i(537, 180)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="RecordingBlurBackgroundPanel" parent="." index="4" instance=ExtResource("20_62dod")]
+visible = false
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="RecordingBlurBackgroundPanel" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RecordingBlurBackgroundPanel/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Recording animation..."
+label_settings = ExtResource("20_k4gq6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationRecordProgressBar" type="ProgressBar" parent="RecordingBlurBackgroundPanel/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+max_value = 1.0
+
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ProgressSlider" method="_on_value_changed"]

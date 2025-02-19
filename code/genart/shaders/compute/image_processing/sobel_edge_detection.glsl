@@ -4,8 +4,8 @@
 
 layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 
-layout(rgba32f, set = 0, binding = 0) uniform restrict readonly image2D read_image;
-layout(rgba32f, set = 1, binding = 0) uniform restrict writeonly image2D write_image;
+layout(rgba8, set = 0, binding = 0) uniform restrict readonly image2D read_image;
+layout(rgba8, set = 1, binding = 0) uniform restrict writeonly image2D write_image;
 
 layout(push_constant, std430) uniform Params
 {
@@ -55,10 +55,8 @@ void main()
 
     // Compute gradient magnitude
     float magnitude = sqrt(sum_x * sum_x + sum_y * sum_y);
-
     // Normalize and write to output
-    // float edge_strength = clamp(magnitude, 0.0, 1.0) * step(params.threshold, magnitude);
-    // edge_strength = pow(edge_strength, params.power);
-    float edge_strength = step(params.threshold, magnitude);
+    float edge_strength = clamp(magnitude, 0.0, 1.0) * step(params.threshold, magnitude);
+    edge_strength = pow(edge_strength, params.power);
     imageStore(write_image, coord, vec4(edge_strength, edge_strength, edge_strength, 1.0));
 }

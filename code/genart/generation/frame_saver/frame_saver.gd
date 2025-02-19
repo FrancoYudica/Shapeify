@@ -13,10 +13,9 @@ var silent: bool = false
 
 func save(
 	filepath: String,
-	individuals: Array[Individual],
+	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i,
-	viewport_scale: float) -> bool:
+	viewport_size: Vector2i) -> bool:
 	return false
 
 func get_extension() -> String:

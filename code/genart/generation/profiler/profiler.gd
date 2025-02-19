@@ -6,15 +6,15 @@ enum Depth
 	## Just profiles the image generation data
 	ImageGeneration,
 	
-	## Profiles the individual generation time and it's output
-	IndividualGeneration,
+	## Profiles the shape generation time and it's output
+	ShapeGeneration,
 	
 	## Collects specific data about the algorithm that is being used
-	IndividualGenerationAlgorithm
+	ShapeGenerationAlgorithm
 }
 
 var _profiler_strategy: ProfilerStrategy
-var depth: Depth = Depth.IndividualGeneration
+var depth: Depth = Depth.ShapeGeneration
 
 func start_profiling():
 	_profiler_strategy = load("res://generation/profiler/save_profiler_strategy.gd").new()
@@ -33,25 +33,25 @@ func image_generation_began(params: ImageGeneratorParams):
 func image_generation_finished(generated_image: RendererTexture):
 	_profiler_strategy.image_generation_finished(generated_image)
 
-func individual_generation_began(params: IndividualGeneratorParams) -> void:
+func shape_generation_began(params: ShapeGeneratorParams) -> void:
 	
-	if depth >= Depth.IndividualGeneration:
-		_profiler_strategy.individual_generation_began(params)
+	if depth >= Depth.ShapeGeneration:
+		_profiler_strategy.shape_generation_began(params)
 	
-func individual_generation_finished(
-	individual: Individual,
+func shape_generation_finished(
+	shape: Shape,
 	source_texture: RendererTexture) -> void:
 		
-	if depth >= Depth.IndividualGeneration:
-		_profiler_strategy.individual_generation_finished(
-			individual,
+	if depth >= Depth.ShapeGeneration:
+		_profiler_strategy.shape_generation_finished(
+			shape,
 			source_texture)
 
 
 func genetic_population_generated(
 	population: Array[Individual],
 	source_texture: RendererTexture):
-	if depth >= Depth.IndividualGenerationAlgorithm:
+	if depth >= Depth.ShapeGenerationAlgorithm:
 	
 		_profiler_strategy.genetic_population_generated(
 			population,

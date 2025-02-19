@@ -28,7 +28,7 @@ func _target_texture_set():
 
 func _weight_texture_set():
 	
-	if _weight_texture_set_rid.is_valid():
+	if _weight_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_weight_texture_set_rid):
 		_rd.free_rid(_weight_texture_set_rid)
 	
 	_weight_texture_set_rid = _create_texture_uniform_set(weight_texture.rd_rid, 3)
@@ -87,9 +87,7 @@ func _compute(source_texture: RendererTexture) -> float:
 	var total_weights: float = 0.0
 	for n in weights_partial_sums:
 		total_weights += n
-
 	var mpa = mpa_sum / (total_weights * 3.0)
-	
 	return mpa
 
 func _init() -> void:

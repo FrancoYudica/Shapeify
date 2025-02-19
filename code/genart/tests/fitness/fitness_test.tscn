@@ -1,19 +1,19 @@
 [gd_scene load_steps=20 format=3 uid="uid://d3p2ih0gqslrw"]
 
 [ext_resource type="Script" path="res://tests/fitness/fitness_test.gd" id="1_pm2mh"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="2_jtpkh"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_jtpkh"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_m76jf"]
-[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="4_le87a"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]
-[ext_resource type="Texture2D" uid="uid://cb635sk8tcc6h" path="res://art/sample_targets/Mona_Lisa_weight_white.png" id="5_b7qem"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="6_2g4hy"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_fitness_calculator.gd" id="7_qjf2d"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/mse_cpu_fitness_calculator.gd" id="8_ir4hj"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd" id="9_yti3h"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/delta_e_1994_fitness_calculator.gd" id="10_8pjxm"]
-[ext_resource type="Script" path="res://generation/individual/individual.gd" id="11_d8j6l"]
-[ext_resource type="Script" path="res://generation/individual/fitness_calculator/partial_mpa_RGB_fitness_calculator.gd" id="12_10mju"]
-[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="12_qyjx0"]
+[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="4_le87a"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/mpa_CEILab_fitness_calculator.gd" id="5_0mwod"]
+[ext_resource type="Texture2D" uid="uid://cb635sk8tcc6h" path="res://art/textures/sample_targets/Mona_Lisa_weight_white.png" id="5_b7qem"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/mpa_RGB_fitness_calculator.gd" id="6_2g4hy"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/mse_fitness_calculator.gd" id="7_qjf2d"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/mse_cpu_fitness_calculator.gd" id="8_ir4hj"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/delta_e_1976_fitness_calculator.gd" id="9_yti3h"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/delta_e_1994_fitness_calculator.gd" id="10_8pjxm"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/individual.gd" id="11_d8j6l"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/common/individual/fitness_calculator/partial_mpa_RGB_fitness_calculator.gd" id="12_10mju"]
+[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/textures/white_1x1.png" id="12_qyjx0"]
 
 [sub_resource type="Texture2D" id="Texture2D_dfntu"]
 resource_local_to_scene = false
@@ -41,12 +41,12 @@ _src_texture = ExtResource("12_qyjx0")
 
 [sub_resource type="Resource" id="Resource_6x7vt"]
 script = ExtResource("11_d8j6l")
-position = Vector2i(0, 0)
-size = Vector2(100, 100)
+fitness = 0.0
+position = Vector2(0, 0)
+size = Vector2(0.1, 0.1)
 rotation = 0.0
 texture = SubResource("Texture2D_8r80a")
 tint = Color(1, 1, 1, 1)
-fitness = 0.0
 
 [node name="FitnessTest" type="Node"]
 script = ExtResource("1_pm2mh")
@@ -54,5 +54,4 @@ target_texture = SubResource("Texture2D_dfntu")
 source_texture = SubResource("Texture2D_22c7c")
 weight_texture = SubResource("Texture2D_yjpd2")
 metric_scripts = Array[GDScript]([ExtResource("6_2g4hy"), ExtResource("5_0mwod"), ExtResource("7_qjf2d"), ExtResource("8_ir4hj"), ExtResource("9_yti3h"), ExtResource("10_8pjxm"), ExtResource("12_10mju")])
-iterations = 3
 individual = SubResource("Resource_6x7vt")

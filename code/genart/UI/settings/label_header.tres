@@ -1,7 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bbpif4d3865ql"]
-
-[ext_resource type="FontFile" uid="uid://vnb2anlyi7y3" path="res://UI/fonts/Outfit-Bold.ttf" id="1_xoajm"]
-
-[resource]
-font = ExtResource("1_xoajm")
-font_size = 24

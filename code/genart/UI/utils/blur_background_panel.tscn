@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://01ifiobgn1pg"]
+
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="1_t6ikx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2sy3"]
+shader = ExtResource("1_t6ikx")
+shader_parameter/lod = 3.0
+shader_parameter/tint = Color(0.48, 0.48, 0.48, 1)
+
+[node name="BlurBackgroundPanel" type="ColorRect"]
+material = SubResource("ShaderMaterial_m2sy3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2

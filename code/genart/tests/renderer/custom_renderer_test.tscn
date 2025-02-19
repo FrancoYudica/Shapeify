@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://3wtrrjihfabg"]
 
 [ext_resource type="Script" path="res://tests/renderer/scene_renderer_test.gd" id="1_ny0fo"]
-[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="2_f0kr5"]
+[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/textures/white_1x1.png" id="2_f0kr5"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="3_mdlb3"]
 [ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="4_rs5so"]
 [ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="4_vafo3"]
-[ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/test/simple_shapes/pipe_0.png" id="6_47chb"]
+[ext_resource type="Texture2D" uid="uid://bp3oqftg5qnfh" path="res://art/textures/test/pipe_0.png" id="6_47chb"]
 [ext_resource type="Script" path="res://tests/renderer/renderer_settings.gd" id="6_bmpbw"]
 
 [sub_resource type="Texture2D" id="Texture2D_ig6t3"]
@@ -24,7 +24,6 @@ _src_texture = ExtResource("4_vafo3")
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("3_mdlb3")
-_src_texture = ExtResource("6_47chb")
 
 [sub_resource type="Texture2D" id="Texture2D_mf3a8"]
 resource_local_to_scene = false

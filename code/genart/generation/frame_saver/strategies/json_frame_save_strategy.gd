@@ -3,18 +3,14 @@ extends FrameSaver
 
 func save(
 	filepath: String,
-	individuals: Array[Individual],
+	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i,
-	viewport_scale: float) -> bool:
+	viewport_size: Vector2i) -> bool:
 	
-	# Serializes the individuals to dicts
-	var data = {"individuals": []}
-	for individual in individuals:
-		var ind = individual.copy()
-		ind.position *= viewport_scale
-		ind.size *= viewport_scale
-		data["individuals"].append(individual.to_dict())
+	# Serializes the shapes to dicts
+	var data = {"shapes": []}
+	for shape in shapes:
+		data["shapes"].append(shape.to_dict())
 	
 	# opens file
 	var file = FileAccess.open(filepath, FileAccess.WRITE)

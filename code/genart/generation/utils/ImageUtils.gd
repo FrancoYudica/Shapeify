@@ -17,12 +17,12 @@ static func create_monochromatic_image(
 		width,
 		height,
 		false, 
-		Image.FORMAT_RGBAF)
+		Image.FORMAT_RGBA8)
 	
 	img.fill(color)
 	return img
 
-static func create_image_from_rgbaf_buffer(
+static func create_image_from_rgba8_buffer(
 	width: int,
 	height: int,
 	contents
@@ -33,24 +33,6 @@ static func create_image_from_rgbaf_buffer(
 		width,
 		height,
 		false,
-		Image.Format.FORMAT_RGBAF,
+		Image.Format.FORMAT_RGBA8,
 		contents)
 	return img
-
-static var _color_sampler: AverageColorSampler
-
-static func get_texture_average_color(texture: RendererTexture) -> Color:
-	
-	if _color_sampler == null:
-		_color_sampler = load("res://generation/average_color_sampler/subrect/average_subrect_color_sampler.gd").new()
-	
-	_color_sampler.sample_texture = texture
-	return _color_sampler.sample_rect(
-		Rect2i(
-			Vector2i.ZERO, 
-			Vector2i(
-				texture.get_width(),
-				texture.get_height()
-			)
-		)
-	)

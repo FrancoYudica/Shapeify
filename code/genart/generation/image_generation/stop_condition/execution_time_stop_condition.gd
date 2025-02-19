@@ -16,7 +16,5 @@ func get_progress() -> float:
 	var elapsed_sec = elapsed_ms * 0.001
 	return clampf(elapsed_sec / _target_execution_time, 0.0, 1.0)
 
-
-
 func set_params(params: StopConditionParams) -> void:
 	_target_execution_time = params.execution_time

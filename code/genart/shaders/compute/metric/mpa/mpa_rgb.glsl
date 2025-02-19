@@ -1,5 +1,6 @@
 #[compute]
 #version 450
+#include "../common/metric_constants.glslinc"
 
 layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
 
@@ -21,11 +22,11 @@ layout(set = 0, binding = 1, std430) restrict buffer WeightsResultBuffer
     float partial_weight_sums[];
 };
 
-layout(rgba32f, set = 1, binding = 0) uniform
+layout(rgba8, set = 1, binding = 0) uniform
     restrict readonly image2D target_image;
-layout(rgba32f, set = 2, binding = 0) uniform
+layout(rgba8, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
-layout(rgba32f, set = 3, binding = 0) uniform
+layout(rgba8, set = 3, binding = 0) uniform
     restrict readonly image2D weight_image;
 
 shared float shared_partial_mpa_sum[gl_WorkGroupSize.x];
@@ -51,8 +52,11 @@ MetricData compute_mpa(uint x, uint y)
     fitness_color = pow(fitness_color, vec3(params.power));
     float fitness = fitness_color.x + fitness_color.y + fitness_color.z;
 
-    float weight = weight_pixel.r;
-    return MetricData(fitness * weight, weight);
+    float normalized_weight = weight_pixel.r;
+
+    // Maps weight from range [0.0, 1.0] to range [MIN_WEIGHT_BOUND, 1.0]
+    float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
+    return MetricData(fitness * mapped_weight, mapped_weight);
 }
 
 void main()
@@ -69,20 +73,15 @@ void main()
     shared_partial_mpa_sum[local_id] = 0.0;
     shared_partial_weights_sum[local_id] = 0.0;
 
-    barrier();
-
     // Process pixel if within bounds of the image
     if (global_id < num_pixels) {
         // Map global_id to image coordinates
         uint x = global_id % uint(params.texture_size.x);
         uint y = global_id / uint(params.texture_size.x);
 
-        // Ensure coordinates are within the valid image range
-        if (y < params.texture_size.y) {
-            MetricData data = compute_mpa(x, y);
-            shared_partial_mpa_sum[local_id] += data.value;
-            shared_partial_weights_sum[local_id] += data.weight;
-        }
+        MetricData data = compute_mpa(x, y);
+        shared_partial_mpa_sum[local_id] += data.value;
+        shared_partial_weights_sum[local_id] += data.weight;
     }
 
     // Synchronize threads in the workgroup

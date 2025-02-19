@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://tests/partial_metric_test/partial_metric_test.gd" id="1_7kifo"]
 [ext_resource type="Script" path="res://generation/partial_metric/mpa/mpa_RGB_partial_metric.gd" id="2_yoh6h"]
-[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/sample_targets/Mona_Lisa.jpg" id="3_bxau2"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="3_bxau2"]
 [ext_resource type="Script" path="res://generation/metric/mpa/mpa_RGB_metric.gd" id="3_xo3e5"]
 [ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="4_jtatx"]
-[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/test/mona_lisa_50_ind.png" id="5_5txdc"]
-[ext_resource type="Script" path="res://generation/individual/individual.gd" id="6_gn2i2"]
-[ext_resource type="Texture2D" uid="uid://c6r2686sj7y3r" path="res://art/white_1x1.png" id="7_76613"]
+[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="5_5txdc"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape.gd" id="7_endqw"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="8_geoib"]
 
 [sub_resource type="Texture2D" id="Texture2D_lcw56"]
 resource_local_to_scene = false
@@ -21,20 +21,19 @@ resource_name = ""
 script = ExtResource("4_jtatx")
 _src_texture = ExtResource("5_5txdc")
 
-[sub_resource type="Texture2D" id="Texture2D_ym6b0"]
+[sub_resource type="Texture2D" id="Texture2D_ipmng"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("4_jtatx")
-_src_texture = ExtResource("7_76613")
+_src_texture = ExtResource("8_geoib")
 
-[sub_resource type="Resource" id="Resource_a7p1t"]
-script = ExtResource("6_gn2i2")
-position = Vector2i(0, 0)
-size = Vector2(100, 100)
+[sub_resource type="Resource" id="Resource_ncw5t"]
+script = ExtResource("7_endqw")
+position = Vector2(0.5, 0.5)
+size = Vector2(0.5, 0.5)
 rotation = 0.0
-texture = SubResource("Texture2D_ym6b0")
+texture = SubResource("Texture2D_ipmng")
 tint = Color(1, 1, 1, 1)
-fitness = 0.0
 
 [node name="PartialMetricTest" type="Node2D"]
 script = ExtResource("1_7kifo")
@@ -42,5 +41,5 @@ partial_metric_script = ExtResource("2_yoh6h")
 metric_script = ExtResource("3_xo3e5")
 target_texture = SubResource("Texture2D_lcw56")
 source_texture = SubResource("Texture2D_hmsth")
-individual = SubResource("Resource_a7p1t")
+shape = SubResource("Resource_ncw5t")
 iterations = 200
