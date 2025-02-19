@@ -1,7 +1,9 @@
 <div align="center">
 
 
-[![Genart showcase video](https://github.com/user-attachments/assets/8ad71c8c-30fc-42e6-9912-b89a1399b2ae)](https://www.youtube.com/watch?v=fzLgCXZshKA)
+[![▶️ Watch the Genart Showcase Video](https://github.com/user-attachments/assets/8ad71c8c-30fc-42e6-9912-b89a1399b2ae)](https://www.youtube.com/watch?v=fzLgCXZshKA "Watch on YouTube")  
+
+📺 *Click the image to watch the video on YouTube!*
 
 <a href="https://github.com/FrancoYudica/Genart/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?" /></a>
 <a href="https://godotengine.org/download/"><img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot-v4.3+-blue.svg?" /></a>
