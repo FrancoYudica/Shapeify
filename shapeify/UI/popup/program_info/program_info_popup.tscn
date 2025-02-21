@@ -292,7 +292,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Itch.io"
-uri = "https://franco-yudica.itch.io/genart"
+uri = "https://franco-yudica.itch.io/shapeify"
 
 [node name="BugLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/GridContainer" index="14"]
 custom_minimum_size = Vector2(200, 0)
