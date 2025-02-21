@@ -89,6 +89,10 @@ Below are some examples showcasing the possibilities of the post-processing pipe
 
 Contributions of all kinds are welcome! If you’re interested in contributing to this project, please take a moment to review [`CONTRIBUTING.md`](https://github.com/FrancoYudica/Shapeify/blob/main/CONTRIBUTING.md) file.
 
+## Whitepaper
+
+A [whitepaper](https://github.com/FrancoYudica/Shapeify/blob/v1.0.0/whitepaper_esp.md) was written for version _v1.0.0_, detailing the algorithms used in the project in spanish. While it's a bit outdated, it may be updated in the future.
+
 ## Gallery
 
 Here are some examples demonstrating Shapeify's versatility, using different shapes to create a diverse range of artistic styles:
