@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvc0rdmcuchvn"]
+
+[ext_resource type="Script" path="res://UI/popup/program_info/contributor_item.gd" id="1_bl84w"]
+[ext_resource type="Texture2D" uid="uid://bhq5spfegi5s4" path="res://art/textures/icons/user.png" id="1_hfjwy"]
+
+[node name="ContributorItemHBoxContainer" type="HBoxContainer"]
+script = ExtResource("1_bl84w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("1_hfjwy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "FrancoYudica"
