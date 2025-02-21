@@ -1,6 +1,6 @@
 <div align="center">
 
-[![▶️ Watch the Shapeify Showcase Video](https://github.com/user-attachments/assets/8ad71c8c-30fc-42e6-9912-b89a1399b2ae)](https://www.youtube.com/watch?v=fzLgCXZshKA "Watch on YouTube")
+[![▶️ Watch the Shapeify Showcase Video](https://github.com/user-attachments/assets/7179235c-9dab-4ecd-ae14-5569173dd96c)](https://youtu.be/ovkoXVkdLto "Watch on YouTube")
 
 📺 _Click the image to watch the video on YouTube!_
 
