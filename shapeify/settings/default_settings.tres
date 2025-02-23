@@ -99,62 +99,62 @@ contact_uri = "https://github.com/DancingEngie"
 [sub_resource type="Resource" id="Resource_hcf0j"]
 script = ExtResource("11_f4wjl")
 name = "Brush strokes 1"
-textures = Array[Texture]([ExtResource("7_6ukyh"), ExtResource("8_vttff"), ExtResource("9_8f8ie"), ExtResource("10_an6t7"), ExtResource("11_7k3ba"), ExtResource("12_7n61o"), ExtResource("13_r85sq"), ExtResource("14_druov")])
+textures = Array[Texture2D]([ExtResource("7_6ukyh"), ExtResource("8_vttff"), ExtResource("9_8f8ie"), ExtResource("10_an6t7"), ExtResource("11_7k3ba"), ExtResource("12_7n61o"), ExtResource("13_r85sq"), ExtResource("14_druov")])
 
 [sub_resource type="Resource" id="Resource_pdkce"]
 script = ExtResource("11_f4wjl")
 name = "Brush strokes 2"
-textures = Array[Texture]([ExtResource("12_ui4dh"), ExtResource("13_hunnm"), ExtResource("14_rmaog"), ExtResource("15_h10de"), ExtResource("16_koc73"), ExtResource("17_bya7o")])
+textures = Array[Texture2D]([ExtResource("12_ui4dh"), ExtResource("13_hunnm"), ExtResource("14_rmaog"), ExtResource("15_h10de"), ExtResource("16_koc73"), ExtResource("17_bya7o")])
 
 [sub_resource type="Resource" id="Resource_x5g2o"]
 script = ExtResource("11_f4wjl")
 name = "Graffiti sprays"
-textures = Array[Texture]([ExtResource("21_gqr4m"), ExtResource("22_nl0s8"), ExtResource("23_t1g0m"), ExtResource("24_k17vr"), ExtResource("25_0b4xc"), ExtResource("26_qev6m"), ExtResource("27_avrcu")])
+textures = Array[Texture2D]([ExtResource("21_gqr4m"), ExtResource("22_nl0s8"), ExtResource("23_t1g0m"), ExtResource("24_k17vr"), ExtResource("25_0b4xc"), ExtResource("26_qev6m"), ExtResource("27_avrcu")])
 
 [sub_resource type="Resource" id="Resource_2snrg"]
 script = ExtResource("11_f4wjl")
 name = "Paint splashes 1"
-textures = Array[Texture]([ExtResource("52_2avkj"), ExtResource("53_52pkd"), ExtResource("54_ujgbm"), ExtResource("55_13bcu"), ExtResource("56_g5sve"), ExtResource("57_tix6r"), ExtResource("58_bh21r")])
+textures = Array[Texture2D]([ExtResource("52_2avkj"), ExtResource("53_52pkd"), ExtResource("54_ujgbm"), ExtResource("55_13bcu"), ExtResource("56_g5sve"), ExtResource("57_tix6r"), ExtResource("58_bh21r")])
 
 [sub_resource type="Resource" id="Resource_p6fjf"]
 script = ExtResource("11_f4wjl")
 name = "Paint splashes 2"
-textures = Array[Texture]([ExtResource("59_2rhrp"), ExtResource("60_5352j"), ExtResource("61_a75s7"), ExtResource("62_uqmtt"), ExtResource("63_5eo7x"), ExtResource("64_bw83v"), ExtResource("65_t71iw"), ExtResource("66_dnnx2"), ExtResource("67_6v8qw"), ExtResource("68_icccq"), ExtResource("69_a3idw"), ExtResource("70_umadn")])
+textures = Array[Texture2D]([ExtResource("59_2rhrp"), ExtResource("60_5352j"), ExtResource("61_a75s7"), ExtResource("62_uqmtt"), ExtResource("63_5eo7x"), ExtResource("64_bw83v"), ExtResource("65_t71iw"), ExtResource("66_dnnx2"), ExtResource("67_6v8qw"), ExtResource("68_icccq"), ExtResource("69_a3idw"), ExtResource("70_umadn")])
 
 [sub_resource type="Resource" id="Resource_yam2b"]
 script = ExtResource("11_f4wjl")
 name = "Rounded shapes"
-textures = Array[Texture]([ExtResource("47_28uc3"), ExtResource("48_5gl4m"), ExtResource("49_7sf5g"), ExtResource("50_qs3c6")])
+textures = Array[Texture2D]([ExtResource("47_28uc3"), ExtResource("48_5gl4m"), ExtResource("49_7sf5g"), ExtResource("50_qs3c6")])
 
 [sub_resource type="Resource" id="Resource_phir3"]
 script = ExtResource("11_f4wjl")
 name = "Curves"
-textures = Array[Texture]([ExtResource("53_c6gp7"), ExtResource("54_13xx1"), ExtResource("55_6kwt7"), ExtResource("56_yd108"), ExtResource("57_ugd8r"), ExtResource("58_yuoen")])
+textures = Array[Texture2D]([ExtResource("53_c6gp7"), ExtResource("54_13xx1"), ExtResource("55_6kwt7"), ExtResource("56_yd108"), ExtResource("57_ugd8r"), ExtResource("58_yuoen")])
 
 [sub_resource type="Resource" id="Resource_fo0nc"]
 script = ExtResource("11_f4wjl")
 name = "Gears"
-textures = Array[Texture]([ExtResource("51_lofcj"), ExtResource("52_ivegt"), ExtResource("53_qeeeg")])
+textures = Array[Texture2D]([ExtResource("51_lofcj"), ExtResource("52_ivegt"), ExtResource("53_qeeeg")])
 
 [sub_resource type="Resource" id="Resource_wuye4"]
 script = ExtResource("11_f4wjl")
 name = "Polygons"
-textures = Array[Texture]([ExtResource("43_7whp6"), ExtResource("42_sdcaa"), ExtResource("44_mh6gi"), ExtResource("40_dova5"), ExtResource("41_edoef")])
+textures = Array[Texture2D]([ExtResource("43_7whp6"), ExtResource("42_sdcaa"), ExtResource("44_mh6gi"), ExtResource("40_dova5"), ExtResource("41_edoef")])
 
 [sub_resource type="Resource" id="Resource_xpeyg"]
 script = ExtResource("11_f4wjl")
 name = "Rings"
-textures = Array[Texture]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), ExtResource("47_hn0gq"), ExtResource("48_qgd35"), ExtResource("49_mnsp6"), ExtResource("50_xr135")])
+textures = Array[Texture2D]([ExtResource("45_rs73q"), ExtResource("46_67cgg"), ExtResource("47_hn0gq"), ExtResource("48_qgd35"), ExtResource("49_mnsp6"), ExtResource("50_xr135")])
 
 [sub_resource type="Resource" id="Resource_8d7bk"]
 script = ExtResource("11_f4wjl")
 name = "Transparent"
-textures = Array[Texture]([ExtResource("21_xb6pi"), ExtResource("22_0u52r"), ExtResource("23_nghpl"), ExtResource("24_ckdkk"), ExtResource("25_1l43m")])
+textures = Array[Texture2D]([ExtResource("21_xb6pi"), ExtResource("22_0u52r"), ExtResource("23_nghpl"), ExtResource("24_ckdkk"), ExtResource("25_1l43m")])
 
 [sub_resource type="Resource" id="Resource_mey14"]
 script = ExtResource("11_f4wjl")
 name = "Water droplets"
-textures = Array[Texture]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), ExtResource("61_vxk4f"), ExtResource("62_bhmbp"), ExtResource("63_8oo51")])
+textures = Array[Texture2D]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), ExtResource("61_vxk4f"), ExtResource("62_bhmbp"), ExtResource("63_8oo51")])
 
 [resource]
 script = ExtResource("39_t5xji")

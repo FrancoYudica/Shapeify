@@ -24,11 +24,11 @@ func _generate(similarity: float) -> Shape:
 	for individual in population:
 		_fix_shape_attributes(individual)
 		_color_sampler_strategy.set_sample_color(individual)
-		_fitness_calculator.calculate_fitness(individual, params.source_texture)
+		_fitness_calculator.calculate_fitness(individual, source_texture)
 		
 	for generation in range(genetic_params.generation_count):
 		
-		Profiler.genetic_population_generated(population, params.source_texture)
+		Profiler.genetic_population_generated(population, source_texture)
 		
 		# Sorts population descending
 		population.sort_custom(func(a, b): return a.fitness > b.fitness)
@@ -51,7 +51,7 @@ func _generate(similarity: float) -> Shape:
 			
 			_fix_shape_attributes(child)
 			_color_sampler_strategy.set_sample_color(child)
-			_fitness_calculator.calculate_fitness(child, params.source_texture)
+			_fitness_calculator.calculate_fitness(child, source_texture)
 			children.append(child)
 		
 		population = _survivor_selection_strategy.select_survivors(
@@ -85,7 +85,7 @@ func _setup():
 	
 	# Fitness calculator factory
 	_fitness_calculator = FitnessCalculator.factory_create(genetic_params.fitness_calculator)
-	_fitness_calculator.target_texture = params.target_texture
+	_fitness_calculator.target_texture = target_texture
 
 func finished():
 	super.finished()

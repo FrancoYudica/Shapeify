@@ -10,6 +10,7 @@ signal generation_cleared
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 var is_generating := false
+var local_target_texture: RendererTexture
 
 ## This method is called from the root of the application to ensure that all the nodes are ready
 ## to receive signals
@@ -27,7 +28,7 @@ func clear_progress():
 	
 	# Creates clear color strategy
 	var clear_color_strategy = ClearColorStrategy.factory_create(params.clear_color_type)
-	clear_color_strategy.sample_texture = params.target_texture
+	clear_color_strategy.sample_texture = local_target_texture
 	clear_color_strategy.set_params(params.clear_color_params)
 	
 	# Crates new ImageGenerationDetails
@@ -57,7 +58,7 @@ func generate() -> void:
 func stop():
 	image_generator.stop()
 
-func set_target_texture(target_texture: RendererTexture):
+func set_target_texture(target_texture: Texture2D):
 
 	
 	if target_texture == null:
@@ -91,23 +92,27 @@ func set_target_texture(target_texture: RendererTexture):
 	var width_scale = float(TARGET_SIZE) / final_texture_size.x
 	var height_scale = float(TARGET_SIZE) / final_texture_size.y
 	Globals.settings.render_scale = min(min(width_scale, height_scale), 1.0)
+	
+	var local_texture = RendererTexture.new()
+	local_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(target_texture)
+	
 	Renderer.begin_frame(Vector2i(final_texture_size.x, final_texture_size.y))
 	Renderer.render_sprite(
 		final_texture_size * 0.5,
 		final_texture_size,
 		0.0,
 		Color.WHITE,
-		target_texture,
+		local_texture,
 		0)
 	Renderer.end_frame()
 		
-	target_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	local_target_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
 
-	if target_texture == null or not target_texture.is_valid():
+	if local_target_texture == null or not local_target_texture.is_valid():
 		Notifier.notify_error("Unable to load texture")
 		return
 	
-	Globals.settings.image_generator_params.target_texture = target_texture
+	Globals.settings.image_generator_params.target_texture = RenderingCommon.create_texture_from_rd_rid(local_target_texture.rd_rid)
 	clear_progress()
 	target_texture_updated.emit()
 	

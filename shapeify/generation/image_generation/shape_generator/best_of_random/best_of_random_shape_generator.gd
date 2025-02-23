@@ -19,7 +19,7 @@ func _generate(similarity: float) -> Shape:
 		_color_sampler_strategy.set_sample_color(individual)
 
 		# Calculates fitness
-		_fitness_calculator.calculate_fitness(individual, params.source_texture)
+		_fitness_calculator.calculate_fitness(individual, source_texture)
 	
 	# Sorts population descending
 	population.sort_custom(func(a, b): return a.fitness > b.fitness)
@@ -33,7 +33,7 @@ func _setup():
 	var best_of_random_params := params.best_of_random_params
 	# Creates fitness calculator with factory
 	_fitness_calculator = FitnessCalculator.factory_create(best_of_random_params.fitness_calculator)
-	_fitness_calculator.target_texture = params.target_texture
+	_fitness_calculator.target_texture = target_texture
 
 func finished():
 	super.finished()

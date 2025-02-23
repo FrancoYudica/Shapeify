@@ -14,6 +14,8 @@ var _color_sampler_strategy: ColorSamplerStrategy
 var _shape_spawner: ShapeSpawner
 
 var weight_texture: RendererTexture
+var target_texture: RendererTexture
+var source_texture: RendererTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
@@ -22,7 +24,6 @@ var params: ShapeGeneratorParams:
 var generated_count = 0
 
 func setup() -> void:
-	generated_count = 0
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
@@ -43,24 +44,27 @@ func generate_shape(similarity: float) -> Shape:
 	if generated_count % 20 == 0:
 		_shape_spawner.update(
 			similarity, 
-			params.target_texture, 
-			params.source_texture,
+			target_texture, 
+			source_texture,
 			weight_texture)
 	var shape = _generate(similarity)
 	generated_count += 1
 	
 	Profiler.shape_generation_finished(
 		shape,
-		params.source_texture)
+		source_texture)
 	return shape
 
 func _setup():
+	
+	generated_count = 0
+	
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)
 	
 	# Setup color sampler strategy ---------------------------------------------
 	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
-	_color_sampler_strategy.sample_texture = params.target_texture
+	_color_sampler_strategy.sample_texture = target_texture
 	
 func _generate(similarity: float) -> Shape:
 	return
@@ -69,7 +73,7 @@ func _generate(similarity: float) -> Shape:
 func _fix_shape_attributes(shape: Shape):
 	# If the aspect ratio
 	if params.keep_aspect_ratio:
-		var target_aspect = float(params.target_texture.get_width()) / params.target_texture.get_height()
+		var target_aspect = float(target_texture.get_width()) / target_texture.get_height()
 		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
 		shape.size.y = shape.size.x * target_aspect * texture_aspect
 	
@@ -84,7 +88,7 @@ func _fix_shape_attributes(shape: Shape):
 	
 	if params.fixed_size:
 		shape.size.x = params.fixed_size_width_ratio
-		var target_aspect = float(params.target_texture.get_width()) / params.target_texture.get_height()
+		var target_aspect = float(target_texture.get_width()) / target_texture.get_height()
 		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
 		shape.size.y = shape.size.x * target_aspect * texture_aspect
 

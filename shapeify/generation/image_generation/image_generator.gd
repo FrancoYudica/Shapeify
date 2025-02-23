@@ -19,6 +19,8 @@ var metric_value: float = 0.0
 var similarity: float = 0.0
 
 var weight_texture: RendererTexture
+var target_texture: RendererTexture
+var source_texture: RendererTexture
 
 func stop():
 	_stop_mutex.lock()
@@ -34,18 +36,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	
 	Profiler.image_generation_began(params)
 	
-	setup()
-	
-	# Resizes the source texture
-	var source_texture = RenderingCommon.resize_texture(
-		first_src_texture,
-		Globals.settings.render_scale * params.target_texture.get_size())
-	params.shape_generator_params.source_texture = source_texture
-	
-	shape_generator.setup()
-
-	var target_texture = params.shape_generator_params.target_texture
-	_shape_renderer.source_texture = source_texture
+	setup(first_src_texture)
 	
 	_generating = true
 	_stop_condition.began_generating()
@@ -59,7 +50,7 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		_stop_mutex.unlock()
 		
 		# Computes the similarity between the target and source texture
-		_compute_similarity(target_texture, source_texture)
+		_compute_similarity()
 		
 		# Generates weight texture every X shapes
 		if iteration % 20 == 0:
@@ -98,35 +89,41 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	_generating = false
 	return source_texture
 
-func setup():
+func setup(first_source_texture: RendererTexture):
 	_stop = false
+	
+	target_texture = RendererTexture.new()
+	target_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(params.target_texture)
 	
 	# Setup stop condition -----------------------------------------------------
 	_stop_condition = StopCondition.factory_create(params.stop_condition)
 	_stop_condition.set_params(params.stop_condition_params)
 	
-	# Scales target texture ----------------------------------------------------
-	params.shape_generator_params.target_texture = RenderingCommon.resize_texture(
-		params.target_texture, 
-		Globals.settings.render_scale * params.target_texture.get_size())
+	# Resizes target ans source texture ----------------------------------------
+	var render_size = Globals.settings.render_scale * params.target_texture.get_size()
+	target_texture = RenderingCommon.resize_texture(target_texture, render_size)
+	source_texture = RenderingCommon.resize_texture(first_source_texture, render_size)
+
+	# Setup weight texture generator -------------------------------------------
+	_weight_texture_generator = WeightTextureGenerator.factory_create(
+		params.weight_texture_generator_params.weight_texture_generator_type)
+	_weight_texture_generator.set_params(params.weight_texture_generator_params)
 
 	# Setup shape generator ----------------------------------------------------
 	shape_generator = ShapeGenerator.factory_create(params.shape_generator_type)
 	shape_generator.params = params.shape_generator_params
+	shape_generator.target_texture = target_texture
+	shape_generator.source_texture = source_texture
+	shape_generator.setup()
 
-	# Setup weight texture generator ----------------------------------------------------
-	_weight_texture_generator = WeightTextureGenerator.factory_create(
-		params.weight_texture_generator_params.weight_texture_generator_type)
-	_weight_texture_generator.set_params(params.weight_texture_generator_params)
+	_shape_renderer.source_texture = source_texture
+
 	
 func _init() -> void:
 	_shape_renderer = ShapeRenderer.new()
 	_similarity_delta_e_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
 
-func _compute_similarity(
-	target_texture,
-	source_texture
-) -> void:
+func _compute_similarity() -> void:
 	# Computes the current normalized progress -----------------------------------------------------
 	_similarity_delta_e_metric.target_texture = target_texture
 	metric_value = _similarity_delta_e_metric.compute(source_texture)

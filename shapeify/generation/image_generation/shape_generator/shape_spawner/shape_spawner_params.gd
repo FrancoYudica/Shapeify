@@ -33,7 +33,7 @@ class_name ShapeSpawnerParams extends Resource
 @export var shape_position_initializer_params := ShapePositionInitializerParms.new()
 @export var shape_texture_initializer_params := ShapeTextureInitializerParms.new()
 
-@export var textures: Array[RendererTexture]
+@export var textures: Array[Texture2D]
 
 func _init() -> void:
 	shape_position_initializer_params.changed.connect(emit_changed)

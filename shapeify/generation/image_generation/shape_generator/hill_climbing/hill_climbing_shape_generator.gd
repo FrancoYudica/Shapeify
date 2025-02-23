@@ -63,7 +63,7 @@ func _hill_climb(similarity: float) -> Individual:
 		_fix_shape_attributes(new_individual)
 		
 		_color_sampler_strategy.set_sample_color(new_individual)
-		_fitness_calculator.calculate_fitness(new_individual, params.source_texture)
+		_fitness_calculator.calculate_fitness(new_individual, source_texture)
 		if new_individual.fitness > individual.fitness:
 			age = 0
 			individual = new_individual
@@ -84,7 +84,7 @@ func _best_of_random(
 		var individual = Individual.from_shape(shape)
 		_fix_shape_attributes(individual)
 		_color_sampler_strategy.set_sample_color(individual)
-		_fitness_calculator.calculate_fitness(individual, params.source_texture)
+		_fitness_calculator.calculate_fitness(individual, source_texture)
 		
 		if best_of_random == null or individual.fitness > best_of_random.fitness:
 			best_of_random = individual
@@ -96,12 +96,12 @@ func _setup():
 	var hill_climbing_params := params.hill_climbing_params
 	# Creates fitness calculator with factory
 	_fitness_calculator = FitnessCalculator.factory_create(hill_climbing_params.fitness_calculator)
-	_fitness_calculator.target_texture = params.target_texture
+	_fitness_calculator.target_texture = target_texture
 	
 	_max_age = hill_climbing_params.max_age
 
 	_progress_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
-	_progress_metric.target_texture = params.target_texture
+	_progress_metric.target_texture = target_texture
 	
 	# Creates the CDF. Note that the order matches the indices used in mutate
 	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([
