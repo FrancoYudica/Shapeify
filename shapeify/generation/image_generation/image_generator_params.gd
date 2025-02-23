@@ -47,7 +47,7 @@ enum Type
 		emit_changed()
 	
 ## Holds the target texture without any transformation
-@export var target_texture: RendererTexture:
+@export var target_texture: Texture2D:
 	set(value):
 		if value != target_texture:
 			target_texture = value

@@ -1,9 +1,6 @@
 class_name ShapeGeneratorParams extends Resource
 
 
-@export var target_texture: RendererTexture
-@export var source_texture: RendererTexture
-
 @export var color_sampler := ColorSamplerStrategy.Type.MASKED:
 	set(value):
 		if value != color_sampler:
@@ -54,8 +51,6 @@ class_name ShapeGeneratorParams extends Resource
 
 func to_dict() -> Dictionary:
 	return {
-		"target_texture_width" : target_texture.get_width(),
-		"target_texture_height" : target_texture.get_height(),
 		"color_sampler": ColorSamplerStrategy.Type.keys()[color_sampler],
 		"best_of_random_params" : best_of_random_params.to_dict(),
 		"genetic_params" : genetic_params.to_dict(),

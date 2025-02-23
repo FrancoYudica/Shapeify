@@ -6,7 +6,7 @@ class_name WeightTextureGeneratorParams extends Resource
 			weight_texture_generator_type = value
 			emit_changed()
 
-@export var user_weight_texture: RendererTexture:
+@export var user_weight_texture: Texture2D:
 	set(texture):
 		user_weight_texture = texture
 		emit_changed()

@@ -20,41 +20,25 @@ func _ready() -> void:
 	_image_file_dialog.file_selected.connect(
 		func(filepath):
 				
-			var renderer_texture := RendererTexture.load_from_path(filepath)
+			var image = Image.load_from_file(filepath)
 			
-			if renderer_texture == null or not renderer_texture.is_valid():
-				Notifier.notify_error("Unable to load texture")
+			if image == null:
+				Notifier.notify_error("Unable to load image")
 				return
 			
-			_params.user_weight_texture = renderer_texture
-			_set_texture(renderer_texture)
+			var texture = ImageTexture.create_from_image(image)
+			_params.user_weight_texture = texture
+			_weight_texture_rect.texture = texture
+			_set_texture(texture)
 	)
 	
 	weight_texture_generator_picker.params_updated.connect(_update)
 	
-func _exit_tree() -> void:
-	_free_weight_texture()
-
 func _process(delta: float) -> void:
 	_texture_label.visible = _params.user_weight_texture == null
 
 func _update():
 	_set_texture(_params.user_weight_texture)
 
-func _set_texture(texture: RendererTexture):
-	if texture == null or not texture.is_valid():
-		return
-		
-	_free_weight_texture()
-	var texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(texture.rd_rid)
-	_weight_texture_rect.texture = texture_2d_rd
-
-func _free_weight_texture():
-	var previous_texture: Texture2DRD = _weight_texture_rect.texture
-	
-	if previous_texture != null:
-		var rd = RenderingServer.get_rendering_device()
-		var texture_rd_rid = previous_texture.texture_rd_rid
-		previous_texture.texture_rd_rid = RID()
-		previous_texture = null
-		rd.free_rid(texture_rd_rid)
+func _set_texture(texture: Texture2D):
+	_weight_texture_rect.texture = texture

@@ -12,10 +12,9 @@ func load_target_image_from_filepath(filepath: String) -> void:
 			Unsuported file format: %s" % [filepath, filepath.split(".")[1]])
 		return
 
-	var renderer_texture := RendererTexture.load_from_path(filepath)
-	
-	if renderer_texture == null:
-		Notifier.notify_error("Dropped texture is null. File format not supported")
+	var image = Image.load_from_file(filepath)
+	if image == null:
+		Notifier.notify_error("Dropped image is null. File format not supported")
 		return
 	
-	ImageGeneration.set_target_texture(renderer_texture)
+	ImageGeneration.set_target_texture(ImageTexture.create_from_image(image))

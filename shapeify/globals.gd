@@ -36,12 +36,7 @@ func _init() -> void:
 	
 func _enter_tree() -> void:
 	
-	var textures = settings \
-		.image_generator_params \
-		.shape_generator_params \
-		.shape_spawner_params \
-		.textures
-	
+	# Finds the default texture group
 	var texture_group: ShapeTextureGroup = null
 	
 	for group in settings.shape_texture_groups:
@@ -53,18 +48,13 @@ func _enter_tree() -> void:
 		push_error("Unable to find texture group named: %s" % settings.default_texture_group_name)
 	
 	# Loads default textures
-	for default_texture in texture_group.textures:
-		var renderer_texture = RendererTexture.load_from_texture(default_texture)
-		textures.append(renderer_texture)
-	
+	settings \
+		.image_generator_params \
+		.shape_generator_params \
+		.shape_spawner_params.textures = texture_group.textures.duplicate()
+
 	# Loads default target texture
-	var target_texture = RendererTexture.load_from_texture(settings.default_target_texture)
-	
-	if target_texture == null or not target_texture.is_valid():
-		Notifier.notify_error("Unable to load default target texture")
-		return
-	
-	settings.image_generator_params.target_texture = target_texture
+	settings.image_generator_params.target_texture = settings.default_target_texture
 	
 	Globals.settings.image_generator_params.setup_changed_signals()
 	Globals.settings.image_generator_params.changed.connect(_image_generator_params_changed)
