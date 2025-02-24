@@ -96,7 +96,7 @@ func initialize(type: Type, local_rd: RenderingDevice) -> void:
 	# Creates batch
 	match type:
 		Type.SPRITE:
-			_batch = load("res://local_renderer/sprite_batch.gd").new()
+			_batch = load("res://rendering/local_renderer/sprite_batch.gd").new()
 		_:
 			push_error("Unimplemented renderer type: %s" % type)
 	

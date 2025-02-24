@@ -7,6 +7,8 @@ signal target_texture_updated
 signal generation_cleared
 
 
+var master_renderer_params := MasterRendererParams.new()
+
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 var is_generating := false
@@ -35,6 +37,10 @@ func clear_progress():
 	details = ImageGenerationDetails.new()
 	details.clear_color = clear_color_strategy.get_clear_color()
 	details.viewport_size = params.target_texture.get_size()
+
+	master_renderer_params = MasterRendererParams.new()
+	master_renderer_params.clear_color = clear_color_strategy.get_clear_color()
+	
 	
 	# Creates to image texture and then to RD local texture
 	generation_cleared.emit()
@@ -119,6 +125,7 @@ func set_target_texture(target_texture: Texture2D):
 	
 func _emit_shape_generated_signal(shape: Shape):
 	details.shapes.append(shape)
+	master_renderer_params.shapes.append(shape)
 	shape_generated.emit(shape)
 
 func _begin_image_generation():

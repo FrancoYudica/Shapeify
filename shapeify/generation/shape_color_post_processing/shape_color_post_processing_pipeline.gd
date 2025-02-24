@@ -2,7 +2,7 @@
 class_name ShapeColorPostProcessingPipeline extends RefCounted
 
 
-func execute_pipeline(
+static func execute_pipeline(
 	shapes: Array[Shape],
 	t: float,
 	params: ShapeColorPostProcessingPipelineParams
@@ -31,7 +31,7 @@ func execute_pipeline(
 		
 	return duplicated_shapes
 
-func execute_pipeline_on_one_shape(
+static func execute_pipeline_on_one_shape(
 	shape: Shape,
 	shape_index: int,
 	t: float,
@@ -57,7 +57,7 @@ func execute_pipeline_on_one_shape(
 		
 	return duplicated_shape
 
-func compute_clear_color(
+static func compute_clear_color(
 	src_clear_color: Color,
 	t: float,
 	params: ShapeColorPostProcessingPipelineParams) -> Color:
@@ -76,7 +76,7 @@ func compute_clear_color(
 	)
 	return processed.tint
 
-func _execute_shader(
+static func _execute_shader(
 	shapes: Array[Shape],
 	shader: ShapeColorPostProcessingShader,
 	t: float
