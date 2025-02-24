@@ -12,7 +12,7 @@ var _multiply_image_processor: MultiplyImageProcessor
 var _blur: GaussianBlurImageProcessor
 var _map_to_range: MapToRangeImageProcessor
 
-var _probability_texture: RendererTexture
+var _probability_texture: LocalTexture
 
 func initialize_attribute(shape: Shape) -> void:
 
@@ -22,9 +22,9 @@ func initialize_attribute(shape: Shape) -> void:
 	shape.position.y = float(sampled_position.y) / _probability_texture.get_height()
 
 func update(
-	target_texture: RendererTexture,
-	source_texture: RendererTexture,
-	weight_texture: RendererTexture) -> void:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture,
+	weight_texture: LocalTexture) -> void:
 	
 	# Computes MPA texture -----------------------------------------------------
 	_mpa_image_processor.src_texture = source_texture

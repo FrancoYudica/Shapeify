@@ -10,7 +10,7 @@ signal generation_cleared
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 var is_generating := false
-var local_target_texture: RendererTexture
+var local_target_texture: LocalTexture
 
 ## This method is called from the root of the application to ensure that all the nodes are ready
 ## to receive signals
@@ -59,7 +59,6 @@ func stop():
 	image_generator.stop()
 
 func set_target_texture(target_texture: Texture2D):
-
 	
 	if target_texture == null:
 		Notifier.notify_error("Dropped texture is null. File format not supported")
@@ -93,26 +92,27 @@ func set_target_texture(target_texture: Texture2D):
 	var height_scale = float(TARGET_SIZE) / final_texture_size.y
 	Globals.settings.render_scale = min(min(width_scale, height_scale), 1.0)
 	
-	var local_texture = RendererTexture.new()
-	local_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(target_texture)
+	var local_texture = LocalTexture.load_from_texture(target_texture, GenerationGlobals.algorithm_rd)
 	
-	Renderer.begin_frame(Vector2i(final_texture_size.x, final_texture_size.y))
-	Renderer.render_sprite(
+	var renderer: LocalRenderer = GenerationGlobals.renderer
+	
+	renderer.begin_frame(Vector2i(final_texture_size.x, final_texture_size.y))
+	renderer.render_sprite(
 		final_texture_size * 0.5,
 		final_texture_size,
 		0.0,
 		Color.WHITE,
 		local_texture,
 		0)
-	Renderer.end_frame()
+	renderer.end_frame()
 		
-	local_target_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	local_target_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 
 	if local_target_texture == null or not local_target_texture.is_valid():
 		Notifier.notify_error("Unable to load texture")
 		return
 	
-	Globals.settings.image_generator_params.target_texture = RenderingCommon.create_texture_from_rd_rid(local_target_texture.rd_rid)
+	Globals.settings.image_generator_params.target_texture = local_target_texture.create_texture_2d_rd()
 	clear_progress()
 	target_texture_updated.emit()
 	
@@ -133,8 +133,10 @@ func _begin_image_generation():
 	render_details.shapes = details.shapes
 	render_details.clear_color = details.clear_color
 	render_details.viewport_size = params.target_texture.get_size() * Globals.settings.render_scale
-	ImageGenerationRenderer.render_image_generation(Renderer, render_details)
-	var source_texture := Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	
+	var renderer: LocalRenderer = GenerationGlobals.renderer
+	ImageGenerationRenderer.render_image_generation(renderer, render_details)
+	var source_texture := renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 	
 	# Generates the image
 	var output_texture = image_generator.generate_image(source_texture)

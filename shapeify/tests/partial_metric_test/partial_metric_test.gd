@@ -2,8 +2,8 @@ extends Node2D
 
 @export var partial_metric_script: GDScript
 @export var metric_script: GDScript
-@export var target_texture: RendererTextureLoad
-@export var source_texture: RendererTextureLoad
+@export var target_texture: Texture2D
+@export var source_texture: Texture2D
 @export var shape: Shape
 @export var iterations: int = 10
 @export var weight_texture_type: WeightTextureGenerator.Type
@@ -14,25 +14,32 @@ var _shape_renderer := ShapeRenderer.new()
 
 @onready var _weight_texture_generator := WeightTextureGenerator.factory_create(weight_texture_type)
 
+@onready var _local_target_texture := LocalTexture.load_from_texture(target_texture, GenerationGlobals.renderer.rd)
+@onready var _local_source_texture := LocalTexture.load_from_texture(source_texture, GenerationGlobals.renderer.rd)
+
 func _ready() -> void:
 	
 	# Initializes PartialMetrics and setups attributes
-	_shape_renderer.source_texture = source_texture
-	_shape_renderer.render_shape(shape)
+	var renderer := GenerationGlobals.renderer
+	ShapeRenderer.render_shape(
+		renderer,
+		_local_source_texture,
+		shape
+	)
 	
-	var new_source_texutre = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
-	var weight_texture = _weight_texture_generator.generate(0, target_texture, source_texture)
+	var new_source_texutre = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
+	var weight_texture = _weight_texture_generator.generate(0, _local_target_texture, _local_source_texture)
 	
 	_partial_metric = partial_metric_script.new()
 	_partial_metric.power = 4.0
-	_partial_metric.target_texture = target_texture
-	_partial_metric.source_texture = source_texture
+	_partial_metric.target_texture = _local_target_texture
+	_partial_metric.source_texture = _local_source_texture
 	_partial_metric.new_source_texture = new_source_texutre
 	_partial_metric.weight_texture = weight_texture
 	
 	_metric = metric_script.new()
 	_metric.power = 4.0
-	_metric.target_texture = target_texture
+	_metric.target_texture = _local_target_texture
 	_metric.weight_texture = weight_texture
 	
 	# Evaluates results

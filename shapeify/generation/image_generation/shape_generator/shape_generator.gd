@@ -13,9 +13,9 @@ enum Type{
 var _color_sampler_strategy: ColorSamplerStrategy
 var _shape_spawner: ShapeSpawner
 
-var weight_texture: RendererTexture
-var target_texture: RendererTexture
-var source_texture: RendererTexture
+var weight_texture: LocalTexture
+var target_texture: LocalTexture
+var source_texture: LocalTexture
 
 var params: ShapeGeneratorParams:
 	set(value):

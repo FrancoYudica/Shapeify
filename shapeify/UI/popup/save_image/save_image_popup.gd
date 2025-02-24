@@ -71,9 +71,9 @@ func _oppened():
 		rd.free_rid(texture_rd_rid)
 	
 	# Renders the texture
-	ImageGenerationRenderer.render_image_generation(Renderer, _processed_details)
-	var rendered = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
-	save_texture.texture = RenderingCommon.create_texture_from_rd_rid(rendered.rd_rid)
+	ImageGenerationRenderer.render_image_generation(GenerationGlobals.renderer, _processed_details)
+	var rendered = GenerationGlobals.renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
+	save_texture.texture = rendered.create_texture_2d_rd()
 
 func _save():
 	file_dialog.clear_filters()

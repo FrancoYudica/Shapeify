@@ -8,7 +8,7 @@ enum Type
 	MIN
 }
 
-func evaluate(texture: RendererTexture) -> float:
+func evaluate(texture: LocalTexture) -> float:
 	return 0.0
 
 

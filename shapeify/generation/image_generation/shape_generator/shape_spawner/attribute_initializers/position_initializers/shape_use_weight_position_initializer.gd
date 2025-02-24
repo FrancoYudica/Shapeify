@@ -3,7 +3,7 @@ extends ShapePositionInitializer
 
 var _texture_position_sampler: TexturePositionSampler
 
-var _probability_texture: RendererTexture
+var _probability_texture: LocalTexture
 
 func initialize_attribute(shape: Shape) -> void:
 
@@ -13,9 +13,9 @@ func initialize_attribute(shape: Shape) -> void:
 	shape.position.y = float(sampled_position.y) / _probability_texture.get_height()
 
 func update(
-	target_texture: RendererTexture,
-	source_texture: RendererTexture,
-	weight_texture: RendererTexture) -> void:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture,
+	weight_texture: LocalTexture) -> void:
 	_probability_texture = weight_texture
 	_texture_position_sampler.weight_texture = _probability_texture
 	DebugSignals.updated_spawn_position_probability_texture.emit(_probability_texture)

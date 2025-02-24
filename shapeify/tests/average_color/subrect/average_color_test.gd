@@ -27,7 +27,7 @@ func _frame_post_draw() -> void:
 	if average_color_sampler.sample_texture == null or not average_color_sampler.sample_texture.is_valid():
 		var texture = sub_viewport.get_texture()
 		var sample_texture_rd_rid = RenderingCommon.create_local_rd_texture_copy(texture)
-		var sample_texture = RendererTexture.new()
+		var sample_texture = LocalTexture.new()
 		sample_texture.rd_rid = sample_texture_rd_rid
 		average_color_sampler.sample_texture = sample_texture
 		cpu_sampler.sample_texture = sample_texture

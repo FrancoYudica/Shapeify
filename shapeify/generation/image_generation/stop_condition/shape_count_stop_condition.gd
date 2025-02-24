@@ -7,8 +7,8 @@ func began_generating():
 	_generated_count = 0
 
 func shape_generated(
-	source_texture: RendererTexture,
-	target_texture: RendererTexture,
+	source_texture: LocalTexture,
+	target_texture: LocalTexture,
 	shape: Shape):
 	_generated_count += 1
 	

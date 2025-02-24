@@ -26,7 +26,7 @@ func _ready() -> void:
 func _process_image() -> void:
 	
 	var clock := Clock.new()
-	var output_texture: RendererTexture = image_processor.process_image(texture)
+	var output_texture: LocalTexture = image_processor.process_image(texture)
 	time_taken_label.text = "Time taken %sms" % clock.elapsed_ms()
 	
 	if output_texture == null:

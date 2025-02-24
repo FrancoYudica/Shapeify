@@ -1,7 +1,7 @@
 extends Control
 
 @export var sub_viewport: SubViewport
-@export var sprite_mask: RendererTextureLoad
+@export var sprite_mask: Texture2D
 
 @export var sampler_scripts: Array[GDScript]
 var samplers: Array[AverageColorSampler] = []
@@ -10,40 +10,46 @@ var samplers: Array[AverageColorSampler] = []
 @onready var sample_color_rect := $OutlineColorRect/MarginContainer/SampleTextureRect
 @onready var parent_color_rect := $OutlineColorRect
 
+var local_sprite_mask: LocalTexture
 
 func _ready() -> void:
 	
 	for sampler_script in sampler_scripts:
 		samplers.append(sampler_script.new())
 
+	var renderer := GenerationGlobals.renderer
+	local_sprite_mask = LocalTexture.load_from_texture(sprite_mask, renderer.rd)
+
+
 var _textures_initialized = false
 
 func _process(delta: float) -> void:
 	
+	var renderer := GenerationGlobals.renderer
 	var sub_viewport_texture = sub_viewport.get_texture()
-	var sub_viewport_renderer_texture = RendererTexture.load_from_texture(sub_viewport_texture)
+	var sub_viewport_renderer_texture = LocalTexture.load_from_texture(sub_viewport_texture, renderer.rd)
 	
 	# Renders background only
-	Renderer.begin_frame(size)
-	Renderer.render_sprite(
+	renderer.begin_frame(size)
+	renderer.render_sprite(
 		sub_viewport_renderer_texture.get_size() * 0.5,
 		sub_viewport_renderer_texture.get_size(),
 		0.0,
 		Color.WHITE,
 		sub_viewport_renderer_texture
 	)
-	Renderer.end_frame()
+	renderer.end_frame()
 	
 	# Gets the clean sample texture
 	if not _textures_initialized:
-		var color_attachment = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+		var color_attachment = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 		var texture = color_attachment.copy()
 		for sampler in samplers:
 			sampler.sample_texture = texture
 	
 	# Renders background and sprite with it's ID
-	Renderer.begin_frame(size)
-	Renderer.render_sprite(
+	renderer.begin_frame(size)
+	renderer.render_sprite(
 		sub_viewport_renderer_texture.get_size() * 0.5,
 		sub_viewport_renderer_texture.get_size(),
 		0.0,
@@ -53,19 +59,19 @@ func _process(delta: float) -> void:
 	
 	var mouse = get_local_mouse_position()
 	
-	Renderer.render_sprite(
+	renderer.render_sprite(
 		mouse,
 		sample_color_rect.get_global_rect().size,
 		0.0,
 		Color.WHITE,
-		sprite_mask,
+		local_sprite_mask,
 		1.0
 	)
-	Renderer.end_frame()
+	renderer.end_frame()
 
 	# Gets the clean sample texture
 	if not _textures_initialized:
-		var id_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.UID)
+		var id_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.UID)
 		for sampler in samplers:
 			sampler.id_texture = id_texture
 		_textures_initialized = false

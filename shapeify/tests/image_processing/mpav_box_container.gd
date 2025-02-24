@@ -22,7 +22,7 @@ func _image_selected(path: String):
 	if not is_visible_in_tree():
 		return
 
-	var renderer_texture = RendererTexture.load_from_path(path)
+	var renderer_texture = LocalTexture.load_from_path(path)
 	var mpa_processor := image_processing.image_processor as MPAImageProcessor
 	mpa_processor.src_texture = renderer_texture
 	src_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)

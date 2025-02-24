@@ -35,7 +35,7 @@ func _weight_texture_set():
 
 var _previous_source_texture_rd_rid: RID
 
-func _compute(source_texture: RendererTexture) -> float:
+func _compute(source_texture: LocalTexture) -> float:
 	
 	# This avoids creating new uniform sets when source texture is the same
 	if _previous_source_texture_rd_rid != source_texture.rd_rid:
@@ -106,7 +106,7 @@ func _notification(what: int) -> void:
 
 
 func _load_shader():
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/metric/mpa/mpa_rgb.glsl")

@@ -9,7 +9,7 @@ enum Type
 	WHITE
 }
 
-@export var sample_texture: RendererTexture:
+@export var sample_texture: LocalTexture:
 	set(texture):
 		sample_texture = texture
 		_sample_texture_set()

@@ -68,6 +68,20 @@ func create_texture_2d_rd() -> AutoFreeTexture2DRD:
 	texture_rd.texture_rd_rid = new_global_texture_rd_rid
 	return texture_rd
 
+func create_image() -> Image:
+	# Creates an image with the same size and format
+	
+	var texture_data = rd.texture_get_data(rd_rid, 0)
+	
+	var img = Image.new()
+	img.set_data(
+		get_width(),
+		get_height(),
+		false,
+		Image.Format.FORMAT_RGBA8,
+		texture_data)
+	return img
+
 func copy_contents(src_texture: LocalTexture) -> void:
 	
 	if src_texture.get_width() != get_width() or src_texture.get_height() != get_height():
@@ -174,6 +188,21 @@ static func load_from_image(
 		
 	texture.rd = rendering_device
 	return texture
+
+func get_resized(
+	renderer: LocalRenderer,
+	size: Vector2i) -> LocalTexture:
+	renderer.begin_frame(size)
+	renderer.render_sprite(
+		size * 0.5,
+		size,
+		0,
+		Color.WHITE,
+		self,
+		0)
+	renderer.end_frame()
+	return renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
+	
 
 func is_valid() -> bool:
 	return rd_rid.is_valid() and rd.texture_is_valid(rd_rid)

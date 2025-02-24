@@ -21,7 +21,7 @@ func _image_selected(path: String):
 	if not is_visible_in_tree():
 		return
 	
-	var renderer_texture = RendererTexture.load_from_path(path)
+	var renderer_texture = LocalTexture.load_from_path(path)
 	var add_processor := image_processing.image_processor as AddImageProcessor
 	add_processor.texture_b = renderer_texture
 	b_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(renderer_texture.rd_rid)

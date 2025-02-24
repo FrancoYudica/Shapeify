@@ -2,7 +2,7 @@ class_name AverageColorSampler extends RefCounted
 
 
 ## Texture sampled to get the colors
-var sample_texture: RendererTexture:
+var sample_texture: LocalTexture:
 	set(texture):
 		
 		if not texture.is_valid():
@@ -14,7 +14,7 @@ var sample_texture: RendererTexture:
 
 ## Texture sampled to filter pixel by ID. This way, instead of sampling all the pixels contained
 ## in the sub-rect, only these with ID = 1.0 will be sampled.
-var id_texture: RendererTexture:
+var id_texture: LocalTexture:
 	set(texture):
 		
 		if texture == null:

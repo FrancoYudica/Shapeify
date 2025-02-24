@@ -6,7 +6,7 @@ enum Type {
 	USER
 }
 
-var sample_texture: RendererTexture:
+var sample_texture: LocalTexture:
 	set(texture):
 		sample_texture = texture
 		_sample_texture_set()

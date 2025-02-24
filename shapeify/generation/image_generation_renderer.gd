@@ -2,7 +2,7 @@ class_name ImageGenerationRenderer extends RefCounted
 
 
 static func render_image_generation(
-	renderer,
+	renderer: LocalRenderer,
 	details: ImageGenerationDetails):
 	
 	var viewport_size = Vector2(

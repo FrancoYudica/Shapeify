@@ -14,8 +14,8 @@ enum Type
 ## returns a grayscale texture
 func generate(
 	progress: float,
-	target_texture: RendererTexture,
-	source_texture: RendererTexture) -> RendererTexture:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture) -> LocalTexture:
 	return null
 
 func set_params(params: WeightTextureGeneratorParams) -> void:
