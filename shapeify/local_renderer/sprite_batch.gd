@@ -1,4 +1,4 @@
-extends Batch
+extends RendererBatch
 
 const _MAX_SUMISSIONS = 1024
 
@@ -7,7 +7,6 @@ var _vertex_buffers_data: Dictionary
 var _index_buffer: RID
 var _submissions_count: int = 0
 var _index_array_index_count: int = 0
-
 enum VertexComponentType
 {
 	POSITION,
@@ -102,7 +101,7 @@ func flush():
 		index_array = rd.index_array_create(_index_buffer, 0, _submissions_count * 6)
 		_index_array_index_count = _submissions_count * 6
 	
-	Renderer.flush()
+	local_renderer.flush()
 	_submissions_count = 0
 
 func initialize() -> bool:
