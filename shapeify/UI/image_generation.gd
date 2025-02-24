@@ -6,13 +6,16 @@ signal shape_generated(shape: Shape)
 signal target_texture_updated
 signal generation_cleared
 
-
-var master_renderer_params := MasterRendererParams.new()
+var master_renderer_params: MasterRendererParams
 
 var image_generator: ImageGenerator
 var details := ImageGenerationDetails.new()
 var is_generating := false
 var local_target_texture: LocalTexture
+
+func _ready() -> void:
+	master_renderer_params = MasterRendererParams.new()
+	master_renderer_params.post_processing_pipeline_params = Globals.settings.color_post_processing_pipeline_params
 
 ## This method is called from the root of the application to ensure that all the nodes are ready
 ## to receive signals
@@ -38,9 +41,8 @@ func clear_progress():
 	details.clear_color = clear_color_strategy.get_clear_color()
 	details.viewport_size = params.target_texture.get_size()
 
-	master_renderer_params = MasterRendererParams.new()
 	master_renderer_params.clear_color = clear_color_strategy.get_clear_color()
-	
+	master_renderer_params.shapes.clear()
 	
 	# Creates to image texture and then to RD local texture
 	generation_cleared.emit()

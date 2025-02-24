@@ -1,15 +1,11 @@
 extends Control
 
-signal shapes_animated(details: ImageGenerationDetails)
+signal shapes_animated(shapes: Array[Shape])
 signal animation_progress_updated(t: float)
 signal animation_started
 signal animation_finished
 
 @export var output_texture_panel_container: Control
-
-var image_generation_details: ImageGenerationDetails:
-	get:
-		return ImageGeneration.details
 
 var animation_player: ShapeAnimationPlayer
 
@@ -28,10 +24,6 @@ func _ready() -> void:
 	)
 
 func play_animation(start_t: float):
-	
-	# Creates a local copy, since attributes get modified
-	image_generation_details = ImageGeneration.details.copy()
-
 	_tween = create_tween()
 	var remaining = 1.0 - start_t
 	_tween.tween_method(_interpolate, start_t, 1.0, remaining * duration)
@@ -45,26 +37,10 @@ func play_animation(start_t: float):
 
 
 func _interpolate(t: float):
-
-	# The viewport size is scaled to fit into the animator
-	var src_size = image_generation_details.viewport_size
-	var aspect_ratio = float(src_size.x) / src_size.y
-	image_generation_details.viewport_size = Vector2i(
-		output_texture_panel_container.size.y * aspect_ratio, 
-		output_texture_panel_container.size.y)
-
-	# Applies post processing
-	var post_processed_details = await ShapeColorPostProcessingPipeline.process_details(
-		image_generation_details,
-		0,
-		Globals.settings.color_post_processing_pipeline_params
-	)
-
 	# Animates current frame
-	post_processed_details.shapes = animation_player.animate(
-		post_processed_details.shapes, 
-		t)
-	shapes_animated.emit(post_processed_details)
+	var shapes = ImageGeneration.details.shapes.duplicate()
+	var animated_shapes = animation_player.animate(shapes, t)
+	shapes_animated.emit(animated_shapes)
 	animation_progress_updated.emit(t)
 	_current_t = t
 

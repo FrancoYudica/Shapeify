@@ -46,7 +46,6 @@ func _render():
 	
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
-	
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
 	
 	var master_renderer_params := MasterRendererParams.new()
