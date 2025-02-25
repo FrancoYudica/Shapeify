@@ -59,19 +59,29 @@ func render_sprite(
 	size: Vector2,
 	rotation: float,
 	color: Color,
-	texture: LocalTexture,
+	texture: Texture2D,
 	id: float = 0):
 	
-	if texture == null or not texture.is_valid():
+	if texture == null:
 		printerr("Trying to render sprite with invalid texture")
 		return
 	
-	var texture_slot = _texture_manager.get_texture_slot(texture)
+	# Gets local texture
+	var local_texture = _texture_manager.get_local_texture(texture)
+	
+	# LocalTexture cache is full. Needs to render before adding more textures
+	if local_texture == null:
+		_batch.flush()
+		_texture_manager.clear()
+		local_texture = _texture_manager.get_local_texture(texture)
+	
+	# Gets texture slot
+	var texture_slot = _texture_manager.get_local_texture_slot(local_texture)
+	
 	if texture_slot == LocalTextureManager.Status.FULL:
 		_batch.flush()
 		_texture_manager.clear()
 		texture_slot = _texture_manager.get_texture_slot(texture)
-	
 	if texture_slot == LocalTextureManager.Status.INVALID:
 		printerr("Invalid texture")
 		return

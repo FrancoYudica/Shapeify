@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c13pbi1bbryvu"]
+[gd_scene load_steps=5 format=3 uid="uid://c13pbi1bbryvu"]
 
 [ext_resource type="Script" path="res://tests/local_renderer_test/local_renderer_test.gd" id="1_pbyky"]
 [ext_resource type="Texture2D" uid="uid://b33c5ggbh60of" path="res://art/textures/program_icon/icon.svg" id="2_w68yo"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="2_w578e"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="3_xglq4"]
 
 [node name="LocalRendererTest" type="Node2D"]
 script = ExtResource("1_pbyky")
@@ -20,7 +21,7 @@ texture = ExtResource("2_w68yo")
 [node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
 position = Vector2(418, 509)
 scale = Vector2(1.92188, 2.6875)
-texture = ExtResource("2_w68yo")
+texture = ExtResource("3_xglq4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

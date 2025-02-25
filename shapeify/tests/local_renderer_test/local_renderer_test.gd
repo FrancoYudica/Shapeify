@@ -17,10 +17,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Transforms all the sprite textures to local textures
-	var texture_map = {}
-	for sprite: Sprite2D in sprites_container.get_children():
-		texture_map[sprite.texture.get_rid()] = LocalTexture.load_from_texture(sprite.texture, local_renderer.rd)
-	
 	var clock := Clock.new()
 	
 	local_renderer.begin_frame(output_texture_rect.size)
@@ -29,14 +25,13 @@ func _process(delta: float) -> void:
 	for sprite in sprites_container.get_children():
 		
 		for i in range(500):
-			var texture = texture_map[sprite.texture.get_rid()]
-			var sprite_size = texture.get_size() * sprite.scale
+			var sprite_size = sprite.texture.get_size() * sprite.scale
 			local_renderer.render_sprite(
 				sprite.position,
 				sprite_size,
 				sprite.rotation,
 				sprite.modulate,
-				texture,
+				sprite.texture,
 				0
 			)
 		
