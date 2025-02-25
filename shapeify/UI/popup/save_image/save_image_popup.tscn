@@ -14,7 +14,7 @@ scale_spin_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxCo
 resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/ResolutionPanelContainer/MarginContainer/ResolutionValueLabel")
 final_resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/FinalResolutionPanelContainer/MarginContainer/FinalResolutionValueLabel")
 file_dialog = NodePath("FileDialog")
-save_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/TextureRect")
+save_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/OutputTextureRect")
 format_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/SaveFormatOptionButton")
 
 [node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
@@ -32,12 +32,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_mh6de")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0"]
+[node name="OutputTextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0"]
 custom_minimum_size = Vector2(300, 256)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_8dkgv")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1"]
