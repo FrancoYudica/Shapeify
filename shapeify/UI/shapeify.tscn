@@ -144,7 +144,7 @@ _data = {
 shader = ExtResource("4_074qp")
 shader_parameter/t = 0.0
 
-[sub_resource type="Texture2DRD" id="Texture2DRD_x5wfy"]
+[sub_resource type="Texture2DRD" id="Texture2DRD_axn0k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tss7v"]
 
@@ -324,6 +324,7 @@ layout_mode = 2
 tooltip_text = "Open animator"
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_nw5bv")
+toggle_mode = true
 icon = ExtResource("17_8ttpw")
 icon_alignment = 1
 script = ExtResource("16_ax1tw")
@@ -427,7 +428,7 @@ theme_override_styles/panel = ExtResource("23_bpxun")
 [node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
-texture = SubResource("Texture2DRD_x5wfy")
+texture = SubResource("Texture2DRD_axn0k")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("24_b7crn")

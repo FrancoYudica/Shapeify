@@ -18,4 +18,6 @@ func end_frame():
 	
 func flush():
 	pass
-	
+
+func delete():
+	pass

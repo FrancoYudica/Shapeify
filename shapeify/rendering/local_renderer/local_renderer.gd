@@ -152,6 +152,7 @@ func _resize(viewport_size: Vector2i):
 	texture_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
+		RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT |
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
 	var color_texture = LocalTexture.create_empty(texture_format, rd)
@@ -232,6 +233,11 @@ func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
 				 Vector3(0, scale_y, 0),
 				 Vector3(translate_x, translate_y, 1))
 
+func delete() -> void:
+	rd.free_rid(_pipeline)
+	rd.free_rid(_framebuffer)
+	rd.free_rid(_matrix_storage_buffer)
+	_batch.delete()
 
 func flush() -> void:
 	if not rd.render_pipeline_is_valid(_pipeline):

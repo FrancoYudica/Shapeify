@@ -38,7 +38,7 @@ func play_animation(start_t: float):
 
 func _interpolate(t: float):
 	# Animates current frame
-	var shapes = ImageGeneration.details.shapes.duplicate()
+	var shapes = ImageGeneration.master_renderer_params.shapes.duplicate()
 	var animated_shapes = animation_player.animate(shapes, t)
 	shapes_animated.emit(animated_shapes)
 	animation_progress_updated.emit(t)

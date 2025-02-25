@@ -27,17 +27,19 @@ func _process(delta: float) -> void:
 	local_renderer.render_clear(Color.BLUE)
 	
 	for sprite in sprites_container.get_children():
-		var texture = texture_map[sprite.texture.get_rid()]
-		var sprite_size = texture.get_size() * sprite.scale
-		local_renderer.render_sprite(
-			sprite.position,
-			sprite_size,
-			sprite.rotation,
-			sprite.modulate,
-			texture,
-			0
-		)
-	
+		
+		for i in range(500):
+			var texture = texture_map[sprite.texture.get_rid()]
+			var sprite_size = texture.get_size() * sprite.scale
+			local_renderer.render_sprite(
+				sprite.position,
+				sprite_size,
+				sprite.rotation,
+				sprite.modulate,
+				texture,
+				0
+			)
+		
 	local_renderer.end_frame()
 	clock.print_elapsed("Rendered")
 	

@@ -1,6 +1,6 @@
 extends RendererBatch
 
-const _MAX_SUMISSIONS = 1024
+const _MAX_SUMISSIONS = 8192
 
 var _vertex_buffers: Dictionary
 var _vertex_buffers_data: Dictionary
@@ -103,6 +103,17 @@ func flush():
 	
 	local_renderer.flush()
 	_submissions_count = 0
+
+func delete():
+	rd.free_rid(shader)
+	rd.free_rid(vertex_array)
+	
+	if index_array.is_valid():
+		rd.free_rid(index_array)
+
+	rd.free_rid(_index_buffer)
+	for vbo_rid in _vertex_buffers.values():
+		rd.free_rid(vbo_rid)
 
 func initialize() -> bool:
 
