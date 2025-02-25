@@ -81,7 +81,7 @@ func render_sprite(
 	if texture_slot == LocalTextureManager.Status.FULL:
 		_batch.flush()
 		_texture_manager.clear()
-		texture_slot = _texture_manager.get_texture_slot(texture)
+		texture_slot = _texture_manager.get_local_texture_slot(local_texture)
 	if texture_slot == LocalTextureManager.Status.INVALID:
 		printerr("Invalid texture")
 		return
@@ -248,6 +248,7 @@ func delete() -> void:
 	rd.free_rid(_framebuffer)
 	rd.free_rid(_matrix_storage_buffer)
 	_batch.delete()
+	_texture_manager.clear()
 
 func flush() -> void:
 	if not rd.render_pipeline_is_valid(_pipeline):

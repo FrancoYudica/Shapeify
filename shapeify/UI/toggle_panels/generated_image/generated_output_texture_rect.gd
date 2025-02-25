@@ -4,8 +4,6 @@ extends TextureRect
 ## the image generation algorithm
 var _local_renderer: LocalRenderer
 
-## Maps the algorithm RD textures to this renderer device textures
-var _shape_textures_map: Dictionary
 
 var _details := ImageGenerationDetails.new()
 
@@ -45,10 +43,8 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	_local_renderer.delete()
 	_local_renderer = null
-	_shape_textures_map.clear()
 
 func _clear():
-	_shape_textures_map.clear()
 	_details.shapes.clear()
 	_details.clear_color = ImageGeneration.details.clear_color
 	_invalidate()
@@ -56,14 +52,7 @@ func _clear():
 
 	
 func _shape_generated(shape: Shape):
-	
-	if not _shape_textures_map.has(shape.texture.rd_rid):
-		_shape_textures_map[shape.texture.rd_rid] = shape.texture.copy(_local_renderer.rd)
-	
-	var local_shape = shape.copy()
-	local_shape.texture = _shape_textures_map[shape.texture.rd_rid]
-	_details.shapes.append(local_shape)
-	
+	_details.shapes.append(shape)
 	_invalidate()
 
 

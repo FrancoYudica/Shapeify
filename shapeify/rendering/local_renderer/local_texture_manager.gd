@@ -8,7 +8,7 @@ class_name LocalTextureManager extends RefCounted
 # Set to 32 to ensure GPU bind compatibility
 const _MAX_TEXTURES_SLOTS = 32
 
-const _MAX_LOCAL_TEXTURES_CHACHED = 64
+const _MAX_LOCAL_TEXTURES_CHACHED = 128
 var _local_textures: Array[LocalTexture]
 var _texture_map = {}
 var rd: RenderingDevice

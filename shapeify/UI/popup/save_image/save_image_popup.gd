@@ -71,28 +71,16 @@ func _oppened():
 	
 	_set_final_resolution_scale(scale_spin_box.value)
 	
-	var local_textures = {}
-	var local_shapes: Array[Shape] = []
-	for shape in ImageGeneration.master_renderer_params.shapes:
-		if not local_textures.has(shape.texture.rd_rid):
-			local_textures[shape.texture.rd_rid] = shape.texture.copy(_local_renderer.rd)
-		
-		var local_shape = shape.copy()
-		local_shape.texture = local_textures[shape.texture.rd_rid]
-		local_shapes.append(local_shape)
-	
-	var renderer_params := ImageGeneration.master_renderer_params.duplicate()
-	renderer_params.shapes = local_shapes
-
+	# Calculates viewport size
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
 
-	# Renders the texture
+	# Renders the texture. This causes stall
 	MasterRenderer.render(
 		_local_renderer,
 		render_viewport_size,
-		renderer_params)
+		ImageGeneration.master_renderer_params)
 	
 	var rendered = _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 	save_texture.texture = rendered.create_texture_2d_rd()
