@@ -9,7 +9,6 @@ var _details := ImageGenerationDetails.new()
 
 ## If the current output is invalidated, the output texture must be rendered again
 var _invalidated = false
-var _want_to_present = false
 
 func _ready() -> void:
 	
@@ -25,20 +24,13 @@ func _ready() -> void:
 	ImageGeneration.shape_generated.connect(_shape_generated)
 	Globals.settings.color_post_processing_pipeline_params.changed.connect(_invalidate)
 	resized.connect(_invalidate)
-
 	RenderingServer.frame_pre_draw.connect(
 		func():
 			if _invalidated:
 				_render()
-				_invalidated = false
-				_want_to_present = true)
-	
-	RenderingServer.frame_post_draw.connect(
-		func():
-			if _want_to_present:
 				_present()
-				_want_to_present = false
-	)
+				_invalidated = false)
+	
 	
 func _exit_tree() -> void:
 	_local_renderer.delete()
@@ -64,7 +56,6 @@ func _render():
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
-	
 	var master_renderer_params := MasterRendererParams.new()
 	master_renderer_params.clear_color = ImageGeneration.master_renderer_params.clear_color
 	master_renderer_params.post_processing_pipeline_params = Globals.settings.color_post_processing_pipeline_params
@@ -76,6 +67,9 @@ func _render():
 		master_renderer_params
 	)
 
+
+var _previous_color_attachment: LocalTexture
+
 func _present():
 	# Copies textures contents into TextureRect's texture
 	var color_attachment = _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
@@ -83,5 +77,12 @@ func _present():
 	if not color_attachment.is_valid():
 		return
 	
-	texture = Texture2DRD.new()
+	if texture == null:
+		texture = Texture2DRD.new()
+		
 	texture.texture_rd_rid = color_attachment.rd_rid
+	
+	# Stores a reference to the color attachment. This is necessary since if the renderer
+	# resizes, the previous framebuffer color attachment gets removed and the output texture
+	# becomes white.
+	_previous_color_attachment = color_attachment

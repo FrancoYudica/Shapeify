@@ -5,7 +5,6 @@ extends TextureRect
 var _local_renderer: LocalRenderer
 var _shapes: Array[Shape]
 var _invalidated := false
-var _want_to_present := false
 
 func _ready() -> void:
 	_local_renderer = LocalRenderer.new()
@@ -19,15 +18,8 @@ func _ready() -> void:
 		func():
 			if _invalidated:
 				_render()
-				_invalidated = false
-				_want_to_present = true)
-	
-	RenderingServer.frame_post_draw.connect(
-		func():
-			if _want_to_present:
 				_present()
-				_want_to_present = false
-	)
+				_invalidated = false)
 	
 	ImageGeneration.target_texture_updated.connect(
 		func():
@@ -58,6 +50,8 @@ func _render():
 		render_viewport_size,
 		master_renderer_params)
 
+var _previous_color_attachment: LocalTexture
+
 func _present():
 	# Copies textures contents into TextureRect's texture
 	var color_attachment = _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
@@ -67,5 +61,10 @@ func _present():
 	
 	if texture == null:
 		texture = Texture2DRD.new()
-
+		
 	texture.texture_rd_rid = color_attachment.rd_rid
+	
+	# Stores a reference to the color attachment. This is necessary since if the renderer
+	# resizes, the previous framebuffer color attachment gets removed and the output texture
+	# becomes white.
+	_previous_color_attachment = color_attachment
