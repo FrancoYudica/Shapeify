@@ -9,18 +9,22 @@ class_name LocalTextureManager extends RefCounted
 const _MAX_TEXTURES_SLOTS = 32
 
 const _MAX_LOCAL_TEXTURES_CHACHED = 128
-var _local_textures: Array[LocalTexture]
-var _texture_map = {}
+
+# Maps texture RD RID to LocalTexture
+var _local_textures_map = {}
+
+# Maps Texture2D RID to LocalTexture
+var _cached_textures_map = {}
+
 var rd: RenderingDevice
 
 enum Status {
-	FULL = -1,
-	INVALID = -2
+	FULL = -1
 }
 
 var texture_count:
 	get:
-		return _local_textures.size()
+		return _local_textures_map.size()
 
 func get_local_texture(texture: Texture2D) -> LocalTexture:
 	
@@ -29,62 +33,43 @@ func get_local_texture(texture: Texture2D) -> LocalTexture:
 		return texture
 	
 	# LocalTexture not created yet
-	if not _texture_map.has(texture.get_rid()):
+	if not _cached_textures_map.has(texture.get_rid()):
 		
 		# Texture caching is full. This doesn't break the program but it shouldn't happen for performance reasons.
-		if _texture_map.size() == _MAX_LOCAL_TEXTURES_CHACHED:
+		if _cached_textures_map.size() == _MAX_LOCAL_TEXTURES_CHACHED:
 			push_warning("TextureManager LocalTexture cache is full. Reaching this multiple times might decrease performance.")
 			return null
-			
-		_texture_map[texture.get_rid()] = LocalTexture.load_from_texture(texture, rd)
-
+		_cached_textures_map[texture.get_rid()] = LocalTexture.load_from_texture(texture, rd)
 	
 	# Returns the cached local texture
-	return _texture_map[texture.get_rid()]
+	return _cached_textures_map[texture.get_rid()]
 	
 	
-
 func get_local_texture_slot(texture: LocalTexture) -> int:
 	
 	# When texture isn't added to the slots array
-	if not _has_texture(texture):
+	if not _local_textures_map.has(texture.rd_rid):
 		
 		# Unable to add a new texture
-		if _local_textures.size() == _MAX_TEXTURES_SLOTS:
+		if _local_textures_map.size() == _MAX_TEXTURES_SLOTS:
 			return Status.FULL
 		
-		if not texture.is_valid():
-			return Status.INVALID
-		
-		_local_textures.append(texture)
+		_local_textures_map[texture.rd_rid] = texture
 	
 	return _get_texture_slot_index(texture.rd_rid)
 
 func get_textures_rd_rid() -> Array:
-	return _local_textures.map(
+	return _local_textures_map.values().map(
 		func(texture: LocalTexture) -> RID:
 			return texture.rd_rid
 	)
 
+func clear_cached_textures():
+	_cached_textures_map.clear()
 
 ## Clear texture slots and frees textures from memory
 func clear():
-	_local_textures.clear()
-	_texture_map.clear()
-
-
-func _has_texture(texture: LocalTexture) -> bool:
-	for t in _local_textures:
-		if t.rd_rid == texture.rd_rid:
-			return true
-			
-	return false
-		
+	_local_textures_map.clear()
 
 func _get_texture_slot_index(id: RID) -> int:
-	
-	for i in range(_local_textures.size()):
-		if _local_textures[i].rd_rid == id:
-			return i
-			
-	return -1
+	return _local_textures_map.keys().find(id)

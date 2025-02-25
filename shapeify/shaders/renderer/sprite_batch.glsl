@@ -2,10 +2,9 @@
 #version 450 core
 layout(location = 0) in vec3 vertex;
 layout(location = 1) in vec2 in_uv;
-layout(location = 2) in float rotation;
-layout(location = 3) in vec4 in_color;
-layout(location = 4) in int in_texture;
-layout(location = 5) in float in_id;
+layout(location = 2) in vec4 in_color;
+layout(location = 3) in int in_texture;
+layout(location = 4) in float in_id;
 
 layout(location = 0) out vec2 uv; // Pass UV to the fragment shader
 layout(location = 1) out vec4 color; // Pass COLOR to the fragment shader

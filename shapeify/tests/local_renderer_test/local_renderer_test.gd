@@ -14,6 +14,7 @@ func _ready() -> void:
 		RenderingServer.get_rendering_device()
 	)
 	
+	
 func _process(delta: float) -> void:
 	
 	# Transforms all the sprite textures to local textures
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 	
 	for sprite in sprites_container.get_children():
 		
-		for i in range(500):
+		for i in range(1000):
 			var sprite_size = sprite.texture.get_size() * sprite.scale
 			local_renderer.render_sprite(
 				sprite.position,

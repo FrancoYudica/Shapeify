@@ -13,9 +13,9 @@ enum VertexComponentType
 	UV,
 	COLOR,
 	TEXTURE,
-	ROTATION,
 	ID
 }
+
 
 func push_sprite(
 	pos: Vector3,
@@ -30,24 +30,22 @@ func push_sprite(
 		flush()
 	
 	var index = _submissions_count * 4
-	
 	var rotation_matrix = Transform2D(rotation, Vector2.ZERO)
-	
-	var local_positions = [
-		Vector2(-size.x, -size.y),
- 		Vector2(-size.x, size.y),
- 		Vector2(size.x, size.y),
- 		Vector2(size.x, -size.y)
-	]
-	for i in range(4):
-		var rotated = rotation_matrix * 0.5 * local_positions[i]
-		_vertex_buffers_data[VertexComponentType.POSITION][index + i] = pos + Vector3(rotated.x, rotated.y, 0)
 
-	_vertex_buffers_data[VertexComponentType.UV][index + 0] = Vector2(0, 0)
-	_vertex_buffers_data[VertexComponentType.UV][index + 1] = Vector2(0, 1)
-	_vertex_buffers_data[VertexComponentType.UV][index + 2] = Vector2(1, 1)
-	_vertex_buffers_data[VertexComponentType.UV][index + 3] = Vector2(1, 0)
-	
+	var half_size = size * 0.5
+
+	# Define the four corners relative to the center
+	var top_left = rotation_matrix * Vector2(-half_size.x, -half_size.y)
+	var bottom_left = rotation_matrix * Vector2(-half_size.x, half_size.y)
+	var bottom_right = rotation_matrix * Vector2(half_size.x, half_size.y)
+	var top_right = rotation_matrix * Vector2(half_size.x, -half_size.y)
+
+	# Apply rotation to each point and update the buffer
+	_vertex_buffers_data[VertexComponentType.POSITION][index + 0] = pos + Vector3(top_left.x, top_left.y, 0)
+	_vertex_buffers_data[VertexComponentType.POSITION][index + 1] = pos + Vector3(bottom_left.x, bottom_left.y, 0)
+	_vertex_buffers_data[VertexComponentType.POSITION][index + 2] = pos + Vector3(bottom_right.x, bottom_right.y, 0)
+	_vertex_buffers_data[VertexComponentType.POSITION][index + 3] = pos + Vector3(top_right.x, top_right.y, 0)
+
 	_vertex_buffers_data[VertexComponentType.COLOR][index + 0] = color
 	_vertex_buffers_data[VertexComponentType.COLOR][index + 1] = color
 	_vertex_buffers_data[VertexComponentType.COLOR][index + 2] = color
@@ -57,11 +55,6 @@ func push_sprite(
 	_vertex_buffers_data[VertexComponentType.TEXTURE][index + 1] = texture_slot
 	_vertex_buffers_data[VertexComponentType.TEXTURE][index + 2] = texture_slot
 	_vertex_buffers_data[VertexComponentType.TEXTURE][index + 3] = texture_slot
-
-	_vertex_buffers_data[VertexComponentType.ROTATION][index + 0] = rotation
-	_vertex_buffers_data[VertexComponentType.ROTATION][index + 1] = rotation
-	_vertex_buffers_data[VertexComponentType.ROTATION][index + 2] = rotation
-	_vertex_buffers_data[VertexComponentType.ROTATION][index + 3] = rotation
 
 	_vertex_buffers_data[VertexComponentType.ID][index + 0] = id
 	_vertex_buffers_data[VertexComponentType.ID][index + 1] = id
@@ -124,9 +117,9 @@ func initialize() -> bool:
 		return false
 	
 	# Initializes vertex buffers and allocates space
+	_vertex_buffers_data = {}
 	_vertex_buffers_data[VertexComponentType.POSITION] = PackedVector3Array()
 	_vertex_buffers_data[VertexComponentType.UV] = PackedVector2Array()
-	_vertex_buffers_data[VertexComponentType.ROTATION] = PackedFloat32Array()
 	_vertex_buffers_data[VertexComponentType.COLOR] = PackedColorArray()
 	_vertex_buffers_data[VertexComponentType.TEXTURE] = PackedInt32Array()
 	_vertex_buffers_data[VertexComponentType.ID] = PackedFloat32Array()
@@ -154,6 +147,16 @@ func initialize() -> bool:
 		RenderingDevice.INDEX_BUFFER_FORMAT_UINT32,
 		indices_bytes)
 	
+	
+	# UV vertex buffer data doesn't chage  ---------------------------------------------------------
+	for i in range(_MAX_SUMISSIONS):
+		var index = i * 4
+		_vertex_buffers_data[VertexComponentType.UV][index + 0] = Vector2(0, 0)
+		_vertex_buffers_data[VertexComponentType.UV][index + 1] = Vector2(0, 1)
+		_vertex_buffers_data[VertexComponentType.UV][index + 2] = Vector2(1, 1)
+		_vertex_buffers_data[VertexComponentType.UV][index + 3] = Vector2(1, 0)
+	
+	
 	# Vertex buffers containing vertex array data --------------------------------------------------
 	for type in _vertex_buffers_data.keys():
 		var arr = _vertex_buffers_data[type]
@@ -172,31 +175,25 @@ func initialize() -> bool:
 	uv_attr.location = 1
 	uv_attr.stride = 4 * 2
 
-	var rotation_attr = RDVertexAttribute.new()
-	rotation_attr.format = RenderingDevice.DATA_FORMAT_R32_SFLOAT
-	rotation_attr.location = 2
-	rotation_attr.stride = 4
-	
 	var color_attr = RDVertexAttribute.new()
 	color_attr.format = RenderingDevice.DATA_FORMAT_R32G32B32A32_SFLOAT
-	color_attr.location = 3
+	color_attr.location = 2
 	color_attr.stride = 4 * 4
 
 	var texture_slot_attr = RDVertexAttribute.new()
 	texture_slot_attr.format = RenderingDevice.DATA_FORMAT_R32_UINT
-	texture_slot_attr.location = 4
+	texture_slot_attr.location = 3
 	texture_slot_attr.stride = 4
 
 	var id_slot_attr = RDVertexAttribute.new()
 	id_slot_attr.format = RenderingDevice.DATA_FORMAT_R32_SFLOAT
-	id_slot_attr.location = 5
+	id_slot_attr.location = 4
 	id_slot_attr.stride = 4
 
 	vertex_array_format = rd.vertex_format_create(
 		[
 			position_attr,
 			uv_attr,
-			rotation_attr,
 			color_attr,
 			texture_slot_attr,
 			id_slot_attr

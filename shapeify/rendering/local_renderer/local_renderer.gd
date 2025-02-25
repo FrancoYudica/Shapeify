@@ -72,7 +72,7 @@ func render_sprite(
 	# LocalTexture cache is full. Needs to render before adding more textures
 	if local_texture == null:
 		_batch.flush()
-		_texture_manager.clear()
+		_texture_manager.clear_cached_textures()
 		local_texture = _texture_manager.get_local_texture(texture)
 	
 	# Gets texture slot
@@ -82,9 +82,6 @@ func render_sprite(
 		_batch.flush()
 		_texture_manager.clear()
 		texture_slot = _texture_manager.get_local_texture_slot(local_texture)
-	if texture_slot == LocalTextureManager.Status.INVALID:
-		printerr("Invalid texture")
-		return
 	
 	_batch.push_sprite(
 		Vector3(position.x, position.y, 1.0),
