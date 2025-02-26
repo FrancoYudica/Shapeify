@@ -7,12 +7,14 @@ var _framebuffer_attachment_textures: Dictionary = {}
 var _default_texture: LocalTexture
 var _batch: RendererBatch
 
-var _matrix_storage_buffer: RID
+var _view_projection_matrix_storage_buffer: RID
 var _uniform_projection_matrix: RDUniform
 
 var _viewport_size: Vector2i = Vector2i(512, 512)
 var _flush_count = 0
 var _texture_manager := LocalTextureManager.new()
+var _zoom: float = 1.0
+var _translation: Vector2
 var rd: RenderingDevice
 
 enum FramebufferAttachment{
@@ -27,11 +29,25 @@ var is_valid: bool:
 func get_attachment_texture(attachment: FramebufferAttachment) -> LocalTexture:
 	return _framebuffer_attachment_textures[attachment]
 
-func begin_frame(viewport_size: Vector2i):
+func begin_frame(
+	viewport_size: Vector2i,
+	zoom: float = 1.0,
+	offset: Vector2 = Vector2.ZERO):
 	
+
+	if _viewport_size != viewport_size or _zoom != zoom or offset != _translation:
+		var view_matrix = _create_view_matrix(zoom, offset)
+		var projection_matrix = _create_orthographic_projection(viewport_size)
+		var view_projection = projection_matrix * view_matrix
+		var matrix_data := PackedVector4Array([view_projection.x, view_projection.y, view_projection.z])
+		var matrix_bytes: PackedByteArray = matrix_data.to_byte_array()
+		rd.buffer_update(_view_projection_matrix_storage_buffer, 0, matrix_bytes.size(), matrix_bytes)
+		_zoom = zoom
+		_translation = offset
+		
 	if _viewport_size != viewport_size:
 		_resize(viewport_size)
-	
+
 	_batch.begin_frame()
 	_flush_count = 0
 	
@@ -40,9 +56,14 @@ func end_frame():
 
 # Renders a texture that covers the entire framebuffer with a single color
 func render_clear(clear_color):
+	
+	# Changes size and translates to make sure it covers the entire viewport
+	var size = Vector2i(
+		ceili(_viewport_size.x / _zoom), 
+		ceili(_viewport_size.y / _zoom))
 	render_sprite(
-		_viewport_size * 0.5,
-		_viewport_size,
+		size * 0.5 + _translation,
+		size,
 		0.0,
 		clear_color,
 		_default_texture,
@@ -113,24 +134,19 @@ func initialize(local_rd: RenderingDevice) -> void:
 	_default_texture = LocalTexture.load_from_image(default_image, rd)
 	
 	var projection_matrix_floats = 12
-	_matrix_storage_buffer = rd.storage_buffer_create(
+	_view_projection_matrix_storage_buffer = rd.storage_buffer_create(
 		projection_matrix_floats * 4, 
 		[])
 	
 	_uniform_projection_matrix = RDUniform.new()
 	_uniform_projection_matrix.binding = 1
 	_uniform_projection_matrix.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
-	_uniform_projection_matrix.add_id(_matrix_storage_buffer)
+	_uniform_projection_matrix.add_id(_view_projection_matrix_storage_buffer)
 	_resize(_viewport_size)
 
 func _resize(viewport_size: Vector2i):
 	
 	_viewport_size = viewport_size
-
-	var matrix = _create_orthographic_projection(viewport_size)
-	var matrix_data := PackedVector4Array([matrix.x, matrix.y, matrix.z])
-	var matrix_bytes: PackedByteArray = matrix_data.to_byte_array()
-	rd.buffer_update(_matrix_storage_buffer, 0, matrix_bytes.size(), matrix_bytes)
 
 	# Clears the textures
 	_framebuffer_attachment_textures.clear()
@@ -222,19 +238,24 @@ func _resize(viewport_size: Vector2i):
 		printerr("Invalid render pipeline")
 		return
 
+## Projection matrix maps from [0, viewport_size] to [-1, 1]
 func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
 	var scale_x = 2.0 / viewport_size.x
 	var scale_y = 2.0 / viewport_size.y
-	var translate_x = -1.0
-	var translate_y = -1.0
 	return Basis(Vector3(scale_x, 0, 0),
 				 Vector3(0, scale_y, 0),
-				 Vector3(translate_x, translate_y, 1))
+				 Vector3(-1, -1, 1))
+
+func _create_view_matrix(zoom: float, center: Vector2) -> Basis:
+	return Basis(
+		Vector3(zoom, 0, 0),
+		Vector3(0, zoom, 0),
+		Vector3(-center.x * zoom, -center.y * zoom, 1))
 
 func delete() -> void:
 	rd.free_rid(_pipeline)
 	rd.free_rid(_framebuffer)
-	rd.free_rid(_matrix_storage_buffer)
+	rd.free_rid(_view_projection_matrix_storage_buffer)
 	_batch.delete()
 	_texture_manager.clear()
 

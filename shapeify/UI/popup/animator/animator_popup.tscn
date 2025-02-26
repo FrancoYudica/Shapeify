@@ -37,9 +37,8 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="AnimatorPopup" node_paths=PackedStringArray("output_texture_panel_container") instance=ExtResource("1_36sam")]
+[node name="AnimatorPopup" instance=ExtResource("1_36sam")]
 script = ExtResource("2_pv5rb")
-output_texture_panel_container = NodePath("")
 
 [node name="MarginContainer" parent="." index="1"]
 theme_override_constants/margin_left = 128
