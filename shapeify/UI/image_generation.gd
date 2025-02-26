@@ -9,9 +9,12 @@ signal generation_cleared
 var master_renderer_params: MasterRendererParams
 
 var image_generator: ImageGenerator
-var details := ImageGenerationDetails.new()
 var is_generating := false
 var local_target_texture: LocalTexture
+
+var image_processing_resolution: Vector2i:
+	get:
+		return Globals.settings.image_generator_params.target_texture.get_size() * Globals.settings.render_scale
 
 func _ready() -> void:
 	master_renderer_params = MasterRendererParams.new()
@@ -27,7 +30,7 @@ func application_ready() -> void:
 			call_deferred("_emit_shape_generated_signal", shape))
 	
 	set_target_texture(Globals.settings.image_generator_params.target_texture)
-	
+
 func clear_progress():
 	var params := Globals.settings.image_generator_params
 	
@@ -36,11 +39,6 @@ func clear_progress():
 	clear_color_strategy.sample_texture = local_target_texture
 	clear_color_strategy.set_params(params.clear_color_params)
 	
-	# Crates new ImageGenerationDetails
-	details = ImageGenerationDetails.new()
-	details.clear_color = clear_color_strategy.get_clear_color()
-	details.viewport_size = params.target_texture.get_size()
-
 	master_renderer_params.clear_color = clear_color_strategy.get_clear_color()
 	master_renderer_params.shapes.clear()
 	
@@ -126,29 +124,24 @@ func set_target_texture(target_texture: Texture2D):
 	
 	
 func _emit_shape_generated_signal(shape: Shape):
-	details.shapes.append(shape)
 	master_renderer_params.shapes.append(shape)
 	shape_generated.emit(shape)
 
 func _begin_image_generation():
 	is_generating = true
-	var clock := Clock.new()
-	var params := Globals.settings.image_generator_params
-	image_generator.params = params
-	details.executed_count += 1
+	image_generator.params = Globals.settings.image_generator_params
 	
 	# Renders source texture
-	var render_details = details.copy()
-	render_details.shapes = details.shapes
-	render_details.clear_color = details.clear_color
-	render_details.viewport_size = params.target_texture.get_size() * Globals.settings.render_scale
-	
 	var renderer: LocalRenderer = GenerationGlobals.renderer
-	ImageGenerationRenderer.render_image_generation(renderer, render_details)
+	MasterRenderer.render_shapes(
+		renderer, 
+		master_renderer_params.shapes, 
+		master_renderer_params.clear_color, 
+		image_processing_resolution)
+		
 	var source_texture := renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 	
 	# Generates the image
 	var output_texture = image_generator.generate_image(source_texture)
-	details.time_taken_ms += clock.elapsed_ms()
 	is_generating = false
 	call_deferred("emit_signal", "generation_finished")

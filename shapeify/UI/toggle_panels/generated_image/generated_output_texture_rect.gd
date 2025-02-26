@@ -4,9 +4,6 @@ extends TextureRect
 ## the image generation algorithm
 var _local_renderer: LocalRenderer
 
-
-var _details := ImageGenerationDetails.new()
-
 ## If the current output is invalidated, the output texture must be rendered again
 var _invalidated = false
 
@@ -37,14 +34,11 @@ func _exit_tree() -> void:
 	_local_renderer = null
 
 func _clear():
-	_details.shapes.clear()
-	_details.clear_color = ImageGeneration.details.clear_color
 	_invalidate()
 	texture = null
 
 	
 func _shape_generated(shape: Shape):
-	_details.shapes.append(shape)
 	_invalidate()
 
 
@@ -56,15 +50,11 @@ func _render():
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
-	var master_renderer_params := MasterRendererParams.new()
-	master_renderer_params.clear_color = ImageGeneration.master_renderer_params.clear_color
-	master_renderer_params.post_processing_pipeline_params = Globals.settings.color_post_processing_pipeline_params
-	master_renderer_params.shapes = _details.shapes
 	
 	MasterRenderer.render(
 		_local_renderer,
 		render_viewport_size,
-		master_renderer_params
+		ImageGeneration.master_renderer_params
 	)
 
 

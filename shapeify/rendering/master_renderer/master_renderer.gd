@@ -29,6 +29,7 @@ static func apply_post_processing(params: MasterRendererParams) -> MasterRendere
 
 	return new_params
 
+## Just renders the shapes, without any post processign involved
 static func render_shapes(
 	renderer: LocalRenderer,
 	shapes: Array[Shape],
