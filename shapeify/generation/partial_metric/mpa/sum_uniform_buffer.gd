@@ -56,7 +56,7 @@ func _notification(what: int) -> void:
 
 
 func _load_shader():
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/sum_ubo.glsl")

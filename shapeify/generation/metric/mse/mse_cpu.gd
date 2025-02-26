@@ -10,19 +10,19 @@ func _init() -> void:
 	metric_name = "Mean squared error"
 
 func _target_texture_set():
-	var target_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(target_texture.rd_rid)
+	var target_texture_2d_rd = target_texture.create_texture_2d_rd()
 	target_image = target_texture_2d_rd.get_image()
 
 func _weight_texture_set():
-	var weight_texture_2d_rd = RenderingCommon.create_texture_from_rd_rid(weight_texture.rd_rid)
+	var weight_texture_2d_rd = weight_texture.create_texture_2d_rd()
 	weight_image = weight_texture_2d_rd.get_image()
 
 
-func _compute(source_texture: RendererTexture) -> float:
+func _compute(source_texture: LocalTexture) -> float:
 	var t = Time.get_ticks_msec()
-	
-	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
+	var renderer = GenerationGlobals.renderer
+	var color_attachment_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
+	var color_attachment_data = renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
 
 	var source_image := ImageUtils.create_image_from_rgba8_buffer(
 		color_attachment_texture.get_width(),

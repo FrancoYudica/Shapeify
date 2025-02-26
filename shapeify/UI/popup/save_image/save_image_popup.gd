@@ -6,13 +6,22 @@ extends Control
 @export var resolution_label: Label
 @export var final_resolution_label: Label
 @export var file_dialog: FileDialog
-@export var save_texture: TextureRect
 @export var format_option_button: OptionButton
+@export var output_texture_rect: MasterRendererOutputTextureRect
 
-var _processed_details: ImageGenerationDetails
 var _frame_saver: FrameSaver
+var _local_renderer: LocalRenderer
+
+
+var target_texture_size: Vector2:
+	get:
+		return Globals.settings.image_generator_params.target_texture.get_size()
 
 func _ready() -> void:
+	
+	_local_renderer = LocalRenderer.new()
+	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
+	
 	close_button.pressed.connect(
 		func():
 			visible = false
@@ -20,12 +29,7 @@ func _ready() -> void:
 	
 	save_button.pressed.connect(_save)
 	file_dialog.file_selected.connect(_on_file_dialog_file_selected)
-	scale_spin_box.value_changed.connect(
-		func(value):
-			final_resolution_label.text = "%sx%s" % [
-				int(_processed_details.viewport_size.x * scale_spin_box.value),
-				int(_processed_details.viewport_size.y * scale_spin_box.value)]
-	)
+	scale_spin_box.value_changed.connect(_set_final_resolution_scale)
 	
 	for item in FrameSaver.Type.keys():
 		format_option_button.add_item(item)
@@ -41,40 +45,26 @@ func _ready() -> void:
 	visibility_changed.connect(
 		func():
 			if visible:
+				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params
 				_oppened()
 	)
 
+func _set_final_resolution_scale(scale):
+	final_resolution_label.text = "%sx%s" % [
+		int(target_texture_size.x * scale),
+		int(target_texture_size.y * scale)]
+	
+
 func _oppened():
 
-	var gen_details: ImageGenerationDetails = ImageGeneration.details
 	visible = true
 	
-	_processed_details = ShapeColorPostProcessingPipeline.process_details(
-		gen_details,
-		0.0,
-		Globals.settings.color_post_processing_pipeline_params)
-
 	resolution_label.text = "%sx%s" % [
-		_processed_details.viewport_size.x,
-		_processed_details.viewport_size.y]
+		target_texture_size.x,
+		target_texture_size.y]
 	
-	final_resolution_label.text = "%sx%s" % [
-		int(_processed_details.viewport_size.x * scale_spin_box.value),
-		int(_processed_details.viewport_size.y * scale_spin_box.value)]
-
-	# Frees previous texture
-	if save_texture.texture != null and save_texture.texture is Texture2DRD:
-		var rd = RenderingServer.get_rendering_device()
-		var texture_rd_rid = save_texture.texture.texture_rd_rid
-		save_texture.texture.texture_rd_rid = RID()
-		save_texture.texture = null
-		rd.free_rid(texture_rd_rid)
+	_set_final_resolution_scale(scale_spin_box.value)
 	
-	# Renders the texture
-	ImageGenerationRenderer.render_image_generation(Renderer, _processed_details)
-	var rendered = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
-	save_texture.texture = RenderingCommon.create_texture_from_rd_rid(rendered.rd_rid)
-
 func _save():
 	file_dialog.clear_filters()
 	file_dialog.add_filter("*%s" % _frame_saver.get_extension())
@@ -84,14 +74,11 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	
 	var success = _frame_saver.save(
 		path,
-		_processed_details.shapes,
-		_processed_details.clear_color,
-		_processed_details.viewport_size * scale_spin_box.value
-	)
+		_local_renderer,
+		ImageGeneration.master_renderer_params,
+		target_texture_size * scale_spin_box.value)
 	
 	if success:
-		Notifier.notify_info(
-			"Image saved at: %s" % path,
-			path)
+		Notifier.notify_info("Image saved at: %s" % path, path)
 	else:
 		Notifier.notify_error("Unable to save image at: %s" % path)

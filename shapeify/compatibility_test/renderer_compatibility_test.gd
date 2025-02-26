@@ -2,7 +2,7 @@ extends CompatibilityTest
 
 func evaluate() -> bool:
 	
-	if not Renderer.is_valid:
+	if not GenerationGlobals.renderer.is_valid:
 		output = "Unable to initialize renderer pipeline"
 	
-	return Renderer.is_valid
+	return GenerationGlobals.renderer.is_valid

@@ -8,8 +8,8 @@ var power: float = 1.0
 var _texture_a_uniform: RDUniform
 var _texture_b_uniform: RDUniform
 
-var _texture_a: RendererTexture
-var _texture_b: RendererTexture
+var _texture_a: LocalTexture
+var _texture_b: LocalTexture
 
 var _texture_a_set_rid: RID
 var _texture_b_set_rid: RID
@@ -21,7 +21,7 @@ var _pipeline: RID
 
 var _last_texture_rd_rid: RID
 
-func process_image(texture: RendererTexture) -> RendererTexture:
+func process_image(texture: LocalTexture) -> LocalTexture:
 	
 	if texture.rd_rid != _last_texture_rd_rid:
 		_refresh_textures(texture)
@@ -59,7 +59,7 @@ func process_image(texture: RendererTexture) -> RendererTexture:
 	return _texture_b
 
 func _init() -> void:
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/image_processing/sobel_edge_detection.glsl")
@@ -86,7 +86,7 @@ func _notification(what: int) -> void:
 		_rd.free_rid(_shader)
 
 
-func _refresh_textures(texture: RendererTexture):
+func _refresh_textures(texture: LocalTexture):
 	_texture_a = texture.copy()
 	_texture_b = texture.copy()
 	

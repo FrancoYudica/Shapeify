@@ -30,7 +30,7 @@ func save():
 func image_generation_began(params: ImageGeneratorParams):
 	_profiler_strategy.image_generation_began(params)
 	
-func image_generation_finished(generated_image: RendererTexture):
+func image_generation_finished(generated_image: LocalTexture):
 	_profiler_strategy.image_generation_finished(generated_image)
 
 func shape_generation_began(params: ShapeGeneratorParams) -> void:
@@ -40,7 +40,7 @@ func shape_generation_began(params: ShapeGeneratorParams) -> void:
 	
 func shape_generation_finished(
 	shape: Shape,
-	source_texture: RendererTexture) -> void:
+	source_texture: LocalTexture) -> void:
 		
 	if depth >= Depth.ShapeGeneration:
 		_profiler_strategy.shape_generation_finished(
@@ -50,7 +50,7 @@ func shape_generation_finished(
 
 func genetic_population_generated(
 	population: Array[Individual],
-	source_texture: RendererTexture):
+	source_texture: LocalTexture):
 	if depth >= Depth.ShapeGenerationAlgorithm:
 	
 		_profiler_strategy.genetic_population_generated(

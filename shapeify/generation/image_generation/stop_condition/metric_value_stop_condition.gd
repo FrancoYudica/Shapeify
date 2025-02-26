@@ -11,8 +11,8 @@ func began_generating():
 	_current_metric_value = 100.0
 	
 func shape_generated(
-	source_texture: RendererTexture,
-	target_texture: RendererTexture,
+	source_texture: LocalTexture,
+	target_texture: LocalTexture,
 	shape: Shape):
 		
 	_metric.weight_texture = _weight_texture_generator.generate(0, target_texture, source_texture)

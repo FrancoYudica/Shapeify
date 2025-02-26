@@ -34,7 +34,7 @@ func image_generation_began(
 	
 	
 func image_generation_finished(
-	generated_image: RendererTexture):
+	generated_image: LocalTexture):
 	
 	var img_gen_data = _get_current_image_generation()
 	
@@ -61,7 +61,7 @@ func shape_generation_began(
 
 func shape_generation_finished(
 	shape: Shape,
-	source_texture: RendererTexture):
+	source_texture: LocalTexture):
 	var shape_generation = _get_current_shape_generation()
 	shape_generation["generated_shape"] = shape.to_dict()
 	shape_generation["time_taken"] = Time.get_ticks_msec() * 0.001 - shape_generation["time_taken"]
@@ -76,7 +76,7 @@ func shape_generation_finished(
 
 func genetic_population_generated(
 	population: Array[Individual],
-	source_texture: RendererTexture):
+	source_texture: LocalTexture):
 	
 	var shape_generation = _get_current_shape_generation()
 	

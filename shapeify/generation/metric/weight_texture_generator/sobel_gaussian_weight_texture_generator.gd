@@ -21,8 +21,8 @@ func _init() -> void:
 
 func generate(
 	progress: float,
-	target_texture: RendererTexture,
-	source_texture: RendererTexture) -> RendererTexture:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture) -> LocalTexture:
 		
 	progress = sqrt(progress)
 		

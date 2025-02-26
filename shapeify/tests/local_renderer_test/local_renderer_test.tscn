@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c13pbi1bbryvu"]
+
+[ext_resource type="Script" path="res://tests/local_renderer_test/local_renderer_test.gd" id="1_pbyky"]
+[ext_resource type="Texture2D" uid="uid://b33c5ggbh60of" path="res://art/textures/program_icon/icon.svg" id="2_w68yo"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="3_xglq4"]
+
+[node name="LocalRendererTest" type="Node2D"]
+script = ExtResource("1_pbyky")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_w68yo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(863, 284)
+rotation = 1.32533
+texture = ExtResource("2_w68yo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(418, 509)
+scale = Vector2(1.92188, 2.6875)
+texture = ExtResource("3_xglq4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="OutputTextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

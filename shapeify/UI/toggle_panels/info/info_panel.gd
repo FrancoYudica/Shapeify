@@ -3,8 +3,6 @@ extends PanelContainer
 @export var debug_texture_holders: Array[DebugTextureHolder] = []
 
 @export var shape_count_value_label: Label
-@export var current_execution_value_label: Label
-@export var executions_count_value_label: Label
 @export var time_taken_value_label: Label
 @export var metric_score_label: Label
 @export var similarity_score_label: Label
@@ -13,7 +11,8 @@ extends PanelContainer
 
 var debug_texture_scene = load("res://UI/toggle_panels/info/debug_texture_panel_container.tscn")
 
-var _clock: Clock
+var _generation_time_taken_clock: Clock
+var _time_taken := 0.0
 
 func _ready() -> void:
 	
@@ -24,16 +23,18 @@ func _ready() -> void:
 
 	ImageGeneration.generation_cleared.connect(
 		func():
+			_time_taken = 0.0
 			_update_metric_values()
 	)
 	ImageGeneration.generation_started.connect(
 		func():
-			_clock = Clock.new()
+			_generation_time_taken_clock = Clock.new()
 	)
 	
 	ImageGeneration.generation_finished.connect(
 		func():
-			_clock = null
+			_time_taken += _generation_time_taken_clock.elapsed_ms()
+			_generation_time_taken_clock = null
 	)
 	
 	for debug_texture_holder in debug_texture_holders:
@@ -47,21 +48,18 @@ func _process(delta: float) -> void:
 	if not is_visible_in_tree():
 		return
 		
-	var details: ImageGenerationDetails = ImageGeneration.details
-	shape_count_value_label.text = str(details.shapes.size())
-	executions_count_value_label.text = str(details.executed_count)
+	shape_count_value_label.text = str(ImageGeneration.master_renderer_params.shapes.size())
 	
-	var processing_resolution = details.viewport_size * Globals.settings.render_scale
+	var processing_resolution = ImageGeneration.image_processing_resolution
 	processing_resolution_label.text = "%sx%s" % [
 		int(processing_resolution.x), 
 		int(processing_resolution.y)]
 	
-	if _clock != null:
-		current_execution_value_label.text = _ms_to_str(_clock.elapsed_ms())
-		time_taken_value_label.text = _ms_to_str(details.time_taken_ms + _clock.elapsed_ms())
+	if _generation_time_taken_clock != null:
+		time_taken_value_label.text = _ms_to_str(_time_taken + _generation_time_taken_clock.elapsed_ms())
 		
 	else:
-		time_taken_value_label.text = _ms_to_str(details.time_taken_ms)
+		time_taken_value_label.text = _ms_to_str(_time_taken)
 	
 	# Updates the textures of all the containers
 	for i in range(debug_texture_holders.size()):

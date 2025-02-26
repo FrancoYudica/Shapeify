@@ -10,25 +10,33 @@ var _video_recorder := VideoRecorder.new()
 var _progress: float = 0.0
 
 var _animation_player: ShapeAnimationPlayer
-var _image_generation_details: ImageGenerationDetails
+var _master_renderer_params: MasterRendererParams
 var _frame_saver: FrameSaver
-var _upscale_factor: float
+var _viewport_resolution: Vector2
+var _local_renderer: LocalRenderer
 
 var progress: float:
 	get:
 		return _progress
 
+func _init() -> void:
+	
+	# Uses local renderer to render on a separate thread
+	_local_renderer = LocalRenderer.new()
+	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
+	
+
 func record(
 	animation_player: ShapeAnimationPlayer,
-	image_generation_details: ImageGenerationDetails,
-	frame_saver_type: FrameSaver.Type,
-	scale: float
+	master_renderer_params: MasterRendererParams,
+	viewport_resolution: Vector2i,
+	frame_saver_type: FrameSaver.Type
 ):
 	_animation_player = animation_player
-	_image_generation_details = image_generation_details
+	_master_renderer_params = master_renderer_params
+	_viewport_resolution = viewport_resolution
 	_frame_saver = FrameSaver.factory_create(frame_saver_type)
 	_frame_saver.silent = true
-	_upscale_factor = scale
 	WorkerThreadPool.add_task(_record_and_save)
 
 func _record_and_save():
@@ -45,24 +53,34 @@ func _record_and_save():
 	var dt = 1.0 / (fps * duration)
 	var t = 0.0
 	
+	
 	while t < 1.0:
 		
+		# Applies post processing before animating
+		var post_processed_shapes = ShapeColorPostProcessingPipeline.execute_pipeline(
+			_master_renderer_params.shapes, t, _master_renderer_params.post_processing_pipeline_params)
+		
+		var clear_color = ShapeColorPostProcessingPipeline.compute_clear_color(
+			_master_renderer_params.clear_color, 0, _master_renderer_params.post_processing_pipeline_params)
+		
 		# Gets frame shapes
-		var frame_shapes := _animation_player.animate(
-			_image_generation_details.shapes,
-			t
-		)
+		var frame_shapes := _animation_player.animate(post_processed_shapes, t)
 		
 		# Gets path
 		var path = _video_recorder.iterator_next_path() + _frame_saver.get_extension()
 		
+		# Creates renderer params with the animated shapes
+		var animated_master_params = _master_renderer_params.duplicate()
+		animated_master_params.shapes = frame_shapes
+		animated_master_params.clear_color = clear_color
+		animated_master_params.post_processing_pipeline_params = null
+		
 		# Saves frame with frame saver
 		if not _frame_saver.save(
-			path,
-			frame_shapes,
-			_image_generation_details.clear_color,
-			_image_generation_details.viewport_size * _upscale_factor
-		):
+			path, 
+			_local_renderer,
+			animated_master_params, 
+			_viewport_resolution):
 			return
 		
 		# Updates progress

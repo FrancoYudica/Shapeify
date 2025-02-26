@@ -7,7 +7,7 @@ enum Type
 	LUMINEST
 }
 
-var weight_texture: RendererTexture:
+var weight_texture: LocalTexture:
 	set(value):
 		weight_texture = value
 		_weight_texture_set()

@@ -16,7 +16,7 @@ var _sample_texture_set_rid: RID
 
 var _last_sample_texture_rid: RID
 
-func _set_sample_texture(texture: RendererTexture):
+func _set_sample_texture(texture: LocalTexture):
 	
 	# Already set
 	if texture.rd_rid == _last_sample_texture_rid:
@@ -35,7 +35,7 @@ func _set_sample_texture(texture: RendererTexture):
 	_sample_texture_set_rid = _rd.uniform_set_create([image_uniform], _shader, 1)
 	_last_sample_texture_rid = texture.rd_rid
 
-func evaluate(texture: RendererTexture) -> float:
+func evaluate(texture: LocalTexture) -> float:
 	
 	_set_sample_texture(texture)
 	
@@ -90,7 +90,7 @@ func _notification(what: int) -> void:
 
 
 func _load_shader():
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/texture_scalar_function/sum_texture_scalar_function.glsl")

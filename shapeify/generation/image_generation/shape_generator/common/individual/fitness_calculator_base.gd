@@ -10,7 +10,7 @@ enum Type
 	DELTA_E_1994
 }
 
-var target_texture: RendererTexture:
+var target_texture: LocalTexture:
 	set(texture):
 		
 		if not texture.is_valid():
@@ -20,7 +20,7 @@ var target_texture: RendererTexture:
 		target_texture = texture
 		_target_texture_set()
 
-var weight_texture: RendererTexture
+var weight_texture: LocalTexture
 
 var type: Type
 
@@ -29,7 +29,7 @@ var type: Type
 ## in range [0.0, 1.0]
 func calculate_fitness(
 	individual: Individual,
-	source_texture: RendererTexture) -> void:
+	source_texture: LocalTexture) -> void:
 	
 	individual.fitness = -1.0
 

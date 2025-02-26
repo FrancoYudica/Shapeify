@@ -11,7 +11,7 @@ func _ready() -> void:
 	input.fill(1)
 	
 	var input_bytes = input.to_byte_array()
-	var _rd = Renderer.rd
+	var _rd = GenerationGlobals.renderer.rd
 	var input_storage_buffer = _rd.storage_buffer_create(
 		input_bytes.size(),
 		input_bytes)

@@ -8,9 +8,9 @@ var _texture_target_uniform: RDUniform
 var _texture_src_uniform: RDUniform
 var _texture_output_uniform: RDUniform
 
-var _target_texture: RendererTexture
-var src_texture: RendererTexture
-var _output_texture: RendererTexture
+var _target_texture: LocalTexture
+var src_texture: LocalTexture
+var _output_texture: LocalTexture
 
 var _texture_target_set_rid: RID
 var _texture_src_set_rid: RID
@@ -22,7 +22,7 @@ var _shader: RID
 var _pipeline: RID
 
 
-func process_image(texture: RendererTexture) -> RendererTexture:
+func process_image(texture: LocalTexture) -> LocalTexture:
 	
 	if texture == null:
 		push_error("Given texture is null")
@@ -71,7 +71,7 @@ func process_image(texture: RendererTexture) -> RendererTexture:
 	return _output_texture
 
 func _init() -> void:
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/image_processing/mpa_rgb.glsl")
@@ -105,7 +105,7 @@ func _notification(what: int) -> void:
 
 var _previous_texture_rid: RID
 
-func _refresh_textures(texture: RendererTexture):
+func _refresh_textures(texture: LocalTexture):
 	
 	# Uniform sets and textures already initialized
 	if texture.rd_rid == _previous_texture_rid:

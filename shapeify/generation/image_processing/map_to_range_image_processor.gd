@@ -8,8 +8,8 @@ const LOCAL_SIZE = 32
 var _texture_input_uniform: RDUniform
 var _texture_output_uniform: RDUniform
 
-var _texture_input: RendererTexture
-var _texture_output: RendererTexture
+var _texture_input: LocalTexture
+var _texture_output: LocalTexture
 
 var _texture_input_set_rid: RID
 var _texture_output_set_rid: RID
@@ -20,7 +20,7 @@ var _shader: RID
 var _pipeline: RID
 
 
-func process_image(texture: RendererTexture) -> RendererTexture:
+func process_image(texture: LocalTexture) -> LocalTexture:
 	
 	_refresh_textures(texture)
 
@@ -56,7 +56,7 @@ func process_image(texture: RendererTexture) -> RendererTexture:
 	return _texture_output
 
 func _init() -> void:
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/image_processing/map_to_range.glsl")
@@ -85,7 +85,7 @@ func _notification(what: int) -> void:
 
 var _previous_texture_rid: RID
 
-func _refresh_textures(texture: RendererTexture):
+func _refresh_textures(texture: LocalTexture):
 	
 	# Uniform sets and textures already initialized
 	if texture.rd_rid == _previous_texture_rid:

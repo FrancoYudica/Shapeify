@@ -1,16 +1,80 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene load_steps=21 format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Resource" uid="uid://c8ljel77jp37e" path="res://tests/shape_generator_test/params_optimizations/shape_generator_params_test.tres" id="2_nfbea"]
-[ext_resource type="Texture2D" uid="uid://dyd47tel51fpw" path="res://art/textures/convergence_tests/convergence_rectangle_target_test.png" id="3_0t4m0"]
-[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="12_6munh"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="2_04r8q"]
+[ext_resource type="Texture2D" uid="uid://b5m0f4neckfes" path="res://art/textures/convergence_tests/convergence_circle_target_test.png" id="3_bvm1g"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="3_gpikk"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="4_ir24d"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="5_vqlhs"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="6_koxsn"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="7_1kt4a"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="8_wn5ks"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_vhgtv"]
+[ext_resource type="Texture2D" uid="uid://dbpxesvv3t7gn" path="res://art/textures/convergence_tests/convergence_circle_shape_test.png" id="10_gw24q"]
 [ext_resource type="Script" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]
-[ext_resource type="Script" path="res://renderer/framebuffer_attachment_texture_rect.gd" id="15_yx5fx"]
 
-[sub_resource type="Texture2D" id="Texture2D_4uqcx"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("12_6munh")
-_src_texture = ExtResource("3_0t4m0")
+[sub_resource type="Resource" id="Resource_vn2wo"]
+script = ExtResource("2_04r8q")
+shape_count = 150
+fitness_calculator = 1
+
+[sub_resource type="Resource" id="Resource_wtgk5"]
+script = ExtResource("4_ir24d")
+elitisim_rate = 0.3
+tournament_size = 10
+
+[sub_resource type="Resource" id="Resource_02ese"]
+script = ExtResource("3_gpikk")
+generation_count = 10
+population_size = 30
+fitness_calculator = 1
+mutation_rate = 0.1
+mutation_factor = 1.0
+selection_strategy = 0
+crossover_strategy = 3
+mutation_strategy = 1
+survivor_selection_strategy = 1
+survivor_selection_params = SubResource("Resource_wtgk5")
+
+[sub_resource type="Resource" id="Resource_34ty6"]
+script = ExtResource("5_vqlhs")
+max_age = 10
+random_restart_count = 3
+initial_random_samples = 15
+fitness_calculator = 1
+position_mutation_weight = 1
+size_mutation_weight = 2
+rotation_mutation_weight = 2
+
+[sub_resource type="Resource" id="Resource_2o0ha"]
+script = ExtResource("8_wn5ks")
+
+[sub_resource type="Resource" id="Resource_mkol6"]
+script = ExtResource("9_vhgtv")
+
+[sub_resource type="Resource" id="Resource_holfq"]
+script = ExtResource("7_1kt4a")
+shape_position_initializer_type = 2
+shape_size_initializer_type = 3
+shape_rotation_initializer_type = 0
+shape_tint_initializer_type = 0
+shape_texture_initializer_type = 0
+shape_position_initializer_params = SubResource("Resource_2o0ha")
+shape_texture_initializer_params = SubResource("Resource_mkol6")
+textures = Array[Texture2D]([ExtResource("10_gw24q")])
+
+[sub_resource type="Resource" id="Resource_qa5gn"]
+script = ExtResource("6_koxsn")
+color_sampler = 1
+keep_aspect_ratio = true
+clamp_position_in_canvas = true
+fixed_rotation = false
+fixed_rotation_angle = 0.0
+fixed_size = false
+fixed_size_width_ratio = 0.1
+best_of_random_params = SubResource("Resource_vn2wo")
+genetic_params = SubResource("Resource_02ese")
+hill_climbing_params = SubResource("Resource_34ty6")
+shape_spawner_params = SubResource("Resource_holfq")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
@@ -18,8 +82,8 @@ _src_texture = ExtResource("3_0t4m0")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "shape_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label", "weight_generator_option", "_output_texture_rect")]
 script = ExtResource("13_jgyce")
-shape_generator_params = ExtResource("2_nfbea")
-target_texture = SubResource("Texture2D_4uqcx")
+shape_generator_params = SubResource("Resource_qa5gn")
+target_texture = ExtResource("3_bvm1g")
 output_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SourceTextureRect")
 generate_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button")
 save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveProfilingButton")
@@ -124,7 +188,6 @@ size_flags_vertical = 3
 texture = SubResource("Texture2DRD_vyacx")
 expand_mode = 2
 stretch_mode = 5
-script = ExtResource("15_yx5fx")
 
 [node name="OutputLabel" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -1,5 +1,6 @@
-class_name Batch extends RefCounted
+class_name RendererBatch extends RefCounted
 
+var local_renderer: LocalRenderer
 var rd: RenderingDevice
 var vertex_array: RID
 var vertex_array_format: int
@@ -17,4 +18,6 @@ func end_frame():
 	
 func flush():
 	pass
-	
+
+func delete():
+	pass

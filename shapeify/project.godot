@@ -22,8 +22,8 @@ config/windows_native_icon="res://art/genart_icon/genart_icon.ico"
 
 [autoload]
 
+GenerationGlobals="*res://generation_globals.gd"
 Notifier="*res://UI/utils/notifier.gd"
-Renderer="*res://renderer/renderer.gd"
 Globals="*res://globals.gd"
 Profiler="*res://generation/profiler/profiler.gd"
 ImageGeneration="*res://UI/image_generation.gd"

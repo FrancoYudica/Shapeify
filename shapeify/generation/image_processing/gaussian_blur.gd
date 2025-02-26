@@ -16,8 +16,8 @@ var sigma: float = 2.0
 var _texture_a_uniform: RDUniform
 var _texture_b_uniform: RDUniform
 
-var _texture_a: RendererTexture
-var _texture_b: RendererTexture
+var _texture_a: LocalTexture
+var _texture_b: LocalTexture
 
 var _texture_a_set_rid: RID
 var _texture_b_set_rid: RID
@@ -27,17 +27,17 @@ var _rd: RenderingDevice
 var _shader: RID
 var _pipeline: RID
 
-func process_image(texture: RendererTexture) -> RendererTexture:
+func process_image(texture: LocalTexture) -> LocalTexture:
 	
 	_refresh_textures(texture)
 	
-	var output_texture: RendererTexture = null
+	var output_texture: LocalTexture = null
 	for i in range(iterations * 2):
 		output_texture = _execute_pass(i)
 	
 	return output_texture
 	
-func _execute_pass(i: int) -> RendererTexture:
+func _execute_pass(i: int) -> LocalTexture:
 	
 	var direction = Vector2(
 		i % 2,
@@ -95,7 +95,7 @@ func _execute_pass(i: int) -> RendererTexture:
 	return _texture_b if i % 2 == 0 else _texture_a
 
 func _init() -> void:
-	_rd = Renderer.rd
+	_rd = GenerationGlobals.renderer.rd
 
 	# Create our _shader.
 	var shader_file := load("res://shaders/compute/image_processing/gaussian_blur.glsl")
@@ -122,6 +122,6 @@ func _notification(what: int) -> void:
 		_rd.free_rid(_shader)
 
 
-func _refresh_textures(texture: RendererTexture):
+func _refresh_textures(texture: LocalTexture):
 	_texture_a = texture.copy()
 	_texture_b = texture.copy()

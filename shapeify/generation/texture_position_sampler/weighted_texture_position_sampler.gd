@@ -18,7 +18,7 @@ func _weight_texture_set():
 
 func _cache_cdf():
 	
-	var rd = Renderer.rd
+	var rd = GenerationGlobals.algorithm_rd
 	var rd_rid = weight_texture.rd_rid
 	
 	# Fetch texture data as raw bytes

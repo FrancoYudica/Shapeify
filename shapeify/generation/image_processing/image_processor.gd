@@ -13,7 +13,7 @@ enum Type
 	TEXTURE_MULTIPLY
 }
 
-func process_image(texture: RendererTexture) -> RendererTexture:
+func process_image(texture: LocalTexture) -> LocalTexture:
 	return null
 
 static func factory_create(type: Type) -> ImageProcessor:
