@@ -5,6 +5,7 @@ extends TextureRect
 var _local_renderer: LocalRenderer
 var _shapes: Array[Shape]
 var _invalidated := false
+var _master_renderer_params: MasterRendererParams
 
 func _ready() -> void:
 	_local_renderer = LocalRenderer.new()
@@ -33,14 +34,20 @@ func _exit_tree() -> void:
 	
 func _animated_shapes(shapes: Array[Shape]):
 	_shapes = shapes
+	
+	# Sets up master renderer params
+	_master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
+	_master_renderer_params.shapes = _shapes
+	_master_renderer_params.clear_color = ShapeColorPostProcessingPipeline.compute_clear_color(
+		_master_renderer_params.clear_color,
+		0,
+		_master_renderer_params.post_processing_pipeline_params)
+	# Disables post processing. It's already applied by the animator, before the shapes are animated
+	_master_renderer_params.post_processing_pipeline_params = null
 	_invalidated = true
 	
+	
 func _render():
-	var master_renderer_params = MasterRendererParams.new()
-	master_renderer_params.shapes = _shapes
-	master_renderer_params.clear_color = ImageGeneration.master_renderer_params.clear_color
-	master_renderer_params.post_processing_pipeline_params = ImageGeneration.master_renderer_params.post_processing_pipeline_params
-
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
@@ -48,7 +55,7 @@ func _render():
 	MasterRenderer.render(
 		_local_renderer,
 		render_viewport_size,
-		master_renderer_params)
+		_master_renderer_params)
 
 var _previous_color_attachment: LocalTexture
 

@@ -55,10 +55,18 @@ func _record_and_save():
 	var dt = 1.0 / (fps * duration)
 	var t = 0.0
 	
+	
 	while t < 1.0:
 		
+		# Applies post processing before animating
+		var post_processed_shapes = ShapeColorPostProcessingPipeline.execute_pipeline(
+			_master_renderer_params.shapes, t, _master_renderer_params.post_processing_pipeline_params)
+		
+		var clear_color = ShapeColorPostProcessingPipeline.compute_clear_color(
+			_master_renderer_params.clear_color, 0, _master_renderer_params.post_processing_pipeline_params)
+		
 		# Gets frame shapes
-		var frame_shapes := _animation_player.animate(_master_renderer_params.shapes, t)
+		var frame_shapes := _animation_player.animate(post_processed_shapes, t)
 		
 		# Gets path
 		var path = _video_recorder.iterator_next_path() + _frame_saver.get_extension()
@@ -66,6 +74,8 @@ func _record_and_save():
 		# Creates renderer params with the animated shapes
 		var animated_master_params = _master_renderer_params.duplicate()
 		animated_master_params.shapes = frame_shapes
+		animated_master_params.clear_color = clear_color
+		animated_master_params.post_processing_pipeline_params = null
 		
 		# Saves frame with frame saver
 		if not _frame_saver.save(

@@ -17,8 +17,8 @@ func process_color(
 
 		var uv = clamp(shape.position, Vector2.ZERO, Vector2.ONE)
 		var noise_pixel = Vector2i(
-			abs(int((_noise_image.get_width() - 1) * uv.x)),
-			abs(int((_noise_image.get_height() - 1) * uv.y)))
+			clampi((_noise_image.get_width() - 1) * uv.x, 0, _noise_image.get_width() - 1),
+			clampi((_noise_image.get_height() - 1) * uv.y, 0, _noise_image.get_height() - 1))
 			
 		var noise_value = _noise_image.get_pixel(noise_pixel.x, noise_pixel.y).r
 		shift_weight = noise_value * 2.0 - 1.0

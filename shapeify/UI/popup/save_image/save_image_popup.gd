@@ -9,7 +9,6 @@ extends Control
 @export var save_texture: TextureRect
 @export var format_option_button: OptionButton
 
-var _processed_details: ImageGenerationDetails
 var _frame_saver: FrameSaver
 var _local_renderer: LocalRenderer
 
@@ -21,7 +20,9 @@ var target_texture_size: Vector2:
 func _ready() -> void:
 	
 	_local_renderer = LocalRenderer.new()
-	_local_renderer.initialize(LocalRenderer.Type.SPRITE, RenderingServer.create_local_rendering_device())
+	_local_renderer.initialize(
+		LocalRenderer.Type.SPRITE, 
+		RenderingServer.create_local_rendering_device())
 	
 	close_button.pressed.connect(
 		func():
@@ -57,14 +58,8 @@ func _set_final_resolution_scale(scale):
 
 func _oppened():
 
-	var gen_details: ImageGenerationDetails = ImageGeneration.details
 	visible = true
 	
-	_processed_details = ShapeColorPostProcessingPipeline.process_details(
-		gen_details,
-		0.0,
-		Globals.settings.color_post_processing_pipeline_params)
-
 	resolution_label.text = "%sx%s" % [
 		target_texture_size.x,
 		target_texture_size.y]
@@ -96,7 +91,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		path,
 		_local_renderer,
 		ImageGeneration.master_renderer_params,
-		_processed_details.viewport_size * scale_spin_box.value)
+		target_texture_size * scale_spin_box.value)
 	
 	if success:
 		Notifier.notify_info("Image saved at: %s" % path, path)
