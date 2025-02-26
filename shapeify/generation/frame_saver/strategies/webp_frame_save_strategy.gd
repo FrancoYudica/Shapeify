@@ -2,21 +2,13 @@ extends FrameSaver
 
 func save(
 	filepath: String,
-	shapes: Array[Shape],
-	clear_color: Color,
+	local_renderer: LocalRenderer,
+	master_renderer_params: MasterRendererParams,
 	viewport_size: Vector2i) -> bool:
 
-	var render_details := ImageGenerationDetails.new()
-	render_details.shapes = shapes
-	render_details.clear_color = clear_color
-	render_details.viewport_size = viewport_size
-	
-	# Renders the shapes
-	var renderer := GenerationGlobals.renderer
-	ImageGenerationRenderer.render_image_generation(renderer, render_details)
-	
-	# Gets renderer output texture
-	var color_attachment_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
+	# Renders the shapes and gets renderer output texture
+	MasterRenderer.render(local_renderer, viewport_size, master_renderer_params)
+	var color_attachment_texture = local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	var img = color_attachment_texture.create_image()
 	
 	if img == null:

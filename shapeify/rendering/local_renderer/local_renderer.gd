@@ -299,8 +299,12 @@ func flush() -> void:
 	rd.draw_list_bind_index_array(draw_list, _batch.index_array)
 	rd.draw_list_draw(draw_list, true, 1)
 	rd.draw_list_end()
-	rd.submit()
-	rd.sync()
+	
+	# Only submits and syncs if it's using a local rendering device
+	if rd != RenderingServer.get_rendering_device():
+		rd.submit()
+		rd.sync()
+		
 	rd.free_rid(uniform_set_rid)
 	rd.free_rid(sampler_rd_rid)
 	

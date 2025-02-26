@@ -11,10 +11,12 @@ enum Type
 ## True if notifications are silenced
 var silent: bool = false
 
+## FrameSaver renders the image and saves it, enabling support for multiple 
+## frame encoding types beyond standard image encoding.
 func save(
 	filepath: String,
-	shapes: Array[Shape],
-	clear_color: Color,
+	local_renderer: LocalRenderer,
+	master_renderer_params: MasterRendererParams,
 	viewport_size: Vector2i) -> bool:
 	return false
 

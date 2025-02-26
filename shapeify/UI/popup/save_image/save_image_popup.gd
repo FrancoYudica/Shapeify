@@ -94,10 +94,9 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	
 	var success = _frame_saver.save(
 		path,
-		_processed_details.shapes,
-		_processed_details.clear_color,
-		_processed_details.viewport_size * scale_spin_box.value
-	)
+		_local_renderer,
+		ImageGeneration.master_renderer_params,
+		_processed_details.viewport_size * scale_spin_box.value)
 	
 	if success:
 		Notifier.notify_info("Image saved at: %s" % path, path)

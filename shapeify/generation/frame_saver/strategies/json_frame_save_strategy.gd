@@ -3,13 +3,13 @@ extends FrameSaver
 
 func save(
 	filepath: String,
-	shapes: Array[Shape],
-	clear_color: Color,
+	local_renderer: LocalRenderer,
+	master_renderer_params: MasterRendererParams,
 	viewport_size: Vector2i) -> bool:
 	
 	# Serializes the shapes to dicts
 	var data = {"shapes": []}
-	for shape in shapes:
+	for shape in master_renderer_params.shapes:
 		data["shapes"].append(shape.to_dict())
 	
 	# opens file

@@ -28,7 +28,6 @@ static func _render_shapes(
 	viewport_size: Vector2i):
 	
 	renderer.begin_frame(viewport_size)
-	
 	# Renders background
 	renderer.render_clear(clear_color)
 	
