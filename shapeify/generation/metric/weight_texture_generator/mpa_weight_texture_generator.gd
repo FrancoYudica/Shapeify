@@ -19,8 +19,8 @@ func _init() -> void:
 
 func generate(
 	progress: float,
-	target_texture: RendererTexture,
-	source_texture: RendererTexture) -> RendererTexture:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture) -> LocalTexture:
 	
 	_gaussian_image_processor.iterations = 20
 	_gaussian_image_processor.kernel_size = lerp(16, 5, progress)

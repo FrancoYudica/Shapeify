@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @export var shape_generator_params: ShapeGeneratorParams
-@export var target_texture: RendererTextureLoad
+@export var target_texture: Texture2D
 @export var output_texture: TextureRect
 @export var generate_button: Button
 @export var save_button: Button
@@ -12,16 +12,13 @@ extends CanvasLayer
 @export var weight_generator_option: OptionButton
 @export var _output_texture_rect: TextureRect
 
-var _source_texture: RendererTexture
+var _source_texture: LocalTexture
+var _target_texture: LocalTexture
 var _shape_generator: ShapeGenerator
-var _shape_renderer: ShapeRenderer
 var _weight_texture_generator: WeightTextureGenerator
 
 
 func _ready() -> void:
-	
-
-	_shape_renderer = ShapeRenderer.new()
 	
 	# shape generator option -----------------------------------------------
 	for generator in ShapeGenerator.Type.keys():
@@ -52,27 +49,30 @@ func _ready() -> void:
 	
 	# Creates source texture
 	var source_color = Color.BLACK
-	Renderer.begin_frame(target_texture.get_size())
-	Renderer.render_clear(source_color)
-	Renderer.end_frame()
-	_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR).copy()
+	GenerationGlobals.renderer.begin_frame(target_texture.get_size())
+	GenerationGlobals.renderer.render_clear(source_color)
+	GenerationGlobals.renderer.end_frame()
+	_source_texture = GenerationGlobals.renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
+	_target_texture = LocalTexture.load_from_texture(target_texture, GenerationGlobals.renderer.rd)
 
-	shape_generator_params.target_texture = target_texture
-	shape_generator_params.source_texture = _source_texture
 
 
 	# Sets shape generator
 	_set_shape_generator(ShapeGenerator.Type.Genetic)
 	
 func generate() -> void:
-	
+
+	_shape_generator.target_texture = _target_texture
+	_shape_generator.source_texture = _source_texture
 	_shape_generator.setup()
 	
 	output_label.call_deferred("set_text", "Generation started")
 
 	generate_button.call_deferred("set_disabled", true)
 	for i in range(int(count_spin_box.value)):
-		_shape_generator.weight_texture = _weight_texture_generator.generate(0, target_texture, _source_texture)
+		
+
+		_shape_generator.weight_texture = _weight_texture_generator.generate(0, _target_texture, _source_texture)
 		
 		var clock = Clock.new()
 		var shape = _shape_generator.generate_shape(0.0)
@@ -81,12 +81,15 @@ func generate() -> void:
 			"%s. Generated shape in %sms" % [i, clock.elapsed_ms()]
 		)
 		# Renders the best shape
-		_shape_renderer.source_texture = _source_texture
-		_shape_renderer.render_shape(shape)
+		ShapeRenderer.render_shape(
+			GenerationGlobals.renderer,
+			_source_texture,
+			shape
+		)
+		_output_texture_rect.texture = GenerationGlobals.renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).create_texture_2d_rd()
 	
 	output_label.call_deferred("set_text", "Generation finished")
 	generate_button.call_deferred("set_disabled", false)
-	_output_texture_rect.call_deferred("update_texture")
 	
 	_shape_generator.finished()
 	
@@ -114,8 +117,8 @@ func _set_shape_generator(type: ShapeGenerator.Type):
 	_shape_generator.params = shape_generator_params
 
 func _save_output():
-	var color_attachment_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
-	var color_attachment_data = Renderer.rd.texture_get_data(color_attachment_texture.rd_rid, 0)
+	var color_attachment_texture = GenerationGlobals.renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
+	var color_attachment_data = GenerationGlobals.algorithm_rd.texture_get_data(color_attachment_texture.rd_rid, 0)
 	
 	# Creates an image with the same size and format
 	var img = Image.new()

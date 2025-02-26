@@ -1,16 +1,13 @@
-[gd_resource type="Resource" script_class="ShapeGeneratorParams" load_steps=22 format=3 uid="uid://c8ljel77jp37e"]
+[gd_resource type="Resource" script_class="ShapeGeneratorParams" load_steps=17 format=3 uid="uid://c8ljel77jp37e"]
 
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="1_j7yeg"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="2_etmf6"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="3_ctagt"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="4_eins3"]
-[ext_resource type="Script" path="res://renderer/renderer_texture.gd" id="6_1e2ua"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="6_cvf5u"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="7_frgno"]
-[ext_resource type="Texture2D" uid="uid://dfvma2fupvas" path="res://art/textures/convergence_tests/convergence_rectangle_shape_test.png" id="7_kq78p"]
-[ext_resource type="Script" path="res://renderer/renderer_texture_load.gd" id="8_5t0au"]
-[ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="8_rf6uc"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_gmhfq"]
+[ext_resource type="Texture2D" uid="uid://dbpxesvv3t7gn" path="res://art/textures/convergence_tests/convergence_circle_shape_test.png" id="9_uymv4"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="9_wuuef"]
 
 [sub_resource type="Resource" id="Resource_4k61h"]
@@ -42,23 +39,15 @@ max_age = 100
 random_restart_count = 1
 initial_random_samples = 5
 fitness_calculator = 1
-
-[sub_resource type="Resource" id="Resource_1kkqn"]
-script = ExtResource("8_rf6uc")
-weight_texture_generator_type = 2
+position_mutation_weight = 1
+size_mutation_weight = 2
+rotation_mutation_weight = 2
 
 [sub_resource type="Resource" id="Resource_5v5hi"]
 script = ExtResource("7_frgno")
-weight_texture_generator_params = SubResource("Resource_1kkqn")
 
 [sub_resource type="Resource" id="Resource_6cgro"]
 script = ExtResource("9_gmhfq")
-
-[sub_resource type="Texture2D" id="Texture2D_m85nq"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("8_5t0au")
-_src_texture = ExtResource("7_kq78p")
 
 [sub_resource type="Resource" id="Resource_ufkyq"]
 script = ExtResource("6_cvf5u")
@@ -69,7 +58,7 @@ shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_5v5hi")
 shape_texture_initializer_params = SubResource("Resource_6cgro")
-textures = Array[ExtResource("6_1e2ua")]([SubResource("Texture2D_m85nq")])
+textures = Array[Texture2D]([ExtResource("9_uymv4")])
 
 [resource]
 script = ExtResource("9_wuuef")

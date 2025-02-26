@@ -1,21 +1,22 @@
 extends FitnessCalculator
 
 var metric: MSEMetric
-var _shape_renderer: ShapeRenderer
 
 func _init() -> void:
 	metric = load("res://generation/metric/mse/mse_compute.gd").new()
-	_shape_renderer = ShapeRenderer.new()
 
 func calculate_fitness(
 	individual: Individual,
-	source_texture: RendererTexture) -> void:
+	source_texture: LocalTexture) -> void:
 	
 	metric.weight_texture = weight_texture
 	
-	_shape_renderer.source_texture = source_texture
-	_shape_renderer.render_shape(individual)
-	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	var renderer: LocalRenderer = GenerationGlobals.renderer
+	ShapeRenderer.render_shape(
+		renderer,
+		source_texture,
+		individual)
+	var individual_source_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	individual.fitness = 1.0 - metric.compute(individual_source_texture)
 
 func _target_texture_set():

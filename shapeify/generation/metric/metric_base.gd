@@ -15,12 +15,12 @@ enum Type
 
 var metric_name: String = "Metric base"
 
-var target_texture: RendererTexture:
+var target_texture: LocalTexture:
 	set(texture):
 		target_texture = texture
 		_target_texture_set()
 
-var weight_texture: RendererTexture:
+var weight_texture: LocalTexture:
 	set(texture):
 		
 		if weight_texture != texture:
@@ -34,7 +34,7 @@ func _weight_texture_set():
 	pass
 
 
-func compute(source_texture: RendererTexture) -> float:
+func compute(source_texture: LocalTexture) -> float:
 	
 	# Does validations
 	if not target_texture.is_valid():
@@ -65,7 +65,7 @@ func compute(source_texture: RendererTexture) -> float:
 	
 	return _compute(source_texture)
 	
-func _compute(source_texture: RendererTexture) -> float:
+func _compute(source_texture: LocalTexture) -> float:
 	return -1.0
 
 

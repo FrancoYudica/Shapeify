@@ -31,9 +31,9 @@ func initialize_attribute(shape: Shape) -> void:
 
 ## Called when the spawner has to update it's properties
 func update(
-	target_texture: RendererTexture,
-	source_texture: RendererTexture,
-	weight_texture: RendererTexture) -> void:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture,
+	weight_texture: LocalTexture) -> void:
 	
 	_blur_processor.iterations = int(lerpf(10.0, 2.0, similarity))
 	_blur_processor.kernel_size = int(lerpf(9, 4, similarity))
@@ -54,7 +54,7 @@ func update(
 	_weight_image = ImageUtils.create_image_from_rgba8_buffer(
 		size_texture.get_width(),
 		size_texture.get_height(),
-		Renderer.rd.texture_get_data(size_texture.rd_rid, 0)
+		size_texture.rd.texture_get_data(size_texture.rd_rid, 0)
 	)
 
 

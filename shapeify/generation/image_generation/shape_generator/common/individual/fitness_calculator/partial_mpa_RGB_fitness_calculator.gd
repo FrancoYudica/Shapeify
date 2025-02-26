@@ -10,14 +10,17 @@ func _init() -> void:
 
 func calculate_fitness(
 	individual: Individual,
-	source_texture: RendererTexture) -> void:
+	source_texture: LocalTexture) -> void:
 	
 	metric.weight_texture = weight_texture
 	
 	# Gets individual's source texture
-	_shape_renderer.source_texture = source_texture
-	_shape_renderer.render_shape(individual)
-	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	var renderer: LocalRenderer = GenerationGlobals.renderer
+	ShapeRenderer.render_shape(
+		renderer,
+		source_texture,
+		individual)
+	var individual_source_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	
 	# Sets texture parameters and calculates fitness with partial metric
 	metric.source_texture = source_texture

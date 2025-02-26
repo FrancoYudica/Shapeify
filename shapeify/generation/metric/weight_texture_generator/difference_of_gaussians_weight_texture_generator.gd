@@ -23,8 +23,8 @@ func _init() -> void:
 
 func generate(
 	progress: float,
-	target_texture: RendererTexture,
-	source_texture: RendererTexture) -> RendererTexture:
+	target_texture: LocalTexture,
+	source_texture: LocalTexture) -> LocalTexture:
 	
 	var iterations = 20
 	var kernel_size = lerp(32, 5, progress)

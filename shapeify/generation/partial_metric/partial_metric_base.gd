@@ -6,26 +6,26 @@ class_name PartialMetric extends RefCounted
 
 var metric_name: String = "Metric base"
 
-var target_texture: RendererTexture:
+var target_texture: LocalTexture:
 	set(texture):
 		if texture != target_texture:
 			target_texture = texture
 			_target_texture_set()
 
-var source_texture: RendererTexture:
+var source_texture: LocalTexture:
 	set(texture):
 		
 		if texture != source_texture:
 			source_texture = texture
 			_source_texture_set()
 
-var new_source_texture: RendererTexture:
+var new_source_texture: LocalTexture:
 	set(texture):
 		if texture != new_source_texture:
 			new_source_texture = texture
 			_new_source_texture_set()
 
-var weight_texture: RendererTexture:
+var weight_texture: LocalTexture:
 	set(texture):
 		if texture != weight_texture:
 			weight_texture = texture

@@ -1,37 +1,19 @@
-extends Node
+class_name LocalRenderer extends RefCounted
 
-signal rendered
-signal initialized
-signal resized
-
-
-## Scales the viewport size by this factor. Note that projection matrix isn't affected, therefore 
-## the result is the same scene rendered but with less resolution.
-@export var render_scale: float = 1.0:
-	set(value):
-		render_scale = value
-		if is_initialized:
-			_resize(_viewport_size)
-
-var is_initialized: bool = false
-
-const _DEFAULT_TEXTURE_PATH = "res://art/textures/white_1x1.png"
-
-var rd: RenderingDevice
 var _pipeline: RID
 var _framebuffer: RID
 var _framebuffer_attachment_textures: Dictionary = {}
-var _mutex: Mutex = Mutex.new()
 
-var _default_texture: RendererTexture
-var _sprite_batch: Batch
+var _default_texture: LocalTexture
+var _batch: RendererBatch
 
 var _matrix_storage_buffer: RID
 var _uniform_projection_matrix: RDUniform
 
 var _viewport_size: Vector2i = Vector2i(512, 512)
 var _flush_count = 0
-var _texture_manager: TextureManager = TextureManager.new()
+var _texture_manager := LocalTextureManager.new()
+var rd: RenderingDevice
 
 enum FramebufferAttachment{
 	COLOR,
@@ -42,7 +24,7 @@ var is_valid: bool:
 	get:
 		return _pipeline.is_valid() and rd.render_pipeline_is_valid(_pipeline)
 
-func get_attachment_texture(attachment: FramebufferAttachment) -> RendererTexture:
+func get_attachment_texture(attachment: FramebufferAttachment) -> LocalTexture:
 	return _framebuffer_attachment_textures[attachment]
 
 func begin_frame(viewport_size: Vector2i):
@@ -50,17 +32,11 @@ func begin_frame(viewport_size: Vector2i):
 	if _viewport_size != viewport_size:
 		_resize(viewport_size)
 	
-	var matrix = _create_orthographic_projection(viewport_size)
-	var matrix_data := PackedVector4Array([matrix.x, matrix.y, matrix.z])
-	var matrix_bytes: PackedByteArray = matrix_data.to_byte_array()
-	rd.buffer_update(_matrix_storage_buffer, 0, matrix_bytes.size(), matrix_bytes)
-	_sprite_batch.begin_frame()
+	_batch.begin_frame()
 	_flush_count = 0
-
 	
 func end_frame():
-	_sprite_batch.end_frame()
-	call_deferred("emit_signal", "rendered")
+	_batch.end_frame()
 
 # Renders a texture that covers the entire framebuffer with a single color
 func render_clear(clear_color):
@@ -78,24 +54,31 @@ func render_sprite(
 	size: Vector2,
 	rotation: float,
 	color: Color,
-	texture: RendererTexture,
+	texture: Texture2D,
 	id: float = 0):
 	
-	if texture == null or not texture.is_valid():
+	if texture == null:
 		printerr("Trying to render sprite with invalid texture")
 		return
 	
-	var texture_slot = _texture_manager.get_texture_slot(texture)
-	if texture_slot == TextureManager.Status.FULL:
-		_sprite_batch.flush()
+	# Gets local texture
+	var local_texture = _texture_manager.get_local_texture(texture)
+	
+	# LocalTexture cache is full. Needs to render before adding more textures
+	if local_texture == null:
+		_batch.flush()
+		_texture_manager.clear_cached_textures()
+		local_texture = _texture_manager.get_local_texture(texture)
+	
+	# Gets texture slot
+	var texture_slot = _texture_manager.get_local_texture_slot(local_texture)
+	
+	if texture_slot == LocalTextureManager.Status.FULL:
+		_batch.flush()
 		_texture_manager.clear()
-		texture_slot = _texture_manager.get_texture_slot(texture)
+		texture_slot = _texture_manager.get_local_texture_slot(local_texture)
 	
-	if texture_slot == TextureManager.Status.INVALID:
-		printerr("Invalid texture")
-		return
-	
-	_sprite_batch.push_sprite(
+	_batch.push_sprite(
 		Vector3(position.x, position.y, 1.0),
 		size,
 		rotation,
@@ -103,25 +86,31 @@ func render_sprite(
 		texture_slot,
 		id)
 
-func _enter_tree() -> void:
-	_initialize()
 
-
-# Called when the node enters the scene tree for the first time.
-func _initialize() -> void:
-	rd = RenderingServer.create_local_rendering_device()
-	_texture_manager.rd = rd
-	_sprite_batch = load("res://renderer/sprite_batch.gd").new()
-	_sprite_batch.rd = rd
+func initialize(local_rd: RenderingDevice) -> void:
 	
-	if not _sprite_batch.initialize():
-		printerr("Error while initializing sprite batch")
+	# Sets the rendering device
+	if local_rd == null:
+		rd = RenderingServer.get_rendering_device()
+	else:
+		rd = local_rd
+	
+	# Creates batch
+	_batch = load("res://rendering/local_renderer/sprite_batch.gd").new()
+
+	# Sets up renderign device references
+	_texture_manager.rd = rd
+	_batch.rd = rd
+	_batch.local_renderer = self
+	
+	if not _batch.initialize():
+		printerr("Error while initializing batch")
 		return
 	
 	# Loads default texture
-	var tex = load(_DEFAULT_TEXTURE_PATH)
-	_default_texture = RendererTexture.new()
-	_default_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(tex)
+	var default_image := Image.create(1, 1, false, Image.Format.FORMAT_RGBA8)
+	default_image.fill(Color.WHITE)
+	_default_texture = LocalTexture.load_from_image(default_image, rd)
 	
 	var projection_matrix_floats = 12
 	_matrix_storage_buffer = rd.storage_buffer_create(
@@ -133,14 +122,16 @@ func _initialize() -> void:
 	_uniform_projection_matrix.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	_uniform_projection_matrix.add_id(_matrix_storage_buffer)
 	_resize(_viewport_size)
-	initialized.emit()
-	is_initialized = true
-
 
 func _resize(viewport_size: Vector2i):
 	
 	_viewport_size = viewport_size
-	
+
+	var matrix = _create_orthographic_projection(viewport_size)
+	var matrix_data := PackedVector4Array([matrix.x, matrix.y, matrix.z])
+	var matrix_bytes: PackedByteArray = matrix_data.to_byte_array()
+	rd.buffer_update(_matrix_storage_buffer, 0, matrix_bytes.size(), matrix_bytes)
+
 	# Clears the textures
 	_framebuffer_attachment_textures.clear()
 	
@@ -153,42 +144,36 @@ func _resize(viewport_size: Vector2i):
 	# Setup framebuffer ----------------------------------------------------------------------------
 	# Creates framebuffer color texture
 	var texture_format := RDTextureFormat.new()
-	var texture_view := RDTextureView.new()
 	texture_format.texture_type = RenderingDevice.TEXTURE_TYPE_2D
-	texture_format.width = viewport_size.x * render_scale
-	texture_format.height = viewport_size.y * render_scale
+	texture_format.width = viewport_size.x
+	texture_format.height = viewport_size.y
 	texture_format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
 	texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
+		RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT |
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
-	var color_texture = RendererTexture.new()
-	color_texture.rd_rid = rd.texture_create(
-		texture_format, 
-		texture_view)
+	var color_texture = LocalTexture.create_empty(texture_format, rd)
 	_framebuffer_attachment_textures[FramebufferAttachment.COLOR] = color_texture
 		
 	# Creates framebuffer id texture
-	var texture_format_id := RDTextureFormat.new()
-	texture_format_id.texture_type = RenderingDevice.TEXTURE_TYPE_2D
-	texture_format_id.width = viewport_size.x * render_scale
-	texture_format_id.height = viewport_size.y * render_scale
-	texture_format_id.format = RenderingDevice.DATA_FORMAT_R32_SFLOAT
-	texture_format_id.usage_bits = (
+	var id_texture_format := RDTextureFormat.new()
+	id_texture_format.texture_type = RenderingDevice.TEXTURE_TYPE_2D
+	id_texture_format.width = viewport_size.x
+	id_texture_format.height = viewport_size.y
+	id_texture_format.format = RenderingDevice.DATA_FORMAT_R32_SFLOAT
+	id_texture_format.usage_bits = (
 		RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT |
 		RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT | 
 		RenderingDevice.TEXTURE_USAGE_CAN_COPY_FROM_BIT |
 		RenderingDevice.TEXTURE_USAGE_STORAGE_BIT)
 	
-	var id_texture = RendererTexture.new()
-	id_texture.rd_rid = rd.texture_create(
-		texture_format_id,  
-		RDTextureView.new())
+	var id_texture = LocalTexture.create_empty(id_texture_format, rd)
 	_framebuffer_attachment_textures[FramebufferAttachment.UID] = id_texture
 	
 	# Validates all the framebuffer texture attachments
 	for attachment_type in _framebuffer_attachment_textures:
-		var attachment_texture: RendererTexture = _framebuffer_attachment_textures[attachment_type]
+		var attachment_texture: LocalTexture = _framebuffer_attachment_textures[attachment_type]
 		if not rd.texture_is_valid(attachment_texture.rd_rid):
 			printerr("Framebuffer attachment texture: \"%s\" is invalid" % attachment_type)
 			return
@@ -224,9 +209,9 @@ func _resize(viewport_size: Vector2i):
 	
 	# Setup render pipeline ------------------------------------------------------------------------
 	_pipeline = rd.render_pipeline_create(
-		_sprite_batch.shader,
+		_batch.shader,
 		rd.framebuffer_get_format(_framebuffer),
-		_sprite_batch.vertex_array_format,
+		_batch.vertex_array_format,
 		RenderingDevice.RENDER_PRIMITIVE_TRIANGLES,
 		RDPipelineRasterizationState.new(),
 		RDPipelineMultisampleState.new(),
@@ -237,8 +222,6 @@ func _resize(viewport_size: Vector2i):
 		printerr("Invalid render pipeline")
 		return
 
-	call_deferred("emit_signal", "resized")
-	
 func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
 	var scale_x = 2.0 / viewport_size.x
 	var scale_y = 2.0 / viewport_size.y
@@ -248,14 +231,16 @@ func _create_orthographic_projection(viewport_size: Vector2) -> Basis:
 				 Vector3(0, scale_y, 0),
 				 Vector3(translate_x, translate_y, 1))
 
+func delete() -> void:
+	rd.free_rid(_pipeline)
+	rd.free_rid(_framebuffer)
+	rd.free_rid(_matrix_storage_buffer)
+	_batch.delete()
+	_texture_manager.clear()
 
 func flush() -> void:
 	if not rd.render_pipeline_is_valid(_pipeline):
 		return
-
-	_mutex.lock()
-	
-	
 	# Uniforms *************************************************************************************
 	var uniforms: Array[RDUniform] = []
 
@@ -282,7 +267,7 @@ func flush() -> void:
 	uniforms.append(_uniform_projection_matrix)
 
 	# Create the uniform set .......................................................................
-	var uniform_set_rid = rd.uniform_set_create(uniforms, _sprite_batch.shader, 0)
+	var uniform_set_rid = rd.uniform_set_create(uniforms, _batch.shader, 0)
 	
 	# The initial color action changes from `clear` to `keep` if there are multiple flushes
 	var intial_color_action = RenderingDevice.INITIAL_ACTION_CLEAR \
@@ -301,14 +286,17 @@ func flush() -> void:
 	)
 	rd.draw_list_bind_uniform_set(draw_list, uniform_set_rid, 0)
 	rd.draw_list_bind_render_pipeline(draw_list, _pipeline)
-	rd.draw_list_bind_vertex_array(draw_list, _sprite_batch.vertex_array)
-	rd.draw_list_bind_index_array(draw_list, _sprite_batch.index_array)
+	rd.draw_list_bind_vertex_array(draw_list, _batch.vertex_array)
+	rd.draw_list_bind_index_array(draw_list, _batch.index_array)
 	rd.draw_list_draw(draw_list, true, 1)
 	rd.draw_list_end()
-	rd.submit()
-	rd.sync()
+	
+	# Only submits and syncs if it's using a local rendering device
+	if rd != RenderingServer.get_rendering_device():
+		rd.submit()
+		rd.sync()
+		
 	rd.free_rid(uniform_set_rid)
 	rd.free_rid(sampler_rd_rid)
-	_mutex.unlock()
 	
 	_flush_count += 1

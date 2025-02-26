@@ -12,8 +12,8 @@ func began_generating():
 	pass
 
 func shape_generated(
-	source_texture: RendererTexture,
-	target_texture: RendererTexture,
+	source_texture: LocalTexture,
+	target_texture: LocalTexture,
 	shape: Shape):
 	pass
 	

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var weight_texture: RendererTextureLoad
+@export var weight_texture: Texture2D
 @export var weight_texture_rect: TextureRect
 @export var sampler_type_option_btn: OptionButton
 @export var sample_texture_rect: TextureRect
@@ -11,6 +11,7 @@ extends CanvasLayer
 @export var sample_count_spin_box: SpinBox
 
 var texture_position_sampler: TexturePositionSampler
+@onready var _local_weight_texture = LocalTexture.load_from_texture(weight_texture, GenerationGlobals.renderer.rd)
 
 func _ready() -> void:
 	for type in TexturePositionSampler.Type.keys():
@@ -23,7 +24,7 @@ func _ready() -> void:
 			_create_sampler(index)
 	)
 	
-	weight_texture_rect.texture = RenderingCommon.create_texture_from_rd_rid(weight_texture.rd_rid)
+	weight_texture_rect.texture = weight_texture
 	
 	generate_sample_btn.pressed.connect(
 		func():
@@ -39,19 +40,20 @@ func _create_sampler(type):
 	
 	# The texture weight texture could be directly the weight texture attribute
 	# but it's important to test that the output of the renderer is in the correct format
-	Renderer.begin_frame(weight_texture.get_size())
-	Renderer.render_sprite(
+	var renderer := GenerationGlobals.renderer
+	renderer.begin_frame(weight_texture.get_size())
+	renderer.render_sprite(
 		weight_texture.get_size() * 0.5,
 		weight_texture.get_size(),
 		0,
 		Color.WHITE,
-		weight_texture,
+		_local_weight_texture,
 		0)
-	Renderer.end_frame()
+	renderer.end_frame()
 	
 	# Creates a copy of the rendered texture
-	texture_position_sampler.weight_texture = Renderer.get_attachment_texture(
-		Renderer.FramebufferAttachment.COLOR
+	texture_position_sampler.weight_texture = renderer.get_attachment_texture(
+		LocalRenderer.FramebufferAttachment.COLOR
 	).copy()
 
 func _generate_sample():

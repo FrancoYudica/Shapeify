@@ -1,21 +1,22 @@
 extends FitnessCalculator
 
 var metric: DeltaEMetric
-var _shape_renderer: ShapeRenderer
 
 func _init() -> void:
 	metric = Metric.factory_create(Metric.Type.DELTA_E_1994) as DeltaEMetric
-	_shape_renderer = ShapeRenderer.new()
 
 func calculate_fitness(
 	individual: Individual,
-	source_texture: RendererTexture) -> void:
+	source_texture: LocalTexture) -> void:
 
 	metric.weight_texture = weight_texture
 
-	_shape_renderer.source_texture = source_texture
-	_shape_renderer.render_shape(individual)
-	var individual_source_texture = Renderer.get_attachment_texture(Renderer.FramebufferAttachment.COLOR)
+	var renderer: LocalRenderer = GenerationGlobals.renderer
+	ShapeRenderer.render_shape(
+		renderer,
+		source_texture,
+		individual)
+	var individual_source_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	
 	# Mapps error to normalized accuracy
 	individual.fitness = 1.0 - metric.compute(individual_source_texture) * 0.01

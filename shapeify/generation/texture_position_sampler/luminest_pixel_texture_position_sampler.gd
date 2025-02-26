@@ -7,7 +7,7 @@ func sample() -> Vector2i:
 
 func _weight_texture_set():
 	var rd_rid = weight_texture.rd_rid
-	var rd = Renderer.rd
+	var rd = GenerationGlobals.algorithm_rd
 	var texture_bytes = rd.texture_get_data(rd_rid, 0)
 	var texture_format = rd.texture_get_format(rd_rid)
 	var luminest_value: float = -1.0

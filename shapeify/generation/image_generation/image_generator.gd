@@ -8,7 +8,6 @@ var shape_generator: ShapeGenerator
 var _stop_mutex: Mutex = Mutex.new()
 var _stop: bool = false
 var _stop_condition: StopCondition
-var _shape_renderer: ShapeRenderer
 
 var _similarity_delta_e_metric: DeltaEMetric
 
@@ -18,9 +17,9 @@ var _weight_texture_generator: WeightTextureGenerator
 var metric_value: float = 0.0
 var similarity: float = 0.0
 
-var weight_texture: RendererTexture
-var target_texture: RendererTexture
-var source_texture: RendererTexture
+var weight_texture: LocalTexture
+var target_texture: LocalTexture
+var source_texture: LocalTexture
 
 func stop():
 	_stop_mutex.lock()
@@ -32,7 +31,7 @@ func get_progress() -> float:
 		return 0.0
 	return _stop_condition.get_progress()
 
-func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
+func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 	
 	Profiler.image_generation_began(params)
 	
@@ -73,8 +72,13 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 		# Generates Shape
 		var shape: Shape = shape_generator.generate_shape(similarity)
 		# Renders the shape onto the source texture
-		_shape_renderer.render_shape(shape)
-		source_texture.copy_contents(_shape_renderer.get_color_attachment_texture())
+		var renderer := GenerationGlobals.renderer
+		ShapeRenderer.render_shape(
+			renderer,
+			source_texture,
+			shape)
+		var color_attachment = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
+		source_texture.copy_contents(color_attachment)
 		
 		shape_generated.emit(shape)
 		_stop_condition.shape_generated(
@@ -89,11 +93,10 @@ func generate_image(first_src_texture: RendererTexture) -> RendererTexture:
 	_generating = false
 	return source_texture
 
-func setup(first_source_texture: RendererTexture):
+func setup(first_source_texture: LocalTexture):
 	_stop = false
 	
-	target_texture = RendererTexture.new()
-	target_texture.rd_rid = RenderingCommon.create_local_rd_texture_copy(params.target_texture)
+	target_texture = LocalTexture.load_from_texture(params.target_texture, GenerationGlobals.algorithm_rd)
 	
 	# Setup stop condition -----------------------------------------------------
 	_stop_condition = StopCondition.factory_create(params.stop_condition)
@@ -101,8 +104,8 @@ func setup(first_source_texture: RendererTexture):
 	
 	# Resizes target ans source texture ----------------------------------------
 	var render_size = Globals.settings.render_scale * params.target_texture.get_size()
-	target_texture = RenderingCommon.resize_texture(target_texture, render_size)
-	source_texture = RenderingCommon.resize_texture(first_source_texture, render_size)
+	target_texture = target_texture.get_resized(GenerationGlobals.renderer, render_size)
+	source_texture = first_source_texture.get_resized(GenerationGlobals.renderer, render_size)
 
 	# Setup weight texture generator -------------------------------------------
 	_weight_texture_generator = WeightTextureGenerator.factory_create(
@@ -116,11 +119,8 @@ func setup(first_source_texture: RendererTexture):
 	shape_generator.source_texture = source_texture
 	shape_generator.setup()
 
-	_shape_renderer.source_texture = source_texture
-
 	
 func _init() -> void:
-	_shape_renderer = ShapeRenderer.new()
 	_similarity_delta_e_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
 
 func _compute_similarity() -> void:
