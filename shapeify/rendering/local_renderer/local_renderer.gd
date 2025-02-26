@@ -34,7 +34,7 @@ func begin_frame(
 	zoom: float = 1.0,
 	offset: Vector2 = Vector2.ZERO):
 	
-
+	# Checks if the view projection matrix needs to be updated
 	if _viewport_size != viewport_size or _zoom != zoom or offset != _translation:
 		var view_matrix = _create_view_matrix(zoom, offset)
 		var projection_matrix = _create_orthographic_projection(viewport_size)

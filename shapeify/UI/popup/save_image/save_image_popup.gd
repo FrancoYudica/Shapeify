@@ -7,7 +7,7 @@ extends Control
 @export var final_resolution_label: Label
 @export var file_dialog: FileDialog
 @export var format_option_button: OptionButton
-@export var output_texture_rect: MasterRendererOutputTextureRect
+@export var output_texture_rect: MasterRendererOutput
 
 var _frame_saver: FrameSaver
 var _local_renderer: LocalRenderer
@@ -45,7 +45,7 @@ func _ready() -> void:
 	visibility_changed.connect(
 		func():
 			if visible:
-				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params
+				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
 				_oppened()
 	)
 
