@@ -1,20 +1,34 @@
-extends TextureRect
+class_name MasterRendererOutputTextureRect extends TextureRect
 
-@export var animator: Node
-
+## Uses a local renderer so that rendering process doesn't interfere with
+## the image generation algorithm
 var _local_renderer: LocalRenderer
-var _shapes: Array[Shape]
-var _invalidated := false
-var _master_renderer_params: MasterRendererParams
 
+## If the current output is invalidated, the output texture must be rendered again
+var _invalidated = false
+
+var master_renderer_params: MasterRendererParams:
+	set(value):
+		
+		if value != master_renderer_params:
+			master_renderer_params = value
+			master_renderer_params.changed.connect(invalidate)
+			invalidate()
+		
 func _ready() -> void:
+	
+	# Creates local renderer
 	_local_renderer = LocalRenderer.new()
-	_local_renderer.initialize(
-		LocalRenderer.Type.SPRITE, 
-		RenderingServer.get_rendering_device())
 	
-	animator.shapes_animated.connect(_animated_shapes)
+	# Uses the global rendering device. This way the texture update is faster
+	_local_renderer.initialize(RenderingServer.get_rendering_device())
 	
+	# Connects signals
+	resized.connect(invalidate)
+	visibility_changed.connect(
+		func():
+			if is_visible_in_tree():
+				invalidate())
 	RenderingServer.frame_pre_draw.connect(
 		func():
 			if _invalidated:
@@ -22,40 +36,27 @@ func _ready() -> void:
 				_present()
 				_invalidated = false)
 	
-	ImageGeneration.target_texture_updated.connect(
-		func():
-			texture = null
-	)
 	
 func _exit_tree() -> void:
 	_local_renderer.delete()
 	_local_renderer = null
 
-	
-func _animated_shapes(shapes: Array[Shape]):
-	_shapes = shapes
-	
-	# Sets up master renderer params
-	_master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
-	_master_renderer_params.shapes = _shapes
-	_master_renderer_params.clear_color = ShapeColorPostProcessingPipeline.compute_clear_color(
-		_master_renderer_params.clear_color,
-		0,
-		_master_renderer_params.post_processing_pipeline_params)
-	# Disables post processing. It's already applied by the animator, before the shapes are animated
-	_master_renderer_params.post_processing_pipeline_params = null
+func invalidate():
 	_invalidated = true
-	
-	
+
 func _render():
+	
+	if master_renderer_params == null:
+		return
+	
+	if not is_visible_in_tree():
+		return
+	
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
 	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
+	MasterRenderer.render(_local_renderer, render_viewport_size, master_renderer_params)
 
-	MasterRenderer.render(
-		_local_renderer,
-		render_viewport_size,
-		_master_renderer_params)
 
 var _previous_color_attachment: LocalTexture
 

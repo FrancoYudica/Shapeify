@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b60ayfqcwxahf" path="res://art/textures/icons/save.png" id="2_55goi"]
 [ext_resource type="Script" path="res://UI/popup/save_image/save_image_popup.gd" id="2_e07c1"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="2_mh6de"]
-[ext_resource type="Texture2D" uid="uid://dise07avq6mnd" path="res://art/textures/test/mona_lisa_50_ind.png" id="3_8dkgv"]
+[ext_resource type="PackedScene" uid="uid://c35lyx28xwb8m" path="res://UI/master_renderer_output_texture_rect.tscn" id="5_wv645"]
 
-[node name="SaveImagePopup" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "save_texture", "format_option_button") instance=ExtResource("1_y1k1w")]
+[node name="SaveImagePopup" node_paths=PackedStringArray("close_button", "save_button", "scale_spin_box", "resolution_label", "final_resolution_label", "file_dialog", "format_option_button", "output_texture_rect") instance=ExtResource("1_y1k1w")]
 script = ExtResource("2_e07c1")
 close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CloseButton")
 save_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveButton")
@@ -14,8 +14,11 @@ scale_spin_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxCo
 resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/ResolutionPanelContainer/MarginContainer/ResolutionValueLabel")
 final_resolution_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/FinalResolutionPanelContainer/MarginContainer/FinalResolutionValueLabel")
 file_dialog = NodePath("FileDialog")
-save_texture = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/OutputTextureRect")
 format_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/SaveFormatOptionButton")
+output_texture_rect = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MasterRendererOutputTextureRect")
+
+[node name="PanelContainer" parent="MarginContainer" index="0"]
+size_flags_vertical = 1
 
 [node name="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderHBoxContainer" index="0"]
 texture = ExtResource("2_55goi")
@@ -32,13 +35,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_mh6de")
 
-[node name="OutputTextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0"]
-custom_minimum_size = Vector2(300, 256)
+[node name="MasterRendererOutputTextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer" index="0" instance=ExtResource("5_wv645")]
 layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("3_8dkgv")
-expand_mode = 3
-stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1"]
 layout_mode = 2
@@ -120,7 +118,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" index="2"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
 layout_mode = 2

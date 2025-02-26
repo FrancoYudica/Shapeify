@@ -23,7 +23,8 @@
 [ext_resource type="Script" path="res://UI/header/loading_generating_texture_rect.gd" id="21_n5r8m"]
 [ext_resource type="Script" path="res://UI/header/generation_progress_bar.gd" id="22_lqj3n"]
 [ext_resource type="StyleBox" uid="uid://cl2bjx8ehvcaj" path="res://UI/themes/image_panel_container.tres" id="23_bpxun"]
-[ext_resource type="Script" path="res://UI/toggle_panels/generated_image/generated_output_texture_rect.gd" id="24_b7crn"]
+[ext_resource type="Script" path="res://UI/output_panel_container.gd" id="24_77w2g"]
+[ext_resource type="PackedScene" uid="uid://c35lyx28xwb8m" path="res://UI/master_renderer_output_texture_rect.tscn" id="25_w5al5"]
 [ext_resource type="Script" path="res://UI/utils/visible_on_panel_hover.gd" id="26_t35o0"]
 [ext_resource type="Texture2D" uid="uid://5npshbmgqm1k" path="res://art/textures/icons/rotate-96.png" id="27_va5ow"]
 [ext_resource type="Script" path="res://UI/toggle_panels/generated_image/rotate_button_container.gd" id="28_h3uq5"]
@@ -143,8 +144,6 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvddw"]
 shader = ExtResource("4_074qp")
 shader_parameter/t = 0.0
-
-[sub_resource type="Texture2DRD" id="Texture2DRD_axn0k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tss7v"]
 
@@ -324,7 +323,6 @@ layout_mode = 2
 tooltip_text = "Open animator"
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_nw5bv")
-toggle_mode = true
 icon = ExtResource("17_8ttpw")
 icon_alignment = 1
 script = ExtResource("16_ax1tw")
@@ -418,23 +416,21 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OutputPanelContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer"]
+[node name="OutputPanelContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer" node_paths=PackedStringArray("texture_rect")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("23_bpxun")
+script = ExtResource("24_77w2g")
+texture_rect = NodePath("GeneratedTextureRect")
 
-[node name="GeneratedOutputTextureRect" type="TextureRect" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
-custom_minimum_size = Vector2(1, 1)
+[node name="GeneratedTextureRect" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer" instance=ExtResource("25_w5al5")]
 layout_mode = 2
-texture = SubResource("Texture2DRD_axn0k")
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("24_b7crn")
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8

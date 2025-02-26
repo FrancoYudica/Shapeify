@@ -19,6 +19,7 @@ var image_processing_resolution: Vector2i:
 func _ready() -> void:
 	master_renderer_params = MasterRendererParams.new()
 	master_renderer_params.post_processing_pipeline_params = Globals.settings.color_post_processing_pipeline_params
+	master_renderer_params.setup_signals()
 
 ## This method is called from the root of the application to ensure that all the nodes are ready
 ## to receive signals
@@ -41,7 +42,7 @@ func clear_progress():
 	
 	master_renderer_params.clear_color = clear_color_strategy.get_clear_color()
 	master_renderer_params.shapes.clear()
-	
+	master_renderer_params.emit_changed()
 	# Creates to image texture and then to RD local texture
 	generation_cleared.emit()
 
@@ -125,6 +126,7 @@ func set_target_texture(target_texture: Texture2D):
 	
 func _emit_shape_generated_signal(shape: Shape):
 	master_renderer_params.shapes.append(shape)
+	master_renderer_params.emit_changed()
 	shape_generated.emit(shape)
 
 func _begin_image_generation():

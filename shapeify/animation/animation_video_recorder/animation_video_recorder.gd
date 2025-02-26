@@ -23,9 +23,7 @@ func _init() -> void:
 	
 	# Uses local renderer to render on a separate thread
 	_local_renderer = LocalRenderer.new()
-	_local_renderer.initialize(
-		LocalRenderer.Type.SPRITE, 
-		RenderingServer.create_local_rendering_device())
+	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
 	
 
 func record(

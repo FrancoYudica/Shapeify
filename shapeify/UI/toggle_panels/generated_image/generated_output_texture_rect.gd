@@ -11,9 +11,7 @@ func _ready() -> void:
 	
 	# Creates local renderer
 	_local_renderer = LocalRenderer.new()
-	_local_renderer.initialize(
-		LocalRenderer.Type.SPRITE, 
-		RenderingServer.get_rendering_device())
+	_local_renderer.initialize(RenderingServer.get_rendering_device())
 	
 	# Connects signals
 	ImageGeneration.target_texture_updated.connect(_clear)
@@ -27,6 +25,8 @@ func _ready() -> void:
 				_render()
 				_present()
 				_invalidated = false)
+				
+	$"../TextureRect".master_renderer_params = ImageGeneration.master_renderer_params
 	
 	
 func _exit_tree() -> void:

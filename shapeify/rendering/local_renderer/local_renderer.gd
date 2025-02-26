@@ -1,10 +1,5 @@
 class_name LocalRenderer extends RefCounted
 
-enum Type
-{
-	SPRITE
-}
-
 var _pipeline: RID
 var _framebuffer: RID
 var _framebuffer_attachment_textures: Dictionary = {}
@@ -92,7 +87,7 @@ func render_sprite(
 		id)
 
 
-func initialize(type: Type, local_rd: RenderingDevice) -> void:
+func initialize(local_rd: RenderingDevice) -> void:
 	
 	# Sets the rendering device
 	if local_rd == null:
@@ -101,12 +96,8 @@ func initialize(type: Type, local_rd: RenderingDevice) -> void:
 		rd = local_rd
 	
 	# Creates batch
-	match type:
-		Type.SPRITE:
-			_batch = load("res://rendering/local_renderer/sprite_batch.gd").new()
-		_:
-			push_error("Unimplemented renderer type: %s" % type)
-	
+	_batch = load("res://rendering/local_renderer/sprite_batch.gd").new()
+
 	# Sets up renderign device references
 	_texture_manager.rd = rd
 	_batch.rd = rd

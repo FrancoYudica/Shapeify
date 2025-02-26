@@ -6,8 +6,8 @@ extends Control
 @export var resolution_label: Label
 @export var final_resolution_label: Label
 @export var file_dialog: FileDialog
-@export var save_texture: TextureRect
 @export var format_option_button: OptionButton
+@export var output_texture_rect: MasterRendererOutputTextureRect
 
 var _frame_saver: FrameSaver
 var _local_renderer: LocalRenderer
@@ -20,9 +20,7 @@ var target_texture_size: Vector2:
 func _ready() -> void:
 	
 	_local_renderer = LocalRenderer.new()
-	_local_renderer.initialize(
-		LocalRenderer.Type.SPRITE, 
-		RenderingServer.create_local_rendering_device())
+	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
 	
 	close_button.pressed.connect(
 		func():
@@ -47,6 +45,7 @@ func _ready() -> void:
 	visibility_changed.connect(
 		func():
 			if visible:
+				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params
 				_oppened()
 	)
 
@@ -66,20 +65,6 @@ func _oppened():
 	
 	_set_final_resolution_scale(scale_spin_box.value)
 	
-	# Calculates viewport size
-	var target_texture = Globals.settings.image_generator_params.target_texture
-	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
-	var render_viewport_size = Vector2i(size.y * aspect_ratio, size.y)
-
-	# Renders the texture. This causes stall
-	MasterRenderer.render(
-		_local_renderer,
-		render_viewport_size,
-		ImageGeneration.master_renderer_params)
-	
-	var rendered = _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
-	save_texture.texture = rendered.create_texture_2d_rd()
-
 func _save():
 	file_dialog.clear_filters()
 	file_dialog.add_filter("*%s" % _frame_saver.get_extension())
