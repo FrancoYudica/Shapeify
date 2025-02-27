@@ -21,5 +21,4 @@ layout_mode = 2
 [node name="OutputTextureRect" type="TextureRect" parent="AspectRatioContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_default_cursor_shape = 2
 expand_mode = 1

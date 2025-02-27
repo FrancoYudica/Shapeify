@@ -13,19 +13,10 @@ class_name MasterRendererParams extends Resource
 			clear_color = value
 			emit_changed()
 
-@export var camera_zoom: float = 1.0:
-	set(value):
-		if camera_zoom != value:
-			camera_zoom = value 
-			emit_changed()
-
-@export var camera_translation: Vector2 = Vector2.ZERO:
-	set(value):
-		if camera_translation != value:
-			camera_translation = value
-			emit_changed()
+@export var camera_view_params := CameraViewParams.new()
 
 @export var post_processing_pipeline_params: ShapeColorPostProcessingPipelineParams
 
 func setup_signals():
 	post_processing_pipeline_params.changed.connect(emit_changed)
+	camera_view_params.changed.connect(emit_changed)

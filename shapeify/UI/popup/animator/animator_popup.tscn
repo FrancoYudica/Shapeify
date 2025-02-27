@@ -75,6 +75,7 @@ output_texture_rect = NodePath("MasterRendererOutputTextureRect")
 
 [node name="MasterRendererOutputTextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer" index="0" instance=ExtResource("6_x6xep")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/TexturePanelContainer" index="1"]
 layout_mode = 2
