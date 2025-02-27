@@ -439,7 +439,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VisibleOnPanelHover" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer" node_paths=PackedStringArray("panel")]
 script = ExtResource("26_t35o0")
-panel = NodePath("../..")
+panel = NodePath("../../GeneratedTextureRect")
 
 [node name="Label" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/OutputPanelContainer/MarginContainer"]
 layout_mode = 2

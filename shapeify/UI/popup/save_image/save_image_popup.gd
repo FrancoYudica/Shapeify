@@ -42,10 +42,9 @@ func _ready() -> void:
 	format_option_button.select(0)
 	_frame_saver = FrameSaver.factory_create(FrameSaver.Type.PNG)
 	
-	visibility_changed.connect(
+	output_texture_rect.visibility_changed.connect(
 		func():
 			if visible:
-				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
 				_oppened()
 	)
 
@@ -64,6 +63,10 @@ func _oppened():
 		target_texture_size.y]
 	
 	_set_final_resolution_scale(scale_spin_box.value)
+	output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
+	output_texture_rect.master_renderer_params.camera_zoom = 1.0
+	output_texture_rect.master_renderer_params.camera_translation = Vector2.ZERO
+
 	
 func _save():
 	file_dialog.clear_filters()

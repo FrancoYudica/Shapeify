@@ -1,4 +1,4 @@
-class_name MasterRendererOutput extends Control
+class_name MasterRendererOutput extends PanelContainer
 
 @export var texture_rect: TextureRect
 @export var aspect_ratio_conatiner: AspectRatioContainer
@@ -35,7 +35,7 @@ func _ready() -> void:
 	_local_renderer.initialize(RenderingServer.get_rendering_device())
 	
 	# Connects signals
-	resized.connect(invalidate)
+	texture_rect.resized.connect(invalidate)
 	visibility_changed.connect(
 		func():
 			if is_visible_in_tree():
