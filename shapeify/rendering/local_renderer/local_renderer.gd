@@ -15,12 +15,21 @@ var _flush_count = 0
 var _texture_manager := LocalTextureManager.new()
 var _zoom: float = 1.0
 var _translation: Vector2
+var _blend_mode := BlendMode.ALPHA_BLENDING
+
 var rd: RenderingDevice
 
 enum FramebufferAttachment{
 	COLOR,
 	UID
 }
+
+enum BlendMode
+{
+	ALPHA_BLENDING,
+	ADD
+}
+
 
 var is_valid: bool:
 	get:
@@ -108,14 +117,18 @@ func render_sprite(
 		id)
 
 
-func initialize(local_rd: RenderingDevice) -> void:
+func initialize(
+	local_rd: RenderingDevice,
+	blend_mode: BlendMode = BlendMode.ALPHA_BLENDING) -> void:
 	
 	# Sets the rendering device
 	if local_rd == null:
 		rd = RenderingServer.get_rendering_device()
 	else:
 		rd = local_rd
-	
+
+	_blend_mode = blend_mode
+
 	# Creates batch
 	_batch = load("res://rendering/local_renderer/sprite_batch.gd").new()
 
@@ -201,11 +214,24 @@ func _resize(viewport_size: Vector2i):
 	var blend_color_attachment = RDPipelineColorBlendStateAttachment.new()
 	blend_color_attachment.enable_blend = true
 	blend_color_attachment.color_blend_op = RenderingDevice.BLEND_OP_ADD
-	blend_color_attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
-	blend_color_attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
-	blend_color_attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
-	blend_color_attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
-	blend_color_attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+	# Alpha blending
+	
+	if _blend_mode == BlendMode.ALPHA_BLENDING:
+		blend_color_attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
+		blend_color_attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+		blend_color_attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
+		blend_color_attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
+		blend_color_attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+
+	elif _blend_mode == BlendMode.ADD:
+		blend_color_attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
+		blend_color_attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
+		blend_color_attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
+		blend_color_attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
+		blend_color_attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
+
+
+
 	blend.attachments.push_back(blend_color_attachment)
 	
 	# ID blending, it doesn't blend

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://boklrx1jya68l"]
+
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/weight_painting/user_weight_painting.gd" id="1_044v2"]
+[ext_resource type="Shader" path="res://shaders/user_weight_painting_gradient.gdshader" id="1_ctfa2"]
+[ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="3_vensj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gnjn"]
+shader = ExtResource("1_ctfa2")
+shader_parameter/inner_radius = 0.1
+shader_parameter/transparency = 1.0
+
+[node name="UserWeightPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "output_texture_rect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_044v2")
+texture_sub_viewport = NodePath("SubViewport")
+output_texture_rect = NodePath("TextureRect")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="WeightBrushTextureRect" type="ColorRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_0gnjn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_vensj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
