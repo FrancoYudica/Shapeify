@@ -1,6 +1,7 @@
 class_name DragAndZoomHandler extends Control
 
 signal interaction_started
+signal updated
 
 var texture_rect: TextureRect:
 	get:
@@ -8,8 +9,17 @@ var texture_rect: TextureRect:
 
 var target_zoom: float = 1.0
 var is_dragging := false
-var current_translation := Vector2.ZERO
-var current_zoom: float = 1.0
+var current_translation := Vector2.ZERO:
+	set(value):
+		if current_translation != value:
+			current_translation = value
+			updated.emit()
+
+var current_zoom: float = 1.0:
+	set(value):
+		if current_zoom != value:
+			current_zoom = value
+			updated.emit()
 var _mouse_over := false
 
 func _ready() -> void:
@@ -26,9 +36,8 @@ func reset():
 	current_translation = Vector2.ZERO
 	current_zoom = 1.0
 
-# Returns mouse position relative to the top left of the texture rect
-func _get_local_mouse_position():
-	return texture_rect.get_local_mouse_position() / texture_rect.size
+func normalized_local_to_world(pos: Vector2) -> Vector2:
+	return current_translation + pos / current_zoom
 
 func _apply_zoom(factor):
 	var zoom_delta = factor * 0.1
@@ -42,21 +51,21 @@ func _process(delta: float) -> void:
 	
 	# Applies zoom and translation mouse interpolation to MasterRendererParams ---------------------
 	var mouse_delta = Vector2.ZERO
-	var mouse_local_pos = _get_local_mouse_position()
+	var mouse_normalized_local = texture_rect.get_local_mouse_position() / texture_rect.size
 	if is_dragging:
-		mouse_delta = mouse_local_pos - _previous_mouse
+		mouse_delta = mouse_normalized_local - _previous_mouse
 	
-	_previous_mouse = mouse_local_pos
+	_previous_mouse = mouse_normalized_local
 	
 	if _mouse_over:
 		# Get mouse position in world coordinates BEFORE zooming
-		var mouse_world_before = current_translation + mouse_local_pos / current_zoom
+		var mouse_world_before = normalized_local_to_world(mouse_normalized_local)
 		
 		# Smoothly interpolate zoom
 		current_zoom = lerpf(current_zoom, target_zoom, delta * 13.0) 
 		
 		# Get mouse position in world coordinates AFTER zooming
-		var mouse_world_after = current_translation + mouse_local_pos / current_zoom
+		var mouse_world_after = normalized_local_to_world(mouse_normalized_local)
 		
 		# Adds the mouse delta to the translation. This is done to ensure that the
 		# zoom is always made towards the mouse
