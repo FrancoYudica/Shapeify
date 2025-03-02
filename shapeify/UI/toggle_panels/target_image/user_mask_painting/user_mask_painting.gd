@@ -7,13 +7,8 @@ extends Control
 
 var brush_size: float = 0.1
 
-class Point:
-	var normalized_position: Vector2
-	var normalized_size: Vector2
-	var texture: Texture2D
-
 var _sets_of_points: Array[Array] = []
-var _current_texture: LocalTexture
+var _current_texture: Texture2D
 var _local_renderer: LocalRenderer
 var _invalidated: bool = false
 var _painting: bool = false
@@ -45,12 +40,14 @@ func _process(delta: float) -> void:
 	
 	if is_hovering and Input.is_action_just_pressed("paint"):
 		_painting = true
-		var points_array: Array[Point] = []
+		var points_array: Array[UserMaskPoint] = []
 		_sets_of_points.append(points_array)
 		_add_point(get_local_mouse_position())
 		_previous_mouse_pos = get_local_mouse_position()
 		
-	if Input.is_action_just_released("paint"):
+	if _painting and Input.is_action_just_released("paint"):
+		var params := Globals.settings.image_generator_params
+		params.user_mask_params.add_points(_sets_of_points.back())
 		_painting = false
 	
 	if is_hovering and Input.is_action_just_pressed("ui_undo"):
@@ -79,7 +76,17 @@ func _exit_tree() -> void:
 	_local_renderer = null
 
 func undo():
+	
+	# Removes last set of points
 	_sets_of_points.pop_back()
+	
+	# Creats a single dimension point array
+	var points: Array[UserMaskPoint] = []
+	for point_set in _sets_of_points:
+		points.append_array(point_set)
+	
+	# Sets the user mask points
+	Globals.settings.image_generator_params.user_mask_params.points = points
 	invalidate()
 
 func invalidate():
@@ -88,11 +95,9 @@ func invalidate():
 func _add_point(pos: Vector2):
 	
 	if _current_texture == null:
-		_current_texture = LocalTexture.load_from_texture(
-			texture_sub_viewport.get_texture(),
-			_local_renderer.rd)
+		_current_texture = texture_sub_viewport.get_texture()
 			
-	var point = Point.new()
+	var point = UserMaskPoint.new()
 	point.normalized_position = drag_and_zoom_handler.normalized_local_to_world(pos / size)
 	point.normalized_size = Vector2.ONE * brush_size / drag_and_zoom_handler.current_zoom
 	point.texture = _current_texture

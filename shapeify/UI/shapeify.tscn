@@ -33,7 +33,7 @@
 [ext_resource type="Script" path="res://UI/toggle_panels/shapes/image_loader.gd" id="29_ux5ae"]
 [ext_resource type="Script" path="res://UI/drag_and_zoom_synchronizer.gd" id="29_xn4tj"]
 [ext_resource type="Script" path="res://UI/toggle_panels/target_image/target_image_loader.gd" id="30_tgvtw"]
-[ext_resource type="PackedScene" uid="uid://boklrx1jya68l" path="res://UI/toggle_panels/target_image/weight_painting/user_weight_painting.tscn" id="30_xn3nu"]
+[ext_resource type="PackedScene" uid="uid://boklrx1jya68l" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.tscn" id="30_xn3nu"]
 [ext_resource type="Texture2D" uid="uid://c3kuu10cgj770" path="res://art/textures/icons/upload.png" id="32_jecpt"]
 [ext_resource type="Script" path="res://UI/toggle_panels/target_image/load_target_texture_button.gd" id="33_4gldu"]
 [ext_resource type="Script" path="res://UI/toggle_panels_container.gd" id="34_f8xhb"]

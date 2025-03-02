@@ -16,6 +16,7 @@ var _shape_spawner: ShapeSpawner
 var weight_texture: LocalTexture
 var target_texture: LocalTexture
 var source_texture: LocalTexture
+var mask_texture: LocalTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
@@ -46,7 +47,8 @@ func generate_shape(similarity: float) -> Shape:
 			similarity, 
 			target_texture, 
 			source_texture,
-			weight_texture)
+			weight_texture,
+			mask_texture)
 	var shape = _generate(similarity)
 	generated_count += 1
 	

@@ -24,7 +24,8 @@ func initialize_attribute(shape: Shape) -> void:
 func update(
 	target_texture: LocalTexture,
 	source_texture: LocalTexture,
-	weight_texture: LocalTexture) -> void:
+	weight_texture: LocalTexture,
+	mask_texture: LocalTexture) -> void:
 	
 	# Computes MPA texture -----------------------------------------------------
 	_mpa_image_processor.src_texture = source_texture
@@ -55,10 +56,14 @@ func update(
 	_texture_multiply_image_processor.b_texture = mapped_mpa
 	var raw_probabilities = _texture_multiply_image_processor.process_image(mapped_weight)
 	
+	# Filters pixels by using the mask -----------------------------------------
+	_texture_multiply_image_processor.b_texture = mask_texture
+	var masked_probabilities = _texture_multiply_image_processor.process_image(raw_probabilities)
+	
 	# Normalizes the probabilities ---------------------------------------------
-	max_value = _max_texture_scalar_function.evaluate(raw_probabilities)
+	max_value = _max_texture_scalar_function.evaluate(masked_probabilities)
 	_multiply_image_processor.multiply_value = 1.0 / max_value
-	_probability_texture = _multiply_image_processor.process_image(raw_probabilities)
+	_probability_texture = _multiply_image_processor.process_image(masked_probabilities)
 	
 	# Sets the probability texture to the weighted position sampler ------------
 	_texture_position_sampler.weight_texture = _probability_texture

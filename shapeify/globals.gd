@@ -74,6 +74,10 @@ func _exit_tree() -> void:
 	.weight_texture_generator_params \
 	.user_weight_texture = null
 	
+	settings \
+	.image_generator_params \
+	.user_mask_params.points.clear()
+	
 	save()
 	
 

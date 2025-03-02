@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=24 format=3 uid="uid://bvloce8ka6r20"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=27 format=3 uid="uid://bvloce8ka6r20"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_jyvgk"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_67d4q"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="10_i1adq"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="11_l2pw6"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="12_50nwr"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_point.gd" id="12_iykuq"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_params.gd" id="13_gdh74"]
 
 [sub_resource type="Resource" id="Resource_rjnk8"]
 script = ExtResource("1_jyvgk")
@@ -88,6 +90,10 @@ execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
 
+[sub_resource type="Resource" id="Resource_kwquk"]
+script = ExtResource("13_gdh74")
+points = Array[ExtResource("12_iykuq")]([])
+
 [sub_resource type="Resource" id="Resource_tbdou"]
 script = ExtResource("11_l2pw6")
 weight_texture_generator_type = 2
@@ -102,3 +108,4 @@ stop_condition_params = SubResource("Resource_ujs6t")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_rjnk8")
 weight_texture_generator_params = SubResource("Resource_tbdou")
+user_mask_params = SubResource("Resource_kwquk")

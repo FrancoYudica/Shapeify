@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://boklrx1jya68l"]
 
-[ext_resource type="Script" path="res://UI/toggle_panels/target_image/weight_painting/user_weight_painting.gd" id="1_044v2"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.gd" id="1_044v2"]
 [ext_resource type="Shader" path="res://shaders/user_weight_painting_gradient.gdshader" id="1_ctfa2"]
 [ext_resource type="Shader" path="res://shaders/user_paint_hint.gdshader" id="4_6221f"]
-[ext_resource type="Script" path="res://UI/toggle_panels/target_image/weight_painting/hint_color_rect.gd" id="5_7157x"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/hint_color_rect.gd" id="5_7157x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0gnjn"]
 shader = ExtResource("1_ctfa2")
@@ -16,7 +16,7 @@ shader_parameter/smoothing = 0.05
 shader_parameter/inner_radius = 0.9
 shader_parameter/rotating = 0.0
 
-[node name="UserWeightPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "output_texture_rect")]
+[node name="UserMaskPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "output_texture_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

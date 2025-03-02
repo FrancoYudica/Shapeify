@@ -12,7 +12,6 @@ func _process(delta: float) -> void:
 	var mouse_local = get_parent().get_global_mouse_position()
 	
 	var is_hovering = parent_rect.has_point(mouse_local)
-	print(is_hovering)
 	_hovered = is_hovering
 	visible = _hovered
 		

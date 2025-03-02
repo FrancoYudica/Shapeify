@@ -33,7 +33,8 @@ func initialize_attribute(shape: Shape) -> void:
 func update(
 	target_texture: LocalTexture,
 	source_texture: LocalTexture,
-	weight_texture: LocalTexture) -> void:
+	weight_texture: LocalTexture,
+	mask_texture: LocalTexture) -> void:
 	
 	_blur_processor.iterations = int(lerpf(10.0, 2.0, similarity))
 	_blur_processor.kernel_size = int(lerpf(9, 4, similarity))

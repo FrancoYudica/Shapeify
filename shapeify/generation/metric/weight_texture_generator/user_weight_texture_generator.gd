@@ -18,11 +18,10 @@ func set_params(params: WeightTextureGeneratorParams) -> void:
 	var local_weight_texture = LocalTexture.load_from_texture(
 		params.user_weight_texture,
 		GenerationGlobals.renderer.rd)
-		
-	var scaled_texture = RenderingCommon.resize_texture(
+	
+	var scaled_texture = local_weight_texture.get_resized(
 		GenerationGlobals.renderer,
-		local_weight_texture,
-		local_weight_texture.get_size() * render_scale
-	)
+		local_weight_texture.get_size() * render_scale)
+	
 	
 	_weight_texture = scaled_texture

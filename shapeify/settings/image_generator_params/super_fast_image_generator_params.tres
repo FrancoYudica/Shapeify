@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=24 format=3 uid="uid://cibakl315gox5"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=27 format=3 uid="uid://cibakl315gox5"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_862a1"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_6r33r"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="9_xjhiu"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="10_f25yh"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="12_asq30"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_point.gd" id="12_vh7sk"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="13_4tfux"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_params.gd" id="13_5fewd"]
 
 [sub_resource type="Resource" id="Resource_w6vgs"]
 script = ExtResource("1_862a1")
@@ -88,6 +90,10 @@ execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
 
+[sub_resource type="Resource" id="Resource_8mkpl"]
+script = ExtResource("13_5fewd")
+points = Array[ExtResource("12_vh7sk")]([])
+
 [sub_resource type="Resource" id="Resource_2c301"]
 script = ExtResource("13_4tfux")
 weight_texture_generator_type = 2
@@ -102,3 +108,4 @@ stop_condition_params = SubResource("Resource_ie4ge")
 clear_color_type = 0
 clear_color_params = SubResource("Resource_w6vgs")
 weight_texture_generator_params = SubResource("Resource_2c301")
+user_mask_params = SubResource("Resource_8mkpl")

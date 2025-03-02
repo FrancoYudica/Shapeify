@@ -19,6 +19,8 @@ var _blend_mode := BlendMode.ALPHA_BLENDING
 
 var rd: RenderingDevice
 
+var clear_color := Color.TRANSPARENT
+
 enum FramebufferAttachment{
 	COLOR,
 	UID
@@ -88,7 +90,7 @@ func render_sprite(
 	id: float = 0):
 	
 	if texture == null:
-		printerr("Trying to render sprite with invalid texture")
+		push_error("Trying to render sprite with null texture")
 		return
 	
 	# Gets local texture
@@ -329,7 +331,7 @@ func flush() -> void:
 		
 		# Color framebuffer clears with transparent color
 		# ID framebuffer clears with black color
-		PackedColorArray([Color.TRANSPARENT, Color.BLACK])
+		PackedColorArray([clear_color, Color.BLACK])
 	)
 	rd.draw_list_bind_uniform_set(draw_list, uniform_set_rid, 0)
 	rd.draw_list_bind_render_pipeline(draw_list, _pipeline)
