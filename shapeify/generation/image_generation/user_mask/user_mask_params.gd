@@ -1,5 +1,7 @@
 class_name UserMaskParams extends Resource
 
+signal cleared
+
 @export var points: Array[UserMaskPoint] = []:
 	set(value):
 		if value != points:
@@ -9,3 +11,7 @@ class_name UserMaskParams extends Resource
 func add_points(new_points: Array[UserMaskPoint]):
 	points.append_array(new_points)
 	emit_changed()
+
+func clear():
+	points.clear()
+	cleared.emit()

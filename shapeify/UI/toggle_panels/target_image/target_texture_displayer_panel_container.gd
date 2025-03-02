@@ -1,19 +1,10 @@
 extends PanelContainer
 
+signal master_renderer_params_set
+
 @export var texture_rect: TextureRect
 @export var aspect_ratio_container: AspectRatioContainer
 
-var camera_normalized_translation := Vector2.ZERO:
-	set(value):
-		if camera_normalized_translation != value:
-			camera_normalized_translation = value
-			master_renderer_params.camera_view_params.normalized_translation = camera_normalized_translation
-
-var camera_zoom := 1.0:
-	set(value):
-		if camera_zoom != value:
-			camera_zoom = value
-			master_renderer_params.camera_view_params.zoom = camera_zoom
 
 var master_renderer_params: MasterRendererParams:
 	set(value):
@@ -22,6 +13,7 @@ var master_renderer_params: MasterRendererParams:
 			master_renderer_params = value
 			master_renderer_params.changed.connect(invalidate)
 			invalidate()
+			master_renderer_params_set.emit() 
 
 var _local_renderer: LocalRenderer
 

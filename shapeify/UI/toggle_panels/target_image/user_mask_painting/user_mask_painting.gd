@@ -12,6 +12,9 @@ var _current_texture: Texture2D
 var _local_renderer: LocalRenderer
 var _invalidated: bool = false
 var _painting: bool = false
+var user_mask_params: UserMaskParams:
+	get:
+		return Globals.settings.image_generator_params.user_mask_params
 
 func _ready() -> void:
 	_local_renderer = LocalRenderer.new()
@@ -24,13 +27,25 @@ func _ready() -> void:
 			if _invalidated:
 				_render()
 				_invalidated = false)
-	drag_and_zoom_handler.updated.connect(invalidate)
+				
+	drag_and_zoom_handler.get_parent().ready.connect(
+		func():
+			drag_and_zoom_handler.camera_view.changed.connect(invalidate))
 	
-	ImageGeneration.target_texture_updated.connect(
-		func(): 
-			_sets_of_points.clear()
-			invalidate())
+	ImageGeneration.target_texture_updated.connect(_clear)
+	Globals.image_generator_params_updated.connect(
+		func():
+			if not user_mask_params.cleared.is_connected(_clear):
+				user_mask_params.cleared.connect(_clear)
+			_clear()
+	)
 	
+	user_mask_params.cleared.connect(_clear)
+	
+
+func _clear():
+	_sets_of_points.clear()
+	invalidate()
 
 var _previous_mouse_pos: Vector2
 
@@ -86,7 +101,7 @@ func undo():
 		points.append_array(point_set)
 	
 	# Sets the user mask points
-	Globals.settings.image_generator_params.user_mask_params.points = points
+	user_mask_params.points = points
 	invalidate()
 
 func invalidate():
@@ -99,7 +114,7 @@ func _add_point(pos: Vector2):
 			
 	var point = UserMaskPoint.new()
 	point.normalized_position = drag_and_zoom_handler.normalized_local_to_world(pos / size)
-	point.normalized_size = Vector2.ONE * brush_size / drag_and_zoom_handler.current_zoom
+	point.normalized_size = Vector2.ONE * brush_size / drag_and_zoom_handler.camera_view.zoom
 	point.texture = _current_texture
 	_sets_of_points.back().append(point)
 	invalidate()
@@ -112,8 +127,8 @@ func _render():
 	
 	_local_renderer.begin_frame(
 		size,
-		drag_and_zoom_handler.current_zoom,
-		drag_and_zoom_handler.current_translation * size)
+		drag_and_zoom_handler.camera_view.zoom,
+		drag_and_zoom_handler.camera_view.normalized_translation * size)
 	
 	_local_renderer.render_clear(Color.TRANSPARENT)
 	

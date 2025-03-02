@@ -1,5 +1,7 @@
 class_name MasterRendererOutput extends PanelContainer
 
+signal master_renderer_params_set
+
 @export var texture_rect: TextureRect
 @export var aspect_ratio_conatiner: AspectRatioContainer
 
@@ -10,18 +12,6 @@ var _local_renderer: LocalRenderer
 ## If the current output is invalidated, the output texture must be rendered again
 var _invalidated = false
 
-var camera_normalized_translation := Vector2.ZERO:
-	set(value):
-		if camera_normalized_translation != value:
-			camera_normalized_translation = value
-			master_renderer_params.camera_view_params.normalized_translation = camera_normalized_translation
-
-var camera_zoom := 1.0:
-	set(value):
-		if camera_zoom != value:
-			camera_zoom = value
-			master_renderer_params.camera_view_params.zoom = camera_zoom
-
 var master_renderer_params: MasterRendererParams:
 	set(value):
 		
@@ -29,7 +19,7 @@ var master_renderer_params: MasterRendererParams:
 			master_renderer_params = value
 			master_renderer_params.changed.connect(invalidate)
 			invalidate()
-
+			master_renderer_params_set.emit()
 
 func _ready() -> void:
 	

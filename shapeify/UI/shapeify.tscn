@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ba1sfkw5c37x6"]
+[gd_scene load_steps=66 format=3 uid="uid://ba1sfkw5c37x6"]
 
 [ext_resource type="Script" path="res://UI/shapeify.gd" id="1_ml6hm"]
 [ext_resource type="Script" path="res://UI/genart_icon_texture_rect.gd" id="2_ew8kv"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://boklrx1jya68l" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.tscn" id="30_xn3nu"]
 [ext_resource type="Texture2D" uid="uid://c3kuu10cgj770" path="res://art/textures/icons/upload.png" id="32_jecpt"]
 [ext_resource type="Script" path="res://UI/toggle_panels/target_image/load_target_texture_button.gd" id="33_4gldu"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/clear_user_mask_button.gd" id="34_enhx5"]
 [ext_resource type="Script" path="res://UI/toggle_panels_container.gd" id="34_f8xhb"]
 [ext_resource type="PackedScene" uid="uid://bfptu7crdcs01" path="res://UI/toggle_panels/info/info_panel.tscn" id="35_7d8ye"]
 [ext_resource type="PackedScene" uid="uid://bve6cjoaqrkdp" path="res://UI/toggle_panels/post_processing/post_processing_display_panel.tscn" id="36_4sk8p"]
@@ -521,16 +522,25 @@ icon = ExtResource("27_va5ow")
 script = ExtResource("28_h3uq5")
 split_container = NodePath("../../../../..")
 
-[node name="ResetCameraViewButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("drag_and_drop_handlers")]
+[node name="ResetCameraViewButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-tooltip_text = "Rotate textures"
+tooltip_text = "Sets zoom and translation to default values"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_nw5bv")
 text = "Reset camera view"
 script = ExtResource("36_njjb7")
-drag_and_drop_handlers = [NodePath("../../../../../OutputPanelContainer/GeneratedTextureRect/DragAndZoomHandler"), NodePath("../../../TargetTextureDisplayerPanelContainer/DragAndZoomHandler")]
+
+[node name="ClearUserMaskButton" type="Button" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "Clears the user painted mask"
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_nw5bv")
+text = "Clear mask"
+script = ExtResource("34_enhx5")
 
 [node name="TargetTextureDisplayerPanelContainer" type="PanelContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer" node_paths=PackedStringArray("texture_rect", "aspect_ratio_container")]
 layout_mode = 2
