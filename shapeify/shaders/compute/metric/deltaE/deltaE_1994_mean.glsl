@@ -32,6 +32,8 @@ layout(rgba8, set = 2, binding = 0) uniform
     restrict readonly image2D source_image;
 layout(rgba8, set = 3, binding = 0) uniform
     restrict readonly image2D weight_image;
+layout(rgba8, set = 4, binding = 0) uniform
+    restrict readonly image2D mask_image;
 
 // Variable shared by invocations of the same work group
 shared float shared_partial_sums[gl_WorkGroupSize.x];
@@ -48,6 +50,7 @@ MetricData compute_delta_e(uint x, uint y)
     vec4 target_pixel = imageLoad(target_image, ivec2(x, y));
     vec4 source_pixel = imageLoad(source_image, ivec2(x, y));
     vec4 weight_pixel = imageLoad(weight_image, ivec2(x, y));
+    float mask_value = imageLoad(mask_image, ivec2(x, y)).r;
 
     // Compute colors in CEILab color space
     vec3 target_lab = rgb2lab(target_pixel.rgb);
@@ -60,7 +63,9 @@ MetricData compute_delta_e(uint x, uint y)
 
     // Maps weight from range [0.0, 1.0] to range [MIN_WEIGHT_BOUND, 1.0]
     float mapped_weight = MIN_WEIGHT_BOUND + normalized_weight * (1.0 - MIN_WEIGHT_BOUND);
-    return MetricData(pixel_delta_e * mapped_weight, mapped_weight);
+    return MetricData(
+        pixel_delta_e * mapped_weight * mask_value,
+        mapped_weight * mask_value);
 }
 
 void main()

@@ -5,7 +5,7 @@ extends Control
 @export var texture_sub_viewport: SubViewport
 @export var output_texture_rect: TextureRect
 
-var brush_size: float = 0.1
+var brush_size: float = 0.15
 
 var _sets_of_points: Array[Array] = []
 var _current_texture: Texture2D
@@ -32,7 +32,10 @@ func _ready() -> void:
 		func():
 			drag_and_zoom_handler.camera_view.changed.connect(invalidate))
 	
-	ImageGeneration.target_texture_updated.connect(_clear)
+	ImageGeneration.target_texture_updated.connect(
+		func():
+			user_mask_params.clear()
+			_clear())
 	Globals.image_generator_params_updated.connect(
 		func():
 			if not user_mask_params.cleared.is_connected(_clear):

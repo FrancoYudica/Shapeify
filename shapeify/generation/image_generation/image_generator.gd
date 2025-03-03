@@ -65,9 +65,6 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 				params.user_mask_params.points,
 				target_texture.get_size())
 			
-			#_multiply_textures_img_processor.b_texture = user_mask_texture
-			#weight_texture = _multiply_textures_img_processor.process_image(weight_texture)
-			
 			DebugSignals.updated_weight_texture.emit(weight_texture)
 			DebugSignals.updated_user_mask_texture.emit(user_mask_texture)
 			
@@ -141,7 +138,8 @@ func _init() -> void:
 func _compute_similarity() -> void:
 	# Computes the current normalized progress -----------------------------------------------------
 	_similarity_delta_e_metric.target_texture = target_texture
-	_similarity_delta_e_metric.weight_texture = user_mask_texture
+	_similarity_delta_e_metric.weight_texture = weight_texture
+	_similarity_delta_e_metric.mask_texture = user_mask_texture
 	metric_value = _similarity_delta_e_metric.compute(source_texture)
 	
 	# Normalizes deltaE progress from range [0.0, 100.0]
