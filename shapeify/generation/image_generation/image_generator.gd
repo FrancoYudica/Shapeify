@@ -51,11 +51,9 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 			break
 		_stop_mutex.unlock()
 		
-		# Computes the similarity between the target and source texture
-		_compute_similarity()
 		
 		# Generates weight texture every X shapes
-		if iteration % 20 == 0:
+		if iteration % params.textures_update_interval == 0:
 			weight_texture = _weight_texture_generator.generate(
 				similarity,
 				target_texture,
@@ -65,10 +63,18 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 				params.user_mask_params.points,
 				target_texture.get_size())
 			
+			# Updates the shape spawner
+			shape_generator.update_spawner(similarity, weight_texture, user_mask_texture)
+			
+			#_multiply_textures_img_processor.b_texture = user_mask_texture
+			#weight_texture = _multiply_textures_img_processor.process_image(weight_texture)
+			
 			DebugSignals.updated_weight_texture.emit(weight_texture)
 			DebugSignals.updated_user_mask_texture.emit(user_mask_texture)
 			
-			
+		# Computes the similarity between the target and source texture
+		_compute_similarity()
+
 		if weight_texture == null:
 			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
 			break

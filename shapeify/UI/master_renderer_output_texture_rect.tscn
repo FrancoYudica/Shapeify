@@ -19,6 +19,7 @@ aspect_ratio_conatiner = NodePath("AspectRatioContainer")
 layout_mode = 2
 
 [node name="OutputTextureRect" type="TextureRect" parent="AspectRatioContainer"]
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1

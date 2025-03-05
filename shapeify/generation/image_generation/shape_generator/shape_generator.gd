@@ -22,8 +22,6 @@ var params: ShapeGeneratorParams:
 	set(value):
 		params = value
 
-var generated_count = 0
-
 func setup() -> void:
 	if params == null:
 		printerr("IndividialGenerator not initialized")
@@ -36,21 +34,27 @@ func finished() -> void:
 	_color_sampler_strategy = null
 	weight_texture = null
 
+func update_spawner(
+	similarity: float,
+	weight_texture: LocalTexture,
+	mask_texture: LocalTexture
+) -> void:
+	self.weight_texture = weight_texture
+	self.mask_texture = mask_texture
+	_shape_spawner.update(
+		similarity, 
+		target_texture, 
+		source_texture,
+		weight_texture,
+		mask_texture)
+
 func generate_shape(similarity: float) -> Shape:
 	
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
 		
-	if generated_count % 20 == 0:
-		_shape_spawner.update(
-			similarity, 
-			target_texture, 
-			source_texture,
-			weight_texture,
-			mask_texture)
 	var shape = _generate(similarity)
-	generated_count += 1
 	
 	Profiler.shape_generation_finished(
 		shape,
@@ -58,8 +62,6 @@ func generate_shape(similarity: float) -> Shape:
 	return shape
 
 func _setup():
-	
-	generated_count = 0
 	
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)

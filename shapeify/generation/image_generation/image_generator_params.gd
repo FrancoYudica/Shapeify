@@ -58,6 +58,13 @@ enum Type
 		user_mask_params = value
 		emit_changed()
 
+## Amount of generated shapes before the textures get updated
+@export var textures_update_interval: int = 5:
+	set(value):
+		if value != textures_update_interval:
+			textures_update_interval = value
+			emit_changed()
+
 func to_dict():
 	return {
 		"stop_condition": StopCondition.Type.keys()[stop_condition],

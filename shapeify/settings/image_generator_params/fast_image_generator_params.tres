@@ -111,3 +111,4 @@ clear_color_params = SubResource("Resource_yuk3t")
 weight_texture_generator_params = SubResource("Resource_jwfuf")
 target_texture = ExtResource("12_vqt4l")
 user_mask_params = SubResource("Resource_ict54")
+textures_update_interval = 10

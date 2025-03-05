@@ -109,3 +109,4 @@ clear_color_type = 0
 clear_color_params = SubResource("Resource_rjnk8")
 weight_texture_generator_params = SubResource("Resource_tbdou")
 user_mask_params = SubResource("Resource_kwquk")
+textures_update_interval = 3

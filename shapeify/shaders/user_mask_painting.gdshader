@@ -7,10 +7,10 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	vec3 screen = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	vec4 mask = texture(TEXTURE, UV);
-	
+
 	COLOR = vec4(vec3(1.0f) - screen, mask.a);
 }
 
