@@ -484,14 +484,6 @@ theme_override_constants/margin_bottom = 8
 script = ExtResource("26_t35o0")
 panel = NodePath("../../..")
 
-[node name="Label" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 14
-text = "Target image"
-vertical_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -553,7 +545,6 @@ aspect_ratio_container = NodePath("AspectRatioContainer")
 
 [node name="DragAndZoomHandler" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer" instance=ExtResource("26_b71jd")]
 layout_mode = 2
-mouse_filter = 0
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer"]
 layout_mode = 2

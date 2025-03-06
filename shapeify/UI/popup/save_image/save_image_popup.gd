@@ -67,9 +67,7 @@ func _oppened():
 	
 	_set_final_resolution_scale(scale_spin_box.value)
 	output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
-	output_texture_rect.master_renderer_params.camera_view_params.zoom = 1.0
-	output_texture_rect.master_renderer_params.camera_view_params.normalized_translation = Vector2.ZERO
-
+	output_texture_rect.master_renderer_params.camera_view_params = CameraViewParams.new()
 	
 func _save():
 	file_dialog.clear_filters()
