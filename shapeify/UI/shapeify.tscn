@@ -553,6 +553,7 @@ aspect_ratio_container = NodePath("AspectRatioContainer")
 
 [node name="DragAndZoomHandler" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer" instance=ExtResource("26_b71jd")]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer"]
 layout_mode = 2
@@ -563,9 +564,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 expand_mode = 1
 
-[node name="UserWeightPainting" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer/AspectRatioContainer" node_paths=PackedStringArray("drag_and_zoom_handler") instance=ExtResource("30_xn3nu")]
+[node name="UserWeightPainting" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/TargetTextureDisplayerPanelContainer/AspectRatioContainer" node_paths=PackedStringArray("drag_and_zoom_handler", "target_texture_rect") instance=ExtResource("30_xn3nu")]
 layout_mode = 2
 drag_and_zoom_handler = NodePath("../../DragAndZoomHandler")
+target_texture_rect = NodePath("../TargetTextureRect")
 
 [node name="DragAndDropLoader" type="Node" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer" node_paths=PackedStringArray("target_image_loader")]
 script = ExtResource("29_ux5ae")

@@ -20,7 +20,7 @@ shader_parameter/smoothing = 0.05
 shader_parameter/inner_radius = 0.9
 shader_parameter/rotating = 0.0
 
-[node name="UserMaskPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "output_texture_rect")]
+[node name="UserMaskPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "mask_texture_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +30,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_044v2")
 texture_sub_viewport = NodePath("SubViewport")
-output_texture_rect = NodePath("TextureRect")
+mask_texture_rect = NodePath("TextureRect")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
