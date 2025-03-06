@@ -52,7 +52,10 @@ func _set_final_resolution_scale(scale):
 	final_resolution_label.text = "%sx%s" % [
 		int(target_texture_size.x * scale),
 		int(target_texture_size.y * scale)]
-	
+
+func _exit_tree() -> void:
+	_local_renderer.delete()
+	_local_renderer = null
 
 func _oppened():
 

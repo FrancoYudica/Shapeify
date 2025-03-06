@@ -32,6 +32,10 @@ func _ready() -> void:
 	ImageGeneration.target_texture_updated.connect(invalidate)
 	master_renderer_params = ImageGeneration.master_renderer_params
 
+func _exit_tree() -> void:
+	_local_renderer.delete()
+	_local_renderer = null
+
 func invalidate():
 	_invalidated = true
 

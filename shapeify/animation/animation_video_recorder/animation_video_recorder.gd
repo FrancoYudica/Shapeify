@@ -25,6 +25,10 @@ func _init() -> void:
 	_local_renderer = LocalRenderer.new()
 	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
 	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_local_renderer.delete()
+		_local_renderer = null
 
 func record(
 	animation_player: ShapeAnimationPlayer,
