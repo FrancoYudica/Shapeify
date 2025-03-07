@@ -152,4 +152,3 @@ func _compute_similarity() -> void:
 	var max_error = 0.31
 	var mapped_similarity = -(max_error - metric_value) / max_error
 	similarity = clampf(1.0 - mapped_similarity * 0.01, 0.0, 1.0)
-	

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=27 format=3 uid="uid://cibakl315gox5"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=30 format=3 uid="uid://cibakl315gox5"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="1_862a1"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="2_6r33r"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="8_7cw7v"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="9_xjhiu"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="10_f25yh"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/size_initializers/shape_size_initializer_params.gd" id="10_x6ucg"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="12_asq30"]
 [ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_point.gd" id="12_vh7sk"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="13_4tfux"]
@@ -55,18 +56,27 @@ rotation_mutation_weight = 2
 [sub_resource type="Resource" id="Resource_voc3v"]
 script = ExtResource("9_xjhiu")
 
+[sub_resource type="Curve" id="Curve_e8i8y"]
+_data = [Vector2(0, 1), 0.0, -3.112, 0, 0, Vector2(1, 0.0285857), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_0aupg"]
+script = ExtResource("10_x6ucg")
+curve = SubResource("Curve_e8i8y")
+
 [sub_resource type="Resource" id="Resource_mfjqq"]
 script = ExtResource("10_f25yh")
 
 [sub_resource type="Resource" id="Resource_t3k8h"]
 script = ExtResource("8_7cw7v")
 shape_position_initializer_type = 2
-shape_size_initializer_type = 3
+shape_size_initializer_type = 4
 shape_rotation_initializer_type = 0
 shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_voc3v")
 shape_texture_initializer_params = SubResource("Resource_mfjqq")
+shape_size_initializer_params = SubResource("Resource_0aupg")
 textures = Array[Texture2D]([])
 
 [sub_resource type="Resource" id="Resource_kj72u"]

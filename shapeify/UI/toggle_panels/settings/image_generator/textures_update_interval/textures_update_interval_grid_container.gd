@@ -10,6 +10,7 @@ func _ready() -> void:
 			Globals.settings.image_generator_params.textures_update_interval = value
 	)
 	Globals.image_generator_params_updated.connect(_update)
+	_update()
 
 func _update() -> void:
 	spin_box.set_value_no_signal(Globals.settings.image_generator_params.textures_update_interval)
