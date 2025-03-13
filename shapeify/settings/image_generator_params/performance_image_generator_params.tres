@@ -70,7 +70,7 @@ script = ExtResource("12_vd1vx")
 [sub_resource type="Resource" id="Resource_ghcdf"]
 script = ExtResource("9_d136q")
 shape_position_initializer_type = 2
-shape_size_initializer_type = 3
+shape_size_initializer_type = 4
 shape_rotation_initializer_type = 0
 shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0

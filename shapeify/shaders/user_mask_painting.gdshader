@@ -11,10 +11,7 @@ void fragment() {
 	vec3 screen = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	vec4 mask = texture(TEXTURE, UV);
 
-	COLOR = vec4(vec3(1.0f) - screen, mask.a);
+	vec4 inv_color = vec4(vec3(1.0f) - screen, 1.0);
+	vec4 base_color = vec4(vec3(0.0f), 0.0);
+	COLOR = mix(base_color, inv_color, mask.a);
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}

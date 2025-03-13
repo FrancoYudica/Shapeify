@@ -3,6 +3,11 @@ extends ColorRect
 
 func _ready() -> void:
 	visible = false
+	get_parent().resized.connect(
+		func():
+			var parent_size = get_parent().size
+			size.x = parent_size.x * get_parent().brush_size
+			size.y = size.x)
 
 var _hovered: bool = false
 

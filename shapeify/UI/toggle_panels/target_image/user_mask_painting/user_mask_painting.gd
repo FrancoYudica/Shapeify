@@ -141,6 +141,9 @@ func _render():
 	if not is_visible_in_tree():
 		return
 	
+	if size.length() == 0:
+		return
+	
 	_local_renderer.begin_frame(
 		size,
 		drag_and_zoom_handler.camera_view.zoom,
