@@ -11,12 +11,17 @@ enum Type{
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
+var _texture_multiply_processor: TextureMultiplyImageProcessor
 var _shape_spawner: ShapeSpawner
 
-var weight_texture: LocalTexture
 var target_texture: LocalTexture
 var source_texture: LocalTexture
+var weight_texture: LocalTexture
 var mask_texture: LocalTexture
+
+# Applies mask texture to weight texture. This is useful for filtering weight regions
+# used in fitness calculators
+var masked_weight_texture: LocalTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
@@ -41,6 +46,9 @@ func update_spawner(
 ) -> void:
 	self.weight_texture = weight_texture
 	self.mask_texture = mask_texture
+	_texture_multiply_processor.b_texture = weight_texture
+	self.masked_weight_texture = _texture_multiply_processor.process_image(mask_texture)
+	
 	_shape_spawner.update(
 		similarity, 
 		target_texture, 
@@ -66,9 +74,11 @@ func _setup():
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)
 	
-	# Setup color sampler strategy ---------------------------------------------
 	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 	_color_sampler_strategy.sample_texture = target_texture
+	
+	_texture_multiply_processor = ImageProcessor.factory_create(ImageProcessor.Type.TEXTURE_MULTIPLY)
+	
 	
 func _generate(similarity: float) -> Shape:
 	return

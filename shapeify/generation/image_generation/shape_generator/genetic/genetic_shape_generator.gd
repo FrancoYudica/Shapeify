@@ -11,7 +11,7 @@ func _generate(similarity: float) -> Shape:
 	
 	var genetic_params := params.genetic_params
 	
-	_fitness_calculator.weight_texture = weight_texture
+	_fitness_calculator.weight_texture = self.masked_weight_texture
 	
 	# Creates population
 	var population: Array[Individual] = []
