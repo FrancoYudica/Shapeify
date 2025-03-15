@@ -113,5 +113,6 @@ Here are some examples demonstrating Shapeify's versatility, using different sha
 <img src="https://github.com/user-attachments/assets/d430de88-51de-4205-b1e0-56ff1cab9419" title="Flowers 200 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/e8559b60-c30f-4012-82b6-08838c8deae3" title="Dog 300 shapes" style="vertical-align: top;" width=400>
 <img src="https://github.com/user-attachments/assets/0df989fd-d0aa-41f0-b515-4e6e6d7497b8" title="Smoking 300 shapes" style="vertical-align: top;" width=400>
-
+<img src="https://github.com/user-attachments/assets/ed774f82-cd45-433c-bc59-5cd6e9e11046" title="Bottles 1400 different shapes" style="vertical-align: top;" width=800>
+  
 </div>
