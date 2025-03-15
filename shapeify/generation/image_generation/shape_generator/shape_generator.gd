@@ -11,17 +11,21 @@ enum Type{
 }
 
 var _color_sampler_strategy: ColorSamplerStrategy
+var _texture_multiply_processor: TextureMultiplyImageProcessor
 var _shape_spawner: ShapeSpawner
 
-var weight_texture: LocalTexture
 var target_texture: LocalTexture
 var source_texture: LocalTexture
+var weight_texture: LocalTexture
+var mask_texture: LocalTexture
+
+# Applies mask texture to weight texture. This is useful for filtering weight regions
+# used in fitness calculators
+var masked_weight_texture: LocalTexture
 
 var params: ShapeGeneratorParams:
 	set(value):
 		params = value
-
-var generated_count = 0
 
 func setup() -> void:
 	if params == null:
@@ -35,20 +39,30 @@ func finished() -> void:
 	_color_sampler_strategy = null
 	weight_texture = null
 
+func update_spawner(
+	similarity: float,
+	weight_texture: LocalTexture,
+	mask_texture: LocalTexture
+) -> void:
+	self.weight_texture = weight_texture
+	self.mask_texture = mask_texture
+	_texture_multiply_processor.b_texture = weight_texture
+	self.masked_weight_texture = _texture_multiply_processor.process_image(mask_texture)
+	
+	_shape_spawner.update(
+		similarity, 
+		target_texture, 
+		source_texture,
+		weight_texture,
+		mask_texture)
+
 func generate_shape(similarity: float) -> Shape:
 	
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
 		
-	if generated_count % 20 == 0:
-		_shape_spawner.update(
-			similarity, 
-			target_texture, 
-			source_texture,
-			weight_texture)
 	var shape = _generate(similarity)
-	generated_count += 1
 	
 	Profiler.shape_generation_finished(
 		shape,
@@ -57,14 +71,14 @@ func generate_shape(similarity: float) -> Shape:
 
 func _setup():
 	
-	generated_count = 0
-	
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)
 	
-	# Setup color sampler strategy ---------------------------------------------
 	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 	_color_sampler_strategy.sample_texture = target_texture
+	
+	_texture_multiply_processor = ImageProcessor.factory_create(ImageProcessor.Type.TEXTURE_MULTIPLY)
+	
 	
 func _generate(similarity: float) -> Shape:
 	return

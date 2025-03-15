@@ -13,11 +13,14 @@ var _similarity_delta_e_metric: DeltaEMetric
 
 var _generating: bool = false
 var _weight_texture_generator: WeightTextureGenerator
+var _user_mask_generator: UserMaskGenerator
+var _multiply_textures_img_processor := TextureMultiplyImageProcessor.new()
 
 var metric_value: float = 0.0
 var similarity: float = 0.0
 
 var weight_texture: LocalTexture
+var user_mask_texture: LocalTexture
 var target_texture: LocalTexture
 var source_texture: LocalTexture
 
@@ -48,17 +51,30 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 			break
 		_stop_mutex.unlock()
 		
-		# Computes the similarity between the target and source texture
-		_compute_similarity()
 		
 		# Generates weight texture every X shapes
-		if iteration % 20 == 0:
+		if iteration % params.textures_update_interval == 0:
 			weight_texture = _weight_texture_generator.generate(
 				similarity,
 				target_texture,
 				source_texture)
-			DebugSignals.updated_weight_texture.emit(weight_texture)
 			
+			user_mask_texture = _user_mask_generator.generate_mask(
+				params.user_mask_params.points,
+				target_texture.get_size())
+			
+			# Updates the shape spawner
+			shape_generator.update_spawner(similarity, weight_texture, user_mask_texture)
+			
+			#_multiply_textures_img_processor.b_texture = user_mask_texture
+			#weight_texture = _multiply_textures_img_processor.process_image(weight_texture)
+			
+			DebugSignals.updated_weight_texture.emit(weight_texture)
+			DebugSignals.updated_user_mask_texture.emit(user_mask_texture)
+			
+		# Computes the similarity between the target and source texture
+		_compute_similarity()
+
 		if weight_texture == null:
 			Notifier.call_deferred("notify_error", "Weight texture is null. Ensure a weight texture is specified")
 			break
@@ -68,6 +84,7 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 			break
 		
 		shape_generator.weight_texture = weight_texture
+		shape_generator.mask_texture = user_mask_texture
 		
 		# Generates Shape
 		var shape: Shape = shape_generator.generate_shape(similarity)
@@ -122,14 +139,16 @@ func setup(first_source_texture: LocalTexture):
 	
 func _init() -> void:
 	_similarity_delta_e_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
+	_user_mask_generator = UserMaskGenerator.new()
 
 func _compute_similarity() -> void:
 	# Computes the current normalized progress -----------------------------------------------------
 	_similarity_delta_e_metric.target_texture = target_texture
+	_similarity_delta_e_metric.weight_texture = weight_texture
+	_similarity_delta_e_metric.mask_texture = user_mask_texture
 	metric_value = _similarity_delta_e_metric.compute(source_texture)
 	
 	# Normalizes deltaE progress from range [0.0, 100.0]
 	var max_error = 0.31
 	var mapped_similarity = -(max_error - metric_value) / max_error
 	similarity = clampf(1.0 - mapped_similarity * 0.01, 0.0, 1.0)
-	

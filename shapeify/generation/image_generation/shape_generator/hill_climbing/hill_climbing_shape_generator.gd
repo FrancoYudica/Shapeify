@@ -3,7 +3,6 @@ extends ShapeGenerator
 
 var _fitness_calculator: FitnessCalculator
 var _max_age: int = 0
-var _progress_metric: Metric
 var _normalized_progress: float = 0.0
 
 # Not all attributes have the same probability of getting chosen for mutation.
@@ -30,7 +29,7 @@ func mutate(shape: Shape) -> void:
 func _generate(similarity: float) -> Shape:
 
 	 # Updates the weight texture of the fitness calculator
-	_fitness_calculator.weight_texture = weight_texture
+	_fitness_calculator.weight_texture = self.masked_weight_texture
 	
 	var best_individual: Individual
 	
@@ -100,9 +99,6 @@ func _setup():
 	
 	_max_age = hill_climbing_params.max_age
 
-	_progress_metric = Metric.factory_create(Metric.Type.DELTA_E_1976)
-	_progress_metric.target_texture = target_texture
-	
 	# Creates the CDF. Note that the order matches the indices used in mutate
 	_attribute_mutation_cdf = CDFSampler.probabilities_to_cdf([
 		hill_climbing_params.position_mutation_weight, 
@@ -112,5 +108,4 @@ func _setup():
 func finished():
 	super.finished()
 	_fitness_calculator = null
-	_progress_metric = null
 	

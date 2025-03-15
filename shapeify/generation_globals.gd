@@ -10,3 +10,7 @@ func _enter_tree() -> void:
 	
 	renderer = LocalRenderer.new()
 	renderer.initialize(algorithm_rd)
+
+func _exit_tree() -> void:
+	renderer.delete()
+	renderer = null

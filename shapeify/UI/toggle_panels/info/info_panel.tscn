@@ -15,7 +15,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_lkx0d")
-debug_texture_holders = [NodePath("Debug/DebugWeightTextureHolder"), NodePath("Debug/DebugPositionSpawnTextureHolder"), NodePath("Debug/DebugSizeSpawnTextureHolder")]
+debug_texture_holders = [NodePath("Debug/DebugWeightTextureHolder"), NodePath("Debug/DebugPositionSpawnTextureHolder"), NodePath("Debug/DebugSizeSpawnTextureHolder"), NodePath("Debug/DebugUserMaskTextureHolder")]
 shape_count_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/ShapeCountValue")
 time_taken_value_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/TimeTakenValue")
 metric_score_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/MetricScoreValue")
@@ -126,3 +126,8 @@ texture_name = "Spawn position probability"
 script = ExtResource("4_k1npr")
 debug_signal_name = "updated_spawn_size_texture"
 texture_name = "Spawn size"
+
+[node name="DebugUserMaskTextureHolder" type="Node" parent="Debug" index="3"]
+script = ExtResource("4_k1npr")
+debug_signal_name = "updated_user_mask_texture"
+texture_name = "User mask"

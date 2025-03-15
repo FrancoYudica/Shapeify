@@ -349,8 +349,8 @@ bg_color = Color(0.0771997, 0.078834, 0.0804688, 1)
 [resource]
 default_font = ExtResource("6_0n4my")
 default_font_size = 0
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_pressed_color = Color(0.727683, 0.82438, 0.976732, 1)
 Button/colors/icon_pressed_color = Color(0.6, 0.741176, 0.964706, 1)
 Button/constants/icon_max_width = 28

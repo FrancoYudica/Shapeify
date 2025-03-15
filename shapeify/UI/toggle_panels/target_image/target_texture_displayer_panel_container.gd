@@ -1,16 +1,10 @@
-class_name MasterRendererOutput extends PanelContainer
+extends PanelContainer
 
 signal master_renderer_params_set
 
 @export var texture_rect: TextureRect
-@export var aspect_ratio_conatiner: AspectRatioContainer
+@export var aspect_ratio_container: AspectRatioContainer
 
-## Uses a local renderer so that rendering process doesn't interfere with
-## the image generation algorithm
-var _local_renderer: LocalRenderer
-
-## If the current output is invalidated, the output texture must be rendered again
-var _invalidated = false
 
 var master_renderer_params: MasterRendererParams:
 	set(value):
@@ -19,32 +13,24 @@ var master_renderer_params: MasterRendererParams:
 			master_renderer_params = value
 			master_renderer_params.changed.connect(invalidate)
 			invalidate()
-			master_renderer_params_set.emit()
+			master_renderer_params_set.emit() 
 
+var _local_renderer: LocalRenderer
+
+var _invalidated := true
+
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	# Creates local renderer
 	_local_renderer = LocalRenderer.new()
-	
-	# Uses the global rendering device. This way the texture update is faster
 	_local_renderer.initialize(RenderingServer.get_rendering_device())
-	
-	# Connects signals
-	texture_rect.resized.connect(invalidate)
-	visibility_changed.connect(
-		func():
-			if is_visible_in_tree():
-				invalidate())
+
 	RenderingServer.frame_pre_draw.connect(
 		func():
 			if _invalidated:
 				_render()
-				_present()
 				_invalidated = false)
-	
-# Returns mouse position relative to the top left of the texture rect
-func _get_local_mouse_position():
-	return texture_rect.get_local_mouse_position()
+	ImageGeneration.target_texture_updated.connect(invalidate)
+	master_renderer_params = ImageGeneration.master_renderer_params
 
 func _exit_tree() -> void:
 	_local_renderer.delete()
@@ -52,21 +38,38 @@ func _exit_tree() -> void:
 
 func invalidate():
 	_invalidated = true
-	
+
+var _previous_color_attachment: LocalTexture
+
 func _render():
 	
-	if master_renderer_params == null or not is_visible_in_tree():
+	if not is_visible_in_tree():
 		return
 	
 	var target_texture = Globals.settings.image_generator_params.target_texture
 	var aspect_ratio = float(target_texture.get_width()) / target_texture.get_height()
-	aspect_ratio_conatiner.ratio = aspect_ratio
-	MasterRenderer.render(_local_renderer, texture_rect.size, master_renderer_params)
+	aspect_ratio_container.ratio = aspect_ratio
+	
+	var translation = texture_rect.size * master_renderer_params.camera_view_params.normalized_translation
+	
+	_local_renderer.begin_frame(
+		texture_rect.size,
+		master_renderer_params.camera_view_params.zoom,
+		translation)
 
-
-var _previous_color_attachment: LocalTexture
-
-func _present():
+	_local_renderer.render_clear(master_renderer_params.clear_color)
+	
+	_local_renderer.render_sprite(
+		texture_rect.size * 0.5,
+		texture_rect.size,
+		0.0,
+		Color.WHITE,
+		target_texture,
+		0.0)
+	
+	_local_renderer.end_frame()
+	
+	
 	# Copies textures contents into TextureRect's texture
 	var color_attachment = _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	

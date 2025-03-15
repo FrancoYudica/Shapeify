@@ -13,7 +13,10 @@ class_name MasterRendererParams extends Resource
 			clear_color = value
 			emit_changed()
 
+@export var camera_view_params := CameraViewParams.new()
+
 @export var post_processing_pipeline_params: ShapeColorPostProcessingPipelineParams
 
 func setup_signals():
 	post_processing_pipeline_params.changed.connect(emit_changed)
+	camera_view_params.changed.connect(emit_changed)

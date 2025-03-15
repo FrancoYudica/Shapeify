@@ -158,8 +158,8 @@ textures = Array[Texture2D]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), E
 
 [resource]
 script = ExtResource("39_t5xji")
-version = "2.0.0"
-version_date = "21/02/2025"
+version = "2.1.0"
+version_date = "15/03/2025"
 render_scale = 1.0
 color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")

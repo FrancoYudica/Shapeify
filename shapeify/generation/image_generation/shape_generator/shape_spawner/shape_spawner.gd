@@ -22,11 +22,16 @@ func update(
 	similarity: float,
 	target_texture: LocalTexture,
 	source_texture: LocalTexture,
-	weight_texture: LocalTexture
+	weight_texture: LocalTexture,
+	mask_texture: LocalTexture
 ):
 	for attr_initializer in _shape_attribute_initializers:
 		attr_initializer.similarity = similarity
-		attr_initializer.update(target_texture, source_texture, weight_texture)
+		attr_initializer.update(
+			target_texture, 
+			source_texture, 
+			weight_texture,
+			mask_texture)
 
 func set_params(params: ShapeSpawnerParams):
 	

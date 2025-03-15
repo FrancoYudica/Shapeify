@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://boklrx1jya68l"]
+
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.gd" id="1_044v2"]
+[ext_resource type="Shader" path="res://shaders/user_weight_painting_gradient.gdshader" id="1_ctfa2"]
+[ext_resource type="Shader" path="res://shaders/user_mask_painting.gdshader" id="3_10vil"]
+[ext_resource type="Shader" path="res://shaders/user_paint_hint.gdshader" id="4_6221f"]
+[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/hint_color_rect.gd" id="5_7157x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gnjn"]
+shader = ExtResource("1_ctfa2")
+shader_parameter/inner_radius = 0.3
+shader_parameter/transparency = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m741x"]
+shader = ExtResource("3_10vil")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcjrx"]
+shader = ExtResource("4_6221f")
+shader_parameter/smoothing = 0.05
+shader_parameter/inner_radius = 0.9
+shader_parameter/rotating = 0.0
+
+[node name="UserMaskPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "mask_texture_rect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_044v2")
+texture_sub_viewport = NodePath("SubViewport")
+mask_texture_rect = NodePath("TextureRect")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="WeightBrushTextureRect" type="ColorRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_0gnjn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+material = SubResource("ShaderMaterial_m741x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="TextureRect"]
+copy_mode = 2
+
+[node name="HintColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lcjrx")
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+mouse_filter = 2
+script = ExtResource("5_7157x")

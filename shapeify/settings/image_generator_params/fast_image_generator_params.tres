@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=25 format=3 uid="uid://b51co6q6gxdls"]
+[gd_resource type="Resource" script_class="ImageGeneratorParams" load_steps=31 format=3 uid="uid://b51co6q6gxdls"]
 
 [ext_resource type="Script" path="res://generation/image_generation/clear_color/clear_color_params.gd" id="2_h23sq"]
 [ext_resource type="Script" path="res://generation/image_generation/image_generator_params.gd" id="3_ef2m5"]
@@ -8,11 +8,14 @@
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="7_d80gy"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="9_gvk0e"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="10_6sbek"]
+[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/size_initializers/shape_size_initializer_params.gd" id="10_i1fds"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="10_jxvfp"]
 [ext_resource type="Script" path="res://generation/image_generation/stop_condition/stop_condition_params.gd" id="11_fhf1i"]
 [ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="12_5asae"]
 [ext_resource type="Script" path="res://generation/metric/weight_texture_generator/weight_texture_generator_params.gd" id="12_br8hi"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="12_vqt4l"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_point.gd" id="13_5mjil"]
+[ext_resource type="Script" path="res://generation/image_generation/user_mask/user_mask_params.gd" id="14_oga71"]
 
 [sub_resource type="Resource" id="Resource_yuk3t"]
 script = ExtResource("2_h23sq")
@@ -54,18 +57,27 @@ rotation_mutation_weight = 2
 [sub_resource type="Resource" id="Resource_5ruvd"]
 script = ExtResource("10_jxvfp")
 
+[sub_resource type="Curve" id="Curve_yiy4b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_lb6cg"]
+script = ExtResource("10_i1fds")
+curve = SubResource("Curve_yiy4b")
+
 [sub_resource type="Resource" id="Resource_0a0m0"]
 script = ExtResource("12_5asae")
 
 [sub_resource type="Resource" id="Resource_134j0"]
 script = ExtResource("9_gvk0e")
 shape_position_initializer_type = 2
-shape_size_initializer_type = 3
+shape_size_initializer_type = 4
 shape_rotation_initializer_type = 0
 shape_tint_initializer_type = 0
 shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_5ruvd")
 shape_texture_initializer_params = SubResource("Resource_0a0m0")
+shape_size_initializer_params = SubResource("Resource_lb6cg")
 textures = Array[Texture2D]([])
 
 [sub_resource type="Resource" id="Resource_tkisg"]
@@ -89,6 +101,10 @@ execution_time = 100.0
 target_fitness = 0.9
 metric_type = 4
 
+[sub_resource type="Resource" id="Resource_ict54"]
+script = ExtResource("14_oga71")
+points = Array[ExtResource("13_5mjil")]([])
+
 [sub_resource type="Resource" id="Resource_jwfuf"]
 script = ExtResource("12_br8hi")
 weight_texture_generator_type = 2
@@ -104,3 +120,5 @@ clear_color_type = 0
 clear_color_params = SubResource("Resource_yuk3t")
 weight_texture_generator_params = SubResource("Resource_jwfuf")
 target_texture = ExtResource("12_vqt4l")
+user_mask_params = SubResource("Resource_ict54")
+textures_update_interval = 10

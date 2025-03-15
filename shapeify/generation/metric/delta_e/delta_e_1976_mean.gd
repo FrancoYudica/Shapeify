@@ -18,6 +18,7 @@ var _uniform_set_rid: RID
 var _target_texture_set_rid: RID
 var _weight_texture_set_rid: RID
 var _source_texture_set_rid: RID
+var _mask_texture_set_rid: RID
 
 
 func _target_texture_set():
@@ -34,9 +35,26 @@ func _weight_texture_set():
 	
 	_weight_texture_set_rid = _create_texture_uniform_set(weight_texture.rd_rid, 3)
 
+func _mask_texture_set():
+	
+	if _mask_texture_set_rid.is_valid() and _rd.uniform_set_is_valid(_mask_texture_set_rid):
+		_rd.free_rid(_mask_texture_set_rid)
+	
+	_mask_texture_set_rid = _create_texture_uniform_set(mask_texture.rd_rid, 4)
+
 var _previous_source_texture_rd_rid: RID
 
 func _compute(source_texture: LocalTexture) -> float:
+	
+	# If no mask texture is provided, a white mask texture is used instead
+	if mask_texture == null or mask_texture.get_size() != target_texture.get_size():
+		var image = ImageUtils.create_monochromatic_image(
+			target_texture.get_width(),
+			target_texture.get_height(),
+			Color.WHITE)
+		
+		var image_texture = ImageTexture.create_from_image(image)
+		mask_texture = LocalTexture.load_from_texture(image_texture, _rd)
 	
 	# This avoids creating new uniform sets when source texture is the same
 	if _previous_source_texture_rd_rid != source_texture.rd_rid:
@@ -68,6 +86,7 @@ func _compute(source_texture: LocalTexture) -> float:
 	_rd.compute_list_bind_uniform_set(compute_list, _target_texture_set_rid, 1)
 	_rd.compute_list_bind_uniform_set(compute_list, _source_texture_set_rid, 2)
 	_rd.compute_list_bind_uniform_set(compute_list, _weight_texture_set_rid, 3)
+	_rd.compute_list_bind_uniform_set(compute_list, _mask_texture_set_rid, 4)
 	_rd.compute_list_set_push_constant(compute_list, push_constant_byte_array, push_constant_byte_array.size())
 	_rd.compute_list_dispatch(
 		compute_list, 

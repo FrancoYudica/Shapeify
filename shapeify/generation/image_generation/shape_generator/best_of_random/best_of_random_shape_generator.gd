@@ -10,7 +10,7 @@ func _generate(similarity: float) -> Shape:
 		var shape = _shape_spawner.spawn_one(similarity)
 		population.append(Individual.from_shape(shape))
 	
-	_fitness_calculator.weight_texture = weight_texture
+	_fitness_calculator.weight_texture = self.masked_weight_texture
 	
 	# Queues all individuals for source texture rendering
 	for individual in population:

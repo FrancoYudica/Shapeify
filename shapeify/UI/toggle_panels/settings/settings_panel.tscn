@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cf2d23xngayf7"]
+[gd_scene load_steps=33 format=3 uid="uid://cf2d23xngayf7"]
 
 [ext_resource type="PackedScene" uid="uid://qeygpngl8xvw" path="res://UI/toggle_panels/toggle_panel.tscn" id="1_0ja06"]
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/preset_option_button.gd" id="2_25mp8"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/image_generator/clear_color/clear_color_type_controller.gd" id="14_pnytd"]
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/image_generator/clear_color/user_clear_color_controller.gd" id="15_t0gd6"]
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/image_generator/render_scale/render_scale_grid_container.gd" id="16_d6g40"]
+[ext_resource type="Script" path="res://UI/toggle_panels/settings/image_generator/textures_update_interval/textures_update_interval_grid_container.gd" id="17_fboc4"]
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/image_generator/weight_texture/weight_texture_generator_margin_container.gd" id="17_l2y3v"]
 [ext_resource type="PackedScene" uid="uid://wbiik8aan6o2" path="res://UI/toggle_panels/settings/weight_texture_generator_picker/weight_texture_picker.tscn" id="18_e3upt"]
 [ext_resource type="Script" path="res://UI/toggle_panels/settings/shape_generator/color_sampler_grid_container.gd" id="19_gbum6"]
@@ -301,7 +302,35 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="WeightTextureGeneratorPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer" index="3"]
+[node name="TextureUpdateIntervalPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("7_ex2cb")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureUpdateIntervalPanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TexturesUpdateIntervalGridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureUpdateIntervalPanelContainer/MarginContainer" index="0" node_paths=PackedStringArray("spin_box")]
+layout_mode = 2
+columns = 2
+script = ExtResource("17_fboc4")
+spin_box = NodePath("TexturesUpdateIntervalSpinBox")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureUpdateIntervalPanelContainer/MarginContainer/TexturesUpdateIntervalGridContainer" index="0"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+tooltip_text = "Textures update interval defines how many shapes are generated before updating textures such as weight and mask"
+mouse_filter = 1
+text = "Update interval"
+
+[node name="TexturesUpdateIntervalSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureUpdateIntervalPanelContainer/MarginContainer/TexturesUpdateIntervalGridContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeightTextureGeneratorPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer" index="4"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("7_ex2cb")
 

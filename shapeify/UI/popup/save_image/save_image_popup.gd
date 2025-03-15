@@ -7,7 +7,7 @@ extends Control
 @export var final_resolution_label: Label
 @export var file_dialog: FileDialog
 @export var format_option_button: OptionButton
-@export var output_texture_rect: MasterRendererOutputTextureRect
+@export var output_texture_rect: MasterRendererOutput
 
 var _frame_saver: FrameSaver
 var _local_renderer: LocalRenderer
@@ -42,10 +42,9 @@ func _ready() -> void:
 	format_option_button.select(0)
 	_frame_saver = FrameSaver.factory_create(FrameSaver.Type.PNG)
 	
-	visibility_changed.connect(
+	output_texture_rect.visibility_changed.connect(
 		func():
 			if visible:
-				output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params
 				_oppened()
 	)
 
@@ -53,7 +52,10 @@ func _set_final_resolution_scale(scale):
 	final_resolution_label.text = "%sx%s" % [
 		int(target_texture_size.x * scale),
 		int(target_texture_size.y * scale)]
-	
+
+func _exit_tree() -> void:
+	_local_renderer.delete()
+	_local_renderer = null
 
 func _oppened():
 
@@ -64,6 +66,8 @@ func _oppened():
 		target_texture_size.y]
 	
 	_set_final_resolution_scale(scale_spin_box.value)
+	output_texture_rect.master_renderer_params = ImageGeneration.master_renderer_params.duplicate()
+	output_texture_rect.master_renderer_params.camera_view_params = CameraViewParams.new()
 	
 func _save():
 	file_dialog.clear_filters()

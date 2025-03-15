@@ -10,13 +10,18 @@ static func render(
 	
 	# Applies post processing to shapes
 	var post_processed_params := apply_post_processing(params)
-	
+	var size = viewport_size.max(Vector2i.ONE)
+	var translation = Vector2(
+		params.camera_view_params.normalized_translation.x * viewport_size.x,
+		params.camera_view_params.normalized_translation.y * viewport_size.y
+	)
 	render_shapes(
 		renderer,
 		post_processed_params.shapes,
 		post_processed_params.clear_color,
-		viewport_size.max(Vector2i.ONE)
-	)
+		size,
+		params.camera_view_params.zoom,
+		translation)
 
 static func apply_post_processing(params: MasterRendererParams) -> MasterRendererParams:
 	var new_params = params.duplicate()
@@ -34,9 +39,11 @@ static func render_shapes(
 	renderer: LocalRenderer,
 	shapes: Array[Shape],
 	clear_color: Color,
-	viewport_size: Vector2i):
+	viewport_size: Vector2i,
+	zoom: float = 1.0,
+	translation: Vector2 = Vector2.ZERO):
 	
-	renderer.begin_frame(viewport_size)
+	renderer.begin_frame(viewport_size, zoom, translation)
 	# Renders background
 	renderer.render_clear(clear_color)
 	

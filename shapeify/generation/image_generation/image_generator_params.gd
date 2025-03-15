@@ -53,6 +53,18 @@ enum Type
 			target_texture = value
 			emit_changed()
 
+@export var user_mask_params := UserMaskParams.new():
+	set(value):
+		user_mask_params = value
+		emit_changed()
+
+## Amount of generated shapes before the textures get updated
+@export var textures_update_interval: int = 5:
+	set(value):
+		if value != textures_update_interval:
+			textures_update_interval = value
+			emit_changed()
+
 func to_dict():
 	return {
 		"stop_condition": StopCondition.Type.keys()[stop_condition],
@@ -67,3 +79,4 @@ func setup_changed_signals() -> void:
 	stop_condition_params.changed.connect(emit_changed)
 	clear_color_params.changed.connect(emit_changed)
 	weight_texture_generator_params.changed.connect(emit_changed)
+	user_mask_params.changed.connect(emit_changed)
