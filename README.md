@@ -29,7 +29,8 @@ Shapeify offers a powerful yet easy-to-use interface, allowing full control over
 - Optimize results effortlessly with predefined modes: SUPER_FAST, FAST, PERFORMANCE, and QUALITY.
 - Access tested default image collections for quick and effortless artwork generation.
 - Customize every aspect of the algorithm with a wide range of adjustable parameters.
-- Guide the algorithm intelligently using an automatically generated weight texture, prioritizing key areas of the image. Users can also provide a custom weight texture to refine specific regions.
+- Guide the algorithm intelligently using an automatically generated weight texture, prioritizing key areas of the image.
+- User input to provide a mask for guiding the algorithm.
 
 ## Installation
 
