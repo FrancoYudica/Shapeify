@@ -16,6 +16,7 @@ var _source_texture: LocalTexture
 var _target_texture: LocalTexture
 var _shape_generator: ShapeGenerator
 var _weight_texture_generator: WeightTextureGenerator
+var _user_mask_generator: UserMaskGenerator
 
 
 func _ready() -> void:
@@ -46,7 +47,8 @@ func _ready() -> void:
 			_weight_texture_generator = WeightTextureGenerator.factory_create(i)
 	)
 	_weight_texture_generator = WeightTextureGenerator.factory_create(WeightTextureGenerator.Type.WHITE)
-	
+	_user_mask_generator = UserMaskGenerator.new()
+
 	# Creates source texture
 	var source_color = Color.BLACK
 	GenerationGlobals.renderer.begin_frame(target_texture.get_size())
@@ -73,8 +75,11 @@ func generate() -> void:
 	for i in range(int(count_spin_box.value)):
 		await frame_yielder.maybe_yield()
 
-		_shape_generator.weight_texture = _weight_texture_generator.generate(0, _target_texture, _source_texture)
-		
+		var weight_texture = _weight_texture_generator.generate(0, _target_texture, _source_texture)
+		var no_mask_points: Array[UserMaskPoint] = []
+		var mask_texture = _user_mask_generator.generate_mask(no_mask_points, _target_texture.get_size())
+		_shape_generator.update_spawner(0, weight_texture, mask_texture)
+
 		var clock = Clock.new()
 		var shape = await _shape_generator.generate_shape(0.0)
 		output_label.call_deferred(

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b8e3cpjvmanli" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="8_wn5ks"]
 [ext_resource type="Script" uid="uid://clwfepf3bq2aa" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_vhgtv"]
 [ext_resource type="Texture2D" uid="uid://dbpxesvv3t7gn" path="res://art/textures/convergence_tests/convergence_circle_shape_test.png" id="10_gw24q"]
+[ext_resource type="Texture2D" uid="uid://c6bs582mhmw40" path="res://icon.svg" id="12_7r2ce"]
 [ext_resource type="Script" uid="uid://ocrnyesk7rnm" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]
 
 [sub_resource type="Resource" id="Resource_vn2wo"]
@@ -55,8 +56,6 @@ best_of_random_params = SubResource("Resource_vn2wo")
 genetic_params = SubResource("Resource_02ese")
 hill_climbing_params = SubResource("Resource_34ty6")
 shape_spawner_params = SubResource("Resource_holfq")
-
-[sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
 [node name="IndividualGeneratorTest" type="Node" unique_id=1277817301]
 
@@ -165,7 +164,7 @@ text = "Generate"
 [node name="SourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=957113735]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("Texture2DRD_vyacx")
+texture = ExtResource("12_7r2ce")
 expand_mode = 2
 stretch_mode = 5
 
