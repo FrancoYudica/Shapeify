@@ -48,7 +48,6 @@ func process_image(texture: LocalTexture) -> LocalTexture:
 		texture_width,
 		texture_height,
 		power,
-		0.0
 	])
 
 	var push_constant_byte_array = push_constant.to_byte_array()

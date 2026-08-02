@@ -51,8 +51,7 @@ func evaluate(texture: LocalTexture) -> float:
 		texture_width, texture_height,
 		
 		# Pixel count
-		texture_width * texture_height,
-		0.0
+		texture_width * texture_height
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()

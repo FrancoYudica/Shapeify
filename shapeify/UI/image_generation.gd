@@ -59,8 +59,13 @@ func generate() -> void:
 		return
 
 	generation_started.emit()
-	# Executes the generation in another thread to avoild locking the UI
-	WorkerThreadPool.add_task(_begin_image_generation)
+	# _begin_image_generation() is a coroutine (it awaits inside
+	# ImageGenerator.generate_image()'s loop): calling it without awaiting
+	# starts it in the background and returns immediately, keeping the UI
+	# responsive without needing a separate OS thread. The RenderingDevice
+	# it uses is pinned to the main thread, so it must run here, not on a
+	# WorkerThreadPool thread.
+	_begin_image_generation()
 
 func stop():
 	image_generator.stop()
@@ -100,9 +105,9 @@ func set_target_texture(target_texture: Texture2D):
 	Globals.settings.render_scale = min(min(width_scale, height_scale), 1.0)
 	
 	var local_texture = LocalTexture.load_from_texture(target_texture, GenerationGlobals.algorithm_rd)
-	
+
 	var renderer: LocalRenderer = GenerationGlobals.renderer
-	
+
 	renderer.begin_frame(Vector2i(final_texture_size.x, final_texture_size.y))
 	renderer.render_sprite(
 		final_texture_size * 0.5,
@@ -112,7 +117,7 @@ func set_target_texture(target_texture: Texture2D):
 		local_texture,
 		0)
 	renderer.end_frame()
-		
+
 	local_target_texture = renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 
 	if local_target_texture == null or not local_target_texture.is_valid():
@@ -143,7 +148,8 @@ func _begin_image_generation():
 		
 	var source_texture := renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR).copy()
 	
-	# Generates the image
-	var output_texture = image_generator.generate_image(source_texture)
+	# Generates the image. generate_image() yields periodically internally so
+	# this doesn't block the main thread for the whole generation.
+	var output_texture = await image_generator.generate_image(source_texture)
 	is_generating = false
 	call_deferred("emit_signal", "generation_finished")

@@ -11,10 +11,11 @@ func _generate(similarity: float) -> Shape:
 		population.append(Individual.from_shape(shape))
 	
 	_fitness_calculator.weight_texture = self.masked_weight_texture
-	
+
 	# Queues all individuals for source texture rendering
 	for individual in population:
-		
+		await _frame_yielder.maybe_yield()
+
 		_fix_shape_attributes(individual)
 		_color_sampler_strategy.set_sample_color(individual)
 

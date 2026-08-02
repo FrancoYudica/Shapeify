@@ -69,13 +69,14 @@ func generate() -> void:
 	output_label.call_deferred("set_text", "Generation started")
 
 	generate_button.call_deferred("set_disabled", true)
+	var frame_yielder := FrameYielder.new()
 	for i in range(int(count_spin_box.value)):
-		
+		await frame_yielder.maybe_yield()
 
 		_shape_generator.weight_texture = _weight_texture_generator.generate(0, _target_texture, _source_texture)
 		
 		var clock = Clock.new()
-		var shape = _shape_generator.generate_shape(0.0)
+		var shape = await _shape_generator.generate_shape(0.0)
 		output_label.call_deferred(
 			"set_text", 
 			"%s. Generated shape in %sms" % [i, clock.elapsed_ms()]
@@ -95,7 +96,9 @@ func generate() -> void:
 	
 
 func _on_button_pressed() -> void:
-	WorkerThreadPool.add_task(generate)
+	# generate() is a coroutine (it yields internally); calling it without
+	# awaiting starts it in the background without blocking the button press.
+	generate()
 
 
 func _on_profiling_check_box_toggled(toggled_on: bool) -> void:
@@ -119,7 +122,7 @@ func _set_shape_generator(type: ShapeGenerator.Type):
 func _save_output():
 	var color_attachment_texture = GenerationGlobals.renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	var color_attachment_data = GenerationGlobals.algorithm_rd.texture_get_data(color_attachment_texture.rd_rid, 0)
-	
+
 	# Creates an image with the same size and format
 	var img = Image.new()
 	img.set_data(

@@ -63,10 +63,7 @@ func sample_rect(rect: Rect2i) -> Color:
 		
 		# Sample offset
 		rect.position.x,
-		rect.position.y,
-		
-		0.0,
-		0.0
+		rect.position.y
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()

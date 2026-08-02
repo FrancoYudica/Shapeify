@@ -35,9 +35,7 @@ func process_image(texture: LocalTexture) -> LocalTexture:
 	
 	var push_constant := PackedFloat32Array([
 		threshold,
-		power,
-		0.0,
-		0.0,
+		power
 	])
 
 	var push_constant_byte_array = push_constant.to_byte_array()

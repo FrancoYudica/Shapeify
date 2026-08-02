@@ -72,8 +72,6 @@ func _execute_pass(i: int) -> LocalTexture:
 		
 		sigma,
 		kernel_size,
-		0.0,
-		0.0
 	])
 
 	var push_constant_byte_array = push_constant.to_byte_array()

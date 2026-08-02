@@ -319,19 +319,14 @@ func flush() -> void:
 	var uniform_set_rid = rd.uniform_set_create(uniforms, _batch.shader, 0)
 	
 	# The initial color action changes from `clear` to `keep` if there are multiple flushes
-	var intial_color_action = RenderingDevice.INITIAL_ACTION_CLEAR \
+	var intial_color_action = RenderingDevice.DrawFlags.DRAW_CLEAR_ALL \
 							  if _flush_count == 0 \
-							  else RenderingDevice.INITIAL_ACTION_KEEP
+							  else RenderingDevice.DrawFlags.DRAW_DEFAULT_ALL
 	var draw_list := rd.draw_list_begin(
 		_framebuffer,
 		intial_color_action, # Initial color action
+		PackedColorArray([clear_color, Color.BLACK]),
 		RenderingDevice.FINAL_ACTION_READ,	  # Final color action
-		RenderingDevice.INITIAL_ACTION_CLEAR, # Initial depth action
-		RenderingDevice.FINAL_ACTION_READ,	  # Final depth action
-		
-		# Color framebuffer clears with transparent color
-		# ID framebuffer clears with black color
-		PackedColorArray([clear_color, Color.BLACK])
 	)
 	rd.draw_list_bind_uniform_set(draw_list, uniform_set_rid, 0)
 	rd.draw_list_bind_render_pipeline(draw_list, _pipeline)

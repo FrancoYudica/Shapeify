@@ -46,8 +46,6 @@ func process_image(texture: LocalTexture) -> LocalTexture:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		0.0,
-		0.0
 	])
 
 	var push_constant_byte_array = push_constant.to_byte_array()

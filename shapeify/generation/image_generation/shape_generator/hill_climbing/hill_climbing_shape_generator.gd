@@ -32,35 +32,36 @@ func _generate(similarity: float) -> Shape:
 	_fitness_calculator.weight_texture = self.masked_weight_texture
 	
 	var best_individual: Individual
-	
+
 	# Executes the hill climbing algorithm multiple times and keeps the best
 	for i in range(params.hill_climbing_params.random_restart_count):
-		var individual = _hill_climb(similarity)
-		
+		var individual = await _hill_climb(similarity)
+
 		if best_individual == null or best_individual.fitness < individual.fitness:
 			best_individual = individual
-			
+
 	return best_individual
-	
+
 
 func _hill_climb(similarity: float) -> Individual:
-	
+
 	# Generates multiple random individuals and evolves the best one
 	# with hill climbing
-	var individual = _best_of_random(
-		similarity, 
+	var individual = await _best_of_random(
+		similarity,
 		params.hill_climbing_params.initial_random_samples)
 
 	var age = 0
 	while age < _max_age:
-		
+		await _frame_yielder.maybe_yield()
+
 		# Copies the individual and mutates
 		var new_individual = individual.copy()
 		mutate(new_individual)
-		
+
 		# Sets attributes and calculates fitness
 		_fix_shape_attributes(new_individual)
-		
+
 		_color_sampler_strategy.set_sample_color(new_individual)
 		_fitness_calculator.calculate_fitness(new_individual, source_texture)
 		if new_individual.fitness > individual.fitness:
@@ -68,26 +69,28 @@ func _hill_climb(similarity: float) -> Individual:
 			individual = new_individual
 		else:
 			age += 1
-	
+
 	return individual
 
 func _best_of_random(
 	similarity: float,
 	samples: int
 ) -> Individual:
-	
+
 	var best_of_random: Individual
 
 	for i in range(samples):
+		await _frame_yielder.maybe_yield()
+
 		var shape = _shape_spawner.spawn_one(similarity)
 		var individual = Individual.from_shape(shape)
 		_fix_shape_attributes(individual)
 		_color_sampler_strategy.set_sample_color(individual)
 		_fitness_calculator.calculate_fitness(individual, source_texture)
-		
+
 		if best_of_random == null or individual.fitness > best_of_random.fitness:
 			best_of_random = individual
-	
+
 	return best_of_random
 
 func _setup():

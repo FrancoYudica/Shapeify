@@ -56,7 +56,7 @@ func _compute(source_texture: LocalTexture) -> float:
 		# Vec2 texture size
 		texture_width,
 		texture_height,
-		power, 0.0
+		power
 	])
 	
 	var push_constant_byte_array = push_constant.to_byte_array()

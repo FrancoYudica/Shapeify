@@ -20,11 +20,15 @@ var progress: float:
 		return _progress
 
 func _init() -> void:
-	
-	# Uses local renderer to render on a separate thread
+
+	# Uses local renderer to render frames. Local RenderingDevices are pinned
+	# to the thread that creates them (and creating one off the main thread
+	# hangs in this engine build), so this must be created on the main thread,
+	# and _record_and_save() must run on the main thread too (as a
+	# frame-yielding coroutine) rather than on a WorkerThreadPool thread.
 	_local_renderer = LocalRenderer.new()
 	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
-	
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		_local_renderer.delete()
@@ -41,11 +45,13 @@ func record(
 	_viewport_resolution = viewport_resolution
 	_frame_saver = FrameSaver.factory_create(frame_saver_type)
 	_frame_saver.silent = true
-	WorkerThreadPool.add_task(_record_and_save)
+	# _record_and_save() is a coroutine (it yields internally); calling it
+	# without awaiting starts it in the background without blocking the caller.
+	_record_and_save()
 
 func _record_and_save():
 	_progress = 0.0
-	
+
 	if not DirAccess.dir_exists_absolute(directory_path):
 		push_error("Trying to save frames in non existing directory")
 		return
@@ -56,10 +62,11 @@ func _record_and_save():
 	
 	var dt = 1.0 / (fps * duration)
 	var t = 0.0
-	
-	
+
+	var frame_yielder := FrameYielder.new()
 	while t < 1.0:
-		
+		await frame_yielder.maybe_yield()
+
 		# Applies post processing before animating
 		var post_processed_shapes = ShapeColorPostProcessingPipeline.execute_pipeline(
 			_master_renderer_params.shapes, t, _master_renderer_params.post_processing_pipeline_params)

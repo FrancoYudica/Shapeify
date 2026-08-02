@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bps0t8dk6416s"]
+[gd_resource type="Theme" format=3 uid="uid://bps0t8dk6416s"]
 
 [ext_resource type="Texture2D" uid="uid://cwjtw8bxpaek0" path="res://art/textures/icons/arrow_down.png" id="1_47743"]
 [ext_resource type="FontFile" uid="uid://vnb2anlyi7y3" path="res://art/fonts/Outfit-Bold.ttf" id="1_w00b8"]

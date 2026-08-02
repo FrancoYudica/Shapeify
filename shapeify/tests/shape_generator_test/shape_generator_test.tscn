@@ -1,38 +1,30 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3dblx01a364n"]
+[gd_scene format=3 uid="uid://c3dblx01a364n"]
 
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="2_04r8q"]
+[ext_resource type="Script" uid="uid://de1hy8axt40c0" path="res://generation/image_generation/shape_generator/best_of_random/best_of_random_shape_generator_params.gd" id="2_04r8q"]
 [ext_resource type="Texture2D" uid="uid://b5m0f4neckfes" path="res://art/textures/convergence_tests/convergence_circle_target_test.png" id="3_bvm1g"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="3_gpikk"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="4_ir24d"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="5_vqlhs"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="6_koxsn"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="7_1kt4a"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="8_wn5ks"]
-[ext_resource type="Script" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_vhgtv"]
+[ext_resource type="Script" uid="uid://668kc5lapaod" path="res://generation/image_generation/shape_generator/genetic/genetic_shape_generator_params.gd" id="3_gpikk"]
+[ext_resource type="Script" uid="uid://cycfmfk7ffdwh" path="res://generation/image_generation/shape_generator/genetic/survivor_selection/survivor_selection_params.gd" id="4_ir24d"]
+[ext_resource type="Script" uid="uid://ni15mxh8gptn" path="res://generation/image_generation/shape_generator/hill_climbing/hill_climbing_shape_generator_params.gd" id="5_vqlhs"]
+[ext_resource type="Script" uid="uid://b82qtnafgv51g" path="res://generation/image_generation/shape_generator/shape_generator_params.gd" id="6_koxsn"]
+[ext_resource type="Script" uid="uid://blpxfqud21j2u" path="res://generation/image_generation/shape_generator/shape_spawner/shape_spawner_params.gd" id="7_1kt4a"]
+[ext_resource type="Script" uid="uid://b8e3cpjvmanli" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/position_initializers/shape_position_initializer_params.gd" id="8_wn5ks"]
+[ext_resource type="Script" uid="uid://clwfepf3bq2aa" path="res://generation/image_generation/shape_generator/shape_spawner/attribute_initializers/texture_initializers/shape_texture_initializer_params.gd" id="9_vhgtv"]
 [ext_resource type="Texture2D" uid="uid://dbpxesvv3t7gn" path="res://art/textures/convergence_tests/convergence_circle_shape_test.png" id="10_gw24q"]
-[ext_resource type="Script" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]
+[ext_resource type="Script" uid="uid://ocrnyesk7rnm" path="res://tests/shape_generator_test/shape_generator_test.gd" id="13_jgyce"]
 
 [sub_resource type="Resource" id="Resource_vn2wo"]
 script = ExtResource("2_04r8q")
 shape_count = 150
-fitness_calculator = 1
 
 [sub_resource type="Resource" id="Resource_wtgk5"]
 script = ExtResource("4_ir24d")
 elitisim_rate = 0.3
-tournament_size = 10
 
 [sub_resource type="Resource" id="Resource_02ese"]
 script = ExtResource("3_gpikk")
 generation_count = 10
 population_size = 30
-fitness_calculator = 1
 mutation_rate = 0.1
-mutation_factor = 1.0
-selection_strategy = 0
-crossover_strategy = 3
-mutation_strategy = 1
-survivor_selection_strategy = 1
 survivor_selection_params = SubResource("Resource_wtgk5")
 
 [sub_resource type="Resource" id="Resource_34ty6"]
@@ -40,10 +32,6 @@ script = ExtResource("5_vqlhs")
 max_age = 10
 random_restart_count = 3
 initial_random_samples = 15
-fitness_calculator = 1
-position_mutation_weight = 1
-size_mutation_weight = 2
-rotation_mutation_weight = 2
 
 [sub_resource type="Resource" id="Resource_2o0ha"]
 script = ExtResource("8_wn5ks")
@@ -55,22 +43,14 @@ script = ExtResource("9_vhgtv")
 script = ExtResource("7_1kt4a")
 shape_position_initializer_type = 2
 shape_size_initializer_type = 3
-shape_rotation_initializer_type = 0
-shape_tint_initializer_type = 0
-shape_texture_initializer_type = 0
 shape_position_initializer_params = SubResource("Resource_2o0ha")
 shape_texture_initializer_params = SubResource("Resource_mkol6")
 textures = Array[Texture2D]([ExtResource("10_gw24q")])
 
 [sub_resource type="Resource" id="Resource_qa5gn"]
 script = ExtResource("6_koxsn")
-color_sampler = 1
 keep_aspect_ratio = true
-clamp_position_in_canvas = true
 fixed_rotation = false
-fixed_rotation_angle = 0.0
-fixed_size = false
-fixed_size_width_ratio = 0.1
 best_of_random_params = SubResource("Resource_vn2wo")
 genetic_params = SubResource("Resource_02ese")
 hill_climbing_params = SubResource("Resource_34ty6")
@@ -78,9 +58,9 @@ shape_spawner_params = SubResource("Resource_holfq")
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_vyacx"]
 
-[node name="IndividualGeneratorTest" type="Node"]
+[node name="IndividualGeneratorTest" type="Node" unique_id=1277817301]
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "shape_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label", "weight_generator_option", "_output_texture_rect")]
+[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=715994361 node_paths=PackedStringArray("output_texture", "generate_button", "save_button", "shape_generator_option", "profiling_depth_option_button", "count_spin_box", "output_label", "weight_generator_option", "_output_texture_rect")]
 script = ExtResource("13_jgyce")
 shape_generator_params = SubResource("Resource_qa5gn")
 target_texture = ExtResource("3_bvm1g")
@@ -94,7 +74,7 @@ output_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxCont
 weight_generator_option = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/WeightTextureGeneratorOptionButton")
 _output_texture_rect = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SourceTextureRect")
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer" unique_id=1053776520]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -105,91 +85,91 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer" unique_id=75728532]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/MarginContainer/PanelContainer" unique_id=1076356525]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer" unique_id=1980971189]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=180290067]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1229504744]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=271901563]
 layout_mode = 2
 text = "Shape generator"
 
-[node name="ShapeGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="ShapeGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1845784546]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1477151890]
 layout_mode = 2
 
-[node name="ProfilingCheckBox" type="CheckBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="ProfilingCheckBox" type="CheckBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=436787298]
 layout_mode = 2
 text = "Profiling"
 
-[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=445167283]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1869470575]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1322921154]
 layout_mode = 2
 text = "Profiling depth"
 
-[node name="ProfilingDepthOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
+[node name="ProfilingDepthOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1099679315]
 layout_mode = 2
 
-[node name="SaveProfilingButton" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="SaveProfilingButton" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=905943066]
 layout_mode = 2
 disabled = true
 text = "Save"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=18300779]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1669696864]
 layout_mode = 2
 text = "Weight texture generator"
 
-[node name="WeightTextureGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="WeightTextureGeneratorOptionButton" type="OptionButton" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=759930302]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1994134996]
 layout_mode = 2
 
-[node name="CountSpinBox" type="SpinBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="CountSpinBox" type="SpinBox" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1021154227]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
 prefix = "Shape count"
 
-[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Button" type="Button" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1636146827]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Generate"
 
-[node name="SourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SourceTextureRect" type="TextureRect" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=957113735]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("Texture2DRD_vyacx")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="OutputLabel" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="OutputLabel" type="Label" parent="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1506823481]
 layout_mode = 2
 
 [connection signal="toggled" from="UICanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ProfilingCheckBox" to="UICanvasLayer" method="_on_profiling_check_box_toggled"]

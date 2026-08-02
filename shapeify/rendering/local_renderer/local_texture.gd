@@ -102,7 +102,7 @@ func copy_contents(src_texture: LocalTexture) -> void:
 			rd_rid,
 			Vector3(0, 0, 0),
 			Vector3(0, 0, 0),
-			Vector3(_size.x, _size.y, 0),
+			Vector3(_size.x, _size.y, 1),
 			0,
 			0,
 			0, 

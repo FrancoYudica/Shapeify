@@ -23,6 +23,7 @@ var weight_texture: LocalTexture
 var user_mask_texture: LocalTexture
 var target_texture: LocalTexture
 var source_texture: LocalTexture
+var _frame_yielder: FrameYielder
 
 func stop():
 	_stop_mutex.lock()
@@ -43,7 +44,10 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 	_generating = true
 	_stop_condition.began_generating()
 	var iteration = 0
+	_frame_yielder = FrameYielder.new()
 	while not _stop_condition.should_stop():
+		await _frame_yielder.maybe_yield()
+
 		# Checks if the algorithm should stop executing
 		_stop_mutex.lock()
 		if _stop:
@@ -87,7 +91,7 @@ func generate_image(first_src_texture: LocalTexture) -> LocalTexture:
 		shape_generator.mask_texture = user_mask_texture
 		
 		# Generates Shape
-		var shape: Shape = shape_generator.generate_shape(similarity)
+		var shape: Shape = await shape_generator.generate_shape(similarity)
 		# Renders the shape onto the source texture
 		var renderer := GenerationGlobals.renderer
 		ShapeRenderer.render_shape(

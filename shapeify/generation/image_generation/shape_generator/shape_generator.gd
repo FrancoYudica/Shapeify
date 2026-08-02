@@ -13,6 +13,7 @@ enum Type{
 var _color_sampler_strategy: ColorSamplerStrategy
 var _texture_multiply_processor: TextureMultiplyImageProcessor
 var _shape_spawner: ShapeSpawner
+var _frame_yielder: FrameYielder
 
 var target_texture: LocalTexture
 var source_texture: LocalTexture
@@ -33,6 +34,7 @@ func setup() -> void:
 		return
 
 	Profiler.shape_generation_began(params)
+	_frame_yielder = FrameYielder.new()
 	_setup()
 	
 func finished() -> void:
@@ -57,12 +59,12 @@ func update_spawner(
 		mask_texture)
 
 func generate_shape(similarity: float) -> Shape:
-	
+
 	if params == null:
 		printerr("IndividialGenerator not initialized")
 		return
-		
-	var shape = _generate(similarity)
+
+	var shape = await _generate(similarity)
 	
 	Profiler.shape_generation_finished(
 		shape,

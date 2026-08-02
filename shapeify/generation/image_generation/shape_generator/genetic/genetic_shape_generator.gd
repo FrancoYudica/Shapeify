@@ -8,24 +8,25 @@ var _fitness_calculator: FitnessCalculator
 
 
 func _generate(similarity: float) -> Shape:
-	
+
 	var genetic_params := params.genetic_params
-	
+
 	_fitness_calculator.weight_texture = self.masked_weight_texture
-	
+
 	# Creates population
 	var population: Array[Individual] = []
 	for i in range(params.genetic_params.population_size):
 		var shape = _shape_spawner.spawn_one(similarity)
 		population.append(Individual.from_shape(shape))
 
-	
 	# Calculates the fitness of the individuals of initial population
 	for individual in population:
+		await _frame_yielder.maybe_yield()
+
 		_fix_shape_attributes(individual)
 		_color_sampler_strategy.set_sample_color(individual)
 		_fitness_calculator.calculate_fitness(individual, source_texture)
-		
+
 	for generation in range(genetic_params.generation_count):
 		
 		Profiler.genetic_population_generated(population, source_texture)
@@ -40,15 +41,17 @@ func _generate(similarity: float) -> Shape:
 			population.size())
 		
 		for i in range(population.size()):
+			await _frame_yielder.maybe_yield()
+
 			var parent_a = mating_pool.pick_random()
 			var parent_b = mating_pool.pick_random()
 			var child = _crossover_strategy.crossover(
-				parent_a, 
+				parent_a,
 				parent_b)
-			
+
 			if randf() <= genetic_params.mutation_rate:
 				_mutation_strategy.mutate(child)
-			
+
 			_fix_shape_attributes(child)
 			_color_sampler_strategy.set_sample_color(child)
 			_fitness_calculator.calculate_fitness(child, source_texture)
