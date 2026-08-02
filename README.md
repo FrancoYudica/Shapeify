@@ -5,7 +5,7 @@
 📺 _Click the image to watch the video on YouTube!_
 
 <a href="https://github.com/FrancoYudica/Shapeify/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?" /></a>
-<a href="https://godotengine.org/download/"><img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot-v4.3+-blue.svg?" /></a>
+<a href="https://godotengine.org/download/"><img alt="Godot v4.7+" src="https://img.shields.io/badge/Godot-v4.7+-blue.svg?" /></a>
 <a href="https://github.com/FrancoYudica/Shapeify/releases"><img alt="Latest Release" src="https://img.shields.io/github/v/release/FrancoYudica/Shapeify?include_prereleases&"></a>
 
 </div>
@@ -38,7 +38,7 @@ Shapeify is available through the following options:
 
 - [Itch.io](https://franco-yudica.itch.io/shapeify)
 - The latest [GitHub release](https://github.com/FrancoYudica/Shapeify/releases)
-- Building the project locally using [Godot 4.3](https://godotengine.org/download).
+- Building the project locally using [Godot 4.7](https://godotengine.org/download).
 
 ## Settings
 
