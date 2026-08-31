@@ -1,6 +1,6 @@
 class_name FrameYielder extends RefCounted
 
-const DEFAULT_BUDGET_MSEC := 16
+const DEFAULT_BUDGET_MSEC := 50
 
 var _budget_msec: int
 var _last_yield_time_msec: int

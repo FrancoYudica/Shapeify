@@ -17,6 +17,7 @@ var _offset = Vector2.ZERO
 var _zoom: float = 1.0
 var _is_mouse_down = false
 var _click_position = Vector2.ZERO
+var _mouse_delta_offset = Vector2.ZERO
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -60,10 +61,14 @@ func _process(delta: float) -> void:
 	if _is_mouse_down:
 		mouse_delta = get_global_mouse_position() - _click_position
 	
+	_mouse_delta_offset = _offset - mouse_delta / _zoom
+	RenderingServer.call_on_render_thread(_do_render)
+
+func _do_render():
 	# Transforms all the sprite textures to local textures
 	var clock := Clock.new()
 	
-	local_renderer.begin_frame(output_texture_rect.size, _zoom, _offset - mouse_delta / _zoom)
+	local_renderer.begin_frame(output_texture_rect.size, _zoom, _mouse_delta_offset)
 	local_renderer.render_clear(Color.BLUE)
 	
 	for sprite in sprites_container.get_children():
@@ -86,4 +91,3 @@ func _process(delta: float) -> void:
 	var color_attachment = local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	output_texture_rect.texture = color_attachment.create_texture_2d_rd()
 	clock.print_elapsed("Texture copied")
-	

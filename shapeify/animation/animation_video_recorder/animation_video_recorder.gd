@@ -11,10 +11,10 @@ var _progress: float = 0.0
 
 var _animation_player: ShapeAnimationPlayer
 var _master_renderer_params: MasterRendererParams
+var _shape_spawner_textures: Array[Texture2D]
 var _frame_saver: FrameSaver
 var _viewport_resolution: Vector2
 var _local_renderer: LocalRenderer
-
 var progress: float:
 	get:
 		return _progress
@@ -37,11 +37,13 @@ func _notification(what: int) -> void:
 func record(
 	animation_player: ShapeAnimationPlayer,
 	master_renderer_params: MasterRendererParams,
+	shape_spawner_textures: Array[Texture2D],
 	viewport_resolution: Vector2i,
 	frame_saver_type: FrameSaver.Type
 ):
 	_animation_player = animation_player
 	_master_renderer_params = master_renderer_params
+	_shape_spawner_textures = shape_spawner_textures
 	_viewport_resolution = viewport_resolution
 	_frame_saver = FrameSaver.factory_create(frame_saver_type)
 	_frame_saver.silent = true

@@ -31,6 +31,7 @@ func _begin_recording():
 	_animation_recorder.record(
 		animator.animation_player,
 		ImageGeneration.master_renderer_params,
+		ImageGeneration.image_generator.params.shape_generator_params.shape_spawner_params.textures,
 		settings_control.render_scale * Globals.settings.image_generator_params.target_texture.get_size(),
 		settings_control.frame_saver_type
 	)

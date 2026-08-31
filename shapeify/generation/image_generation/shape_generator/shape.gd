@@ -68,7 +68,7 @@ func to_dict() -> Dictionary:
 	return {
 		"position": [position.x, position.y],
 		"size": [size.x, size.y],
+		"rotation": rotation,
 		"tint": [tint.r, tint.g, tint.b, tint.a],
-		"texture": [texture.rd_rid],
-		"rotation": rotation
+		"texture": texture.resource_path.get_file()
 	}

@@ -59,12 +59,6 @@ func generate() -> void:
 		return
 
 	generation_started.emit()
-	# _begin_image_generation() is a coroutine (it awaits inside
-	# ImageGenerator.generate_image()'s loop): calling it without awaiting
-	# starts it in the background and returns immediately, keeping the UI
-	# responsive without needing a separate OS thread. The RenderingDevice
-	# it uses is pinned to the main thread, so it must run here, not on a
-	# WorkerThreadPool thread.
 	_begin_image_generation()
 
 func stop():
