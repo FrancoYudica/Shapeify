@@ -13,6 +13,7 @@ enum Type{
 var _color_sampler_strategy: ColorSamplerStrategy
 var _texture_multiply_processor: TextureMultiplyImageProcessor
 var _shape_spawner: ShapeSpawner
+var _shape_aspect_ratio_fixer: ShapeAspectRatioFixer
 var _frame_yielder: FrameYielder
 
 var target_texture: LocalTexture
@@ -75,7 +76,7 @@ func _setup():
 	
 	_shape_spawner = ShapeSpawner.new()
 	_shape_spawner.set_params(params.shape_spawner_params)
-	
+	_shape_aspect_ratio_fixer = ShapeAspectRatioFixer.factory_create(params.shape_aspect_ratio_fix_params.type)
 	_color_sampler_strategy = ColorSamplerStrategy.factory_create(params.color_sampler)
 	_color_sampler_strategy.sample_texture = target_texture
 	
@@ -87,11 +88,7 @@ func _generate(similarity: float) -> Shape:
 
 ## Applies settings and ensures that all the properties have valid values
 func _fix_shape_attributes(shape: Shape):
-	# If the aspect ratio
-	if params.keep_aspect_ratio:
-		var target_aspect = float(target_texture.get_width()) / target_texture.get_height()
-		var texture_aspect = float(shape.texture.get_height()) / shape.texture.get_width()
-		shape.size.y = shape.size.x * target_aspect * texture_aspect
+	_shape_aspect_ratio_fixer.fix_size(shape, target_texture, params.shape_aspect_ratio_fix_params)
 	
 	# Can't rotate
 	if params.fixed_rotation:

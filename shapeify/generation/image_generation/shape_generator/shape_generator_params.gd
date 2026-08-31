@@ -1,16 +1,9 @@
 class_name ShapeGeneratorParams extends Resource
 
-
 @export var color_sampler := ColorSamplerStrategy.Type.MASKED:
 	set(value):
 		if value != color_sampler:
 			color_sampler = value
-			emit_changed()
-
-@export var keep_aspect_ratio: bool = false:
-	set(value):
-		if value != keep_aspect_ratio:
-			keep_aspect_ratio = value
 			emit_changed()
 
 @export var clamp_position_in_canvas: bool = true:
@@ -46,7 +39,7 @@ class_name ShapeGeneratorParams extends Resource
 @export var best_of_random_params := BestOfRandomShapeGeneratorParams.new()
 @export var genetic_params := GeneticShapeGeneratorParams.new()
 @export var hill_climbing_params := HillClimbingShapeGeneratorParams.new()
-
+@export var shape_aspect_ratio_fix_params := ShapeAspectRatioFixParams.new()
 @export var shape_spawner_params := ShapeSpawnerParams.new()
 
 func to_dict() -> Dictionary:
@@ -65,5 +58,5 @@ func setup_changed_signals() -> void:
 	best_of_random_params.changed.connect(emit_changed)
 	genetic_params.changed.connect(emit_changed)
 	hill_climbing_params.changed.connect(emit_changed)
-	
+	shape_aspect_ratio_fix_params.changed.connect(emit_changed)
 	shape_spawner_params.changed.connect(emit_changed)

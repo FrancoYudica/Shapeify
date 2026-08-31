@@ -1,12 +1,13 @@
 extends PanelContainer
 
 
-@export var keep_aspect_ratio: CheckBox
+@export var shape_aspect_ratio_option: OptionButton
 @export var clamp_position: CheckBox
 @export var fixed_rotation: CheckBox
 @export var fixed_rotation_value: SpinBox
 @export var fixed_size: CheckBox
 @export var fixed_size_width_ratio: SpinBox
+
 
 
 var _shape_generator_params : ShapeGeneratorParams:
@@ -17,12 +18,16 @@ var _shape_generator_params : ShapeGeneratorParams:
 				.shape_generator_params
 
 func _ready() -> void:
-	
-	keep_aspect_ratio.toggled.connect(
-		func(toggled_on):
-			_shape_generator_params.keep_aspect_ratio = toggled_on
+
+	# Clear color option -------------------------------------------------------
+	for option in ShapeAspectRatioFixer.Type.keys():
+		shape_aspect_ratio_option.add_item(option)
+
+	shape_aspect_ratio_option.item_selected.connect(
+		func(item_index):
+			_shape_generator_params.shape_aspect_ratio_fix_params.type = item_index
 	)
-	
+
 	clamp_position.toggled.connect(
 		func(toggled_on):
 			_shape_generator_params.clamp_position_in_canvas = toggled_on
@@ -54,7 +59,8 @@ func _ready() -> void:
 	_update()
 
 func _update():
-	keep_aspect_ratio.button_pressed = _shape_generator_params.keep_aspect_ratio
+	shape_aspect_ratio_option.select(_shape_generator_params.shape_aspect_ratio_fix_params.type)
+	
 	clamp_position.button_pressed = _shape_generator_params.clamp_position_in_canvas
 	
 	fixed_rotation.button_pressed = _shape_generator_params.fixed_rotation
