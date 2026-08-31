@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="AppSettings" load_steps=96 format=3 uid="uid://075wo5henc7i"]
+[gd_resource type="Resource" script_class="AppSettings" format=3 uid="uid://075wo5henc7i"]
 
-[ext_resource type="Script" path="res://settings/contributor_data.gd" id="1_6kaui"]
-[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_e5oqy"]
+[ext_resource type="Script" uid="uid://tp0rmj5384aw" path="res://settings/contributor_data.gd" id="1_6kaui"]
+[ext_resource type="Script" uid="uid://c4fic7ur75d5e" path="res://generation/shape_color_post_processing/shape_color_post_processing_pipeline_params.gd" id="1_e5oqy"]
 [ext_resource type="Texture2D" uid="uid://u5tfipfaxeow" path="res://art/textures/sample_targets/Mona_Lisa.jpg" id="1_y2u6v"]
-[ext_resource type="Script" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_8ndjb"]
+[ext_resource type="Script" uid="uid://7igxcv4ipmy2" path="res://generation/shape_color_post_processing/shape_color_post_processing_shader/shape_color_post_processing_shader_params.gd" id="2_8ndjb"]
 [ext_resource type="Texture2D" uid="uid://dngtfn76cqt7h" path="res://art/textures/individual_textures_group/brush_strokes_1/0.png" id="7_6ukyh"]
 [ext_resource type="Texture2D" uid="uid://dl6sxxxeed13u" path="res://art/textures/individual_textures_group/brush_strokes_1/1.png" id="8_vttff"]
 [ext_resource type="Texture2D" uid="uid://b0kuxq83j10cu" path="res://art/textures/individual_textures_group/brush_strokes_1/2.png" id="9_8f8ie"]
 [ext_resource type="Texture2D" uid="uid://bh1c8jh8ka3ds" path="res://art/textures/individual_textures_group/brush_strokes_1/3.png" id="10_an6t7"]
 [ext_resource type="Texture2D" uid="uid://d0evl0bp41ec1" path="res://art/textures/individual_textures_group/brush_strokes_1/4.png" id="11_7k3ba"]
-[ext_resource type="Script" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
+[ext_resource type="Script" uid="uid://b4dkjjrb1sxxx" path="res://generation/shape_texture_group.gd" id="11_f4wjl"]
 [ext_resource type="Texture2D" uid="uid://bl4jdxuo4a5pt" path="res://art/textures/individual_textures_group/brush_strokes_1/5.png" id="12_7n61o"]
 [ext_resource type="Texture2D" uid="uid://pfxxri08diwg" path="res://art/textures/individual_textures_group/brush_strokes_2/0.png" id="12_ui4dh"]
 [ext_resource type="Texture2D" uid="uid://dtlln634i7qt6" path="res://art/textures/individual_textures_group/brush_strokes_2/1.png" id="13_hunnm"]
@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://burtcc0b0gkya" path="res://art/textures/individual_textures_group/transparent_shapes/vecteezy_white-light-effects_32047928.png" id="25_1l43m"]
 [ext_resource type="Texture2D" uid="uid://feej2tit3tfm" path="res://art/textures/individual_textures_group/graffiti_spray/5.png" id="26_qev6m"]
 [ext_resource type="Texture2D" uid="uid://vpsu2nikgwws" path="res://art/textures/individual_textures_group/graffiti_spray/6.png" id="27_avrcu"]
-[ext_resource type="Script" path="res://settings/app_settings.gd" id="39_t5xji"]
+[ext_resource type="Script" uid="uid://mmstnut8txur" path="res://settings/app_settings.gd" id="39_t5xji"]
 [ext_resource type="Texture2D" uid="uid://cqdww7kohygiv" path="res://art/textures/individual_textures_group/polygons/rhomboid.png" id="40_dova5"]
 [ext_resource type="Texture2D" uid="uid://c7m6r47sqjh5c" path="res://art/textures/individual_textures_group/polygons/triangle0.png" id="41_edoef"]
 [ext_resource type="Texture2D" uid="uid://diikdmcqdmuch" path="res://art/textures/individual_textures_group/polygons/octagon.png" id="42_sdcaa"]
@@ -80,11 +80,14 @@
 [ext_resource type="Texture2D" uid="uid://dhfnd7pj64ae2" path="res://art/textures/individual_textures_group/paint_splashes_2/9.png" id="68_icccq"]
 [ext_resource type="Texture2D" uid="uid://45uev5583t18" path="res://art/textures/individual_textures_group/paint_splashes_2/10.png" id="69_a3idw"]
 [ext_resource type="Texture2D" uid="uid://cjrvitdb17ahq" path="res://art/textures/individual_textures_group/paint_splashes_2/11.png" id="70_umadn"]
+[ext_resource type="Texture2D" uid="uid://b725xmrf7qkrm" path="res://art/textures/individual_textures_group/fragmenter's_group/fragtexture00000.png" id="81_5scul"]
+[ext_resource type="Texture2D" uid="uid://dmlirm3sjgrgl" path="res://art/textures/individual_textures_group/fragmenter's_group/fragtexture00001.png" id="82_jt71o"]
+[ext_resource type="Texture2D" uid="uid://c4oo1yiy34ytt" path="res://art/textures/individual_textures_group/fragmenter's_group/fragtexture00002.png" id="83_xbw3n"]
+[ext_resource type="Texture2D" uid="uid://n2qsdqoe7s1o" path="res://art/textures/individual_textures_group/fragmenter's_group/fragtexture00003.png" id="84_rofda"]
+[ext_resource type="Texture2D" uid="uid://bbasrny8qrrm5" path="res://art/textures/individual_textures_group/fragmenter's_group/fragtexture00004.png" id="85_rb05j"]
 
 [sub_resource type="Resource" id="Resource_qt8hf"]
 script = ExtResource("1_e5oqy")
-shader_params = Array[ExtResource("2_8ndjb")]([])
-enabled = true
 
 [sub_resource type="Resource" id="Resource_ixdxe"]
 script = ExtResource("1_6kaui")
@@ -156,13 +159,18 @@ script = ExtResource("11_f4wjl")
 name = "Water droplets"
 textures = Array[Texture2D]([ExtResource("59_w31nu"), ExtResource("60_ybbp7"), ExtResource("61_vxk4f"), ExtResource("62_bhmbp"), ExtResource("63_8oo51")])
 
+[sub_resource type="Resource" id="Resource_c185p"]
+script = ExtResource("11_f4wjl")
+name = "Fragmenter's"
+textures = Array[Texture2D]([ExtResource("81_5scul"), ExtResource("82_jt71o"), ExtResource("83_xbw3n"), ExtResource("84_rofda"), ExtResource("85_rb05j")])
+metadata/_custom_type_script = "uid://b4dkjjrb1sxxx"
+
 [resource]
 script = ExtResource("39_t5xji")
 version = "2.1.0"
 version_date = "15/03/2025"
-render_scale = 1.0
 color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes 1"
-shape_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_hcf0j"), SubResource("Resource_pdkce"), SubResource("Resource_x5g2o"), SubResource("Resource_2snrg"), SubResource("Resource_p6fjf"), SubResource("Resource_yam2b"), SubResource("Resource_phir3"), SubResource("Resource_fo0nc"), SubResource("Resource_wuye4"), SubResource("Resource_xpeyg"), SubResource("Resource_8d7bk"), SubResource("Resource_mey14")])
+shape_texture_groups = Array[ExtResource("11_f4wjl")]([SubResource("Resource_hcf0j"), SubResource("Resource_pdkce"), SubResource("Resource_x5g2o"), SubResource("Resource_2snrg"), SubResource("Resource_p6fjf"), SubResource("Resource_yam2b"), SubResource("Resource_phir3"), SubResource("Resource_fo0nc"), SubResource("Resource_wuye4"), SubResource("Resource_xpeyg"), SubResource("Resource_8d7bk"), SubResource("Resource_mey14"), SubResource("Resource_c185p")])
 contributors = Array[ExtResource("1_6kaui")]([SubResource("Resource_ixdxe"), SubResource("Resource_a883r")])
