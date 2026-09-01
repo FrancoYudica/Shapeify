@@ -549,7 +549,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=973044829]
 layout_mode = 2
 mouse_filter = 1
-text = "Opacity"
+text = "Brush opacity"
 
 [node name="OpacityHSlider" type="HSlider" parent="UICanvasLayer/Generation/VBoxContainer/ScrollContainer/PanelsHSplitContainer/ImagesVBoxContainer/SplitContainer/TargetPanelContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=382547056]
 layout_mode = 2
