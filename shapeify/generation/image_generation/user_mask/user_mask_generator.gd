@@ -40,7 +40,7 @@ func generate_mask(
 				point.normalized_position * size,
 				point.normalized_size * Vector2(size.x, size.x),
 				0.0,
-				Color.WHITE,
+				Color.WHITE * point.alpha,
 				point.texture)
 	
 	_local_renderer.end_frame()

@@ -2,9 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform float mask_power = 1.0;
 
 void fragment() {
 
@@ -13,5 +11,5 @@ void fragment() {
 
 	vec4 inv_color = vec4(vec3(1.0f) - screen, 1.0);
 	vec4 base_color = vec4(vec3(0.0f), 0.0);
-	COLOR = mix(base_color, inv_color, mask.a);
+	COLOR = mix(base_color, inv_color, pow(mask.a, mask_power));
 }

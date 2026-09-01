@@ -132,6 +132,7 @@ func _add_point(pos: Vector2):
 	point.normalized_position = drag_and_zoom_handler.normalized_local_to_world(pos / size)
 	point.normalized_size = Vector2.ONE * brush_size / drag_and_zoom_handler.camera_view.zoom
 	point.texture = _current_texture
+	point.alpha = Globals.settings.image_generator_params.user_mask_params.opacity
 	_sets_of_points.back().append(point)
 	invalidate()
 
@@ -158,7 +159,7 @@ func _render():
 				point.normalized_position * size,
 				point.normalized_size * Vector2(size.x, size.x),
 				0.0,
-				Color.WHITE,
+				Color.WHITE * point.alpha,
 				point.texture)
 	
 	_local_renderer.end_frame()

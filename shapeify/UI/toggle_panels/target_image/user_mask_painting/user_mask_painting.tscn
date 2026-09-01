@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://boklrx1jya68l"]
+[gd_scene format=3 uid="uid://boklrx1jya68l"]
 
-[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.gd" id="1_044v2"]
-[ext_resource type="Shader" path="res://shaders/user_weight_painting_gradient.gdshader" id="1_ctfa2"]
-[ext_resource type="Shader" path="res://shaders/user_mask_painting.gdshader" id="3_10vil"]
-[ext_resource type="Shader" path="res://shaders/user_paint_hint.gdshader" id="4_6221f"]
-[ext_resource type="Script" path="res://UI/toggle_panels/target_image/user_mask_painting/hint_color_rect.gd" id="5_7157x"]
+[ext_resource type="Script" uid="uid://f1rpnuvwivd7" path="res://UI/toggle_panels/target_image/user_mask_painting/user_mask_painting.gd" id="1_044v2"]
+[ext_resource type="Shader" uid="uid://duch81irald85" path="res://shaders/user_weight_painting_gradient.gdshader" id="1_ctfa2"]
+[ext_resource type="Shader" uid="uid://h7v2d3jkkjok" path="res://shaders/user_mask_painting.gdshader" id="3_10vil"]
+[ext_resource type="Shader" uid="uid://b2avh5eo4cne3" path="res://shaders/user_paint_hint.gdshader" id="4_6221f"]
+[ext_resource type="Script" uid="uid://cdqj4g1q236ex" path="res://UI/toggle_panels/target_image/user_mask_painting/hint_color_rect.gd" id="5_7157x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0gnjn"]
 shader = ExtResource("1_ctfa2")
@@ -13,6 +13,7 @@ shader_parameter/transparency = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m741x"]
 shader = ExtResource("3_10vil")
+shader_parameter/mask_power = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lcjrx"]
 shader = ExtResource("4_6221f")
@@ -20,7 +21,7 @@ shader_parameter/smoothing = 0.05
 shader_parameter/inner_radius = 0.9
 shader_parameter/rotating = 0.0
 
-[node name="UserMaskPainting" type="Control" node_paths=PackedStringArray("texture_sub_viewport", "mask_texture_rect")]
+[node name="UserMaskPainting" type="Control" unique_id=1301984088 node_paths=PackedStringArray("texture_sub_viewport", "mask_texture_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,11 +33,11 @@ script = ExtResource("1_044v2")
 texture_sub_viewport = NodePath("SubViewport")
 mask_texture_rect = NodePath("TextureRect")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1706682927]
 transparent_bg = true
 render_target_update_mode = 4
 
-[node name="WeightBrushTextureRect" type="ColorRect" parent="SubViewport"]
+[node name="WeightBrushTextureRect" type="ColorRect" parent="SubViewport" unique_id=1750058597]
 material = SubResource("ShaderMaterial_0gnjn")
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1089322922]
 modulate = Color(1, 1, 1, 0.545098)
 material = SubResource("ShaderMaterial_m741x")
 layout_mode = 1
@@ -56,10 +57,10 @@ grow_vertical = 2
 mouse_filter = 2
 expand_mode = 1
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="TextureRect"]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="TextureRect" unique_id=623070762]
 copy_mode = 2
 
-[node name="HintColorRect" type="ColorRect" parent="."]
+[node name="HintColorRect" type="ColorRect" parent="." unique_id=1910011815]
 material = SubResource("ShaderMaterial_lcjrx")
 layout_mode = 0
 offset_right = 60.0

@@ -167,8 +167,8 @@ metadata/_custom_type_script = "uid://b4dkjjrb1sxxx"
 
 [resource]
 script = ExtResource("39_t5xji")
-version = "2.1.0"
-version_date = "15/03/2025"
+version = "2.2.0"
+version_date = "31/08/2026"
 color_post_processing_pipeline_params = SubResource("Resource_qt8hf")
 default_target_texture = ExtResource("1_y2u6v")
 default_texture_group_name = "Brush strokes 1"

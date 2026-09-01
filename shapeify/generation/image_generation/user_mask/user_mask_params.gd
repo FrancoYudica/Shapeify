@@ -2,6 +2,12 @@ class_name UserMaskParams extends Resource
 
 signal cleared
 
+@export var opacity: float = 1.0:
+	set(value):
+		if value != opacity:
+			opacity = value
+			emit_changed()
+
 @export var points: Array[UserMaskPoint] = []:
 	set(value):
 		if value != points:
