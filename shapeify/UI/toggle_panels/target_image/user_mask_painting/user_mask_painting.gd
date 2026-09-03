@@ -6,7 +6,9 @@ extends Control
 @export var target_texture_rect: TextureRect
 @export var mask_texture_rect: TextureRect
 
-var brush_size: float = 0.15
+var brush_size: float:
+	get:
+		return _user_mask_params.brush_size * 0.15
 
 var _sets_of_points: Array[Array] = []
 var _current_texture: Texture2D

@@ -8,6 +8,12 @@ signal cleared
 			opacity = value
 			emit_changed()
 
+@export var brush_size: float = 1.0:
+	set(value):
+		if value != brush_size:
+			brush_size = value
+			emit_changed()
+
 @export var points: Array[UserMaskPoint] = []:
 	set(value):
 		if value != points:

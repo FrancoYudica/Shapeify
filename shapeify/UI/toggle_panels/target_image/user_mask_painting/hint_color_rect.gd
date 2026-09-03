@@ -3,15 +3,16 @@ extends ColorRect
 
 func _ready() -> void:
 	visible = false
-	get_parent().resized.connect(
-		func():
-			var parent_size = get_parent().size
-			size.x = parent_size.x * get_parent().brush_size
-			size.y = size.x)
 
 var _hovered: bool = false
 
+func update_size():
+	var parent_size = get_parent().size
+	size.x = parent_size.x * get_parent().brush_size
+	size.y = size.x
+
 func _process(delta: float) -> void:
+	update_size()
 	
 	var parent_rect = get_parent().get_global_rect()
 	var mouse_local = get_parent().get_global_mouse_position()
