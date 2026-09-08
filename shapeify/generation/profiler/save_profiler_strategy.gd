@@ -7,9 +7,10 @@ var _delta_e_1994_metric: DeltaEMetric
 var _shape_renderer: ShapeRenderer
 
 var _image_generation_params: ImageGeneratorParams
-var _shape_generator_params: ShapeGeneratorParams
 
 var _current_image_generation: Dictionary = {}
+var _local_renderer: LocalRenderer
+var _local_target_texture: LocalTexture
 
 func save():
 	var string = JSON.stringify(_data, "	")
@@ -32,6 +33,9 @@ func image_generation_began(
 	
 	_data[_IMAGE_GENERATIONS_KEY].append(_current_image_generation)
 	
+	_local_target_texture = LocalTexture.load_from_texture(params.target_texture, _local_renderer.rd)
+	var render_size = Globals.settings.render_scale * params.target_texture.get_size()
+	_local_target_texture = _local_target_texture.get_resized(_local_renderer, render_size)
 	
 func image_generation_finished(
 	generated_image: LocalTexture):
@@ -41,7 +45,7 @@ func image_generation_finished(
 	img_gen_data["time_taken"] = Time.get_ticks_msec() * 0.001 - img_gen_data["time_taken"]
 	
 	# Calculate the final metric
-	_delta_e_1994_metric.target_texture = _image_generation_params.shape_generator_params.target_texture
+	_delta_e_1994_metric.target_texture = _local_target_texture
 	img_gen_data["metric_score"] = _delta_e_1994_metric.compute(generated_image)
 	img_gen_data["shape_count"] = img_gen_data[_SHAPE_GENERATIONS_KEY].size()
 
@@ -49,7 +53,6 @@ func image_generation_finished(
 
 func shape_generation_began(
 	params: ShapeGeneratorParams):
-	_shape_generator_params = params
 	_get_current_image_generation()[_SHAPE_GENERATIONS_KEY].append(
 		{
 			"time_taken": Time.get_ticks_msec() * 0.001,
@@ -67,11 +70,10 @@ func shape_generation_finished(
 	shape_generation["time_taken"] = Time.get_ticks_msec() * 0.001 - shape_generation["time_taken"]
 	
 	# Renders shape over source texture
-	_shape_renderer.source_texture = source_texture
-	_shape_renderer.render_shape(shape)
+	_shape_renderer.render_shape(_local_renderer, source_texture, shape)
 	
-	_delta_e_1994_metric.target_texture = _shape_generator_params.target_texture
-	var shape_source_texture := _shape_renderer.get_color_attachment_texture()
+	_delta_e_1994_metric.target_texture = _local_target_texture
+	var shape_source_texture := _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 	shape_generation["generated_shape"]["metric_score"] = _delta_e_1994_metric.compute(shape_source_texture)
 
 func genetic_population_generated(
@@ -81,8 +83,7 @@ func genetic_population_generated(
 	var shape_generation = _get_current_shape_generation()
 	
 	# Setup components data in order to calculate the metric
-	_delta_e_1994_metric.target_texture = _shape_generator_params.target_texture
-	_shape_renderer.source_texture = source_texture
+	_delta_e_1994_metric.target_texture = _local_target_texture
 	
 	var population_data = []
 	for individual in population:
@@ -90,8 +91,8 @@ func genetic_population_generated(
 		var individual_data = individual.to_dict()
 
 		# Renders individual over source texture
-		_shape_renderer.render_shape(individual)
-		var individual_source_texture := _shape_renderer.get_color_attachment_texture()
+		_shape_renderer.render_shape(_local_renderer, source_texture, individual)
+		var individual_source_texture := _local_renderer.get_attachment_texture(LocalRenderer.FramebufferAttachment.COLOR)
 		individual_data["metric_score"] = _delta_e_1994_metric.compute(individual_source_texture)
 		
 		population_data.append(individual_data)
@@ -117,4 +118,6 @@ func _get_current_shape_generation():
 func _init() -> void:
 	_delta_e_1994_metric = load("res://generation/metric/delta_e/delta_e_1994_mean.gd").new()
 	_shape_renderer = ShapeRenderer.new()
+	_local_renderer = LocalRenderer.new()
+	_local_renderer.initialize(RenderingServer.create_local_rendering_device())
 	_data = {}

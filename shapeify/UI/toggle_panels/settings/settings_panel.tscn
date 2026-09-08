@@ -240,7 +240,7 @@ clear_color = NodePath("ClearColorOptionButton")
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ClearColorPanelContainer/MarginContainer/ClearColorGridContainer" index="0" unique_id=633537077]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-tooltip_text = "Tells the algorithm when to stop"
+tooltip_text = "Background clear color"
 mouse_filter = 1
 text = "Clear color"
 
@@ -292,7 +292,7 @@ render_scale_spin_box = NodePath("RenderScaleSpinBox")
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ImageGeneratorParamsPanelContainer/VBoxContainer/MarginContainer/VBoxContainer/RenderScalePanelContainer/MarginContainer/RenderScaleGridContainer" index="0" unique_id=1905717699]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-tooltip_text = "Tells the algorithm when to stop"
+tooltip_text = "The internal resolution scale used for shape generation. Lower values reduce pixel processing overhead"
 mouse_filter = 1
 text = "Render scale"
 
@@ -812,6 +812,12 @@ columns = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/AspectRatioPanelContainer/MarginContainer/VBoxContainer/AspectRatioGridContainer" index="0" unique_id=65643862]
 layout_mode = 2
+tooltip_text = "Sets how the shape's aspect ratio is determined.
+
+- KEEP_TEXTURE_RATIO: Maintains the original texture's aspect ratio
+- RANDOM: Generates fully randomized aspect ratios optimized by the engine
+- RANDOM_RANGE: Generates random aspect ratios clamped within a user-defined range"
+mouse_filter = 1
 text = "Shape aspect ratio                 "
 
 [node name="AspectRatioOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/AspectRatioPanelContainer/MarginContainer/VBoxContainer/AspectRatioGridContainer" index="1" unique_id=879073503]
@@ -873,6 +879,7 @@ columns = 2
 
 [node name="FixedRotationCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer" index="0" unique_id=1079864920]
 layout_mode = 2
+tooltip_text = "Sets a fixed rotation angle for shapes. Useful for directional artistic styles"
 text = "Fixed rotation angle"
 flat = true
 
@@ -885,6 +892,7 @@ suffix = "°"
 
 [node name="FixedSizeCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/SettingsVBoxContainer/ShapePanelContainer/VBoxContainer/MarginContainer/VBoxContainer/GridContainer" index="2" unique_id=21592538]
 layout_mode = 2
+tooltip_text = "Sets a fixed size for shapes"
 text = "Fixed size width ratio"
 flat = true
 
